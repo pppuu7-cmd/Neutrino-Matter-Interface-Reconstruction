@@ -42,6 +42,16 @@ def test_git_blob_hash_matches_known_text_fixture():
     assert git_blob_sha(data) == "ce013625030ba8dba906f756967f9e9ca394464a"
 
 
+def test_zero_energy_spectrum_endpoint_has_zero_cross_section():
+    assert cevns_sigma_above_threshold_cm2(0.0, 0.0, AR40) == 0.0
+    assert cevns_sigma_above_threshold_cm2(0.0, 10.0, AR40) == 0.0
+
+
+def test_negative_energy_remains_invalid():
+    with pytest.raises(ValueError):
+        cevns_sigma_above_threshold_cm2(-1.0e-6, 0.0, AR40)
+
+
 @pytest.mark.parametrize(
     "threshold_ev,expected_rate",
     [
