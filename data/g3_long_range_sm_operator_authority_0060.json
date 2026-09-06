@@ -1,0 +1,66 @@
+{
+  "iteration": "0060",
+  "gate": "G3/F5-F6 genuinely long-range/growing-coordination SM operator audit",
+  "prereg_commit": "3a52dc988cfb9ee05c9bf826fd316f636c923573",
+  "classification": "PASS_NO_SM_GROWING_COORDINATION_SURVIVOR",
+  "scope_guard": "Scoped to passive Standard-Model neutrino/nuclear/matter operators enumerated in the preregistration. This is not a universal QFT theorem and does not close the independent 0059 contact-coefficient absolute residual.",
+  "scaling_test": {
+    "definition": "I(R)=rho*integral[r0,R] 4*pi*r^2*|K(r)| dr",
+    "yukawa_example": "For K(r)=C exp(-m r)/r with m>0, I(R)=4*pi*rho*|C|*[(exp(-m*r0)*(1+m*r0)-exp(-m*R)*(1+m*R))/m^2], hence I(infinity) is finite.",
+    "power_law_note": "A massless unscreened kernel can make I(R) grow, but it is a survivor only if the actual SM neutrino vertex realizes that kernel in the relevant passive response and no previously closed extensive field-energy/sum-rule budget applies."
+  },
+  "authorities": [
+    {
+      "class": "direct electroweak W/Z exchange",
+      "source": "Particle Data Group 2026 / W and Z listings and electroweak review",
+      "urls": [
+        "https://pdg.lbl.gov/2026/reviews/rpp2026-rev-w-mass.pdf",
+        "https://pdg.lbl.gov/2025/listings/rpp2025-list-z-boson.pdf"
+      ],
+      "frozen_inputs": {
+        "mW_GeV_reference": 80.3692,
+        "mZ_GeV_reference": 91.1876,
+        "hbarc_GeV_fm": 0.1973269804,
+        "range_W_fm_approx": 0.0024553,
+        "range_Z_fm_approx": 0.0021640
+      },
+      "finding": "Massive W/Z exchange is Yukawa/short-range; at low q it reduces to local four-fermion operators. The per-site integrated range measure saturates at fixed density."
+    },
+    {
+      "class": "pion-range and multipion nuclear electroweak currents",
+      "source": "Krebs, Epelbaum, Meissner, Nuclear axial current operators to fourth order in chiral EFT, arXiv:1610.03569",
+      "url": "https://arxiv.org/abs/1610.03569",
+      "frozen_inputs": {
+        "charged_pion_mass_GeV_reference": 0.13957,
+        "one_pion_range_fm_approx": 1.414
+      },
+      "finding": "One-/multi-pion exchange pieces are finite-range massive-hadron contributions plus contact terms. Exponential/Yukawa tails make I(R) saturate; contact terms remain the separate 0059 coefficient residual, not a growing-coordination loophole."
+    },
+    {
+      "class": "SM neutrino electromagnetic vertex: magnetic moment",
+      "source": "Fujikawa and Shrock, Phys. Rev. Lett. 45, 963 (1980)",
+      "url": "https://doi.org/10.1103/PhysRevLett.45.963",
+      "finding": "A massive Dirac neutrino has a loop-induced magnetic moment in the minimally massive SM extension; therefore a photon pole is physically possible but its coupling is fixed and extraordinarily small, not a free BSM parameter. In passive matter any macroscopic electromagnetic-field coherence belongs to the already separated field-energy/response budget and cannot be counted as free neutrino-sourced superextensive gain."
+    },
+    {
+      "class": "SM neutrino electromagnetic vertex: charge-radius/effective form factor",
+      "source": "Degrassi and Sirlin, Phys. Rev. D 39, 287 (1989); Bernabeu et al., Phys. Rev. D 62, 113012 (2000)",
+      "urls": [
+        "https://doi.org/10.1103/PhysRevD.39.287",
+        "https://doi.org/10.1103/PhysRevD.62.113012"
+      ],
+      "finding": "The SM effective neutrino electromagnetic form factor is proportional to q^2 at low q for the charge-radius/anapole-type piece, so the photon propagator pole is cancelled in the effective scattering amplitude; this does not create an unscreened 1/r passive pair kernel."
+    },
+    {
+      "class": "collective correlations / criticality",
+      "source": "NMIR frozen 0027/0028/0031/0032/0038/0039/0047 class closures plus finite-range SM operator inventory above",
+      "finding": "A long correlation length does not by itself turn a finite-range microscopic SM weak kernel into growing interaction coordination. Existing density/spin sum rules, extensive pair/field-energy budgets, and bounded finite-range k-local theorem remain applicable in their stated scopes."
+    },
+    {
+      "class": "other massless-SM fields",
+      "finding": "Photon is the only relevant massless SM gauge field. Gluons are confined to hadrons and do not supply a macroscopic neutrino-matter long-range vertex; gravitons are not part of the Standard Model interaction inventory and gravitational focusing is tracked separately in G9. No additional passive SM massless mediator satisfying the preregistered survivor criterion was identified."
+    }
+  ],
+  "result": "Every audited actual SM class either has finite range causing I(R) to saturate, reduces to a local/contact operator whose absolute coefficient remains the separate 0059 residual, or couples through the massless photon in a way that is contact-like at low q or already constrained by an extensive electromagnetic-field energy/response budget. No unclosed growing-coordination passive-SM survivor was found.",
+  "scientific_next_action": "Close only the 0047 long-range/growing-coordination residual in this audited SM scope. Preserve the 0059 absolute contact-coefficient residual OPEN. Move to the next independent survivor, with G9 distant-source focusing utility preferred unless G8 source/entrance-strength blockers have become resolvable."
+}
