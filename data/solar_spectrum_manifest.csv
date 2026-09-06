@@ -1,0 +1,12 @@
+component,kind,reference,source_repo,source_commit,source_path,source_blob_sha,line_energy_mev,line_weight,notes
+pp,continuum,"J.N. Bahcall, Phys. Rev. C 56, 3391 (1997)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/pp_shape.csv,4b00947ad0a27fd5634465f3009025193251e4e0,,,"Normalized spectral-shape table; primary data provenance retained in PEANUTS header"
+hep,continuum,"J.N. Bahcall, Phys. Rev. C 56, 3391 (1997)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/hep_shape.csv,6611f1ce46d59574e41e174cfaa656f437ff6070,,,"Normalized spectral-shape table"
+B8,continuum,"C.E. Ortiz et al., Phys. Rev. Lett. 85, 2909 (2000)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/8B_shape_Ortiz_et_al.csv,570e8016d4cfd79808441d6275b8c651341bc3a6,,,"Default Ortiz spectrum; Winter alternative intentionally not mixed into baseline"
+N13,continuum,"J.N. Bahcall and R.K. Ulrich, Rev. Mod. Phys. 60, 297 (1988)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/n13_shape.csv,08321b17fe4be69db6e98f9c1f6cd296d79fef53,,,"CNO spectral-shape table"
+O15,continuum,"J.N. Bahcall and R.K. Ulrich, Rev. Mod. Phys. 60, 297 (1988)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/o15_shape.csv,5cf6297795f268390cffd557e005db14daa0d32a,,,"CNO spectral-shape table"
+F17,continuum,"J.N. Bahcall and R.K. Ulrich, Rev. Mod. Phys. 60, 297 (1988)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/f17_shape.csv,aabf02ee7ca01ec984a0a86cc3dd1597639fc08e,,,"CNO spectral-shape table"
+Be7_ground,profile,"J.N. Bahcall, Phys. Rev. D 49, 3923 (1994)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/be7ground_shape.csv,19d97e87e8b03678d2e4629598f7d7fd7794eae0,,,"Solar thermally broadened dominant Be7 line profile"
+Be7_excited,profile,"J.N. Bahcall, Phys. Rev. D 49, 3923 (1994)",michelelucente/PEANUTS,59e3a2ae102d58f42cc1146eaca2cae68be879ce,Data/be7excited_shape.csv,41dc3f45c2db215af0b4f0f1746f85646e0a26d2,,,"Solar thermally broadened subdominant Be7 line profile"
+pep,line,"standard pp-chain kinematics; review convention",,,,,1.442,1.0,"Monoenergetic baseline line; thermal solar broadening deferred"
+Be7_862,line,"laboratory branching convention; Bahcall line-shape paper",,,,,0.862,0.897,"Laboratory-energy bookkeeping line; use broadened profile for precision integration"
+Be7_384,line,"laboratory branching convention; Bahcall line-shape paper",,,,,0.384,0.103,"Laboratory-energy bookkeeping line; use broadened profile for precision integration"
