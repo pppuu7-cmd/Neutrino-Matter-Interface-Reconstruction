@@ -1,0 +1,36 @@
+name: NMIR LEE mitigation evidence gate
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0054_cresst_lee_mitigation_evidence_gate.md'
+      - 'data/cresst_lee_mitigation_evidence.csv'
+      - 'src/nmir/lee_mitigation_gap.py'
+      - 'tests/test_lee_mitigation_gap.py'
+      - 'scripts/lee_mitigation_evidence_benchmark.py'
+      - '.github/workflows/lee-mitigation-evidence.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_lee_mitigation_gap.py
+      - run: mkdir -p artifacts/lee_mitigation_evidence
+      - name: Run fail-closed frozen benchmark
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/lee_mitigation_evidence_benchmark.py | tee artifacts/lee_mitigation_evidence/result.json
+          grep -q 'PASS_LEE_MITIGATION_EVIDENCE_AUDIT' artifacts/lee_mitigation_evidence/result.json
+          grep -q 'MECHANISM_SURVIVOR_QUANTITATIVE_GAP_OPEN' artifacts/lee_mitigation_evidence/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lee-mitigation-evidence-result
+          path: artifacts/lee_mitigation_evidence/result.json
