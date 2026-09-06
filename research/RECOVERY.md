@@ -164,20 +164,54 @@ RIOEC obeys `E_R=-Q_epsilon+E_x+E_b`; to overlap a 10 eV, 1 keV or 5 keV thermal
 
 Classification: **G8_LOW_ENERGY_RESONANCE_WINDOW_PASS**. Existence/coupling of any elementary low-mass state remains OPEN/BSM-LOCKED. Target-specific RIOEC entrance strength × primary thermal-solar `anti-nu_e` spectrum remains OPEN. No rate or W/kg is inferred from kinematic matching alone.
 
-Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md` through `0037_low_energy_resonance_design_window.md`.
+## Iteration 0038 — passive finite linear multimode mediator
+Prospective contract `research/multimode_mediator_prereg.md`, prereg commit `ee2280967b419383ffd50595ae8700840669a95f`.
+
+For `H_med=1/2 x^T K x - x^T G O` with positive-definite `K`, completing the square gives exactly
+
+`E_field = |E_induced| = 1/2 O^T G^T K^-1 G O`.
+
+This is independent of mediator basis and mode count. Near-gapless softening increases both quantities by the same `1/lambda_min`; an exact zero mode coupled to the source has no stable passive equilibrium.
+
+Hosted run `34047675712`, job `101525546661`, artifact `9993592020`; raw `7 passed in 0.03s`. On 100 random SPD 5-mode systems max square-completion/field-vs-induced relative error was `8.215955708232927e-16`; basis-invariance error `2.220446049250313e-16`. Soft `lambda:1->1e-9` produced induced and field-energy gains both `9.999999999999999e8`, ratio `1.0`.
+
+Classification: **PASS_MULTIMODE_LINEAR_BUDGET / STRONG-NEGATIVE scoped**. Finite passive stable linear multimode/cavity/common-field systems, including near-gapless modes, do not provide a free parametric gain when mediator energy is counted. Nonlinear, driven/active, higher-body, BSM and gravity remain outside this theorem.
+
+## Iteration 0039 — passive convex homogeneous nonlinear mediator
+Prospective contract `research/nonlinear_homogeneous_mediator_prereg.md`, prereg commit `6849ff432ad277b07331a8e53db140c6e0fcb815`.
+
+For differentiable non-negative strictly convex positive p-homogeneous `V(tx)=t^p V(x)` and `H=V-b dot x`, stationarity plus Euler homogeneity gives
+
+`b dot x*=p V(x*)`,
+
+`H_min=-(p-1)V(x*)`, hence
+
+`|E_induced|=(p-1)V(x*)`.
+
+For scalar `V=kappa |x|^p/p`, collective source `b_N=g_N o0 N`, `g_N=g0/N^gamma`, free energy scales as `N^[p(1-gamma)/(p-1)]`. Extensivity requires `gamma=1/p`; then stored and induced energy per particle remain O(1). Unscaled superextensive response is accompanied by the same superextensive medium/free-energy budget.
+
+Hosted run `34048018268`, job `101526462429`, artifact `9993688056`; raw `14 passed in 0.04s`.
+- max identity error `1.7763568394002505e-15`;
+- max extensive per-particle gain error from 1 `6.661338147750939e-16`;
+- p=2: unscaled gain `1000`, extensive gamma `1/2`, extensive gain `1`;
+- p=4: unscaled gain `10`, extensive gamma `1/4`, extensive gain `1`, `|E_induced|/V=3`.
+
+Classification: **PASS_NONLINEAR_HOMOGENEOUS_BUDGET / STRONG-NEGATIVE scoped** against free parametric N-gain from passive stable convex fixed-p homogeneous nonlinear/critical media at a fixed extensive free-energy budget. Non-convex/multistable, mixed-degree crossover, driven/active, arbitrary critical fluctuations, higher-body, BSM and gravity remain OPEN.
+
+Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md` through `0039_nonlinear_homogeneous_mediator_gate.md`.
 
 ## Research gates
 | Gate | Status |
 |---|---|
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
-| G2 many-body deposited-energy channels | **PARTIAL NEGATIVE — local density, local spin, extensive long-range pair and passive single-harmonic-mediator routes class-bounded; multi-mode/gapless/nonlinear/active/higher-body remain OPEN** |
+| G2 many-body deposited-energy channels | **PARTIAL NEGATIVE — local density/spin, extensive long-range pair, passive single-/multi-mode linear mediators and convex homogeneous nonlinear mediators are class-bounded; non-convex/metastable, active/time-dependent and genuine higher-body remain OPEN** |
 | G3 maximum SM deposited solar-neutrino power | **PARTIAL PASS — leading, finite-q and omitted one-body-current sectors strong-negative; known two-body corrections extremely distant; universal two-body/higher-body theorem and target-specific thermal-antineutrino resonance remain OPEN** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5 minimal BSM solution | LOCKED |
 | G6 BSM constraints | LOCKED |
 | G7 production/decay → inverse capture | PARTIAL PASS |
-| G8 resonance integrated-strength/bandwidth | **PARTIAL PASS — area theorem, RIOEC source/flavor gate, real-resonance positive control and low-energy kinematic design window PASS; target-specific evaluated entrance-strength × thermal-solar anti-nu_e fold OPEN** |
+| G8 resonance integrated-strength/bandwidth | **PARTIAL PASS — area theorem, RIOEC source/flavor gate, real-resonance positive control and low-energy kinematic design window PASS; target-specific evaluated entrance-strength × thermal-solar anti-nu_e fold OPEN/BLOCKED on real strength data** |
 | G9 finite gravitational focusing gain | PARTIAL PASS — 23.5 AU scale robust; distant-source usefulness OPEN; solar self-lensing inapplicable |
 | G10 staggered/multi-isotope fixed-mass-column gain | **GEOMETRY-ONLY STRONG NEGATIVE / FIXED-COLUMN MIXTURE THEOREM PASS; microscopic-response-changing structured matter remains under G2/G4/G8** |
 
@@ -194,18 +228,19 @@ Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.
 10. No F9 multiplication of unvalidated gains.
 11. RIOEC is an electron-antineutrino entrance channel; ordinary B16 solar `nu_e` flux must never be inserted into its rate.
 12. Kinematic resonance matching alone is not a microscopic-strength or rate PASS.
+13. Linear/multimode/nonlinear homogeneous mediator closures are energy-accounting theorems for their scoped passive equilibrium classes, not claims about arbitrary active/non-convex quantum matter.
 
 ## Chronology
-`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum; `0029` rounded gravity + finite-source/Liouville; `0030` full Model-S gravity; `0031` long-range pair budget; `0032` passive harmonic mediator; `0033` omitted one-body nuclear currents + two-body data distance; `0034` staggered-layer/fixed-column theorem; `0035` RIOEC source/flavor + integrated-area/profile; `0036` real-resonance positive control; `0037` low-energy resonance design window.
+`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum; `0029` rounded gravity + finite-source/Liouville; `0030` full Model-S gravity; `0031` long-range pair budget; `0032` passive harmonic mediator; `0033` omitted one-body nuclear currents + two-body data distance; `0034` staggered-layer/fixed-column theorem; `0035` RIOEC source/flavor + integrated-area/profile; `0036` real-resonance positive control; `0037` low-energy resonance design window; `0038` passive linear multimode mediator; `0039` passive convex homogeneous nonlinear mediator.
 
 ## Current maturity
-**NMIR_READINESS: 66%** (audit estimate).
+**NMIR_READINESS: 69%** (audit estimate).
 
-65%→66% credit: +1% for a preregistered, hosted, raw-inspected class-level F3 resonance design-window closure. This sharply delimits the energy/mass tuning required of any low-energy resonance without promoting kinematic matching into a rate. No credit yet for target-specific RIOEC W/kg or for any BSM state.
+66%→69% credit: +2% for the prospectively frozen hosted/raw-inspected multimode linear class closure and +1% for the scoped nonlinear homogeneous/critical energy-budget closure. No credit is assigned for non-convex avalanche media, target-specific thermal RIOEC power, the universal two-body theorem, or BSM.
 
 ## Exact next funnel gates
-1. **G8 target-specific thermal-solar antineutrino RIOEC resonance:** freeze a primary thermal-solar `anti-nu_e` spectral density and one evaluated candidate with Q value, daughter excitation, captured-shell binding/width and weak entrance strength; compute `B0 phi_anti-nu_e(E_R)`, events/kg/s and neutrino-only W/kg.
-2. **Global two-body/higher-body residual:** seek a finite-range/saturation/sum-rule/operator bound without promoting selected-nucleus calculations into a theorem.
-3. **Residual many-body survivor:** multi-mode/gapless/nonlinear mediator, with complete medium/field energy accounting; active pumping separately tracked.
+1. **G2 non-convex/metastable avalanche medium:** quantify trigger amplification with full first-law/free-energy accounting. A large released medium energy may be a valuable detector/amplifier but must not be counted as neutrino-supplied power.
+2. **G8 target-specific thermal-solar antineutrino RIOEC:** identify an eV-keV resonance candidate with independently evaluated entrance strength; otherwise classify candidate-specific power as BLOCKED rather than use blanket screening `|M|^2=0.1`.
+3. **Global two-body/higher-body residual:** seek a finite-range/saturation/sum-rule/operator bound without promoting selected-nucleus calculations into a theorem.
 4. **G9 source-class completion:** distant astrophysical neutrino source flux × finite-source/alignment duty cycle; no transparent-Sun gain for solar neutrinos.
-5. **BSM unlock audit:** only after G8 and the genuine two-body residual are substantially bounded.
+5. **BSM unlock audit:** only after G8 and the genuine two-/higher-body residual are substantially bounded.
