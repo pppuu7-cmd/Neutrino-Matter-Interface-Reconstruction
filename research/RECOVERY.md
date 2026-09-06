@@ -38,61 +38,98 @@ Current target leader is pure `7Li/GS98 = 1.06589117e-21 W/kg`, still `~9.38e20`
 - `0024` leading-allowed envelope: `9.419449302949355e-12 W/kg`, STRONG_NEGATIVE_SCOPED; run `34038214660`, artifact `9990839187`.
 - `0025` isolated-resonance area bound: line narrowing cannot create integrated entrance strength; run `34038642747`, artifact `9990968127`.
 - `0026` finite-q vector-charge/axial-spin envelope: `1.2056895107775174e-9 W/kg`, STRONG_NEGATIVE; x1e6 omitted-current stress `1.2056895107775173e-3 W/kg`; run `34038882486`, artifact `9991038179`.
-- Two-body/subleading-current sensitivity remains OPEN; conditional A=300 map needs `r≈192.63` per-pair norm ratio to bridge the finite-q envelope to 1 W/kg.
 - `0027` coordinate-local density f-sum PASS/STRONG-NEGATIVE against free superextensive energy-weighted density gain; run `34039755966`, artifact `9991299921`.
 - `0028` bounded-local spin first-moment PASS/STRONG-NEGATIVE against free superextensive local-magnon energy gain; run `34040105285`, artifact `9991400307`.
 
 ## G9 gravity — iterations 0029/0030
 `0029`: prospectively frozen rounded transparent-Sun check + finite uniform-source/Liouville control. Patla-Nemiroff rounded inputs give `23.0291102335 AU`, residual `-2.004%` from published `23.5 AU`; baseline CI run `34040499051`, job `101506252362`, raw `141 passed`.
 
-`0030`: independent full Model-S projected-density lens, preregistered at commit `a237aa336b52ba57bca57b5e289d4ca3505f4586`. Hosted run `34041004727`, job `101507632178`, artifact `9991661778`, 9 tests PASS, pinned external blob verified. Raw results:
+`0030`: independent full Model-S projected-density lens. Hosted run `34041004727`, job `101507632178`, artifact `9991661778`, 9 tests PASS. Raw results:
 - integrated Model-S mass `1.9890968238e33 g`, relative error `4.86796e-5`;
-- `M_2D(0.024R)/M=0.01311330481`, 4.282% from rounded 0.0137;
+- `M_2D(0.024R)/M=0.01311330481`;
 - `F(0.024R)=24.07378082 AU`;
-- full scan minimum **`23.62935116 AU`**, only **0.5504%** from published 23.5 AU.
+- full scan minimum `23.62935116 AU`, only `0.5504%` from published 23.5 AU.
 
-Classification: **MODEL_S_ROBUSTNESS_PASS / G9 PARTIAL**. The short transparent-Sun focal scale is robust, but this is a distant-source-behind-Sun geometry and cannot be multiplied into the Sun's own solar-neutrino flux. Usable extended-source/receiver gain remains OPEN.
+Classification: **MODEL_S_ROBUSTNESS_PASS / G9 PARTIAL**. This is a distant-source-behind-Sun geometry, not solar-neutrino self-lensing. Usable distant-source finite magnification remains OPEN.
 
 ## Iteration 0031 — long-range/nonlocal pair budget
-Prospective contract `research/long_range_budget_prereg.md`, commit `fb6e777b9306a5d1cbaef409cf72b19d597bdf52`.
-
 For `H=sum h_ij`, additive `O=sum o_i`, `||o_i||<=o0`,
 
 `|m1| <= 8 o0^2 W_N`, `W_N=sum ||h_ij||`.
 
-Thus an extensive absolute interaction budget `W_N=O(N)` enforces an extensive first-moment bound. For all-to-all `||h_ij||=J0/N^kappa`, both interaction budget per particle and response bound per particle scale `N^(1-kappa)`.
+Thus `W_N=O(N)` enforces an extensive first-moment bound. Hosted run `34041247733`, artifact `9991728037`, 7 tests PASS. For `N:1000->1e6`: unscaled pair budget and response/particle both gain `1001`; `kappa=0.5` both `31.6544`; Kac `kappa=1` both `1.001`.
 
-Hosted run `34041247733`, job `101508285576`, artifact `9991728037`, 7 tests PASS. For `N:1000->1e6`:
-- `kappa=0`: budget gain=response-bound gain=`1001.0`;
-- `kappa=0.5`: both `31.6543993783`;
-- `kappa=1`: both `1.001`;
-- max response-vs-budget mismatch `2.218e-16`.
-
-Classification: **PASS_LONG_RANGE_BUDGET / STRONG-NEGATIVE scoped** against free passive superextensive response at fixed extensive absolute pair-interaction budget.
+Classification: **PASS_LONG_RANGE_BUDGET / STRONG-NEGATIVE scoped**.
 
 ## Iteration 0032 — common harmonic mediator included explicitly
-Prospective contract `research/harmonic_mediator_prereg.md`, commit `059b66d1e12f58bf520eef59a6b54d7d3030f682`.
-
-For passive stable mediator
-
-`H=(kappa/2)x^2-g_N x O`, `|O|<=oN`,
-
-completion of the square gives equal field-displacement and induced-interaction energy scales
+For `H=(kappa/2)x^2-g_N x O`, completion of the square gives
 
 `E_field=|E_induced|=g_N^2 O^2/(2kappa)`.
 
-With `g_N=g0/N^gamma`, energy per particle scales `N^(1-2gamma)`. The extensive Dicke scaling `gamma=1/2` therefore gives O(1) energy per particle and induced pair scale `J_eff~1/N`.
+Hosted run `34041392001`, artifact `9991770130`, 7 tests PASS. With `g_N=g0/N^gamma`, energy/particle gains for `N:1000->1e6` are: gamma 0 -> 1000; 0.25 -> 31.6228; 0.5 -> 1.0; 0.75 -> 0.03162. Dicke `gamma=1/2` gives `J_eff~1/N`.
 
-Hosted run `34041392001`, job `101508681617`, artifact `9991770130`, 7 tests PASS. Raw gains for `N:1000->1e6`:
-- `gamma=0`: field and induced energy/particle gain `1000`;
-- `gamma=0.25`: both `31.62277660`;
-- `gamma=0.5`: both `1.0` (roundoff `2.2e-16`);
-- `gamma=0.75`: both `0.03162277660`;
-- at `gamma=1/2`, effective pair ratio `J_eff(N2)/J_eff(N1)=0.001`, exactly the Kac `1/N` scaling.
+Classification: **PASS_HARMONIC_MEDIATOR_BUDGET / STRONG-NEGATIVE scoped**.
 
-Classification: **PASS_HARMONIC_MEDIATOR_BUDGET / STRONG-NEGATIVE scoped** against a free superextensive collective gain from a passive stable single harmonic cavity/common mode when mediator energy is included.
+## Iteration 0033 — subleading nuclear-current loophole
+Prospective contract `research/nuclear_current_loophole_prereg.md`, commit `da68f1d8f89aa11045f587aeec0332da62fdea2c`.
 
-Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md`, `0030_gravity_modelS_projected_lens.md`, `0031_long_range_interaction_budget_gate.md`, `0032_passive_harmonic_mediator_budget_gate.md`.
+Part A uses an intentionally generous complete omitted one-body current stress: axial charge, convection/recoil, weak magnetism and induced pseudoscalar, with `p/M<=1`, `q_max=40.51099895 MeV`, triangle component counting and an extra factor-2 amplitude safety.
+
+Frozen finite-q leading power: `1.2056895107775174e-9 W/kg`.
+Raw omitted/leading one-body component ratio: `0.9494073224324683`; safe amplitude ratio `r_1b=1.8988146448649366`.
+
+`P_1b = 1.0131561292246442e-8 W/kg`, still `9.8701470697e7` below 1 W/kg.
+
+Classification: **ONE_BODY_SUBLEADING_STRONG_NEGATIVE_SCOPED**.
+
+Required extra amplitude to bridge to 1 W/kg:
+
+`r_bridge=28798.321671367867`.
+
+Literature-calibrated amplitude-distance diagnostics:
+- 0.03 typical two-body axial anchor -> bridge gap `959944.0557`;
+- 0.30 suppressed-GT exceptional anchor -> `95994.40557`;
+- 0.61 axial-charge excess anchor -> `47210.36340`.
+
+Even deliberate aggregate amplitude `r=1000` gives only `1.2081020955e-3 W/kg`. Generic NLO `C(Q/Lambda)` at deliberately large `Q/Lambda=0.5` would require `C=57596.64334`.
+
+Hosted run `34042934477`, job `101512822458`, artifact `9992226798`; raw `9 passed in 0.03s`.
+
+Classification: **TWO_BODY_DATA_DISTANCE_STRONG_NEGATIVE**, while **GLOBAL_TWO_BODY_THEOREM remains OPEN**. Known calculations are extremely distant from the bridge, but selected-nucleus corrections are not promoted into a correlation-independent bound for arbitrary nuclei.
+
+## Iteration 0034 — staggered-layer / fixed-column theorem
+Prospective contract `research/structured_column_prereg.md`, commit `868d71658cbbc41a6582136f9d88ae40c108fbe2`.
+
+For independent passive layers,
+
+`A(E)=1-exp(-sum_j tau_j)`.
+
+Therefore layer order and transverse offsets are exactly irrelevant when microscopic cross sections are fixed.
+
+At fixed mass column,
+
+`tau/Sigma_mass=sum_i w_i (sigma_i/m_i) <= max_i sigma_i/m_i`,
+
+so no passive isotope mixture/layering can beat the best pure component once microscopic responses are fixed.
+
+For a fixed slab face area tilted by `c=cos(theta)`, total capture factor
+
+`C(c)=c[1-exp(-tau/c)] <= C(1)`.
+
+Hosted run `34043114890`, job `101513298058`, artifact `9992278460`; raw `6 passed in 0.04s`.
+
+Atomic projected-coverage stress, using the already enormous A=300/Z=119/E=20 finite-q + full-one-body stressed microscopic cross section:
+- `sigma_stress=2.4740960790061117e-32 cm^2`;
+- 2 Å square cell gives `tau_layer=6.185240197515279e-17`;
+- `1.61675208733481e16` ideal dense layers for `tau~1`;
+- idealized thickness `3.2335041747e6 m` (~3234 km);
+- effective weak interaction radius `8.87428442927202e-19 m`.
+
+Classification: **G10_GEOMETRY_ONLY_STRONG_NEGATIVE / FIXED_COLUMN_MIXTURE_THEOREM_PASS**.
+
+This closes geometry-only staggered layers, layer ordering, passive isotope mixing and simple slab-angle path-length tricks. It does not close structures that change `sigma(E,q)` itself through resonance, coherence, polarization, active driving or BSM.
+
+Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md` through `0034_structured_fixed_column_gate.md`.
 
 ## Research gates
 | Gate | Status |
@@ -100,14 +137,14 @@ Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
 | G2 many-body deposited-energy channels | **PARTIAL NEGATIVE — local density, local spin, extensive long-range pair and passive single-harmonic-mediator routes class-bounded; multi-mode/gapless/nonlinear/active/higher-body remain OPEN** |
-| G3 maximum SM deposited solar-neutrino power | PARTIAL PASS — nuclear class bounds strong-negative; subleading/two-body/resonant and exotic many-body loopholes remain |
+| G3 maximum SM deposited solar-neutrino power | **PARTIAL PASS — leading, finite-q and omitted one-body-current sectors strong-negative; known two-body corrections extremely distant; universal two-body/higher-body theorem and target-specific resonance remain OPEN** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5 minimal BSM solution | LOCKED |
 | G6 BSM constraints | LOCKED |
 | G7 production/decay → inverse capture | PARTIAL PASS |
-| G8 resonance integrated-strength/bandwidth | PARTIAL PASS — formal gate done, target-specific completion OPEN |
+| G8 resonance integrated-strength/bandwidth | PARTIAL PASS — formal area theorem done; target-specific measured entrance-strength fold OPEN |
 | G9 finite gravitational focusing gain | PARTIAL PASS — 23.5 AU scale robust; distant-source usefulness OPEN; solar self-lensing inapplicable |
-| G10 staggered/multi-isotope fixed-mass-column gain | PARTIAL NEGATIVE for density-only energy gain; directional/CC-isotope-selective controls OPEN |
+| G10 staggered/multi-isotope fixed-mass-column gain | **GEOMETRY-ONLY STRONG NEGATIVE / FIXED-COLUMN MIXTURE THEOREM PASS; microscopic-response-changing structured matter remains under G2/G4/G8** |
 
 ## Critical scope guards
 1. Event/detection gain != energy-deposition gain.
@@ -117,20 +154,21 @@ Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.
 5. Daughter/nuclear/external/mediator preparation energy is not neutrino-supplied power.
 6. A few-target maximum is not a global SM ceiling.
 7. Frozen gates are never relaxed after results.
-8. Density/local-spin/long-range-pair/harmonic-mediator results are scoped theorems, not claims about arbitrary quantum fields.
-9. No F9 multiplication of unvalidated gains.
+8. Selected-nucleus two-body corrections are evidence-distance anchors, not universal maxima.
+9. Geometry-only G10 does not cover any structure-induced microscopic response change.
+10. No F9 multiplication of unvalidated gains.
 
 ## Chronology
-`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum; `0029` rounded gravity + finite-source/Liouville; `0030` full Model-S gravity robustness; `0031` long-range pair budget; `0032` passive harmonic mediator budget.
+`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum; `0029` rounded gravity + finite-source/Liouville; `0030` full Model-S gravity; `0031` long-range pair budget; `0032` passive harmonic mediator; `0033` omitted one-body nuclear currents + two-body data distance; `0034` staggered-layer/fixed-column theorem.
 
 ## Current maturity
-**NMIR_READINESS: 59%** (audit estimate).
+**NMIR_READINESS: 63%** (audit estimate).
 
-56%→59% credit: +2% for the prospectively frozen hosted long-range interaction-budget class closure and +1% for the mediator-inclusive single-mode closure. This is not publication readiness and does not unlock BSM yet.
+59%→63% credit: +2% for the hosted/preregistered one-body-current closure plus quantified two-body data distance while preserving the open global theorem; +2% for the exact hosted G10 geometry/fixed-column closure. This is research-funnel maturity, not publication readiness.
 
 ## Exact next funnel gates
-1. **Full nuclear-current loopholes:** independently bound convection/recoil, axial charge, weak magnetism, induced pseudoscalar and genuine two-body currents for `E_nu<=20 MeV`. This is now the highest-value SM power gap.
-2. **G8 target-specific resonance:** measured/evaluated entrance strength + physical source profile only; convert the formal area gate into a real W/kg ceiling.
-3. **Residual many-body survivor:** multi-mode/gapless/nonlinear mediator and higher-body interactions, with complete medium/field energy accounting; active pumping tracked separately.
-4. **G10 structured matter:** fixed-mass-column directional/CC-isotope-selective comparison.
-5. **G9 source-class completion:** astrophysical source flux × finite-source/alignment duty cycle; no transparent-Sun gain for solar neutrinos.
+1. **G8 target-specific genuine resonance:** measured/evaluated entrance strength + physical solar line/continuum profile; turn the formal area theorem into a real W/kg ceiling.
+2. **Global two-body/higher-body residual:** seek a finite-range/saturation/sum-rule/operator bound without promoting selected-nucleus calculations into a theorem.
+3. **Residual many-body survivor:** multi-mode/gapless/nonlinear mediator, with complete medium/field energy accounting; active pumping separately tracked.
+4. **G9 source-class completion:** distant astrophysical neutrino source flux × finite-source/alignment duty cycle; no transparent-Sun gain for solar neutrinos.
+5. **BSM unlock audit:** only after G8 and the genuine two-body residual are substantially bounded.
