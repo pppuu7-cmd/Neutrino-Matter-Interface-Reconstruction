@@ -1,227 +1,185 @@
 # NMIR Recovery / Source-of-Truth State
 
-Last reconciled: 2026-09-06 Europe/Stockholm
+Last reconciled: 2026-09-06
 Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 
 ## Mission
 
-Reconstruct the most general low-energy neutrino↔matter interface, separate state control from detection and irreversible energy deposition, establish Standard-Model bounds, and only then identify any BSM coupling structures needed to exceed those bounds.
+Reconstruct the low-energy neutrino↔matter interface, distinguish state control/detection from irreversible energy deposition, establish a quantitative Standard-Model ceiling, and only then open BSM model-building as a solution branch.
 
-Four organizing principles are frozen:
+Frozen organizing principles:
 
-1. **response reconstruction** — optimize physically admissible material response functions rather than guess materials;
-2. **production ↔ absorption / crossed-channel reconstruction** — use known weak production/decay processes to infer inverse capture channels;
-3. **gravitational focusing** — test whether spacetime curvature can multiply local neutrino flux before microscopic capture;
-4. **staggered-layer response engineering** — test shifted atomic/isotopic layers without confusing projected geometric coverage with weak opacity.
+1. response reconstruction;
+2. production ↔ absorption / crossed weak channels;
+3. finite gravitational focusing;
+4. staggered-layer / multi-isotope response engineering.
 
-## Central observables
+## Central objective
 
-For incident differential flux `Phi(E)`,
-
-\[
-\frac{P_{\rm dep}}{A}=\int dE_\nu\,\Phi(E_\nu)\int d\omega\;\omega\,\frac{dP_{\rm int}}{d\omega}(E_\nu),
-\]
-
-or for a slab,
+For incident flux `Phi(E)`, absorber optical depth `tau(E)`, deposited fraction `eta_dep(E)` and finite gravitational magnification `mu(E,x)`,
 
 \[
-\frac{P_{\rm dep}}{A}=\int dE_\nu\,\Phi(E_\nu)E_\nu\,\eta_{\rm dep}(E_\nu)[1-e^{-\tau(E_\nu)}].
+P_{dep}=N_T\int dE\,\mu(E,\mathbf x)\Phi(E)\sigma_{cap}(E)E_{dep}(E),
 \]
 
-With gravitational magnification `mu(E,x)`,
+or equivalently in slab form
 
 \[
-R=N_T\int dE\,\mu(E,\mathbf x)\Phi_\nu(E)\sigma_{\rm cap}(E),
+\frac{P_{dep}}{A}=\int dE\,\mu\Phi E\,\eta_{dep}(1-e^{-\tau}).
 \]
+
+Useful capture therefore depends on **finite flux gain × real interaction probability × deposited-energy fraction**.
+
+## Current validated baselines
+
+### CEvNS / magnetic
+
+- Xe-132 ideal CEvNS at 1 MeV: `Q_W≈75.5311`, `sigma≈2.405e-41 cm^2`.
+- Liquid-Xe-like mean free path: `~3.08e16 m`; optical-depth-one mass column `~9.07e18 g/cm^2`.
+- Minimal Dirac magnetic moment for `m_nu=0.05 eV`: `~1.6e-20 mu_B`; ideal 1-m magnetic-precession maximum requires `~3.35e17 T`.
+- Naive whole-crystal elastic `N^2` total-opacity promotion is not accepted; directional coherent peaks require integrated-strength/sum-rule checks.
+
+### Measured beta decay → inverse capture
+
+For allowed/superallowed long-wavelength transitions,
 
 \[
-P_{\rm dep}=N_T\int dE\,\mu(E,\mathbf x)\Phi_\nu(E)\sigma_{\rm cap}(E)E_{\rm dep}(E).
+\sigma_{NCB}v_\nu=2\pi^2\ln2\,\frac{p_eE_eF}{ft}.
 \]
 
-The useful-capture objective is the product of **flux magnification × capture probability × deposited-energy fraction**.
-
-## Many-body response formulation
-
-For weak/EM/BSM currents,
+With the repository SI conversion, tritium gives
 
 \[
-\Gamma \propto \int d^3q\,d\omega\;L_{ab}(q,\omega)S^{ab}(q,\omega),
+\sigma(v/c)\simeq7.785\times10^{-45}\,\mathrm{cm^2},
 \]
 
-with admissible response satisfying positivity, detailed balance where applicable, Kramers–Kronig/causality, conservation laws, sum rules and stability. For an equilibrium Hermitian response, schematically
+within ~0.7% of the published measured-ft benchmark `7.84e-45 cm^2`.
+
+Authoritative scientific CI for this normalization: run `34004890286`, job `101410168170`, `29 passed`.
+
+### B16 solar flux freeze
+
+`data/solar_flux_b16.csv` freezes B16-GS98 and B16-AGSS09met integrated source fluxes from Vinyoles et al. (2017). Examples, GS98: pp `5.98e10`, Be7 `4.93e9`, B8 `5.46e6 cm^-2 s^-1`; derived CNO sum `4.8829e8 cm^-2 s^-1`.
+
+Iteration-0007 CI run `34007336474` completed SUCCESS on head `a4372f98965b3705f3b56363539805672772e3e6`.
+
+### Spectral-shape identity freeze — iteration 0008
+
+`data/solar_spectrum_manifest.csv` now pins the standard spectral-shape inputs by **upstream repository commit plus exact blob SHA**, preventing silent spectral drift:
+
+- pp/hep: Bahcall, Phys. Rev. C 56, 3391 (1997);
+- B8 baseline: Ortiz et al., Phys. Rev. Lett. 85, 2909 (2000);
+- N13/O15/F17: Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988);
+- Be7 thermally broadened line profiles: Bahcall, Phys. Rev. D 49, 3923 (1994).
+
+Pinned upstream implementation/provenance snapshot: `michelelucente/PEANUTS` commit `59e3a2ae102d58f42cc1146eaca2cae68be879ce`.
+
+Bookkeeping line convention: pep `1.442 MeV`; Be7 `0.862 MeV` weight `0.897`, `0.384 MeV` weight `0.103`. Precision Be7 calculations must use the broadened profile tables rather than delta lines.
+
+`src/nmir/solar_spectra.py` and `tests/test_solar_spectra.py` enforce required components, immutable git identities, explicit B8 Ortiz choice and normalized Be7 branching bookkeeping.
+
+### Frozen first oscillation convention — iteration 0008
+
+`data/solar_oscillation_convention.csv` prospectively fixes the first Ga/Cl benchmark before any rate calculation:
+
+- `sin^2(theta12)=0.307`;
+- `sin^2(theta13)=0.0220`;
+- `Delta m^2_21=7.53e-5 eV^2`;
+- normal ordering;
+- standard three-flavour adiabatic MSW in the Sun;
+- Earth regeneration OFF for the first benchmark, later robustness branch.
+
+`src/nmir/solar_oscillation.py` and tests freeze these values/scope. **The numerical component-averaged survival curve is still OPEN** because production-radius/electron-density weighting is not yet frozen.
+
+## Other active branches
+
+### Many-body/spin response
+
+Inclusive rate organization:
 
 \[
-S(-\omega)=e^{-\beta\omega}S(+\omega).
+\Gamma\propto\int d^3q\,d\omega\,L_{ab}S^{ab}.
 \]
 
-## Measured beta decay → capture normalization
+A 1-meV magnon produced by a 1-MeV neutrino deposits only `1e-9` of the incident energy. Spin/magnon channels remain detection/response candidates, not bulk-energy winners unless a harder or repeated deposition mechanism appears.
 
-For allowed/superallowed long-wavelength beta transitions,
+### Gravitational focusing
+
+Weak-field benchmark:
 
 \[
-\sigma_{\rm NCB}v_\nu=2\pi^2\ln2\,\frac{p_eE_eF(Z,E_e)}{ft}.
+\alpha\simeq\frac{4GM}{bc^2},\qquad f\simeq\frac{b^2c^2}{4GM}.
 \]
 
-With `p_e,E_e` in MeV and `ft` in seconds,
+Solar-limb benchmark: `~547.741 AU`. Published transparent-Sun calculations give minimum focal distance near `23.5 ± 0.1 AU` for distant-source neutrinos crossing the solar interior. Finite source/receiver size and Liouville phase-space conservation are mandatory; the Sun is not a separate downstream lens for its own emitted solar neutrinos.
 
-\[
-\sigma(v_\nu/c)[\mathrm{cm}^2]=C_{ft}\,\frac{p_eE_eF}{ft},
-\]
-
-\[
-C_{ft}=2\pi^2\ln2\,\frac{\hbar(\hbar c)^2}{m_e^5}\simeq1.00645\times10^{-40}\ \mathrm{cm^2\,s/MeV^2}.
-\]
-
-For H-3 with evaluated `Q_beta=18.5906 keV`, `log10(ft/s)=3.0524`, daughter `Z=2`, and a transparent point-Coulomb Fermi function, NMIR obtains
-
-\[
-\sigma(v/c)\simeq7.785\times10^{-45}\ \mathrm{cm^2},
-\]
-
-within about 0.7% of the published measured-ft result `7.84e-45 cm^2` from Cocco–Mangano–Messina (2007). Precision ranking must later freeze one finite-size/screening convention.
-
-Authoritative iteration-0006 scientific CI: run `34004890286`, job `101410168170`, head `865dd2a9ecf945633e965be062b30bde21f818a5`: `29 passed` and baseline executable succeeded. The preceding failure was a rounded-reference test-data infrastructure failure, not a scientific FAIL.
-
-## Frozen B16 solar-neutrino flux normalization
-
-Iteration 0007 freezes machine-readable Standard Solar Model component fluxes from:
-
-N. Vinyoles et al., **A New Generation of Standard Solar Models**, Astrophys. J. 835, 202 (2017), DOI `10.3847/1538-4357/835/2/202`, arXiv:`1611.09867`.
-
-Both B16-GS98 high-metallicity and B16-AGSS09met low-metallicity branches are retained. File: `data/solar_flux_b16.csv`.
-
-| component | GS98 flux [cm^-2 s^-1] | rel unc | AGSS09met flux [cm^-2 s^-1] | rel unc |
-|---|---:|---:|---:|---:|
-| pp | 5.98e10 | 0.006 | 6.03e10 | 0.005 |
-| pep | 1.44e8 | 0.010 | 1.46e8 | 0.009 |
-| hep | 7.98e3 | 0.30 | 8.25e3 | 0.30 |
-| Be7 | 4.93e9 | 0.06 | 4.50e9 | 0.06 |
-| B8 | 5.46e6 | 0.12 | 4.50e6 | 0.12 |
-| N13 | 2.78e8 | 0.15 | 2.04e8 | 0.14 |
-| O15 | 2.05e8 | 0.17 | 1.44e8 | 0.16 |
-| F17 | 5.29e6 | 0.20 | 3.26e6 | 0.18 |
-
-Derived CNO sums (not stored as a duplicate component): GS98 `4.8829e8 cm^-2 s^-1`; AGSS09met `3.5126e8 cm^-2 s^-1`.
-
-**Scope guard:** iteration 0007 freezes integrated unoscillated source fluxes only. It does not yet freeze continuum spectral shapes, Be7 branch/line convention, pep line energy, MSW/vacuum survival probabilities, or flux correlations. A precision Ga-71/Cl-37 rate is therefore still forbidden until those inputs are prospectively frozen.
-
-## Gravitational focusing baseline
-
-For an ultrarelativistic neutrino in weak Schwarzschild lensing,
-
-\[
-\alpha(b)\simeq\frac{4GM}{bc^2},\qquad f\simeq\frac{b^2c^2}{4GM}.
-\]
-
-Solar-limb benchmark: `f(R_sun) ≈ 547.741 AU`. Published transparent extended-Sun calculations give a minimum focal distance near `23.5 ± 0.1 AU` for distant-source neutrinos crossing the solar interior. The Sun cannot act as an ordinary separate downstream lens for its own solar neutrinos. Finite source/receiver size, wave effects, alignment and Liouville phase-space conservation regularize all caustic claims.
-
-## Staggered-layer baseline
-
-For scatterers at `r_j`,
+### Staggered-layer metamaterial
 
 \[
 F(\mathbf q)=\sum_j e^{i\mathbf q\cdot\mathbf r_j}.
 \]
 
-Shifted layers can move constructive/destructive reciprocal-space peaks but projected atomic coverage is not weak opacity. With nuclear radius `5 fm` and transverse spacing `3 Å`, projected nuclear hard-disk fraction is `8.73e-10` per layer and about `1.15e9` perfectly complementary layers are required merely for unity geometric nuclear projection; actual weak opacity is vastly smaller.
-
-For `E_nu=1 MeV`, `lambda_nu≈1.23984e-12 m`; at `d=3 Å`, first-order Bragg kinematics gives `theta≈0.118396 deg`. Directional coherence must not be promoted to total-opacity gain without angle/energy integration and sum-rule checks.
+Shifted layers can move constructive/destructive reciprocal-space peaks but projected atomic coverage is not weak opacity. For nuclear radius `5 fm` and lattice spacing `3 Å`, naive geometric nuclear projected fraction is `8.73e-10` per layer; ~`1.15e9` perfectly complementary layers would only reach unity **geometric** nuclear projection. For `E_nu=1 MeV`, `lambda≈1.23984e-12 m`, giving first-order Bragg angle `~0.118396 deg` at `d=3 Å`. Any useful claim must survive angle/energy integration at fixed mass column.
 
 ## Research gates
 
 | Gate | Question | Status |
 |---|---|---|
-| G0 | Do normalizations reproduce known weak/CEvNS/capture scales? | PARTIAL PASS — CEvNS plus explicit tritium ft→capture benchmark validated |
-| G1 | Can static coherence increase total interaction probability beyond ordinary nuclear coherence? | PARTIAL NEGATIVE — naive whole-crystal elastic N² opacity excluded under current sum-rule assumptions |
-| G2 | Can density/spin/current response deposit useful energy into collective/nuclear modes? | OPEN |
-| G3 | Maximum SM deposited power from solar neutrinos in passive organized matter? | OPEN — B16 flux normalization now frozen; spectra/oscillations/capture kernels remain |
-| G4 | Can polarization/resonance/periodicity/nonequilibrium increase useful deposition parametrically? | OPEN |
-| G5 | Minimal BSM structure needed if SM ceiling is insufficient? | LOCKED until G3 |
-| G6 | Does BSM survive laboratory/stellar/SN/cosmological constraints? | LOCKED until G5 |
-| G7 | Can a production/decay process identify a strong inverse/crossed capture channel? | PARTIAL PASS — measured-ft numerical route validated on tritium |
-| G8 | Can resonant peak enhancement beat source bandwidth while respecting integrated strength? | OPEN |
-| G9 | Can finite gravitational lensing provide useful flux gain at absorber? | OPEN |
-| G10 | Can staggered/multi-isotope layers increase flux-integrated capture/deposition at fixed mass column? | OPEN — geometric-opacity version disfavored, structure-factor/spectral-comb variants retained |
+| G0 | Known weak/CEvNS/capture normalizations reproduced? | PARTIAL PASS — CEvNS + tritium ft benchmark |
+| G1 | Static macroscopic coherence beyond ordinary nuclear coherence? | PARTIAL NEGATIVE — naive N² opacity disfavored |
+| G2 | Can many-body spin/density/current modes deposit useful energy? | OPEN |
+| G3 | Maximum SM deposited solar-neutrino power? | OPEN — B16 flux + spectral identities + oscillation convention frozen; numerical survival/capture kernels missing |
+| G4 | Can resonance/polarization/periodicity increase useful deposition parametrically? | OPEN |
+| G5 | Minimal BSM structure if SM ceiling insufficient? | LOCKED until G3 |
+| G6 | Does BSM survive constraints? | LOCKED until G5 |
+| G7 | Can known production/decay identify strong inverse capture? | PARTIAL PASS — explicit measured-ft route validated |
+| G8 | Can resonance beat source bandwidth under integrated-strength bounds? | OPEN |
+| G9 | Can finite gravitational lensing give useful gain? | OPEN |
+| G10 | Can staggered/multi-isotope stacks beat same atoms at fixed mass column? | OPEN |
 
-## Chronological results preserved
+## Chronology
 
-### Iteration 0001 — initial gates
-- Xe-132 ideal CEvNS at 1 MeV: `Q_W≈75.5311`, `sigma≈2.405e-41 cm^2`.
-- Liquid-Xe-like mean free path: `~3.08e16 m`; optical-depth-one mass column `~9.07e18 g/cm^2`.
-- Minimal Dirac magnetic moment at `m_nu=0.05 eV`: `~1.6e-20 mu_B`; first ideal magnetic-precession maximum over 1 m requires `~3.35e17 T`.
-- Naive whole-crystal N² total-opacity route not accepted.
+- `0001`: CEvNS/magnetic/coherence gates.
+- `0002`: production↔absorption and spin-response triage.
+- `0003`: inverse-transition seeds; historical Ga rate normalization gives `~8.99e-23 W/kg` for optimistic 1-MeV deposition and requires `~1.11e22` gain to reach 1 W/kg.
+- `0004`: gravitational focusing branch.
+- `0005`: staggered-layer metamaterial branch.
+- `0006`: unit-explicit ft→capture normalization; tritium benchmark reproduced.
+- `0007`: B16-GS98/AGSS09met integrated solar fluxes frozen.
+- `0008`: commit/blob-pinned spectral manifest + first prospective oscillation convention frozen.
 
-### Iteration 0002 — production↔absorption and spin response
-- Inverse weak channels are physical; inverse beta decay is canonical.
-- Recoilless/Mössbauer-neutrino inverse absorption is legitimate but vulnerable to linewidth, recoil-free fraction, lattice deformation and source/absorber overlap.
-- A 1-meV magnon from a 1-MeV neutrino deposits only `1e-9` of incident energy; good detection is not useful bulk capture.
+## Critical scope guards
 
-### Iteration 0003 — decay→capture seeds
-- Crossed pairs include Ar-37 EC ↔ capture on Cl-37 and Ge-71 EC ↔ capture on Ga-71.
-- Seed thresholds: Cl-37 `~0.814 MeV`, Ga-71 `~0.233 MeV`.
-- Historical gallium rate `66.1 SNU` for pure Ga-71 corresponds to `~5.61e-10 captures/s/kg`.
-- Optimistic 1-MeV deposition gives `~8.99e-23 W/kg`; `1 W/kg` requires `~1.11e22` enhancement over that normalization.
+1. Detector threshold is not total cross section.
+2. Directional coherent gain is not integrated opacity gain.
+3. Peak resonance is not flux-integrated capture.
+4. Gravitational magnification is multiplicative and finite, not a substitute for microscopic absorption.
+5. Projected atomic coverage is not neutrino opacity.
+6. Exact time reversal and a crossed process are not automatically identical external-particle reactions.
+7. Do not mix solar flux, spectrum, oscillation and nuclear cross-section conventions silently.
+8. BSM remains locked as a solution branch until G3 is quantitatively bounded.
+9. A pinned spectral manifest prevents drift but does not yet make offline numerical integration self-contained; table bytes must be vendored or fetched with SHA verification.
 
-### Iteration 0004 — gravitational focusing
-- Solar-limb weak-lens benchmark reproduced.
-- Transparent-interior lensing retained for distant sources; finite gain only.
-- Focusing multiplies microscopic capture and cannot substitute for it.
+## Current repository components added through iteration 0008
 
-### Iteration 0005 — staggered-layer metamaterial
-- Shifted atomic planes are physically realizable.
-- Geometric line-of-sight coverage is not neutrino opacity.
-- Structure factor and Bragg kinematics are the correct wave-language; directional coherence does not automatically raise integrated strength.
-- Multi-isotope resonant spectral-comb stack retained.
+- flux: `data/solar_flux_b16.csv`, provenance + loader/tests;
+- spectra: `data/solar_spectrum_manifest.csv`, `src/nmir/solar_spectra.py`, tests;
+- oscillation: `data/solar_oscillation_convention.csv`, `src/nmir/solar_oscillation.py`, tests;
+- capture: `src/nmir/ft_capture.py`, `capture_metrics.py`;
+- other branches: `gravity_focusing.py`, `staggered_lattice.py`, response/duality theory documents;
+- chronological `research/iterations/0001...0008` notes.
 
-### Iteration 0006 — explicit ft normalization
-- Diagnosed and repaired rounded-reference CI failure without changing physics.
-- Implemented unit-explicit measured-ft capture normalization.
-- Reproduced published tritium capture normalization to ~1% with a simple point-Coulomb factor.
+## Current maturity
 
-### Iteration 0007 — B16 solar flux freeze
-- Frozen primary-source B16-GS98 and B16-AGSS09met integrated component fluxes and uncertainties in `data/solar_flux_b16.csv`.
-- Added `src/nmir/solar_flux.py`, provenance document and regression tests.
-- Derived CNO sums reproduce component arithmetic exactly.
-- Negative/scope result: source-integrated fluxes alone are insufficient for precision Ga/Cl rates; spectral shapes and oscillation convention remain mandatory next inputs.
+**NMIR_READINESS: 24%**.
 
-## Initial physical facts to preserve
+The increase from 23% to 24% is credited only for prospective spectral identity and oscillation-convention freeze plus regression guards. No credit is assigned yet for a numerical `P_ee(E)` curve or Ga/Cl reproduction.
 
-1. CEvNS gives real nuclear-level coherence, not automatic macroscopic N² opacity.
-2. Low detector threshold is not a larger total cross section.
-3. State conversion can occur without substantial energy extraction.
-4. Production↔absorption/crossing identifies matrix elements but does not imply efficient capture.
-5. Peak resonant cross section and flux-integrated capture are distinct observables.
-6. Exact time reversal and a crossed reaction are not always the same external-particle process.
-7. Gravitational magnification and microscopic absorption are multiplicative, not interchangeable.
-8. Collisionless lensing cannot create arbitrary phase-space brightness.
-9. Projected atomic coverage and weak-interaction opacity are different quantities.
-10. Any staggered-lattice claim must report both directional structure-factor gain and flux/angle/energy-integrated gain.
-11. BSM/light mediators remain constraint-ledger inputs until G3 closes.
-12. Solar capture predictions must not mix flux, spectral-shape, oscillation or nuclear-cross-section conventions without explicit provenance.
+## Exact next gate
 
-## Current repository components
-
-- `README.md`, `research/ROADMAP.md`, `research/LITERATURE_LEDGER.md`, `research/RECOVERY.md`.
-- `research/iterations/0001_...md` through `0007_b16_solar_flux_freeze.md`.
-- data: `inverse_transition_seed.csv`, `solar_flux_b16.csv`, `solar_flux_b16_provenance.md`.
-- theory: operator basis, production/absorption duality, beta-decay inverse capture, spin/magnon response, gravitational focusing, staggered-layer metamaterial.
-- code: `baseline.py`, `duality.py`, `capture_metrics.py`, `gravity_focusing.py`, `staggered_lattice.py`, `ft_capture.py`, `solar_flux.py`.
-- tests cover all current numerical benchmark modules; CI is `.github/workflows/ci.yml`.
-
-## Current maturity estimate
-
-**NMIR_READINESS: 23%**.
-
-Increase from 21% is credited only to the primary-source B16 flux freeze, explicit high-Z/low-Z systematic branches, provenance scope guard, loader and regression tests. No readiness credit is assigned for spectra/oscillations because they are not yet frozen.
-
-## Immediate next iteration
-
-1. Freeze primary-source continuum spectral shapes for pp/hep/B8/N13/O15/F17 and Be7/pep line definitions.
-2. Freeze a current oscillation/survival-probability convention with provenance.
-3. Reproduce at least one published Ga-71 component or total rate, then Cl-37, before W/kg ranking.
-4. Expand evaluated inverse-transition catalog and rank by event rate and deposited power.
-5. Implement Breit–Wigner/source–absorber overlap and integrated-strength gate.
-6. Implement sum-rule-preserving axial response toy model.
-7. Reproduce transparent-Sun `~23.5 AU` extended-lens benchmark and then finite-source gain.
-8. For staggered layers, compare angle/energy-integrated response against the same atoms at fixed mass column including disorder/Debye–Waller suppression.
+1. Materialize/verify the pinned spectrum bytes (or vendor them with provenance/license).
+2. Freeze component production-radius/electron-density inputs and implement day-averaged three-flavour MSW `P_ee(E)` under the already frozen parameters.
+3. Reproduce a published Ga-71 component/total rate; then Cl-37.
+4. Convert reproduced capture rates to W/kg and start the quantitative G3 ceiling.
+5. In parallel only when non-biasing: resonance integrated-strength gate, sum-rule axial toy response, transparent-Sun `~23.5 AU`, and staggered fixed-mass-column comparison.
