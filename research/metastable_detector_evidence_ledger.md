@@ -83,22 +83,52 @@ Primary links/provenance:
 - DPF 2026 contribution list/timetable: `https://indico.fnal.gov/event/72820/`
 - Fermilab poster: `https://lss.fnal.gov/archive/2025/poster/fermilab-poster-25-0079-ppd.pdf`
 
+## E4 — measured 10-eV nuclear-recoil calorimeter positive control
+
+Primary publication:
+
+- CRESST Collaboration, G. Angloher et al., **“Results on sub-GeV dark matter from a 10 eV threshold CRESST-III silicon detector”**, Physical Review D **107** (2023) 122003.
+- DOI: `10.1103/PhysRevD.107.122003`.
+- arXiv: `2212.12513`.
+
+Frozen measured facts relevant to NMIR:
+
+- target: `0.35 g` silicon cryogenic calorimeter;
+- reported baseline nuclear-recoil energy resolution: **`1.36 ± 0.05 eV_nr`**;
+- reported energy threshold: **`10.0 ± 0.2 eV_nr`**;
+- this is a measured macroscopic detector threshold in the central energy region highlighted by iterations 0043–0045;
+- the experiment also observes a low-energy excess near threshold, illustrating that a low threshold alone does not guarantee a background-free CEvNS measurement.
+
+Primary links/provenance:
+
+- APS: `https://journals.aps.org/prd/abstract/10.1103/PhysRevD.107.122003`
+- arXiv: `https://arxiv.org/abs/2212.12513`
+
+NMIR interpretation:
+
+The existence of a 10-eV measured calorimetric threshold means the `1–20 eV` CEvNS inverse-design region must **not** be labelled fundamentally detector-inaccessible. However, this positive control has only `0.35 g` active mass and is not a metastable bubble detector. The relevant residuals are therefore mass scaling, low-energy backgrounds, target choice and transfer-function stability — not merely threshold existence.
+
+This creates a useful two-technology comparison for the next gate:
+
+1. **metastable noble-liquid branch:** much larger mass and powerful recoil discrimination / signal amplification, but presently calibrated/planned at substantially higher NR thresholds;
+2. **cryogenic calorimeter branch:** demonstrated ~10-eV threshold, but very small unit mass and a significant low-energy-background problem.
+
 ## Immediate NMIR implication
 
-Iteration 0045 found ideal full-solar CEvNS target transitions mainly in the `1–20 eV` region, with 40 eV retained as an endpoint/control scale. Current scintillating-bubble-chamber evidence instead provides:
+Iteration 0045 found ideal full-solar CEvNS target transitions mainly in the `1–20 eV` region, with 40 eV retained as an endpoint/control scale. The current detector evidence no longer supports a simple statement that this region is technologically unreachable. Instead it shows a **mass-threshold-background trade space**:
 
-- a measured Xe response at roughly `0.5–1 keV` scales;
-- an LAr calibration program centered on approximately `80–400 eV`, with `100 eV` as the program target;
-- a thermodynamic spontaneous-nucleation scale as low as ~40 eV in the LAr design, but without authority yet for ER blindness + calibrated NR efficiency at that scale.
+- measured Xe bubble response: roughly `0.5–1 keV` scales;
+- LAr bubble calibration program: approximately `80–400 eV`, with `100 eV` target and an unvalidated ~40-eV thermodynamic lower scale;
+- cryogenic Si calorimetry: measured `10.0 ± 0.2 eV_nr` threshold at `0.35 g`, with low-energy background/excess as a central limitation.
 
-Thus the important gap is not simply a single threshold ratio. It is the missing **joint transfer function**
+Thus the future transfer-function gate must compare at least:
 
-`epsilon_nuc(T, state)` + `P_false(state)` + threshold stability + live fraction
+`epsilon_nuc(T)` + target mass scaling + background/false-trigger rate + threshold stability + live fraction/dead time.
 
-in the tens-of-eV and ultimately 1–20-eV region.
+For the metastable branch it must additionally preserve the stored-free-energy/reset ledger.
 
-The next practical question is not “can metastability amplify a recoil?” — iteration 0040 already shows that signal amplification can occur using stored free energy. The next question is:
+The next practical question is:
 
-**What nucleation-efficiency turn-on, false-trigger rejection and stability would be required for the NMIR ideal 1–20 eV CEvNS phase diagram to survive after a real detector transfer function is applied, and how far is that required response from current primary-source bubble-chamber evidence?**
+**Which detector-response architecture can preserve enough of the ideal NMIR solar-CEvNS rate at realistic mass and background, and what quantitative technology improvement is required where it cannot?**
 
-This is provisionally a technology-gap / detector-acceptance gate. Do not interpret the gap as a fundamental no-go: it may be engineering-limited, material-limited, or signal-formation-limited and must be quantified before classification.
+This is a technology-gap / detector-acceptance problem, not a fundamental interaction no-go. No detector implementation is allowed to claim neutrino-energy gain from its internal amplification.
