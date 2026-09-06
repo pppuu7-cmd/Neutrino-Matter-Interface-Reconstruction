@@ -1,54 +1,75 @@
 """Matched-convention audit helpers for historical 8B -> 37Cl source averages."""
 from __future__ import annotations
 
+import bisect
 import csv
 from pathlib import Path
-import numpy as np
 
 
 def _root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
-def load_bahcall_lisi1996_spectrum(path: str | Path | None = None) -> tuple[np.ndarray, np.ndarray]:
+def _trapezoid(y: list[float], x: list[float]) -> float:
+    return sum(0.5 * (y[i] + y[i - 1]) * (x[i] - x[i - 1]) for i in range(1, len(x)))
+
+
+def _interp(x: float, xp: list[float], fp: list[float]) -> float:
+    if x <= xp[0]:
+        return fp[0]
+    if x >= xp[-1]:
+        return fp[-1]
+    j = bisect.bisect_right(xp, x)
+    x0, x1 = xp[j - 1], xp[j]
+    y0, y1 = fp[j - 1], fp[j]
+    t = (x - x0) / (x1 - x0)
+    return y0 + t * (y1 - y0)
+
+
+def load_bahcall_lisi1996_spectrum(path: str | Path | None = None) -> tuple[list[float], list[float]]:
     p = Path(path) if path is not None else _root() / "data" / "b8_bahcall_lisi1996_spectrum.csv"
-    e, lam = [], []
+    energy: list[float] = []
+    lam: list[float] = []
     with p.open(newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
-            e.append(float(row["energy_mev"]))
+            energy.append(float(row["energy_mev"]))
             lam.append(float(row["lambda_per_mev"]))
-    E = np.asarray(e, dtype=float)
-    L = np.asarray(lam, dtype=float)
-    if len(E) != 160 or not np.all(np.diff(E) > 0):
+    if len(energy) != 160 or any(b <= a for a, b in zip(energy, energy[1:])):
         raise ValueError("unexpected Bahcall-Lisi 1996 spectrum grid")
-    # Table I is a 0.1-MeV-bin probability density; normalization should be unity.
-    norm = float(np.trapezoid(L, E))
+    norm = _trapezoid(lam, energy)
     if abs(norm - 1.0) > 5e-4:
         raise ValueError(f"spectrum normalization mismatch: {norm}")
-    return E, L
+    return energy, lam
 
 
-def load_cl37_tabulation(column: str = "improved_1e46_cm2") -> tuple[np.ndarray, np.ndarray]:
+def load_cl37_tabulation(column: str = "improved_1e46_cm2") -> tuple[list[float], list[float]]:
     p = _root() / "data" / "cl37_bahcall1996_response.csv"
-    e, s = [], []
+    energy: list[float] = []
+    sigma: list[float] = []
     with p.open(newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
-            e.append(float(row["energy_mev"]))
-            s.append(float(row[column]) * 1e-46)
-    return np.asarray(e), np.asarray(s)
+            energy.append(float(row["energy_mev"]))
+            sigma.append(float(row[column]) * 1e-46)
+    return energy, sigma
 
 
 def source_average_from_sparse_table(column: str = "improved_1e46_cm2") -> float:
     """Fold Table-I 1996 spectrum with sparse Table-II Cl response.
 
-    This reproduces only a *tabulated/interpolated* approximation to the paper's
-    internal continuous response.  It is therefore a consistency check, not a
-    replacement for the published source-average authority.
+    This reproduces only a tabulated/interpolated approximation to the paper's
+    internal continuous response. It is a consistency check, not a replacement
+    for the published source-average authority.
     """
-    E, L = load_bahcall_lisi1996_spectrum()
-    Er, Sr = load_cl37_tabulation(column)
-    sigma = np.interp(E, Er, Sr)
-    sigma[E < 0.814] = 0.0
-    m = (E >= 0.814) & (E < 1.0)
-    sigma[m] = Sr[0] * (E[m] - 0.814) / (1.0 - 0.814)
-    return float(np.trapezoid(L * sigma, E))
+    energy, lam = load_bahcall_lisi1996_spectrum()
+    response_energy, response_sigma = load_cl37_tabulation(column)
+    sigma: list[float] = []
+    for e in energy:
+        if e < 0.814:
+            s = 0.0
+        elif e < 1.0:
+            s = response_sigma[0] * (e - 0.814) / (1.0 - 0.814)
+        else:
+            s = _interp(e, response_energy, response_sigma)
+        sigma.append(s)
+    integrand = [l * s for l, s in zip(lam, sigma)]
+    return _trapezoid(integrand, energy)
