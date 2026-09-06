@@ -8,11 +8,12 @@ Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 
 Reconstruct the most general low-energy neutrino↔matter interface, separate state control from detection and irreversible energy deposition, establish Standard-Model bounds, and only then identify any BSM coupling structures needed to exceed those bounds.
 
-Three organizing principles are now frozen:
+Four organizing principles are now frozen:
 
 1. **response reconstruction** — optimize physically admissible material response functions rather than guess materials;
 2. **production ↔ absorption / crossed-channel reconstruction** — use known weak production/decay processes to infer inverse capture channels;
-3. **gravitational focusing** — test whether spacetime curvature can multiply the local neutrino flux before microscopic capture.
+3. **gravitational focusing** — test whether spacetime curvature can multiply the local neutrino flux before microscopic capture;
+4. **staggered-layer response engineering** — test whether shifted atomic/isotopic layers can redistribute or enhance useful neutrino response without confusing projected geometric coverage with weak-interaction opacity.
 
 ## Central observable
 
@@ -91,6 +92,26 @@ Because neutrinos can traverse the solar interior, a transparent-Sun extended-ma
 
 Gravitational lensing preserves collisionless phase-space density / surface brightness. A formal point-source caustic divergence is not infinite usable power. Finite source size, detector size, lens structure, wave effects and alignment must regularize every magnification claim.
 
+## Staggered-layer baseline
+
+For scatterers at positions `r_j`, the elastic lattice amplitude contains
+
+\[
+F(\mathbf q)=\sum_j e^{i\mathbf q\cdot\mathbf r_j}.
+\]
+
+For shifted planes, layer registry changes the phase factors and can therefore move constructive/destructive peaks. This is physically different from simple projected hard-sphere coverage.
+
+A geometric sanity check with `R_N=5 fm` and transverse lattice spacing `a=3 Angstrom` gives
+
+\[
+\pi R_N^2/a^2\simeq 8.73\times10^{-10}
+\]
+
+per layer, requiring `~1.15e9` ideally non-overlapping shifted layers merely for unity **geometric nuclear projection**. Real weak opacity is vastly smaller than this geometric analogy.
+
+Published crystal sum-rule work in the local-potential Born regime finds total effects linear in scatterer count despite directional coherent peaks. NMIR therefore rejects simple projected coverage or directional `N^2` peaks as evidence of total opacity enhancement until an integrated-strength loophole is explicitly demonstrated.
+
 ## Research gates
 
 | Gate | Question | Status |
@@ -105,6 +126,7 @@ Gravitational lensing preserves collisionless phase-space density / surface brig
 | G7 | Can a neutrino-production process identify an unusually strong inverse/crossed absorption channel? | OPEN — quantitative `ft`-based reconstruction route established |
 | G8 | Can resonant peak enhancement overcome the available neutrino flux bandwidth without violating integrated-strength bounds? | OPEN — next key resonance gate |
 | G9 | Can gravitational lensing provide a finite, useful neutrino flux gain at an absorber? | OPEN — weak-lens benchmark implemented; transparent-lens/finite-source stages next |
+| G10 | Can staggered atomic/isotopic layers increase flux-integrated neutrino capture/deposition at fixed mass column? | OPEN — naive geometric opacity disfavored; structure-factor/multi-isotope variants retained |
 
 ## Iteration-1 benchmark results
 
@@ -147,6 +169,17 @@ Gravitational lensing preserves collisionless phase-space density / surface brig
 6. Gravitational focusing alone cannot bridge the current `~1e22` Ga energy-gap normalization unless an implausibly enormous finite magnification were available; its realistic role is to multiply a stronger microscopic capture mechanism if NMIR finds one.
 7. Candidate lenses to test: planet, transparent star, white dwarf, neutron star, black hole, binary/compound caustic lens, and purely theoretical engineered mass distributions.
 
+## Iteration-5 results: staggered-layer neutrino metamaterial
+
+1. Shifted atomic planes are physically realizable; ordinary close-packed solids already implement AB/ABC registries.
+2. Geometric line-of-sight coverage by atoms is not neutrino opacity. Neutrinos are not hard projectiles excluded by electron-cloud gaps.
+3. The correct elastic quantity is the structure factor `F(q)`; layer shifts can create constructive/destructive directions and move reciprocal-lattice peaks.
+4. Toy code verifies both fully coherent and destructive limits for staggered planes.
+5. With `R_N=5 fm` and `a=3 Angstrom`, the naive nuclear hard-disk projected fraction is `8.73e-10` per layer and requires `~1.15e9` perfectly complementary layers for unity projected nuclear coverage; real weak interaction probabilities are much smaller still.
+6. Published sum-rule constraints imply that ordinary coherent directional enhancement does not automatically increase total integrated interaction strength beyond linear-N scaling.
+7. A historical magnetic-neutrino crystal calculation did find a configuration-dependent `N^(1/3)` enhancement for that special channel, but it remained experimentally negligible; NMIR will treat this as a concrete benchmark/possible loophole to reproduce.
+8. **Promoted variant:** staggered **multi-isotope resonant stacks**, where successive layers use different capture thresholds/resonances and possibly different polarization, to form a spectral-response comb across the solar-neutrino spectrum.
+
 ## Initial physical facts to preserve
 
 1. CEvNS provides a real coherence enhancement at the nuclear level; near `qR << 1`, the weak charge is approximately `Q_W = N - (1-4 sin^2 theta_W) Z`, and the total low-energy cross section scales approximately as `Q_W^2 E_nu^2`.
@@ -159,6 +192,8 @@ Gravitational lensing preserves collisionless phase-space density / surface brig
 8. Exact time reversal and a crossed weak reaction are not always the same external-particle process; NMIR must classify them correctly.
 9. Gravitational magnification and microscopic absorption are multiplicative, not interchangeable.
 10. Collisionless lensing cannot create arbitrary phase-space brightness; all caustic gains must be finite-source regularized.
+11. Projected atomic coverage and weak-interaction opacity are fundamentally different quantities.
+12. Any staggered-lattice claim must report both directional structure-factor gain and flux/angle/energy-integrated interaction/deposition gain.
 
 ## Current repository components
 
@@ -171,29 +206,32 @@ Gravitational lensing preserves collisionless phase-space density / surface brig
 - `theory/BETA_DECAY_INVERSE_CAPTURE.md` — measured beta-decay `ft` → capture-strength reconstruction.
 - `theory/SPIN_MAGNON_RESPONSE.md` — axial spin/magnon branch.
 - `theory/GRAVITATIONAL_NEUTRINO_FOCUSING.md` — gravitational-lens formalism, gates and combined capture objective.
+- `theory/STAGGERED_LAYER_NEUTRINO_METAMATERIAL.md` — shifted-layer structure-factor and multi-isotope metamaterial branch.
 - `src/nmir/baseline.py` — CEvNS, mean-free-path and magnetic-precession benchmarks.
 - `src/nmir/duality.py` — detailed-balance, deposited-fraction and resonance-line utilities.
 - `src/nmir/capture_metrics.py` — SNU→captures/s/kg→W/kg normalization metrics.
 - `src/nmir/gravity_focusing.py` — weak gravitational deflection, focal-distance and point-lens magnification benchmarks.
-- `tests/test_baseline.py`, `tests/test_duality.py`, `tests/test_capture_metrics.py`, `tests/test_gravity_focusing.py` — automated physics-normalization gates.
+- `src/nmir/staggered_lattice.py` — staggered-plane geometry and elastic structure-factor toy model.
+- automated tests include baseline, duality, capture metrics, gravity focusing and staggered-lattice gates.
 - `.github/workflows/ci.yml` — automated tests.
-- `research/iterations/0001_initial_gates.md` through `0004_gravitational_focusing_branch.md` — chronological research record.
+- `research/iterations/0001_initial_gates.md` through `0005_staggered_layer_metamaterial.md` — chronological research record.
 
 ## Current maturity estimate
 
-- Problem formulation: 52%
-- Operator inventory: 28%
+- Problem formulation: 56%
+- Operator inventory: 30%
 - Production↔absorption formalism: 28%
-- Many-body response taxonomy: 22%
-- Numerical framework: 27%
-- Constraint/literature ledger: 25%
+- Many-body response taxonomy: 27%
+- Numerical framework: 31%
+- Constraint/literature ledger: 27%
 - Inverse-transition catalog: 8%
-- Standard-Model ceiling: 7%
-- Engineered-medium scan: 5%
+- Standard-Model ceiling: 8%
+- Engineered-medium scan: 12%
 - Gravitational focusing branch: 8%
+- Staggered-layer branch: 10%
 - BSM residual search: 0%
 
-Overall NMIR research maturity (audit estimate): **~16%**.
+Overall NMIR research maturity (audit estimate): **~18%**.
 
 ## Immediate next iteration
 
@@ -206,3 +244,6 @@ Overall NMIR research maturity (audit estimate): **~16%**.
 7. Implement a sum-rule-preserving toy `S_AA(q,w)` with magnon + continuum spectral weight.
 8. Implement a transparent spherical gravitational lens and reproduce the published `23.5 AU` solar minimum-focal-length benchmark.
 9. Add finite-source magnification and couple `mu(E)` directly to the capture/deposition ranking.
+10. For SLNM, map solar-neutrino momentum transfers against reciprocal-lattice scales from Angstrom lattices through nm/moire superlattices.
+11. Verify angle/energy-integrated linear-N behavior in the staggered toy and add Debye-Waller disorder/temperature suppression.
+12. Couple layer-by-layer isotope choice, spacing and shift to the inverse-transition optimizer to test the multi-isotope spectral-comb concept.
