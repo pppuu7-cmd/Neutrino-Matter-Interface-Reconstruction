@@ -5,26 +5,26 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable validated scientific record: `research/iterations/0052_cresst_si_transfer_fold.md`
-Current readiness: `NMIR_READINESS: 81%`.
+Latest immutable validated scientific record: `research/iterations/0053_cresst_lee_scaling_gap.md`
+Current readiness: `NMIR_READINESS: 82%`.
 
 ## Mandatory recovery order
-Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then the newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal GitHub Actions. Chat history is not authority. Do not duplicate running work. A green workflow is not a scientific PASS without the scientific payload/log/artifact being inspected.
+Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then the newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal GitHub Actions. Chat history is not authority. Do not duplicate running work. A green workflow is infrastructure success only until the raw scientific log/artifact is checked against the prospective contract.
 
 ## Frozen accounting
-NMIR is a discovery funnel, not a material scan. Keep separate state/focusing, microscopic interaction, detector visibility/amplification, and irreversible neutrino-supplied deposited energy.
+NMIR is a discovery funnel, not a material scan. Keep state/focusing, microscopic interaction probability, detector visibility/amplification, and irreversible neutrino-supplied deposited energy separate.
 
 `P_dep,nu = N_T integral dE mu(E,x) Phi(E) sigma_eff(E) E_dep,nu(E)`, with `0 <= E_dep,nu <= E_nu`.
 
-Daughter decay, nuclear mass release, target preparation, stored medium free energy, external pumping, mediator preparation and reset work are never neutrino-supplied power. Never multiply unvalidated gains.
+Daughter decay, target preparation, stored medium free energy, external pumping, mediator preparation and reset work are never neutrino-supplied power. Never multiply unvalidated gains.
 
 ## Stable baseline authority
 - Tritium measured-ft inverse capture: `sigma(v/c)≈7.785e-45 cm^2`, ~0.7% from published `7.84e-45`.
 - Solar authority: B16 GS98/AGSS09met fluxes; locally pinned pp/hep/B8/CNO spectra; thermally broadened Be7 profile; daytime adiabatic 3-flavour MSW for charged-current folds. CEvNS is active-flavour neutral current and has no Pee factor.
-- Charged-current validated target leader remains pure 7Li/GS98: `1.06589117e-21 W/kg`, ~`9.38e20` below 1 W/kg. This is not an all-nucleus theorem.
+- Charged-current validated target leader: pure 7Li/GS98 `1.06589117e-21 W/kg`, ~`9.38e20` below 1 W/kg. This is not an all-nucleus theorem.
 
 ## Broad frozen class closures
-Do not reopen without a genuinely new assumption. Full derivations/provenance are in immutable numbered notes.
+Do not reopen without a genuinely new assumption; exact scopes are in immutable iteration notes.
 - 0024 leading-allowed passive envelope: strong-negative scoped.
 - 0025 isolated-resonance area theorem: linewidth narrowing creates no integrated entrance strength.
 - 0026 finite-q vector/axial envelope: strong-negative scoped.
@@ -35,96 +35,70 @@ Do not reopen without a genuinely new assumption. Full derivations/provenance ar
 - 0034 fixed-column geometry theorem and passive-mixture theorem.
 - 0040 metastable avalanche: `DETECTION PASS-SURVIVOR / NEUTRINO-ENERGY-GAIN STRONG_NEGATIVE_SCOPED`; avalanche energy comes from stored free energy.
 - 0047 bounded finite-range k-local two-/higher-body current class: `PASS_KLOCAL_EXTENSIVITY`; no free superextensive first-moment scaling at fixed support size, norm and site incidence.
-- 0048 empirical/EFT absolute-strength stress: `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`; even 100× the largest frozen empirical extra-amplitude anchor gives only `1.301537448e-5 W/kg`, while the exact bridge to 1 W/kg requires extra amplitude `28796.42286`, or `28511.31×` the empirical anchor. This is an evidence-distance result, not a universal coefficient theorem.
+- 0048 empirical/EFT absolute-strength stress: `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`; even 100× the largest frozen empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg requires extra amplitude `28796.42286 = 28511.31×` the empirical anchor. Evidence-distance result, not a universal coefficient theorem.
 
-## G2 CEvNS chain — validated through 0052
+## G2 CEvNS / detector chain — validated through 0053
+### 0041–0046 physics envelope
 - 0041 Ar40 at 40 eV: exact source-opening threshold `E_nu,min=0.8628609380 MeV`.
-- 0042 physical Be7 profile × Ar40: at 40 eV 31.104% source tail but only `4.906342834e-6` retained cross section and `3.973604373e-8 events/(kg day)`; endpoint suppression is severe.
-- 0043 continuous-A inverse design law at fixed kg and approximate fixed QW/A: `A_star=2E_nu^2/(3 m_u T_thr)`, equivalently `Tmax(A_star)≈3T_thr`; class-level envelope only.
+- 0042 physical Be7 profile × Ar40: at 40 eV 31.104% source tail but only `4.906342834e-6` retained cross section and `3.973604373e-8 events/(kg day)`.
+- 0043 continuous-A inverse-design law: `A_star=2E_nu^2/(3 m_u T_thr)`, equivalently `Tmax(A_star)≈3Tthr`; class-level envelope only.
 - 0044 retained scientific FAIL: `M=A m_u` caused ~30% error at Ar40/Be7 40-eV endpoint; criterion was not relaxed.
-- 0045 exact-mass, actual-Z/N, full-solar 23-real-nucleus optimization PASS. Representative winners: Pb208 at 1,3,20,40 eV; Xe132 at 5 eV; Se82 at 10 eV. This is source/threshold matching, not interaction enhancement.
-- 0046 `PASS_PHASE_DIAGRAM`; hosted run/job `34052930672/101539642497`; artifact `9995368376`; ZIP SHA256 `046953d77896362afaaf5da0ff2015ddb36958196c0b921cc5e3f0ff4efe3951`; raw 29 tests PASS. Crossovers [eV]: Pb208→W184 3.9453125; W184→Xe132 4.4453125; Xe132→Mo100 6.3515625; Mo100→Se82 6.7265625; Se82→Ge74 12.5078125; Ge74→Ti48 12.9296875; Ti48→Ar40 12.9609375; Ar40→Pb208 15.5703125.
+- 0045 exact isotope masses + actual Z/N + full frozen solar source set over 23 nuclei PASS.
+- 0046 `PASS_PHASE_DIAGRAM`; run/job `34052930672/101539642497`; artifact `9995368376`; SHA256 `046953d77896362afaaf5da0ff2015ddb36958196c0b921cc5e3f0ff4efe3951`; raw 29 tests PASS. Crossovers [eV]: Pb208→W184 3.9453125; W184→Xe132 4.4453125; Xe132→Mo100 6.3515625; Mo100→Se82 6.7265625; Se82→Ge74 12.5078125; Ge74→Ti48 12.9296875; Ti48→Ar40 12.9609375; Ar40→Pb208 15.5703125.
 
 ### 0049 — necessary detector-transfer rate requirement
-Immutable authority: `research/iterations/0049_detector_transfer_rate_requirement.md`.
-Prospective contract commit `ab8610005f8e174fd6838f5491edab804f0a32ed`; scientific head `01186655d07883ce7d0a14f5d29c4ff16f207f1b`; hosted run/job `34057771059/101552695624`; artifact `9996491115`; ZIP SHA256 `6154810eff9116c69407e2a89052817783c75fbe2eab3a246f2d2235d6528e86`; raw 4 tests PASS and benchmark inspected.
-
-For 10-kg Ar40 and goal 10 accepted solar CEvNS events/year, factorized necessary `eta=<epsilon_NR>*f_live` requirements are:
-- 10 eV: ideal `23.6924840/year`, `eta_required=0.42207478` -> `RATE_FEASIBLE_TRANSFER_TARGET`.
-- 20 eV: ideal `13.2129801/year`, `eta_required=0.75683153` -> `RATE_FEASIBLE_TRANSFER_TARGET`.
-- 40 eV: ideal `4.24095487/year`, `eta_required=2.35795954` -> `RATE_IMPOSSIBLE_AT_FIXED_MASS` for 10/year at 10 kg.
-
-Effective kg for 10 events/year: Ar10 `4.22075`, Ar20 `7.56832`, Ar40 `23.5796`, Si10 `6.29724`, Ge10 `3.47811`, Se10 `3.33393`. Ar10 needs only `1.265997×` the effective mass of ideal Se10.
+Prereg commit `ab8610005f8e174fd6838f5491edab804f0a32ed`; scientific head `01186655d07883ce7d0a14f5d29c4ff16f207f1b`; run/job `34057771059/101552695624`; artifact `9996491115`; SHA256 `6154810eff9116c69407e2a89052817783c75fbe2eab3a246f2d2235d6528e86`.
+For 10-kg Ar40 and goal 10 accepted solar CEvNS/year, necessary `eta=<epsilon_NR>*f_live`: 10 eV `0.42207478`; 20 eV `0.75683153`; 40 eV `2.35795954`, so 10/year at 40 eV is impossible at fixed 10 kg even for eta=1.
+Effective kg for 10/year: Ar10 `4.22075`, Ar20 `7.56832`, Ar40 `23.5796`, Si10 `6.29724`, Ge10 `3.47811`, Se10 `3.33393`.
 
 ### 0050 — accepted-background inverse requirement
-Immutable authority: `research/iterations/0050_detector_background_requirement.md`.
-Prospective contract commit `15ad880cdcf0168eaa3fb1a1447bd35d4c251d9a`; scientific head `488d23bfd6c4a84a750860e6fe1128807a4bf0eb`; hosted run/job `34057997407/101553304948`; artifact `9996559867`; ZIP SHA256 `44a5dac90c92741a09bc25e531aa192a0c4ddb8064a0de30e8c5991a82cc66c5`; raw 4 tests PASS; inversion residual `9.8809849e-15`.
+Prereg `15ad880cdcf0168eaa3fb1a1447bd35d4c251d9a`; head `488d23bfd6c4a84a750860e6fe1128807a4bf0eb`; run/job `34057997407/101553304948`; artifact `9996559867`; SHA256 `44a5dac90c92741a09bc25e531aa192a0c4ddb8064a0de30e8c5991a82cc66c5`.
+Known-background one-year Asimov gate: for `S=10/year`, 3σ requires `B<=8.22524099/year`; 5σ `B<=1.71752668/year`. These are accepted analysis-indistinguishable backgrounds, not raw trigger/site rates.
 
-Known-background, one-year Asimov counting requirement:
-`Z_A=sqrt(2[(S+B)ln(1+S/B)-S])`.
+### 0051 — nuisance-aware accepted-background requirement
+Prereg `3fb9b44309888e710ed748bac07f372162ecafad`; head `be3706d409b5018519be7b6dfcd0bc0581ed0135`; run/job `34058564427/101554849279`; artifact `9996725207`; SHA256 `148d4b3c877f52dc5813a4fe7247d20430aff45496105460b98714163766dfb8`; raw 5 tests PASS.
+Profile-likelihood/Asimov Gaussian normalization nuisance `sigma_b=delta_B B` validated for `delta_B={0,0.10,0.30,0.50}`. For `S=10/year`, frozen ceilings used by 0053 include: 3σ/30% `4.274968302863348/year`; 5σ/30% `1.0806120114381677/year`; 5σ/50% `0.692094879071742/year`.
 
-For `S=10 accepted/year`: 3σ requires `B <= 8.22524099/year`; 5σ requires `B <= 1.71752668/year`.
+### 0052 — CRESST-III Si measured-threshold transfer fold
+Prereg `72a089483f001fa4ee8383d8f8d0914ddc0ec134`. First run/job `34058821939/101555544155` retained as infrastructure FAIL after 5 passing tests because Be7 special flux mapping was evaluated after a generic lookup. Minimal repair `c2a359eecb4596bafd3291f4aa31cca97b544da9`; regression/scientific head `fb5cd82686006ba9c8134fac2b6dfbc9a879c079`; scientific inputs unchanged. Authoritative rerun/job `34058921851/101555813480`; artifact `9996833564`; SHA256 `67fd30cfca7e3321c4818a0a7d62343cbbdad2ca49e339dc12772ce6ad7df118`; raw 6 tests PASS; `PASS_CRESST_SI_TRANSFER_FOLD`.
+Primary anchors: 0.35-g Si, threshold 10.0 eV, width 1.36 eV, trigger plateau 0.8053, cumulative trigger+cuts plateau 0.6591 above 14 eV. Full cumulative efficiency below 14 eV is not analytically published; NMIR uses the measured trigger turn-on and a labelled factorized all-cuts surrogate.
+Si28 10-eV full-solar: ideal `4.3476963498860904e-3 events/(kg day)`; trigger fold `3.4252750501524354e-3`; surrogate `2.8034257861113496e-3`; surrogate retained `0.64480717`; effective mass for 10/year `9.766089763 kg`; actual 0.35-g module surrogate expectation `3.583829439e-4/year`, mass gap ~`2.79e4×`.
 
-For Ar40, 10 kg, 10 eV, eta=0.50 (`S=11.8462420/year`): 3σ `Bmax=12.0986684/year`; 5σ `Bmax=2.75655475/year`.
-For Ar40, 10 kg, 20 eV, eta=0.75 (`S=9.909735084/year`): 3σ `Bmax=8.05522456/year`; 5σ `Bmax=1.67341796/year`.
+### 0053 — CRESST low-energy-excess scaling/rejection stress
+Immutable authority: `research/iterations/0053_cresst_lee_scaling_gap.md`.
+Prereg commit `018f6410c8bfa6bad9ebb321f621a75b785cd293`; scientific workflow head `567b7ffc2bad067c91f10023fbd2ff260ef24fbe`; run/job `34059182934/101556510236`; artifact `9996911051`; ZIP SHA256 `cc03b4c6264ba5c187eaf5c3b483b1e253f5d9811de950e0452eb4b795e0dc92`; raw `6 passed`; fail-closed benchmark `PASS_LEE_SCALING_GAP_STRESS`.
+Frozen CRESST Si central LEE fit over 10–300 eV folded through the 0052 factorized surrogate gives:
+- corrected central-fit rate `2.232922324133041e6 events/(kg day)`;
+- accepted stress rate `1.2567687196378214e6 events/(kg day)`;
+- accepted/corrected `0.5628358434`;
+- convergence residual `7.7346991e-9`.
+Stress scaling unchanged per kg to the 0052 `M10=9.766089763 kg` gives `4.482974815542e9 accepted events/year`.
+Required total suppression/rejection relative to 0051 budgets:
+- 3σ, delta_B=30%: `1.04865685496e9`, surviving `9.5360e-10`;
+- 5σ, delta_B=30%: `4.14855171707e9`, surviving `2.41048e-10`;
+- 5σ, delta_B=50%: `6.47739919930e9`, surviving `1.54383e-10`.
+This is explicitly a stress extrapolation, not a prediction of linear mass scaling and not a claim that all LEE events are known NR background. It quantifies the technology/rejection gap if the present central accepted-event population per kg were preserved.
 
-These are accepted analysis-indistinguishable background targets, not raw trigger/environmental rates.
-
-### 0051 — background-normalization nuisance requirement
-Immutable authority: `research/iterations/0051_detector_background_nuisance_requirement.md`.
-Prospective contract commit `3fb9b44309888e710ed748bac07f372162ecafad`; scientific head `be3706d409b5018519be7b6dfcd0bc0581ed0135`; hosted run/job `34058564427/101554849279`; artifact `9996725207`; ZIP SHA256 `148d4b3c877f52dc5813a4fe7247d20430aff45496105460b98714163766dfb8`; raw `5 passed`; max inversion residual `1.0658141036401503e-14`; exact delta=0 bridge to 0050.
-
-Profile-likelihood/Asimov counting map with Gaussian accepted-background normalization nuisance `sigma_b=delta_B*B` passes all frozen criteria for `delta_B={0,0.10,0.30,0.50}`.
-
-Representative Ar40, 10 kg, 10 eV, eta=0.50 (`S=11.846242/year`) 5σ accepted-background ceilings:
-- delta_B=0: `2.75655/year = 0.27566/(kg yr)`;
-- 10%: `2.52016/year = 0.25202/(kg yr)`;
-- 30%: `1.59026/year = 0.15903/(kg yr)`;
-- 50%: `0.979890/year = 0.09799/(kg yr)`.
-
-Thus a 30% normalization nuisance tightens the representative 5σ background budget by ~42.3%; a 50% nuisance tightens it by ~64.5%. These are design requirements only, not demonstrated detector performance.
-
-### 0052 — measured-threshold CRESST-III silicon transfer fold
-Immutable authority: `research/iterations/0052_cresst_si_transfer_fold.md`.
-Prospective contract commit `72a089483f001fa4ee8383d8f8d0914ddc0ec134`. First run/job `34058821939/101555544155` was retained as infrastructure FAIL after five passing tests because a Be7 special flux key was looked up in the wrong order. Minimal repair commits `c2a359eecb4596bafd3291f4aa31cca97b544da9` and regression head `fb5cd82686006ba9c8134fac2b6dfbc9a879c079`; no scientific parameter or criterion changed. Authoritative rerun/job `34058921851/101555813480`; artifact `9996833564`; ZIP SHA256 `67fd30cfca7e3321c4818a0a7d62343cbbdad2ca49e339dc12772ce6ad7df118`; raw `6 passed` and benchmark inspected. Classification `PASS_CRESST_SI_TRANSFER_FOLD`.
-
-Primary detector anchors from CRESST-III Si: 0.35-g module, 10.0-eV fitted threshold, 1.36-eV turn-on/baseline width, trigger plateau 0.8053, cumulative trigger+cuts plateau 0.6591 above 14 eV. The paper does not analytically provide the full cumulative efficiency below 14 eV; therefore NMIR uses the published trigger error-function fit as the measured transfer anchor and an explicitly labelled factorized all-cuts surrogate, not a claimed measured full curve.
-
-For Si28 full-solar CEvNS above the frozen 10-eV analysis floor:
-- hard-step ideal: `4.3476963498860904e-3 events/(kg day)`, exact bridge to 0049; effective mass for 10/year `6.297244717 kg`;
-- published-trigger fold: `3.4252750501524354e-3 events/(kg day)`, retained `0.78783677`, effective mass `7.993083029 kg`;
-- factorized all-cuts surrogate: `2.8034257861113496e-3 events/(kg day)`, retained `0.64480717`, effective mass `9.766089763 kg`.
-
-At the actual 0.35-g module mass the surrogate solar-CEvNS expectation is only `3.583829439e-4 accepted events/year`, so the target-mass gap to the 10/year surrogate requirement is ~`2.79e4×`. This is an acceptance/scale result, not a current solar-CEvNS detection claim and not weak-interaction enhancement.
-
-G2 next practical gate: quantify the technology scaling gap using the same CRESST primary source — actual exposure and observed low-energy event regime versus the 0050/0051 accepted-background targets. Keep raw observed rate distinct from analysis-indistinguishable NR background. If the source cannot map raw events to the latter, report the raw-rate rejection/discrimination factor required rather than relabeling all events as background. Then examine whether a public machine-readable/digitizable full cumulative efficiency curve can reduce the below-14-eV surrogate uncertainty.
+## G2 exact next gate
+Freeze newer primary CRESST/SOS measurements that compare LEE levels or origins across detector generations/configurations. Quantify any demonstrated per-kg suppression or changed spectral shape and express it as a measured reduction factor relative to the 0053 stress. Keep intrinsic LEE suppression separate from discrimination/rejection. If primary datasets are not quantitatively comparable over a defensible common energy window/exposure normalization, classify `BLOCKED_BY_NONCOMPARABLE_PRIMARY_DATA` rather than inventing a factor. Candidate primary authorities already identified for prereg work: CRESST DoubleTES results (2024), CRESST SOS single-photon/low-threshold result (2024), and CRESST upgrade/LEE mitigation report (2025); exact comparable inputs must be frozen prospectively before calculation.
 
 ## G3 passive-SM deposited-power status
-Leading/allowed, finite-q, one-body, local density/spin, passive mediator, finite-range k-local collective scaling and an empirical/EFT absolute higher-body amplitude stress are all strong-negative/closed in their exact stated scopes.
-
-### 0047 authority
-Prereg commit `1e669c71a10784120d831c5c57560129146df333`; scientific head `21e42755ed237074601f45a48a401a52586c0de2`; hosted run/job `34056195172/101548425397`; artifact `9996023078`; ZIP SHA256 `7203aaec5cb567c1ac8cac3ca661198f5d8673bf132497bc3eb4b7edd5b402cb`; raw 4 tests PASS, 72 support-enumeration cases, 24 explicit matrix cases. Classification `PASS_KLOCAL_EXTENSIVITY`.
-
-### 0048 authority
-Prospective contract commit `3c1e9c6ae65d9f34f4c6d7e3bc6bbb1c128f9091`; scientific head `e5d5de4cdd607dc0f02dd03c28b2167598382700`; hosted run/job `34057567878/101552145767`; artifact `9996427850`; ZIP SHA256 `88a259c70bd5b95c380bed1351dd183b7aadf20c77dea8cf0e44382936fd3340`; raw 5 tests PASS; raw benchmark/artifact inspected.
-
-Frozen largest empirical extra-amplitude anchor `r_emp=1.01`. Stress ladder powers [W/kg] for S={1,3,10,100,1000}: `1.84215e-8`, `4.23810e-8`, `2.03724e-7`, `1.30154e-5`, `1.23699e-3`. Exact bridge `r_bridge=28796.4228567 = 28511.31*r_emp`. Classification `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`.
-
-Remaining G3 residuals: whether a defensible universal renormalized SM contact-coefficient bound exists without pretending EFT naturalness is a theorem; and genuinely long-range/growing-coordination SM operators. If primary theory does not supply a hard bound, retain the residual honestly rather than inventing one.
+Leading/allowed, finite-q, one-body, local density/spin, passive mediator, finite-range k-local collective scaling and empirical/EFT absolute higher-body amplitude stress are strong-negative/closed in exact stated scopes.
+Remaining residuals: whether a defensible universal renormalized SM contact-coefficient bound exists without pretending EFT naturalness is a theorem; and genuinely long-range/growing-coordination SM operators. If primary theory supplies no hard bound, retain the residual honestly.
 
 ## Other OPEN survivors
-- G8 target-specific thermal-solar anti-nu_e RIOEC remains OPEN/BLOCKED until primary thermal-solar anti-nu_e spectral density and independently evaluated entrance strength/width are frozen; ordinary solar nu_e flux is forbidden for this entrance channel.
-- G9 transparent-Sun focal scale robust/partial; distant-source physical flux × finite-source/alignment/duty-cycle utility remains OPEN. Solar-neutrino self-lensing is inapplicable.
+- G8 target-specific thermal-solar anti-nu_e RIOEC OPEN/BLOCKED until a primary thermal-solar anti-nu_e spectral density and independently evaluated entrance strength/width are frozen; ordinary solar nu_e flux is forbidden for this entrance channel.
+- G9 transparent-Sun focal scale robust/partial; distant-source physical flux × finite-source/alignment/duty-cycle utility OPEN. Solar-neutrino self-lensing is inapplicable.
 - G10 geometry-only staggered/fixed-column and passive mixing gains closed; only genuinely structure-induced microscopic-response changes could reopen under a new hypothesis.
-- BSM/light mediator remains LOCKED pending formal unlock audit; 0047–0048 substantially narrow passive-SM nuclear residuals but do not alone authorize unlock.
+- BSM/light mediator remains LOCKED pending formal unlock audit.
 
 ## Research-gate snapshot
 | Gate | Status |
 |---|---|
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
-| G2 many-body/detection | **STRONG PARTIAL PASS — ideal CEvNS phase diagram, rate/background requirements and one measured-threshold Si transfer fold CLOSED; real background rejection + scalable detector transfer OPEN** |
-| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT absolute-strength stress strongly negative; universal contact + genuine long-range/growing-coordination residual OPEN** |
+| G2 many-body/detection | **STRONG PARTIAL PASS — ideal CEvNS phase diagram, rate/nuisance requirements, measured-threshold Si transfer and empirical LEE scaling stress CLOSED; demonstrated scalable LEE suppression/discrimination OPEN** |
+| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT strength stress strongly negative; universal contact + genuine long-range/growing-coordination residual OPEN** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5/G6 BSM | LOCKED pending unlock audit |
 | G7 production↔absorption | PARTIAL PASS |
