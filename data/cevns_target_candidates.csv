@@ -1,0 +1,24 @@
+name,Z,A,notes
+He4,2,4,stable light-target control
+C12,6,12,stable carbon target
+F19,9,19,stable fluorine; directly relevant to fluorinated metastable media
+Ne20,10,20,stable noble target
+Na23,11,23,stable sodium target
+Mg24,12,24,stable magnesium target
+Si28,14,28,stable silicon target
+S32,16,32,stable sulfur target
+Ar40,18,40,stable argon benchmark
+Ca40,20,40,stable calcium same-A weak-charge contrast
+Ti48,22,48,stable titanium target
+Cr52,24,52,stable chromium target
+Fe56,26,56,stable iron target
+Ni58,28,58,stable nickel target
+Zn64,30,64,stable zinc target
+Ge74,32,74,stable germanium target
+Se82,34,82,long-lived double-beta isotope; effectively stable detector target
+Kr84,36,84,stable krypton target
+Mo100,42,100,long-lived double-beta isotope
+I127,53,127,stable iodine target
+Xe132,54,132,stable xenon benchmark
+W184,74,184,stable tungsten heavy-target control
+Pb208,82,208,stable lead heavy-target control
