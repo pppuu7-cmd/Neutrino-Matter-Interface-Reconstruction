@@ -1,0 +1,38 @@
+name: NMIR B16 solar survival benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "src/nmir/solar_survival.py"
+      - "src/nmir/solar_oscillation.py"
+      - "src/nmir/solar_matter.py"
+      - "data/solar_matter_manifest.csv"
+      - "data/solar_oscillation_convention.csv"
+      - ".github/workflows/solar-survival.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install NMIR
+        run: python -m pip install -e .
+      - name: Compute exact-B16 production-averaged survival checkpoints
+        run: |
+          mkdir -p artifacts/solar_survival
+          python -m nmir.solar_survival artifacts/solar_survival/benchmark.json | tee artifacts/solar_survival/stdout.txt
+          test -s artifacts/solar_survival/benchmark.json
+      - name: Upload survival benchmark
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-solar-survival-${{ github.sha }}
+          path: artifacts/solar_survival/
+          if-no-files-found: error
+          retention-days: 90
