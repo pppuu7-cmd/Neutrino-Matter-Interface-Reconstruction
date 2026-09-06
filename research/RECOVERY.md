@@ -5,8 +5,8 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable validated scientific record: `research/iterations/0053_cresst_lee_scaling_gap.md`
-Current readiness: `NMIR_READINESS: 82%`.
+Latest immutable validated scientific record: `research/iterations/0054_cresst_lee_mitigation_evidence_gate.md`
+Current readiness: `NMIR_READINESS: 83%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then the newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal GitHub Actions. Chat history is not authority. Do not duplicate running work. A green workflow is infrastructure success only until the raw scientific log/artifact is checked against the prospective contract.
@@ -37,7 +37,7 @@ Do not reopen without a genuinely new assumption; exact scopes are in immutable 
 - 0047 bounded finite-range k-local two-/higher-body current class: `PASS_KLOCAL_EXTENSIVITY`; no free superextensive first-moment scaling at fixed support size, norm and site incidence.
 - 0048 empirical/EFT absolute-strength stress: `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`; even 100× the largest frozen empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg requires extra amplitude `28796.42286 = 28511.31×` the empirical anchor. Evidence-distance result, not a universal coefficient theorem.
 
-## G2 CEvNS / detector chain — validated through 0053
+## G2 CEvNS / detector chain — validated through 0054
 ### 0041–0046 physics envelope
 - 0041 Ar40 at 40 eV: exact source-opening threshold `E_nu,min=0.8628609380 MeV`.
 - 0042 physical Be7 profile × Ar40: at 40 eV 31.104% source tail but only `4.906342834e-6` retained cross section and `3.973604373e-8 events/(kg day)`.
@@ -67,20 +67,23 @@ Si28 10-eV full-solar: ideal `4.3476963498860904e-3 events/(kg day)`; trigger fo
 ### 0053 — CRESST low-energy-excess scaling/rejection stress
 Immutable authority: `research/iterations/0053_cresst_lee_scaling_gap.md`.
 Prereg commit `018f6410c8bfa6bad9ebb321f621a75b785cd293`; scientific workflow head `567b7ffc2bad067c91f10023fbd2ff260ef24fbe`; run/job `34059182934/101556510236`; artifact `9996911051`; ZIP SHA256 `cc03b4c6264ba5c187eaf5c3b483b1e253f5d9811de950e0452eb4b795e0dc92`; raw `6 passed`; fail-closed benchmark `PASS_LEE_SCALING_GAP_STRESS`.
-Frozen CRESST Si central LEE fit over 10–300 eV folded through the 0052 factorized surrogate gives:
-- corrected central-fit rate `2.232922324133041e6 events/(kg day)`;
-- accepted stress rate `1.2567687196378214e6 events/(kg day)`;
-- accepted/corrected `0.5628358434`;
-- convergence residual `7.7346991e-9`.
-Stress scaling unchanged per kg to the 0052 `M10=9.766089763 kg` gives `4.482974815542e9 accepted events/year`.
+Frozen CRESST Si central LEE fit over 10–300 eV folded through the 0052 factorized surrogate gives corrected rate `2.232922324133041e6 events/(kg day)` and accepted stress rate `1.2567687196378214e6 events/(kg day)`, convergence residual `7.7346991e-9`.
+Stress scaling unchanged per kg to `M10=9.766089763 kg` gives `4.482974815542e9 accepted events/year`.
 Required total suppression/rejection relative to 0051 budgets:
-- 3σ, delta_B=30%: `1.04865685496e9`, surviving `9.5360e-10`;
-- 5σ, delta_B=30%: `4.14855171707e9`, surviving `2.41048e-10`;
-- 5σ, delta_B=50%: `6.47739919930e9`, surviving `1.54383e-10`.
-This is explicitly a stress extrapolation, not a prediction of linear mass scaling and not a claim that all LEE events are known NR background. It quantifies the technology/rejection gap if the present central accepted-event population per kg were preserved.
+- 3σ, delta_B=30%: `1.04865685496e9`;
+- 5σ, delta_B=30%: `4.14855171707e9`;
+- 5σ, delta_B=50%: `6.47739919930e9`.
+This is explicitly a stress extrapolation, not a prediction of linear mass scaling and not a claim that all LEE events are known NR background.
+
+### 0054 — CRESST LEE mitigation evidence audit
+Immutable authority: `research/iterations/0054_cresst_lee_mitigation_evidence_gate.md`.
+Prereg commit `c0052cf2c0f636cf4e176f987d233bbb3a4f4032`; evidence ledger `data/cresst_lee_mitigation_evidence.csv`; scientific workflow head `9b11f3bee1b70bdce87063eb66e16be25fcbf4f6`; hosted run/job `34059455141/101557243909`; artifact `9996995011`; ZIP SHA256 `baa710c01b2a548df0f32188627b53429b8f68f213c4cca5403586b81e5fd531`; raw `5 passed`; `PASS_LEE_MITIGATION_EVIDENCE_AUDIT`.
+Scientific classification: `MECHANISM_SURVIVOR_QUANTITATIVE_GAP_OPEN`.
+DoubleTES 2024 experimentally demonstrates topology discrimination: a diagonal absorber/bulk population is separable from single-TES near-sensor populations, with a conservative absorber cut requiring sensor energies within 35%. A separate absorber-band LEE remains and has measured above-ground decay time `10.2±1.1 d`. The paper reports significant near-threshold reduction but does not provide a public comparable pre/post rejection factor plus bulk acceptance over the 0053 10–300 eV window; data/code are on reasonable request.
+The next-generation CRESST report foresees DoubleTES as baseline and uses ~10× and ~100× LEE reduction as projections/benchmarks (roughly ~450 d and ~900 d stable operation), not as already measured detector-wide suppression factors. Applying those projection-only factors to the frozen 0053 5σ/30% gap leaves residual required improvements `4.148551717e8` and `4.148551717e7`, respectively. SOS 6.7-eV results strengthen the threshold branch but are non-comparable as a measured 0053 LEE-suppression factor.
 
 ## G2 exact next gate
-Freeze newer primary CRESST/SOS measurements that compare LEE levels or origins across detector generations/configurations. Quantify any demonstrated per-kg suppression or changed spectral shape and express it as a measured reduction factor relative to the 0053 stress. Keep intrinsic LEE suppression separate from discrimination/rejection. If primary datasets are not quantitatively comparable over a defensible common energy window/exposure normalization, classify `BLOCKED_BY_NONCOMPARABLE_PRIMARY_DATA` rather than inventing a factor. Candidate primary authorities already identified for prereg work: CRESST DoubleTES results (2024), CRESST SOS single-photon/low-threshold result (2024), and CRESST upgrade/LEE mitigation report (2025); exact comparable inputs must be frozen prospectively before calculation.
+Build a factorized technology budget for the remaining detector gap while enforcing independence. Candidate factors: intrinsic LEE reduction per kg, DoubleTES/topology classification, time-domain likelihood separation from the measured LEE decay against steady solar flux, segmentation/coincidence/veto rejection, and retained CEvNS signal acceptance. Quantify what combinations are mathematically required to reach the 0051 5σ budget, mark which factors have direct experimental anchors, and never multiply projected or correlated factors as if independent. A high-value subgate is to derive the maximum discrimination obtainable from time dependence alone under a frozen exponential-LEE + constant-solar model; this can establish whether waiting/time-likelihood can retire more than the 10–100 projection factors.
 
 ## G3 passive-SM deposited-power status
 Leading/allowed, finite-q, one-body, local density/spin, passive mediator, finite-range k-local collective scaling and empirical/EFT absolute higher-body amplitude stress are strong-negative/closed in exact stated scopes.
@@ -97,7 +100,7 @@ Remaining residuals: whether a defensible universal renormalized SM contact-coef
 |---|---|
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
-| G2 many-body/detection | **STRONG PARTIAL PASS — ideal CEvNS phase diagram, rate/nuisance requirements, measured-threshold Si transfer and empirical LEE scaling stress CLOSED; demonstrated scalable LEE suppression/discrimination OPEN** |
+| G2 many-body/detection | **STRONG PARTIAL PASS — ideal CEvNS phase diagram, rate/nuisance requirements, measured-threshold Si transfer, empirical LEE stress and DoubleTES mechanism audit CLOSED; quantitative scalable LEE suppression/discrimination OPEN** |
 | G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT strength stress strongly negative; universal contact + genuine long-range/growing-coordination residual OPEN** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5/G6 BSM | LOCKED pending unlock audit |
@@ -107,4 +110,4 @@ Remaining residuals: whether a defensible universal renormalized SM contact-coef
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen geometry-only scope |
 
 ## Critical guards
-Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Gravitational gain must satisfy source geometry, finite-source/Liouville and receiver integration. A few-target maximum is not a global SM ceiling. Selected-nucleus two-body corrections are not universal maxima. Empirical amplitude anchors are evidence-distance constraints, not mathematical coefficient bounds. Metastable amplification requires stored-energy/reset accounting. Accepted-background requirements are not raw site background requirements. A low measured threshold or measured trigger turn-on is not automatically a full recoil-dependent all-cuts efficiency. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
+Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Gravitational gain must satisfy source geometry, finite-source/Liouville and receiver integration. A few-target maximum is not a global SM ceiling. Selected-nucleus two-body corrections are not universal maxima. Empirical amplitude anchors are evidence-distance constraints, not mathematical coefficient bounds. Metastable amplification requires stored-energy/reset accounting. Accepted-background requirements are not raw site background requirements. A low measured threshold or measured trigger turn-on is not automatically a full recoil-dependent all-cuts efficiency. A demonstrated topology handle is not a measured rejection factor. Projection factors are not measured suppression. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
