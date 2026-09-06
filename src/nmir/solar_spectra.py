@@ -1,18 +1,18 @@
-"""Provenance-frozen solar-neutrino spectral input metadata for NMIR.
+"""Provenance-frozen solar-neutrino spectral inputs for NMIR.
 
-This module deliberately separates *spectral provenance* from spectral-number
-normalization. Continuum/profile tables are referenced by an immutable upstream
-repository commit plus blob SHA. Line rows encode bookkeeping line energies and
-weights. Precision capture integration must materialize/verify the pinned table
-bytes before use; silently substituting a different spectrum is forbidden.
+Continuum/profile tables are identified by immutable upstream repository commit
+plus exact git blob SHA. They may be materialized on demand, but are accepted
+only if the downloaded bytes reproduce the frozen blob identity exactly.
 """
 
 from __future__ import annotations
 
 import csv
 import hashlib
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 
 
 @dataclass(frozen=True)
@@ -30,6 +30,7 @@ class SpectrumSource:
 
 
 _ALLOWED_KINDS = {"continuum", "profile", "line"}
+BlobFetcher = Callable[[str], bytes]
 
 
 def _manifest_path() -> Path:
@@ -85,6 +86,11 @@ def pinned_continuum_components(manifest: dict[str, SpectrumSource] | None = Non
     return tuple(sorted(k for k, v in m.items() if v.kind == "continuum"))
 
 
+def pinned_blob_components(manifest: dict[str, SpectrumSource] | None = None) -> tuple[str, ...]:
+    m = load_spectrum_manifest() if manifest is None else manifest
+    return tuple(sorted(k for k, v in m.items() if v.kind in {"continuum", "profile"}))
+
+
 def git_blob_sha1(data: bytes) -> str:
     """Return the canonical Git object SHA-1 for exact blob bytes."""
     header = f"blob {len(data)}\0".encode("ascii")
@@ -104,3 +110,72 @@ def verify_materialized_spectrum(component: str, data: bytes, manifest: dict[str
         raise ValueError(
             f"spectral blob mismatch for {component}: expected {source.source_blob_sha}, got {actual}"
         )
+
+
+def raw_pinned_url(component: str, manifest: dict[str, SpectrumSource] | None = None) -> str:
+    """Return an immutable raw.githubusercontent URL for one pinned spectrum."""
+    m = load_spectrum_manifest() if manifest is None else manifest
+    source = m[component]
+    if source.kind not in {"continuum", "profile"}:
+        raise ValueError(f"{component} is not a blob-backed spectrum")
+    assert source.source_repo and source.source_commit and source.source_path
+    return f"https://raw.githubusercontent.com/{source.source_repo}/{source.source_commit}/{source.source_path}"
+
+
+def _default_fetcher(url: str) -> bytes:
+    with urllib.request.urlopen(url, timeout=30) as response:  # nosec B310: URL is constructed from frozen GitHub metadata
+        return response.read()
+
+
+def materialize_spectrum(
+    component: str,
+    destination_dir: str | Path,
+    *,
+    manifest: dict[str, SpectrumSource] | None = None,
+    fetcher: BlobFetcher | None = None,
+) -> Path:
+    """Download, verify and atomically write one frozen spectrum.
+
+    Verification happens before write. A corrupted or upstream-mismatched blob
+    therefore never becomes an accepted local NMIR input.
+    """
+    m = load_spectrum_manifest() if manifest is None else manifest
+    source = m[component]
+    if source.kind not in {"continuum", "profile"} or source.source_path is None:
+        raise ValueError(f"{component} is not a materializable spectrum")
+    url = raw_pinned_url(component, m)
+    data = (fetcher or _default_fetcher)(url)
+    verify_materialized_spectrum(component, data, m)
+    out_dir = Path(destination_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    filename = f"{component}__{Path(source.source_path).name}"
+    target = out_dir / filename
+    tmp = target.with_suffix(target.suffix + ".tmp")
+    tmp.write_bytes(data)
+    tmp.replace(target)
+    return target
+
+
+def materialize_all_spectra(
+    destination_dir: str | Path,
+    *,
+    manifest: dict[str, SpectrumSource] | None = None,
+    fetcher: BlobFetcher | None = None,
+) -> dict[str, Path]:
+    """Materialize every continuum/profile spectrum under the frozen manifest."""
+    m = load_spectrum_manifest() if manifest is None else manifest
+    return {
+        component: materialize_spectrum(component, destination_dir, manifest=m, fetcher=fetcher)
+        for component in pinned_blob_components(m)
+    }
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Materialize and SHA-verify pinned NMIR solar spectra")
+    parser.add_argument("destination", nargs="?", default="artifacts/solar_spectra")
+    args = parser.parse_args()
+    written = materialize_all_spectra(args.destination)
+    for component, path in written.items():
+        print(f"{component}\t{path}\t{git_blob_sha1(path.read_bytes())}")
