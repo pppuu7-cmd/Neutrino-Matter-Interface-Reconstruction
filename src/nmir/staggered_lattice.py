@@ -7,6 +7,7 @@ import math
 from typing import Iterable, Sequence, Tuple
 
 Position2D = Tuple[float, float]  # (x, z) in meters
+HC_EV_M = 1.239841984e-6
 
 
 def staggered_layer_positions(
@@ -73,3 +74,25 @@ def layers_for_geometric_covering(nuclear_radius_m: float, transverse_lattice_sp
     """Optimistic number of perfectly non-overlapping shifted layers for unity hard-disk coverage."""
     f = geometric_nuclear_covering_per_layer(nuclear_radius_m, transverse_lattice_spacing_m)
     return 1.0 / f
+
+
+def neutrino_wavelength_m(energy_mev: float) -> float:
+    """Relativistic de Broglie wavelength h c / E for E in MeV."""
+    if energy_mev <= 0:
+        raise ValueError("energy_mev must be positive")
+    return HC_EV_M / (energy_mev * 1.0e6)
+
+
+def first_order_bragg_angle_deg(energy_mev: float, plane_spacing_m: float) -> float:
+    """Return theta in 2 d sin(theta)=lambda for first-order Bragg diffraction.
+
+    The physical scattering-angle convention is often 2*theta. This helper
+    only reports the Bragg theta used in the equation.
+    """
+    if plane_spacing_m <= 0:
+        raise ValueError("plane_spacing_m must be positive")
+    wavelength = neutrino_wavelength_m(energy_mev)
+    x = wavelength / (2.0 * plane_spacing_m)
+    if x > 1.0:
+        raise ValueError("first-order Bragg condition is not kinematically available")
+    return math.degrees(math.asin(x))
