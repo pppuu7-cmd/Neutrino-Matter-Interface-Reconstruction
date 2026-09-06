@@ -64,9 +64,9 @@ Authoritative scientific CI for this normalization: run `34004890286`, job `1014
 
 Iteration-0007 CI run `34007336474` completed SUCCESS on head `a4372f98965b3705f3b56363539805672772e3e6`.
 
-### Spectral-shape identity freeze — iteration 0008
+### Spectral-shape identity and byte materialization — iterations 0008–0009
 
-`data/solar_spectrum_manifest.csv` now pins the standard spectral-shape inputs by **upstream repository commit plus exact blob SHA**, preventing silent spectral drift:
+`data/solar_spectrum_manifest.csv` pins the standard spectral-shape inputs by **upstream repository commit plus exact blob SHA**, preventing silent spectral drift:
 
 - pp/hep: Bahcall, Phys. Rev. C 56, 3391 (1997);
 - B8 baseline: Ortiz et al., Phys. Rev. Lett. 85, 2909 (2000);
@@ -77,7 +77,20 @@ Pinned upstream implementation/provenance snapshot: `michelelucente/PEANUTS` com
 
 Bookkeeping line convention: pep `1.442 MeV`; Be7 `0.862 MeV` weight `0.897`, `0.384 MeV` weight `0.103`. Precision Be7 calculations must use the broadened profile tables rather than delta lines.
 
-`src/nmir/solar_spectra.py` and `tests/test_solar_spectra.py` enforce required components, immutable git identities, explicit B8 Ortiz choice and normalized Be7 branching bookkeeping.
+`src/nmir/solar_spectra.py` now provides fail-closed immutable materialization: bytes are downloaded from the frozen upstream commit, canonical Git-blob SHA is checked **before** acceptance/write, and all six continuum spectra plus two Be7 profiles can be materialized together.
+
+Hosted materialization authority:
+
+- workflow run `34012460541`, job `101430502114`;
+- head `f207836f32496b7e78990a485f27568ee659ee15`;
+- all 8 expected spectral/profile files reproduced their frozen Git-blob SHA exactly;
+- artifact ID `9982880231`;
+- artifact ZIP SHA256 `c506de14cf1c0f0d02c706143449ae4a2fea887195f41de66763651e4f65cda6`;
+- artifact name `nmir-solar-spectra-f207836f32496b7e78990a485f27568ee659ee15`.
+
+Head regression CI on the same head: run `34012460563`, job `101430502143`, raw output `48 passed in 0.08s`.
+
+**Spectral source identity: PASS. Exact spectral-byte materialization: PASS.**
 
 ### Frozen first oscillation convention — iteration 0008
 
@@ -129,7 +142,7 @@ Shifted layers can move constructive/destructive reciprocal-space peaks but proj
 | G0 | Known weak/CEvNS/capture normalizations reproduced? | PARTIAL PASS — CEvNS + tritium ft benchmark |
 | G1 | Static macroscopic coherence beyond ordinary nuclear coherence? | PARTIAL NEGATIVE — naive N² opacity disfavored |
 | G2 | Can many-body spin/density/current modes deposit useful energy? | OPEN |
-| G3 | Maximum SM deposited solar-neutrino power? | OPEN — B16 flux + spectral identities + oscillation convention frozen; numerical survival/capture kernels missing |
+| G3 | Maximum SM deposited solar-neutrino power? | OPEN — B16 flux + exact spectral bytes + oscillation convention frozen; numerical survival/capture kernels missing |
 | G4 | Can resonance/polarization/periodicity increase useful deposition parametrically? | OPEN |
 | G5 | Minimal BSM structure if SM ceiling insufficient? | LOCKED until G3 |
 | G6 | Does BSM survive constraints? | LOCKED until G5 |
@@ -148,6 +161,7 @@ Shifted layers can move constructive/destructive reciprocal-space peaks but proj
 - `0006`: unit-explicit ft→capture normalization; tritium benchmark reproduced.
 - `0007`: B16-GS98/AGSS09met integrated solar fluxes frozen.
 - `0008`: commit/blob-pinned spectral manifest + first prospective oscillation convention frozen.
+- `0009`: fail-closed hosted materialization reproduces all eight frozen spectral/profile blobs exactly; verified artifact produced.
 
 ## Critical scope guards
 
@@ -159,27 +173,27 @@ Shifted layers can move constructive/destructive reciprocal-space peaks but proj
 6. Exact time reversal and a crossed process are not automatically identical external-particle reactions.
 7. Do not mix solar flux, spectrum, oscillation and nuclear cross-section conventions silently.
 8. BSM remains locked as a solution branch until G3 is quantitatively bounded.
-9. A pinned spectral manifest prevents drift but does not yet make offline numerical integration self-contained; table bytes must be vendored or fetched with SHA verification.
+9. Exact spectrum identity is now recoverable through frozen commit/blob provenance plus validated fail-closed materialization; Ga/Cl still require a separately frozen solar matter/production weighting.
 
-## Current repository components added through iteration 0008
+## Current repository components added through iteration 0009
 
 - flux: `data/solar_flux_b16.csv`, provenance + loader/tests;
-- spectra: `data/solar_spectrum_manifest.csv`, `src/nmir/solar_spectra.py`, tests;
+- spectra: `data/solar_spectrum_manifest.csv`, `src/nmir/solar_spectra.py`, tests, `.github/workflows/spectra-materialize.yml`;
 - oscillation: `data/solar_oscillation_convention.csv`, `src/nmir/solar_oscillation.py`, tests;
 - capture: `src/nmir/ft_capture.py`, `capture_metrics.py`;
 - other branches: `gravity_focusing.py`, `staggered_lattice.py`, response/duality theory documents;
-- chronological `research/iterations/0001...0008` notes.
+- chronological `research/iterations/0001...0009` notes.
 
 ## Current maturity
 
-**NMIR_READINESS: 24%**.
+**NMIR_READINESS: 25%**.
 
-The increase from 23% to 24% is credited only for prospective spectral identity and oscillation-convention freeze plus regression guards. No credit is assigned yet for a numerical `P_ee(E)` curve or Ga/Cl reproduction.
+The increase from 24% to 25% is credited only for a real hosted materialization PASS: all eight exact spectrum/profile blob identities were reproduced, an immutable run/artifact provenance was recorded, and head regression CI passed. No credit is assigned yet for numerical solar `P_ee(E)`, Ga/Cl reproduction, or G3 closure.
 
 ## Exact next gate
 
-1. Materialize/verify the pinned spectrum bytes (or vendor them with provenance/license).
-2. Freeze component production-radius/electron-density inputs and implement day-averaged three-flavour MSW `P_ee(E)` under the already frozen parameters.
+1. Identify and freeze a provenance-controlled solar electron-density profile plus component production-radius distributions; do not substitute an ad-hoc effective production radius.
+2. Implement day-side adiabatic three-flavour `P_ee(E,r)` and production averaging under the already frozen oscillation parameters.
 3. Reproduce a published Ga-71 component/total rate; then Cl-37.
 4. Convert reproduced capture rates to W/kg and start the quantitative G3 ceiling.
 5. In parallel only when non-biasing: resonance integrated-strength gate, sum-rule axial toy response, transparent-Sun `~23.5 AU`, and staggered fixed-mass-column comparison.
