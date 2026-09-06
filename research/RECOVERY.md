@@ -48,15 +48,9 @@ For allowed/superallowed long-wavelength transitions,
 \sigma_{NCB}v_\nu=2\pi^2\ln2\,\frac{p_eE_eF}{ft}.
 \]
 
-With the repository SI conversion, tritium gives
+With the repository SI conversion, tritium gives `sigma(v/c)≈7.785e-45 cm^2`, within ~0.7% of the published measured-ft benchmark `7.84e-45 cm^2`.
 
-\[
-\sigma(v/c)\simeq7.785\times10^{-45}\,\mathrm{cm^2},
-\]
-
-within ~0.7% of the published measured-ft benchmark `7.84e-45 cm^2`.
-
-Authoritative scientific CI for this normalization: run `34004890286`, job `101410168170`, `29 passed`.
+Authoritative scientific CI: run `34004890286`, job `101410168170`, `29 passed`.
 
 ### B16 solar flux freeze
 
@@ -66,27 +60,18 @@ Iteration-0007 CI run `34007336474` completed SUCCESS on head `a4372f98965b3705f
 
 ### Spectral-shape identity and byte materialization — iterations 0008–0009
 
-`data/solar_spectrum_manifest.csv` pins the standard spectral-shape inputs by **upstream repository commit plus exact blob SHA**, preventing silent spectral drift:
+`data/solar_spectrum_manifest.csv` pins standard spectral shapes by upstream repository commit plus exact blob SHA. The pinned upstream implementation/provenance snapshot is `michelelucente/PEANUTS` commit `59e3a2ae102d58f42cc1146eaca2cae68be879ce`.
 
-- pp/hep: Bahcall, Phys. Rev. C 56, 3391 (1997);
-- B8 baseline: Ortiz et al., Phys. Rev. Lett. 85, 2909 (2000);
-- N13/O15/F17: Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988);
-- Be7 thermally broadened line profiles: Bahcall, Phys. Rev. D 49, 3923 (1994).
+Bookkeeping line convention: pep `1.442 MeV`; Be7 `0.862 MeV` weight `0.897`, `0.384 MeV` weight `0.103`. Precision Be7 calculations use thermally broadened profile tables.
 
-Pinned upstream implementation/provenance snapshot: `michelelucente/PEANUTS` commit `59e3a2ae102d58f42cc1146eaca2cae68be879ce`.
-
-Bookkeeping line convention: pep `1.442 MeV`; Be7 `0.862 MeV` weight `0.897`, `0.384 MeV` weight `0.103`. Precision Be7 calculations must use the broadened profile tables rather than delta lines.
-
-`src/nmir/solar_spectra.py` now provides fail-closed immutable materialization: bytes are downloaded from the frozen upstream commit, canonical Git-blob SHA is checked **before** acceptance/write, and all six continuum spectra plus two Be7 profiles can be materialized together.
+`src/nmir/solar_spectra.py` provides fail-closed immutable materialization: bytes are downloaded from the frozen upstream commit and canonical Git-blob SHA is checked before acceptance/write.
 
 Hosted materialization authority:
 
-- workflow run `34012460541`, job `101430502114`;
-- head `f207836f32496b7e78990a485f27568ee659ee15`;
-- all 8 expected spectral/profile files reproduced their frozen Git-blob SHA exactly;
+- run `34012460541`, job `101430502114`, head `f207836f32496b7e78990a485f27568ee659ee15`;
+- all 8 expected spectral/profile files reproduced frozen Git-blob SHA exactly;
 - artifact ID `9982880231`;
-- artifact ZIP SHA256 `c506de14cf1c0f0d02c706143449ae4a2fea887195f41de66763651e4f65cda6`;
-- artifact name `nmir-solar-spectra-f207836f32496b7e78990a485f27568ee659ee15`.
+- artifact ZIP SHA256 `c506de14cf1c0f0d02c706143449ae4a2fea887195f41de66763651e4f65cda6`.
 
 Head regression CI on the same head: run `34012460563`, job `101430502143`, raw output `48 passed in 0.08s`.
 
@@ -94,38 +79,47 @@ Head regression CI on the same head: run `34012460563`, job `101430502143`, raw 
 
 ### Frozen first oscillation convention — iteration 0008
 
-`data/solar_oscillation_convention.csv` prospectively fixes the first Ga/Cl benchmark before any rate calculation:
+`data/solar_oscillation_convention.csv` prospectively fixes the first Ga/Cl benchmark:
 
 - `sin^2(theta12)=0.307`;
 - `sin^2(theta13)=0.0220`;
 - `Delta m^2_21=7.53e-5 eV^2`;
 - normal ordering;
 - standard three-flavour adiabatic MSW in the Sun;
-- Earth regeneration OFF for the first benchmark, later robustness branch.
+- Earth regeneration OFF for the first benchmark.
 
-`src/nmir/solar_oscillation.py` and tests freeze these values/scope. **The numerical component-averaged survival curve is still OPEN** because production-radius/electron-density weighting is not yet frozen.
+The numerical component-averaged survival curve remains OPEN pending validated solar matter/production inputs and the numerical MSW kernel.
+
+### B16 solar matter / production-distribution freeze candidate — iteration 0010
+
+The same pinned PEANUTS snapshot contains the B16 radial tables used by its solar adiabatic calculation. Their headers cite Vinyoles et al. (2017), and `peanuts/solar.py` uses radius, electron density and reaction-specific production distributions for the production average.
+
+`data/solar_matter_manifest.csv` now prospectively freezes both metallicity branches:
+
+- B16 GS98: `Data/nudistr_b16_gs98.dat`, blob `f73c47cf6f2d77086634a5c180b50039e10805e7`;
+- B16 AGSS09met: `Data/nudistr_b16_agss09.dat`, blob `d9bd29f3374c63e8ea898733a55fb7aa566a2c96`.
+
+Frozen column contract for both: radius column 0 (`r/Rsun`), electron-density-log10 column 2 (`cm^-3/N_A`, numerically mol/cm^3 after exponentiation), production distributions columns 4–11 for pp, pep, hep, Be7, B8, N13, O15, F17.
+
+`src/nmir/solar_matter.py` and `tests/test_solar_matter.py` add immutable identity/column/component/fail-closed guards. The new source-selection freeze is **PENDING head CI/materialization**; no numerical `P_ee` or Ga/Cl PASS is claimed from it yet.
 
 ## Other active branches
 
 ### Many-body/spin response
 
-Inclusive rate organization:
-
 \[
 \Gamma\propto\int d^3q\,d\omega\,L_{ab}S^{ab}.
 \]
 
-A 1-meV magnon produced by a 1-MeV neutrino deposits only `1e-9` of the incident energy. Spin/magnon channels remain detection/response candidates, not bulk-energy winners unless a harder or repeated deposition mechanism appears.
+A 1-meV magnon produced by a 1-MeV neutrino deposits only `1e-9` of incident energy. Spin/magnon channels remain detection/response candidates, not bulk-energy winners unless a harder or repeated deposition mechanism appears.
 
 ### Gravitational focusing
-
-Weak-field benchmark:
 
 \[
 \alpha\simeq\frac{4GM}{bc^2},\qquad f\simeq\frac{b^2c^2}{4GM}.
 \]
 
-Solar-limb benchmark: `~547.741 AU`. Published transparent-Sun calculations give minimum focal distance near `23.5 ± 0.1 AU` for distant-source neutrinos crossing the solar interior. Finite source/receiver size and Liouville phase-space conservation are mandatory; the Sun is not a separate downstream lens for its own emitted solar neutrinos.
+Solar-limb benchmark: `~547.741 AU`; transparent-Sun literature benchmark near `23.5 ± 0.1 AU` for distant-source neutrinos. Finite source/receiver size and Liouville conservation remain mandatory.
 
 ### Staggered-layer metamaterial
 
@@ -133,7 +127,7 @@ Solar-limb benchmark: `~547.741 AU`. Published transparent-Sun calculations give
 F(\mathbf q)=\sum_j e^{i\mathbf q\cdot\mathbf r_j}.
 \]
 
-Shifted layers can move constructive/destructive reciprocal-space peaks but projected atomic coverage is not weak opacity. For nuclear radius `5 fm` and lattice spacing `3 Å`, naive geometric nuclear projected fraction is `8.73e-10` per layer; ~`1.15e9` perfectly complementary layers would only reach unity **geometric** nuclear projection. For `E_nu=1 MeV`, `lambda≈1.23984e-12 m`, giving first-order Bragg angle `~0.118396 deg` at `d=3 Å`. Any useful claim must survive angle/energy integration at fixed mass column.
+Shifted layers move constructive/destructive reciprocal-space peaks but projected atomic coverage is not weak opacity. At `E_nu=1 MeV`, `lambda≈1.23984e-12 m`; for `d=3 Å`, first-order Bragg angle is `~0.118396 deg`. Any useful claim must survive angle/energy integration at fixed mass column.
 
 ## Research gates
 
@@ -142,7 +136,7 @@ Shifted layers can move constructive/destructive reciprocal-space peaks but proj
 | G0 | Known weak/CEvNS/capture normalizations reproduced? | PARTIAL PASS — CEvNS + tritium ft benchmark |
 | G1 | Static macroscopic coherence beyond ordinary nuclear coherence? | PARTIAL NEGATIVE — naive N² opacity disfavored |
 | G2 | Can many-body spin/density/current modes deposit useful energy? | OPEN |
-| G3 | Maximum SM deposited solar-neutrino power? | OPEN — B16 flux + exact spectral bytes + oscillation convention frozen; numerical survival/capture kernels missing |
+| G3 | Maximum SM deposited solar-neutrino power? | OPEN — B16 flux + exact spectra + oscillation convention validated; B16 matter source freeze pending CI; numerical survival/capture kernels missing |
 | G4 | Can resonance/polarization/periodicity increase useful deposition parametrically? | OPEN |
 | G5 | Minimal BSM structure if SM ceiling insufficient? | LOCKED until G3 |
 | G6 | Does BSM survive constraints? | LOCKED until G5 |
@@ -155,45 +149,48 @@ Shifted layers can move constructive/destructive reciprocal-space peaks but proj
 
 - `0001`: CEvNS/magnetic/coherence gates.
 - `0002`: production↔absorption and spin-response triage.
-- `0003`: inverse-transition seeds; historical Ga rate normalization gives `~8.99e-23 W/kg` for optimistic 1-MeV deposition and requires `~1.11e22` gain to reach 1 W/kg.
+- `0003`: inverse-transition seeds; Ga historical normalization and W/kg gap.
 - `0004`: gravitational focusing branch.
 - `0005`: staggered-layer metamaterial branch.
 - `0006`: unit-explicit ft→capture normalization; tritium benchmark reproduced.
 - `0007`: B16-GS98/AGSS09met integrated solar fluxes frozen.
-- `0008`: commit/blob-pinned spectral manifest + first prospective oscillation convention frozen.
-- `0009`: fail-closed hosted materialization reproduces all eight frozen spectral/profile blobs exactly; verified artifact produced.
+- `0008`: commit/blob-pinned spectral manifest + first oscillation convention.
+- `0009`: hosted exact materialization reproduces all eight frozen spectrum/profile blobs.
+- `0010`: B16 GS98/AGSS09met electron-density + component production-distribution source identities frozen prospectively; validation pending.
 
 ## Critical scope guards
 
 1. Detector threshold is not total cross section.
 2. Directional coherent gain is not integrated opacity gain.
 3. Peak resonance is not flux-integrated capture.
-4. Gravitational magnification is multiplicative and finite, not a substitute for microscopic absorption.
+4. Gravitational magnification is finite and multiplicative, not a substitute for microscopic absorption.
 5. Projected atomic coverage is not neutrino opacity.
 6. Exact time reversal and a crossed process are not automatically identical external-particle reactions.
-7. Do not mix solar flux, spectrum, oscillation and nuclear cross-section conventions silently.
+7. Do not mix solar flux, spectrum, matter profile, oscillation and nuclear cross-section conventions silently.
 8. BSM remains locked as a solution branch until G3 is quantitatively bounded.
-9. Exact spectrum identity is now recoverable through frozen commit/blob provenance plus validated fail-closed materialization; Ga/Cl still require a separately frozen solar matter/production weighting.
+9. No ad-hoc effective solar production radius/density is permitted when component-resolved B16 distributions are available.
 
-## Current repository components added through iteration 0009
+## Current repository components through iteration 0010
 
-- flux: `data/solar_flux_b16.csv`, provenance + loader/tests;
-- spectra: `data/solar_spectrum_manifest.csv`, `src/nmir/solar_spectra.py`, tests, `.github/workflows/spectra-materialize.yml`;
+- flux: `data/solar_flux_b16.csv` + loader/tests;
+- spectra: `data/solar_spectrum_manifest.csv`, `src/nmir/solar_spectra.py`, tests, materialization workflow;
+- solar matter candidate: `data/solar_matter_manifest.csv`, `src/nmir/solar_matter.py`, tests;
 - oscillation: `data/solar_oscillation_convention.csv`, `src/nmir/solar_oscillation.py`, tests;
 - capture: `src/nmir/ft_capture.py`, `capture_metrics.py`;
 - other branches: `gravity_focusing.py`, `staggered_lattice.py`, response/duality theory documents;
-- chronological `research/iterations/0001...0009` notes.
+- chronological `research/iterations/0001...0010` notes.
 
 ## Current maturity
 
 **NMIR_READINESS: 25%**.
 
-The increase from 24% to 25% is credited only for a real hosted materialization PASS: all eight exact spectrum/profile blob identities were reproduced, an immutable run/artifact provenance was recorded, and head regression CI passed. No credit is assigned yet for numerical solar `P_ee(E)`, Ga/Cl reproduction, or G3 closure.
+Readiness remains 25% until the new B16 matter provenance/loader contract passes head CI and exact materialization/parse checks. The prior increase from 24% to 25% is credited only to the validated eight-spectrum hosted materialization gate.
 
 ## Exact next gate
 
-1. Identify and freeze a provenance-controlled solar electron-density profile plus component production-radius distributions; do not substitute an ad-hoc effective production radius.
-2. Implement day-side adiabatic three-flavour `P_ee(E,r)` and production averaging under the already frozen oscillation parameters.
-3. Reproduce a published Ga-71 component/total rate; then Cl-37.
-4. Convert reproduced capture rates to W/kg and start the quantitative G3 ceiling.
-5. In parallel only when non-biasing: resonance integrated-strength gate, sum-rule axial toy response, transparent-Sun `~23.5 AU`, and staggered fixed-mass-column comparison.
+1. Consume the latest head CI for `solar_matter` and classify PASS/FAIL.
+2. Materialize both B16 matter tables with exact blob verification; parse radius/density/production columns and verify finite positive production integrals.
+3. Implement day-side adiabatic three-flavour `P_ee(E,r)` and production averaging under frozen oscillation parameters.
+4. Validate low-/high-energy survival limits; reproduce Ga-71, then Cl-37.
+5. Convert validated capture rates to W/kg and start quantitative G3 ceiling.
+6. Parallel non-biasing work only: resonance integrated-strength gate, sum-rule axial response, transparent-Sun benchmark, staggered fixed-mass-column comparison.
