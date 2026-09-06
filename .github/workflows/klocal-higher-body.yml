@@ -1,0 +1,35 @@
+name: Finite-range k-local higher-body current gate
+
+on:
+  push:
+    paths:
+      - 'research/klocal_higher_body_current_prereg.md'
+      - 'src/nmir/klocal_higher_body.py'
+      - 'tests/test_klocal_higher_body.py'
+      - 'scripts/klocal_higher_body_gate.py'
+      - '.github/workflows/klocal-higher-body.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run frozen k-local regression gate
+        run: PYTHONPATH=src python -m pytest -q tests/test_klocal_higher_body.py
+      - name: Run frozen k-local benchmark
+        shell: bash
+        run: |
+          set -o pipefail
+          PYTHONPATH=src python scripts/klocal_higher_body_gate.py | tee klocal-higher-body.json
+      - name: Upload k-local result
+        uses: actions/upload-artifact@v4
+        with:
+          name: klocal-higher-body-result
+          path: klocal-higher-body.json
