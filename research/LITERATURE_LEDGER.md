@@ -148,6 +148,47 @@ Use in NMIR:
 
 Important caution: resonant peak enhancement is not equivalent to broadband opacity. Track integrated line strength and source/absorber spectral overlap.
 
+## Gravitational neutrino focusing / lensing
+
+### Escribano, Frère, Monderen, Van Elewyck (2001)
+**Insights on neutrino lensing** — arXiv:hep-ph/0105211.
+
+Use in NMIR:
+- astrophysical gravitational lensing of neutrinos;
+- important distinction from photon lensing because neutrinos can traverse stellar cores;
+- signal amplification estimates and attenuation through massive lenses;
+- conceptual foundation for the gravitational-focusing branch.
+
+### Patla & Nemiroff (2007)
+**Gravitational Lensing Characteristics of the Transparent Sun** — arXiv:0711.4811.
+
+Use in NMIR:
+- transparent-Sun extended-mass lens benchmark;
+- minimum focal length `23.5 ± 0.1 AU` for radiation able to traverse the solar interior, including neutrinos;
+- caustics/critical curves and finite magnification maps;
+- target benchmark for an extended-density-profile code.
+
+### Taak, Treu, Inoue, Kusenko (2023)
+**Strong lensing of high-energy neutrinos** — Phys. Rev. D 107, 023011.
+
+Use in NMIR:
+- modern strong-lensing treatment of high-energy neutrino sources;
+- multiple images, magnification and time-delay phenomenology;
+- confirmation that neutrino flux can be gravitationally magnified by astrophysical lenses.
+
+### He & Lin (2022); He et al. (2024, 2026)
+**Gravitational lensing of relativistic massive particles** — Phys. Rev. D 105, 104034 and subsequent work.
+
+Use in NMIR:
+- massive neutral-particle deflection beyond the strict null limit;
+- check that ultrarelativistic neutrino trajectories approach photon/null-geodesic lensing with mass-dependent corrections.
+
+### Weinberg et al. lensing review / Liouville brightness theorem
+Use in NMIR:
+- gravitational lensing conserves surface brightness / collisionless phase-space density;
+- point-caustic divergences must not be interpreted as infinite usable neutrino power;
+- finite-source and receiver-integrated gain is the physical quantity.
+
 ## Electroweak resonance proof-of-principle
 
 ### IceCube Glashow-resonance observation (Nature result; IceCube data release 2021)
@@ -169,7 +210,8 @@ The following must **not** be used as paper claims until a primary source and co
 - BBN/CMB bounds;
 - material-specific dynamic structure factors;
 - any claimed macroscopic coherence enhancement beyond nuclear CEvNS;
-- any claimed resonant neutrino cross section unless the source/absorber linewidth, recoil-free fraction and integrated spectral strength are specified.
+- any claimed resonant neutrino cross section unless the source/absorber linewidth, recoil-free fraction and integrated spectral strength are specified;
+- any claimed gravitational focusing gain without finite source size, receiver size and alignment regularization.
 
 ## Literature tasks
 
@@ -178,9 +220,11 @@ The following must **not** be used as paper claims until a primary source and co
 - [x] Seed charged-current capture / inverse-beta literature.
 - [x] Seed beta-decay→inverse-capture `ft` reconstruction literature.
 - [x] Seed recoilless-resonant neutrino absorption literature and known failure modes.
+- [x] Seed gravitational-neutrino-lensing literature and transparent-Sun benchmark.
 - [ ] Build a machine-readable catalog of beta/electron-capture/bound-beta inverse transition candidates.
 - [ ] Add polarized-matter / axial-potential literature.
 - [ ] Add periodic-density / parametric-resonance literature.
 - [ ] Add neutrino scattering in superconductors, superfluids, magnetic systems and semiconductors.
 - [ ] Add sum-rule/no-go literature relevant to macroscopic coherent neutrino scattering.
+- [ ] Build finite-source gravitational magnification benchmarks for Sun/planet/star/compact-object lenses.
 - [ ] Build light-mediator exclusion surfaces in `(m_X, g_nu, g_m)` with source provenance.
