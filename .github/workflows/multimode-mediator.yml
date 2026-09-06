@@ -1,0 +1,32 @@
+name: NMIR passive multimode mediator gate
+
+on:
+  push:
+    paths:
+      - 'src/nmir/multimode_mediator.py'
+      - 'tests/test_multimode_mediator.py'
+      - 'scripts/multimode_mediator_benchmark.py'
+      - 'research/multimode_mediator_prereg.md'
+      - '.github/workflows/multimode-mediator.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run multimode mediator regression tests
+        run: pytest -q tests/test_multimode_mediator.py
+      - name: Evaluate multimode mediator benchmark
+        run: |
+          mkdir -p artifacts/multimode_mediator
+          python scripts/multimode_mediator_benchmark.py | tee artifacts/multimode_mediator/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multimode-mediator-result
+          path: artifacts/multimode_mediator/result.json
