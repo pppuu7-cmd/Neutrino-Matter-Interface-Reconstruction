@@ -10,6 +10,7 @@ bytes before use; silently substituting a different spectrum is forbidden.
 from __future__ import annotations
 
 import csv
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -82,3 +83,24 @@ def be7_bookkeeping_weight_sum(manifest: dict[str, SpectrumSource] | None = None
 def pinned_continuum_components(manifest: dict[str, SpectrumSource] | None = None) -> tuple[str, ...]:
     m = load_spectrum_manifest() if manifest is None else manifest
     return tuple(sorted(k for k, v in m.items() if v.kind == "continuum"))
+
+
+def git_blob_sha1(data: bytes) -> str:
+    """Return the canonical Git object SHA-1 for exact blob bytes."""
+    header = f"blob {len(data)}\0".encode("ascii")
+    return hashlib.sha1(header + data).hexdigest()
+
+
+def verify_materialized_spectrum(component: str, data: bytes, manifest: dict[str, SpectrumSource] | None = None) -> None:
+    """Fail closed unless materialized bytes match the frozen upstream blob SHA."""
+    m = load_spectrum_manifest() if manifest is None else manifest
+    if component not in m:
+        raise KeyError(component)
+    source = m[component]
+    if source.kind not in {"continuum", "profile"} or source.source_blob_sha is None:
+        raise ValueError(f"{component} is not a blob-backed spectrum")
+    actual = git_blob_sha1(data)
+    if actual != source.source_blob_sha:
+        raise ValueError(
+            f"spectral blob mismatch for {component}: expected {source.source_blob_sha}, got {actual}"
+        )
