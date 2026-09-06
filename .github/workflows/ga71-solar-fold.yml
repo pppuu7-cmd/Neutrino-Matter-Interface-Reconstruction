@@ -1,0 +1,24 @@
+name: NMIR Ga71 solar fold
+on:
+  push:
+    paths:
+      - 'src/nmir/ga71_solar_fold.py'
+      - 'scripts/ga71_oscillated_solar_benchmark.py'
+      - '.github/workflows/ga71-solar-fold.yml'
+  workflow_dispatch:
+jobs:
+  fold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run full oscillated Ga-71 folding
+        run: PYTHONPATH=src python scripts/ga71_oscillated_solar_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ga71-oscillated-solar-fold
+          path: artifacts/ga71_solar/results.json
+          if-no-files-found: error
