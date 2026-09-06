@@ -149,7 +149,22 @@ Classification: **RIOEC_B16_FLAVOR_NO_GO_PASS / RIOEC_AREA_PROFILE_PASS / G8_TAR
 
 Scientific consequence: a narrow RIOEC peak cannot use or multiply the ordinary ~B16 thermonuclear solar-neutrino flux. The surviving solar application must use the much lower-energy thermal `anti-nu_e` source class with its own primary spectral density, and a real evaluated target entrance strength. Candidate-specific W/kg is not yet claimed.
 
-Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md` through `0035_rioec_source_class_and_area_gate.md`.
+## Iteration 0036 — real-resonance positive control
+The observed Glashow mechanism is retained as a positive control demonstrating that a genuine SM s-channel resonance can raise the neutrino interaction scale enormously. The calibrated resonance is at about 6.325 PeV, far outside the <=20 MeV NMIR solar window. Classification: **G8_REAL_RESONANCE_POSITIVE_CONTROL_PASS / SOLAR_KINEMATIC_FAIL**. No Glashow gain is composed with solar capture.
+
+## Iteration 0037 — low-energy resonance design window
+Prospective contract: `research/low_energy_resonance_window_prereg.md`.
+Scientific head `0589b99e2d5d985fa02a7042473dc0c7c27a1def`; hosted run `34044012213`, job `101515715322`, artifact `9992535787`; raw log inspected: `7 passed in 0.02s`; artifact ZIP SHA256 `1fbb5a1d346c81e39264d0b86915496a9e6fbbbeea9729075ec2e90336e714ac`.
+
+Stationary-electron s-channel mapping:
+`M_* = sqrt(m_e^2 + 2 m_e E_nu)`.
+The Glashow calibration gives `6.3250227811 PeV`, within `0.3972%` of the 6.3-PeV control. For the 0–20 MeV solar window, a hypothetical stationary-electron s-channel state would require `0.51099895 < M_* <= 4.5498437255 MeV`. The thermal 10 eV–5 keV subwindow requires only about `0.010–4.976 keV` mass excess above the electron.
+
+RIOEC obeys `E_R=-Q_epsilon+E_x+E_b`; to overlap a 10 eV, 1 keV or 5 keV thermal source with MeV-scale terms requires relative cancellation of order `1e-5`, `1e-3`, or `5e-3`, respectively. This is a design condition, not a no-go.
+
+Classification: **G8_LOW_ENERGY_RESONANCE_WINDOW_PASS**. Existence/coupling of any elementary low-mass state remains OPEN/BSM-LOCKED. Target-specific RIOEC entrance strength × primary thermal-solar `anti-nu_e` spectrum remains OPEN. No rate or W/kg is inferred from kinematic matching alone.
+
+Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md` through `0037_low_energy_resonance_design_window.md`.
 
 ## Research gates
 | Gate | Status |
@@ -162,7 +177,7 @@ Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.
 | G5 minimal BSM solution | LOCKED |
 | G6 BSM constraints | LOCKED |
 | G7 production/decay → inverse capture | PARTIAL PASS |
-| G8 resonance integrated-strength/bandwidth | **PARTIAL PASS — formal area theorem plus RIOEC source/flavor gate done; ordinary B16 source is forbidden for RIOEC; target-specific evaluated entrance-strength × thermal-solar anti-nu_e fold OPEN** |
+| G8 resonance integrated-strength/bandwidth | **PARTIAL PASS — area theorem, RIOEC source/flavor gate, real-resonance positive control and low-energy kinematic design window PASS; target-specific evaluated entrance-strength × thermal-solar anti-nu_e fold OPEN** |
 | G9 finite gravitational focusing gain | PARTIAL PASS — 23.5 AU scale robust; distant-source usefulness OPEN; solar self-lensing inapplicable |
 | G10 staggered/multi-isotope fixed-mass-column gain | **GEOMETRY-ONLY STRONG NEGATIVE / FIXED-COLUMN MIXTURE THEOREM PASS; microscopic-response-changing structured matter remains under G2/G4/G8** |
 
@@ -178,17 +193,18 @@ Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.
 9. Geometry-only G10 does not cover any structure-induced microscopic response change.
 10. No F9 multiplication of unvalidated gains.
 11. RIOEC is an electron-antineutrino entrance channel; ordinary B16 solar `nu_e` flux must never be inserted into its rate.
+12. Kinematic resonance matching alone is not a microscopic-strength or rate PASS.
 
 ## Chronology
-`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum; `0029` rounded gravity + finite-source/Liouville; `0030` full Model-S gravity; `0031` long-range pair budget; `0032` passive harmonic mediator; `0033` omitted one-body nuclear currents + two-body data distance; `0034` staggered-layer/fixed-column theorem; `0035` RIOEC source/flavor + integrated-area/profile gate.
+`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum; `0029` rounded gravity + finite-source/Liouville; `0030` full Model-S gravity; `0031` long-range pair budget; `0032` passive harmonic mediator; `0033` omitted one-body nuclear currents + two-body data distance; `0034` staggered-layer/fixed-column theorem; `0035` RIOEC source/flavor + integrated-area/profile; `0036` real-resonance positive control; `0037` low-energy resonance design window.
 
 ## Current maturity
-**NMIR_READINESS: 64%** (audit estimate).
+**NMIR_READINESS: 66%** (audit estimate).
 
-63%→64% credit: +1% for a hosted/preregistered class-level source/flavor closure that removes the dominant ordinary B16 solar flux from the RIOEC resonance branch while independently reproducing the integrated-area/smooth-profile limit. No credit yet for target-specific resonance W/kg.
+65%→66% credit: +1% for a preregistered, hosted, raw-inspected class-level F3 resonance design-window closure. This sharply delimits the energy/mass tuning required of any low-energy resonance without promoting kinematic matching into a rate. No credit yet for target-specific RIOEC W/kg or for any BSM state.
 
 ## Exact next funnel gates
-1. **G8 target-specific thermal-solar antineutrino RIOEC resonance:** choose one evaluated candidate from the 2026 RIOEC list, freeze Q value, daughter excitation, captured-shell binding/width and weak entrance strength; convolve with primary Haxton-Lin-class thermal-solar `anti-nu_e` spectral density; compute events/kg/s and neutrino-only W/kg.
+1. **G8 target-specific thermal-solar antineutrino RIOEC resonance:** freeze a primary thermal-solar `anti-nu_e` spectral density and one evaluated candidate with Q value, daughter excitation, captured-shell binding/width and weak entrance strength; compute `B0 phi_anti-nu_e(E_R)`, events/kg/s and neutrino-only W/kg.
 2. **Global two-body/higher-body residual:** seek a finite-range/saturation/sum-rule/operator bound without promoting selected-nucleus calculations into a theorem.
 3. **Residual many-body survivor:** multi-mode/gapless/nonlinear mediator, with complete medium/field energy accounting; active pumping separately tracked.
 4. **G9 source-class completion:** distant astrophysical neutrino source flux × finite-source/alignment duty cycle; no transparent-Sun gain for solar neutrinos.
