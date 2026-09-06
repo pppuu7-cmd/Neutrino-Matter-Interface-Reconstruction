@@ -1,0 +1,32 @@
+name: NMIR metastable avalanche ledger gate
+
+on:
+  push:
+    paths:
+      - 'src/nmir/metastable_avalanche.py'
+      - 'tests/test_metastable_avalanche.py'
+      - 'scripts/metastable_avalanche_benchmark.py'
+      - 'research/metastable_avalanche_prereg.md'
+      - '.github/workflows/metastable-avalanche.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run metastable avalanche regression tests
+        run: pytest -q tests/test_metastable_avalanche.py
+      - name: Evaluate metastable avalanche benchmark
+        run: |
+          mkdir -p artifacts/metastable_avalanche
+          python scripts/metastable_avalanche_benchmark.py | tee artifacts/metastable_avalanche/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: metastable-avalanche-result
+          path: artifacts/metastable_avalanche/result.json
