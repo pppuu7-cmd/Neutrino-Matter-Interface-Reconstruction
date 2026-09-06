@@ -1,0 +1,32 @@
+name: NMIR low-energy resonance window
+
+on:
+  push:
+    paths:
+      - 'src/nmir/low_energy_resonance_window.py'
+      - 'tests/test_low_energy_resonance_window.py'
+      - 'scripts/low_energy_resonance_window_benchmark.py'
+      - 'research/low_energy_resonance_window_prereg.md'
+      - '.github/workflows/low-energy-resonance-window.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run low-energy resonance-window tests
+        run: pytest -q tests/test_low_energy_resonance_window.py
+      - name: Evaluate low-energy resonance-window benchmark
+        run: |
+          mkdir -p artifacts/low_energy_resonance_window
+          python scripts/low_energy_resonance_window_benchmark.py | tee artifacts/low_energy_resonance_window/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: low-energy-resonance-window-result
+          path: artifacts/low_energy_resonance_window/result.json
