@@ -1,0 +1,32 @@
+name: NMIR G8 resonance overlap
+
+on:
+  push:
+    paths:
+      - 'src/nmir/resonance_overlap.py'
+      - 'tests/test_resonance_overlap.py'
+      - 'scripts/resonance_overlap_benchmark.py'
+      - 'research/resonance_overlap_prereg.md'
+      - '.github/workflows/resonance-overlap.yml'
+  workflow_dispatch:
+
+jobs:
+  formal-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run G8 formal regression tests
+        run: pytest -q tests/test_resonance_overlap.py
+      - name: Evaluate integrated resonance-area and source-overlap gate
+        run: |
+          mkdir -p artifacts/resonance_overlap
+          python scripts/resonance_overlap_benchmark.py | tee artifacts/resonance_overlap/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resonance-overlap
+          path: artifacts/resonance_overlap/result.json
