@@ -1,88 +1,56 @@
 # NMIR Discovery Funnel
 
 ## Purpose
-NMIR is not a linear search for one favored material or mechanism. It is a model-agnostic discovery funnel for identifying, bounding, or ruling out physically real ways to couple neutrinos to engineered matter/fields and, where relevant, to transfer neutrino-supplied energy irreversibly into matter.
+NMIR is a model-agnostic discovery funnel for identifying, bounding or ruling out physically real neutrino↔matter/field interfaces and, where relevant, irreversible neutrino-supplied energy deposition. It is not a linear search for one favored material.
 
-The funnel is analogous in philosophy to DSIR/RQIR but has a different target:
-- DSIR: theories -> common influence residual -> observable reconstruction.
-- RQIR: candidate gravity/quantum interfaces -> consistency/comparator gates -> surviving model space.
-- NMIR: all neutrino-coupling mechanisms -> common interaction/response interface -> hard physical bounds -> surviving capture/deposition strategies.
-
-## Common interface
-Every candidate mechanism must ultimately be expressible as
+Common interface:
 
 `Gamma = sum_ab integral dE d^3q dω Phi(E) K_ab(E,q,ω) S_ab(q,ω)`.
 
-Focusing/magnification remains explicit and multiplicative. For energy harvesting,
+For energy harvesting,
 
 `P_dep,nu = N_T integral dE Phi(E) mu(E,x) sigma_eff(E) E_dep,nu(E)`,
 
-with frozen guard `E_dep,nu <= E_nu`. Daughter decay, nuclear mass release, target preparation or externally supplied pumping energy are never counted as neutrino-supplied power.
+with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator preparation and external pumping are never counted as neutrino-supplied power.
 
 ## Funnel stages
-### F0 — Define the physical objective
-State control; detection/event enhancement; directional concentration; irreversible energy deposition; or true absorption/capture. A gain in one category is not promoted to another.
+- **F0 objective:** state control, detection, focusing, irreversible deposition or true capture; never promote one into another.
+- **F1 channel:** SM CC/NC, electromagnetic form factors, matter potential, many-body density/spin, resonant inverse transition, gravity, engineered geometry or later BSM.
+- **F2 production↔absorption:** use measured ft/B(GT)/width/branching authority where possible.
+- **F3 kinematics/spectral overlap:** threshold, q, phase space and physical source profile must overlap.
+- **F4 microscopic strength:** matched conventions; unvalidated approximations remain screening.
+- **F5 collective/resonant gain:** enforce integrated structure factors, coherence volume, linewidth and dephasing.
+- **F6 no-free-lunch:** unitarity, sum rules, detailed balance, conservation, Liouville, finite source, fixed mass column and complete medium/field energy accounting.
+- **F7 common score:** event rate, optical depth, neutrino-only W/kg, flux-integrated gain and enhancement required to practical benchmarks.
+- **F8 external constraints:** laboratory, solar, astrophysical, cosmological, stability and engineering.
+- **F9 composition:** only individually validated gains may multiply.
+- **F10 outcome:** PASS-SURVIVOR, STRONG-NEGATIVE, SCIENTIFIC-FAIL or BLOCKED.
 
-### F1 — Enumerate the interaction channel
-SM charged current; SM neutral current; electromagnetic form factors; matter potential/forward scattering; many-body density/spin response; resonant inverse transition; gravitational focusing; engineered structure factor/metamaterial geometry; or BSM operator/mediator. Unknown/hybrid channels must map into the same interface.
-
-### F2 — Production <-> absorption duality
-For channels that produce neutrinos, construct the crossed/inverse process where allowed. Prefer measured decay strengths, ft values, B(GT), widths and branching data. A crossed ground-state anchor is not automatically a complete response.
-
-### F3 — Kinematics and spectral overlap
-Require threshold, momentum transfer, final-state phase space, source spectrum and physical line/continuum width to overlap.
-
-### F4 — Microscopic strength
-Compute or bound elementary strength with matched conventions and primary response/decay data. Unvalidated approximations remain SCREENING only.
-
-### F5 — Collective / coherent / resonant enhancement
-Test claimed gains against structure-factor integration, response sum rules, linewidth-integrated strength, coherence volume, recoil/dephasing, finite source size and phase-space restrictions. Peak/directional gain or low detector threshold is not total opacity or energy deposition.
-
-### F6 — Fundamental no-free-lunch gates
-Apply unitarity/optical theorem; causality/Kramers-Kronig where applicable; response sum rules; detailed balance; conservation laws; Liouville/surface-brightness conservation for gravity; finite-source/wave-optics regularization; and fixed-mass-column controls for structured matter.
-
-### F7 — Common quantitative score
-Rank survivors by event rate/kg or area, optical depth, deposited-neutrino-energy W/kg, flux-integrated gain, pure/natural normalization and enhancement required to practical benchmarks.
-
-### F8 — External reality constraints
-Apply laboratory, solar, astrophysical, cosmological, material-stability and engineering constraints.
-
-### F9 — Cross-channel composition
-Only gains that individually survive F0-F8 may be multiplied:
-
-`G_total = G_focus * G_resonance * G_material * G_geometry`.
-
-No product of unvalidated gains is accepted.
-
-### F10 — Discovery outcome
-- **PASS-SURVIVOR:** quantitatively real gain survives applicable gates.
-- **STRONG-NEGATIVE:** a broad class is bounded far below relevance.
-- **SCIENTIFIC-FAIL:** a claimed mechanism fails a frozen physical gate.
-- **BLOCKED:** missing primary data or external prerequisite.
-
-## Current funnel position — iteration 0030
-- **Production <-> absorption:** measured-ft route + externally validated two-state Li-7 PASS.
+## Current funnel position — iteration 0032
+- **Production↔absorption:** measured-ft route + validated two-state Li-7 PASS.
 - **Validated passive targets:** Li-7, Se-82, Ga-71, Cl-37. Pure Li-7/GS98 leader `1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
-- **Leading allowed passive CC:** STRONG-NEGATIVE scoped envelope `9.419e-12 W/kg` under deliberately extreme assumptions.
-- **Leading finite-q vector-charge/axial-spin multipoles:** STRONG-NEGATIVE envelope `1.206e-9 W/kg`; separate x1e6 omitted-current stress gives `1.206e-3 W/kg` but is not a theorem.
-- **Two-body/subleading nuclear currents:** OPEN. Conditional map needs per-pair norm ratio `r~193` at A=300 to bridge the gap; no all-nucleus theorem yet.
-- **Resonance:** formal integrated-area/source-overlap gate PASS. Target-specific entrance strength + physical solar profile remains OPEN.
-- **Static naive macroscopic N^2 opacity:** strongly disfavored/negative.
-- **Passive coordinate-local density response:** `PASS_DENSITY_FSUM`; softening by `1e6` increases unweighted strength `1e6` but energy-weighted strength `1.0`; first moment scales N.
-- **Passive bounded-local spin/magnon response:** `PASS_LOCAL_SPIN_SUM`; first-moment envelope is O(N) for bounded coordination. Softening by `1e6` again gives energy-weighted gain `1.0`.
-- **Long-range/nonlocal response:** OPEN. Unscaled all-to-all control is superextensive while Kac/extensivity scaling returns O(N); this is now the highest-value material survivor.
-- **Gravitational focusing:** **PARTIAL PASS G9**. Rounded primary check and finite-source/Liouville subgate PASS. Independent full Model-S projection on hosted run `34041004727` gives `F_min=23.629351 AU`, only `0.5504%` from the published `23.5 AU`, with Model-S integrated-mass error `4.87e-5` and `M_2D(0.024R)/M=0.0131133`. Thus the short transparent-Sun focal scale is robust and not a one-point artifact. However the geometry is for a **distant source behind the Sun**, not the Sun's own neutrinos; usable receiver-integrated magnification remains OPEN and may not be composed with the solar-capture ledger.
-- **Staggered/multi-isotope material:** PARTIAL NEGATIVE for density-only energy gain; directional and charged-current/isotope-selective fixed-column variants remain OPEN.
-- **Active/non-equilibrium media:** OPEN, but all external pumping energy must be separately accounted.
-- **BSM solution branch:** LOCKED until major passive-SM loopholes are substantially closed.
+- **Leading allowed passive CC:** STRONG-NEGATIVE scoped envelope `9.419e-12 W/kg`.
+- **Leading finite-q vector-charge/axial-spin:** STRONG-NEGATIVE envelope `1.206e-9 W/kg`; separate x1e6 omitted-current stress `1.206e-3 W/kg` is robustness only, not a theorem.
+- **Two-body/subleading nuclear currents:** OPEN; conditional A=300 map needs per-pair norm ratio `r~193` to bridge the finite-q gap.
+- **Resonance:** integrated-area/source-overlap formal gate PASS; target-specific entrance strength + physical source profile OPEN.
+- **Static naive macroscopic N² opacity:** strongly disfavored.
+- **Coordinate-local density response:** `PASS_DENSITY_FSUM`; soft-mode event strength can grow while energy-weighted first moment remains fixed; O(N), not free N².
+- **Bounded-local spin/magnon:** `PASS_LOCAL_SPIN_SUM`; O(N) at bounded coordination.
+- **Passive long-range pair response:** `PASS_LONG_RANGE_BUDGET`. For additive bounded neutrino operator, `|m1|<=8 o0² sum||h_ij||`; any superextensive response bound tracks a superextensive absolute interaction budget. Kac/extensive scaling removes the per-particle gain.
+- **Passive common harmonic mediator/cavity:** `PASS_HARMONIC_MEDIATOR_BUDGET`. Including mediator displacement energy gives `E_field=|E_induced|~g_N²N²`; extensive Dicke scaling `g_N~1/sqrt(N)` gives `J_eff~1/N` and no parametric per-particle gain.
+- **Residual many-body survivor:** multi-mode/gapless/nonlinear mediators, active/driven media and genuine higher-body interactions remain OPEN, with complete energy accounting required.
+- **Gravitational focusing:** G9 PARTIAL PASS. Independent full Model-S projection gives `F_min=23.629351 AU`, only 0.5504% from published 23.5 AU. This is a distant-source-behind-Sun geometry, not solar-neutrino self-lensing; usable finite magnification remains OPEN.
+- **Staggered/multi-isotope:** PARTIAL NEGATIVE for density-only energy gain; directional/CC-isotope-selective fixed-column variants OPEN.
+- **BSM:** LOCKED until major SM loopholes are substantially closed.
+
+## Highest-value surviving branches
+1. **Full nuclear-current sector:** recoil/convection, axial charge, weak magnetism, induced pseudoscalar and genuine two-body currents.
+2. **Target-specific genuine resonances:** measured entrance strength convolved with real solar line/continuum profiles.
+3. **Residual exotic many-body sector:** multi-mode/gapless/nonlinear mediator or higher-body response with all field/medium energy included.
+4. **Directional/isotope-selective structured matter.**
+5. **Astrophysical gravitational focusing**, source-flux and duty-cycle ranked separately from solar capture.
 
 ## Research discipline
-The next iteration must advance the highest-value open funnel gate, not the most convenient calculation. Class-level bounds dominate target scans. Negative results are discoveries because they shrink mechanism space. A gain must survive its own F0-F8 gates before composition in F9.
+Class-level bounds dominate target scans. Negative results are discoveries because they shrink mechanism space. A gain must survive its own F0-F8 gates before F9 composition. BSM is opened only after remaining SM loopholes are quantitatively mature.
 
-The scientific goal is:
-1. map plausible interaction space;
-2. reduce it with hard theory/data;
-3. identify any surviving channel with parametrically larger integrated usable coupling;
-4. if none survives in the SM, determine exactly which new operator/medium property is required before opening minimal BSM.
-
-Current audit state: `NMIR_READINESS: 56%`.
+Current audit state: **`NMIR_READINESS: 59%`**.
