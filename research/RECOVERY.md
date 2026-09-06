@@ -5,8 +5,8 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable validated scientific record: `research/iterations/0051_detector_background_nuisance_requirement.md`
-Current readiness: `NMIR_READINESS: 80%`.
+Latest immutable validated scientific record: `research/iterations/0052_cresst_si_transfer_fold.md`
+Current readiness: `NMIR_READINESS: 81%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then the newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal GitHub Actions. Chat history is not authority. Do not duplicate running work. A green workflow is not a scientific PASS without the scientific payload/log/artifact being inspected.
@@ -37,7 +37,7 @@ Do not reopen without a genuinely new assumption. Full derivations/provenance ar
 - 0047 bounded finite-range k-local two-/higher-body current class: `PASS_KLOCAL_EXTENSIVITY`; no free superextensive first-moment scaling at fixed support size, norm and site incidence.
 - 0048 empirical/EFT absolute-strength stress: `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`; even 100× the largest frozen empirical extra-amplitude anchor gives only `1.301537448e-5 W/kg`, while the exact bridge to 1 W/kg requires extra amplitude `28796.42286`, or `28511.31×` the empirical anchor. This is an evidence-distance result, not a universal coefficient theorem.
 
-## G2 CEvNS chain — validated through 0051
+## G2 CEvNS chain — validated through 0052
 - 0041 Ar40 at 40 eV: exact source-opening threshold `E_nu,min=0.8628609380 MeV`.
 - 0042 physical Be7 profile × Ar40: at 40 eV 31.104% source tail but only `4.906342834e-6` retained cross section and `3.973604373e-8 events/(kg day)`; endpoint suppression is severe.
 - 0043 continuous-A inverse design law at fixed kg and approximate fixed QW/A: `A_star=2E_nu^2/(3 m_u T_thr)`, equivalently `Tmax(A_star)≈3T_thr`; class-level envelope only.
@@ -84,7 +84,20 @@ Representative Ar40, 10 kg, 10 eV, eta=0.50 (`S=11.846242/year`) 5σ accepted-ba
 
 Thus a 30% normalization nuisance tightens the representative 5σ background budget by ~42.3%; a 50% nuisance tightens it by ~64.5%. These are design requirements only, not demonstrated detector performance.
 
-G2 next practical steps: (1) detector-specific measured recoil-dependent `epsilon_NR(T,state)` and threshold turn-on/stability; (2) fold the measured transfer into the NMIR solar-CEvNS recoil spectrum; (3) calibrated detector-specific backgrounds/false triggers and nuisance model; (4) mass scaling and live/reset dynamics; (5) stored-energy preparation/reset accounting for metastable architectures. Highest-priority positive control is the CRESST-III silicon 10-eV calorimeter because it provides a measured threshold in the NMIR-optimal energy range. Evidence ledger: `research/metastable_detector_evidence_ledger.md`.
+### 0052 — measured-threshold CRESST-III silicon transfer fold
+Immutable authority: `research/iterations/0052_cresst_si_transfer_fold.md`.
+Prospective contract commit `72a089483f001fa4ee8383d8f8d0914ddc0ec134`. First run/job `34058821939/101555544155` was retained as infrastructure FAIL after five passing tests because a Be7 special flux key was looked up in the wrong order. Minimal repair commits `c2a359eecb4596bafd3291f4aa31cca97b544da9` and regression head `fb5cd82686006ba9c8134fac2b6dfbc9a879c079`; no scientific parameter or criterion changed. Authoritative rerun/job `34058921851/101555813480`; artifact `9996833564`; ZIP SHA256 `67fd30cfca7e3321c4818a0a7d62343cbbdad2ca49e339dc12772ce6ad7df118`; raw `6 passed` and benchmark inspected. Classification `PASS_CRESST_SI_TRANSFER_FOLD`.
+
+Primary detector anchors from CRESST-III Si: 0.35-g module, 10.0-eV fitted threshold, 1.36-eV turn-on/baseline width, trigger plateau 0.8053, cumulative trigger+cuts plateau 0.6591 above 14 eV. The paper does not analytically provide the full cumulative efficiency below 14 eV; therefore NMIR uses the published trigger error-function fit as the measured transfer anchor and an explicitly labelled factorized all-cuts surrogate, not a claimed measured full curve.
+
+For Si28 full-solar CEvNS above the frozen 10-eV analysis floor:
+- hard-step ideal: `4.3476963498860904e-3 events/(kg day)`, exact bridge to 0049; effective mass for 10/year `6.297244717 kg`;
+- published-trigger fold: `3.4252750501524354e-3 events/(kg day)`, retained `0.78783677`, effective mass `7.993083029 kg`;
+- factorized all-cuts surrogate: `2.8034257861113496e-3 events/(kg day)`, retained `0.64480717`, effective mass `9.766089763 kg`.
+
+At the actual 0.35-g module mass the surrogate solar-CEvNS expectation is only `3.583829439e-4 accepted events/year`, so the target-mass gap to the 10/year surrogate requirement is ~`2.79e4×`. This is an acceptance/scale result, not a current solar-CEvNS detection claim and not weak-interaction enhancement.
+
+G2 next practical gate: quantify the technology scaling gap using the same CRESST primary source — actual exposure and observed low-energy event regime versus the 0050/0051 accepted-background targets. Keep raw observed rate distinct from analysis-indistinguishable NR background. If the source cannot map raw events to the latter, report the raw-rate rejection/discrimination factor required rather than relabeling all events as background. Then examine whether a public machine-readable/digitizable full cumulative efficiency curve can reduce the below-14-eV surrogate uncertainty.
 
 ## G3 passive-SM deposited-power status
 Leading/allowed, finite-q, one-body, local density/spin, passive mediator, finite-range k-local collective scaling and an empirical/EFT absolute higher-body amplitude stress are all strong-negative/closed in their exact stated scopes.
@@ -110,7 +123,7 @@ Remaining G3 residuals: whether a defensible universal renormalized SM contact-c
 |---|---|
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
-| G2 many-body/detection | **STRONG PARTIAL PASS — ideal CEvNS phase diagram, rate-transfer, known-background and normalization-nuisance requirements CLOSED; measured recoil-dependent detector transfer OPEN** |
+| G2 many-body/detection | **STRONG PARTIAL PASS — ideal CEvNS phase diagram, rate/background requirements and one measured-threshold Si transfer fold CLOSED; real background rejection + scalable detector transfer OPEN** |
 | G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT absolute-strength stress strongly negative; universal contact + genuine long-range/growing-coordination residual OPEN** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5/G6 BSM | LOCKED pending unlock audit |
@@ -120,4 +133,4 @@ Remaining G3 residuals: whether a defensible universal renormalized SM contact-c
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen geometry-only scope |
 
 ## Critical guards
-Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Gravitational gain must satisfy source geometry, finite-source/Liouville and receiver integration. A few-target maximum is not a global SM ceiling. Selected-nucleus two-body corrections are not universal maxima. Empirical amplitude anchors are evidence-distance constraints, not mathematical coefficient bounds. Metastable amplification requires stored-energy/reset accounting. Accepted-background requirements are not raw site background requirements. A low measured threshold is not a measured recoil-dependent efficiency curve. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
+Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Gravitational gain must satisfy source geometry, finite-source/Liouville and receiver integration. A few-target maximum is not a global SM ceiling. Selected-nucleus two-body corrections are not universal maxima. Empirical amplitude anchors are evidence-distance constraints, not mathematical coefficient bounds. Metastable amplification requires stored-energy/reset accounting. Accepted-background requirements are not raw site background requirements. A low measured threshold or measured trigger turn-on is not automatically a full recoil-dependent all-cuts efficiency. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
