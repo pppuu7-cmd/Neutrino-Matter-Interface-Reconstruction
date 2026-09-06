@@ -1,0 +1,10 @@
+component,published_source_avg_1e46_cm2,published_flux_cm2_s,published_rate_snu,notes
+pp,76.2,6.02e10,459,"Frekers et al. 2016 Table V"
+pep,775,1.63e8,12.7,"monoenergetic"
+hep,126000,1.2e4,0.15,"paper uses SNO upper-limit flux estimate"
+Be7_862,350,4.48e9,156.5,"7Be decay to Li ground state; dominant 0.862-MeV neutrino line"
+Be7_384,117,0.51e9,6.0,"7Be decay to 477-keV Li state; 0.384-MeV neutrino line"
+B8,47000,5.39e6,25.3,"source-average spectrum cross section"
+N13,277,1.27e8,,"CNO rate combined in paper"
+O15,464,9.7e7,,"CNO rate combined in paper"
+F17,462,2.43e6,,"CNO rate combined in paper"
