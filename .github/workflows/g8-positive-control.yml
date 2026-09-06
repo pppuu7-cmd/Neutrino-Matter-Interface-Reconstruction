@@ -1,0 +1,32 @@
+name: NMIR G8 resonance positive control
+
+on:
+  push:
+    paths:
+      - 'src/nmir/g8_positive_control.py'
+      - 'tests/test_g8_positive_control.py'
+      - 'scripts/g8_positive_control_benchmark.py'
+      - 'research/g8_positive_control_prereg.md'
+      - '.github/workflows/g8-positive-control.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run G8 resonance positive-control tests
+        run: pytest -q tests/test_g8_positive_control.py
+      - name: Evaluate G8 resonance positive-control benchmark
+        run: |
+          mkdir -p artifacts/g8_positive_control
+          python scripts/g8_positive_control_benchmark.py | tee artifacts/g8_positive_control/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-positive-control-result
+          path: artifacts/g8_positive_control/result.json
