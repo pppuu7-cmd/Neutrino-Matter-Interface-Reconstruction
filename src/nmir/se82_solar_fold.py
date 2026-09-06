@@ -26,7 +26,13 @@ def _continuum(component: str, flux: float, table, spectrum_path: Path, *, oscil
     energy_y: list[float] = []
     for x, w in zip(e, f):
         sigma = se82_full_sigma_cm2(x)
-        value = w * pee(x) * sigma
+        # Some frozen source spectra include exact E=0 endpoints with zero
+        # spectral weight. Pee is intentionally undefined at E<=0, so skip
+        # mathematically zero contributions before evaluating oscillations.
+        if w == 0.0 or sigma == 0.0:
+            value = 0.0
+        else:
+            value = w * pee(x) * sigma
         rate_y.append(value)
         energy_y.append(value * x)
     return flux * trapz(e, rate_y) / norm / SNU, flux * trapz(e, energy_y) / norm / SNU
