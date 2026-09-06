@@ -9,12 +9,20 @@ from nmir.cevns_solar_optimize import (
     helm_form_factor_sq,
     load_local_profile,
     rate_per_kg_day,
+    read_targets,
     spectrum_average_sigma_cm2,
 )
 
-AR40 = Target("Ar40", 18, 40)
+AR40 = Target("Ar40", 18, 40, 39.9623831237)
 BE7_PROFILE = Path("data/be7_bahcall1994_ground_profile.csv")
+TARGETS = Path("data/cevns_target_candidates_exact_mass.csv")
 BE7_GS98_FLUX = 4.93e9 * 0.897
+
+
+def test_exact_mass_table_contains_frozen_ar40_authority():
+    targets = {t.name: t for t in read_targets(TARGETS)}
+    assert targets["Ar40"].atomic_mass_u == pytest.approx(39.9623831237, rel=0, abs=1e-12)
+    assert len(targets) == 23
 
 
 @pytest.mark.parametrize("a", [4, 12, 19, 40, 74, 132, 208])
@@ -31,7 +39,6 @@ def test_helm_is_bounded_over_solar_q_support(a):
 
 def test_git_blob_hash_matches_known_text_fixture():
     data = b"hello\n"
-    # git hash-object --stdin for b"hello\n"
     assert git_blob_sha(data) == "ce013625030ba8dba906f756967f9e9ca394464a"
 
 
@@ -43,7 +50,7 @@ def test_git_blob_hash_matches_known_text_fixture():
         (40.0, 3.973604373087567e-8),
     ],
 )
-def test_no_helm_reproduces_iteration_0042_ar40_be7(threshold_ev, expected_rate):
+def test_exact_mass_no_helm_reproduces_iteration_0042_ar40_be7(threshold_ev, expected_rate):
     profile = load_local_profile(BE7_PROFILE)
     sigma = spectrum_average_sigma_cm2(profile, threshold_ev, AR40, use_helm=False)
     rate = rate_per_kg_day(BE7_GS98_FLUX, sigma, AR40)
