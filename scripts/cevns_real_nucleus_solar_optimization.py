@@ -11,7 +11,7 @@ from nmir.cevns_solar_optimize import (
     total_rate_row,
 )
 
-TARGETS = Path("data/cevns_target_candidates.csv")
+TARGETS = Path("data/cevns_target_candidates_exact_mass.csv")
 FLUXES = Path("data/solar_flux_b16.csv")
 MANIFEST = Path("data/solar_spectrum_manifest.csv")
 BE7_GROUND = Path("data/be7_bahcall1994_ground_profile.csv")
@@ -37,17 +37,19 @@ def main() -> None:
             "threshold_ev": threshold,
             "winner": winner,
             "runner_up": runner_up,
+            "top5": rows[:5],
             "winner_no_helm_total_events_per_kg_day": no_helm["total_events_per_kg_day"],
             "winner_helm_suppression_ratio": suppression,
             "all_targets": rows,
         })
 
     print(json.dumps({
-        "status": "PASS_REAL_NUCLEUS_SOLAR_OPTIMIZATION",
-        "scope": "pure-isotope physics-only B16-GS98 full-solar ideal CEvNS events/kg/day; actual Z/N and Helm form factor; detector efficiency/chemistry/abundance excluded",
+        "status": "PASS_REAL_NUCLEUS_SOLAR_EXACT_MASS_OPTIMIZATION",
+        "scope": "pure-isotope physics-only B16-GS98 full-solar ideal CEvNS events/kg/day; exact frozen NIST isotope masses, actual Z/N and Helm form factor; detector efficiency/chemistry/abundance excluded",
         "thresholds_ev": THRESHOLDS,
+        "target_table": str(TARGETS),
         "results": threshold_results,
-        "interpretation": "Ranks the frozen real-nucleus candidate set by full-source solar CEvNS counts per kg. A target win is a detector-physics design result, not microscopic interaction enhancement and not neutrino-energy gain.",
+        "interpretation": "Ranks the frozen real-nucleus candidate set by full-source solar CEvNS counts per kg. A target win is target/threshold matching, not enhancement of the weak interaction and not neutrino-energy gain.",
     }, indent=2, sort_keys=True))
 
 
