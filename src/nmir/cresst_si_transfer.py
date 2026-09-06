@@ -8,7 +8,6 @@ from .cevns_solar_optimize import (
     SIN2_THETA_W,
     Target,
     SpectrumSpec,
-    component_rate,
     helm_form_factor_sq,
     nuclei_per_kg,
     normalized,
@@ -139,11 +138,12 @@ def component_rate_with_efficiency(
         return rate_per_kg_day(fluxes["pep"], sigma, target)
 
     source_key = component
-    flux = fluxes[component]
     if component == "Be7_ground":
         flux = fluxes["Be7"] * 0.897
     elif component == "Be7_excited":
         flux = fluxes["Be7"] * 0.103
+    else:
+        flux = fluxes[component]
 
     sigma = spectrum_average_sigma_with_efficiency_cm2(
         spectra[source_key],
