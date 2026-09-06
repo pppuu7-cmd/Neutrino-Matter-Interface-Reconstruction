@@ -2,6 +2,7 @@ import pytest
 
 from nmir.solar_spectra import (
     be7_bookkeeping_weight_sum,
+    git_blob_sha1,
     load_spectrum_manifest,
     pinned_continuum_components,
 )
@@ -32,3 +33,7 @@ def test_b8_baseline_is_ortiz_not_silent_alternative():
     b8 = load_spectrum_manifest()["B8"]
     assert b8.source_path == "Data/8B_shape_Ortiz_et_al.csv"
     assert b8.source_blob_sha == "570e8016d4cfd79808441d6275b8c651341bc3a6"
+
+
+def test_git_blob_hash_matches_canonical_git_object_identity():
+    assert git_blob_sha1(b"hello\n") == "ce013625030ba8dba906f756967f9e9ca394464a"
