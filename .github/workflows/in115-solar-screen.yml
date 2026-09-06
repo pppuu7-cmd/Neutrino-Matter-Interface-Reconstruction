@@ -1,0 +1,25 @@
+name: NMIR In115 solar screening
+on:
+  push:
+    paths:
+      - 'src/nmir/in115_response.py'
+      - 'src/nmir/in115_solar_screen.py'
+      - 'scripts/in115_solar_screen_benchmark.py'
+      - '.github/workflows/in115-solar-screen.yml'
+  workflow_dispatch:
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run matched B16+MSW In-115 screening fold
+        run: PYTHONPATH=src python scripts/in115_solar_screen_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: in115-solar-screen
+          path: artifacts/in115_screen/results.json
+          if-no-files-found: error
