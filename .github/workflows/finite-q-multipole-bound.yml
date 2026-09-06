@@ -1,0 +1,32 @@
+name: NMIR finite-q multipole bound
+
+on:
+  push:
+    paths:
+      - 'src/nmir/finite_q_multipole_bound.py'
+      - 'tests/test_finite_q_multipole_bound.py'
+      - 'scripts/finite_q_multipole_bound_benchmark.py'
+      - 'research/finite_q_multipole_prereg.md'
+      - '.github/workflows/finite-q-multipole-bound.yml'
+  workflow_dispatch:
+
+jobs:
+  envelope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run finite-q multipole regression tests
+        run: pytest -q tests/test_finite_q_multipole_bound.py
+      - name: Evaluate finite-q leading-current envelope
+        run: |
+          mkdir -p artifacts/finite_q_multipole_bound
+          python scripts/finite_q_multipole_bound_benchmark.py | tee artifacts/finite_q_multipole_bound/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: finite-q-multipole-bound
+          path: artifacts/finite_q_multipole_bound/result.json
