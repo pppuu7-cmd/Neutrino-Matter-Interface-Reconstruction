@@ -30,28 +30,28 @@ def _pee_function(table, component: str):
     return pee
 
 
-def _integrand(energy_mev: float, shape: float, pee) -> float:
-    sigma = cl37_sigma_cm2(energy_mev)
+def _integrand(energy_mev: float, shape: float, pee, low_energy_mode: str) -> float:
+    sigma = cl37_sigma_cm2(energy_mev, low_energy_mode=low_energy_mode)
     if sigma == 0.0 or shape == 0.0:
         return 0.0
     return shape * pee(energy_mev) * sigma
 
 
-def _continuum_snu(component: str, flux: float, table, path: Path) -> float:
+def _continuum_snu(component: str, flux: float, table, path: Path, low_energy_mode: str) -> float:
     e, f = parse_two_column_spectrum(path.read_text(encoding="utf-8"))
     norm = trapz(e, f)
     pee = _pee_function(table, component)
-    return flux * trapz(e, [_integrand(x, w, pee) for x, w in zip(e, f)]) / norm / 1e-36
+    return flux * trapz(e, [_integrand(x, w, pee, low_energy_mode) for x, w in zip(e, f)]) / norm / 1e-36
 
 
-def _profile_snu(flux: float, table, path: Path, branch_weight: float) -> float:
+def _profile_snu(flux: float, table, path: Path, branch_weight: float, low_energy_mode: str) -> float:
     e, f = parse_two_column_spectrum(path.read_text(encoding="utf-8"))
     norm = trapz(e, f)
     pee = _pee_function(table, "Be7")
-    return flux * branch_weight * trapz(e, [_integrand(x, w, pee) for x, w in zip(e, f)]) / norm / 1e-36
+    return flux * branch_weight * trapz(e, [_integrand(x, w, pee, low_energy_mode) for x, w in zip(e, f)]) / norm / 1e-36
 
 
-def oscillated_cl37_snu(model: str, workdir: str | Path) -> dict[str, float]:
+def oscillated_cl37_snu(model: str, workdir: str | Path, *, low_energy_mode: str = "threshold_linear") -> dict[str, float]:
     key = model.upper()
     if key not in {"GS98", "AGSS09MET"}:
         raise ValueError("model must be GS98 or AGSS09met")
@@ -61,10 +61,10 @@ def oscillated_cl37_snu(model: str, workdir: str | Path) -> dict[str, float]:
     paths = materialize_all_spectra(workdir)
     out: dict[str, float] = {}
     for comp in ("pp", "hep", "B8", "N13", "O15", "F17"):
-        out[comp] = _continuum_snu(comp, fluxes[comp].flux_cm2_s, table, paths[comp])
+        out[comp] = _continuum_snu(comp, fluxes[comp].flux_cm2_s, table, paths[comp], low_energy_mode)
     pep_e = load_spectrum_manifest()["pep"].line_energy_mev
     assert pep_e is not None
-    out["pep"] = fluxes["pep"].flux_cm2_s * _pee_function(table, "pep")(pep_e) * cl37_sigma_cm2(pep_e) / 1e-36
-    out["Be7"] = _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_ground"], 0.897) + _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_excited"], 0.103)
+    out["pep"] = fluxes["pep"].flux_cm2_s * _pee_function(table, "pep")(pep_e) * cl37_sigma_cm2(pep_e, low_energy_mode=low_energy_mode) / 1e-36
+    out["Be7"] = _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_ground"], 0.897, low_energy_mode) + _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_excited"], 0.103, low_energy_mode)
     out["total"] = sum(out.values())
     return out
