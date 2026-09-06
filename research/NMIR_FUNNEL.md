@@ -60,7 +60,7 @@ No product of unvalidated gains is accepted.
 - **SCIENTIFIC-FAIL:** a claimed mechanism fails a frozen physical gate.
 - **BLOCKED:** missing primary data or external prerequisite.
 
-## Current funnel position — iteration 0028
+## Current funnel position — iteration 0029
 - **Production <-> absorption:** measured-ft route + externally validated two-state Li-7 PASS.
 - **Validated passive targets:** Li-7, Se-82, Ga-71, Cl-37. Pure Li-7/GS98 leader `1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
 - **Leading allowed passive CC:** STRONG-NEGATIVE scoped envelope `9.419e-12 W/kg` under deliberately extreme assumptions.
@@ -70,8 +70,8 @@ No product of unvalidated gains is accepted.
 - **Static naive macroscopic N^2 opacity:** strongly disfavored/negative.
 - **Passive coordinate-local density response:** `PASS_DENSITY_FSUM`; lowering a collective mode by `1e6` gives unweighted gain `1e6` but energy-weighted gain `1.0`; first moment scales N, not N^2.
 - **Passive bounded-local spin/magnon response:** `PASS_LOCAL_SPIN_SUM`; local first-moment envelope scales with local exchange-energy budget and hence O(N) at bounded coordination. Softening a spin mode by `1e6` gives unweighted gain `1e6` but energy-weighted gain `1.0`.
-- **Long-range/nonlocal spin response:** OPEN. Explicit unscaled all-to-all control is superextensive; Kac/extensivity scaling returns it to O(N). This is now a distinct high-value survivor rather than being hidden inside ordinary magnons.
-- **Gravitational focusing:** OPEN; transparent-Sun `~23.5 AU` + finite-source/Liouville authority is a top-priority independent route because it changes incident flux rather than material response strength.
+- **Long-range/nonlocal spin response:** OPEN. Explicit unscaled all-to-all control is superextensive; Kac/extensivity scaling returns it to O(N).
+- **Gravitational focusing:** **PARTIAL G9**. Prospectively frozen transparent-Sun rounded check gives `23.0291 AU` from the published `0.024 R_sun`, `0.0137 M_sun` interior point, within the frozen 3% tolerance of the `23.5 AU` published scale. Exact finite uniform-source point-lens regularization and Liouville brightness bookkeeping are implemented. Baseline CI/raw validation and a full extended-Sun finite-source magnification remain OPEN; no focusing gain may yet be composed with capture.
 - **Staggered/multi-isotope material:** PARTIAL NEGATIVE for density-only energy gain; directional and charged-current/isotope-selective fixed-column variants remain OPEN.
 - **Active/non-equilibrium media:** OPEN, but all external pumping energy must be separately accounted.
 - **BSM solution branch:** LOCKED until major passive-SM loopholes are substantially closed.
