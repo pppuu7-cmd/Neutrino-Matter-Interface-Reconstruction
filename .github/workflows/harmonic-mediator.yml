@@ -1,0 +1,29 @@
+name: NMIR passive harmonic mediator gate
+
+on:
+  push:
+    paths:
+      - 'research/harmonic_mediator_prereg.md'
+      - 'src/nmir/harmonic_mediator.py'
+      - 'tests/test_harmonic_mediator.py'
+      - 'scripts/harmonic_mediator_benchmark.py'
+      - '.github/workflows/harmonic-mediator.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_harmonic_mediator.py
+      - run: mkdir -p artifacts/harmonic_mediator
+      - run: python scripts/harmonic_mediator_benchmark.py | tee artifacts/harmonic_mediator/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: harmonic-mediator-result
+          path: artifacts/harmonic_mediator/result.json
