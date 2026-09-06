@@ -1,0 +1,25 @@
+name: NMIR Li7 ground-state screen
+on:
+  push:
+    paths:
+      - 'src/nmir/li7_ground_response.py'
+      - 'src/nmir/li7_solar_fold.py'
+      - 'scripts/li7_ground_screen_benchmark.py'
+      - '.github/workflows/li7-ground-screen.yml'
+  workflow_dispatch:
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fold direct crossed Li-7 ground-state response with frozen B16 spectra and MSW
+        run: PYTHONPATH=src python scripts/li7_ground_screen_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: li7-ground-screen
+          path: artifacts/li7_ground_screen/results.json
+          if-no-files-found: error
