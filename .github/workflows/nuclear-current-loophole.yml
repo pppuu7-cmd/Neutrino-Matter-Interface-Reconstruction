@@ -1,0 +1,32 @@
+name: NMIR nuclear-current loophole gate
+
+on:
+  push:
+    paths:
+      - 'src/nmir/nuclear_current_loophole.py'
+      - 'tests/test_nuclear_current_loophole.py'
+      - 'scripts/nuclear_current_loophole_benchmark.py'
+      - 'research/nuclear_current_loophole_prereg.md'
+      - '.github/workflows/nuclear-current-loophole.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run nuclear-current loophole tests
+        run: pytest -q tests/test_nuclear_current_loophole.py
+      - name: Evaluate nuclear-current loophole benchmark
+        run: |
+          mkdir -p artifacts/nuclear_current_loophole
+          python scripts/nuclear_current_loophole_benchmark.py | tee artifacts/nuclear_current_loophole/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nuclear-current-loophole-result
+          path: artifacts/nuclear_current_loophole/result.json
