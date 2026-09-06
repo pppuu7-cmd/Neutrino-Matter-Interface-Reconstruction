@@ -1,0 +1,25 @@
+name: NMIR Cl37 solar fold
+on:
+  push:
+    paths:
+      - 'src/nmir/cl37_response.py'
+      - 'src/nmir/cl37_solar_fold.py'
+      - 'scripts/cl37_oscillated_solar_benchmark.py'
+      - '.github/workflows/cl37-solar-fold.yml'
+  workflow_dispatch:
+jobs:
+  fold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run full oscillated Cl-37 folding
+        run: PYTHONPATH=src python scripts/cl37_oscillated_solar_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cl37-oscillated-solar-fold
+          path: artifacts/cl37_solar/results.json
+          if-no-files-found: error
