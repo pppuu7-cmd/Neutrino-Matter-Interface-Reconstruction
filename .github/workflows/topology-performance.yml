@@ -1,0 +1,35 @@
+name: NMIR required topology-performance envelope gate
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0058_required_topology_performance_envelope.md'
+      - 'src/nmir/topology_performance.py'
+      - 'tests/test_topology_performance.py'
+      - 'scripts/topology_performance_benchmark.py'
+      - '.github/workflows/topology-performance.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_topology_performance.py
+      - run: mkdir -p artifacts/topology_performance
+      - name: Run fail-closed frozen benchmark
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/topology_performance_benchmark.py | tee artifacts/topology_performance/result.json
+          grep -q 'PASS_REQUIRED_TOPOLOGY_PERFORMANCE_ENVELOPE' artifacts/topology_performance/result.json
+          grep -q 'PUBLIC_ACHIEVEMENT_ANCHOR_OPEN' artifacts/topology_performance/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topology-performance-result
+          path: artifacts/topology_performance/result.json
