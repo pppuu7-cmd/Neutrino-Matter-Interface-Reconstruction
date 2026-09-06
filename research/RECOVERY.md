@@ -5,11 +5,11 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable validated scientific record: `research/iterations/0059_universal_contact_current_bound_audit.md`
-Current readiness: `NMIR_READINESS: 85%`.
+Latest immutable validated scientific record: `research/iterations/0060_long_range_sm_operator_scaling_audit.md`
+Current readiness: `NMIR_READINESS: 86%`.
 
 ## Mandatory recovery order
-Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal Actions. Chat history is not authority. Do not duplicate running work. Green CI is infrastructure success only until a scientific benchmark/log/artifact or, for a documentary theory audit, the frozen primary-source evidence ledger is checked against its prospective contract.
+Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal Actions. Chat history is not authority. Do not duplicate running work. Green CI is infrastructure success only until the frozen scientific benchmark/log/artifact or primary-source evidence ledger is checked against its prospective contract.
 
 ## Frozen accounting
 NMIR is a discovery funnel, not a material scan. Keep state/focusing, microscopic interaction probability, detector visibility/amplification, and irreversible neutrino-supplied deposited energy separate.
@@ -36,6 +36,7 @@ Do not reopen without a genuinely new assumption; exact scopes are in immutable 
 - 0040 metastable avalanche: `DETECTION PASS-SURVIVOR / NEUTRINO-ENERGY-GAIN STRONG_NEGATIVE_SCOPED`; avalanche energy comes from stored free energy.
 - 0047 bounded finite-range k-local two-/higher-body current class: `PASS_KLOCAL_EXTENSIVITY`; no free superextensive first-moment scaling at fixed support size, norm and site incidence.
 - 0048 empirical/EFT absolute-strength stress: `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`; even 100× the largest frozen empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg requires extra amplitude `28796.42286 = 28511.31×` empirical anchor. Evidence-distance, not a universal theorem.
+- 0060 actual-SM long-range/growing-coordination audit: `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR` in the preregistered passive-SM scope. Massive W/Z and pion-range kernels saturate; SM charge-radius/anapole photon contribution is low-q contact-like; the massless-photon magnetic-moment channel does not provide an unclosed free passive collective gain once electromagnetic field-energy/response budgets are enforced. This is scoped, not a universal QFT theorem.
 
 ## G2 CEvNS / detector chain — validated through 0058
 - 0041–0046 close source-opening, physical Be7 profile suppression, continuous-A inverse design, exact-mass correction, real-nucleus full-solar optimization and the target/threshold phase diagram. 0046 authority: run/job `34052930672/101539642497`, artifact `9995368376`, SHA256 `046953d77896362afaaf5da0ff2015ddb36958196c0b921cc5e3f0ff4efe3951`, raw 29 tests PASS.
@@ -51,7 +52,7 @@ Do not reopen without a genuinely new assumption; exact scopes are in immutable 
 **STRONG PARTIAL PASS / PUBLIC_ACHIEVEMENT_ANCHOR_OPEN.** Further algebraic requirement maps are low value. G2 advances only with a genuinely measured comparable underground rejection × CEvNS-like bulk-event acceptance anchor.
 
 ## G3 passive-SM deposited-power status
-Leading/allowed, finite-q, one-body, local density/spin, passive mediator, finite-range k-local collective scaling and empirical/EFT absolute higher-body amplitude stress are strong-negative/closed in exact stated scopes.
+Leading/allowed, finite-q, one-body, local density/spin, passive mediator, finite-range k-local collective scaling and the actual-SM long-range/growing-coordination residual are closed/strong-negative in exact stated scopes. The empirical/EFT higher-body amplitude stress remains strongly negative but is not a theorem.
 
 ### 0059 universal contact-current authority audit
 Immutable authority: `research/iterations/0059_universal_contact_current_bound_audit.md`.
@@ -59,13 +60,18 @@ Preregistration commit: `5507f21e75e6e41df89a95029837b17952516d56`.
 Frozen evidence ledger: `data/g3_contact_bound_authority_0059.json`, ledger commit `79447babca27e73c640f0b28de33b8db4d071b9d`.
 Classification: `PASS_NO_UNIVERSAL_HARD_BOUND_FOUND / RESIDUAL_OPEN`.
 
-Frozen primary authority set covers Gazit/Quaglioni/Navratil (`0812.4444`), Baroni et al. (`1509.07039`), Krebs/Epelbaum/Meißner (`1610.03569`), Krebs/Epelbaum symmetry-preserving regularization (`2312.13932`) and Gysbers et al. (`1903.00047`) as empirical evidence-distance. These sources establish EFT operator structure, renormalization/matching, fitted/calibrated LECs, and regulator consistency, but none supplies the preregistered regulator/scheme-independent finite cross-target coefficient/operator-norm inequality. Naturalness, fitted `c_D` ranges and selected-nucleus corrections therefore remain forbidden as theorem substitutes.
+The frozen primary authority establishes EFT operator structure, renormalization/matching, fitted/calibrated LECs, and regulator consistency, but supplies no regulator/scheme-independent finite cross-target coefficient/operator-norm inequality. Naturalness, fitted `c_D` ranges and selected-nucleus corrections remain forbidden as theorem substitutes. The physical absolute contact-coefficient residual stays OPEN.
 
-0059 is a reproducible negative audit of this frozen authority set, not a proof that no stronger mathematical bound can ever be derived. The physical contact-coefficient residual remains OPEN. Baseline CI run `34062348589` on the preregistration head was SUCCESS but is infrastructure-only, not scientific evidence.
+### 0060 genuinely long-range/growing-coordination SM audit
+Immutable authority: `research/iterations/0060_long_range_sm_operator_scaling_audit.md`.
+Preregistration commit: `3a52dc988cfb9ee05c9bf826fd316f636c923573`.
+Frozen evidence ledger: `data/g3_long_range_sm_operator_authority_0060.json`, ledger commit `6490768312affbd9f1f213bb2da7db1cb8f26285`.
+Classification: `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR`.
+Baseline CI run `34065084111` was SUCCESS but is infrastructure-only.
 
-Remaining G3 residuals:
-1. genuinely long-range/growing-coordination Standard-Model operators outside the 0047 fixed-incidence theorem;
-2. the contact-coefficient absolute residual itself, now explicitly classified as lacking a hard universal bound in the frozen primary authority set.
+Frozen scaling test: `I(R)=rho*∫4*pi*r^2|K(r)|dr`. For `K=C exp(-m r)/r`, `m>0`, `I(R)` tends to a finite constant. W/Z exchange is therefore microscopic short-range; pion/multipion exchange is finite-range; contact currents revert to the separate 0059 coefficient question. The SM effective charge-radius/anapole electromagnetic piece is low-q contact-like because its form factor carries `q^2`, cancelling the photon pole. A mass-linked SM neutrino magnetic moment does couple through the photon, but a passive macroscopic electromagnetic field carries its own extensive field-energy/current-source budget and is not an unclosed neutrino-sourced superextensive gain under the frozen mediator/field-energy closures.
+
+**Remaining G3 residual:** the absolute short-range/contact coefficient residual from 0059. The separate long-range/growing-coordination loophole is closed in the 0060 audited SM scope.
 
 ## Other OPEN survivors
 - G8 target-specific thermal-solar anti-nu_e RIOEC OPEN/BLOCKED until a primary thermal-solar anti-nu_e spectral density and independently evaluated entrance strength/width are frozen; ordinary solar nu_e flux is forbidden for this entrance channel.
@@ -74,7 +80,9 @@ Remaining G3 residuals:
 - BSM/light mediator remains LOCKED pending formal unlock audit.
 
 ## Exact next funnel gate
-**G3 / F5-F6 genuinely long-range/growing-coordination SM operator existence and scaling audit.** Prospectively enumerate actual Standard-Model weak/nuclear current operators left outside 0047; freeze their range kernels and fixed-density scaling; determine whether any physical operator has site incidence or integrated pair strength that grows with N after finite mediator mass/pion range/screening and cluster decomposition are enforced. Do not assume an evasion operator exists. If none survives, close this residual as a scoped no-go; if one survives, carry only that operator to an absolute response/W/kg gate.
+**G9 / F3-F7 distant-source physical gravitational focusing utility.** Prospectively freeze one real distant neutrino-source class and quantify: unlensed source flux at Earth/Sun, transparent-Sun lens geometry, source angular size, alignment probability/duty cycle, receiver-integrated finite-source magnification and resulting event/W/kg effect. Do not use point-caustic divergence, do not multiply any unvalidated detector or target gain, and do not treat solar-neutrino self-lensing as applicable.
+
+If a suitable real source cannot be frozen with recoverable physical flux/size/duty-cycle authority, classify the branch `BLOCKED_SOURCE_AUTHORITY` and move to G8 only if its thermal-solar anti-nu_e spectrum plus independent entrance-strength blockers have become resolvable.
 
 ## Research-gate snapshot
 | Gate | Status |
@@ -82,12 +90,12 @@ Remaining G3 residuals:
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
 | G2 many-body/detection | **STRONG PARTIAL PASS — through 0058 requirements CLOSED; measured scalable underground rejection×acceptance anchor OPEN** |
-| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT stress strongly negative; 0059 hard-bound audit NEGATIVE with contact residual OPEN; genuine long-range/growing-coordination residual OPEN** |
+| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT stress strongly negative; 0059 absolute contact hard-bound audit NEGATIVE with residual OPEN; 0060 genuine long-range/growing-coordination residual CLOSED in audited SM scope** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5/G6 BSM | LOCKED pending unlock audit |
 | G7 production↔absorption | PARTIAL PASS |
 | G8 resonance integrated strength | PARTIAL PASS; target-specific thermal anti-nu RIOEC OPEN/BLOCKED |
-| G9 gravity | PARTIAL PASS; distant-source utility OPEN |
+| G9 gravity | PARTIAL PASS; distant-source utility OPEN and now highest-value independent survivor |
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen geometry-only scope |
 
 ## Critical guards
