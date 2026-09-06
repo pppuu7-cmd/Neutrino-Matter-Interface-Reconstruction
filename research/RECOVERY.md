@@ -35,34 +35,54 @@ Detailed authority: `research/sm_power_ledger.md`.
 Current target leader is pure `7Li/GS98 = 1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
 
 Authority highlights:
-- Ga71: full B16×spectrum×MSW PASS; run `34028394336`, artifact `9987793879`.
-- Cl37: full fold PASS; run `34031200366`, artifact `9988653883`.
-- Se82: point-Coulomb scientific FAIL `-32.6%`; finite-size repair `-0.453%`; 9-component validation PASS; full fold run `34033368287`, artifact `9989345911`.
-- Li7: production↔absorption from evaluated Be7 EC + independent 429-keV state; matched-B8 total residual `+1.454%`; full fold `34037570254`, artifact `9990650435`.
+- Ga71 full B16×spectrum×MSW PASS; run `34028394336`, artifact `9987793879`.
+- Cl37 full fold PASS; run `34031200366`, artifact `9988653883`.
+- Se82 point-Coulomb scientific FAIL `-32.6%`; finite-size repair `-0.453%`; full measured-response fold PASS, run `34033368287`, artifact `9989345911`.
+- Li7 production↔absorption + two-state response matched-B8 residual `+1.454%`; full fold `34037570254`, artifact `9990650435`.
 - In115 one-state model remains scientific FAIL as a complete response and is not authority.
 
-## Class-level passive bounds already closed/scoped
-- Iteration 0024 leading-allowed envelope: `9.419449302949355e-12 W/kg`, STRONG_NEGATIVE_SCOPED; run `34038214660`, artifact `9990839187`.
-- Iteration 0025 isolated-resonance integrated area: `I_sigma <= 2*pi^2/k_r^2 * g * Gamma_in`; line narrowing cannot create integrated entrance strength; run `34038642747`, artifact `9990968127`. Target-specific resonance remains OPEN.
-- Iteration 0026 finite-q vector-charge/axial-spin envelope: `1.2056895107775174e-9 W/kg`, STRONG_NEGATIVE; x1e6 omitted-current stress `1.2056895107775173e-3 W/kg`; run `34038882486`, artifact `9991038179`.
-- Two-body/subleading-current sensitivity remains OPEN; diagnostic needs `r≈192.63` at A=300 to bridge the finite-q envelope to 1 W/kg.
-- Iteration 0027 coordinate-local density f-sum PASS/STRONG-NEGATIVE against free superextensive energy-weighted density gain; run `34039755966`, artifact `9991299921`.
-- Iteration 0028 bounded-local spin first-moment PASS/STRONG-NEGATIVE against free superextensive local-magnon energy gain; run `34040105285`, artifact `9991400307`. Long-range/nonlocal spin remains OPEN.
+## Class-level passive bounds
+- `0024` leading-allowed envelope: `9.419449302949355e-12 W/kg`, STRONG_NEGATIVE_SCOPED; run `34038214660`, artifact `9990839187`.
+- `0025` isolated-resonance area bound: `I_sigma <= 2*pi^2/k_r^2 * g * Gamma_in`; narrowing cannot create integrated entrance strength; run `34038642747`, artifact `9990968127`.
+- `0026` finite-q vector-charge/axial-spin envelope: `1.2056895107775174e-9 W/kg`, STRONG_NEGATIVE; x1e6 omitted-current stress `1.2056895107775173e-3 W/kg`; run `34038882486`, artifact `9991038179`.
+- Two-body/subleading-current sensitivity remains OPEN; conditional A=300 map needs `r≈192.63` per-pair norm ratio to bridge the finite-q envelope to 1 W/kg.
+- `0027` coordinate-local density f-sum PASS/STRONG-NEGATIVE against free superextensive energy-weighted density gain; run `34039755966`, artifact `9991299921`.
+- `0028` bounded-local spin first-moment PASS/STRONG-NEGATIVE against free superextensive local-magnon energy gain; run `34040105285`, artifact `9991400307`. Long-range/nonlocal response remains OPEN.
 
-## Iteration 0029 — G9 transparent-Sun focal-scale + finite-source/Liouville subgate
+## G9 gravity — iterations 0029/0030
+### 0029 rounded transparent-Sun + finite-source/Liouville control
 Prospective contract `research/gravity_focusing_prereg.md`, commit `30f93fa94267fafdc1ca14d05b30f97b6af471ee`.
 
-Patla & Nemiroff (ApJ 685, 1297; arXiv:0711.4811) report a transparent-Sun minimum focal distance `23.5 +/- 0.1 AU` and quote a rounded interior check using projected mass `0.0137 M_sun` at `0.024 R_sun`. NMIR implementation commit `1afc10d2c6272a55ef007506113b1aed5ac1a364` gives `23.0291102335 AU`, a `-2.004%` residual, within the prospectively frozen 3% tolerance for those rounded inputs.
+Patla & Nemiroff report transparent-Sun minimum focus `23.5 +/- 0.1 AU` and a rounded interior check near `b=0.024 R_sun`, projected mass `0.0137 M_sun`. NMIR rounded implementation gives `23.0291102335 AU`, residual `-2.004%`, inside frozen 3% tolerance.
 
-Finite-source point-lens control:
-`mu_fs(rho)=sqrt(rho^2+4)/rho`,
-with numerical disk averaging and Liouville/surface-brightness bookkeeping tests at commit `5d339d180441458c0f8e137382e0ece6eba2de0e`.
+Finite-source point-lens control: `mu_fs(rho)=sqrt(rho^2+4)/rho`, with Liouville/surface-brightness bookkeeping. Hosted baseline CI run `34040499051`, job `101506252362`: raw log `141 passed`.
 
-Hosted authority: baseline CI run `34040499051`, job `101506252362`, head `5d339d180441458c0f8e137382e0ece6eba2de0e`; raw log inspected: `141 passed in 1.29s`, baseline physics executable SUCCESS.
+### 0030 full independent Model-S projected lens
+Prospective contract `research/gravity_modelS_prereg.md`, commit `a237aa336b52ba57bca57b5e289d4ca3505f4586`, frozen before implementation/result.
 
-Classification: **G9_FOCAL_SCALE_PASS / FINITE_SOURCE_LIOUVILLE_PASS**, but G9 overall remains PARTIAL because full extended-Sun finite-source receiver-integrated magnification is still OPEN. No focusing gain is composed with capture yet.
+Independent Model-S density input is pinned at RAMSES commit `cfb2af4a17dc7fe0c367ebb1dbbc121483d2a38b`, blob `e3a0fad3ff877338aad926dbd0a9a43e6c0a897f`. For spherical density,
 
-Detailed record: `research/iterations/0029_gravity_focusing_finite_source_gate.md`.
+`M_2D(<b)=integral 4*pi*r^2*rho(r) f(b,r) dr`,
+
+where `f=1` for `r<=b` and `f=1-sqrt(1-(b/r)^2)` otherwise; then
+
+`F(b)=b^2 c^2/(4 G M_2D(<b))`.
+
+Hosted authority: run `34041004727`, job `101507632178`, head `ea85975f083b24b6cdd47fd3209ff5dfe190c41a`, artifact `9991661778`, ZIP SHA256 `77b56826ee622042b57cfd658d2d4596d93b7f5c6f87aacf5e9b6a0592258d60`; dedicated tests `9 passed`, pinned Git blob matched exactly.
+
+Raw results:
+- synthetic uniform-sphere projection max rel. error `2.9062e-6`;
+- integrated Model-S mass `1.9890968238e33 g`, relative error to frozen solar mass `4.86796e-5`;
+- `M_2D(0.024R)/M_model = 0.01311330481`, only `4.282%` from rounded `0.0137`;
+- `F(0.024R)=24.07378082 AU`, `2.442%` from 23.5 AU;
+- full scan minimum **`F_min=23.62935116 AU`**, only **`0.5504%`** from 23.5 AU;
+- sampled minimum at frozen lower scan edge `b/R=1e-4`, consistent with a finite central projected-surface-density limit.
+
+Classification: **MODEL_S_ROBUSTNESS_PASS / G9 PARTIAL**. The ~23.5 AU scale is robust to an independent full solar density profile and is not an artifact of the rounded `0.024 R_sun` point.
+
+Critical source-class guard: this lens geometry applies to a **distant source behind the Sun**. It cannot be multiplied into the Sun's own solar-neutrino flux. A receiver-integrated extended-source magnification is still required for astrophysical-source use.
+
+Detailed records: `research/iterations/0029_gravity_focusing_finite_source_gate.md`, `research/iterations/0030_gravity_modelS_projected_lens.md`.
 
 ## Research gates
 | Gate | Status |
@@ -70,20 +90,20 @@ Detailed record: `research/iterations/0029_gravity_focusing_finite_source_gate.m
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
 | G2 many-body deposited-energy channels | PARTIAL NEGATIVE — passive local density/spin class-bounded; long-range/nonlocal/active/itinerant OPEN |
-| G3 maximum SM deposited solar-neutrino power | PARTIAL PASS — validated targets + allowed/finite-q class bounds; subleading/two-body/resonant/nonlocal/focusing loopholes remain |
+| G3 maximum SM deposited solar-neutrino power | PARTIAL PASS — nuclear class bounds strong-negative; subleading/two-body/resonant/nonlocal loopholes remain; transparent-Sun self-lensing is inapplicable to solar source |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5 minimal BSM solution | LOCKED |
 | G6 BSM constraints | LOCKED |
 | G7 production/decay → inverse capture | PARTIAL PASS |
 | G8 resonance integrated-strength/bandwidth | PARTIAL PASS — formal gate done, target-specific completion OPEN |
-| G9 finite gravitational focusing gain | **PARTIAL PASS — published 23.5 AU scale reproduced from rounded primary inputs; finite-source/Liouville regularization PASS; extended-lens gain OPEN** |
+| G9 finite gravitational focusing gain | **PARTIAL PASS — 23.5 AU scale reproduced both by rounded check and independent full Model-S projection; distant-source finite magnification/usefulness OPEN** |
 | G10 staggered/multi-isotope fixed-mass-column gain | PARTIAL NEGATIVE for density-only energy gain; directional/CC-isotope-selective controls OPEN |
 
 ## Critical scope guards
 1. Event/detection gain != energy-deposition gain.
 2. Directional coherence != integrated opacity.
 3. Peak resonance != flux-integrated capture.
-4. Gravitational gain must satisfy finite-source/Liouville/wave-optics limits.
+4. Gravitational gain must satisfy finite-source/Liouville/wave-optics limits and correct source geometry.
 5. Projected atomic coverage != neutrino opacity.
 6. Daughter/nuclear/external energy is not neutrino-supplied power.
 7. A few-target maximum is not a global SM ceiling.
@@ -92,16 +112,16 @@ Detailed record: `research/iterations/0029_gravity_focusing_finite_source_gate.m
 10. No F9 multiplication of unvalidated gains.
 
 ## Chronology
-`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered material; `0006` ft→capture; `0007–0012` B16/MSW; `0013–0019` Ga/Cl folds and power; `0020–0021` In115 screen + Se82 authority; `0022–0023` Li7 authority; `0024` passive allowed bound; `0025` resonance formal gate; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum-rule gate; `0029` transparent-Sun focal-scale + finite-source/Liouville PASS subgate.
+`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered material; `0006` ft→capture; `0007–0012` B16/MSW; `0013–0019` Ga/Cl folds and power; `0020–0021` In115 screen + Se82 authority; `0022–0023` Li7 authority; `0024` passive allowed bound; `0025` resonance formal gate; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum rule; `0029` rounded transparent-Sun + finite-source/Liouville; `0030` full Model-S projected-lens robustness PASS.
 
 ## Current maturity
-**NMIR_READINESS: 55%**.
+**NMIR_READINESS: 56%** (audit estimate).
 
-54%→55% credit is only for the prospectively frozen, hosted/raw-inspected G9 focal-scale reproduction plus finite-source/Liouville regularization. Full extended-Sun magnification remains open and receives no credit.
+55%→56% credit is limited to the prospectively frozen, hosted/raw-inspected independent full-profile G9 robustness result. No credit is assigned for an uncomputed usable magnification or for composing gravity with solar capture.
 
 ## Exact next funnel gates
-1. **G9 gravity:** construct an extended transparent-Sun projected-mass lens from primary SSM data and compute finite-source receiver-integrated gain versus observer distance/source angular size before composition with capture.
-2. **Long-range/nonlocal response:** characterize interaction-range/energy scaling needed to beat local density/spin extensivity without importing external energy.
+1. **Long-range/nonlocal response:** derive the extensivity/energy-budget condition needed for a genuine all-to-all collective medium to beat the local density/spin sum-rule gates without importing external power. This is now the highest-value material survivor.
+2. **G9 source-class completion:** quantify whether any distant astrophysical neutrino source, after finite-source/alignment duty-cycle limits, can compete with solar-neutrino energy flux; do not use transparent-Sun gain for solar neutrinos.
 3. **Full nuclear-current loopholes:** bound convection/recoil, axial charge, weak magnetism, induced pseudoscalar and genuine two-body currents for `E_nu<=20 MeV`.
 4. **G10 structured matter:** fixed-mass-column angle+solar-spectrum comparison for staggered/multi-isotope stacks.
 5. **G8 target-specific resonance:** only measured/evaluated entrance strength + physical source profile may enter W/kg ranking.
