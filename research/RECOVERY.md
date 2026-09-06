@@ -50,7 +50,7 @@ Authoritative full Ga fold: run `34020272911`, artifact `9985246195`.
 Classification: full component-specific B16 × spectrum × production-averaged MSW × Ga response folding PASS.
 
 ### Ga-71 neutrino-only deposited-energy ceiling — iteration 0018
-For G3, the prospective conservative definition is `E_dep,nu <= E_nu` per successful capture. This credits at most the incident-neutrino energy and explicitly excludes daughter-decay energy, nuclear-mass release, and other target-internal energy reservoirs. It is therefore a strict upper bound on neutrino-sourced deposited power, not an assumption of complete local thermalization.
+For G3, the conservative definition is `E_dep,nu <= E_nu` per successful capture. This credits at most the incident-neutrino energy and explicitly excludes daughter-decay energy, nuclear-mass release, and other target-internal energy reservoirs. It is therefore a strict upper bound on neutrino-sourced deposited power, not an assumption of complete local thermalization.
 
 Hosted authority: run `34028394336`, job `101473373902`, head `a1bbb60f90cfd5146c24861098a15220db6bd1a1`, artifact `9987793879`, artifact ZIP SHA256 `bc0193112f2bdfb63438322a0b5cb702145dd6fd1e938f1be99ae4d5b66ade65`.
 
@@ -61,9 +61,9 @@ Hosted authority: run `34028394336`, job `101473373902`, head `a1bbb60f90cfd5146
 | capture-weighted incident Eν [MeV] | 1.16568385 | 1.06509680 |
 | pure-71Ga neutrino-energy ceiling [W/kg] | **1.03091848e-22** | **9.02953653e-23** |
 
-For GS98, B8 contributes `42.69685 SNU MeV`, Be7 `15.80371`, and pp `12.58974`; thus pp dominates the event count but B8 dominates the neutrino-carried energy moment. The larger validated Ga ceiling is only `~1.03e-22 W/kg`; reaching 1 W/kg would require `~9.7e21` times this power before any further thermalization losses. Classification: Ga-71 neutrino-carried energy upper-bound observable PASS; global G3 remains open pending Cl-37 and broader target ledger.
+For GS98, B8 contributes `42.69685 SNU MeV`, Be7 `15.80371`, and pp `12.58974`; thus pp dominates the event count but B8 dominates the neutrino-carried energy moment. The larger validated Ga ceiling is only `~1.03e-22 W/kg`; reaching 1 W/kg would require `~9.7e21` times this power before any further thermalization losses. Classification: Ga-71 neutrino-carried energy upper-bound observable PASS.
 
-### Cl-37 authority
+### Cl-37 authority and historical convention audit
 Primary numerical response: Bahcall et al., Phys. Rev. C 54, 411 (1996), frozen in `data/cl37_bahcall1996_response.csv`: 19 representative points from 1–30 MeV plus Bahcall-Ulrich comparison column; physical threshold `0.814 MeV`.
 
 Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988) source averages are frozen in `data/cl37_bahcall_ulrich1988_source_average.csv`. Be7 source-average authority removes the old non-authoritative 0.862-MeV threshold interpolation. Hosted Cl fold `34022999659`, artifact `9986121953`:
@@ -76,29 +76,32 @@ Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988) source averages are frozen in `
 | total, threshold-linear residual | **3.0259103** | **2.5653535** |
 | total, zero-to-1 residual | **3.0124470** | **2.5556371** |
 
-Residual sensitivity to the unresolved `0.814–1.0 MeV` continuum interval is now only ~0.4% of total. The earlier threshold-linear Be7 result (`~0.317 SNU` GS98) is a scientific FAIL of that interpolation model.
+Residual sensitivity to the unresolved `0.814–1.0 MeV` continuum interval is only ~0.4% of total SNU. The earlier threshold-linear Be7 result (`~0.317 SNU` GS98) is a scientific FAIL of that interpolation model.
 
-### B8/Cl historical convention audit — iteration 0017
-Iteration 0016 correctly rejected the mixed `Ortiz-2000 B8 spectrum × Bahcall-1996 response -> historical 1.06e-42 cm2` comparison (`1.1914503e-42 cm2`, +12.40%), but its causal label was too narrow.
+Iteration 0017 fixed the historical B8/Cl convention classification. The old `1.06e-42 cm2` target jointly used an older B8 spectrum and older A=37/B(GT) response inputs; it is not a pure spectral benchmark. The mixed Ortiz-2000 × historical-target result `1.1914503e-42 cm2` (+12.40%) remains a valid negative result for mixed authority. Frozen 1996 spectrum × sparse 1996 improved response gives `~1.15972e-42 cm2`, within ~1.73% of the published full-response `1.14e-42 cm2`; with the Bahcall-Ulrich sparse response it gives `~1.07259e-42 cm2`, within ~0.69% of the paper's stated `1.08e-42 cm2`. Repair CI after removing an undeclared numpy dependency: `34025731270` SUCCESS.
 
-The 1996 primary paper explicitly establishes:
-- Bahcall & Holstein (1986): `1.06e-42 cm2` with older spectrum **and older A=37/B(GT) response inputs**.
-- Holding the older nuclear response fixed but replacing the spectrum by the 1996 best-fit spectrum gives `1.08e-42 cm2`, only ~2% higher.
-- Updating the nuclear response together with the 1996 spectrum gives `1.14e-42 cm2`.
+### Cl-37 neutrino-only deposited-energy ceiling — iteration 0019
+The same prospective rule as Ga was used without post-result changes: `E_dep,nu <= E_nu`. Be7 remains source-average authority; because only its 0.862-MeV line is above the Cl threshold, its energy moment is the authoritative capture rate times 0.862 MeV. The unresolved sub-1-MeV continuum is propagated under the two already-frozen conventions.
 
-Therefore the old `1.06e-42 cm2` is not a pure spectral target. The iteration-0016 mismatch is reclassified as a **mixed spectrum × response authority mismatch**.
+Hosted scientific authority: run `34031200366`, job `101480904061`, head `f8c825802d02909bfcba49c31f6363e17887b4a8`, artifact `9988653883`, artifact ZIP SHA256 `d4ca449c691597c954fa9638f3b8fdaa15faf307f6dfc93b090a340651851837`. Raw benchmark JSON was inspected before classification. Same-head baseline CI `34031200372`, job `101480904147`: **91 passed** plus baseline physics executable PASS.
 
-`data/b8_bahcall_lisi1996_spectrum.csv` freezes the central 1996 Table-I spectrum. `src/nmir/b8_historical_audit.py` and `tests/test_b8_historical_audit.py` implement a matched sparse-table consistency check:
-- 1996 spectrum × 1996 improved sparse response: `~1.15972e-42 cm2`, within ~1.73% of the published full-response `1.14e-42 cm2`.
-- 1996 spectrum × Bahcall-Ulrich sparse response: `~1.07259e-42 cm2`, within ~0.69% of the paper's stated `1.08e-42 cm2` recalculation.
+| Cl-37 ceiling quantity | GS98 threshold-linear | GS98 zero-to-1 | AGSS09met threshold-linear | AGSS09met zero-to-1 |
+|---|---:|---:|---:|---:|
+| total rate [SNU] | 3.02591026 | 3.01244697 | 2.56535349 | 2.55563709 |
+| energy moment [SNU MeV] | 22.66116076 | 22.64856600 | 18.77250688 | 18.76341779 |
+| mean captured Eν [MeV] | 7.48903926 | 7.51832853 | 7.31770766 | 7.34197271 |
+| pure-37Cl ceiling [W/kg] | **5.91482818e-23** | **5.91154080e-23** | **4.89984400e-23** | **4.89747164e-23** |
 
-First CI `34025660039`, job `101466048735`, failed at pytest for a pure software/infrastructure reason: the new helper imported `numpy`, but `pyproject.toml` intentionally declares no runtime dependencies and CI installs only the package plus pytest. No physics test failed under a supported runtime. The helper was rewritten using only the Python standard library; no numerical target, tolerance, spectrum, or response value changed. Repair commit `e6f977657a1a2bb5784e467792b0909c45338dfc`; validating CI `34025731270` completed SUCCESS.
+The power-envelope span is only **0.0556%** for GS98 and **0.0484%** for AGSS09met, much smaller than the corresponding total-SNU residual. B8 supplies `21.61176396` of the GS98 `22.66116076 SNU MeV` energy moment, so the power conclusion is high-energy dominated. Classification: Cl-37 neutrino-only W/kg gate PASS.
 
-Classification: matched historical B8/Cl convention/reproducibility gate PASS. The old +12.40% result remains a valid negative result for the mixed Ortiz × historical-target construction, but it is no longer misattributed to spectrum evolution alone.
+### First Ga/Cl Standard-Model power ledger
+`research/sm_power_ledger.md` is authoritative for the first two-target ledger. Under the same pure-isotope and neutrino-only accounting, the largest currently validated value is 71Ga/GS98 at `1.03091848e-22 W/kg`; 37Cl/GS98 is lower by about a factor 1.74 despite its much higher capture-weighted Eν.
+
+This is explicitly a **two-target benchmark, not a global cross-target Standard-Model ceiling**. A defensible G3 closure still requires target screening over additional physically relevant inverse transitions using matched primary response or measured-ft authority, thresholds and solar-spectrum overlap, pure/natural mass normalization, and integrated resonance strength/linewidth where applicable.
 
 ## Other active branches
-- Many-body/spin: response formalism active; a single 1-meV magnon from a 1-MeV neutrino deposits only `1e-9` of incident energy.
-- Gravitational focusing: solar-limb weak-field benchmark `~547.741 AU`; transparent-Sun literature benchmark near `23.5 ± 0.1 AU`; finite-source/Liouville gate mandatory.
+- Many-body/spin: response formalism active; a single 1-meV magnon from a 1-MeV neutrino deposits only `1e-9` of incident energy. Sum-rule-preserving response toy remains open.
+- Gravitational focusing: solar-limb weak-field benchmark `~547.741 AU`; transparent-Sun literature benchmark near `23.5 ± 0.1 AU`; finite-source/Liouville gain gate mandatory.
 - Staggered metamaterial: at 1 MeV, `lambda≈1.23984e-12 m`; for `d=3 Å`, first Bragg angle `~0.118396 deg`; any gain must survive angle/energy integration at fixed mass column.
 
 ## Research gates
@@ -107,7 +110,7 @@ Classification: matched historical B8/Cl convention/reproducibility gate PASS. T
 | G0 weak/capture normalization | PARTIAL PASS — CEvNS + tritium ft + Ga response + Cl pointwise/source-average anchors + matched historical B8/Cl audit |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE — naive N² opacity disfavored |
 | G2 many-body deposited-energy channels | OPEN |
-| G3 maximum SM deposited solar-neutrino power | PARTIAL PASS — Ga fold + neutrino-only pure-71Ga ceiling PASS; Cl Be7 blocker resolved; matched B8/Cl audit PASS; Cl power ceiling + broader target ledger missing |
+| G3 maximum SM deposited solar-neutrino power | PARTIAL PASS — Ga and Cl full folds + pure-isotope neutrino-only W/kg ceilings PASS; first two-target ledger frozen; broader cross-target screening still missing |
 | G4 engineered resonance/polarization/periodicity | OPEN |
 | G5 minimal BSM solution | LOCKED until G3 |
 | G6 BSM constraints | LOCKED until G5 |
@@ -124,21 +127,22 @@ Classification: matched historical B8/Cl convention/reproducibility gate PASS. T
 5. Projected atomic coverage ≠ neutrino opacity.
 6. Exact time reversal and crossed weak processes must be classified correctly.
 7. Never mix solar flux/spectrum/matter/oscillation/nuclear conventions silently.
-8. BSM solution branch remains locked until G3 is quantified.
+8. BSM solution branch remains locked until G3 is quantitatively defensible across targets.
 9. Green workflow ≠ scientific PASS until raw result and frozen gate are inspected.
 10. Missing pointwise response must not be silently interpolated into authority when a source-average or uncertainty formulation is the correct observable.
 11. Historical source-average cross sections validate only matched spectrum+response conventions; do not attribute a mixed-convention discrepancy to the spectrum alone.
 12. Neutrino-sourced deposited-energy ceilings may credit at most incident `E_nu`; daughter decay or target nuclear-mass energy must be tracked separately and never counted as energy supplied by the neutrino.
+13. A two-target maximum is not a global SM ceiling; additional targets must be screened under a common event-rate and W/kg normalization.
 
 ## Chronology
-`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + mixed B8 audit; `0017` matched historical B8/Cl convention reclassification and CI repair; `0018` Ga-71 neutrino-only deposited-energy ceiling.
+`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + mixed B8 audit; `0017` matched historical B8/Cl convention reclassification and CI repair; `0018` Ga-71 neutrino-only deposited-energy ceiling; `0019` Cl-37 neutrino-only deposited-energy ceiling + first Ga/Cl SM power ledger.
 
 ## Current maturity
-**NMIR_READINESS: 36%**.
+**NMIR_READINESS: 38%**.
 
-Readiness increases from 34% to 36% because G3 now has its first directly validated, reproducible W/kg-scale neutrino-supplied energy ceiling on a fully folded target. No credit is given for target-internal decay energy, and global G3 is not yet closed.
+Readiness increases from 36% to 38% only because the Cl-37 W/kg gate is now hosted, raw-result inspected, reproducible, and incorporated into an explicit Ga/Cl ledger. Global G3 is not credited as closed.
 
 ## Exact next gate
-1. Compute the analogous Cl-37 neutrino-only energy ceiling while preserving the authoritative Be7 source-average treatment and explicit `0.814–1.0 MeV` residual envelope.
-2. Assemble a first Ga/Cl Standard-Model power ledger and determine what remains necessary before calling G3 a true cross-target ceiling rather than a two-target benchmark.
-3. Continue independent G8 resonance integrated-strength, G9 transparent-Sun finite-source focusing, and G10 fixed-mass-column staggered-stack gates without result-dependent tuning.
+1. Build a quantitative Standard-Model target-screening ledger for additional physically relevant inverse transitions. Rank event rate and neutrino-only W/kg using matched primary nuclear response or measured `ft` authority; include threshold/spectrum overlap and pure/natural-isotope mass normalization.
+2. For resonant candidates, implement the G8 overlap/integrated-strength/linewidth bound before any ranking by peak cross section; no peak-only claims.
+3. In parallel, implement the sum-rule-preserving spin-response toy, reproduce the transparent-Sun `~23.5 AU` benchmark with a finite-source/Liouville gain bound, and test staggered/multi-isotope stacks against the same atoms uniformly/randomly arranged at fixed mass column.
