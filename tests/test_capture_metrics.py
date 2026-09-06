@@ -21,7 +21,7 @@ def test_ga71_66p1_snu_capture_rate():
 def test_ga71_one_mev_power_normalization():
     power = deposited_power_w_per_kg(66.1, 1.0, 70.9247)
     assert power == pytest.approx(8.99219e-23, rel=2e-6)
-    assert enhancement_to_target_power(power, 1.0) == pytest.approx(1.11208e22, rel=2e-6)
+    assert enhancement_to_target_power(power, 1.0) == pytest.approx(1.11207673e22, rel=2e-6)
 
 
 def test_isotopic_fraction_scales_linearly():
