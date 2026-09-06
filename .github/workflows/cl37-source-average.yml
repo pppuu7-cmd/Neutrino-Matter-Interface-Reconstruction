@@ -1,0 +1,26 @@
+name: NMIR Cl37 source-average benchmark
+on:
+  push:
+    paths:
+      - 'src/nmir/cl37_benchmark.py'
+      - 'src/nmir/cl37_source_average.py'
+      - 'data/cl37_bahcall_ulrich1988_source_average.csv'
+      - 'scripts/cl37_source_average_benchmark.py'
+      - '.github/workflows/cl37-source-average.yml'
+  workflow_dispatch:
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reproduce Cl37 B8 source-average cross section
+        run: PYTHONPATH=src python scripts/cl37_source_average_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cl37-source-average-benchmark
+          path: artifacts/cl37_source_average/results.json
+          if-no-files-found: error
