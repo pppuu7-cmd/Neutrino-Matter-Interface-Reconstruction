@@ -1,0 +1,24 @@
+name,Z,A,atomic_mass_u,mass_source,notes
+He4,2,4,4.00260325413,NIST Atomic Weights and Isotopic Compositions,stable light-target control
+C12,6,12,12.00000000000,NIST Atomic Weights and Isotopic Compositions,stable carbon target
+F19,9,19,18.99840316273,NIST Atomic Weights and Isotopic Compositions,stable fluorine; fluorinated metastable-media candidate
+Ne20,10,20,19.9924401762,NIST Atomic Weights and Isotopic Compositions,stable noble target
+Na23,11,23,22.9897692820,NIST Atomic Weights and Isotopic Compositions,stable sodium target
+Mg24,12,24,23.985041697,NIST Atomic Weights and Isotopic Compositions,stable magnesium target
+Si28,14,28,27.97692653465,NIST Atomic Weights and Isotopic Compositions,stable silicon target
+S32,16,32,31.9720711744,NIST Atomic Weights and Isotopic Compositions,stable sulfur target
+Ar40,18,40,39.9623831237,NIST Atomic Weights and Isotopic Compositions,stable argon benchmark
+Ca40,20,40,39.962590863,NIST Atomic Weights and Isotopic Compositions,stable calcium same-A weak-charge contrast
+Ti48,22,48,47.94794198,NIST Atomic Weights and Isotopic Compositions,stable titanium target
+Cr52,24,52,51.94050623,NIST Atomic Weights and Isotopic Compositions,stable chromium target
+Fe56,26,56,55.93493633,NIST Atomic Weights and Isotopic Compositions,stable iron target
+Ni58,28,58,57.93534241,NIST Atomic Weights and Isotopic Compositions,stable nickel target
+Zn64,30,64,63.92914201,NIST Atomic Weights and Isotopic Compositions,stable zinc target
+Ge74,32,74,73.921177761,NIST Atomic Weights and Isotopic Compositions,stable germanium target
+Se82,34,82,81.9166995,NIST Atomic Weights and Isotopic Compositions,long-lived double-beta isotope; detector target
+Kr84,36,84,83.9114977282,NIST Atomic Weights and Isotopic Compositions,stable krypton target
+Mo100,42,100,99.9074718,NIST Atomic Weights and Isotopic Compositions,long-lived double-beta isotope
+I127,53,127,126.9044719,NIST Atomic Weights and Isotopic Compositions,stable iodine target
+Xe132,54,132,131.9041550856,NIST Atomic Weights and Isotopic Compositions,stable xenon benchmark
+W184,74,184,183.95093092,NIST Atomic Weights and Isotopic Compositions,stable tungsten heavy-target control
+Pb208,82,208,207.9766525,NIST Atomic Weights and Isotopic Compositions,stable lead heavy-target control
