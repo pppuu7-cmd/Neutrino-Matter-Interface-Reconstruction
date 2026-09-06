@@ -8,9 +8,11 @@ Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 
 Reconstruct the most general low-energy neutrino↔matter interface, separate state control from detection and irreversible energy deposition, establish Standard-Model bounds, and only then identify any BSM coupling structures needed to exceed those bounds.
 
-A second organizing principle is now frozen:
+Three organizing principles are now frozen:
 
-**production ↔ absorption / crossed-channel reconstruction** — catalog how neutrinos are produced by weak processes, construct the corresponding inverse/crossed channels, and test whether resonance, threshold or medium engineering can make any channel unusually absorptive.
+1. **response reconstruction** — optimize physically admissible material response functions rather than guess materials;
+2. **production ↔ absorption / crossed-channel reconstruction** — use known weak production/decay processes to infer inverse capture channels;
+3. **gravitational focusing** — test whether spacetime curvature can multiply the local neutrino flux before microscopic capture.
 
 ## Central observable
 
@@ -26,7 +28,17 @@ or for a slab with effective optical depth `tau(E)` and mean deposited fraction 
 \frac{P_{\rm dep}}{A}=\int dE_\nu\,\Phi(E_\nu)E_\nu\,\eta_{\rm dep}(E_\nu)\,[1-e^{-\tau(E_\nu)}].
 \]
 
-The useful-capture problem is therefore not solved merely by making an excitation detectable. Both `tau` and `eta_dep` matter.
+With gravitational magnification `mu(E,x)`, the microscopic capture branch becomes
+
+\[
+R=N_T\int dE\,\mu(E,\mathbf x)\Phi_\nu(E)\sigma_{\rm cap}(E),
+\]
+
+\[
+P_{\rm dep}=N_T\int dE\,\mu(E,\mathbf x)\Phi_\nu(E)\sigma_{\rm cap}(E)E_{\rm dep}(E).
+\]
+
+The useful-capture problem therefore depends on the product of **flux magnification × capture probability × deposited-energy fraction**.
 
 ## Response formulation
 
@@ -48,16 +60,36 @@ so emission and absorption probe the same microscopic spectral information in op
 
 ## Beta-decay ↔ capture reconstruction
 
-A major NMIR route is now frozen from published neutrino-capture theory: for unpolarized beta transitions, the beta-decay and crossed neutrino-capture process use the same invariant weak amplitude.
-
-In the long-wavelength regime the capture rate can be related to beta-decay observables. For allowed/superallowed cases, in the source natural-unit convention,
+For unpolarized beta transitions, the beta-decay and crossed neutrino-capture process use the same invariant weak amplitude. In the long-wavelength regime, measured beta-decay observables can therefore rank inverse capture strength. For allowed/superallowed cases, in the source natural-unit convention,
 
 \[
 \sigma_{\rm NCB}v_\nu
 =2\pi^2\ln2\,\frac{p_eE_eF(Z,E_e)}{ft_{1/2}}.
 \]
 
-NMIR will not deploy this numerically until one published benchmark is reproduced with explicit SI/unit conversion and corrections. The significance is methodological: measured `ft` values can be used to scan known nuclei for intrinsically strong inverse/crossed neutrino-capture channels.
+NMIR will not deploy this numerically until one published benchmark is reproduced with explicit SI/unit conversion and corrections.
+
+## Gravitational focusing baseline
+
+For an ultrarelativistic neutrino in the weak Schwarzschild limit,
+
+\[
+\alpha(b)\simeq\frac{4GM}{bc^2},
+\qquad
+f\simeq\frac{b^2c^2}{4GM}.
+\]
+
+The solar-limb benchmark is
+
+\[
+f(R_\odot)\simeq 547.741\ {\rm AU}.
+\]
+
+Because neutrinos can traverse the solar interior, a transparent-Sun extended-mass lens can focus distant-source neutrinos much closer; published calculations give a minimum focal distance near `23.5 ± 0.1 AU`. This becomes the first extended-lens benchmark.
+
+**Critical distinction:** the Sun is not an ordinary downstream lens for its own solar neutrinos because the source and lens coincide. Focusing solar neutrinos requires a separate mass distribution between Sun and receiver.
+
+Gravitational lensing preserves collisionless phase-space density / surface brightness. A formal point-source caustic divergence is not infinite usable power. Finite source size, detector size, lens structure, wave effects and alignment must regularize every magnification claim.
 
 ## Research gates
 
@@ -72,6 +104,7 @@ NMIR will not deploy this numerically until one published benchmark is reproduce
 | G6 | Does any BSM candidate survive laboratory, stellar, supernova and cosmological constraints? | LOCKED until G5 |
 | G7 | Can a neutrino-production process identify an unusually strong inverse/crossed absorption channel? | OPEN — quantitative `ft`-based reconstruction route established |
 | G8 | Can resonant peak enhancement overcome the available neutrino flux bandwidth without violating integrated-strength bounds? | OPEN — next key resonance gate |
+| G9 | Can gravitational lensing provide a finite, useful neutrino flux gain at an absorber? | OPEN — weak-lens benchmark implemented; transparent-lens/finite-source stages next |
 
 ## Iteration-1 benchmark results
 
@@ -96,67 +129,80 @@ NMIR will not deploy this numerically until one published benchmark is reproduce
 ## Iteration-3 results: measured decay → predicted capture
 
 1. Published neutrino-capture theory explicitly relates beta-decay observables to neutrino capture on the corresponding beta-decaying nucleus; for allowed/superallowed transitions the measured `ft` value is a direct ranking variable.
-2. **Real-world production/capture pairs:** Ar-37 electron capture ↔ nu_e capture on Cl-37; Ge-71 electron capture ↔ nu_e capture on Ga-71. These are not hypothetical: they underlie classic solar-neutrino radiochemical detection.
+2. **Real-world production/capture pairs:** Ar-37 electron capture ↔ nu_e capture on Cl-37; Ge-71 electron capture ↔ nu_e capture on Ga-71.
 3. Capture thresholds used as benchmarks: `Cl-37 ~0.814 MeV`, `Ga-71 ~0.233 MeV`.
-4. A machine-readable seed catalog now includes Cl-37/Ar-37, Ga-71/Ge-71, H-3/He-3 and Ho-163/Dy-163.
+4. A machine-readable seed catalog includes Cl-37/Ar-37, Ga-71/Ge-71, H-3/He-3 and Ho-163/Dy-163.
 5. The combined historical gallium solar capture rate `66.1 SNU` corresponds, for isotopically pure Ga-71, to approximately `5.61e-10 captures/s/kg`.
-6. If each successful capture were assigned an optimistic reference deposition of exactly `1 MeV`, that rate corresponds to only `~8.99e-23 W/kg`.
-7. Reaching `1 W/kg` from that normalization requires an enhancement of approximately `1.11e22`. This is a scale benchmark, not a claim about actual mean Ga capture deposition energy.
+6. Assigning an optimistic reference deposition of exactly `1 MeV` per successful capture gives only `~8.99e-23 W/kg`.
+7. Reaching `1 W/kg` from that normalization requires an enhancement of approximately `1.11e22`.
 8. The energy-harvesting problem therefore requires a **parametric change** in opacity×deposition, not incremental detector optimization.
+
+## Iteration-4 results: gravitational neutrino focusing
+
+1. Gravitational focusing is a physically legitimate multiplicative branch: local capture scales with finite magnification `mu_nu`.
+2. Weak-field code reproduces the solar-limb focal-distance benchmark `~547.741 AU`.
+3. Neutrino transparency of stellar interiors opens extended-lens geometries unavailable to photons; transparent-Sun literature gives `~23.5 AU` minimum focal distance for distant-source radiation able to cross the core.
+4. The Sun cannot focus its own emitted solar neutrinos in the required source→separate-lens→receiver geometry; a separate lens is needed for solar neutrinos.
+5. Point-caustic infinite magnification is rejected as unphysical. Finite source/receiver size and Liouville phase-space conservation are mandatory gates.
+6. Gravitational focusing alone cannot bridge the current `~1e22` Ga energy-gap normalization unless an implausibly enormous finite magnification were available; its realistic role is to multiply a stronger microscopic capture mechanism if NMIR finds one.
+7. Candidate lenses to test: planet, transparent star, white dwarf, neutron star, black hole, binary/compound caustic lens, and purely theoretical engineered mass distributions.
 
 ## Initial physical facts to preserve
 
 1. CEvNS provides a real coherence enhancement at the nuclear level; near `qR << 1`, the weak charge is approximately `Q_W = N - (1-4 sin^2 theta_W) Z`, and the total low-energy cross section scales approximately as `Q_W^2 E_nu^2`.
 2. A low detector threshold is not equivalent to a larger total cross section.
-3. Flavor/spin conversion (MSW, magnetic precession, parametric conversion) can control the neutrino state without extracting substantial energy.
-4. A static macroscopic crystal does not automatically provide an `N^2` total-rate enhancement over all scattering centers; any claimed macroscopic coherence must pass momentum-transfer, phase-space and sum-rule checks.
-5. Electromagnetic neutrino form factors and BSM light mediators are allowed branches of the reconstruction, but they are constrained and must not be used to bypass the Standard-Model baseline.
-6. Production↔absorption/crossing identifies candidate matrix elements, but does **not** imply that an inverse process is efficient: threshold, linewidth, recoil, phase space and integrated spectral strength remain mandatory gates.
+3. Flavor/spin conversion can control the neutrino state without extracting substantial energy.
+4. A static macroscopic crystal does not automatically provide an `N^2` total-rate enhancement over all scattering centers.
+5. Electromagnetic neutrino form factors and BSM light mediators are allowed branches but must not bypass the SM baseline.
+6. Production↔absorption/crossing identifies candidate matrix elements but does not imply efficient inverse capture.
 7. Peak resonant cross section and flux-integrated capture are distinct observables.
-8. Exact time reversal and a crossed weak reaction are not always the same external-particle process. NMIR must classify both correctly rather than use informal “reverse” language in final physics claims.
+8. Exact time reversal and a crossed weak reaction are not always the same external-particle process; NMIR must classify them correctly.
+9. Gravitational magnification and microscopic absorption are multiplicative, not interchangeable.
+10. Collisionless lensing cannot create arbitrary phase-space brightness; all caustic gains must be finite-source regularized.
 
 ## Current repository components
 
 - `README.md` — scientific charter and gates.
 - `research/ROADMAP.md` — staged program.
-- `research/LITERATURE_LEDGER.md` — provenance/constraint ledger including inverse-reaction, `ft` reconstruction and resonant-capture sources.
+- `research/LITERATURE_LEDGER.md` — provenance ledger including inverse-reaction and gravitational-lensing sources.
 - `data/inverse_transition_seed.csv` — first machine-readable inverse/crossed transition catalog.
-- `theory/OPERATOR_BASIS.md` — initial weak/EM/NSI/light-mediator response basis.
-- `theory/PRODUCTION_ABSORPTION_DUALITY.md` — inverse-production/crossing framework and resonance gates.
-- `theory/BETA_DECAY_INVERSE_CAPTURE.md` — measured beta-decay `ft` → capture-strength reconstruction logic.
-- `theory/SPIN_MAGNON_RESPONSE.md` — axial spin/magnon branch and energy-deposition triage.
+- `theory/OPERATOR_BASIS.md` — weak/EM/NSI/light-mediator response basis.
+- `theory/PRODUCTION_ABSORPTION_DUALITY.md` — inverse-production/crossing framework.
+- `theory/BETA_DECAY_INVERSE_CAPTURE.md` — measured beta-decay `ft` → capture-strength reconstruction.
+- `theory/SPIN_MAGNON_RESPONSE.md` — axial spin/magnon branch.
+- `theory/GRAVITATIONAL_NEUTRINO_FOCUSING.md` — gravitational-lens formalism, gates and combined capture objective.
 - `src/nmir/baseline.py` — CEvNS, mean-free-path and magnetic-precession benchmarks.
-- `src/nmir/duality.py` — detailed-balance, deposited-fraction and normalized resonance-line utilities.
+- `src/nmir/duality.py` — detailed-balance, deposited-fraction and resonance-line utilities.
 - `src/nmir/capture_metrics.py` — SNU→captures/s/kg→W/kg normalization metrics.
-- `tests/test_baseline.py` — baseline scaling/normalization tests.
-- `tests/test_duality.py` — duality/line-shape/deposition diagnostics.
-- `tests/test_capture_metrics.py` — radiochemical capture/power normalization tests.
+- `src/nmir/gravity_focusing.py` — weak gravitational deflection, focal-distance and point-lens magnification benchmarks.
+- `tests/test_baseline.py`, `tests/test_duality.py`, `tests/test_capture_metrics.py`, `tests/test_gravity_focusing.py` — automated physics-normalization gates.
 - `.github/workflows/ci.yml` — automated tests.
-- `research/iterations/0001_initial_gates.md` — initial physical gates.
-- `research/iterations/0002_inverse_production_and_spin_response.md` — inverse-production branch and spin-response triage.
-- `research/iterations/0003_decay_to_capture_reconstruction.md` — measured-decay reconstruction and energy-gap benchmark.
+- `research/iterations/0001_initial_gates.md` through `0004_gravitational_focusing_branch.md` — chronological research record.
 
 ## Current maturity estimate
 
-- Problem formulation: 50%
+- Problem formulation: 52%
 - Operator inventory: 28%
 - Production↔absorption formalism: 28%
 - Many-body response taxonomy: 22%
-- Numerical framework: 24%
-- Constraint/literature ledger: 22%
+- Numerical framework: 27%
+- Constraint/literature ledger: 25%
 - Inverse-transition catalog: 8%
 - Standard-Model ceiling: 7%
 - Engineered-medium scan: 5%
+- Gravitational focusing branch: 8%
 - BSM residual search: 0%
 
-Overall NMIR research maturity (audit estimate): **~15%**.
+Overall NMIR research maturity (audit estimate): **~16%**.
 
 ## Immediate next iteration
 
 1. Reproduce one published allowed-transition neutrino-capture cross section from a measured `ft` value with full SI conversion.
 2. Reproduce Cl-37 and Ga-71 benchmark capture cross sections/rates from primary literature.
-3. Expand `inverse_transition_seed.csv` from evaluated nuclear data rather than hand-entered candidates.
+3. Expand the inverse-transition catalog from evaluated nuclear data.
 4. Rank known transitions by both capture-event rate and deposited-power objective.
-5. Derive a Breit–Wigner / integrated-strength resonance gate and explicitly include source/absorber linewidth mismatch.
+5. Derive a Breit–Wigner / integrated-strength resonance gate with source/absorber linewidth mismatch.
 6. Freeze a primary-source solar-neutrino spectrum/flux dataset and compute flux overlap for every candidate transition.
-7. In parallel implement a sum-rule-preserving toy `S_AA(q,w)` with magnon + continuum spectral weight, comparing event-count and deposited-power objectives.
+7. Implement a sum-rule-preserving toy `S_AA(q,w)` with magnon + continuum spectral weight.
+8. Implement a transparent spherical gravitational lens and reproduce the published `23.5 AU` solar minimum-focal-length benchmark.
+9. Add finite-source magnification and couple `mu(E)` directly to the capture/deposition ranking.
