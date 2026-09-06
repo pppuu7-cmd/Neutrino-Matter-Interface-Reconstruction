@@ -49,16 +49,18 @@ Authority highlights:
 - Iteration 0027 coordinate-local density f-sum PASS/STRONG-NEGATIVE against free superextensive energy-weighted density gain; run `34039755966`, artifact `9991299921`.
 - Iteration 0028 bounded-local spin first-moment PASS/STRONG-NEGATIVE against free superextensive local-magnon energy gain; run `34040105285`, artifact `9991400307`. Long-range/nonlocal spin remains OPEN.
 
-## Iteration 0029 — G9 transparent-Sun finite-source gate (PARTIAL, validation pending)
+## Iteration 0029 — G9 transparent-Sun focal-scale + finite-source/Liouville subgate
 Prospective contract `research/gravity_focusing_prereg.md`, commit `30f93fa94267fafdc1ca14d05b30f97b6af471ee`.
 
 Patla & Nemiroff (ApJ 685, 1297; arXiv:0711.4811) report a transparent-Sun minimum focal distance `23.5 +/- 0.1 AU` and quote a rounded interior check using projected mass `0.0137 M_sun` at `0.024 R_sun`. NMIR implementation commit `1afc10d2c6272a55ef007506113b1aed5ac1a364` gives `23.0291102335 AU`, a `-2.004%` residual, within the prospectively frozen 3% tolerance for those rounded inputs.
 
-Finite-source point-lens control is now explicit:
+Finite-source point-lens control:
 `mu_fs(rho)=sqrt(rho^2+4)/rho`,
-with numerical disk averaging and Liouville/surface-brightness bookkeeping tests added at commit `5d339d180441458c0f8e137382e0ece6eba2de0e`.
+with numerical disk averaging and Liouville/surface-brightness bookkeeping tests at commit `5d339d180441458c0f8e137382e0ece6eba2de0e`.
 
-Baseline CI run `34040499051` was `in_progress` at reconciliation time. Therefore this is **not yet a scientific PASS**. Full extended-Sun finite-source receiver-integrated magnification remains OPEN and no focusing gain is composed with capture.
+Hosted authority: baseline CI run `34040499051`, job `101506252362`, head `5d339d180441458c0f8e137382e0ece6eba2de0e`; raw log inspected: `141 passed in 1.29s`, baseline physics executable SUCCESS.
+
+Classification: **G9_FOCAL_SCALE_PASS / FINITE_SOURCE_LIOUVILLE_PASS**, but G9 overall remains PARTIAL because full extended-Sun finite-source receiver-integrated magnification is still OPEN. No focusing gain is composed with capture yet.
 
 Detailed record: `research/iterations/0029_gravity_focusing_finite_source_gate.md`.
 
@@ -74,7 +76,7 @@ Detailed record: `research/iterations/0029_gravity_focusing_finite_source_gate.m
 | G6 BSM constraints | LOCKED |
 | G7 production/decay → inverse capture | PARTIAL PASS |
 | G8 resonance integrated-strength/bandwidth | PARTIAL PASS — formal gate done, target-specific completion OPEN |
-| G9 finite gravitational focusing gain | **PARTIAL — 23.5 AU rounded benchmark + finite-source control implemented; CI/raw validation and extended-lens gain OPEN** |
+| G9 finite gravitational focusing gain | **PARTIAL PASS — published 23.5 AU scale reproduced from rounded primary inputs; finite-source/Liouville regularization PASS; extended-lens gain OPEN** |
 | G10 staggered/multi-isotope fixed-mass-column gain | PARTIAL NEGATIVE for density-only energy gain; directional/CC-isotope-selective controls OPEN |
 
 ## Critical scope guards
@@ -90,15 +92,15 @@ Detailed record: `research/iterations/0029_gravity_focusing_finite_source_gate.m
 10. No F9 multiplication of unvalidated gains.
 
 ## Chronology
-`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered material; `0006` ft→capture; `0007–0012` B16/MSW; `0013–0019` Ga/Cl folds and power; `0020–0021` In115 screen + Se82 authority; `0022–0023` Li7 authority; `0024` passive allowed bound; `0025` resonance formal gate; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum-rule gate; `0029` transparent-Sun/finite-source G9 partial.
+`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered material; `0006` ft→capture; `0007–0012` B16/MSW; `0013–0019` Ga/Cl folds and power; `0020–0021` In115 screen + Se82 authority; `0022–0023` Li7 authority; `0024` passive allowed bound; `0025` resonance formal gate; `0026` finite-q leading envelope; `0027` density f-sum; `0028` local spin sum-rule gate; `0029` transparent-Sun focal-scale + finite-source/Liouville PASS subgate.
 
 ## Current maturity
-**NMIR_READINESS: 54%**.
+**NMIR_READINESS: 55%**.
 
-No readiness credit is added for iteration 0029 yet because hosted/raw validation and a physical extended-lens finite-source magnification are still missing.
+54%→55% credit is only for the prospectively frozen, hosted/raw-inspected G9 focal-scale reproduction plus finite-source/Liouville regularization. Full extended-Sun magnification remains open and receives no credit.
 
 ## Exact next funnel gates
-1. **G9 gravity:** consume run `34040499051`; if validated, construct an extended transparent-Sun projected-mass lens from primary SSM data and compute finite-source receiver-integrated gain versus observer distance/source angular size before composition with capture.
+1. **G9 gravity:** construct an extended transparent-Sun projected-mass lens from primary SSM data and compute finite-source receiver-integrated gain versus observer distance/source angular size before composition with capture.
 2. **Long-range/nonlocal response:** characterize interaction-range/energy scaling needed to beat local density/spin extensivity without importing external energy.
 3. **Full nuclear-current loopholes:** bound convection/recoil, axial charge, weak magnetism, induced pseudoscalar and genuine two-body currents for `E_nu<=20 MeV`.
 4. **G10 structured matter:** fixed-mass-column angle+solar-spectrum comparison for staggered/multi-isotope stacks.
