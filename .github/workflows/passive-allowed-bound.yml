@@ -1,0 +1,32 @@
+name: NMIR passive allowed bound
+
+on:
+  push:
+    paths:
+      - 'src/nmir/passive_allowed_bound.py'
+      - 'tests/test_passive_allowed_bound.py'
+      - 'scripts/passive_allowed_bound_benchmark.py'
+      - 'research/passive_allowed_bound_prereg.md'
+      - '.github/workflows/passive-allowed-bound.yml'
+  workflow_dispatch:
+
+jobs:
+  bound:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run regression tests for preregistered bound
+        run: pytest -q tests/test_passive_allowed_bound.py
+      - name: Evaluate preregistered passive allowed-current envelope
+        run: |
+          mkdir -p artifacts/passive_allowed_bound
+          python scripts/passive_allowed_bound_benchmark.py | tee artifacts/passive_allowed_bound/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: passive-allowed-bound
+          path: artifacts/passive_allowed_bound/result.json
