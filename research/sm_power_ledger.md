@@ -6,7 +6,9 @@ Scope: neutrino-supplied deposited-energy upper bounds only. Each successful cap
 
 | target / B16 branch | capture rate [SNU] | energy moment [SNU MeV] | mean captured Eν [MeV] | pure-isotope ceiling [W/kg] |
 |---|---:|---:|---:|---:|
-| **82Se / GS98** | **355.03190979** | **249.61364032** | **0.70307382** | **2.94006655e-22** |
+| **7Li / GS98** | **19.34881333** | **77.50707776** | **4.00577939** | **1.06589117e-21** |
+| 7Li / AGSS09met | 16.84165298 | 65.03364861 | 3.86147658 | 8.94354349e-22 |
+| 82Se / GS98 | 355.03190979 | 249.61364032 | 0.70307382 | 2.94006655e-22 |
 | 82Se / AGSS09met | 345.60519781 | 226.65979252 | 0.65583444 | 2.66970537e-22 |
 | 71Ga / GS98 | 65.00993895 | 75.78103575 | 1.16568385 | 1.03091848e-22 |
 | 71Ga / AGSS09met | 62.31786849 | 66.37456240 | 1.06509680 | 9.02953653e-23 |
@@ -16,25 +18,21 @@ Scope: neutrino-supplied deposited-energy upper bounds only. Each successful cap
 | 37Cl / AGSS09met, zero-to-1 residual | 2.55563709 | 18.76341779 | 7.34197271 | 4.89747164e-23 |
 
 ### Current validated leader
-Pure `82Se / GS98` is the largest currently validated ceiling: `2.94006655e-22 W/kg`.
+Pure `7Li / GS98` is now the largest validated passive-target neutrino-only ceiling: `1.06589117e-21 W/kg`, about `3.63x` the previous pure-`82Se / GS98` leader. Natural lithium, using `7Li` isotopic fraction `0.9241`, gives `9.95777156e-22 W/kg`, still about `3.39x` the pure-82Se benchmark.
 
-It exceeds the previous `71Ga / GS98` leader by a factor of about `2.85`. For natural selenium, the `82Se` isotopic fraction (`~0.0873`) reduces the GS98 ceiling to `2.66241785e-23 W/kg`.
+The Li result remains an upper bound on energy supplied by the incident neutrino. It does **not** include daughter-decay/nuclear-mass energy, and it is not a global Standard-Model theorem across all nuclei. Even the new validated leader is about `9.38e20` below `1 W/kg`.
 
-The propagated response-scale systematic adopted from Frekers et al.'s quoted total `668 ± 60_sys SNU` gives a GS98 pure-82Se ceiling envelope of approximately `[2.676e-22, 3.204e-22] W/kg`. Even the upper edge remains about `3.1e21` times below `1 W/kg`.
+## 7Li response-validation history — iteration 0023
 
-## Non-authoritative screening results
+The two-state response was constructed without tuning to a published neutrino cross section:
+1. Ground state is fixed by evaluated `7Be(gs)->7Li(gs)` EC, `Q_EC=861.815 keV`, `log ft=3.324`.
+2. The first `7Be` excited state at `429 keV` opens at `~1.291 MeV`; its independent allowed strength uses measured `B(GT)=1.06`, while the ground branch uses `B(F)=1`, `B(GT)=1.19`.
+3. Prospective matched-`8B` gates were frozen before hosted execution: component residual `<=12%`, total residual `<=10%`.
+4. First workflow `34037418081` was **infrastructure FAIL only** because `pytest` was absent. Minimal dependency repair changed no physics or gate.
+5. Repaired validation run `34037499594`, job `101498137412`, PASS after raw-log inspection: ground `2.50624405e-42` vs published `2.470e-42` (`+1.467%`), excited `1.30740265e-42` vs `1.289e-42` (`+1.428%`), total `3.81364669e-42` vs `3.759e-42` (`+1.454%`). Artifact `9990627394`, SHA256 `a3ecbf1d489c215576b9e7b99c3ae7017509070c77104aa4a7265576246e9eb6`.
+6. Only after that PASS was the same frozen B16 spectra + production-averaged MSW pipeline run. Hosted fold `34037570254`, job `101498329856`, artifact `9990650435`, SHA256 `320331ff1d3c068d78a27ff09d61a0e07965ff6ef7f2884d940fc7f214fb41cd`.
 
-These rows are deliberately excluded from the validated ranking until the target-specific response gate passes.
-
-| target / B16 branch | response scope | rate [SNU] | energy moment [SNU MeV] | screen [W/kg] | authority status |
-|---|---|---:|---:|---:|---|
-| **7Li / GS98** | direct crossed gs-only | **15.95028372** | **54.47194863** | **7.49107965e-22** pure | **SCREEN ONLY — full response not externally validated** |
-| 7Li / AGSS09met | direct crossed gs-only | 13.94391862 | 45.90248591 | 6.31259183e-22 pure | SCREEN ONLY |
-| natural Li / GS98 | 7Li gs-only, abundance 0.9241 | 15.95028372 | 54.47194863 | 6.99831856e-22 | SCREEN ONLY |
-
-The Li7 screen is important because its GS98 pure-isotope value is about `2.55x` the validated pure-82Se leader even before adding any independently authorized excited-state strength. It is **not** promoted: the crossed `7Be(gs)->7Li(gs)` `log ft=3.324` anchor is direct, but a complete `7Li(nu_e,e-)7Be` response and near-threshold atomic convention still require matched external validation.
-
-The GS98 no-oscillation gs-only lithium total is `35.43394353 SNU`; historical full-response calculations quote a scale near `39.4 SNU`, but because the solar and nuclear conventions are unmatched this comparison is context only, not an acceptance test.
+GS98+MSW Li component highlights: B8 `7.24140 SNU` but `62.60901 SNU MeV`; Be7 `4.07166 SNU`; pep `4.80745 SNU`. Thus the low atomic mass and high-energy B8 tail, rather than the largest event count, drive the W/kg ranking.
 
 ## 82Se response-validation history
 
@@ -46,11 +44,9 @@ The 82Se entry was promoted only after a prospective response-validation sequenc
 
 ## Scientific interpretation
 
-The validated table is a **three-target benchmark**, not yet a global Standard-Model cross-target ceiling. The Li7 screen shows why broader target validation still matters: a low-A crossed transition can plausibly move the passive-target ceiling upward by another factor of a few, but the number is not authoritative until the full nuclear response passes the same standard used for Se82.
+The validated table is now a **four-target benchmark**, not yet a global Standard-Model cross-target ceiling. Li7 materially raises the best validated passive-target power from `2.94e-22` to `1.07e-21 W/kg`, demonstrating why low-A targets matter. The gain is still only a factor of a few and leaves roughly 21 orders of magnitude to `1 W/kg`.
 
-Even a several-fold movement around `10^-22 W/kg` remains many orders of magnitude from useful power density. A global G3 closure still requires more competitive allowed/forbidden inverse transitions plus a formal upper-bound argument across target space.
-
-Resonant peak cross sections remain outside this ranking unless G8 integrated-strength, linewidth and solar-spectrum-overlap constraints are passed.
+A global G3 closure still requires broader competitive-target screening plus a formal upper-bound argument across target space. Resonant peak cross sections remain outside this ranking unless G8 integrated-strength, linewidth and solar-spectrum-overlap constraints are passed.
 
 ## Provenance
 - 71Ga scientific authority: run `34028394336`, job `101473373902`, artifact `9987793879`.
@@ -59,4 +55,6 @@ Resonant peak cross sections remain outside this ranking unless G8 integrated-st
 - 82Se finite-size pp validation PASS: run `34033049596`, artifact `9989244871`.
 - 82Se full nine-component validation PASS: run `34033182939`, artifact `9989287872`.
 - 82Se repaired B16+MSW fold PASS: run `34033368287`, job `101486927672`, artifact `9989345911`.
-- 7Li direct crossed gs-only screen: run `34034095803`, job `101488884067`, artifact `9989580600`, ZIP SHA256 `3b66dfe40cd3403ed97b87bedc4e7f76002170de715c5e264390d0184cdc5bc8`; **screen only, not validated-target authority**.
+- 7Li direct crossed gs-only screen: run `34034095803`, job `101488884067`, artifact `9989580600`.
+- 7Li two-state matched-B8 validation PASS: run `34037499594`, job `101498137412`, artifact `9990627394`.
+- 7Li validated B16+MSW full fold PASS: run `34037570254`, job `101498329856`, artifact `9990650435`.
