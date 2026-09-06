@@ -2,21 +2,36 @@
 
 NMIR is a model-agnostic research program for reconstructing and optimizing the physical interface between neutrinos and organized matter.
 
+## Resume / recover the research
+
+**Do not reconstruct NMIR from chat history.** The repository is the scientific source of truth.
+
+A new researcher or a new ChatGPT session must start in this order:
+
+1. `research/RECOVERY_MANUAL.md` — chat-independent operational reconstruction protocol;
+2. `research/RECOVERY.md` — latest scientific state, authoritative results, run/artifact provenance, readiness and exact next gates;
+3. `research/NMIR_FUNNEL.md` — F0–F10 discovery funnel and anti-overclaim rules;
+4. newest `research/iterations/*.md` plus the associated prospective preregistration;
+5. recent commits and raw GitHub Actions results newer than the latest recovery reconciliation.
+
+If recovery documentation is stale relative to a validated result, documentation must be reconciled before a new research branch is started.
+
 ## Central question
 
-> What is the strongest neutrino↔matter coupling, energy-transfer channel, or state-control mechanism allowed by known physics and current observations, and what additional microphysics would be required to exceed it?
+> What is the strongest neutrino↔matter coupling, energy-transfer channel, state-control, focusing or detector-amplification mechanism allowed by known physics and current observations, and what additional microphysics would be required to exceed it?
 
 NMIR does **not** assume that a useful neutrino absorber exists. A rigorous no-go/upper-bound result is an acceptable scientific outcome.
 
 ## Core decomposition
 
-We separate three physically different tasks:
+We separate four physically different objectives:
 
-1. **State control** — flavor/spin conversion without necessarily depositing energy.
-2. **Scattering/detection** — producing an observable recoil or excitation.
-3. **Energy capture** — irreversible/inelastic deposition of a non-negligible fraction of the incident neutrino energy.
+1. **State control / focusing** — flavor/spin conversion or redirection without necessarily depositing energy.
+2. **Interaction/capture** — increasing the microscopic probability of scattering or absorption.
+3. **Detection/event amplification** — making a rare microscopic interaction macroscopically visible, including metastable/avalanche interfaces.
+4. **Energy capture** — irreversible deposition of neutrino-supplied energy.
 
-A mechanism is never promoted from (1) or (2) to (3) without an explicit energy-transfer calculation.
+A mechanism is never promoted between these categories without an explicit quantitative accounting. Stored target energy, pump energy and reset work are not neutrino energy.
 
 ## Model-independent interface
 
@@ -26,52 +41,69 @@ At low energy, candidate microscopic couplings are mapped onto medium response f
 \Gamma_\nu \sim \int d^3q\,d\omega\; L_{ab}(q,\omega)\,S^{ab}(q,\omega),
 \]
 
-where the leptonic tensor/operator kernel `L_ab` contains the neutrino interaction and `S_ab` (or equivalently the retarded susceptibility `chi_ab`) contains the many-body material physics.
+where the leptonic/operator kernel `L_ab` contains the neutrino interaction and `S_ab` (or equivalently a retarded susceptibility) contains the many-body material physics.
 
 The inverse problem is
 
 \[
-S_{\rm target}(q,\omega)=\arg\max_{S\in\mathcal A}\; P_{\rm dep}[S]
+S_{\rm target}(q,\omega)=\arg\max_{S\in\mathcal A}\; {\rm score}[S]
 \]
 
-subject to causality, unitarity, sum rules, conservation laws, material stability, and laboratory/astrophysical/cosmological constraints.
+with the score explicitly labelled as interaction rate, detector rate, focusing gain or neutrino-sourced deposited power, and subject to causality, unitarity, sum rules, conservation laws, stability and applicable experimental constraints.
 
-## Initial operator basis
+## Operator / mechanism basis
 
-NMIR begins with:
+NMIR includes or tests:
 
 - Standard Model charged-current and neutral-current weak interactions;
 - coherent elastic neutrino–nucleus scattering (CEvNS);
-- electron scattering;
-- neutrino magnetic/electric dipole moments and electromagnetic form factors;
+- neutrino–electron scattering;
+- production↔absorption / inverse weak transitions grounded by measured `ft` or `B(GT)` when possible;
+- electromagnetic neutrino properties;
 - matter potentials and spin-polarized media;
-- general low-energy non-standard interactions (NSI);
-- light scalar/vector/tensor mediator hypotheses only after the Standard-Model ceiling is quantified.
+- density, spin, current, phonon, magnon and other collective response;
+- true resonances with integrated-strength/source-profile accounting;
+- metastable/avalanche detector media with a separate stored-energy ledger;
+- gravitational focusing with finite-source/Liouville/geometry constraints;
+- structured/staggered/multi-isotope media under fixed-mass controls;
+- NSI/light-mediator/other BSM hypotheses only after the principal Standard-Model loopholes are quantitatively bounded.
 
-## First research gates
+## Research gates
 
-- **G0 — normalization/reproducibility:** reproduce standard weak-interaction scales and known limiting formulas.
-- **G1 — static-coherence gate:** determine what ordinary nuclear/material coherence can and cannot enhance.
-- **G2 — response-function gate:** derive energy deposition in terms of density, spin, current, phonon/magnon/quasiparticle response.
-- **G3 — Standard-Model ceiling:** maximize solar-neutrino deposited power over physically admissible passive media.
-- **G4 — engineered-medium scan:** polarization, periodic media, resonances, superconductors, magnetic systems, low-threshold collective modes.
-- **G5 — BSM residual:** identify what coupling structure would be required if the SM ceiling is parametrically too small.
-- **G6 — global consistency:** confront any BSM region with CEvNS, electron recoil, oscillations, stellar cooling, supernova, BBN/CMB and other applicable bounds.
+- **G0 — normalization/reproducibility**
+- **G1 — static/macroscopic coherence**
+- **G2 — many-body response, engineered detection and deposited-energy channels**
+- **G3 — Standard-Model solar-neutrino power ceiling**
+- **G4 — engineered resonance/polarization/periodicity**
+- **G5 — minimal BSM residual**
+- **G6 — global BSM consistency**
+- **G7 — production/decay → inverse capture**
+- **G8 — resonance integrated-strength/bandwidth/source-profile gate**
+- **G9 — gravitational focusing**
+- **G10 — staggered/multi-isotope/fixed-column structured matter**
+
+The detailed F0–F10 discovery funnel is authoritative in `research/NMIR_FUNNEL.md`.
 
 ## Non-negotiable scientific rules
 
-- Repository state, equations, scripts and generated results are authoritative; chat text is not.
-- Distinguish amplitude coherence from total-rate enhancement.
-- Distinguish lower threshold from larger total cross section.
-- Distinguish elastic momentum transfer from useful energy absorption.
-- Do not infer a new energy source: neutrinos carry an incident energy flux; NMIR studies possible coupling/capture of that flux.
-- Negative gates and no-go results are retained, not hidden.
-- Any numerical claim intended for a paper must have a script, inputs, units, assumptions and a reproducibility test.
+- Repository state, frozen inputs, preregistrations, code, tests, raw validated Actions results and immutable iteration notes are authoritative; chat text is not.
+- Freeze a prospective acceptance/failure contract before inspecting a substantive numerical result.
+- A green workflow is infrastructure success, not automatically a scientific PASS.
+- Distinguish amplitude/directional coherence from total-rate enhancement.
+- Distinguish lower detector threshold from larger microscopic cross section.
+- Distinguish event amplification from neutrino-sourced energy gain.
+- Track integrated resonance strength and physical source overlap, not peak cross section alone.
+- Keep stored target energy, external pumping and reset work in separate ledgers.
+- Do not multiply gains until each factor is independently validated and compatible with the same source/state/geometry.
+- Negative gates and no-go results are retained in chronology.
+- Any numerical claim intended for a paper must retain code, inputs, units, assumptions, tests and provenance.
 
 ## Current status
 
-**2026-09-06 — Iteration 0 / program initialization.**
+**2026-09-06 — reconciled through iteration 0042.**
 
-Research maturity estimate: **~5%**. The problem has been defined, but the operator inventory, response taxonomy, constraint database and benchmark calculations are only beginning.
+`NMIR_READINESS: 72%` — audit estimate of funnel maturity, not probability that a revolutionary mechanism exists and not publication probability.
 
-See `research/RECOVERY.md` for the source-of-truth research state and `research/ROADMAP.md` for the staged program.
+Latest result: the physical thermally broadened solar Be7 line folded with ideal Ar-40 CEvNS confirms that a 40-eV recoil threshold is technically nonzero but strongly endpoint-suppressed: about 31.1% of the line lies above the kinematic source threshold, while only about `4.91e-6` of the integrated CEvNS cross section survives. The current inverse-design priority is therefore a full solar-spectrum target/threshold optimization rather than assuming Ar or treating kinematic opening as practical sensitivity.
+
+See `research/RECOVERY.md` for the exact source-of-truth state and `research/RECOVERY_MANUAL.md` for recovery/continuation instructions.
