@@ -1,0 +1,25 @@
+name: NMIR Ga71 neutrino-only power ceiling
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/nmir/ga71_power_ceiling.py'
+      - 'scripts/ga71_power_ceiling_benchmark.py'
+      - '.github/workflows/ga71-power-ceiling.yml'
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - name: Compute neutrino-only Ga71 ceiling
+        run: python scripts/ga71_power_ceiling_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ga71-neutrino-energy-ceiling
+          path: results/ga71_neutrino_energy_ceiling.json
