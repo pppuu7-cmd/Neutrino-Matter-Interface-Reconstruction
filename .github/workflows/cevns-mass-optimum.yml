@@ -1,0 +1,31 @@
+name: CEvNS mass-threshold inverse optimum
+
+on:
+  push:
+    paths:
+      - 'research/cevns_mass_threshold_optimum_prereg.md'
+      - 'src/nmir/cevns_mass_optimum.py'
+      - 'tests/test_cevns_mass_optimum.py'
+      - 'scripts/cevns_mass_optimum_benchmark.py'
+      - '.github/workflows/cevns-mass-optimum.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated tests
+        run: PYTHONPATH=src python -m pytest -q tests/test_cevns_mass_optimum.py
+      - name: Run inverse-design benchmark
+        run: PYTHONPATH=src python scripts/cevns_mass_optimum_benchmark.py | tee cevns-mass-optimum.json
+      - name: Upload benchmark artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cevns-mass-optimum-result
+          path: cevns-mass-optimum.json
