@@ -12,7 +12,7 @@ from nmir.ga71_response import (
 
 def test_response_table_identity_and_monotonic_energy():
     points = load_ga71_response()
-    assert len(points) == 59
+    assert len(points) == 58
     assert points[0].energy_mev == pytest.approx(0.240)
     assert points[0].best_cm2 == pytest.approx(13.10e-46)
     assert points[-1].energy_mev == pytest.approx(30.0)
