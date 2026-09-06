@@ -29,7 +29,10 @@ jobs:
       - name: Run exact-mass regression tests
         run: PYTHONPATH=src python -m pytest -q tests/test_cevns_solar_optimize.py
       - name: Run pinned-source exact-mass solar optimization
-        run: PYTHONPATH=src python scripts/cevns_real_nucleus_solar_optimization.py | tee cevns-real-nucleus-solar-exact-mass.json
+        shell: bash
+        run: |
+          set -o pipefail
+          PYTHONPATH=src python scripts/cevns_real_nucleus_solar_optimization.py | tee cevns-real-nucleus-solar-exact-mass.json
       - name: Upload benchmark artifact
         uses: actions/upload-artifact@v4
         with:
