@@ -1,0 +1,29 @@
+name: NMIR long-range interaction-budget gate
+
+on:
+  push:
+    paths:
+      - 'research/long_range_budget_prereg.md'
+      - 'src/nmir/long_range_budget.py'
+      - 'tests/test_long_range_budget.py'
+      - 'scripts/long_range_budget_benchmark.py'
+      - '.github/workflows/long-range-budget.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_long_range_budget.py
+      - run: mkdir -p artifacts/long_range_budget
+      - run: python scripts/long_range_budget_benchmark.py | tee artifacts/long_range_budget/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: long-range-budget-result
+          path: artifacts/long_range_budget/result.json
