@@ -81,7 +81,14 @@ Key result: once Be7 uses primary source-average authority, residual total sensi
 
 CI for authority utilities/tests: `34023005898` on head `fb1c78fc5a1a205992962c017de02a09e87a0ae5`, SUCCESS.
 
-Independent B8 source-average reproduction is now implemented in `src/nmir/cl37_benchmark.py` + `scripts/cl37_source_average_benchmark.py`; hosted workflow head `b423cd694069ae70c98d88d8d66cae560a59190a` is the next result to consume. Do not promote B8 matched-average PASS until its raw artifact is inspected.
+#### B8 source-average convention audit
+Hosted workflow `34023058360` on head `b423cd694069ae70c98d88d8d66cae560a59190a` completed SUCCESS. Artifact `9986140900`, SHA256 `7d4dd1071af57c95e6958b0670e37c303ea70053c416691e6ea6597044da2299`.
+
+The frozen Ortiz B8 spectrum folded with the Bahcall-1996 pointwise Cl response gives `1.1914503e-42 cm^2`, versus the historical Bahcall-Ulrich source-average authority `1.06e-42 cm^2`, a `+12.40097%` discrepancy. The `zero_to_1` variant gives the same result to better than `1e-6` fractional precision, so the mismatch is not caused by the 0.814–1.0 MeV gap.
+
+Classification: **SCIENTIFIC CONVENTION-MISMATCH FAIL** for the attempted mixed `Ortiz B8 spectrum × Bahcall-1996 response → Bahcall-Ulrich historical source-average` reproduction. No response normalization, spectrum, or tolerance is retuned. The required next step is to identify/freeze the B8 spectral convention used by the historical authority, or compare against a source-average prediction explicitly defined for the Ortiz convention.
+
+Baseline CI on recovery head `14b55306e55dd941373bda0d492590088dda0bff`: run `34023100498`, SUCCESS.
 
 Final Homestake observation `2.56 ± 0.23 SNU` is context only and was never used to normalize NMIR.
 
@@ -93,10 +100,10 @@ Final Homestake observation `2.56 ± 0.23 SNU` is context only and was never use
 ## Research gates
 | Gate | Status |
 |---|---|
-| G0 weak/capture normalization | PARTIAL PASS — CEvNS + tritium ft + Ga response + Cl pointwise/source-average anchors |
+| G0 weak/capture normalization | PARTIAL PASS — CEvNS + tritium ft + Ga response + Cl pointwise/source-average anchors; B8 cross-convention audit exposed a mismatch |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE — naive N² opacity disfavored |
 | G2 many-body deposited-energy channels | OPEN |
-| G3 maximum SM deposited solar-neutrino power | OPEN — Ga fold PASS; Cl Be7 blocker resolved at component level and total residual uncertainty ~0.4%; B8 source-average matched check + W/kg still missing |
+| G3 maximum SM deposited solar-neutrino power | OPEN — Ga fold PASS; Cl Be7 blocker resolved and total residual gap sensitivity ~0.4%; B8 convention alignment + W/kg still missing |
 | G4 engineered resonance/polarization/periodicity | OPEN |
 | G5 minimal BSM solution | LOCKED until G3 |
 | G6 BSM constraints | LOCKED until G5 |
@@ -116,17 +123,18 @@ Final Homestake observation `2.56 ± 0.23 SNU` is context only and was never use
 8. BSM solution branch remains locked until G3 is quantified.
 9. Green workflow ≠ scientific PASS until raw result and frozen gate are inspected.
 10. Missing pointwise response must not be silently interpolated into authority when a source-average or uncertainty formulation is the correct observable.
+11. Historical source-average cross sections must not be used as validation targets with a different spectral convention unless the convention mismatch is explicitly modeled.
 
 ## Chronology
-`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority.
+`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + B8 convention audit.
 
 ## Current maturity
 **NMIR_READINESS: 33%**.
 
-Increase `32% -> 33%` credits the published Cl source-average freeze, removal of the Be7 interpolation blocker at component level, hosted corrected fold, and reduction of residual sub-1-MeV total uncertainty to ~0.4%. B8 matched source-average check and W/kg remain open.
+Readiness remains `33%`: the Be7 blocker is genuinely resolved and the residual low-energy uncertainty is bounded, but the B8 source-average exercise produced a convention-mismatch FAIL rather than closing an additional gate.
 
 ## Exact next gate
-1. Consume hosted B8-on-Cl standard-spectrum average and compare with frozen `1.06e-42 cm^2` authority without retuning.
-2. Freeze final Cl component/total uncertainty interval.
+1. Identify/freeze the historical B8 spectral convention underlying the Bahcall-Ulrich `1.06e-42 cm^2` source-average, then rerun the source-average cross-section comparison with matched spectrum/response conventions; alternatively freeze an Ortiz-convention primary/reference source-average if available.
+2. Freeze the final Cl component/total uncertainty interval without hiding the B8 convention mismatch.
 3. Implement neutrino-only deposited-energy accounting for validated Ga/Cl capture, explicitly excluding daughter-decay/nuclear-mass energy not supplied by the incident neutrino; convert to W/kg and bound G3.
 4. Continue independent G8 resonance integrated-strength, G9 transparent-Sun finite-source focusing, and G10 fixed-mass-column staggered-stack gates without result-dependent tuning.
