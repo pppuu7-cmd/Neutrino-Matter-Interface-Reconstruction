@@ -71,7 +71,7 @@ No product of unvalidated gains is accepted.
 - **Passive coordinate-local density response:** `PASS_DENSITY_FSUM`; lowering a collective mode by `1e6` gives unweighted gain `1e6` but energy-weighted gain `1.0`; first moment scales N, not N^2.
 - **Passive bounded-local spin/magnon response:** `PASS_LOCAL_SPIN_SUM`; local first-moment envelope scales with local exchange-energy budget and hence O(N) at bounded coordination. Softening a spin mode by `1e6` gives unweighted gain `1e6` but energy-weighted gain `1.0`.
 - **Long-range/nonlocal spin response:** OPEN. Explicit unscaled all-to-all control is superextensive; Kac/extensivity scaling returns it to O(N).
-- **Gravitational focusing:** **PARTIAL G9**. Prospectively frozen transparent-Sun rounded check gives `23.0291 AU` from the published `0.024 R_sun`, `0.0137 M_sun` interior point, within the frozen 3% tolerance of the `23.5 AU` published scale. Exact finite uniform-source point-lens regularization and Liouville brightness bookkeeping are implemented. Baseline CI/raw validation and a full extended-Sun finite-source magnification remain OPEN; no focusing gain may yet be composed with capture.
+- **Gravitational focusing:** **PARTIAL PASS G9**. Prospectively frozen transparent-Sun rounded check gives `23.0291 AU` from the published `0.024 R_sun`, `0.0137 M_sun` interior point, within the frozen 3% tolerance of the `23.5 AU` published scale. Exact finite uniform-source point-lens regularization and Liouville brightness bookkeeping PASS on hosted/raw-inspected run `34040499051` (`141 passed`). Full extended-Sun finite-source receiver-integrated magnification remains OPEN; no focusing gain may yet be composed with capture.
 - **Staggered/multi-isotope material:** PARTIAL NEGATIVE for density-only energy gain; directional and charged-current/isotope-selective fixed-column variants remain OPEN.
 - **Active/non-equilibrium media:** OPEN, but all external pumping energy must be separately accounted.
 - **BSM solution branch:** LOCKED until major passive-SM loopholes are substantially closed.
@@ -85,4 +85,4 @@ The scientific goal is:
 3. identify any surviving channel with parametrically larger integrated usable coupling;
 4. if none survives in the SM, determine exactly which new operator/medium property is required before opening minimal BSM.
 
-Current audit state: `NMIR_READINESS: 54%`.
+Current audit state: `NMIR_READINESS: 55%`.
