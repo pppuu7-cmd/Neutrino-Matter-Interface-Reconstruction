@@ -1,0 +1,32 @@
+name: NMIR structured fixed-column gate
+
+on:
+  push:
+    paths:
+      - 'src/nmir/structured_column.py'
+      - 'tests/test_structured_column.py'
+      - 'scripts/structured_column_benchmark.py'
+      - 'research/structured_column_prereg.md'
+      - '.github/workflows/structured-column.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - name: Run structured-column regression tests
+        run: pytest -q tests/test_structured_column.py
+      - name: Evaluate structured-column benchmark
+        run: |
+          mkdir -p artifacts/structured_column
+          python scripts/structured_column_benchmark.py | tee artifacts/structured_column/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: structured-column-result
+          path: artifacts/structured_column/result.json
