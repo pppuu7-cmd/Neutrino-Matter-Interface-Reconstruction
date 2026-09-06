@@ -9,6 +9,7 @@ from nmir.cresst_si_transfer import (
     SIGMA_EV,
     TRIGGER_PLATEAU,
     cevns_sigma_with_efficiency_cm2,
+    component_rate_with_efficiency,
     cresst_factorized_surrogate_efficiency,
     cresst_trigger_efficiency,
     hard_step_efficiency,
@@ -50,6 +51,22 @@ def test_detector_efficiencies_reduce_cross_section():
     )
     assert 0.0 < surrogate < trigger < ideal
     assert trigger <= TRIGGER_PLATEAU * ideal * (1.0 + 1e-12)
+
+
+def test_be7_components_map_to_common_flux_key():
+    fluxes = {"Be7": 4.93e9}
+    spectra = {
+        "Be7_ground": [(0.861, 1.0), (0.863, 1.0)],
+        "Be7_excited": [(0.383, 1.0), (0.385, 1.0)],
+    }
+    ground = component_rate_with_efficiency(
+        "Be7_ground", SI28, hard_step_efficiency, fluxes, {}, spectra
+    )
+    excited = component_rate_with_efficiency(
+        "Be7_excited", SI28, hard_step_efficiency, fluxes, {}, spectra
+    )
+    assert ground >= 0.0
+    assert excited >= 0.0
 
 
 def test_invalid_efficiency_inputs_fail_closed():
