@@ -108,18 +108,41 @@ NMIR interpretation:
 
 The existence of a 10-eV measured calorimetric threshold means the `1–20 eV` CEvNS inverse-design region must **not** be labelled fundamentally detector-inaccessible. However, this positive control has only `0.35 g` active mass and is not a metastable bubble detector. The relevant residuals are therefore mass scaling, low-energy backgrounds, target choice and transfer-function stability — not merely threshold existence.
 
-This creates a useful two-technology comparison for the next gate:
+## E5 — high-mass/high-threshold solar-CEvNS positive control: XENONnT
 
-1. **metastable noble-liquid branch:** much larger mass and powerful recoil discrimination / signal amplification, but presently calibrated/planned at substantially higher NR thresholds;
-2. **cryogenic calorimeter branch:** demonstrated ~10-eV threshold, but very small unit mass and a significant low-energy-background problem.
+Primary publication:
+
+- XENON Collaboration, E. Aprile et al., **“First Indication of Solar 8B Neutrinos via Coherent Elastic Neutrino-Nucleus Scattering with XENONnT”**, Physical Review Letters **133** (2024) 191002.
+- DOI: `10.1103/PhysRevLett.133.191002`.
+
+Frozen measured facts relevant to NMIR:
+
+- sensitive liquid-xenon target mass: **5.9 t**;
+- blind-analysis exposure: **3.51 t yr**;
+- analysis threshold: **0.5 keV nuclear recoil**;
+- observed events above threshold: **37**;
+- expected background: **`26.4_{-1.3}^{+1.4}`** events;
+- background-only rejection: **2.73 sigma**;
+- the measured flux-weighted CEvNS cross section on Xe is consistent with the Standard Model.
+
+Primary links/provenance:
+
+- APS: `https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.133.191002`
+- PubMed: `https://pubmed.ncbi.nlm.nih.gov/39576901/`
+
+NMIR interpretation:
+
+XENONnT is an experimental positive control at the opposite corner from the CRESST 10-eV calorimeter: it demonstrates real **solar nuclear-recoil CEvNS** in a multi-ton detector, but with a 0.5-keV threshold that selects the high-energy B8 regime. It validates the basic high-mass/high-threshold end of the NMIR source-regime picture while providing no direct access to the low-energy pp/Be7/CNO recoil phases emphasized by the ideal 1–20-eV optimization.
+
+The three detector anchors therefore span a useful mass-threshold trade space:
+
+1. **XENONnT:** multi-tonne and directly observed solar CEvNS, but 0.5-keV threshold / B8-dominated;
+2. **SBC noble-liquid metastability:** kg-scale program with strong rejection/readout amplification ambitions and O(100 eV) target/calibration thresholds, but sub-100-eV calibrated efficiency still open;
+3. **CRESST silicon calorimetry:** measured 10-eV threshold, but sub-gram unit mass and low-energy-background/excess challenges.
 
 ## Immediate NMIR implication
 
-Iteration 0045 found ideal full-solar CEvNS target transitions mainly in the `1–20 eV` region, with 40 eV retained as an endpoint/control scale. The current detector evidence no longer supports a simple statement that this region is technologically unreachable. Instead it shows a **mass-threshold-background trade space**:
-
-- measured Xe bubble response: roughly `0.5–1 keV` scales;
-- LAr bubble calibration program: approximately `80–400 eV`, with `100 eV` target and an unvalidated ~40-eV thermodynamic lower scale;
-- cryogenic Si calorimetry: measured `10.0 ± 0.2 eV_nr` threshold at `0.35 g`, with low-energy background/excess as a central limitation.
+Iteration 0045 found ideal full-solar CEvNS target transitions mainly in the `1–20 eV` region, with 40 eV retained as an endpoint/control scale. The current detector evidence no longer supports a simple statement that this region is technologically unreachable. Instead it shows a **mass-threshold-background trade space**.
 
 Thus the future transfer-function gate must compare at least:
 
