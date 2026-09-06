@@ -1,0 +1,42 @@
+name: CEvNS target threshold phase diagram
+
+on:
+  push:
+    paths:
+      - 'data/cevns_target_candidates_exact_mass.csv'
+      - 'data/cevns_target_exact_mass_provenance.md'
+      - 'data/solar_flux_b16.csv'
+      - 'data/solar_spectrum_manifest.csv'
+      - 'data/be7_bahcall1994_ground_profile.csv'
+      - 'research/cevns_target_phase_diagram_prereg.md'
+      - 'src/nmir/cevns_solar_optimize.py'
+      - 'src/nmir/cevns_phase_diagram.py'
+      - 'tests/test_cevns_solar_optimize.py'
+      - 'tests/test_cevns_phase_diagram.py'
+      - 'scripts/cevns_target_phase_diagram.py'
+      - '.github/workflows/cevns-target-phase-diagram.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run phase-diagram and exact-mass regressions
+        run: PYTHONPATH=src python -m pytest -q tests/test_cevns_phase_diagram.py tests/test_cevns_solar_optimize.py
+      - name: Run frozen target/threshold phase diagram
+        shell: bash
+        run: |
+          set -o pipefail
+          PYTHONPATH=src python scripts/cevns_target_phase_diagram.py | tee cevns-target-phase-diagram.json
+      - name: Upload phase diagram artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cevns-target-phase-diagram-result
+          path: cevns-target-phase-diagram.json
