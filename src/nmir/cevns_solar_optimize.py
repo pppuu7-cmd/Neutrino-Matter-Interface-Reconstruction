@@ -171,8 +171,13 @@ def cevns_sigma_above_threshold_cm2(
     use_helm: bool = True,
     recoil_steps: int = 160,
 ) -> float:
-    if e_nu_mev <= 0.0 or threshold_ev < 0.0 or recoil_steps < 8:
+    if e_nu_mev < 0.0 or threshold_ev < 0.0 or recoil_steps < 8:
         raise ValueError("invalid CEvNS integration input")
+    # Physical continuum spectra may include their E_nu=0 endpoint.  It has
+    # exactly zero CEvNS phase space and must contribute zero rather than turn
+    # a valid normalized spectrum into an integration error.
+    if e_nu_mev == 0.0:
+        return 0.0
     e = e_nu_mev * 1.0e-3
     m = target.mass_mev * 1.0e-3
     t0 = threshold_ev * 1.0e-9
