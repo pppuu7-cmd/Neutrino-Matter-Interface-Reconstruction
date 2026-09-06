@@ -4,6 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .cl37_response import cl37_sigma_cm2
+from .cl37_source_average import be7_authority_oscillated_snu
 from .ga71_response import parse_two_column_spectrum, trapz
 from .solar_flux import load_b16_fluxes
 from .solar_oscillation import adiabatic_day_pee_at_density, numerical_solar_parameters
@@ -51,7 +52,23 @@ def _profile_snu(flux: float, table, path: Path, branch_weight: float, low_energ
     return flux * branch_weight * trapz(e, [_integrand(x, w, pee, low_energy_mode) for x, w in zip(e, f)]) / norm / 1e-36
 
 
-def oscillated_cl37_snu(model: str, workdir: str | Path, *, low_energy_mode: str = "threshold_linear") -> dict[str, float]:
+def oscillated_cl37_snu(
+    model: str,
+    workdir: str | Path,
+    *,
+    low_energy_mode: str = "threshold_linear",
+    be7_mode: str = "source_average",
+) -> dict[str, float]:
+    """Return component and total oscillated Cl-37 capture rates in SNU.
+
+    ``be7_mode='source_average'`` is the authoritative default: it uses the
+    published Bahcall-Ulrich standard-spectrum Be7 average cross section and
+    the production-averaged Pee of the capture-active 0.862-MeV line.  The
+    legacy ``profile`` mode retains the explicit sub-1-MeV interpolation only
+    for sensitivity/history comparisons.
+    """
+    if be7_mode not in {"source_average", "profile"}:
+        raise ValueError("be7_mode must be source_average or profile")
     key = model.upper()
     if key not in {"GS98", "AGSS09MET"}:
         raise ValueError("model must be GS98 or AGSS09met")
@@ -65,6 +82,9 @@ def oscillated_cl37_snu(model: str, workdir: str | Path, *, low_energy_mode: str
     pep_e = load_spectrum_manifest()["pep"].line_energy_mev
     assert pep_e is not None
     out["pep"] = fluxes["pep"].flux_cm2_s * _pee_function(table, "pep")(pep_e) * cl37_sigma_cm2(pep_e, low_energy_mode=low_energy_mode) / 1e-36
-    out["Be7"] = _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_ground"], 0.897, low_energy_mode) + _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_excited"], 0.103, low_energy_mode)
+    if be7_mode == "source_average":
+        out["Be7"] = be7_authority_oscillated_snu(fluxes["Be7"].flux_cm2_s, _pee_function(table, "Be7")(0.862))
+    else:
+        out["Be7"] = _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_ground"], 0.897, low_energy_mode) + _profile_snu(fluxes["Be7"].flux_cm2_s, table, paths["Be7_excited"], 0.103, low_energy_mode)
     out["total"] = sum(out.values())
     return out
