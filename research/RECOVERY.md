@@ -74,11 +74,13 @@ The 1996 primary paper explicitly establishes:
 
 Therefore the old `1.06e-42 cm2` is not a pure spectral target. The iteration-0016 mismatch is reclassified as a **mixed spectrum × response authority mismatch**.
 
-`data/b8_bahcall_lisi1996_spectrum.csv` now freezes the central 1996 Table-I spectrum. `src/nmir/b8_historical_audit.py` and `tests/test_b8_historical_audit.py` implement a matched sparse-table consistency check:
+`data/b8_bahcall_lisi1996_spectrum.csv` freezes the central 1996 Table-I spectrum. `src/nmir/b8_historical_audit.py` and `tests/test_b8_historical_audit.py` implement a matched sparse-table consistency check:
 - 1996 spectrum × 1996 improved sparse response: `~1.15972e-42 cm2`, within ~1.73% of the published full-response `1.14e-42 cm2`.
 - 1996 spectrum × Bahcall-Ulrich sparse response: `~1.07259e-42 cm2`, within ~0.69% of the paper's stated `1.08e-42 cm2` recalculation.
 
-The residual is expected because Table II is only a sparse representative tabulation; no normalization or physical tolerance was retuned. CI for this new matched-audit code is run `34025660039` on head `f333432be19664bb78dc87ea1e54c872d263d049`, currently in progress at this reconciliation point. Until it passes, readiness is not promoted.
+First CI `34025660039`, job `101466048735`, failed at pytest for a pure software/infrastructure reason: the new helper imported `numpy`, but `pyproject.toml` intentionally declares no runtime dependencies and CI installs only the package plus pytest. No physics test failed under a supported runtime. The helper was rewritten using only the Python standard library; no numerical target, tolerance, spectrum, or response value changed. Repair commit `e6f977657a1a2bb5784e467792b0909c45338dfc`; validating CI `34025731270` completed SUCCESS.
+
+Classification: matched historical B8/Cl convention/reproducibility gate PASS. The old +12.40% result remains a valid negative result for the mixed Ortiz × historical-target construction, but it is no longer misattributed to spectrum evolution alone.
 
 ## Other active branches
 - Many-body/spin: response formalism active; a single 1-meV magnon from a 1-MeV neutrino deposits only `1e-9` of incident energy.
@@ -88,10 +90,10 @@ The residual is expected because Table II is only a sparse representative tabula
 ## Research gates
 | Gate | Status |
 |---|---|
-| G0 weak/capture normalization | PARTIAL PASS — CEvNS + tritium ft + Ga response + Cl pointwise/source-average anchors; historical B8/Cl convention audit corrected |
+| G0 weak/capture normalization | PARTIAL PASS — CEvNS + tritium ft + Ga response + Cl pointwise/source-average anchors + matched historical B8/Cl audit |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE — naive N² opacity disfavored |
 | G2 many-body deposited-energy channels | OPEN |
-| G3 maximum SM deposited solar-neutrino power | OPEN — Ga fold PASS; Cl Be7 blocker resolved; historical B8 mismatch localized to mixed spectrum/response conventions; W/kg still missing |
+| G3 maximum SM deposited solar-neutrino power | OPEN — Ga fold PASS; Cl Be7 blocker resolved; B8 historical convention mismatch localized and matched audit PASS; final Cl envelope + W/kg missing |
 | G4 engineered resonance/polarization/periodicity | OPEN |
 | G5 minimal BSM solution | LOCKED until G3 |
 | G6 BSM constraints | LOCKED until G5 |
@@ -114,15 +116,14 @@ The residual is expected because Table II is only a sparse representative tabula
 11. Historical source-average cross sections validate only matched spectrum+response conventions; do not attribute a mixed-convention discrepancy to the spectrum alone.
 
 ## Chronology
-`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + mixed B8 audit; `0017` matched historical B8/Cl convention reclassification.
+`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + mixed B8 audit; `0017` matched historical B8/Cl convention reclassification and CI repair.
 
 ## Current maturity
-**NMIR_READINESS: 33%** pending CI validation of iteration 0017.
+**NMIR_READINESS: 34%**.
 
-If run `34025660039` passes with the matched tests intact, iteration 0017 closes one reproducibility/convention gate and readiness may advance to `34%`.
+Readiness increases from 33% to 34% because the historical B8/Cl convention gate is now both scientifically clarified from the primary source and reproducibly validated in CI; the increase is not awarded for the failed mixed-convention comparison itself.
 
 ## Exact next gate
-1. Consume CI `34025660039`; if PASS, promote matched historical B8/Cl audit and readiness to 34%.
-2. Freeze final Cl component/total convention/uncertainty envelope without cross-convention validation abuse.
-3. Implement neutrino-only deposited-energy accounting for validated Ga/Cl capture, explicitly excluding daughter-decay/nuclear-mass energy not supplied by the incident neutrino; convert to W/kg and bound G3.
-4. Continue independent G8 resonance integrated-strength, G9 transparent-Sun finite-source focusing, and G10 fixed-mass-column staggered-stack gates without result-dependent tuning.
+1. Freeze final Cl component/total convention/uncertainty envelope without cross-convention validation abuse.
+2. Implement neutrino-only deposited-energy accounting for validated Ga/Cl capture, explicitly excluding daughter-decay/nuclear-mass energy not supplied by the incident neutrino; convert to W/kg and bound G3.
+3. Continue independent G8 resonance integrated-strength, G9 transparent-Sun finite-source focusing, and G10 fixed-mass-column staggered-stack gates without result-dependent tuning.
