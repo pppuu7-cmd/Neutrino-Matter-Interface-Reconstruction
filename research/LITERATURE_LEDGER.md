@@ -100,6 +100,27 @@ Use in NMIR:
 Use in NMIR:
 - precision normalization/uncertainty gate for inverse beta decay.
 
+### Cocco, Mangano, Messina (2007)
+**Probing Low Energy Neutrino Backgrounds with Neutrino Capture on Beta Decaying Nuclei** — JCAP 0706:015; arXiv:hep-ph/0703075.
+
+Use in NMIR:
+- explicit statement that beta decay and neutrino capture on the beta-decaying parent have the same invariant squared amplitude for unobserved polarization;
+- data-driven reconstruction of capture strength from measured beta-decay `ft` values;
+- thresholdless neutrino capture on spontaneously beta-decaying nuclei;
+- long-wavelength validity approximately below the ~10 MeV nuclear scale;
+- allowed/superallowed relation `sigma v ∝ p_e E_e F/(ft)` in the source natural-unit convention;
+- candidate-ranking foundation for an automated inverse-transition catalog.
+
+Important caution: unit conversion, Coulomb corrections and forbidden-transition shape factors must be benchmarked before numerical deployment.
+
+### Mikulenko, Cheipesh, Cheianov, Boyarsky (2021)
+**Can we use heavy nuclei to detect relic neutrinos?** — arXiv:2111.09292.
+
+Use in NMIR:
+- warning that for some forbidden beta transitions the half-life alone does not determine the soft-neutrino capture cross section;
+- beta-spectrum information can be needed to reconstruct the inverse strength;
+- candidate examples for later transition-catalog validation.
+
 ## Recoilless / resonant neutrino absorption
 
 ### Visscher (1959)
@@ -155,6 +176,7 @@ The following must **not** be used as paper claims until a primary source and co
 - [ ] Build a dated table of current magnetic-moment bounds by source and flavor assumption.
 - [ ] Build a solar-neutrino spectral/flux input file with a frozen solar-model source.
 - [x] Seed charged-current capture / inverse-beta literature.
+- [x] Seed beta-decay→inverse-capture `ft` reconstruction literature.
 - [x] Seed recoilless-resonant neutrino absorption literature and known failure modes.
 - [ ] Build a machine-readable catalog of beta/electron-capture/bound-beta inverse transition candidates.
 - [ ] Add polarized-matter / axial-potential literature.
