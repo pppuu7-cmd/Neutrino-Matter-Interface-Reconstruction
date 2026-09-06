@@ -1,0 +1,29 @@
+name: NMIR density f-sum gate
+
+on:
+  push:
+    paths:
+      - 'research/density_fsum_prereg.md'
+      - 'src/nmir/density_fsum.py'
+      - 'tests/test_density_fsum.py'
+      - 'scripts/density_fsum_benchmark.py'
+      - '.github/workflows/density-fsum.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_density_fsum.py
+      - run: mkdir -p artifacts/density_fsum
+      - run: python scripts/density_fsum_benchmark.py | tee artifacts/density_fsum/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: density-fsum-result
+          path: artifacts/density_fsum/result.json
