@@ -1,8 +1,8 @@
-"""Baseline gravitational focusing utilities for ultrarelativistic neutrinos.
+"""Gravitational focusing utilities for ultrarelativistic neutrinos.
 
-These functions implement geometric-optics weak-field benchmarks only.  They do
-not model an extended transparent lens, finite source size, wave optics, or
-strong-field capture.  Those are separate NMIR gates.
+The transparent-Sun helpers reproduce a published interior focal-scale benchmark.
+Finite-source helpers are explicit Liouville/surface-brightness controls; they do
+not replace a full extended-Sun caustic calculation.
 """
 
 from __future__ import annotations
@@ -17,7 +17,6 @@ R_SUN_M = 6.957e8
 
 
 def null_deflection_rad(mass_kg: float, impact_parameter_m: float) -> float:
-    """Leading Schwarzschild deflection 4GM/(bc^2)."""
     if mass_kg <= 0:
         raise ValueError("mass_kg must be positive")
     if impact_parameter_m <= 0:
@@ -26,30 +25,67 @@ def null_deflection_rad(mass_kg: float, impact_parameter_m: float) -> float:
 
 
 def focal_distance_m(mass_kg: float, impact_parameter_m: float) -> float:
-    """Axis-crossing distance b/alpha in the weak point-lens approximation."""
-    alpha = null_deflection_rad(mass_kg, impact_parameter_m)
-    return impact_parameter_m / alpha
+    return impact_parameter_m / null_deflection_rad(mass_kg, impact_parameter_m)
 
 
 def solar_limb_focal_distance_au() -> float:
-    """Reference focal distance for a ray grazing the solar limb."""
     return focal_distance_m(M_SUN_KG, R_SUN_M) / AU_M
 
 
-def point_lens_magnification(u: float) -> float:
-    """Total geometric-optics magnification for a point source and point lens.
+def transparent_sun_rounded_check_au(
+    impact_fraction: float = 0.024,
+    projected_mass_fraction: float = 0.0137,
+) -> float:
+    """Patla-Nemiroff rounded interior check for the ~23.5 AU minimum focus."""
+    if not 0 < impact_fraction <= 1:
+        raise ValueError("impact_fraction must lie in (0,1]")
+    if not 0 < projected_mass_fraction <= 1:
+        raise ValueError("projected_mass_fraction must lie in (0,1]")
+    return focal_distance_m(
+        projected_mass_fraction * M_SUN_KG,
+        impact_fraction * R_SUN_M,
+    ) / AU_M
 
-    u = beta/theta_E.  The point-source formula diverges at u=0 and must not be
-    interpreted as an infinite physical flux.  Finite source size, detector
-    size, wave optics and alignment regularize the caustic.
-    """
+
+def point_lens_magnification(u: float) -> float:
     if u <= 0:
         raise ValueError("u must be positive; use a finite-source model near u=0")
     return (u * u + 2.0) / (u * math.sqrt(u * u + 4.0))
 
 
+def on_axis_uniform_disk_magnification(rho: float) -> float:
+    """Exact geometric-optics magnification for an on-axis uniform disk.
+
+    rho is source angular radius / Einstein angular radius.  The divergence of
+    the point-source formula is integrable and the finite source gain is finite.
+    """
+    if rho <= 0:
+        raise ValueError("rho must be positive")
+    return math.sqrt(rho * rho + 4.0) / rho
+
+
+def numerical_uniform_disk_magnification(rho: float, intervals: int = 20000) -> float:
+    """Midpoint area-average of point-source magnification over an on-axis disk."""
+    if rho <= 0:
+        raise ValueError("rho must be positive")
+    if intervals < 10:
+        raise ValueError("intervals must be >=10")
+    dr = rho / intervals
+    total = 0.0
+    for i in range(intervals):
+        u = (i + 0.5) * dr
+        total += point_lens_magnification(u) * u * dr
+    return 2.0 * total / (rho * rho)
+
+
+def surface_brightness_flux_gain(image_solid_angle: float, source_solid_angle: float) -> float:
+    """Liouville control: conserved specific intensity => flux gain = area gain."""
+    if image_solid_angle <= 0 or source_solid_angle <= 0:
+        raise ValueError("solid angles must be positive")
+    return image_solid_angle / source_solid_angle
+
+
 def required_lensing_gain(current_power_w_per_kg: float, target_power_w_per_kg: float) -> float:
-    """Lensing magnification required if *nothing else* in capture physics changes."""
     if current_power_w_per_kg <= 0:
         raise ValueError("current_power_w_per_kg must be positive")
     if target_power_w_per_kg < 0:
