@@ -27,7 +27,7 @@ Before inspecting hosted numerical output, `scripts/ga71_unoscillated_benchmark.
 
 B8 and hep were intentionally excluded from this identity gate because the current NMIR manifest pins the later Ortiz-2000 B8 choice and a separately frozen hep spectrum; comparing those to Bahcall's 1997 source-average values would mix spectral conventions.
 
-## Authoritative hosted result
+## Authoritative hosted scientific result
 
 Workflow: `NMIR Ga71 benchmark`
 
@@ -51,11 +51,20 @@ Results in units of `1e-46 cm^2`:
 
 This establishes that the frozen specific-energy response plus the pinned pp/CNO spectra reproduce the published Ga-71 standard-spectrum averages without tuning after result inspection.
 
-## CI diagnosis
+## CI diagnosis and repair authority
 
 The first same-head baseline CI run `34017366468` failed for a non-scientific regression mistake: the new test expected 59 response rows while the frozen table correctly contains 58. The scientific benchmark itself had already passed. The test cardinality was corrected in commit `cd429081a35d04aa5b44c2e69a0c694320064ccd`; no response values, interpolation rule, benchmark tolerances, spectra or physics criteria were changed.
 
-Classification: **infrastructure/test FAIL repaired; scientific Ga-71 source-average gate PASS.**
+Post-fix/recovery-head baseline CI is authoritative:
+
+- run `34017446027`
+- job `101443639628`
+- head `2d61abe7fe7816e838a7b8ea9281a34e61b4e145`
+- conclusion SUCCESS
+- `71 passed in 0.18s`
+- baseline physics executable also completed successfully.
+
+Classification: **infrastructure/test FAIL repaired; scientific Ga-71 source-average gate PASS; post-fix CI PASS.**
 
 ## Scientific consequence
 
