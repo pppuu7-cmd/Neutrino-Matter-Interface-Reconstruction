@@ -1,0 +1,7 @@
+parameter,value,unit,provenance,scope
+sin2_theta12,0.307,dimensionless,"PDG 2025 neutrino-mixing listing; solar parameter convention","baseline central value"
+sin2_theta13,0.0220,dimensionless,"PDG 2025 neutrino-mixing listing; reactor angle convention","baseline central value"
+delta_m21_sq,7.53e-5,eV^2,"PDG 2025 neutrino-mixing listing","baseline central value"
+mass_ordering,NO,category,"baseline convention; solar survival weakly dependent on atmospheric ordering","normal ordering"
+propagation,three_flavor_MSW_adiabatic,category,"standard solar MSW baseline; PEANUTS-compatible formulation","Sun propagation"
+earth_regeneration,off,boolean,"prospectively frozen first Ga/Cl benchmark","robustness branch later"
