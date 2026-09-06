@@ -7,11 +7,9 @@ Common interface:
 
 `Gamma = sum_ab integral dE d^3q dω Phi(E) K_ab(E,q,ω) S_ab(q,ω)`.
 
-For energy harvesting,
+For energy harvesting:
 
-`P_dep,nu = N_T integral dE Phi(E) mu(E,x) sigma_eff(E) E_dep,nu(E)`,
-
-with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator preparation, stored free energy and external pumping are never counted as neutrino-supplied power.
+`P_dep,nu = N_T integral dE Phi(E) mu(E,x) sigma_eff(E) E_dep,nu(E)`, with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator preparation, stored free energy, external pumping and reset work are never counted as neutrino-supplied power.
 
 ## Funnel stages
 - **F0 objective:** state control, detection, focusing, irreversible deposition or true capture; never promote one into another.
@@ -26,36 +24,53 @@ with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator pre
 - **F9 composition:** only individually validated gains may multiply.
 - **F10 outcome:** PASS-SURVIVOR, STRONG-NEGATIVE, SCIENTIFIC-FAIL or BLOCKED.
 
-## Current funnel position — iteration 0041
+## Current funnel position — through validated iteration 0045
 - **Production↔absorption:** measured-ft route + validated two-state Li-7 PASS.
-- **Validated passive targets:** Li-7, Se-82, Ga-71, Cl-37. Pure Li-7/GS98 leader `1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
+- **Validated passive CC targets:** Li-7, Se-82, Ga-71, Cl-37. Pure Li-7/GS98 leader `1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
 - **Leading allowed passive CC:** STRONG-NEGATIVE scoped envelope `9.419e-12 W/kg`.
 - **Finite-q vector-charge/axial-spin:** STRONG-NEGATIVE envelope `1.2056895108e-9 W/kg`.
-- **Omitted one-body nuclear currents:** `ONE_BODY_SUBLEADING_STRONG_NEGATIVE_SCOPED`; extreme full-one-body stress gives `1.0131561292e-8 W/kg`, still `9.87e7` below 1 W/kg.
-- **Genuine two-body nuclear currents:** global theorem OPEN. Required extra amplitude to bridge to 1 W/kg is `r_bridge=28798.32`; known literature-scale corrections remain orders of magnitude short.
-- **RIOEC resonance:** `RIOEC_B16_FLAVOR_NO_GO_PASS / RIOEC_AREA_PROFILE_PASS`. Ordinary pp-chain/CNO/B16 solar `nu_e` has zero RIOEC entrance factor; thermal solar pair-process `anti-nu_e` remains a distinct surviving source. Narrowing linewidth does not create integrated strength: rate tends to `B0*phi_anti-nu_e(E_R)`.
-- **Real-resonance positive control:** Glashow resonance PASS as known SM resonance physics, but solar application fails kinematically at PeV energy.
-- **Low-energy resonance design window:** F3 PASS only; target-specific RIOEC entrance strength × physical thermal-solar `anti-nu_e` spectrum remains OPEN. BSM remains LOCKED.
-- **Coordinate-local density:** `PASS_DENSITY_FSUM`; no free superextensive energy-weighted density gain.
-- **Bounded-local spin/magnon:** `PASS_LOCAL_SPIN_SUM`; O(N) at bounded coordination.
-- **Passive long-range pair response:** `PASS_LONG_RANGE_BUDGET`; superextensive response tracks superextensive interaction budget.
-- **Passive linear mediator/cavity:** `PASS_HARMONIC_MEDIATOR_BUDGET` and `PASS_MULTIMODE_LINEAR_BUDGET`; basis/mode count/softening do not create free energy gain when mediator energy is counted.
-- **Passive convex homogeneous nonlinear mediator:** `PASS_NONLINEAR_HOMOGENEOUS_BUDGET`; extensivity requires the coupling scaling that removes free per-particle N-gain.
-- **Passive metastable/non-convex avalanche:** iteration 0040 gives `PASS_METASTABLE_AVALANCHE_LEDGER / STRONG-NEGATIVE` for energy harvesting, but **PASS-SURVIVOR for detection/control**. Arbitrarily large signal gain can come from stored medium free energy, while neutrino-energy gain remains <=1 and cyclic reset must replenish the reservoir.
-- **CEvNS source-opening kinematics:** iteration 0041 gives `CEVNS_SOURCE_OPENING_KINEMATICS_PASS / DETECTION_SURVIVOR / ENERGY_GAIN_NONE`. For Ar-40 and a 40-eV recoil threshold, exact inverse kinematics requires `E_nu>=0.862860938 MeV`; pp endpoint is closed, pep/B8 are open, and the 0.8618-MeV Be7 reference line has `Tmax=39.901698 eV`, only `0.098302 eV` below threshold. This forces a physical thermally broadened Be7 profile fold; no cross-section enhancement is inferred.
-- **Gravitational focusing:** G9 PARTIAL PASS. Full Model-S projection gives `F_min=23.629351 AU`, 0.5504% from published 23.5 AU. This is distant-source-behind-Sun geometry, not solar self-lensing; usable finite magnification remains OPEN.
-- **Staggered/multi-isotope geometry:** `G10_GEOMETRY_ONLY_STRONG_NEGATIVE / FIXED_COLUMN_MIXTURE_THEOREM_PASS`. Layer order/offset and passive isotope mixing cannot beat fixed microscopic `sigma/m`; only structures that change microscopic response remain under G2/G4/G8.
-- **BSM:** LOCKED until target-specific low-energy resonance and genuine two-body/higher-body residuals are substantially bounded.
+- **Omitted one-body nuclear currents:** `ONE_BODY_SUBLEADING_STRONG_NEGATIVE_SCOPED`; extreme full-one-body stress `1.0131561292e-8 W/kg`, still `9.87e7` below 1 W/kg.
+- **Genuine two-/higher-body nuclear currents:** global theorem OPEN. Selected-nucleus corrections are evidence-distance anchors, not universal maxima.
+- **RIOEC resonance:** ordinary pp/CNO/B8 solar `nu_e` has zero RIOEC entrance factor; thermal-solar pair-process `anti-nu_e` remains eligible. Line narrowing does not create integrated strength. Target-specific evaluated entrance strength × primary thermal `anti-nu_e` spectrum remains OPEN/BLOCKED.
+- **Glashow positive control:** real SM resonance physics but ~6.325 PeV, outside solar <=20 MeV window.
+- **Coordinate-local density / bounded-local spin / long-range pair / passive linear multimode / convex homogeneous nonlinear mediator:** broad no-free-energy-gain guards PASS in their frozen scopes.
+- **Passive metastable avalanche:** detector/control `PASS-SURVIVOR`; energy harvesting `STRONG_NEGATIVE_SCOPED`. Macroscopic signal can be powered by stored target free energy, but neutrino-energy gain stays <=1 and reset must replenish the reservoir.
+- **G10 staggered/fixed-column geometry:** `GEOMETRY_ONLY_STRONG_NEGATIVE / FIXED_COLUMN_MIXTURE_THEOREM_PASS` at fixed microscopic response.
+- **G9 gravity:** PARTIAL PASS. Model-S gives `F_min=23.629351 AU`, close to published ~23.5 AU transparent-Sun scale. This is distant-source-behind-Sun geometry, not solar self-lensing; physical source flux × finite-source/alignment/duty-cycle utility remains OPEN.
 
-## Highest-value surviving branches
-1. **G2 metastable CEvNS physical-spectrum fold:** use the already frozen thermally broadened Be7 profile and SM differential CEvNS response on Ar-40 to quantify the near-40-eV boundary, above-threshold cross section and events/kg/day. This tests a real detection survivor, not an energy-harvesting loophole.
-2. **G8 target-specific thermal-solar antineutrino RIOEC resonance:** freeze a primary thermal-solar `anti-nu_e` spectrum plus one independently evaluated candidate and compute `B0*phi(E_R)`, events/kg/s and neutrino-only W/kg.
-3. **Global two-body/higher-body nuclear-current residual:** seek a correlation-independent finite-range/saturation/sum-rule/operator bound.
-4. **Residual active/driven or genuinely higher-body many-body sector:** complete source-resolved energy accounting before any gain claim.
-5. **G9 astrophysical focusing:** distant-source flux × finite-source/alignment duty cycle, separate from solar capture.
-6. **Minimal BSM only after unlock audit.**
+## G2 CEvNS detection survivor — current authority
+- **0041 source opening:** Ar40 at 40 eV requires `E_nu>=0.862860938 MeV`; pp closed, pep/B8 open, Be7 line sits at endpoint boundary.
+- **0042 physical Be7 fold:** at 40 eV, 31.104% of the thermally broadened dominant Be7 profile lies above the source-energy threshold, but only `4.906342834e-6` of ideal CEvNS cross section survives recoil phase space; rate `3.973604373e-8 events/(kg day)`. At 20 eV `2.022320664e-3`; at 10 eV `4.553823547e-3`.
+- **0043 class inverse law:** at fixed kg and approximately fixed `Q_W/A`, `R(A) ∝ A(1-A/Amax)^2`; `A_star=Amax/3=2E_nu^2/(3m_u T_thr)`, so `Tmax(A_star)≈3T_thr`. This is a local monoenergetic continuous-A design law.
+- **0044 approximation FAIL:** using `M=A m_u` near the Ar40/Be7 40-eV endpoint shifted the benchmark by ~30% and failed the prospectively frozen 1% criterion. The FAIL is retained; criteria were not weakened.
+- **0045 exact-mass full-solar real-nucleus PASS:** corrected gate freezes exact NIST isotope masses for 23 physical nuclei, actual Z/N, full B16-GS98 pp + both Be7 branches/profiles + pep + N13/O15/F17 + B8/hep, Helm form factor and thresholds `[1,3,5,10,20,40] eV`. Hosted run `34052577623`, job `101538698697`, raw `23 passed`, artifact `9995006029`, SHA256 `5ec6157a102ba9dc4fc2d97fc710d975020641393a0f48c184f39235ea58c897`.
 
-## Research discipline
-Class-level bounds dominate target scans. Negative results are discoveries because they shrink mechanism space; positive controls and detector survivors are retained only in their correct objective class. A gain must survive F0-F8 before F9 composition. BSM is opened only after remaining SM loopholes are quantitatively mature.
+Validated 0045 winner sequence:
 
-Current audit state: **`NMIR_READINESS: 71%`**.
+| recoil threshold | winner | ideal total rate [events/(kg day)] | dominant source |
+|---:|---|---:|---|
+| 1 eV | Pb208 | `5.633559994e-2` | Be7-ground |
+| 3 eV | Pb208 | `3.025222341e-2` | Be7-ground |
+| 5 eV | Xe132 | `1.728556077e-2` | Be7-ground |
+| 10 eV | Se82 | `8.212077955e-3` | Be7-ground |
+| 20 eV | Pb208 | `4.227008240e-3` | B8 |
+| 40 eV | Pb208 | `3.873772682e-3` | B8 |
+
+Interpretation: the full-solar optimum is a source-dependent target/threshold phase diagram. The continuous-A rule remains a useful local guide but cannot choose a global full-solar winner. Heavy-target re-entry at 20–40 eV is driven by transition to B8-dominated recoil phase space, not new microphysics or interaction enhancement. No detector/material recommendation follows until the detector transfer function is applied.
+
+## Active highest-value gate
+**G2 target/threshold phase diagram is ACTIVE and must not be duplicated.** Prospective contract `research/cevns_target_phase_diagram_prereg.md` was frozen in commit `37e28276d7fa24039c1ac5114e899b1b8e697f1e` before implementation. It reuses exactly the 0045 physical inputs and target set, scans 0.5–100 eV, refines every winner crossover by bisection to <=0.02 eV, independently checks transition topology/stability, and requires source-dominance classification. Frozen outcomes: `PASS_PHASE_DIAGRAM`, `PARTIAL_PHASE_DIAGRAM`, `FAIL_NONROBUST_WINNER_SEQUENCE`.
+
+Implementation commit: `2dca53ed8c10db38980a2b0ea0deaf1d055a40e9`; test commit: `b64df566e2e50c8eef2bf94b1d64942c844a4408`. Baseline CI success is software evidence only. Do not call a scientific PASS until the dedicated hosted result is terminal and its raw result/log/artifact are inspected.
+
+## Highest-value surviving branches after the active gate
+1. **G2 real metastable detector transfer function:** apply primary/measured `epsilon_nuc(T)` or trigger efficiency, threshold distribution/stability, chemistry/phase, backgrounds/dark counts, live fraction/dead time, reset/preparation energy and stored-free-energy accounting to the validated microscopic CEvNS phase map. Keep detection signal amplification separate from interaction rate and neutrino-energy gain.
+2. **G8 target-specific thermal-solar antineutrino RIOEC:** freeze primary thermal-solar `anti-nu_e` spectral density and one independently evaluated entrance strength/width; compute flux-integrated rate and neutrino-only W/kg. Remain BLOCKED rather than using blanket strengths.
+3. **Global genuine two-/higher-body nuclear-current residual:** seek a finite-range/saturation/sum-rule/operator bound, preferably class-level rather than another target scan.
+4. **G9 distant-source utility:** physical astrophysical neutrino source flux × full finite-source/alignment/duty-cycle magnification; never use transparent-Sun gain for solar neutrinos.
+5. **BSM unlock audit only after principal passive-SM residuals are substantially bounded.**
+
+## Research discipline / guards
+Class-level bounds dominate convenient target scans. Negative results shrink mechanism space and remain scientific results. A gain must survive F0-F8 before F9 composition. Event/detection gain != interaction gain != neutrino-energy gain; peak resonance != flux-integrated capture; directional coherence != integrated opacity; target threshold opening != cross-section enhancement. Near endpoints use physical spectra and exact masses. A nonzero endpoint tail is not automatically practical. BSM remains LOCKED.
+
+Current audit state: **`NMIR_READINESS: 74%`**. The +1 point from 73% is solely for the prospectively frozen, hosted and raw-inspected 0045 exact-mass full-solar physical-nucleus inverse-optimization PASS. 0044 is retained as a useful FAIL; documentation and baseline CI add no readiness credit.
