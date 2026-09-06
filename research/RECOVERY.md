@@ -5,143 +5,115 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable scientific record: `research/iterations/0043_cevns_mass_threshold_inverse_optimum.md`
+Latest immutable validated scientific record: `research/iterations/0045_cevns_real_nucleus_full_solar_exact_mass.md`
+Active preregistered work: `research/cevns_target_phase_diagram_prereg.md` (implementation/test commits exist; no scientific PASS until dedicated hosted result is terminal and raw-inspected)
 
 ## Recovery rule
-Chat history is not scientific authority. A new session must read, in order: `RECOVERY_MANUAL.md`, this file, `NMIR_FUNNEL.md`, newest iteration/prereg files, recent commits, then raw terminal GitHub Actions results. If newer commits exist than this reconciliation, reconcile them before new science. Do not duplicate queued/in-progress work.
+Chat history is not scientific authority. A new session must read, in order: `RECOVERY_MANUAL.md`, this file, `NMIR_FUNNEL.md`, newest iteration/prereg files, recent commits, then relevant queued/in-progress/newly-terminal GitHub Actions. If newer commits exist than this reconciliation, reconcile them before opening new science. Do not duplicate queued/in-progress work. A green workflow is not a scientific PASS without result/log/artifact inspection.
 
 ## Mission and frozen accounting
-NMIR is a discovery funnel over plausible neutrino↔matter/field interfaces, not a linear material search. Keep separate:
-1. state control/redirection/focusing;
-2. microscopic interaction/capture probability;
-3. detector visibility/event amplification;
-4. irreversible neutrino-sourced deposited energy.
+NMIR is a discovery funnel over neutrino↔matter/field interfaces, not a linear material search. Keep separate: state control/focusing; microscopic interaction/capture; detector visibility/amplification; irreversible neutrino-sourced deposited energy.
 
-Frozen power accounting:
+`P_dep,nu = N_T integral dE mu(E,x) Phi(E) sigma_eff(E) E_dep,nu(E)`, with `0 <= E_dep,nu <= E_nu`.
 
-`P_dep = N_T integral dE mu(E,x) Phi(E) sigma(E) E_dep,nu(E)`
+Daughter decay, nuclear mass release, target preparation, stored medium free energy, external pumping, mediator preparation and reset work are never counted as neutrino-supplied power. Unvalidated gains are never multiplied.
 
-with `0 <= E_dep,nu <= E_nu`. Daughter decay, nuclear mass release, target preparation, stored medium free energy, external pumping, cavity/mediator preparation and reset work are never counted as neutrino-supplied power. Unvalidated gains are never multiplied.
-
-General many-body response:
-
-`Gamma = sum_ab integral d^3q dω K_ab(E_nu,q,ω) S_ab(q,ω)`.
-
-Energy-deposition scoring includes the corresponding `ω` weight and must obey positivity, kinematics, conservation laws, applicable sum rules, causality/stability and energy-budget constraints.
+General response: `Gamma = sum_ab integral dE d^3q dω Phi(E) K_ab(E,q,ω) S_ab(q,ω)`. Energy-deposition scoring carries the `ω` weight and must obey positivity, kinematics, conservation, applicable sum rules, causality/stability and complete energy-budget accounting.
 
 ## Frozen baseline authority
 - Xe-132 ideal low-q CEvNS at 1 MeV: `sigma≈2.405e-41 cm^2`; Xe-like mean free path `~3.08e16 m`.
 - Minimal Dirac magnetic moment (`m_nu=0.05 eV`): `~1.6e-20 mu_B`; ideal 1-m spin-precession maximum `~3.35e17 T`.
 - Tritium measured-ft inverse capture: `sigma(v/c)≈7.785e-45 cm^2`, within ~0.7% of published `7.84e-45`.
-- Solar authority: B16 GS98/AGSS09met fluxes; pinned pp/hep/B8/CNO spectra; thermally broadened Be7 profile; daytime adiabatic 3-flavour MSW for charged-current electron-neutrino folds, Earth regeneration OFF. CEvNS is active-flavour neutral current and does not receive an electron-neutrino survival factor.
+- Solar authority: B16 GS98/AGSS09met fluxes; pinned pp/hep/B8/CNO spectra; thermally broadened Be7 profile; daytime adiabatic 3-flavour MSW for charged-current electron-neutrino folds. CEvNS is active-flavour neutral current and has no `P_ee` factor.
 
-## Individually validated G3 solar-capture targets
+## Validated G3 solar-capture ledger
 Detailed authority: `research/sm_power_ledger.md`.
 
-| target / B16 branch | capture [SNU] | energy moment [SNU MeV] | pure-isotope neutrino-only ceiling [W/kg] |
+| target / branch | capture [SNU] | energy moment [SNU MeV] | pure-isotope neutrino-only ceiling [W/kg] |
 |---|---:|---:|---:|
 | **7Li / GS98** | **19.34881333** | **77.50707776** | **1.06589117e-21** |
 | 7Li / AGSS09met | 16.84165298 | 65.03364861 | 8.94354349e-22 |
 | 82Se / GS98 | 355.03190979 | 249.61364032 | 2.94006655e-22 |
-| 82Se / AGSS09met | 345.60519781 | 226.65979252 | 2.66970537e-22 |
 | 71Ga / GS98 | 65.00993895 | 75.78103575 | 1.03091848e-22 |
-| 71Ga / AGSS09met | 62.31786849 | 66.37456240 | 9.02953653e-23 |
 | 37Cl / GS98 | ~3.02 | ~22.65 | ~5.91e-23 |
-| 37Cl / AGSS09met | ~2.56 | ~18.77 | ~4.90e-23 |
 
-Current validated charged-current target leader is pure `7Li/GS98 = 1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
+Current validated charged-current target leader is pure `7Li/GS98 = 1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg. This is not a universal all-nucleus theorem.
 
-## Broad class-level closures / no-free-lunch gates
-Do not reopen these without a genuinely new assumption; exact derivations, prospective contracts and provenance are retained in the immutable iteration notes.
-
-- `0024` leading-allowed nuclear envelope: `9.419449302949355e-12 W/kg`, `STRONG_NEGATIVE_SCOPED`; run `34038214660`, artifact `9990839187`.
-- `0025` isolated-resonance area theorem: line narrowing cannot create integrated entrance strength; run `34038642747`, artifact `9990968127`.
-- `0026` finite-q vector-charge/axial-spin envelope: `1.2056895107775174e-9 W/kg`; even x1e6 omitted-current stress gives `1.2056895107775173e-3 W/kg`; run `34038882486`, artifact `9991038179`.
+## Broad class-level closures / no-free-lunch authority
+Do not reopen without a genuinely new assumption; immutable notes retain full derivations and provenance.
+- `0024` leading-allowed envelope `9.419449302949355e-12 W/kg`, `STRONG_NEGATIVE_SCOPED`; run `34038214660`, artifact `9990839187`.
+- `0025` isolated-resonance area theorem: linewidth narrowing cannot create integrated entrance strength; run `34038642747`, artifact `9990968127`.
+- `0026` finite-q vector/axial envelope `1.2056895107775174e-9 W/kg`; even x1e6 stress gives `1.2056895107775173e-3 W/kg`; run `34038882486`, artifact `9991038179`.
 - `0027` coordinate-local density f-sum: no free superextensive energy-weighted density/phonon gain; run `34039755966`, artifact `9991299921`.
 - `0028` bounded-local spin first moment: no free superextensive local-magnon energy gain; run `34040105285`, artifact `9991400307`.
-- `0031` long-range pair budget: `|m1| <= 8 o0^2 W_N`; an extensive absolute interaction budget enforces extensive response; run `34041247733`, artifact `9991728037`.
-- `0032` common harmonic mediator: `E_field=|E_induced|=g_N^2 O^2/(2 kappa)`; extensive/Dicke scaling removes per-particle N gain; run `34041392001`, artifact `9991770130`.
-- `0033` omitted one-body nuclear currents: deliberately extreme complete one-body stress gives `1.0131561292246442e-8 W/kg`, still `9.87e7` below 1 W/kg. Required extra amplitude to reach 1 W/kg: `r_bridge=28798.3217`. Known selected-nucleus two-body corrections are vastly smaller, but a universal two-/higher-body theorem remains OPEN. Run `34042934477`, job `101512822458`, artifact `9992226798`.
-- `0034` geometry-only staggered/fixed-column theorem: layer order/offset does not change `1-exp(-sum tau)` at fixed microscopic response; isotope mixtures cannot beat the best component in `sigma/m` at fixed mass column; run `34043114890`, job `101513298058`, artifact `9992278460`.
-- `0038` passive finite linear multimode mediator: `E_field=|E_induced|=1/2 O^T G^T K^-1 G O`; adding modes or approaching a positive soft mode does not create free energy gain. A coupled exact zero mode lacks stable passive equilibrium. Run `34047675712`, job `101525546661`, artifact `9993592020`.
-- `0039` passive convex positive homogeneous nonlinear mediator: Euler homogeneity gives `b·x*=pV(x*)`, `|E_induced|=(p-1)V(x*)`; extensive scaling removes free per-particle N gain. Run `34048018268`, job `101526462429`, artifact `9993688056`.
+- `0031` long-range pair budget enforces extensive response for extensive absolute interaction budget; run `34041247733`, artifact `9991728037`.
+- `0032` harmonic mediator energy ledger removes free per-particle N gain; run `34041392001`, artifact `9991770130`.
+- `0033` extreme complete one-body-current stress `1.0131561292246442e-8 W/kg`, still `9.87e7` below 1 W/kg; universal genuine two-/higher-body theorem remains OPEN. Run `34042934477`, job `101512822458`, artifact `9992226798`.
+- `0034` fixed-column geometry theorem: layer order/offset cannot change `1-exp(-sum tau)` at fixed microscopic response; passive isotope mixing cannot beat best component in `sigma/m`; run `34043114890`, artifact `9992278460`.
+- `0038` passive finite linear multimode mediator: no free gain after complete mediator-energy accounting; run `34047675712`, artifact `9993592020`.
+- `0039` passive convex positive homogeneous nonlinear mediator: extensivity removes free per-particle N gain; run `34048018268`, artifact `9993688056`.
+- `0040` metastable avalanche: detector/control `PASS-SURVIVOR`, harvesting `STRONG_NEGATIVE_SCOPED`; stored free energy supplies avalanche, neutrino-energy gain <=1. Run `34048287780`, job `101527189597`, artifact `9993764694`.
 
 ## G8 resonance branch
-- `0035`: RIOEC is incident `anti-nu_e`; ordinary B16 pp/CNO solar `nu_e` has zero entrance factor. Thermal solar pair-process antineutrinos are a distinct eligible source. Lorentzian area/profile checks verify that narrowing alone does not create integrated strength. Run `34043507541`, artifact `9992388766`.
-- `0036`: Glashow resonance is a real SM positive control for strong resonant enhancement but sits at ~6.325 PeV, far outside the <=20 MeV solar window.
-- `0037`: low-energy resonance kinematic design window passed. RIOEC matching `E_R=-Q_epsilon+E_x+E_b` is only a kinematic condition. Target-specific evaluated entrance strength × physical thermal-solar `anti-nu_e` spectrum remains OPEN/BLOCKED rather than using blanket matrix elements. Run `34044012213`, artifact `9992535787`.
+- `0035`: RIOEC is incident `anti-nu_e`; ordinary solar pp/CNO/B8 `nu_e` has zero entrance factor. Area/profile theorem passed; run `34043507541`, artifact `9992388766`.
+- `0036`: Glashow resonance positive control is real SM resonance physics but at ~6.325 PeV, outside <=20 MeV solar window.
+- `0037`: low-energy resonance kinematic design window PASS only. Target-specific evaluated entrance strength × primary thermal-solar `anti-nu_e` spectrum remains OPEN/BLOCKED; run `34044012213`, artifact `9992535787`.
 
 ## G9 gravity
 - `0029`: rounded transparent-Sun focal benchmark ~23.03 AU plus finite-source/Liouville control.
-- `0030`: full Model-S projected-density calculation gives `F_min=23.62935116 AU`, only `0.5504%` from the published ~23.5 AU scale; run `34041004727`, artifact `9991661778`.
-Classification: `MODEL_S_ROBUSTNESS_PASS / G9 PARTIAL`. This is a distant-source-behind-Sun geometry, not solar-neutrino self-lensing. Usable distant-source magnification after finite source/alignment/duty-cycle accounting remains OPEN.
+- `0030`: Model-S projection `F_min=23.62935116 AU`, 0.5504% from published ~23.5 AU; run `34041004727`, artifact `9991661778`.
+Classification: `MODEL_S_ROBUSTNESS_PASS / G9 PARTIAL`. This is distant-source-behind-Sun geometry, not solar-neutrino self-lensing. Physical source flux × finite-source/alignment/duty-cycle usefulness remains OPEN.
 
-## Iteration 0040 — metastable / avalanche interface
-Prospective contract: `research/metastable_avalanche_prereg.md`.
-Hosted run `34048287780`, job `101527189597`, artifact `9993764694`, artifact SHA256 `c9221192087c1d38171fc849e2ff5bb44e3f5f76859c6fa12fb89e9ed8e4f619`; raw `7 passed`.
+## G2 CEvNS detection chain
+### 0041 — source-opening kinematics
+For Ar-40 at 40 eV, `E_nu,min=0.8628609380456526 MeV`; pp closed, pep/B8 open, nominal Be7 line sits at the boundary. Run `34049714420`, job `101530992980`, artifact `9994165815`.
 
-A 1-eV neutrino trigger plus a 1-MeV stored reservoir can create signal gain `1,000,001`, while source-resolved neutrino-energy gain stays exactly `1.0`. In 5000 randomized positive ledgers the maximum relative conservation residual was `2.220192245414529e-16`.
+### 0042 — physical Be7 profile × Ar-40
+Frozen Bahcall-1994 dominant Be7 profile. At 40 eV, 31.104% of profile lies above source-energy threshold but recoil-phase-space retained fraction is only `4.906342834e-6`; ideal dominant-Be7 rate `3.973604373e-8 events/(kg day)`. At 20 eV rate `2.022320664e-3`; at 10 eV `4.553823547e-3`. Classification `DETECTION PASS-SURVIVOR / RATE_STRONGLY_ENDPOINT_SUPPRESSED / ENERGY_GAIN_NONE`. Run `34050807911`, job `101533964874`, artifact `9994471349`.
 
-Classification: **energy harvesting `STRONG_NEGATIVE_SCOPED`; detector/control `PASS-SURVIVOR`.** The neutrino may trigger a macroscopic phase transition, but released stored free energy belongs to the target and cyclic reset must replenish it.
+### 0043 — continuous-A inverse optimum
+At fixed kg and approximately fixed `Q_W/A`, low-q envelope gives `R(A) ∝ A(1-A/Amax)^2`, unique `A_star=Amax/3=2E_nu^2/(3m_u T_thr)`, equivalently `Tmax(A_star)≈3T_thr`. Prospective numerical validation: max relative `A_star` residual `5.0032e-8`; max relative `Tmax/(3Tthr)` residual `1.3915e-4`. This is a class-level design law, not a real-isotope recommendation. Run `34051179823`, job `101534970552`, artifact `9994578242`.
 
-## Iteration 0041 — Ar-40 CEvNS threshold/source opening
-Hosted run `34049714420`, job `101530992980`, artifact `9994165815`.
-Exact recoil kinematics: `T_max=2E_nu^2/(M+2E_nu)`, `E_min(T)=0.5[T+sqrt(T^2+2MT)]`.
-For Ar-40 at `40 eV`, `E_nu,min=0.8628609380456526 MeV`. pp endpoint is closed (`Tmax~9.48 eV`), nominal Be7 861.8-keV line lies at the boundary, so a physical line-profile fold was required.
+### 0044 — approximation FAIL retained
+Prospective real-nucleus full-solar gate initially used `M=A m_u` and required Ar-40 no-Helm Be7 rates at 10/20/40 eV to reproduce 0042 within 1%. The 40-eV value was `2.7813779481704556e-8` versus exact-isotope authority `3.973604373087567e-8`, ratio ~0.700: ~30% endpoint shift. This is a scientific/approximation FAIL, not a criterion to relax. Dedicated run `34051573524`; baseline run `34051556950` had `1 failed, 267 passed`. Corrective action was prospectively frozen exact NIST isotope masses.
 
-## Iteration 0042 — physical Be7 profile × Ar-40 CEvNS
-Immutable authority: `research/iterations/0042_cevns_be7_physical_profile_gate.md`.
-Prospective contract: `research/cevns_be7_profile_prereg.md`.
-Frozen local source profile: `data/be7_bahcall1994_ground_profile.csv`, sourced from Bahcall 1994 via pinned PEANUTS commit/blob provenance.
-Workflow head `a0d50d8d8bcfb8fffa0c5c95362d4527d25a3d15`; run `34050807911`; job `101533964874`; artifact `9994471349`; artifact SHA256 `510b200aa3d6b723c025b61280edd547f6716c3e6b0cb1b17fc53db254be9cdb`; raw dedicated tests `7 passed`.
+### 0045 — exact-mass real-nucleus full-solar optimization PASS
+Immutable authority: `research/iterations/0045_cevns_real_nucleus_full_solar_exact_mass.md`.
+Prospective contract: `research/cevns_real_nucleus_exact_mass_prereg.md`.
+Frozen candidates: 23 physical nuclei with exact NIST isotope masses (`data/cevns_target_candidates_exact_mass.csv` + provenance), actual Z/N; full B16-GS98 pp, both Be7 branches/profiles, pep, N13/O15/F17, B8/hep; thresholds 1,3,5,10,20,40 eV; Helm form factor; detector efficiency/chemistry/backgrounds excluded.
 
-At **40 eV** the thermally broadened Be7 line has `31.104%` of its profile above the source-energy threshold, but the integrated recoil phase space retains only `4.906342834e-6` of the ideal CEvNS cross section. Ideal B16-GS98 dominant-Be7 rate: `3.973604373e-8 events/(kg day)` ≈ `1.45e-5 events/(kg year)`.
+An infrastructure failure from `E_nu=0` continuum endpoints plus a non-fail-closed shell pipeline was minimally repaired: zero energy contributes zero cross section, negative energies remain invalid, regression tests were added, workflow uses `set -o pipefail`. Frozen physics criteria were unchanged.
 
-At 20 eV the retained fraction is `0.2497027274` and rate `2.022320664e-3 events/(kg day)`; at 10 eV it is `0.5622758944` and `4.553823547e-3 events/(kg day)`. Zero-threshold dominant-line ideal ceiling is `8.098912994e-3 events/(kg day)`.
+Authoritative corrected workflow head `58bbb246e47abc5541b216e4db18a6011e968c41`; hosted run `34052577623`, job `101538698697`; raw dedicated tests `23 passed`; artifact `9995006029`; ZIP SHA256 `5ec6157a102ba9dc4fc2d97fc710d975020641393a0f48c184f39235ea58c897`; benchmark status `PASS_REAL_NUCLEUS_SOLAR_EXACT_MASS_OPTIMIZATION`.
 
-Classification: **`DETECTION PASS-SURVIVOR`, but 40-eV Be7 is `RATE_STRONGLY_ENDPOINT_SUPPRESSED`; interaction enhancement NONE; neutrino-energy gain NONE.**
+Threshold winners [ideal events/(kg day)]:
+- 1 eV: Pb208 `5.633559994e-2` (runner W184 `5.163448674e-2`), Be7-ground dominant;
+- 3 eV: Pb208 `3.025222341e-2` (W184 `2.890291478e-2`), Be7-ground;
+- 5 eV: Xe132 `1.728556077e-2` (I127 `1.675116223e-2`), Be7-ground;
+- 10 eV: Se82 `8.212077955e-3` (Ge74 `7.871654050e-3`), Be7-ground;
+- 20 eV: Pb208 `4.227008240e-3` (W184 `3.820668921e-3`), B8 dominant;
+- 40 eV: Pb208 `3.873772682e-3` (W184 `3.394947723e-3`), B8 dominant.
 
-## Iteration 0043 — CEvNS mass-threshold inverse optimum
-Immutable authority: `research/iterations/0043_cevns_mass_threshold_inverse_optimum.md`.
-Prospective contract: `research/cevns_mass_threshold_optimum_prereg.md`.
-Implementation: `src/nmir/cevns_mass_optimum.py`; tests: `tests/test_cevns_mass_optimum.py`; benchmark: `scripts/cevns_mass_optimum_benchmark.py`; workflow: `.github/workflows/cevns-mass-optimum.yml`.
-Workflow head `01087cfda391b9ea95fa273d6c8bd0765589d59c`; hosted run `34051179823`; job `101534970552`; artifact `9994578242`; artifact ZIP SHA256 `387536f9bee8889a3c48e5ac7d2149e33f4aa6f2824e4780cba081dec3a5b253`; raw dedicated tests `12 passed in 0.03s`.
+Ar40 at 40 eV gives Be7-ground `3.972432637e-8 events/(kg day)`, reproducing 0042 after the expected small Helm/exact-fold difference. Winner Helm/no-Helm ratios show only ~0.3–0.5% suppression at 1–10 eV and ~3% for Pb at 20–40 eV.
 
-At fixed detector mass and approximately fixed weak charge per nucleon, the frozen low-q CEvNS envelope gives
+Scientific interpretation: the optimum is a source-dependent phase diagram, not a monotonic target-mass rule. The observed six-point topology is `Pb208 -> Pb208 -> Xe132 -> Se82 -> Pb208 -> Pb208`; the high-threshold heavy-target re-entry is driven by the source switch from Be7-dominated to B8-dominated recoils. This is target/threshold matching, not interaction enhancement and not a practical detector-material recommendation.
 
-`R(A) ∝ A (1-A/A_max)^2`,
-`A_max = 2 E_nu^2/(m_u T_thr)`,
-
-so the unique interior optimum is
-
-`A_star = A_max/3 = 2 E_nu^2/(3 m_u T_thr)`,
-
-or equivalently `T_max(A_star) ≈ 3 T_thr`.
-
-The exact-endpoint numerical optimization validated this rule prospectively: maximum relative analytic-vs-numerical `A_star` residual `5.0032e-8`, maximum relative `Tmax/(3Tthr)` residual `1.3915e-4`, far inside the frozen 1% gates.
-
-Representative design centers:
-- Be7-like 0.86258 MeV / 40 eV: `A_star≈13.313`;
-- Be7-like / 20 eV: `A_star≈26.625`;
-- Be7-like / 10 eV: `A_star≈53.251`;
-- pp endpoint 0.420 MeV / 10 eV: `A_star≈12.625`;
-- pep 1.44 MeV / 40 eV: `A_star≈37.102`.
-
-Classification: **CLASS-LEVEL INVERSE-DESIGN PASS.** This is not a real-isotope recommendation; it shows quantitatively that heavier nuclei are not always optimal once a nuclear-recoil threshold is imposed. Lower thresholds move the optimum toward heavier targets.
+## Active preregistered work after 0045
+`research/cevns_target_phase_diagram_prereg.md` was committed prospectively at `37e28276d7fa24039c1ac5114e899b1b8e697f1e`, before implementation. Frozen scan is 0.5–100 eV with adaptive bisection of every winner crossover to <=0.02 eV and independent topology/stability check; classifications are `PASS_PHASE_DIAGRAM`, `PARTIAL_PHASE_DIAGRAM`, or `FAIL_NONROBUST_WINNER_SEQUENCE`. Implementation commit `2dca53ed8c10db38980a2b0ea0deaf1d055a40e9`; test commit `b64df566e2e50c8eef2bf94b1d64942c844a4408`. Baseline CI may validate software only; no phase-diagram scientific PASS is authoritative until a dedicated result is terminal and its raw result/log/artifact is inspected. Do not launch a duplicate while related work is queued/in progress.
 
 ## Research gates
 | Gate | Status |
 |---|---|
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
-| G2 many-body/deposited-energy/detection channels | **PARTIAL: major passive free-energy-gain classes bounded; metastable avalanche is a detector survivor; physical Be7 threshold fold and class-level target-mass inverse law PASS; full real-nucleus solar-spectrum optimization + real detector efficiency/dark-count ledger OPEN** |
-| G3 maximum SM deposited solar-neutrino power | **PARTIAL PASS — leading, finite-q and one-body-current sectors strong-negative; universal genuine two-/higher-body residual and target-specific thermal-antineutrino resonance remain OPEN** |
+| G2 many-body/deposited-energy/detection channels | **PARTIAL PASS: passive free-energy-gain classes bounded; metastable avalanche detector survivor; physical-spectrum CEvNS and exact-mass full-solar real-nucleus inverse optimization PASS; threshold phase diagram ACTIVE; real detector transfer-function ledger OPEN** |
+| G3 maximum SM deposited solar-neutrino power | **PARTIAL PASS — leading, finite-q and one-body-current sectors strong-negative; universal genuine two-/higher-body residual and target-specific thermal-antineutrino resonance OPEN** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5 minimal BSM solution | LOCKED |
 | G6 BSM constraints | LOCKED |
-| G7 production/decay → inverse capture | PARTIAL PASS |
+| G7 production/decay -> inverse capture | PARTIAL PASS |
 | G8 resonance integrated-strength/bandwidth | **PARTIAL PASS — area/source/flavor/kinematic controls passed; target-specific evaluated RIOEC entrance strength × thermal-solar anti-nu_e fold OPEN/BLOCKED** |
-| G9 finite gravitational focusing gain | PARTIAL PASS — ~23.5 AU transparent-Sun scale robust; distant-source usefulness OPEN; solar self-lensing inapplicable |
+| G9 finite gravitational focusing gain | **PARTIAL PASS — transparent-Sun scale robust; distant-source usefulness OPEN; solar self-lensing inapplicable** |
 | G10 staggered/multi-isotope fixed-mass-column gain | **GEOMETRY-ONLY STRONG NEGATIVE / FIXED-COLUMN MIXTURE THEOREM PASS** |
 
 ## Critical scope guards
@@ -153,27 +125,28 @@ Classification: **CLASS-LEVEL INVERSE-DESIGN PASS.** This is not a real-isotope 
 6. A few-target maximum is not a global SM ceiling.
 7. Frozen gates are never relaxed after seeing results.
 8. Selected-nucleus two-body corrections are evidence-distance anchors, not universal maxima.
-9. Geometry-only G10 does not cover structure-induced microscopic response changes.
+9. Geometry-only G10 does not cover structure-induced microscopic-response changes.
 10. No F9 multiplication of unvalidated gains.
 11. RIOEC is an electron-antineutrino entrance channel; ordinary B16 solar `nu_e` flux must never be inserted into its rate.
 12. Kinematic resonance matching alone is not a microscopic-strength or rate PASS.
-13. Metastable amplification requires an explicit stored-free-energy/reset ledger.
+13. Metastable amplification requires explicit stored-free-energy/reset accounting.
 14. Detector-threshold opening is not cross-section enhancement; near-boundary sources require physical spectral folding.
 15. A nonzero endpoint-tail rate is not automatically a practically useful detector rate.
-16. Continuous-`A` CEvNS target optimization is a design envelope, not a real-isotope/material recommendation until `Z/N`, form factors, physical spectra and detector effects are folded.
+16. Continuous-A CEvNS optimization is only a local monoenergetic design envelope; full-solar physical-nucleus optimum is source- and threshold-dependent.
+17. Exact isotope masses are mandatory near recoil endpoints where `M=A m_u` can materially move source opening.
 
 ## Chronology
-`0001–0023`: baseline microphysics, solar/MSW authority and target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q envelope; `0027` density f-sum; `0028` local spin sum; `0029–0030` gravity; `0031` long-range pair budget; `0032` harmonic mediator; `0033` omitted one-body currents + two-body distance; `0034` fixed-column theorem; `0035` RIOEC source/flavor + area; `0036` Glashow positive control; `0037` low-energy resonance window; `0038` passive linear multimode; `0039` passive convex homogeneous nonlinear; `0040` metastable avalanche; `0041` CEvNS source opening; `0042` physical Be7-profile CEvNS rate; `0043` CEvNS mass-threshold inverse optimum.
+`0001–0023`: baseline microphysics, solar/MSW authority, target validation; `0024` allowed bound; `0025` resonance area; `0026` finite-q envelope; `0027` density f-sum; `0028` local spin; `0029–0030` gravity; `0031` long-range pair budget; `0032` harmonic mediator; `0033` omitted one-body currents; `0034` fixed-column theorem; `0035–0037` RIOEC/Glashow/resonance window; `0038–0039` passive multimode/nonlinear mediator; `0040` metastable avalanche; `0041` CEvNS source opening; `0042` physical Be7 CEvNS; `0043` continuous-A inverse law; `0044` endpoint mass-approximation FAIL; `0045` exact-mass full-solar real-nucleus CEvNS PASS. A prospectively preregistered threshold phase-diagram gate is active after 0045.
 
 ## Current maturity
-**NMIR_READINESS: 73%** (audit estimate).
+**NMIR_READINESS: 74%** (audit estimate).
 
-72%→73% credit: +1% for a prospectively frozen, hosted and raw-inspected class-level inverse-design closure that converts threshold/source kinematics into a predictive optimum target-mass scaling. The recovery manual and documentation volume themselves earn no scientific-readiness credit.
+73% -> 74% credit: +1% for the prospectively frozen, hosted, raw-inspected exact-mass full-solar real-nucleus CEvNS inverse-optimization PASS. Iteration 0044 earns no positive credit but is retained as a useful negative result demonstrating endpoint sensitivity. Documentation/reconciliation and baseline CI earn no scientific credit.
 
 ## Exact next funnel gates
-1. **G2 real-nucleus full-solar inverse optimization:** replace continuous `A`/fixed `Q_W/A` by a prospectively frozen set of physical nuclei and fold the full frozen pp + both Be7 profiles + pep + CNO + B8/hep solar source set at fixed kg over a threshold grid, especially 1–20 eV. Report source-resolved and total ideal events/kg/day and compare the numerical optimum with the `A_star` law. Apply nuclear form factors where they become material. Do not optimize detector efficiency in the same gate.
-2. **G2 real detector ledger:** for any experimentally motivated metastable target, fold nucleation/recoil efficiency, threshold distribution/stability, dark counts/backgrounds, reset/dead time and stored-energy cost. Keep signal amplification separate from microscopic interaction rate.
+1. **ACTIVE G2 target/threshold phase diagram:** do not duplicate. Inspect the dedicated terminal result when available; classify against the preregistered topology/refinement/stability criteria and create immutable iteration note only after raw result/log/artifact inspection.
+2. **After phase-diagram PASS: G2 real metastable detector transfer-function ledger:** use primary/measured nucleation or trigger efficiency vs recoil, threshold distribution/stability, target chemistry/phase, dark counts/backgrounds, live fraction/dead time, reset/preparation cost and stored-free-energy accounting. Keep signal amplification separate from microscopic rate and neutrino-sourced energy.
 3. **G8 target-specific thermal-solar antineutrino RIOEC:** require independently evaluated entrance strength × primary thermal `anti-nu_e` spectrum; remain BLOCKED rather than substituting blanket strengths.
-4. **Global two-/higher-body nuclear residual:** seek a finite-range/saturation/sum-rule/operator bound without promoting selected-nucleus calculations to a theorem.
-5. **G9 distant-source utility:** physical astrophysical source flux × full finite-source/alignment/duty-cycle magnification; do not use transparent-Sun gain for solar neutrinos.
-6. **BSM unlock audit:** only after G8 and the genuine two-/higher-body residual are substantially bounded.
+4. **Global genuine two-/higher-body nuclear residual:** seek a finite-range/saturation/sum-rule/operator bound without promoting selected-nucleus calculations to a theorem.
+5. **G9 distant-source utility:** physical astrophysical source flux × full finite-source/alignment/duty-cycle magnification; never apply transparent-Sun gain to solar neutrinos.
+6. **BSM unlock audit:** only after principal passive-SM residuals are substantially bounded.
