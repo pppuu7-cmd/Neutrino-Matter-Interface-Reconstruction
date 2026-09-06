@@ -42,15 +42,25 @@ def _linear(x: float, x0: float, y0: float, x1: float, y1: float) -> float:
     return y0 + (y1-y0)*(x-x0)/(x1-x0)
 
 
-def cl37_sigma_cm2(energy_mev: float, *, branch: str = "improved", response: Sequence[Cl37ResponsePoint] | None = None) -> float:
+def cl37_sigma_cm2(
+    energy_mev: float,
+    *,
+    branch: str = "improved",
+    low_energy_mode: str = "threshold_linear",
+    response: Sequence[Cl37ResponsePoint] | None = None,
+) -> float:
     """Piecewise-linear interpolation of the published Cl-37 response.
 
-    Below the physical 0.814-MeV threshold sigma=0. Between threshold and the
-    first tabulated 1-MeV point interpolation is anchored to zero at threshold.
-    Above 30 MeV fail closed rather than extrapolate.
+    Published numerical authority starts at 1 MeV. Two explicit sub-1-MeV
+    conventions are supported solely for sensitivity accounting:
+    ``threshold_linear`` (default) anchors sigma=0 at the physical 0.814-MeV
+    threshold and connects linearly to the 1-MeV table point; ``zero_to_1``
+    sets the unresolved interval to zero. Above 30 MeV the routine fails closed.
     """
     if energy_mev < 0:
         raise ValueError("energy must be non-negative")
+    if low_energy_mode not in {"threshold_linear", "zero_to_1"}:
+        raise ValueError("low_energy_mode must be threshold_linear or zero_to_1")
     if energy_mev <= CL37_THRESHOLD_MEV:
         return 0.0
     pts = tuple(response) if response is not None else load_cl37_response()
@@ -59,6 +69,8 @@ def cl37_sigma_cm2(energy_mev: float, *, branch: str = "improved", response: Seq
         raise ValueError("branch must be improved or bahcall_ulrich")
     first = pts[0]
     if energy_mev < first.energy_mev:
+        if low_energy_mode == "zero_to_1":
+            return 0.0
         return _linear(energy_mev, CL37_THRESHOLD_MEV, 0.0, first.energy_mev, getattr(first, field))
     if energy_mev > pts[-1].energy_mev:
         raise ValueError("energy exceeds frozen Cl-37 response range")
