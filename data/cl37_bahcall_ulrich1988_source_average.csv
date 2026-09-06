@@ -1,0 +1,9 @@
+component,source_average_cm2,source_average_unit,reference
+pp,0.0,1e-46_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+pep,16.0,1e-46_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+hep,3.9,1e-42_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+Be7,2.4,1e-46_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+B8,1.06,1e-42_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+N13,1.7,1e-46_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+O15,6.8,1e-46_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
+F17,6.9,1e-46_cm2,"Bahcall & Ulrich, Rev. Mod. Phys. 60, 297 (1988), Table VII"
