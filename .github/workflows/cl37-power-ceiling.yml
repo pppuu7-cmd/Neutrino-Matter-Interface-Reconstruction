@@ -1,0 +1,25 @@
+name: NMIR Cl37 neutrino-only power ceiling
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/nmir/cl37_power_ceiling.py'
+      - 'scripts/cl37_power_ceiling_benchmark.py'
+      - '.github/workflows/cl37-power-ceiling.yml'
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - name: Compute neutrino-only Cl37 ceiling envelope
+        run: python scripts/cl37_power_ceiling_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cl37-neutrino-energy-ceiling
+          path: results/cl37_neutrino_energy_ceiling.json
