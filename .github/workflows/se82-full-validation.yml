@@ -1,0 +1,28 @@
+name: NMIR Se82 full validation
+on:
+  push:
+    paths:
+      - 'data/se82_frekers2016_gt_response.csv'
+      - 'src/nmir/se82_response.py'
+      - 'src/nmir/se82_full_response.py'
+      - 'src/nmir/se82_full_validation.py'
+      - 'scripts/se82_full_validation_benchmark.py'
+      - '.github/workflows/se82-full-validation.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate full measured-GT response against published source averages
+        run: PYTHONPATH=src python scripts/se82_full_validation_benchmark.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: se82-full-validation
+          path: artifacts/se82_full_validation/results.json
+          if-no-files-found: error
