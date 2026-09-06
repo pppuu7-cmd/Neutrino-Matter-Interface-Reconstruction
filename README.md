@@ -100,10 +100,18 @@ The detailed F0–F10 discovery funnel is authoritative in `research/NMIR_FUNNEL
 
 ## Current status
 
-**2026-09-06 — reconciled through iteration 0042.**
+**2026-09-06 — reconciled through iteration 0043.**
 
-`NMIR_READINESS: 72%` — audit estimate of funnel maturity, not probability that a revolutionary mechanism exists and not publication probability.
+`NMIR_READINESS: 73%` — audit estimate of funnel maturity, not probability that a revolutionary mechanism exists and not publication probability.
 
-Latest result: the physical thermally broadened solar Be7 line folded with ideal Ar-40 CEvNS confirms that a 40-eV recoil threshold is technically nonzero but strongly endpoint-suppressed: about 31.1% of the line lies above the kinematic source threshold, while only about `4.91e-6` of the integrated CEvNS cross section survives. The current inverse-design priority is therefore a full solar-spectrum target/threshold optimization rather than assuming Ar or treating kinematic opening as practical sensitivity.
+Latest class-level inverse-design result: at fixed detector mass, in the low-q continuous-`A` envelope with approximately fixed weak charge per nucleon, CEvNS target selection has an interior optimum
+
+\[
+A_* = \frac{2E_\nu^2}{3m_uT_{\rm thr}},
+\]
+
+equivalently `T_max(A*) ≈ 3 T_thr`. Hosted exact-endpoint validation passes by far inside the preregistered 1% tolerance. For Be7-like neutrinos the design center moves from `A≈13.3` at 40 eV to `A≈26.6` at 20 eV and `A≈53.3` at 10 eV. The next required gate replaces this continuous envelope by real nuclei and the full frozen solar spectrum.
+
+The preceding physical Be7-profile result remains important: an Ar-40 40-eV threshold is technically open but retains only about `4.91e-6` of the dominant-line CEvNS cross section, so kinematic opening alone is not useful sensitivity.
 
 See `research/RECOVERY.md` for the exact source-of-truth state and `research/RECOVERY_MANUAL.md` for recovery/continuation instructions.
