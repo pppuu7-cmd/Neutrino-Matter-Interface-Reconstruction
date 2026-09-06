@@ -1,0 +1,28 @@
+name: NMIR RIOEC source-class benchmark
+
+on:
+  push:
+    paths:
+      - 'src/nmir/rioec_gate.py'
+      - 'tests/test_rioec_gate.py'
+      - 'scripts/rioec_source_class_benchmark.py'
+      - '.github/workflows/rioec-source-class.yml'
+      - 'research/rioec_source_class_prereg.md'
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_rioec_gate.py
+      - run: python scripts/rioec_source_class_benchmark.py | tee rioec_source_class.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rioec-source-class-result
+          path: rioec_source_class.json
