@@ -1,0 +1,3 @@
+transition,parent,parent_jpi,daughter,daughter_level_keV,daughter_jpi,q_ec_keV,half_life_days,branch_percent,logft,authority,status
+Be7_gs_to_Li7_gs,7Be,3/2-,7Li,0.0,3/2-,861.815,53.22,89.56,3.324,ENSDF_7Be_EC_2002Ti10,DIRECT_INVERSE_CAPTURE_SEED
+Be7_gs_to_Li7_477,7Be,3/2-,7Li,477.612,1/2-,861.815,53.22,10.44,3.556,ENSDF_7Be_EC_2002Ti10,DECAY_MATRIX_ELEMENT_ONLY_NOT_DIRECT_GROUND_TARGET_INVERSE
