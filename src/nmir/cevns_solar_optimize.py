@@ -1,8 +1,9 @@
 """Real-nucleus full-solar CEvNS inverse optimization.
 
-Physics-only ideal event-rate ranking at fixed target kg.  Detector efficiency,
+Physics-only ideal event-rate ranking at fixed target kg. Detector efficiency,
 metastable amplification and stored-energy accounting deliberately live outside
-this module.
+this module. Exact frozen isotope masses are used because endpoint rates can be
+highly sensitive to sub-percent mass shifts.
 """
 
 from __future__ import annotations
@@ -28,10 +29,15 @@ class Target:
     name: str
     z: int
     a: int
+    atomic_mass_u: float
 
     @property
     def n(self) -> int:
         return self.a - self.z
+
+    @property
+    def mass_mev(self) -> float:
+        return self.atomic_mass_u * M_U_MEV
 
 
 @dataclass(frozen=True)
@@ -48,7 +54,13 @@ class SpectrumSpec:
 
 def read_targets(path: str | Path) -> list[Target]:
     with Path(path).open("r", encoding="utf-8", newline="") as handle:
-        return [Target(row["name"], int(row["Z"]), int(row["A"])) for row in csv.DictReader(handle)]
+        rows = list(csv.DictReader(handle))
+    targets: list[Target] = []
+    for row in rows:
+        if not row.get("atomic_mass_u"):
+            raise ValueError("exact-mass target table requires atomic_mass_u")
+        targets.append(Target(row["name"], int(row["Z"]), int(row["A"]), float(row["atomic_mass_u"])))
+    return targets
 
 
 def read_fluxes(path: str | Path, branch: str = "b16_gs98_flux_cm2_s") -> dict[str, float]:
@@ -145,9 +157,9 @@ def helm_form_factor_sq(a: int, q_mev: float) -> float:
     return value * value
 
 
-def recoil_tmax_gev(e_nu_mev: float, a: int) -> float:
+def recoil_tmax_gev(e_nu_mev: float, target: Target) -> float:
     e = e_nu_mev * 1.0e-3
-    m = a * M_U_MEV * 1.0e-3
+    m = target.mass_mev * 1.0e-3
     return 2.0 * e * e / (m + 2.0 * e)
 
 
@@ -162,9 +174,9 @@ def cevns_sigma_above_threshold_cm2(
     if e_nu_mev <= 0.0 or threshold_ev < 0.0 or recoil_steps < 8:
         raise ValueError("invalid CEvNS integration input")
     e = e_nu_mev * 1.0e-3
-    m = target.a * M_U_MEV * 1.0e-3
+    m = target.mass_mev * 1.0e-3
     t0 = threshold_ev * 1.0e-9
-    t1 = recoil_tmax_gev(e_nu_mev, target.a)
+    t1 = recoil_tmax_gev(e_nu_mev, target)
     if t0 >= t1:
         return 0.0
     q_w = weak_charge(target.z, target.n, SIN2_THETA_W)
@@ -195,7 +207,7 @@ def spectrum_average_sigma_cm2(
 
 
 def nuclei_per_kg(target: Target) -> float:
-    return 1000.0 * N_A / target.a
+    return 1000.0 * N_A / target.atomic_mass_u
 
 
 def rate_per_kg_day(flux_cm2_s: float, sigma_cm2: float, target: Target) -> float:
@@ -240,6 +252,7 @@ def total_rate_row(
         "target": target.name,
         "Z": target.z,
         "A": target.a,
+        "atomic_mass_u": target.atomic_mass_u,
         "threshold_ev": threshold_ev,
         "components_events_per_kg_day": rates,
         "total_events_per_kg_day": sum(rates.values()),
