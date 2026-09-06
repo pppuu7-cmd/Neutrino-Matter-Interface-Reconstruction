@@ -39,4 +39,4 @@ def test_nuclear_geometric_covering_scale():
 def test_one_mev_neutrino_wavelength_and_bragg_angle():
     assert neutrino_wavelength_m(1.0) == pytest.approx(1.239841984e-12, rel=1e-12)
     theta = first_order_bragg_angle_deg(1.0, 3e-10)
-    assert theta == pytest.approx(0.118392, rel=2e-5)
+    assert theta == pytest.approx(0.118396273, rel=2e-5)
