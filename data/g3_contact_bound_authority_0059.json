@@ -1,0 +1,70 @@
+{
+  "gate": "NMIR-0059",
+  "date": "2026-09-07",
+  "question": "Does the frozen primary chiral-EFT authority set provide a regulator- and renormalization-scheme-independent hard upper bound on renormalized contact/two-body weak-current strength?",
+  "preregistration_commit": "5507f21e75e6e41df89a95029837b17952516d56",
+  "classification": "PASS_NO_UNIVERSAL_HARD_BOUND_FOUND / RESIDUAL_OPEN",
+  "scope_guard": "Negative audit of the frozen authority set only; not a theorem that no universal bound can ever be derived.",
+  "hard_bound_requirements": [
+    "theory-derived finite inequality or interval rather than naturalness",
+    "explicit normalization/units mapping",
+    "regulator/cutoff/scheme independence after matching",
+    "cross-target applicability without refitting a free coefficient",
+    "propagatable through the frozen 0048 amplitude-to-power bridge"
+  ],
+  "authorities": [
+    {
+      "key": "GazitQuaglioniNavratil2009",
+      "title": "Three-Nucleon Low-Energy Constants from the Consistency of Interactions and Currents in Chiral Effective Field Theory",
+      "arxiv": "0812.4444v2",
+      "doi": "10.1103/PhysRevLett.103.102502",
+      "primary_url": "https://arxiv.org/abs/0812.4444",
+      "frozen_finding": "c_D and c_E are constrained/determined from A=3 binding energies and triton beta decay; this is calibration from observables, not a theory-derived universal coefficient ceiling.",
+      "hard_bound_supplied": false
+    },
+    {
+      "key": "BaroniEtAl2016",
+      "title": "Nuclear Axial Currents in Chiral Effective Field Theory",
+      "arxiv": "1509.07039v3",
+      "doi": "10.1103/PhysRevC.93.015501",
+      "primary_url": "https://arxiv.org/abs/1509.07039",
+      "frozen_finding": "Two-nucleon axial operators and contact structures are derived; ultraviolet divergences and renormalization/contact terms are part of the construction. No regulator/scheme-independent finite universal coefficient/operator-norm upper bound is provided.",
+      "hard_bound_supplied": false
+    },
+    {
+      "key": "KrebsEpelbaumMeissner2017",
+      "title": "Nuclear axial current operators to fourth order in chiral effective field theory",
+      "arxiv": "1610.03569v1",
+      "doi": "10.1016/j.aop.2017.01.021",
+      "primary_url": "https://arxiv.org/abs/1610.03569",
+      "frozen_finding": "Renormalized one-, two-, and three-nucleon axial operators are derived; unitary ambiguity is controlled by renormalizability and matching to nuclear forces. Renormalized operator construction does not furnish a universal finite upper bound on the matched short-range LEC/operator norm.",
+      "hard_bound_supplied": false
+    },
+    {
+      "key": "KrebsEpelbaum2023",
+      "title": "Towards consistent nuclear interactions from chiral Lagrangians II: Symmetry preserving regularization",
+      "arxiv": "2312.13932v1",
+      "primary_url": "https://arxiv.org/abs/2312.13932",
+      "frozen_finding": "Consistent forces and currents require symmetry-preserving cutoff regularization; regulator construction is an explicit part of the EFT. This supports the prereg distinction between renormalized consistency and a regulator-independent numerical hard ceiling; no such ceiling is supplied.",
+      "hard_bound_supplied": false
+    },
+    {
+      "key": "GysbersEtAl2019",
+      "title": "Discrepancy between experimental and theoretical beta-decay rates resolved from first principles",
+      "arxiv": "1903.00047",
+      "doi": "10.1038/s41567-019-0450-7",
+      "primary_url": "https://arxiv.org/abs/1903.00047",
+      "frozen_finding": "Representative ab-initio many-body/two-body-current phenomenology is retained only as empirical evidence-distance, never as a universal maximum.",
+      "hard_bound_supplied": false
+    }
+  ],
+  "audit_logic": {
+    "all_required_authority_classes_covered": true,
+    "any_source_supplies_all_hard_bound_requirements": false,
+    "naturalness_promoted_to_theorem": false,
+    "selected_nucleus_promoted_to_global_maximum": false,
+    "0048_status": "evidence-distance only",
+    "physical_residual_status": "OPEN"
+  },
+  "next_action": "Move to the next independent class-level survivor; highest-value candidate is the genuinely long-range/growing-coordination Standard-Model residual, while preserving the contact-coefficient residual OPEN."
+}
