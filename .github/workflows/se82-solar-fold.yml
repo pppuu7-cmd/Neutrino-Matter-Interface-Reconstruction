@@ -1,0 +1,24 @@
+name: NMIR Se82 solar fold
+on:
+  push:
+    paths:
+      - 'src/nmir/se82_solar_fold.py'
+      - 'scripts/se82_solar_fold_benchmark.py'
+      - '.github/workflows/se82-solar-fold.yml'
+  workflow_dispatch:
+jobs:
+  fold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fold measured Se-82 response with frozen B16 spectra and MSW
+        run: PYTHONPATH=src python scripts/se82_solar_fold_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: se82-solar-fold
+          path: artifacts/se82_solar_fold/results.json
+          if-no-files-found: error
