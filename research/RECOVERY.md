@@ -49,6 +49,20 @@ Authoritative full Ga fold: run `34020272911`, artifact `9985246195`.
 
 Classification: full component-specific B16 × spectrum × production-averaged MSW × Ga response folding PASS.
 
+### Ga-71 neutrino-only deposited-energy ceiling — iteration 0018
+For G3, the prospective conservative definition is `E_dep,nu <= E_nu` per successful capture. This credits at most the incident-neutrino energy and explicitly excludes daughter-decay energy, nuclear-mass release, and other target-internal energy reservoirs. It is therefore a strict upper bound on neutrino-sourced deposited power, not an assumption of complete local thermalization.
+
+Hosted authority: run `34028394336`, job `101473373902`, head `a1bbb60f90cfd5146c24861098a15220db6bd1a1`, artifact `9987793879`, artifact ZIP SHA256 `bc0193112f2bdfb63438322a0b5cb702145dd6fd1e938f1be99ae4d5b66ade65`.
+
+| Ga-71 ceiling quantity | GS98 | AGSS09met |
+|---|---:|---:|
+| total rate [SNU] | 65.00993895 | 62.31786849 |
+| energy moment [SNU MeV] | 75.78103575 | 66.37456240 |
+| capture-weighted incident Eν [MeV] | 1.16568385 | 1.06509680 |
+| pure-71Ga neutrino-energy ceiling [W/kg] | **1.03091848e-22** | **9.02953653e-23** |
+
+For GS98, B8 contributes `42.69685 SNU MeV`, Be7 `15.80371`, and pp `12.58974`; thus pp dominates the event count but B8 dominates the neutrino-carried energy moment. The larger validated Ga ceiling is only `~1.03e-22 W/kg`; reaching 1 W/kg would require `~9.7e21` times this power before any further thermalization losses. Classification: Ga-71 neutrino-carried energy upper-bound observable PASS; global G3 remains open pending Cl-37 and broader target ledger.
+
 ### Cl-37 authority
 Primary numerical response: Bahcall et al., Phys. Rev. C 54, 411 (1996), frozen in `data/cl37_bahcall1996_response.csv`: 19 representative points from 1–30 MeV plus Bahcall-Ulrich comparison column; physical threshold `0.814 MeV`.
 
@@ -93,7 +107,7 @@ Classification: matched historical B8/Cl convention/reproducibility gate PASS. T
 | G0 weak/capture normalization | PARTIAL PASS — CEvNS + tritium ft + Ga response + Cl pointwise/source-average anchors + matched historical B8/Cl audit |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE — naive N² opacity disfavored |
 | G2 many-body deposited-energy channels | OPEN |
-| G3 maximum SM deposited solar-neutrino power | OPEN — Ga fold PASS; Cl Be7 blocker resolved; B8 historical convention mismatch localized and matched audit PASS; final Cl envelope + W/kg missing |
+| G3 maximum SM deposited solar-neutrino power | PARTIAL PASS — Ga fold + neutrino-only pure-71Ga ceiling PASS; Cl Be7 blocker resolved; matched B8/Cl audit PASS; Cl power ceiling + broader target ledger missing |
 | G4 engineered resonance/polarization/periodicity | OPEN |
 | G5 minimal BSM solution | LOCKED until G3 |
 | G6 BSM constraints | LOCKED until G5 |
@@ -114,16 +128,17 @@ Classification: matched historical B8/Cl convention/reproducibility gate PASS. T
 9. Green workflow ≠ scientific PASS until raw result and frozen gate are inspected.
 10. Missing pointwise response must not be silently interpolated into authority when a source-average or uncertainty formulation is the correct observable.
 11. Historical source-average cross sections validate only matched spectrum+response conventions; do not attribute a mixed-convention discrepancy to the spectrum alone.
+12. Neutrino-sourced deposited-energy ceilings may credit at most incident `E_nu`; daughter decay or target nuclear-mass energy must be tracked separately and never counted as energy supplied by the neutrino.
 
 ## Chronology
-`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + mixed B8 audit; `0017` matched historical B8/Cl convention reclassification and CI repair.
+`0001` CEvNS/magnetic/coherence; `0002` production↔absorption/spin; `0003` inverse-transition seeds; `0004` gravity; `0005` staggered metamaterial; `0006` ft→capture; `0007–0012` B16 flux/spectra/matter/MSW; `0013` Ga response; `0014` full Ga fold; `0015` Cl pointwise fold/sensitivity; `0016` Cl source-average Be7 authority + mixed B8 audit; `0017` matched historical B8/Cl convention reclassification and CI repair; `0018` Ga-71 neutrino-only deposited-energy ceiling.
 
 ## Current maturity
-**NMIR_READINESS: 34%**.
+**NMIR_READINESS: 36%**.
 
-Readiness increases from 33% to 34% because the historical B8/Cl convention gate is now both scientifically clarified from the primary source and reproducibly validated in CI; the increase is not awarded for the failed mixed-convention comparison itself.
+Readiness increases from 34% to 36% because G3 now has its first directly validated, reproducible W/kg-scale neutrino-supplied energy ceiling on a fully folded target. No credit is given for target-internal decay energy, and global G3 is not yet closed.
 
 ## Exact next gate
-1. Freeze final Cl component/total convention/uncertainty envelope without cross-convention validation abuse.
-2. Implement neutrino-only deposited-energy accounting for validated Ga/Cl capture, explicitly excluding daughter-decay/nuclear-mass energy not supplied by the incident neutrino; convert to W/kg and bound G3.
+1. Compute the analogous Cl-37 neutrino-only energy ceiling while preserving the authoritative Be7 source-average treatment and explicit `0.814–1.0 MeV` residual envelope.
+2. Assemble a first Ga/Cl Standard-Model power ledger and determine what remains necessary before calling G3 a true cross-target ceiling rather than a two-target benchmark.
 3. Continue independent G8 resonance integrated-strength, G9 transparent-Sun finite-source focusing, and G10 fixed-mass-column staggered-stack gates without result-dependent tuning.
