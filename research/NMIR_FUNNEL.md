@@ -26,14 +26,14 @@ with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator pre
 - **F9 composition:** only individually validated gains may multiply.
 - **F10 outcome:** PASS-SURVIVOR, STRONG-NEGATIVE, SCIENTIFIC-FAIL or BLOCKED.
 
-## Current funnel position — iteration 0034
+## Current funnel position — iteration 0035
 - **Production↔absorption:** measured-ft route + validated two-state Li-7 PASS.
 - **Validated passive targets:** Li-7, Se-82, Ga-71, Cl-37. Pure Li-7/GS98 leader `1.06589117e-21 W/kg`, still `~9.38e20` below 1 W/kg.
 - **Leading allowed passive CC:** STRONG-NEGATIVE scoped envelope `9.419e-12 W/kg`.
 - **Leading finite-q vector-charge/axial-spin:** STRONG-NEGATIVE envelope `1.2056895108e-9 W/kg`.
 - **Omitted one-body nuclear currents:** `ONE_BODY_SUBLEADING_STRONG_NEGATIVE_SCOPED`. With deliberately extreme `p/M<=1`, `q<=40.511 MeV`, triangle component count and extra factor-2 amplitude safety, full recoil/convection + axial charge + weak magnetism + electron-channel induced pseudoscalar gives only `1.0131561292e-8 W/kg`, still `9.87e7` below 1 W/kg.
 - **Genuine two-body nuclear currents:** global theorem OPEN, but known-current data are extraordinarily distant from the bridge. Required extra amplitude `r_bridge=28798.32`; literature-scale 0.03, 0.30 and 0.61 corrections are short by ~`9.60e5`, `9.60e4` and `4.72e4` in amplitude respectively. Even artificial `r=1000` gives only `1.208e-3 W/kg`.
-- **Resonance:** integrated-area/source-overlap formal gate PASS; target-specific measured entrance strength + physical source profile OPEN and now highest-value passive SM survivor.
+- **Resonance:** integrated-area/source-overlap formal gate PASS. Iteration 0035 adds `RIOEC_B16_FLAVOR_NO_GO_PASS`: resonant induced orbital electron capture requires incident `anti-nu_e`, so the ordinary B16 pp-chain/CNO `nu_e` source contributes exactly zero to this channel. A distinct thermal-solar pair-process antineutrino source remains OPEN; linewidth narrowing cannot increase integrated entrance strength, and the narrow-resonance rate tends to `B0*phi_anti-nu_e(E_R)`.
 - **Static naive macroscopic N² opacity:** strongly disfavored.
 - **Coordinate-local density response:** `PASS_DENSITY_FSUM`; soft-mode event strength can grow while energy-weighted first moment remains fixed; O(N), not free N².
 - **Bounded-local spin/magnon:** `PASS_LOCAL_SPIN_SUM`; O(N) at bounded coordination.
@@ -45,7 +45,7 @@ with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator pre
 - **BSM:** LOCKED until target-specific resonance and genuine two-body/higher-body residuals are substantially bounded.
 
 ## Highest-value surviving branches
-1. **G8 target-specific genuine resonance:** measured/evaluated entrance strength convolved with real solar line/continuum profiles.
+1. **G8 target-specific thermal-solar antineutrino RIOEC resonance:** select an evaluated candidate (e.g. 63Cu/129Xe/159Tb from Akhmedov-Lasserre-Maturi 2026), freeze Q/excitation/shell width/entrance strength, and convolve with a primary thermal-solar `anti-nu_e` spectrum. Ordinary B16 flux is forbidden for this channel.
 2. **Global two-body/higher-body nuclear-current residual:** seek a correlation-independent finite-range/saturation/sum-rule bound.
 3. **Residual exotic many-body sector:** multi-mode/gapless/nonlinear mediator or higher-body response with all field/medium energy included.
 4. **Astrophysical gravitational focusing:** distant-source flux and alignment duty cycle, separate from solar capture.
@@ -54,4 +54,4 @@ with frozen `E_dep,nu<=E_nu`. Daughter decay, nuclear mass release, mediator pre
 ## Research discipline
 Class-level bounds dominate target scans. Negative results are discoveries because they shrink mechanism space. A gain must survive its own F0-F8 gates before F9 composition. BSM is opened only after remaining SM loopholes are quantitatively mature.
 
-Current audit state: **`NMIR_READINESS: 63%`**.
+Current audit state: **`NMIR_READINESS: 64%`**.
