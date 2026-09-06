@@ -1,0 +1,29 @@
+name: NMIR local spin sum-rule gate
+
+on:
+  push:
+    paths:
+      - 'research/spin_local_sum_prereg.md'
+      - 'src/nmir/spin_local_sum.py'
+      - 'tests/test_spin_local_sum.py'
+      - 'scripts/spin_local_sum_benchmark.py'
+      - '.github/workflows/spin-local-sum.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip pytest
+      - run: python -m pip install -e .
+      - run: pytest -q tests/test_spin_local_sum.py
+      - run: mkdir -p artifacts/spin_local_sum
+      - run: python scripts/spin_local_sum_benchmark.py | tee artifacts/spin_local_sum/result.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: spin-local-sum-result
+          path: artifacts/spin_local_sum/result.json
