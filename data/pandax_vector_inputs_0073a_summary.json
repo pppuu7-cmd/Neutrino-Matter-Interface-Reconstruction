@@ -1,0 +1,37 @@
+{
+  "iteration": "0073a",
+  "classification": "PARTIAL_PASS_VECTOR_DATA_EFFICIENCY_ONLY",
+  "primary_source": {
+    "arxiv": "2206.02339v3",
+    "archive_sha256": "b077b657e30a2efc07fb37f3c389d365ef670c408a5dc42cafc7af06a5e75db3",
+    "fig1_efficiency_pdf_sha256": "278d32e97b25724a58ae5b003ab4ab834710efde95fd53ba91d093af8d2379be",
+    "fig3_bestfit_pdf_sha256": "fd35badb5eb0ed280caf90691c32a96e8ec65271af28be180f7c9d6c027fe56d"
+  },
+  "hosted_authority": {
+    "run_id": 34119097740,
+    "job_id": 101732725133,
+    "artifact_id": 10017450789,
+    "artifact_zip_sha256": "8d58850fca7067c84bc439b4efb1809ee321b9e574f6ae652798dc01ea971e14",
+    "raw_result_json_sha256": "0f208e5e9ed4c732af28365dffd4ab8becfe45e7f34cf8525ba2c974e4f4304e"
+  },
+  "observed_1keV_bins": {
+    "bin_centers_keV": [0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5,16.5,17.5,18.5,19.5,20.5,21.5,22.5,23.5,24.5,25.5,26.5,27.5,28.5,29.5],
+    "counts": [3,39,67,73,90,71,70,53,54,64,57,41,38,44,26,29,18,23,24,22,8,26,18,23,26,20,19,7,3,2],
+    "sum": 1058,
+    "max_bin_center_residual_keV": 3.0862317444757537e-05,
+    "max_integer_count_residual": 0.0002560689226527302
+  },
+  "calibration_checks": {
+    "fig3_energy_max_residual_keV": 3.0486563563414393e-05,
+    "fig3_rate_max_residual_events_per_keV": 0.00012735119541673612,
+    "fig1_efficiency_max_residual_absolute": 9.833461238617502e-07,
+    "efficiency_vector_points": 301,
+    "efficiency_min": 9.8211693000394e-07,
+    "efficiency_max": 0.8079312478522692,
+    "roundtrip_max_pt": 6.355287432313019e-14,
+    "raster_images_fig1": 0,
+    "raster_images_fig3": 0
+  },
+  "remaining_blocker": "The primary Fig3 source publishes neutron + 8B + accidental + wall/surface as one grouped vector family. PandaX Table I assigns distinct nuisance uncertainties to accidental (20%), surface (25%), neutron (50%), and 8B (28%); De-Romeri likelihood profiling therefore cannot be reproduced faithfully from this grouped curve alone. No B-L contour is authorized.",
+  "full_efficiency_array_location": "Hosted artifact 10017450789 / pandax_vector_inputs_0073a.json; deterministically reproducible with scripts/extract_pandax_root_vectors_0073a.py from hash-pinned primary source PDFs."
+}
