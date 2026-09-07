@@ -1,0 +1,39 @@
+name: NMIR 0080 B-L cosmology source-asset audit
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_esseili_kribs_cosmology_assets_0080.py'
+      - 'tests/test_audit_esseili_kribs_cosmology_assets_0080.py'
+      - 'research/prereg/0080_bl_cosmology_source_asset_audit.md'
+      - '.github/workflows/0080-bl-cosmology-source-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated regression tests
+        run: python -m pytest -q tests/test_audit_esseili_kribs_cosmology_assets_0080.py
+      - name: Run frozen 0080 primary source-asset audit
+        run: python scripts/audit_esseili_kribs_cosmology_assets_0080.py
+      - name: Hash result
+        if: always()
+        run: |
+          if [ -f esseili_kribs_cosmology_assets_0080.json ]; then sha256sum esseili_kribs_cosmology_assets_0080.json; fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0080-bl-cosmology-source-assets
+          path: esseili_kribs_cosmology_assets_0080.json
+          if-no-files-found: error
