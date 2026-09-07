@@ -9,7 +9,7 @@ F0 objective -> F1 microscopic channel -> F2 production/absorption where applica
 Closed in stated scopes unless a genuinely new assumption changes them: naive static `N^2`; geometry-only fixed-column gain; passive local density/phonon or spin/magnon free superextensive gain; extensive long-range-pair free gain; passive stable finite linear/nonlinear mediator free gain after energy accounting; linewidth narrowing as new integrated resonance strength; metastable stored-energy avalanche as neutrino-energy gain; bounded finite-range k-local higher-body free superextensive gain; no actual-SM growing-coordination survivor in audited passive-SM scope.
 
 ## Highest-value OPEN gate
-1. **G5/G6 / F8 — 0073b PandaX separated minor-background primary-data audit.** 0073a has now reproducibly recovered the exact 30 observed 1-keV bins and the primary 301-point efficiency curve from hash-pinned ROOT-vector PDFs, but Fig.3 publishes neutron + 8B + accidental + wall/surface as one grouped family while the likelihood requires distinct nuisance normalizations. 0073b prereg commit `750dcc8c6e433e761ca31b47c42c8c11567471bd`; no B-L likelihood/contour is authorized.
+1. **G5/G6 / F8 — 0074 COHERENT CsI+Ar B-L likelihood materialization.** PandaX 0073b is now `BLOCKED_PRIMARY_LIKELIHOOD_INPUTS` without weakening its nuisance model. 0074 prereg commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`; independently materialize the explicit Cadeddu et al. B-L COHERENT likelihood and freeze a primary SM/background benchmark before any B-L scan.
 2. **G3 / F4-F6 — absolute short-range/contact-current residual.** Physically OPEN; 0059/0062/0065 retire three universal-ceiling routes. Reopen only with genuinely new theorem/physical assumption.
 3. **G2 / F7-F8 — measured scalable topology rejection × bulk acceptance.** 0063 `BLOCKED_NOT_ACTIONABLE`; reopen only with genuinely new same-configuration sub-keV measured evidence.
 4. **G8 / F4-F7 — Cu63 RIOEC normalization.** 0067 source tail validated, 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; reopen only with exact primary continuous-spectrum normalization.
@@ -33,24 +33,23 @@ Cu63 exact-state RIOEC: `E_R=162.496486 keV`, `B_reverse=2.85e-3...6.72e-2`; ent
 ### 0072 Wagner route
 Primary vector `WEP_figure6.eps` hash-pinned. 0072b `PASS_WAGNER_AXIS_CALIBRATION`; 0072c `PARTIAL_PASS_WAGNER_VECTOR_CURVES` accepts Princeton, Moscow and two LLR curves. 0072d `SCIENTIFIC_FAIL_WAGNER_BLUE_IDENTITY` because the blue chains cross under the preregistered pairwise-order rule. Hosted run/job `34112933849/101713070731`, artifact `10015072386`, ZIP SHA256 `ce4db4c90c234e79b60d019f3e8b9326bf81860a9ec365e75400fd40d58ea8ce`; immutable commit `d2fe40f5890879671ab7a686194cfc1b990d5920`. Calibration/four named curves survive; complete Wagner EW-family envelope does not.
 
-### 0073 / 0073a PandaX independent route
-Parent prereg `20ee0ab7cf4ab3d709c147a4826d4b24897cc83a`. 0073a prereg commit `70763859ab41e03ce58925c3b39287de4ecb2d1b`; classification **`PARTIAL_PASS_VECTOR_DATA_EFFICIENCY_ONLY`**; immutable iteration commit `a83158d84b603796a81103fc36e5c2fd70204d3e`.
+### 0073a PandaX primary-vector extraction
+Prereq contract commit `70763859ab41e03ce58925c3b39287de4ecb2d1b`; classification `PARTIAL_PASS_VECTOR_DATA_EFFICIENCY_ONLY`; immutable commit `a83158d84b603796a81103fc36e5c2fd70204d3e`. Primary arXiv:2206.02339v3 archive hash-pinned. Hosted scientific authority run/job `34119097740/101732725133`, artifact `10017450789`, ZIP SHA256 `8d58850fca7067c84bc439b4efb1809ee321b9e574f6ae652798dc01ea971e14`. Exact observed 1-keV bins sum to 1058; 301-point primary efficiency curve accepted.
 
-Primary arXiv:2206.02339v3 archive SHA256 `b077b657e30a2efc07fb37f3c389d365ef670c408a5dc42cafc7af06a5e75db3`. Fig1 and Fig3 are vector-only ROOT PDFs, SHA256 `278d32e97b25724a58ae5b003ab4ab834710efde95fd53ba91d093af8d2379be` and `fd35badb5eb0ed280caf90691c32a96e8ec65271af28be180f7c9d6c027fe56d`.
+### 0073b PandaX separated-background audit
+Frozen prereg commit `750dcc8c6e433e761ca31b47c42c8c11567471bd`. Classification **`BLOCKED_PRIMARY_LIKELIHOOD_INPUTS`**. Audit commit `db7e863322a2e02a6f71f9b30b26f2e118aa1f6f`; immutable iteration commit `579a730f4c8e608a99c70e930f82e4d97df0f866`.
 
-Hosted scientific authority: run/job `34119097740/101732725133`; artifact `10017450789`; ZIP SHA256 `8d58850fca7067c84bc439b4efb1809ee321b9e574f6ae652798dc01ea971e14`; raw-result JSON SHA256 `0f208e5e9ed4c732af28365dffd4ab8becfe45e7f34cf8525ba2c974e4f4304e`.
+The official PandaX public release index has no dedicated numerical release for PRL 129, 161804 / arXiv:2206.02339. Its commissioning `First Analysis` page provides only efficiency ROOT + data points. SCOAP3 supplies PDF/XML only; exact HEPData DOI/arXiv/title searches and public author-code/data searches yielded no same-analysis four-template package. Therefore neutron, solar-8B, accidental, and wall/surface remain unavailable as separately normalized 0–30 keV templates. The grouped Fig.3 minor-background family is not decomposed. Full-profile PandaX B-L likelihood is retired under current public-primary evidence; 0073a observed spectrum/efficiency remain valid standalone products.
 
-Exact observed counts for 0–30 keV 1-keV bins: `[3,39,67,73,90,71,70,53,54,64,57,41,38,44,26,29,18,23,24,22,8,26,18,23,26,20,19,7,3,2]`, sum exactly `1058`. Fig3 calibration residuals are `3.0486563563414393e-05 keV` and `1.2735119541673612e-04 events/keV`; primary efficiency extraction yields 301 points with axis residual `9.833461238617502e-07` and vector round-trip max `6.355287432313019e-14 pt`.
+### 0074 current prospective gate
+`research/prereg/0074_coherent_b_minus_l_likelihood_materialization.md`, commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`.
 
-Remaining blocker is precise: Fig3 groups neutron + 8B + accidental + wall/surface, but Table-I nuisances are distinct (50%, 28%, 20%, 25%). Grouped background may not be post-hoc decomposed.
-
-### 0073b current gate
-Prospective contract: `research/prereg/0073b_pandax_separated_minor_background_author_data_audit.md`, commit `750dcc8c6e433e761ca31b47c42c8c11567471bd`. Search only primary/official PandaX, publisher/HEPData/SCOAP3 or author numerical assets for separate neutron, 8B, accidental and surface/wall templates tied to the same 0–30 keV selection. PASS requires all four hash-pinned templates and <=1% consistency with Table-I totals. If a controlling component remains only grouped/total after exhausting these routes, classify `BLOCKED_PRIMARY_LIKELIHOOD_INPUTS`; do not weaken the nuisance model.
+Use Cadeddu et al. JHEP 01 (2021) 116 / arXiv:2008.05022 plus official COHERENT CsI and Ar public releases. Materialize exact observed bins, source/flux, detector response/acceptance/quenching, background templates, covariance/nuisances, SM CEvNS convention and exact B-L modification/interference normalization. Before any `(m_V,g_BL)` scan, freeze and reproduce a primary numerical SM/background benchmark with a prospective tolerance. No contour points may be read by eye.
 
 ## Exact next gate
-Execute 0073b. If all four separated minor-background templates materialize, prospectively freeze a PandaX SM/background benchmark reproduction with numerical tolerance before any B-L exclusion calculation. If not, retire the full-profile PandaX route as `BLOCKED_PRIMARY_LIKELIHOOD_INPUTS` and move to another compatible primary B-L constraint family.
+Execute 0074. If all controlling COHERENT inputs materialize and the prospectively frozen SM/background benchmark passes, separately preregister B-L contour computation. If controlling inputs remain unavailable, classify the route under the frozen 0074 contract and move to the next compatible primary constraint family without weakening criteria.
 
 ## Guards
-No raster/manual contour reading. No Asimov substitution for PandaX observed data. No proportional splitting of grouped minor backgrounds. No XENON/LZ response substitution. No assumption that another PandaX analysis has identical templates without explicit same-configuration provenance. No post-result relaxation. BSM remains `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY` until a reproducible external envelope is frozen.
+No raster/manual contour reading. No Asimov substitution for primary observed-data likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result relaxation. BSM remains `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY` until a reproducible external envelope is frozen.
 
 `NMIR_READINESS: 89%`.
