@@ -1,0 +1,66 @@
+{
+  "schema": "nmir.coherent_csi_sm_0074b.authority.v1",
+  "classification": "PASS_COHERENT_CSI_SM_RESPONSE_BENCHMARK",
+  "prereg_commit": "c47769b51c186f2b1eda2aed72c02e5ca6eb7030",
+  "authoritative_code_head": "1fe2821033ce8b384f3ef1b5500ce942e91a7bad",
+  "authoritative_run_id": 34140558778,
+  "authoritative_job_id": 101801362484,
+  "artifact_id": 10025718339,
+  "artifact_zip_sha256": "177ca00c47990c3917627f8febe3fd5b2561e984c41e2a6316b32168c14a44d9",
+  "artifact_size_bytes": 828,
+  "analysis_pe_support": {"min_inclusive": 6, "max_exclusive": 30},
+  "frozen_target_events": 173.0,
+  "frozen_tolerance_events": 48.0,
+  "calculated_events": {
+    "Cs_nue": 25.371500548276167,
+    "Cs_numu_prompt": 15.479815629312736,
+    "Cs_numubar": 37.57608984898328,
+    "Cs_total": 78.42740602657219,
+    "I_nue": 24.00248129037442,
+    "I_numu_prompt": 15.220315349165682,
+    "I_numubar": 35.19406959285722,
+    "I_total": 74.41686623239733,
+    "total": 152.8442722589695
+  },
+  "refinement_fraction": 9.408514258279292e-08,
+  "max_poisson_tail": 2.3314683517128287e-15,
+  "guard_values": {
+    "no_acceptance_total_events": 444.96597491730245,
+    "unit_form_factor_total_events": 352.1840873381009,
+    "qf_up_1pct_total_events": 154.66729168860792,
+    "light_yield_up_1pct_total_events": 154.66729168860792
+  },
+  "checks": {
+    "within_frozen_173_pm_48": true,
+    "refinement_le_0p5pct": true,
+    "components_finite_nonnegative": true,
+    "disable_acceptance_not_lower": true,
+    "F_equal_1_not_lower": true,
+    "poisson_tail_le_1e8": true,
+    "qf_local_monotonic": true,
+    "light_yield_local_monotonic": true
+  },
+  "excluded_non_authoritative_attempts": [
+    {
+      "run_id": 34140156775,
+      "reason": "implementation fail-closed before benchmark: Poisson numerical support too short for frozen tail guard"
+    },
+    {
+      "run_id": 34140406355,
+      "job_id": 101800883715,
+      "artifact_id": 10025662636,
+      "reported_total_events": 161.42374070335802,
+      "reason": "implementation-invalid: acceptance was applied above released first-observation ROI PE<30; never scientific authority"
+    },
+    {
+      "run_id": 34140540384,
+      "reason": "intermediate sequential code/test mismatch while adding explicit ROI support; not scientific authority"
+    }
+  ],
+  "guards": {
+    "fit_134_used_as_target": false,
+    "b_minus_l_scan_performed": false,
+    "later_qf_substituted": false,
+    "gate_weakened_after_result": false
+  }
+}
