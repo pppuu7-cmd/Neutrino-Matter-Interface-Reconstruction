@@ -1,0 +1,41 @@
+name: NMIR 0082c Cerdeno B-L axis calibration
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/prereg/0082c_cerdeno_bl_axis_calibration.md'
+      - 'scripts/audit_cerdeno_bl_axis_calibration_0082c.py'
+      - 'tests/test_audit_cerdeno_bl_axis_calibration_0082c.py'
+      - '.github/workflows/0082c-cerdeno-bl-axis-calibration.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install pytest PyMuPDF
+      - name: Run dedicated tests
+        run: python -m pytest -q tests/test_audit_cerdeno_bl_axis_calibration_0082c.py
+      - name: Run frozen 0082c audit
+        id: audit
+        continue-on-error: true
+        run: python scripts/audit_cerdeno_bl_axis_calibration_0082c.py
+      - name: Hash result
+        if: always()
+        run: if [ -f cerdeno_bl_axis_calibration_0082c.json ]; then sha256sum cerdeno_bl_axis_calibration_0082c.json; fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0082c-cerdeno-bl-axis-calibration
+          path: cerdeno_bl_axis_calibration_0082c.json
+          if-no-files-found: error
+      - name: Enforce frozen classification
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = "success"
