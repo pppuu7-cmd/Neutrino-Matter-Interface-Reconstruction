@@ -1,0 +1,48 @@
+name: NMIR 0082 B-L stellar SN source authority
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/prereg/0082_bl_stellar_sn_primary_source_asset_authority.md'
+      - 'scripts/audit_bl_stellar_sn_source_assets_0082.py'
+      - 'tests/test_audit_bl_stellar_sn_source_assets_0082.py'
+      - '.github/workflows/0082-bl-stellar-sn-source-authority.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated 0082 tests
+        run: python -m pytest -q tests/test_audit_bl_stellar_sn_source_assets_0082.py
+      - name: Run frozen 0082 primary source audit
+        id: audit
+        continue-on-error: true
+        run: python scripts/audit_bl_stellar_sn_source_assets_0082.py
+      - name: Hash raw result
+        if: always()
+        run: |
+          if [ -f bl_stellar_sn_source_assets_0082.json ]; then
+            sha256sum bl_stellar_sn_source_assets_0082.json
+          fi
+      - name: Upload raw result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0082-bl-stellar-sn-source-authority
+          path: bl_stellar_sn_source_assets_0082.json
+          if-no-files-found: error
+      - name: Enforce frozen classification
+        if: always()
+        run: |
+          test "${{ steps.audit.outcome }}" = "success"
