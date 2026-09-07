@@ -1,0 +1,84 @@
+{
+  "archive_sha256": "c1fd33d880b5810ede631284ddb91738d5df8e1816c3f47f4bef58a9eaa4e6e3",
+  "bounding_box_lines": [
+    "%%BoundingBox: 45 38 360 165"
+  ],
+  "eps_bytes": 581517,
+  "eps_sha256": "4adafc21e896aa3e19490a586e9249fb9b7c947ad9cbe9efd3416d5e00466882",
+  "explicit_rgb_counts": [],
+  "final_url": "https://arxiv.org/src/1207.2442",
+  "header_lines": [
+    "%!PS-Adobe-3.0 EPSF-3.0",
+    "%%Title: TEST.EPS",
+    "%%Creator: Graphic data from GRAF (1 unit is 1 cm)",
+    "%%BoundingBox: 45 38 360 165",
+    "gsave",
+    "/C {setrgbcolor} def",
+    "/CFN {closepath fill newpath} def",
+    "/L {lineto} def",
+    "/M {moveto} def",
+    "/N {newpath} def",
+    "/SL {setlinewidth} def",
+    "/SN {stroke newpath} def",
+    "20 26 translate",
+    "28.346 28.346 scale",
+    "1 setlinecap 0 SL",
+    " SN 7.931 1.844 M SN 8.931 2.844 M SN 0.000 0.000 0.000 C 7.931 1.844 M SN",
+    "8.931 2.844 M SN 0.000 0.000 0.000 C 0.011 SL SN 11.931 0.844 M 6.931 0.844 L SN",
+    "6.931 0.844 M 6.931 0.894 L SN 7.209 0.844 M 7.209 0.928 L SN 7.487 0.844 M",
+    "7.487 0.894 L SN 7.765 0.844 M 7.765 0.928 L SN 8.042 0.844 M 8.042 0.894 L SN",
+    "8.320 0.844 M 8.320 0.928 L SN 8.598 0.844 M 8.598 0.894 L SN 8.876 0.844 M",
+    "8.876 0.928 L SN 9.153 0.844 M 9.153 0.894 L SN 9.431 0.844 M 9.431 0.928 L SN",
+    "9.709 0.844 M 9.709 0.894 L SN 9.987 0.844 M 9.987 0.928 L SN 10.265 0.844 M",
+    "10.265 0.894 L SN 10.542 0.844 M 10.542 0.928 L SN 10.820 0.844 M 10.820 0.894 L",
+    "SN 11.098 0.844 M 11.098 0.928 L SN 11.376 0.844 M 11.376 0.894 L SN",
+    "11.653 0.844 M 11.653 0.928 L SN 11.931 0.844 M 11.931 0.894 L SN 0.019 SL SN",
+    "9.128 0.296 M 9.126 0.283 L SN 9.126 0.283 M 9.128 0.271 L SN 9.128 0.271 M",
+    "9.133 0.260 L SN 9.133 0.260 M 9.140 0.250 L SN 9.140 0.250 M 9.150 0.243 L SN",
+    "9.150 0.243 M 9.161 0.238 L SN 9.161 0.238 M 9.174 0.236 L SN 9.174 0.236 M",
+    "9.186 0.238 L SN 9.186 0.238 M 9.197 0.243 L SN 9.197 0.243 M 9.207 0.250 L SN",
+    "9.207 0.250 M 9.214 0.260 L SN 9.214 0.260 M 9.219 0.271 L SN 9.219 0.271 M",
+    "9.221 0.283 L SN 9.221 0.283 M 9.219 0.296 L SN 9.174 0.362 M 9.174 0.173 L SN",
+    "9.099 0.405 M 9.102 0.411 L SN 9.102 0.411 M 9.107 0.416 L SN 9.107 0.416 M",
+    "9.114 0.419 L SN 9.114 0.419 M 9.121 0.422 L SN 9.121 0.422 M 9.129 0.423 L SN",
+    "9.129 0.423 M 9.138 0.422 L SN 9.138 0.422 M 9.145 0.419 L SN 9.145 0.419 M",
+    "9.152 0.416 L SN 9.152 0.416 M 9.193 0.405 L SN 9.193 0.405 M 9.200 0.401 L SN",
+    "9.200 0.401 M 9.207 0.398 L SN 9.207 0.398 M 9.215 0.396 L SN 9.215 0.396 M",
+    "9.223 0.397 L SN 9.223 0.397 M 9.231 0.399 L SN 9.231 0.399 M 9.238 0.402 L SN",
+    "9.238 0.402 M 9.243 0.406 L SN 9.243 0.406 M 9.247 0.412 L SN 9.386 0.236 M",
+    "9.355 0.236 L SN 9.355 0.236 M 9.355 0.425 L SN 9.355 0.425 M 9.386 0.425 L SN",
+    "9.528 0.236 M 9.528 0.315 L SN 9.528 0.315 M 9.526 0.327 L SN 9.526 0.327 M"
+  ],
+  "iteration": "0072",
+  "label_lines": [
+    {
+      "line": 7,
+      "text": "/CFN {closepath fill newpath} def"
+    },
+    {
+      "line": 10,
+      "text": "/N {newpath} def"
+    },
+    {
+      "line": 11,
+      "text": "/SL {setlinewidth} def"
+    },
+    {
+      "line": 12,
+      "text": "/SN {stroke newpath} def"
+    }
+  ],
+  "operator_counts": {
+    "C": 73,
+    "L": 20235,
+    "M": 16663,
+    "curveto": 0,
+    "lineto": 1,
+    "moveto": 1,
+    "setrgbcolor": 1,
+    "show": 1,
+    "stroke": 2
+  },
+  "purpose": "vector-structure probe only; no contour coordinates",
+  "source": "Wagner et al. arXiv:1207.2442v1 / WEP_figure6.eps"
+}
