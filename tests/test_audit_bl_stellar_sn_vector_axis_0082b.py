@@ -17,10 +17,12 @@ def test_axis_identity_native_conventions():
 
 def make_pdf(coupling='eprime'):
     d=pymupdf.open(); p=d.new_page(width=600,height=400)
-    p.insert_text((240,385),"mγ′ [MeV]" if coupling=='eprime' else "m Z' [MeV]")
-    p.insert_text((15,200),"e′" if coupling=='eprime' else "gB-L", rotate=90)
-    for i,t in enumerate(["10⁻⁶","10⁻⁴","10⁻²","1","100"]):p.insert_text((80+i*90,365),t)
-    for i,t in enumerate(["10⁻¹²","10⁻¹⁰","10⁻⁸","10⁻⁶","10⁻⁴"]):p.insert_text((5,330-i*65),t)
+    p.insert_text((240,385),"mass [MeV]")
+    p.insert_text((15,200),"coupling", rotate=90)
+    # Use ASCII decimal labels in the synthetic PDF so the fixture tests geometry/anchor
+    # logic independently of the built-in PDF font's Unicode superscript coverage.
+    for i,t in enumerate(["0.000001","0.0001","0.01","1","100"]):p.insert_text((80+i*90,365),t)
+    for i,t in enumerate(["0.000000000001","0.0000000001","0.00000001","0.000001","0.0001"]):p.insert_text((5,330-i*65),t)
     for i in range(12):
         p.draw_line((60+i*3,40),(500-i*2,300),color=(0,0,0))
     return d.tobytes()
