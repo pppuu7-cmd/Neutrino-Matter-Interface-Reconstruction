@@ -36,9 +36,11 @@ def context(text: str, needle: str, radius: int = 700):
 
 
 def sentence_like_chunks(text: str):
-    # Keep TeX source wording but make an auditable list of prose-sized chunks.
+    # Keep primary wording. TeX often closes captions/sentences as `.}` or `.}]`;
+    # allow closing braces/brackets between punctuation and whitespace so a
+    # following prose sentence cannot inherit caption keywords accidentally.
     flat = norm(text)
-    return [c.strip() for c in re.split(r"(?<=[.!?])\s+", flat) if c.strip()]
+    return [c.strip() for c in re.split(r"(?<=[.!?])(?:[}\]]+)?\s+", flat) if c.strip()]
 
 
 def combination_candidate_contexts(text: str):
