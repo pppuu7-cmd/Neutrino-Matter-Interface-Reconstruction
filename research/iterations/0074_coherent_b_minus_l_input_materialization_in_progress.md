@@ -1,41 +1,45 @@
 # Iteration 0074 — COHERENT CsI+Ar B-L primary likelihood materialization (in progress)
 
 Date: 2026-09-07
-Status: **PARTIAL_PASS_COHERENT_INPUTS / benchmark open**
-Frozen prereg: `research/prereg/0074_coherent_b_minus_l_likelihood_materialization.md`, commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`.
+Status: **PARTIAL_PASS_COHERENT_INPUTS / PRIMARY_BYTES_HASH_PINNED / benchmark preregistered**
+Frozen parent prereg: `research/prereg/0074_coherent_b_minus_l_likelihood_materialization.md`, commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`.
 
-## Primary B-L likelihood authority materialized
-Cadeddu et al., JHEP 01 (2021) 116 / arXiv:2008.05022 explicitly provides the B-L CEvNS convention and the CsI/Ar fit structure. The published B-L convention uses lepton charge `Q'_ell=1` and quark charge `Q'_f=-Q'_ell/3`; the CEvNS amplitude contains the SM weak charge minus the B-L propagator term proportional to `g_Z'^2 [Z F_Z+N F_N]/(q^2+M_Z'^2)`. This exact algebraic convention is frozen; no universal-vector contour is relabelled as B-L.
+## Primary B-L likelihood authority
+Cadeddu et al., JHEP 01 (2021) 116 / arXiv:2008.05022 provides the explicit B-L CEvNS convention and CsI/Ar fit structure. The published convention uses lepton charge `Q'_ell=1` and quark charge `Q'_f=-Q'_ell/3`; the amplitude contains the SM weak charge minus the B-L propagator term proportional to `g_Z'^2 [Z F_Z+N F_N]/(q^2+M_Z'^2)`. No universal-vector contour is relabelled as B-L.
 
-The primary paper specifies the source/exposure normalizations used in the event-rate calculation: Ar `r=(9±0.9)e-2`, `N_POT=13.7e22`, baseline `27.5 m`, target mass `24 kg`; CsI `r=0.08`, `N_POT=17.6e22`, baseline `19.3 m`, active mass `14.6 kg`.
+Frozen Cadeddu source/exposure values remain Ar `r=(9±0.9)e-2`, `N_POT=13.7e22`, baseline `27.5 m`, target mass `24 kg`; CsI `r=0.08`, `N_POT=17.6e22`, baseline `19.3 m`, active mass `14.6 kg`. Radiatively corrected weak couplings are `gV^p(nu_e)=0.0401`, `gV^p(nu_mu)=0.0318`, `gV^n=-0.5094`, with Helm form factors and published radii.
 
-Radiatively corrected weak couplings used by the analysis are `gV^p(nu_e)=0.0401`, `gV^p(nu_mu)=0.0318`, `gV^n=-0.5094`; Helm form factors are used. Published proton rms radii are Cs `4.804 fm`, I `4.749 fm`, Ar `3.448 fm`; adopted neutron radii are Cs `5.01 fm`, I `4.94 fm`, Ar `3.55 fm`.
+CsI fit uses bins `i=4..15` with nuisance widths `0.112`, `0.25`, `0.051`. Ar Analysis A uses `0–120 keVee` in 12 bins, with CEvNS/PBRN/LBRN nuisance widths `13.4%/32%/100%` plus `1.7%` uncorrelated BRN energy-shape uncertainty.
 
-## CsI fit structure
-Cadeddu et al. use bins `i=4..15` (12 bins) because the fit is restricted to the Chicago-3 quenching-factor range. The least-squares nuisance widths are signal normalization `sigma_alpha=0.112`, background normalization `sigma_beta=0.25`, and quenching normalization `sigma_eta=0.051`.
+## Accepted primary package materialization subgate
+A fail-closed hosted materializer was added in commit `85bf59471b9b18ac7da823f9b242dfc2a67f8450`; workflow commit `bfe83c5b54507fb3677cf86e8ab994cd3dc0dfd9`. It queries only official Zenodo records `3903810` (Ar Analysis A) and `1228631` (CsI first observation), downloads every exposed file, verifies exact sizes and Zenodo MD5 checksums when supplied, computes SHA256 per file, and performs no likelihood/B-L calculation.
 
-The official COHERENT data page confirms the first-observation CsI public release and links Zenodo record `1228631`. Exact package bytes and hashes are being materialized by the hosted fail-closed route below.
+Hosted authority: run/job `34130108479/101767911241`. The raw job log was inspected after terminal success. All exposed files passed verification: 24 Ar files + 13 CsI files; 38 artifact members including the manifest. Artifact `10021726721`, size `867839` bytes, ZIP SHA256 `10f96287ec55907b851e2f9b9d6ee1f6046665cd8492e9a36107ef791e2f3220`. The artifact API reports the same digest, and an independently downloaded ZIP reproduced the identical SHA256.
 
-## Ar fit structure and public numerical package
-Cadeddu et al. use COHERENT liquid-Ar `Analysis A`, reconstructed range `0–120 keVee` in 12 bins of 10 keVee. Frozen nuisance widths from the primary analysis are CEvNS `13.4%`, prompt beam-related neutrons `32%`, late beam-related neutrons `100%`, plus uncorrelated beam-related-neutron energy-shape uncertainty `sqrt(0.058^2/12)=1.7%` per energy bin.
+Exact per-file hashes are frozen in `data/coherent_primary_packages_0074_manifest.json`, commit `52e281e8dd858ea53240b4d527f2f5ca00030d83`. Key examples:
+- Ar `LArParametersAnlA.yaml`: `a206a77220436d0173c4783ae8fddeab97adf5e144f3d65005eff0870257693e`;
+- Ar `CENNS10AnlAEfficiency.txt`: `21ce25451c1ed552752ff4a22496deab3ff5dba178bf360813eaff1d25be89e2`;
+- Ar `cevnspdf.txt`: `3b1d5b25749e8d8e1cfdf5c32e48f026ce4aafec0a80632b3a63273e6e0e1f37`;
+- Ar `datanobkgsub.txt`: `dabf3d80f13959f4b94b77c9b56f7347a645105801e8cc177424e7ffcf7c7f66`;
+- CsI `data_coincidence_beamOn.txt`: `e6cfa6d22345721a0af8abb9db938c0e5d9785c698c98d9305964aeebf31aa50`;
+- CsI `qfData_chicago.txt`: `31046d48092e619eb84f06acdf09ea8e86c642da6aa368c10fe338480b90a04f`;
+- CsI `coherent_parameters.yaml`: `daa4f3feaeb5499cb1d876f8ea39f3cfd571f998a6ab92e9cdf552afc78b67e8`.
 
-The official COHERENT public-data page links Zenodo DOI `10.5281/zenodo.3903810`, version 1.0, explicitly corresponding to Analysis A of the first liquid-Ar CEvNS measurement. The record exposes primary numerical files covering observed data, CEvNS/background PDFs, Analysis-A efficiency, parameters, and systematic-error inputs, including `datanobkgsub.txt`, `energydata1d.txt`, `f90data1d.txt`, `cevnspdf.txt`, `bkgpdf.txt`, BRN PDF files, `CENNS10AnlAEfficiency.txt`, `LArParametersAnlA.yaml`, and `systerrors1denergy.txt`.
+Therefore the byte/provenance part of 0074 is **PASS_INPUT_BYTES_HASH_PINNED**. This is not yet `PASS_COHERENT_B_MINUS_L_LIKELIHOOD_MATERIALIZED`.
 
-This removes the question of whether the Ar side is publicly materializable. It does **not** yet establish a scientific likelihood reproduction: bytes/SHA256 pins and the preregistered SM/background benchmark are still open.
+## Prospective SM benchmark frozen before computation
+Inspection of the primary Ar YAML, before any independent NMIR SM-rate output, identified a non-circular benchmark: `cevnsPredictionNormalization = 128 ± 17` events, explicitly the initial predicted CEvNS count before the 3D likelihood fit. The separate best-fit `159 ± 43` is deliberately not used as the target.
 
-## Hosted byte-level materialization route
-To remove local-network dependence without changing the scientific contract, commit `85bf59471b9b18ac7da823f9b242dfc2a67f8450` added `scripts/materialize_coherent_0074.py`. It queries only the frozen official Zenodo record IDs `3903810` (Ar Analysis A) and `1228631` (CsI first observation), downloads every exposed file, requires exact file sizes, verifies any Zenodo `md5:` checksum, computes SHA256 for every file, and emits a machine-readable manifest. It performs no likelihood or B-L calculation.
+The benchmark calculation and acceptance criterion are now frozen in `research/prereg/0074a_coherent_argon_sm_benchmark.md`, commit `09ca12d9d82b96ee38502d639196adbb162dad65`. Scientific PASS requires `|N_calc - 128| <= 17` events, integration-refinement change `<=0.5%`, and preregistered monotonic/support/unit checks. The ±17 band may not be enlarged after result inspection. No independent `N_calc` has yet been generated.
 
-Commit `bfe83c5b54507fb3677cf86e8ab994cd3dc0dfd9` added `.github/workflows/coherent-0074-materialize.yml`, which archives the exact primary bytes plus manifest as a GitHub Actions artifact. Hosted run `34130108479`, job `101767911241`, is currently `in_progress` in the materialization step. Do not duplicate it. Green completion will not be scientific PASS; raw log, manifest and artifact bytes/hash must be inspected before accepting the package pins.
+The machine-readable 0074 ledger was updated in commit `ec36e4df1b76da34ece911fc8ff0bbe3bdd0f826`.
 
 ## Scientific guards
-No B-L parameter scan has been performed. No contour points were read from a plot. No missing covariance/background term was replaced by an Asimov/diagonal approximation. No different-generation COHERENT release was mixed into the fit.
+No B-L parameter scan has been performed. No contour points were read from a plot. No Asimov/diagonal substitute was introduced. No cross-generation response/template was mixed. The release `cevnspdf.txt` is forbidden as the calculated benchmark answer; it may only become a diagnostic after an independent rate exists.
 
 ## Current classification
-**PARTIAL_PASS_COHERENT_INPUTS**.
+**PARTIAL_PASS_COHERENT_INPUTS / PRIMARY_BYTES_HASH_PINNED / 0074a_BENCHMARK_PROSPECTIVE**.
 
-A final 0074 PASS requires: (1) hash-pinned exact Ar and CsI numerical packages matching the Cadeddu analysis; (2) a primary numerical SM/background benchmark target and prospectively frozen tolerance; (3) benchmark reproduction under that frozen criterion. Only after that may a separate B-L contour computation be preregistered.
-
-Machine-readable progress ledger: `data/coherent_b_minus_l_input_audit_0074.json`, commit `a292c71510f2587f840f4e1ae4edc22154f06a4a`.
+Final 0074 PASS still requires the prospectively frozen SM/background benchmark to pass and any remaining combined-CsI likelihood validation requirement to be frozen and satisfied before a B-L contour calculation can be preregistered.
 
 `NMIR_READINESS` remains 89%.
