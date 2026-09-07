@@ -1,0 +1,238 @@
+{
+  "blue_chain_count": 4,
+  "blue_chains": [
+    {
+      "alpha_max": 2.0005492768447485e-05,
+      "alpha_min": 1.6755891833767e-11,
+      "chain_index": 0,
+      "eps_bbox": [
+        2.154,
+        1.162,
+        6.68,
+        4.844
+      ],
+      "first_eps": [
+        2.154,
+        4.844
+      ],
+      "first_physical": {
+        "abs_alpha_tilde": 2.0005492768447485e-05,
+        "g_BL_abs": 1.2097149888731965e-21,
+        "lambda_m": 0.2596324091746297,
+        "m_V_eV": 7.600244554495396e-07
+      },
+      "g_BL_max": 1.2097149888731965e-21,
+      "g_BL_min": 1.1071136598211684e-24,
+      "lambda_m_max": 10013992137008.71,
+      "lambda_m_min": 0.2596324091746297,
+      "last_eps": [
+        6.68,
+        1.162
+      ],
+      "last_physical": {
+        "abs_alpha_tilde": 1.6755891833767e-11,
+        "g_BL_abs": 1.1071136598211684e-24,
+        "lambda_m": 10013992137008.71,
+        "m_V_eV": 1.9705126357223574e-20
+      },
+      "m_V_eV_max": 7.600244554495396e-07,
+      "m_V_eV_min": 1.9705126357223574e-20,
+      "n_segments": 102,
+      "n_vertices": 103,
+      "source_name": "UNRESOLVED_blue_0",
+      "x_direction": "increasing",
+      "x_max": 6.68,
+      "x_min": 2.154,
+      "y_max": 4.844,
+      "y_min": 1.162
+    },
+    {
+      "alpha_max": 7.736331466788342e-06,
+      "alpha_min": 1.4631250747184706e-08,
+      "chain_index": 1,
+      "eps_bbox": [
+        2.349,
+        2.944,
+        3.678,
+        4.594
+      ],
+      "first_eps": [
+        2.349,
+        4.594
+      ],
+      "first_physical": {
+        "abs_alpha_tilde": 7.736331466788342e-06,
+        "g_BL_abs": 7.52273857299338e-22,
+        "lambda_m": 0.999342317534251,
+        "m_V_eV": 1.9745684430424104e-07
+      },
+      "g_BL_max": 7.52273857299338e-22,
+      "g_BL_min": 3.2715168521096626e-23,
+      "lambda_m_max": 9752.956672466406,
+      "lambda_m_min": 0.999342317534251,
+      "last_eps": [
+        3.678,
+        2.962
+      ],
+      "last_physical": {
+        "abs_alpha_tilde": 1.566713820444666e-08,
+        "g_BL_abs": 3.3853476365244273e-23,
+        "lambda_m": 9752.956672466406,
+        "m_V_eV": 2.0232529173135184e-11
+      },
+      "m_V_eV_max": 1.9745684430424104e-07,
+      "m_V_eV_min": 2.0232529173135184e-11,
+      "n_segments": 88,
+      "n_vertices": 89,
+      "source_name": "UNRESOLVED_blue_1",
+      "x_direction": "increasing",
+      "x_max": 3.678,
+      "x_min": 2.349,
+      "y_max": 4.594,
+      "y_min": 2.944
+    },
+    {
+      "alpha_max": 2.0667894392074345e-09,
+      "alpha_min": 6.16984436275839e-11,
+      "chain_index": 2,
+      "eps_bbox": [
+        4.348,
+        1.505,
+        6.68,
+        2.429
+      ],
+      "first_eps": [
+        4.348,
+        2.429
+      ],
+      "first_physical": {
+        "abs_alpha_tilde": 2.0667894392074345e-09,
+        "g_BL_abs": 1.2295793249913977e-23,
+        "lambda_m": 1000823.1134980492,
+        "m_V_eV": 1.9716469148110318e-13
+      },
+      "g_BL_max": 1.2295793249913977e-23,
+      "g_BL_min": 2.1244452324725495e-24,
+      "lambda_m_max": 10013992137008.71,
+      "lambda_m_min": 1000823.1134980492,
+      "last_eps": [
+        6.68,
+        1.505
+      ],
+      "last_physical": {
+        "abs_alpha_tilde": 6.16984436275839e-11,
+        "g_BL_abs": 2.1244452324725495e-24,
+        "lambda_m": 10013992137008.71,
+        "m_V_eV": 1.9705126357223574e-20
+      },
+      "m_V_eV_max": 1.9716469148110318e-13,
+      "m_V_eV_min": 1.9705126357223574e-20,
+      "n_segments": 89,
+      "n_vertices": 90,
+      "source_name": "UNRESOLVED_blue_2",
+      "x_direction": "increasing",
+      "x_max": 6.68,
+      "x_min": 4.348,
+      "y_max": 2.429,
+      "y_min": 1.505
+    },
+    {
+      "alpha_max": 2.0005492768447485e-05,
+      "alpha_min": 1.783536436282275e-07,
+      "chain_index": 3,
+      "eps_bbox": [
+        1.836,
+        3.602,
+        5.361,
+        4.844
+      ],
+      "first_eps": [
+        1.836,
+        4.844
+      ],
+      "first_physical": {
+        "abs_alpha_tilde": 2.0005492768447485e-05,
+        "g_BL_abs": 1.2097149888731965e-21,
+        "lambda_m": 0.028825667233626735,
+        "m_V_eV": 6.8455303671100165e-06
+      },
+      "g_BL_max": 1.2097149888731965e-21,
+      "g_BL_min": 1.142219126550728e-22,
+      "lambda_m_max": 1099520810.7417839,
+      "lambda_m_min": 0.028825667233626735,
+      "last_eps": [
+        5.361,
+        4.088
+      ],
+      "last_physical": {
+        "abs_alpha_tilde": 1.130847286269834e-06,
+        "g_BL_abs": 2.876142603625046e-22,
+        "lambda_m": 1099520810.7417839,
+        "m_V_eV": 1.7946634431309649e-16
+      },
+      "m_V_eV_max": 6.8455303671100165e-06,
+      "m_V_eV_min": 1.7946634431309649e-16,
+      "n_segments": 234,
+      "n_vertices": 235,
+      "source_name": "UNRESOLVED_blue_3",
+      "x_direction": "increasing",
+      "x_max": 5.361,
+      "x_min": 1.836,
+      "y_max": 4.844,
+      "y_min": 3.602
+    }
+  ],
+  "guard": "Structural diagnostic only. No blue identity, merging, dropping, envelope selection, or scientific reclassification is performed.",
+  "iteration": "0072d-diagnostic",
+  "nearest_endpoint_gaps": [
+    {
+      "chain_i": 0,
+      "chain_j": 1,
+      "chebyshev_eps": 0.25,
+      "dx": 0.19500000000000028,
+      "dy": 0.25,
+      "pair": "a_first_b_first"
+    },
+    {
+      "chain_i": 0,
+      "chain_j": 3,
+      "chebyshev_eps": 0.31799999999999984,
+      "dx": 0.31799999999999984,
+      "dy": 0.0,
+      "pair": "a_first_b_first"
+    },
+    {
+      "chain_i": 0,
+      "chain_j": 2,
+      "chebyshev_eps": 0.34299999999999997,
+      "dx": 0.0,
+      "dy": 0.34299999999999997,
+      "pair": "a_last_b_last"
+    },
+    {
+      "chain_i": 1,
+      "chain_j": 3,
+      "chebyshev_eps": 0.5130000000000001,
+      "dx": 0.5130000000000001,
+      "dy": 0.25,
+      "pair": "a_first_b_first"
+    },
+    {
+      "chain_i": 1,
+      "chain_j": 2,
+      "chebyshev_eps": 0.6699999999999999,
+      "dx": 0.6699999999999999,
+      "dy": 0.5330000000000004,
+      "pair": "a_last_b_first"
+    },
+    {
+      "chain_i": 2,
+      "chain_j": 3,
+      "chebyshev_eps": 1.6590000000000003,
+      "dx": 1.013,
+      "dy": 1.6590000000000003,
+      "pair": "a_first_b_last"
+    }
+  ],
+  "parent_classification": "PARTIAL_PASS_WAGNER_VECTOR_CURVES"
+}
