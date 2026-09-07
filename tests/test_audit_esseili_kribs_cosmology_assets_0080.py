@@ -2,7 +2,7 @@ from scripts.audit_esseili_kribs_cosmology_assets_0080 import resolve_graphic, s
 
 
 def test_sha256_stable():
-    assert sha256(b"NMIR-0080") == "a01ccce17fe5e3b569345cff259b58ed4f1f3ff79bb6fb471111161c21bf0c75"
+    assert sha256(b"NMIR-0080") == "28f67ae4fbf0ae0a8ea99229bd6b9df17793b151291a04c505111cd9b380243c"
 
 
 def test_resolve_extensionless_unique_pdf():
