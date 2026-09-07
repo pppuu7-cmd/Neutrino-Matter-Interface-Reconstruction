@@ -1,0 +1,81 @@
+{
+  "iteration": "0071",
+  "date": "2026-09-07",
+  "model": {
+    "name": "gauged U(1)_{B-L}",
+    "interaction": "L_int = g_BL V_mu J_{B-L}^mu",
+    "charges": {"leptons": -1, "quarks": "1/3", "nucleon_approx": 1},
+    "plane": ["m_V", "g_BL"],
+    "mass_interval_eV": [1e-6, 1e10]
+  },
+  "classification": "BLOCKED_B_MINUS_L_PRIMARY_CONTOUR_MATERIALIZATION",
+  "reason": "All required primary constraint families are represented by compatible B-L authorities, but the union/intersection needed to define a reproducible allowed region cannot be materialized without machine-readable contour data or a separately preregistered calibrated vector-figure extraction/recalculation. No values were read by eye from plots.",
+  "constraints": [
+    {
+      "family": "low_energy_neutrino_CEvNS",
+      "primary": "M. Cadeddu et al., JHEP 01 (2021) 116, arXiv:2008.05022, DOI:10.1007/JHEP01(2021)116",
+      "model_convention": "explicit B-L vector mediator with m_Zprime and g_Zprime",
+      "evidence": "COHERENT CsI+Ar CEvNS analysis derives B-L exclusion contours and compares to reactor/solar/fixed-target bounds",
+      "numerical_contour": "publication figure; no machine-readable contour materialized in this iteration",
+      "status": "PRIMARY_CONSTRAINT_EXISTS_CONTOUR_NOT_MATERIALIZED"
+    },
+    {
+      "family": "low_energy_neutrino_electron_direct_detection",
+      "primary": "V. De Romeri, D.K. Papoulias, C.A. Ternes, JHEP 05 (2024) 165, arXiv:2402.05506, DOI:10.1007/JHEP05(2024)165",
+      "model_convention": "anomaly-free B-L vector mediator; solar-neutrino electron recoil in XENONnT/LZ/PandaX-4T",
+      "evidence": "primary B-L mass-coupling bounds",
+      "numerical_contour": "publication figure; no machine-readable contour materialized in this iteration",
+      "status": "PRIMARY_CONSTRAINT_EXISTS_CONTOUR_NOT_MATERIALIZED"
+    },
+    {
+      "family": "collider_fixed_target",
+      "primary": "F.S. Queiroz et al., Phys. Rev. D 111, 095021 (2025), arXiv:2501.00610",
+      "model_convention": "B-L Zprime; visible and invisible decay assumptions explicit",
+      "evidence": "ATLAS Run-2 recast gives e.g. m_Zprime > 4 TeV for g_BL=0.1 and >6 TeV for g_BL=0.5 with no invisible decays; invisible branching assumptions weaken limits",
+      "scope_note": "frozen 0071 interval ends at 10 GeV, so these TeV-scale numerical exclusions do not directly bound the audited interval, but they establish the decay-assumption dependence of collider constraints",
+      "status": "PRIMARY_FAMILY_REPRESENTED_NOT_DOMINANT_IN_FROZEN_INTERVAL"
+    },
+    {
+      "family": "stellar_supernova",
+      "primary": "D.G. Hong, C.S. Shin, S. Yun, Phys. Rev. D 103, 123031 (2021), arXiv:2012.05427",
+      "model_convention": "U(1)_{B-L} gauge boson coupled to nucleons/electrons",
+      "evidence": "young-neutron-star cooling gives approximately eprime < 1e-13 for mediator mass below O(0.1 MeV) in the stated cooling model",
+      "assumptions": "young-neutron-star cooling model, nucleon superfluidity, production channel modeling",
+      "status": "PRIMARY_CONSTRAINT_EXISTS_SCOPED_MODEL_DEPENDENCE"
+    },
+    {
+      "family": "stellar_supernova_transport",
+      "primary": "D.G. Cerdeno et al., arXiv:2106.11660",
+      "model_convention": "vector U(1)_{B-L}",
+      "evidence": "SN1987A neutrino diffusion-time bounds including medium effects; authors note these regions are already excluded by other experiments and detailed simulations are needed for some additional limits",
+      "assumptions": "proto-neutron-star profiles and medium effects",
+      "status": "PRIMARY_CONSTRAINT_EXISTS_SCOPED_MODEL_DEPENDENCE"
+    },
+    {
+      "family": "cosmology_BBN_CMB",
+      "primary": "H. Esseili, G.D. Kribs, JCAP 05 (2024) 110, arXiv:2308.07955, DOI:10.1088/1475-7516/2024/05/110",
+      "model_convention": "gauged U(1)_{B-L}; anomaly cancellation with right-handed neutrinos",
+      "mass_range_eV": [1, 1e8],
+      "evidence": "Delta N_eff / BBN constraints calculated for freeze-in light B-L boson",
+      "assumptions": "Dirac versus Majorana/right-handed-neutrino scenarios and possible dark-sector decays treated separately",
+      "numerical_contour": "publication figures; no machine-readable contour materialized in this iteration",
+      "status": "PRIMARY_CONSTRAINT_EXISTS_CONTOUR_NOT_MATERIALIZED"
+    },
+    {
+      "family": "fifth_force_long_range",
+      "primary": "P. Fayet, Phys. Rev. D 99, 055043 (2019), arXiv:1809.04991; related MICROSCOPE analysis arXiv:1712.00856",
+      "model_convention": "long-range force coupled to B-L",
+      "evidence": "MICROSCOPE-based long-range B-L force limits; massless/very-light limit quoted in coupling/relative-force conventions",
+      "assumptions": "force range long compared with source-test separation; conversion from epsilon_B-L or relative gravitational strength to g_BL must be frozen before combination",
+      "status": "PRIMARY_LIMIT_EXISTS_CONVENTION_CONVERSION_REQUIRED"
+    }
+  ],
+  "acceptance_check": {
+    "all_required_families_represented": true,
+    "same_B_minus_L_charge_convention_identified": true,
+    "reproducible_global_allowed_region_materialized": false,
+    "entire_interval_reproducibly_excluded": false,
+    "values_read_by_eye": false
+  },
+  "next_required_input": "Prospectively freeze a contour-materialization protocol: recover author numerical tables/code where available, otherwise extract calibrated vector paths from publication PDF/XML/SVG or independently reproduce the published likelihood under the exact B-L convention. Do not use manual plot reading."
+}
