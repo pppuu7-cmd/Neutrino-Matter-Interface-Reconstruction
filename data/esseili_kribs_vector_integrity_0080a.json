@@ -1,0 +1,18 @@
+{
+  "iteration": "0080a",
+  "classification": "PASS_COSMOLOGY_B_L_VECTOR_INTEGRITY",
+  "source_url": "https://export.arxiv.org/e-print/2308.07955v2",
+  "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+  "all_four_vector_native": true,
+  "all_four_text_extractable": true,
+  "assets": [
+    {"asset":"Presentation/CnstrntPlotMajoranaNeff.pdf","asset_sha256":"8b5c5839fada534ed10d79768335050814765a6ec00bddcb51e75cc0f64e7837","bytes":75041,"page_size":[720.0,485.0],"image_xobject_count":0,"drawing_count":477,"path_item_count":5851,"word_count":47},
+    {"asset":"Presentation/CnstrntPlotDiracNeff.pdf","asset_sha256":"c06b66e5cb35c3b1cae341da393e9b638d3f3f536cef09a3ca5431600fb2ed4a","bytes":113550,"page_size":[720.0,485.0],"image_xobject_count":0,"drawing_count":486,"path_item_count":11389,"word_count":45},
+    {"asset":"Presentation/CnstrntPlotMajoranaYp.pdf","asset_sha256":"4326f3ac9ba29e515aa22afafef27d08c05d0e6be04db605c4706418c6cd8926","bytes":49599,"page_size":[720.0,492.0],"image_xobject_count":0,"drawing_count":112,"path_item_count":1890,"word_count":24},
+    {"asset":"Presentation/CnstrntPlotDiracYp.pdf","asset_sha256":"14d9afe16f4c38f1d3c08f97ccf086a570739b18731b0b6ffee97fe4b9e63b15","bytes":46014,"page_size":[720.0,492.0],"image_xobject_count":0,"drawing_count":106,"path_item_count":1289,"word_count":23}
+  ],
+  "hosted_run": {"run_id":34161020276,"job_id":101862718302,"artifact_id":10032589964,"raw_json_sha256":"0e25aa0817f49adf3b7a517422ac4281f6cb825a47cd88364d4e7ee48f679680","artifact_zip_sha256":"ba912daf553e3ba449bf0b39613e5ab4381d30fe18314aaff9726bbeb1d6dbe9","dedicated_tests":"3 passed in 0.15s"},
+  "baseline_ci": {"run_id":34161020225,"conclusion":"success"},
+  "machine_structure_notes": {"neff_axes":"Both CMB PDFs expose mX [MeV], gX and redundant log ticks in extractable text.","majorana_neff_labels":[0.05,0.1,0.2,0.3,0.4,0.5],"bbn_labels_include":[0.002,0.003,0.004,0.006,0.008]},
+  "guard": "Vector integrity only; no axis calibration, contour-color selection, observational threshold selection, scenario union, envelope union, or response scan."
+}
