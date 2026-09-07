@@ -1,0 +1,63 @@
+{
+  "iteration": "0081",
+  "classification": "PASS_COSMOLOGY_B_L_BBN_OBSERVATIONAL_SEMANTICS",
+  "source": {
+    "url": "https://export.arxiv.org/e-print/2308.07955v2",
+    "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+    "main_tex": "neff_arXiv_v2.tex",
+    "main_tex_sha256": "f77b577688b3609c574985b05fc9a213709c958ded60a511478357f1f881d678"
+  },
+  "frozen_source_result": {
+    "delta_Yp_upper_bound": 0.008,
+    "confidence_level_percent": 95,
+    "delta_Yp_definition_kind": "signed_BSM_minus_SM",
+    "delta_Yp_uses_absolute_deviation": false,
+    "majorana_asset": "Presentation/CnstrntPlotMajoranaYp.pdf",
+    "dirac_asset": "Presentation/CnstrntPlotDiracYp.pdf"
+  },
+  "checks": {
+    "bbn_not_cmb_threshold_context": true,
+    "confidence_level_recovered": true,
+    "conservative_numeric_threshold_recovered": true,
+    "delta_yp_sign_or_absolute_convention_recovered": true,
+    "fig7_majorana_yp": true,
+    "fig8_dirac_same_semantics": true
+  },
+  "successful_run": {
+    "head_commit": "5873dafc291bcb5579b10aec70dd7ade1851b119",
+    "run_id": 34164891666,
+    "job_id": 101873875465,
+    "artifact_id": 10033820001,
+    "artifact_size_bytes": 2641,
+    "raw_json_sha256": "cbdceeabcd7f55094096028be481c26cdf18493018401c0c6092f2ac56a2b33c",
+    "artifact_zip_sha256": "d33e63b8716ad3af82650653734395e333f52744138f2340824b85343927f705",
+    "github_artifact_digest": "sha256:d33e63b8716ad3af82650653734395e333f52744138f2340824b85343927f705",
+    "independent_download_zip_sha256": "d33e63b8716ad3af82650653734395e333f52744138f2340824b85343927f705",
+    "independent_download_inner_json_sha256": "cbdceeabcd7f55094096028be481c26cdf18493018401c0c6092f2ac56a2b33c",
+    "dedicated_tests": "6 passed"
+  },
+  "implementation_history": [
+    {
+      "run_id": 34164735098,
+      "job_id": 101873432383,
+      "classification": "IMPLEMENTATION_INVALID_EXACT_SOURCE_TEX_PARSER_FALSE_NEGATIVE",
+      "reason": "Raw primary context visibly contained DeltaYp=0.008 at 95% C.L. and the signed BSM-minus-SM definition, while the parser returned null CL/sign fields. The scientific frozen contract was not changed."
+    },
+    {
+      "run_id": 34164808383,
+      "job_id": 101873639242,
+      "classification": "IMPLEMENTATION_INVALID_REGRESSION_TEST_FAILURE_BEFORE_SCIENTIFIC_AUDIT",
+      "reason": "Exact-source-style regression exposed missing TeX math-delimiter handling in the confidence-level parser; scientific audit was skipped and no artifact existed. The scientific frozen contract was not changed."
+    }
+  ],
+  "scientific_semantics": {
+    "criterion": "conservative upper bound Delta Y_p = 0.008 at 95% C.L.",
+    "delta_Yp_definition": "Y_p(BSM) - Y_p(SM)",
+    "majorana_and_dirac_applicability": "same threshold semantics apply to both separate scenario-conditioned figures",
+    "cmb_substitution_used": false,
+    "cmb_bbn_combination_used": false,
+    "geometry_interpreted": false
+  },
+  "next_action": "Prospectively freeze a separate 0081a BBN vector-asset axis-calibration and semantic-identity gate before inspecting vector paths/colors or extracting excluded geometry.",
+  "guard": "No BBN vector-path/color selection or geometry was used in 0081. No CMB threshold substitution, no Majorana/Dirac union, and no BSM response scan are authorized."
+}
