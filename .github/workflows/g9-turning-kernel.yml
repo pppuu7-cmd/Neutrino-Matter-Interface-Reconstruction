@@ -1,0 +1,36 @@
+name: NMIR G9 turning-point monotone kernel
+
+on:
+  push:
+    paths:
+      - 'src/nmir/g9_turning_kernel.py'
+      - 'tests/test_g9_turning_kernel.py'
+      - 'scripts/g9_turning_kernel_benchmark.py'
+      - '.github/workflows/g9-turning-kernel.yml'
+  workflow_dispatch:
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install package and test dependency
+        run: python -m pip install -e . pytest
+      - name: Run dedicated 0077 regression tests
+        run: pytest -q tests/test_g9_turning_kernel.py
+      - name: Run fail-closed 0077 benchmark
+        run: python scripts/g9_turning_kernel_benchmark.py
+      - name: Hash scientific result
+        if: always()
+        run: |
+          if [ -f g9_turning_kernel_result.json ]; then sha256sum g9_turning_kernel_result.json; fi
+      - name: Upload scientific result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0077-result
+          path: g9_turning_kernel_result.json
+          if-no-files-found: error
