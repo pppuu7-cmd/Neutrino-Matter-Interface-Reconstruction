@@ -4,12 +4,11 @@ Last reconciled: 2026-09-07
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0076_g9_global_multiimage_radial_kernel.md`, commit `073c6a8daabcfe07703d2befc1975c9b29bce1a2`.
-Current prospective subgate: `research/prereg/0077_g9_turning_point_monotone_kernel.md`, commit `71c21236b1da1817d122567286c938ca6efcce6c`.
-`NMIR_READINESS: 91%`.
+Latest completed immutable record: `research/iterations/0078c_deromeri_bl_excluded_region.md`, commit `7fb6cee3ad6f6129d04cc12d00a319096498db6a`.
+`NMIR_READINESS: 92%`.
 
 ## Mandatory recovery order
-Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository is scientific authority; chat is not. Green CI alone is not scientific PASS.
+Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository is scientific authority; chat is not. Green CI alone is not scientific PASS; inspect raw scientific output/artifact bytes.
 
 ## Frozen mission / accounting
 NMIR is a discovery funnel, not a material scan. Separate focusing/state control, microscopic interaction probability, detector visibility/amplification and irreversible neutrino-supplied deposited energy. Daughter decay, target preparation, stored free energy, pumping, mediator preparation and reset work are never neutrino-supplied power. Event gain != interaction gain != neutrino-energy gain. Never multiply unvalidated gains.
@@ -29,34 +28,41 @@ Exact Cu63 RIOEC state: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5
 ## G9
 0061 `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`; 10-kpc Galactic CCSN transparent-Sun utility negligible after finite-source/alignment/duty accounting. Persistent/known-direction sources explicitly remained out of scope.
 
-0075 contract commit `60dfd94c269e8d5b3a23f73043c779099cd15783`; run/job `34149433817/101828380178`; artifact `10028826311`; ZIP SHA256 `1c60e0ce3756250d82632df8b407202df98cd1bfe74774216950e8c4a0864ed8`. Classification `BLOCKED_G9_PERSISTENT_GEOMETRY`: the local one-ring branch turns before the requested blur support. Immutable commit `0f5d60d2d114c3676363420ff2ea85f2fa0e9c3a`.
+0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`, run/job `34149433817/101828380178`, artifact `10028826311`, ZIP SHA256 `1c60e0ce3756250d82632df8b407202df98cd1bfe74774216950e8c4a0864ed8`.
 
-### 0076 global scan-grid multi-image kernel — CLOSED SCIENTIFIC FAIL
-Prospective contract commit `05a3354dd2f8cdbba1f2dd04342161b515a10304`. Hosted run/job `34149715242/101829231239`, head `e6bf01e281d5f4f70c54e6ca74c23f27c3bdf776`; artifact `10029092681`, 2640 bytes; artifact ZIP SHA256 `759f9b79acf8d4a990190c63389571e912b2c7afa619cec055ed13094a68f26c`; raw result SHA256 `66a99ff6abc86aaae465568086c6e6efb1b277dbab95ce58bfc1508bdb735340`. Raw decoded job log was inspected directly; dedicated tests `5 passed in 0.03s`.
+0076 `SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL`, run/job `34149715242/101829231239`, artifact `10029092681`, ZIP SHA256 `759f9b79acf8d4a990190c63389571e912b2c7afa619cec055ed13094a68f26c`; frozen 0.5% grid-refinement and local one-ring containment criteria failed.
 
-Classification: **`SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL`**. Root recovery, root uniqueness and area invariants pass. Frozen 0.5% grid-refinement criterion fails badly: max base-vs-bisected relative difference `0.7391843634769288`. Frozen local-authority containment also fails at `b0/Rsun=0.024`, receiver radius 100 m: global `mu=59368342.34353704` vs exact one-ring `69875418.96262653`, relative error `0.1503687101283685`, `global_contains_one_ring=false`. The 1 m and 10 m controls reproduce the local annulus accurately, localizing the defect to missed narrow `|y|<=r` preimages near radial extrema/caustics, not the signed-map physics. Repository result commit `55cd9fdae2f11e9a09a3c1e8327f3be1b09752b8`; immutable iteration commit `073c6a8daabcfe07703d2befc1975c9b29bce1a2`.
+0077 `BLOCKED_G9_TURNING_POINT_KERNEL`, run/job `34153760956/101841193992`, artifact `10030249765`, ZIP SHA256 `f9873870bbf8f615366c18fef9edb56d4b907148f2d6d60dff70d60a0b096620`, raw JSON SHA256 `0091ee87c1a331847737d01878ef3629e39ff5e7e07ca4b322bd37e3cb466a76`. The pinned Model-S signed radial map showed an unresolved derivative sign reversal inside a segment classified as monotone. Per frozen prereg this is BLOCKED, not patched with result-selected nodes. Persistent-source G9 route is closed under the tested numerical assumptions; no physical no-go is claimed.
 
-No tolerance was relaxed, no 0075 utility number was reused, and 0076 is not a physical no-go.
+## BSM / B-L authority
+0069 `PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`; response/enhancement remains locked pending a reproducible external envelope and formal gate.
 
-### 0077 turning-point / monotone-segment kernel — FROZEN, NOT YET RUN
-Prospective contract commit `71c21236b1da1817d122567286c938ca6efcce6c`. This is a genuinely new numerical geometry method, not a post-hoc patch: explicitly bracket/refine radial turning points of the signed mapping, partition the full aperture into monotone segments, validate each segment at 9 interior controls, and solve `y=0,+r,-r` per segment. Same Model-S, same domain/control distances/radii; no source/detector/BSM input.
+0071 identified required B-L families over `1e-6 eV <= m_V <= 10 GeV`: low-energy neutrino/CEvNS, direct-detection neutrino-electron, collider where applicable, stellar/SN, cosmology, and long-range/fifth-force. It blocked on reproducible contour materialization rather than absence of primary constraints.
 
-Frozen criteria retain the 0.5% exact-one-ring containment and base-vs-bisected-grid agreement and add 0.5% nominal-vs-half derivative-step agreement. Any unresolved derivative reversal is BLOCKED, not repaired by result-selected nodes. PASS alone may authorize a separately preregistered finite-source persistent-source convolution.
+0072 Wagner vector route is partial: Princeton/Moscow/LLR curves materialized but blue EW-family semantic identity failed and global excluded-side authority is unresolved. 0073 PandaX full-profile likelihood is blocked by missing separated minor-background templates. 0074 official COHERENT packages are hash-pinned; 0074a Ar SM normalization PASS (`134.21440238243503` vs `128±17`), 0074b CsI SM response PASS (`152.8442722589695` vs `173±48`), 0074c `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`.
 
-Implementation is not yet authoritative; a connector write attempt for `src/nmir/g9_turning_kernel.py` was blocked before repository mutation. This is not a scientific failure and no run exists yet.
+### 0078 external-authority refresh -> new executable BSM family
+0078 was opened after 0077 required returning to other survivors. Frozen requirement: only a primary reproducible table/code/likelihood/vector contour with unambiguous B-L semantics and convention mapping can unlock a missing family.
 
-## BSM architecture
-0069 `PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`; no BSM-response PASS. 0072 Wagner route partially materialized but blue EW-family semantic identity failed. 0073 PandaX full-profile route blocked by missing separately normalized minor-background templates. 0074 official COHERENT packages hash-pinned; 0074a Ar SM benchmark PASS (`134.21440238243503` vs `128±17`), 0074b CsI SM response PASS (`152.8442722589695` vs `173±48`), 0074c `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`. No global B-L envelope and no B-L response/enhancement scan.
+0078a `PASS_PRIMARY_B_L_VECTOR_ASSET_INTEGRITY`, run/job `34154515131/101843445080`: De Romeri et al. arXiv `2603.00554` source archive SHA256 `09ab22f753ac3f5fbde5be65ac50926de67b0638550366d158aadcfde8e92564`; combined asset `vector_BL_PnX_XnT_LZ_combined.pdf` SHA256 `ace761499623535907263e780a6e96a17474adf418d3f9363dae8e28bc5e7a39` is a machine-readable vector asset with primary TeX semantic identity.
+
+0078b `PASS_COMBINED_SOLAR_CEVNS_B_L_VECTOR_CALIBRATION`, run/job `34154728073/101844079794`, artifact `10030555477`, raw JSON SHA256 `785605b660efeabf13d1825bf8f66fa4a1e4d4f8675514c45f76cd036a5171de`. Frozen tick authority and affine maps calibrate the combined magenta XENONnT + PandaX-4T + LZ 90% CL B-L vector path without raster/manual reading.
+
+0078c **`PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION`** and secondary **`PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`**. Run/job `34155151971/101845330760`, workflow head `a0bdaf4619a4da37f8ecd93445f8cbaf2c509e5b`; artifact `10030703063`, 6673 bytes; artifact ZIP SHA256 `ea59df50c4f1cbb5938effd455bdc0528b91b95753f0cfdc393437efe98a9378`; payload JSON SHA256 `0339cfbcfd2ccc5689fdb82473082ffe9ebb26964ed255411952e98b72047ca5`. Artifact bytes were downloaded and inspected independently. Repository result commit `dd43ebba8c1e6ff4f58899f63cab7641758eac60`; immutable iteration commit `7fb6cee3ad6f6129d04cc12d00a319096498db6a`.
+
+The primary filled magenta 90% CL region yields one valid clipped polygon over `-5 <= log10(m_V/GeV) <= 1`, `-8 <= log10(g_BL) <= -2`, area `12.51987545543835 decade^2`; 32-vs-64 subdivision relative area and symmetric-difference are both `0.0`; all 50 stroke boundary controls lie within `0.05` decade. No topology repair or excluded-side inference was used.
+
+This closes `PASS_NEW_EXECUTABLE_SURVIVOR_BSM` for the new combined solar-CEvNS family only. The global 0071 envelope is still incomplete: COHERENT 0074c remains blocked, Wagner side authority remains unresolved, and other required families are not yet materialized in one common envelope. No B-L response/enhancement scan is allowed.
 
 ## Current funnel state
-- G9: 0076 is a scientific method FAIL; 0077 is the highest-value executable/frozen gate, pending implementation/run.
+- BSM/F8: **highest-value executable frontier** after 0078c is the next missing primary B-L family needed for the global 0071 envelope; prioritize low-mass long-range/fifth-force authority because it covers a region not supplied by the new solar-CEvNS exclusion.
+- G9 persistent-source method branch: blocked at 0077 under frozen numerical assumptions; do not patch post hoc.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G8 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
-- BSM constraints-only; no global B-L envelope.
 
 ## Exact next gate
-Implement 0077 exactly as frozen at commit `71c21236b1da1817d122567286c938ca6efcce6c`, with tests, machine-readable benchmark and fail-closed hosted workflow. Do not alter the 0.5% criteria. If implementation can be committed, run it once, inspect raw log/artifact/hash, and classify strictly as PASS/BLOCKED/SCIENTIFIC_FAIL. Only PASS may reopen finite-source persistent-source convolution.
+Prospectively freeze a new low-mass B-L long-range/fifth-force materialization gate. It must fix primary source/provenance, exact force-to-`g_BL` convention conversion and excluded-side authority before numerical extraction. Prefer author numerical data/code; otherwise use a primary vector asset with machine-calibrated axes and primary semantic side authority. Raster/manual reading, post-result side assignment, or reuse of unresolved Wagner blue-family identity are forbidden. Only after enough required families are materialized may a separate global 0071 envelope-completion gate be frozen. BSM response/enhancement remains locked until that global gate passes.
 
 ## Critical guards
 No raster/manual contour reading. No Asimov substitution for required primary observed-data likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result tolerance relaxation. No F9 multiplication of unvalidated gains.
