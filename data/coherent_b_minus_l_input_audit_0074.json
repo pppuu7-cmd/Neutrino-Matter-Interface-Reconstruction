@@ -1,95 +1,84 @@
 {
   "iteration": "0074",
   "date": "2026-09-07",
-  "status": "IN_PROGRESS_AR_PRIMARY_RELEASE_MATERIALIZABLE_CSI_HASH_OPEN",
+  "status": "PRIMARY_PACKAGES_HASH_PINNED_BENCHMARK_PREREGISTERED",
   "prereg_commit": "1e9ffedebf56a5c07e14676a3aed03bfebd4ae23",
   "primary_b_minus_l_authority": {
     "citation": "M. Cadeddu et al., JHEP 01 (2021) 116, arXiv:2008.05022",
     "model": "gauged U(1)_{B-L}",
-    "charges_as_published": {
-      "lepton": 1,
-      "quark": "-1/3"
-    },
+    "charges_as_published": {"lepton": 1, "quark": "-1/3"},
     "cevns_amplitude_structure": "Q_l,SM - [g_Zprime^2/(sqrt(2) G_F)] * [Z F_Z(q^2)+N F_N(q^2)]/[q^2+M_Zprime^2]",
-    "note": "The exact published sign/charge convention must be preserved algebraically; no universal-vector relabelling is allowed."
+    "note": "Preserve exact published algebraic convention; no universal-vector relabelling."
+  },
+  "primary_package_materialization": {
+    "manifest": "data/coherent_primary_packages_0074_manifest.json",
+    "manifest_commit": "52e281e8dd858ea53240b4d527f2f5ca00030d83",
+    "hosted_run": 34130108479,
+    "hosted_job": 101767911241,
+    "artifact_id": 10021726721,
+    "artifact_zip_sha256": "10f96287ec55907b851e2f9b9d6ee1f6046665cd8492e9a36107ef791e2f3220",
+    "artifact_size_bytes": 867839,
+    "argon_file_count": 24,
+    "csi_file_count": 13,
+    "verification": "ALL_EXPOSED_FILES_DOWNLOADED; ZENODO_MD5_IF_PRESENT_AND_SIZE_VERIFIED; SHA256_COMPUTED; RAW_JOB_LOG_INSPECTED"
   },
   "csi_fit": {
     "energy_bins_used": "i=4..15 (12 bins)",
-    "nuisances": {
-      "signal_alpha_sigma": 0.112,
-      "background_beta_sigma": 0.25,
-      "quenching_eta_sigma": 0.051
-    },
+    "nuisances": {"signal_alpha_sigma": 0.112, "background_beta_sigma": 0.25, "quenching_eta_sigma": 0.051},
     "quenching_scope": "Chicago-3 quenching-factor range used by Cadeddu et al.",
-    "public_release_status": "OFFICIAL_RELEASE_LINK_CONFIRMED_BYTES_HASH_OPEN"
+    "official_release": {
+      "zenodo_doi": "10.5281/zenodo.1228631",
+      "version": "1.0",
+      "status": "PRIMARY_PACKAGE_HASH_PINNED",
+      "key_hashes": {
+        "data_coincidence_beamOn.txt": "e6cfa6d22345721a0af8abb9db938c0e5d9785c698c98d9305964aeebf31aa50",
+        "data_coincidence_beamOff.txt": "05f493ab3b085a1fdacce9d4969dd2764a64efd940a14c61de7bd7d471dd1b6b",
+        "qfData_chicago.txt": "31046d48092e619eb84f06acdf09ea8e86c642da6aa368c10fe338480b90a04f",
+        "coherent_parameters.yaml": "daa4f3feaeb5499cb1d876f8ea39f3cfd571f998a6ab92e9cdf552afc78b67e8"
+      }
+    }
   },
   "argon_fit": {
     "analysis": "COHERENT CENNS-10 Analysis A",
-    "energy_range_keVee": [0,120],
+    "energy_range_keVee": [0, 120],
     "energy_bins": 12,
     "bin_width_keVee": 10,
-    "nuisance_sigmas": {
-      "CEvNS": 0.134,
-      "PBRN": 0.32,
-      "LBRN": 1.0,
-      "BRN_energy_shape_uncorrelated": 0.017
-    },
+    "nuisance_sigmas": {"CEvNS": 0.134, "PBRN": 0.32, "LBRN": 1.0, "BRN_energy_shape_uncorrelated": 0.017},
     "official_release": {
       "zenodo_doi": "10.5281/zenodo.3903810",
       "version": "1.0",
-      "status": "PRIMARY_NUMERICAL_PACKAGE_PUBLIC_AND_ANALYSIS_A_MATCHED",
-      "observed_and_model_categories_confirmed": [
-        "datanobkgsub.txt",
-        "energydata1d.txt",
-        "f90data1d.txt",
-        "cevnspdf.txt",
-        "bkgpdf.txt",
-        "brnpdf.txt_or_named_variants",
-        "CENNS10AnlAEfficiency.txt",
-        "LArParametersAnlA.yaml",
-        "systerrors1denergy.txt"
-      ],
-      "sha256_status": "OPEN_BYTES_NOT_YET_HASH_PINNED"
+      "status": "PRIMARY_PACKAGE_HASH_PINNED",
+      "key_hashes": {
+        "energydata1d.txt": "d691284e875fb24e72787016f118c171974ca68fa6005da7ea653ca66059aa04",
+        "CENNS10AnlAEfficiency.txt": "21ce25451c1ed552752ff4a22496deab3ff5dba178bf360813eaff1d25be89e2",
+        "cevnspdf.txt": "3b1d5b25749e8d8e1cfdf5c32e48f026ce4aafec0a80632b3a63273e6e0e1f37",
+        "datanobkgsub.txt": "dabf3d80f13959f4b94b77c9b56f7347a645105801e8cc177424e7ffcf7c7f66",
+        "LArParametersAnlA.yaml": "a206a77220436d0173c4783ae8fddeab97adf5e144f3d65005eff0870257693e"
+      }
     }
   },
   "shared_primary_inputs": {
-    "flux": {
-      "argon_r": "(9 +/- 0.9)e-2",
-      "argon_N_POT": "13.7e22",
-      "argon_baseline_m": 27.5,
-      "csi_r": 0.08,
-      "csi_N_POT": "17.6e22",
-      "csi_baseline_m": 19.3
+    "cadeddu_fit_values": {
+      "argon_r": "(9 +/- 0.9)e-2", "argon_N_POT": "13.7e22", "argon_baseline_m": 27.5,
+      "csi_r": 0.08, "csi_N_POT": "17.6e22", "csi_baseline_m": 19.3,
+      "target_masses_kg": {"CsI": 14.6, "Ar": 24.0}
     },
-    "target_masses_kg": {
-      "CsI": 14.6,
-      "Ar": 24.0
-    },
-    "weak_couplings": {
-      "gV_p_nue": 0.0401,
-      "gV_p_numu": 0.0318,
-      "gV_n": -0.5094
-    },
+    "weak_couplings": {"gV_p_nue": 0.0401, "gV_p_numu": 0.0318, "gV_n": -0.5094},
     "form_factor": "Helm",
-    "proton_rms_fm": {
-      "Cs": 4.804,
-      "I": 4.749,
-      "Ar": 3.448
-    },
-    "adopted_neutron_rms_fm": {
-      "Cs": 5.01,
-      "I": 4.94,
-      "Ar": 3.55
-    }
+    "proton_rms_fm": {"Cs": 4.804, "I": 4.749, "Ar": 3.448},
+    "adopted_neutron_rms_fm": {"Cs": 5.01, "I": 4.94, "Ar": 3.55}
   },
   "benchmark_gate": {
-    "status": "NOT_YET_FROZEN_NUMERIC_TARGET_TOLERANCE",
-    "guard": "No SM/background reproduction output may be interpreted before a primary numerical target and prospective tolerance are frozen. No B-L scan is authorized."
+    "status": "PROSPECTIVELY_FROZEN_NOT_YET_RUN",
+    "prereg": "research/prereg/0074a_coherent_argon_sm_benchmark.md",
+    "prereg_commit": "09ca12d9d82b96ee38502d639196adbb162dad65",
+    "primary_target": "Ar Analysis-A initial predicted CEvNS normalization = 128 +/- 17 events before 3D likelihood fit",
+    "acceptance": "abs(N_calc-128) <= 17 events; integration refinement <=0.5%; invariant checks as preregistered",
+    "guard": "No benchmark output was inspected before this target/tolerance was frozen. No B-L scan is authorized."
   },
   "current_blockers": [
-    "Hash-materialize official CsI 2018 release package and exact Cadeddu-compatible quenching/acceptance/background inputs",
-    "Hash-materialize official Ar Analysis-A numerical files",
-    "Extract and freeze a non-circular primary SM/background benchmark target and tolerance before computing benchmark output"
+    "Implement and run the prospectively frozen 0074a independent Ar SM normalization benchmark",
+    "After Ar benchmark PASS, determine/freeze remaining CsI benchmark or likelihood-validation requirement before overall 0074 PASS"
   ],
-  "classification_if_stopped_now": "PARTIAL_PASS_COHERENT_INPUTS"
+  "classification_if_stopped_now": "PARTIAL_PASS_COHERENT_INPUTS_PRIMARY_BYTES_HASH_PINNED"
 }
