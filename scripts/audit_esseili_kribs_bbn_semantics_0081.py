@@ -61,7 +61,11 @@ def extract_bound(ctx: str | None):
 def extract_cl(ctx: str | None):
     if not ctx:
         return None
-    for pattern in [r"(\d{2,3})\\%\s*C\.?\s*L\. ?", r"(\d{2,3})\s*%\s*C\.?\s*L\. ?"]:
+    # Exact source uses TeX `95\\% C.L\\@.`; fixtures may use ordinary `95\\% C.L.`.
+    for pattern in [
+        r"(\d{2,3})\\%\s*C\.?\s*L(?:\\@)?\. ?",
+        r"(\d{2,3})\s*%\s*C\.?\s*L(?:\\@)?\. ?",
+    ]:
         m = re.search(pattern, ctx, re.I)
         if m:
             return int(m.group(1))
@@ -77,7 +81,8 @@ def definition_semantics(ctx: str | None):
     if not (has_delta and has_bsm and has_sm):
         return {"recovered": False, "kind": None, "uses_absolute": None}
     absolute = bool("\\left|" in ctx or "\\abs" in ctx or re.search(r"\|\s*Y", ctx))
-    signed = bool(re.search(r"BSM[^=]{0,80}-[^=]{0,80}SM", ctx, re.S))
+    # Exact source writes the two Y_p terms with TeX labels/superscripts between BSM and SM.
+    signed = bool(re.search(r"BSM[^=]{0,260}-[^=]{0,260}SM", ctx, re.S))
     if absolute:
         return {"recovered": True, "kind": "absolute_difference", "uses_absolute": True}
     if signed:
@@ -89,7 +94,12 @@ def classify_text(text: str):
     fig7 = context(text, MAJORANA_ASSET)
     fig8 = context(text, DIRAC_ASSET)
     bound_ctx = context(text, "a conservative upper bound") or context(text, "A conservative upper bound")
-    definition_ctx = context(text, "BSM deviation of helium abundance")
+    # The prose phrase can be split by source line formatting; anchor first on the exact equation label.
+    definition_ctx = (
+        context(text, "\\label{DeltaYpEqn}")
+        or context(text, "\\Delta Y_p =")
+        or context(text, "BSM deviation of helium abundance")
+    )
 
     threshold = extract_bound(bound_ctx)
     confidence = extract_cl(bound_ctx)
