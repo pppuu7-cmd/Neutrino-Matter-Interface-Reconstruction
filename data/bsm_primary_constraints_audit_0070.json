@@ -1,0 +1,81 @@
+{
+  "iteration": "0070",
+  "date": "2026-09-07",
+  "parent_prereg": "research/prereg/0070_bsm_primary_constraints_ledger_contract.md",
+  "convention_amendment_commit": "502a21da07e258285ec3223a1b5271da7c6aae74",
+  "classification": "BLOCKED_BSM_CONSTRAINT_NORMALIZATION",
+  "reason": "A common cross-family primary constraint envelope cannot be frozen for the scalar and axial simplified classes without additional UV/thermal-history/branching-ratio/hadronic assumptions. Laboratory constraints can be recorded under explicit conventions, but astrophysical/cosmological/collider limits are not universally transportable to the independent-coupling benchmark planes frozen in 0070a.",
+  "frozen_conventions": {
+    "vector": {
+      "benchmark": "U(1)_{B-L}",
+      "parameters": ["m_V", "g_BL"],
+      "status": "COMMONLY_NORMALIZABLE_FOR_MODEL",
+      "note": "Single gauge coupling fixes relative neutrino/electron/quark B-L charges; do not identify with phenomenological universal-vector product conventions."
+    },
+    "scalar": {
+      "benchmark": "simplified Dirac-neutrino scalar",
+      "parameters": ["m_S", "y_nu", "y_e", "y_q_or_y_N"],
+      "status": "NOT_CROSS_FAMILY_NORMALIZABLE",
+      "note": "External constraints often assume equal couplings, Higgs-portal/Yukawa relations, Majorana/LNV structure, right-handed-neutrino thermalization, or specific scalar nucleon form factors."
+    },
+    "axial": {
+      "benchmark": "simplified axial vector",
+      "parameters": ["m_A", "g_nu_A", "g_q_A"],
+      "status": "NOT_CROSS_FAMILY_NORMALIZABLE",
+      "note": "Collider/cosmology/stellar mappings depend on anomaly-cancellation and longitudinal-mode UV completion; nucleon mapping depends on spin fractions and quark-coupling pattern."
+    }
+  },
+  "primary_authority": [
+    {
+      "citation": "V. De Romeri, D. K. Papoulias, C. A. Ternes, JCAP 05 (2025) 012",
+      "doi": "10.1088/1475-7516/2025/05/012",
+      "arxiv": "2411.11749",
+      "role": "Primary reanalysis of XENONnT/PandaX-4T CEvNS and electron-recoil data for scalar, vector, B-L and axial light mediators; explicit coupling convention and model-dependence audit.",
+      "facts_used": [
+        "Defines effective Lorentz structures and light-mediator couplings.",
+        "Assumes equal mediator coupling strengths to neutrinos, quarks and charged leptons in the universal benchmark, with g_a=sqrt(g_nu_a g_q_a)=sqrt(g_nu_a g_l_a).",
+        "Scalar/vector nuclear coefficients require hadronic/nuclear conventions.",
+        "Axial/tensor nuclear response is spin dependent.",
+        "States astrophysical/cosmological regions are strongly model-dependent and require tailored analyses.",
+        "Notes axial limits change materially when quark and lepton couplings are allowed to differ."
+      ]
+    },
+    {
+      "citation": "L. J. Flores et al., Phys. Rev. D 113, 095019 (2026)",
+      "doi": "10.1103/t3s4-8kvh",
+      "role": "Primary analysis showing that multiple generalized-neutrino-interaction parametrizations require explicit translations before comparing bounds.",
+      "facts_used": [
+        "Different common GNI parametrizations are not identical by inspection and require an explicit relation.",
+        "Scalar/vector/tensor constraints from CEvNS and DIS depend on the chosen normalization."
+      ]
+    }
+  ],
+  "constraint_family_status": {
+    "laboratory_neutrino_scattering_CEvNS": {
+      "status": "PRIMARY_ANCHORS_AVAILABLE",
+      "note": "JCAP 05 (2025) 012 provides a single internally consistent universal-coupling comparison and B-L benchmark, but this does not universalize independent-coupling scalar/axial models."
+    },
+    "collider_fixed_target": {
+      "status": "MODEL_SPECIFIC_MAPPING_REQUIRED",
+      "note": "Visible/invisible decay searches depend on mediator branching ratios and additional couplings; no universal mapping to independent g_nu*g_f planes."
+    },
+    "stellar_supernova": {
+      "status": "MODEL_SPECIFIC_MAPPING_REQUIRED",
+      "note": "Production, free streaming and trapping depend on the complete coupling pattern and medium interactions."
+    },
+    "cosmology_BBN_CMB_free_streaming": {
+      "status": "MODEL_SPECIFIC_MAPPING_REQUIRED",
+      "note": "Depends on thermal history, mediator population, neutrino chirality/extra states and decay channels."
+    },
+    "fifth_force_equivalence_principle": {
+      "status": "MODEL_SPECIFIC_MAPPING_REQUIRED",
+      "note": "Directly constrains ordinary-matter charges/couplings; conversion to a neutrino-matter product requires a relation between matter and neutrino couplings. B-L is a suitable separately gauge-complete benchmark."
+    }
+  },
+  "scientific_decision": {
+    "generic_three_class_ledger": "BLOCKED",
+    "vector_B_minus_L_subclass": "ACTIONABLE_AS_SEPARATE_PROSPECTIVE_GATE",
+    "bsm_response_scan": "FORBIDDEN",
+    "next_gate": "Freeze a dedicated gauge-complete U(1)_{B-L} primary constraint ledger in (m_V,g_BL) only, including laboratory, collider/fixed-target, stellar/SN, cosmological and fifth-force families without recasting incompatible universal-product models."
+  }
+}
