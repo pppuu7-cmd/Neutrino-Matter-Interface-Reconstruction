@@ -1,0 +1,6 @@
+{
+  "contract_commit": "71c21236b1da1817d122567286c938ca6efcce6c",
+  "model_s_git_blob_sha1": "e3a0fad3ff877338aad926dbd0a9a43e6c0a897f",
+  "reason": "unresolved derivative sign reversal in monotonicity audit",
+  "status": "BLOCKED_G9_TURNING_POINT_KERNEL"
+}
