@@ -1,0 +1,34 @@
+name: NMIR 0072 Wagner source audit
+
+on:
+  push:
+    paths:
+      - 'scripts/materialize_wagner_source_0072.py'
+      - '.github/workflows/b-minus-l-wagner-source-audit.yml'
+  workflow_dispatch:
+
+jobs:
+  audit-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize primary arXiv source archive
+        run: |
+          mkdir -p artifacts
+          python scripts/materialize_wagner_source_0072.py --output artifacts/wagner_source_audit_0072.json
+      - name: Show raw scientific audit result
+        if: always()
+        run: |
+          cat artifacts/wagner_source_audit_0072.json || true
+          sha256sum artifacts/wagner_source_audit_0072.json || true
+      - name: Upload immutable audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wagner-source-audit-0072
+          path: artifacts/wagner_source_audit_0072.json
+          if-no-files-found: error
