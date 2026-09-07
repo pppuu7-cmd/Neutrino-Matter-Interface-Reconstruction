@@ -29,10 +29,20 @@ Exact Cu63 RIOEC state: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5
 ## G9
 0061 `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`; frozen 10-kpc Galactic CCSN transparent-Sun utility negligible after finite-source/alignment/duty accounting. Its immutable scope explicitly does not close persistent/known-direction sources.
 
-### 0075 persistent/known-direction class — PROSPECTIVE
+### 0075 persistent/known-direction class — RUNNING
 Preregistered before any new utility calculation at commit `60dfd94c269e8d5b3a23f73043c779099cd15783`. This is a class-level map, not a named-source scan. It asks whether deliberate observer positioning for a persistent known-direction source removes the random-source alignment penalty while finite source size, receiver size and transverse position error remain explicit.
 
-Frozen grid: receiver radii `1,10,100 m`; source angular radius `1e-18...1e-6 rad`; transverse position errors `0,0.01,0.1,1,10,100 m`; representative validated focal distance `24.073780819657056 AU` plus neighboring valid focal branches if already exposed by the validated extended-Sun model. Outputs must include real receiver-integrated magnification, an optimistic whole-solar-aperture ceiling, gain-threshold tolerances and critical source angular sizes. `PASS_G9_PERSISTENT_KNOWN_DIRECTION_SURVIVOR` requires a nonzero finite region with real-lens `mu>=2`; exact alignment alone is insufficient. No named astrophysical source may be declared viable until a later primary-source audit.
+Frozen grid: receiver radii `1,10,100 m`; source angular radius `1e-18...1e-6 rad`; transverse position errors `0,0.01,0.1,1,10,100 m`; representative validated focal distance `24.073780819657056 AU` plus neighboring valid focal rings from the same pinned Model-S implementation. Outputs must include real receiver-integrated magnification, an optimistic whole-solar-aperture ceiling, gain-threshold tolerances and critical source angular sizes. `PASS_G9_PERSISTENT_KNOWN_DIRECTION_SURVIVOR` requires a nonzero finite region with real-lens `mu>=2`; exact alignment alone is insufficient. No named astrophysical source may be declared viable until a later primary-source audit.
+
+Implementation is now staged without changing the preregistered PASS threshold or grid:
+- finite-source/position convolution module `src/nmir/g9_persistent_lens.py`, commit `394d2ccaebcaa768727a230ff2b601df679c9eea`;
+- dedicated tests `tests/test_g9_persistent_lens.py`, initial commit `50b9dccfd6e6dd1628894d6582da2c164d99933f`, quadrature-regression correction `844ca8fcd5bfd46649a48bc37df39eb8a44c6c98` (test-only implementation correction before any scientific result);
+- fail-closed benchmark `scripts/g9_persistent_lens_benchmark.py`, commit `943c72cd5a64d7ed9253940567f8870204ca8560`;
+- hosted workflow `.github/workflows/g9-persistent-lens.yml`, commit `9636808657831a55c69353f153ca8773b29e88a8`.
+
+The benchmark reuses the pinned Model-S radial focal map, evaluates focal-ring roots `b/Rsun = 0.020, 0.024, 0.030`, integrates an explicitly finite uniform angular source and circular receiver with transverse centre error, and independently checks an impossible full-solar-aperture duty=1 ceiling. It also prospectively enforces point-annulus reproduction (`<=3%`) and source-quadrature refinement (`<=5%`) as implementation-validation guards. `mu_real` is reported as unlensed baseline 1 plus the finite accepted one-ring contribution, which analytically approaches 1 for sufficiently large uniform-source blur; no time-averaged duty is claimed.
+
+Hosted scientific run on the corrected head is `34149433817`, job `101828380178`; at this reconciliation it is `queued`. Earlier run `34149348350` is a stale pre-test-correction head and must never become authority even if it later turns green. Do not launch another 0075 copy while corrected run `34149433817` is queued/in progress. Scientific classification remains OPEN until raw job output and artifact from the corrected run are inspected.
 
 ## BSM architecture
 0069 `PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`; this is not BSM-response PASS. 0070 generic vector+scalar+axial constraint composition `BLOCKED_BSM_CONSTRAINT_NORMALIZATION`; gauge-complete `U(1)_{B-L}` selected. 0071 `BLOCKED_B_MINUS_L_PRIMARY_CONTOUR_MATERIALIZATION`. No NMIR B-L response/enhancement scan until reproducible external constraints are frozen.
@@ -57,11 +67,11 @@ Official COHERENT packages hash-pinned: Ar Analysis A Zenodo `10.5281/zenodo.390
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G8 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
-- G9 0061 CCSN class strong-negative; 0075 persistent known-direction class prospectively OPEN and currently executable.
+- G9 0061 CCSN class strong-negative; 0075 persistent known-direction corrected hosted gate queued and scientific classification still OPEN.
 - BSM constraints-only; no global B-L envelope and no B-L response scan.
 
 ## Exact next gate
-Execute **0075** exactly as frozen at commit `60dfd94c269e8d5b3a23f73043c779099cd15783`. Reuse validated extended-Sun G9 code, add finite angular-source/position-error class map, dedicated tests, machine-readable benchmark and hosted fail-closed workflow. Do not pick a named persistent source before the generic admissibility boundary is known. PASS survivor only if the real extended-Sun lens has a nonzero finite region with `mu>=2` and all upper-bound/monotonicity invariants pass; otherwise classify strong-negative/BLOCKED/FAIL exactly as preregistered.
+Do not duplicate 0075. Inspect corrected hosted run/job `34149433817/101828380178` when terminal, inspect its raw benchmark output and uploaded `nmir-g9-0075-result` artifact/hash, and classify strictly against prereg commit `60dfd94c269e8d5b3a23f73043c779099cd15783`. If scientific PASS/strong-negative/BLOCKED is obtained, persist the machine-readable result, immutable iteration 0075 note, and reconcile RECOVERY/FUNNEL before selecting the next funnel gate.
 
 ## Critical guards
 Raster/manual contour reading forbidden. No Asimov substitution for a required primary observed-data likelihood. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result tolerance relaxation. No F9 multiplication of unvalidated gains.
