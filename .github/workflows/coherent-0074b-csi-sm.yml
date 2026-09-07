@@ -1,0 +1,37 @@
+name: COHERENT 0074b CsI SM benchmark
+
+on:
+  push:
+    paths:
+      - 'src/nmir/coherent_csi_sm_0074b.py'
+      - 'tests/test_coherent_csi_sm_0074b.py'
+      - 'scripts/benchmark_coherent_csi_sm_0074b.py'
+      - 'research/prereg/0074b_coherent_csi_sm_response_benchmark.md'
+      - '.github/workflows/coherent-0074b-csi-sm.yml'
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install package and test runner
+        run: python -m pip install -e . pytest
+      - name: Run dedicated 0074b tests
+        run: pytest -q tests/test_coherent_csi_sm_0074b.py
+      - name: Run frozen 0074b scientific benchmark
+        env:
+          NMIR_0074B_RESULT: artifacts/coherent_0074b/result.json
+        run: python scripts/benchmark_coherent_csi_sm_0074b.py
+      - name: Archive raw scientific result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherent-0074b-csi-sm-result
+          path: artifacts/coherent_0074b/result.json
+          if-no-files-found: error
+          retention-days: 90
