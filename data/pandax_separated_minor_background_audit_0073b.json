@@ -1,0 +1,59 @@
+{
+  "iteration": "0073b",
+  "date": "2026-09-07",
+  "question": "Can public primary/official same-analysis sources supply separate 0-30 keV reconstructed-energy templates for neutron, solar-8B, accidental, and surface/wall backgrounds used by the PandaX-4T 0.63 tonne-year commissioning analysis?",
+  "classification": "BLOCKED_PRIMARY_LIKELIHOOD_INPUTS",
+  "frozen_parent_prereg_commit": "750dcc8c6e433e761ca31b47c42c8c11567471bd",
+  "accepted_parent_inputs": {
+    "observed_bins": [3,39,67,73,90,71,70,53,54,64,57,41,38,44,26,29,18,23,24,22,8,26,18,23,26,20,19,7,3,2],
+    "observed_sum": 1058,
+    "efficiency_points": 301,
+    "source_archive_sha256": "b077b657e30a2efc07fb37f3c389d365ef670c408a5dc42cafc7af06a5e75db3"
+  },
+  "audit_routes": [
+    {
+      "route": "official_PandaX_data_release",
+      "source": "https://pandax.sjtu.edu.cn/public/data_release",
+      "finding": "The public release index lists the commissioning First Analysis release and later PandaX-4T releases, but no dedicated numerical release for PRL 129, 161804 / arXiv:2206.02339. The First Analysis page exposes only eff_RDQ_graph.root and PandaX4T_Data_ne.xlsx; no four separated 0-30 keV minor-background templates are listed.",
+      "status": "EXHAUSTED_NO_REQUIRED_TEMPLATES"
+    },
+    {
+      "route": "publisher_SCOAP3_supplement",
+      "source": "https://repo.scoap3.org/records/73257",
+      "finding": "SCOAP3 record for DOI 10.1103/PhysRevLett.129.161804 exposes fulltext PDF and XML only; no supplementary numerical files/templates are listed.",
+      "status": "EXHAUSTED_NO_REQUIRED_TEMPLATES"
+    },
+    {
+      "route": "HEPData_exact_record_search",
+      "queries": ["10.1103/PhysRevLett.129.161804", "2206.02339", "Search for Light Fermionic Dark Matter Absorption on Electrons in PandaX-4T"],
+      "finding": "No HEPData record tied to the exact DOI/arXiv/title was found in the public exact searches performed for this gate.",
+      "status": "EXHAUSTED_NO_RECORD_FOUND"
+    },
+    {
+      "route": "author_public_code_data_search",
+      "queries": ["2206.02339 github PandaX", "Fig3_bestFit_gpu github", "PandaX-4T background github 2206.02339"],
+      "finding": "No author/collaboration public repository or numerical package explicitly tied to the same analysis and containing the four required separated templates was found.",
+      "status": "EXHAUSTED_NO_REQUIRED_TEMPLATES"
+    },
+    {
+      "route": "independent_primary_reconstruction",
+      "finding": "Component-specific papers/analyses exist (for example the PandaX-4T neutron-background study), but they do not provide a complete same-selection set of four reconstructed-energy templates with all required detector-response/selection provenance. Later or different PandaX analyses cannot be substituted without an explicit identity mapping, which is absent.",
+      "status": "NOT_AUTHORIZED_BY_FROZEN_PROVENANCE"
+    }
+  ],
+  "component_status": {
+    "neutron": "MISSING_REQUIRED_30_BIN_TEMPLATE",
+    "solar_8B": "MISSING_REQUIRED_30_BIN_TEMPLATE",
+    "accidental": "MISSING_REQUIRED_30_BIN_TEMPLATE",
+    "surface_wall": "MISSING_REQUIRED_30_BIN_TEMPLATE"
+  },
+  "guards_respected": {
+    "no_raster_manual_digitization": true,
+    "no_proportional_split_of_grouped_curve": true,
+    "no_Asimov_substitution": true,
+    "no_cross_analysis_template_substitution": true,
+    "no_B_minus_L_calculation": true
+  },
+  "scientific_consequence": "The full-profile PandaX/De-Romeri B-L likelihood route is retired as blocked under current public-primary inputs. The accepted 0073a observed spectrum and efficiency remain valid data products but do not authorize a B-L contour.",
+  "next_gate": "Prospectively freeze a different compatible primary B-L constraint family; prioritize an independently reproducible COHERENT CsI+Ar CEvNS likelihood/contour route rather than weakening the PandaX nuisance model."
+}
