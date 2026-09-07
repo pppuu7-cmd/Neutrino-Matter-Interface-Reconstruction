@@ -5,6 +5,7 @@ Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
 Latest completed immutable record: `research/iterations/0073b_pandax_separated_minor_background_audit.md`
+Current in-progress record: `research/iterations/0074_coherent_b_minus_l_input_materialization_in_progress.md`
 `NMIR_READINESS: 89%`.
 
 ## Recovery order
@@ -45,24 +46,28 @@ Prereq contract commit `70763859ab41e03ce58925c3b39287de4ecb2d1b`; classificatio
 ### 0073b — separated minor-background public-primary audit
 Frozen prereg commit `750dcc8c6e433e761ca31b47c42c8c11567471bd`. Classification: **`BLOCKED_PRIMARY_LIKELIHOOD_INPUTS`**. Machine-readable audit commit `db7e863322a2e02a6f71f9b30b26f2e118aa1f6f`; immutable iteration commit `579a730f4c8e608a99c70e930f82e4d97df0f866`.
 
-The official PandaX public release index has no dedicated release for PRL 129, 161804 / arXiv:2206.02339. The commissioning `First Analysis` page exposes only `eff_RDQ_graph.root` and `PandaX4T_Data_ne.xlsx`; it does not provide the four separated 0–30 keV minor-background templates. SCOAP3 exposes PDF/XML only. Exact HEPData DOI/arXiv/title searches and public author-code/data searches produced no same-analysis four-template package. A dedicated PandaX neutron-background study exists but does not supply the complete same-selection set needed by the frozen likelihood. Later/different PandaX releases cannot be substituted without explicit selection/response/template identity provenance.
+The official PandaX public release index has no dedicated release for PRL 129, 161804 / arXiv:2206.02339. The commissioning `First Analysis` page exposes only `eff_RDQ_graph.root` and `PandaX4T_Data_ne.xlsx`; it does not provide the four separated 0–30 keV minor-background templates. SCOAP3 exposes PDF/XML only. Exact HEPData DOI/arXiv/title searches and public author-code/data searches produced no same-analysis four-template package. Therefore the grouped Fig. 3 minor-background family cannot be decomposed under the frozen nuisance model. The PandaX full-profile B-L likelihood route is retired under current public-primary evidence; 0073a observed bins and efficiency remain accepted standalone products, but no PandaX B-L contour is authorized.
 
-Therefore neutron, solar-8B, accidental, and surface/wall remain unavailable as individually normalized 30-bin templates. Fig. 3's grouped curve may not be split. The PandaX full-profile B-L likelihood route is retired under current public-primary evidence. 0073a observed bins and efficiency remain accepted standalone products; no PandaX B-L contour is authorized.
+## 0074 — current in-progress gate
+Frozen prereg: `research/prereg/0074_coherent_b_minus_l_likelihood_materialization.md`, commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`. Progress ledger commit `a292c71510f2587f840f4e1ae4edc22154f06a4a`; in-progress iteration commit `6435bb34bc260a5aeaf876394fad3e503a5a96bf`. Current classification: **`PARTIAL_PASS_COHERENT_INPUTS`**; no scientific likelihood reproduction yet.
 
-## 0074 — current prospective gate
-`research/prereg/0074_coherent_b_minus_l_likelihood_materialization.md`, commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`.
+Cadeddu et al. JHEP 01 (2021) 116 / arXiv:2008.05022 explicitly supplies the B-L CEvNS convention and fit structure. The published convention sets lepton charge `Q'_ell=1`, quark charge `Q'_f=-1/3`; the amplitude is the SM weak charge minus the B-L propagator term proportional to `g_Z'^2 [Z F_Z+N F_N]/(q^2+M_Z'^2)`. Frozen source/exposure values include Ar `r=(9±0.9)e-2`, `N_POT=13.7e22`, `L=27.5 m`, mass `24 kg`; CsI `r=0.08`, `N_POT=17.6e22`, `L=19.3 m`, active mass `14.6 kg`. Radiatively corrected weak couplings are `gV^p(nu_e)=0.0401`, `gV^p(nu_mu)=0.0318`, `gV^n=-0.5094`, with Helm form factors and the published proton/neutron radii.
 
-Independently materialize the explicit B-L COHERENT CsI+Ar likelihood of Cadeddu et al. (JHEP 01 (2021) 116, arXiv:2008.05022) from primary/public COHERENT releases. Required before any B-L scan: exact observed bins, flux/source, response/acceptance/quenching, backgrounds, covariance/nuisances, SM CEvNS convention, and exact B-L interference/coupling normalization. A primary numerical SM/background benchmark and tolerance must be frozen before reproduction output is inspected. No contour reading by eye and no mixing incompatible COHERENT releases.
+CsI fit: bins `i=4..15` (12 bins), nuisances `sigma_alpha=0.112`, `sigma_beta=0.25`, `sigma_eta=0.051`, using Chicago-3 quenching range. Exact official CsI package bytes/hashes remain OPEN.
+
+Ar fit: COHERENT Analysis A, `0–120 keVee` in 12 × 10-keVee bins; nuisance widths CEvNS `13.4%`, PBRN `32%`, LBRN `100%`, plus uncorrelated BRN energy-shape `1.7%` per energy bin. Official COHERENT Zenodo DOI `10.5281/zenodo.3903810`, v1.0, is explicitly Analysis A and exposes observed-data, CEvNS/background PDFs, efficiency, parameter and systematic files needed for materialization. This establishes public availability of the Ar-side numerical package but its exact bytes/SHA256 are not yet frozen.
+
+Mandatory prereg guard remains active: no `(m_V,g_BL)` scan and no scientific PASS until exact Ar+CsI numerical packages are hash-pinned and a non-circular primary SM/background benchmark target plus tolerance is frozen *before* inspecting benchmark output.
 
 ## Current funnel state
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G8 source/target provenance PASS, exact normalization BLOCKED.
 - G9 frozen source class strong-negative utility.
-- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner route partial PASS + blue semantic FAIL; PandaX full-profile route BLOCKED by missing separated public-primary background templates; COHERENT B-L likelihood materialization 0074 is highest-value OPEN gate; no global B-L envelope.
+- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner route partial PASS + blue semantic FAIL; PandaX full-profile route BLOCKED; COHERENT 0074 `PARTIAL_PASS_COHERENT_INPUTS`; no global B-L envelope.
 
 ## Exact next gate
-Execute 0074. Materialize the exact Cadeddu/COHERENT CsI+Ar likelihood inputs and prospectively freeze a primary SM/background benchmark tolerance before computing its result. Only if that benchmark passes may a separate B-L contour scan be preregistered.
+Continue 0074: hash-materialize official COHERENT Ar Analysis-A and CsI 2018 numerical packages tied to the Cadeddu fit; extract a primary numerical SM/background benchmark target and prospectively freeze its tolerance; only then implement/run benchmark reproduction. If benchmark passes, separately preregister B-L contour calculation. If a controlling package/input is unavailable, classify under the existing 0074 contract without weakening criteria.
 
 ## Critical guards
 Raster/manual contour reading forbidden. No Asimov substitution for observed data when a primary observed-data likelihood is required. No proportional decomposition of grouped PandaX minor backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result relaxation. No F9 multiplication of unvalidated gains.
