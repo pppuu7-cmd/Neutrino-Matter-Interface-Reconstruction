@@ -1,0 +1,34 @@
+name: NMIR G9 CCSN source materialization
+
+on:
+  push:
+    paths:
+      - '.github/workflows/g9-ccsn-source-materialize.yml'
+  workflow_dispatch:
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch frozen Nakazato time-integrated spectrum
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://asphwww.ph.noda.tus.ac.jp/snn/integ2002.data'
+          curl --fail --location --retry 3 --retry-delay 2 "$url" -o integ2002.data
+          test -s integ2002.data
+          bytes=$(wc -c < integ2002.data)
+          test "$bytes" -gt 1000
+          test "$bytes" -lt 10000
+          echo "SOURCE_URL=$url"
+          echo "SOURCE_BYTES=$bytes"
+          sha256sum integ2002.data
+          echo '---NMIR_SOURCE_BEGIN---'
+          cat integ2002.data
+          echo '---NMIR_SOURCE_END---'
+      - name: Upload source artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-nakazato-integ2002
+          path: integ2002.data
+          if-no-files-found: error
