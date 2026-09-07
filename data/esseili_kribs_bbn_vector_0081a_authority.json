@@ -1,0 +1,54 @@
+{
+  "iteration": "0081a",
+  "classification": "BLOCKED_COSMOLOGY_B_L_BBN_VECTOR_CALIBRATION_SEMANTIC_IDENTITY",
+  "authoritative_prereg_commit": "ad37205e6a30188f4129fdca8e0d49a156ab6e36",
+  "implementation_freeze_commit": "27ac3703547c67f5e130baba9b884688ef176a13",
+  "source": {
+    "arxiv": "2308.07955v2",
+    "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+    "majorana_asset": "Presentation/CnstrntPlotMajoranaYp.pdf",
+    "majorana_asset_sha256": "4326f3ac9ba29e515aa22afafef27d08c05d0e6be04db605c4706418c6cd8926",
+    "dirac_asset": "Presentation/CnstrntPlotDiracYp.pdf",
+    "dirac_asset_sha256": "14d9afe16f4c38f1d3c08f97ccf086a570739b18731b0b6ffee97fe4b9e63b15"
+  },
+  "frozen_threshold": {
+    "definition": "Delta Y_p = Y_p(BSM) - Y_p(SM)",
+    "hard_threshold": 0.008,
+    "confidence_level_percent": 95
+  },
+  "hosted_authority": {
+    "run_id": 34165337031,
+    "job_id": 101875151196,
+    "artifact_id": 10033955293,
+    "raw_json_sha256": "daf2f687d8d817ce20f9568aeb27843ff7fe8b9d7e94391dffb844946b41f34e",
+    "artifact_zip_sha256": "d5c1495ce4a1dee6928093aec79de0b3aea8dddcc76e21b93082263afae4445a",
+    "dedicated_tests": "4 passed"
+  },
+  "blockers": {
+    "axis_authority": {
+      "majorana_extractable_axis_text": "0.1 1 10-11 10-10 10-9 10-8 mX [MeV] gX ...",
+      "dirac_extractable_axis_text": "0.1 1 10-11 10-10 10-9 10-8 mX [MeV] gX ...",
+      "x_major_tick_anchors_exposed": [0.1, 1.0],
+      "x_anchor_count": 2,
+      "required_minimum_major_tick_anchors": 4,
+      "y_major_tick_labels_exposed": ["10^-11", "10^-10", "10^-9", "10^-8"],
+      "conclusion": "Native BBN PDFs do not expose enough source-native x-axis major-label authority to satisfy the preregistered independent calibration contract without borrowing information from CMB or making manual/raster inferences."
+    },
+    "threshold_semantic_identity": {
+      "target_label_count_majorana": 1,
+      "target_label_count_dirac": 1,
+      "text_color_route": "no unique vector style matched the 0.008 text color",
+      "majorana_adjacency": "multiple non-overlay blue vector styles are within the frozen 2.5 PDF-point radius; nearest competing styles are tied at about 1.58246 pt",
+      "dirac_adjacency": "multiple non-overlay blue vector styles touch/overlap the 0.008 label neighborhood with minimum distance 0",
+      "dashed_red_overlay_exclusion": "PASS; dashed red CMB overlays were independently identified and excluded",
+      "conclusion": "The source-native 0.008 threshold path/style is not unique under the prospectively frozen color-primary / adjacency-fallback identity rule."
+    }
+  },
+  "scientific_interpretation": "BLOCKED is a provenance/identifiability result, not a contradiction of the BBN physics or a scientific exclusion failure. The current BBN geometry route must stop without manual contour inference, threshold relaxation, CMB-transform borrowing, or result-selected style choice.",
+  "concurrency": {
+    "non_authoritative_later_prereg": "research/prereg/0081a_bl_bbn_axis_calibration.md",
+    "non_authoritative_prereg_commit": "ee5ef6972a8433ab2b59fb80c56b26bd23fac168",
+    "reason": "created after authoritative prereg ad37205e; its workflow/result is not used for scientific classification"
+  },
+  "readiness": 94
+}
