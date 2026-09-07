@@ -1,0 +1,46 @@
+name: NMIR 0084 Shin-Yun B-L source-text audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/prereg/0084_shin_yun_bl_source_text_revision_scope.md'
+      - 'scripts/audit_shin_yun_bl_0084.py'
+      - 'tests/test_shin_yun_bl_0084.py'
+      - '.github/workflows/nmir_0084_shin_yun_bl_source_text.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regression tests
+        run: python -m pytest -q tests/test_shin_yun_bl_0084.py
+      - name: Exact-source scientific audit
+        run: python scripts/audit_shin_yun_bl_0084.py --output data/shin_yun_bl_0084.json
+      - name: Enforce frozen classification family
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/shin_yun_bl_0084.json'))
+          allowed={
+            'PASS_SHIN_YUN_B_L_REVISION_SCOPE_AUTHORITY',
+            'PASS_SHIN_YUN_B_L_ANALYTICAL_ANCHOR_ONLY',
+            'BLOCKED_SHIN_YUN_B_L_SOURCE_TEXT_AUTHORITY'
+          }
+          assert d['classification'] in allowed, d['classification']
+          assert d['archive_sha256']=='7af77fa64e46b53e901f88e3a8ef118effcb598dcd505e16e16d3aa31ab049bd'
+          PY
+      - name: Hash raw result
+        run: sha256sum data/shin_yun_bl_0084.json | tee data/shin_yun_bl_0084.sha256
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nmir-0084-shin-yun-bl-source-text
+          path: |
+            data/shin_yun_bl_0084.json
+            data/shin_yun_bl_0084.sha256
+          if-no-files-found: error
