@@ -1,0 +1,33 @@
+name: NMIR G9 CCSN solar-lens utility
+
+on:
+  push:
+    paths:
+      - 'src/nmir/g9_ccsn_lens.py'
+      - 'tests/test_g9_ccsn_lens.py'
+      - 'scripts/g9_ccsn_lens_benchmark.py'
+      - 'data/g9_ccsn_nakazato_integ2002.data'
+      - 'data/g9_ccsn_source_authority_0061.json'
+      - '.github/workflows/g9-ccsn-lens.yml'
+  workflow_dispatch:
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install package and test dependency
+        run: python -m pip install -e . pytest
+      - name: Run dedicated regression tests
+        run: pytest -q tests/test_g9_ccsn_lens.py
+      - name: Run fail-closed 0061 benchmark
+        run: python scripts/g9_ccsn_lens_benchmark.py
+      - name: Upload scientific result
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0061-result
+          path: g9_ccsn_lens_result.json
+          if-no-files-found: error
