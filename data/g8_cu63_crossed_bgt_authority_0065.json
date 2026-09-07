@@ -1,0 +1,83 @@
+{
+  "iteration": "0065",
+  "date": "2026-09-07",
+  "target": "63Cu(g.s., Jpi=3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV, Jpi=5/2-)",
+  "purpose": "Independent provenance challenge to iteration 0064 BLOCKED_ENTRANCE_STRENGTH",
+  "records": [
+    {
+      "quantity": "beta_minus_Q_63Ni_to_63Cu",
+      "value_keV": 66.945,
+      "uncertainty_keV": 0.004,
+      "authority": "NIST radionuclide standardization / ENSDF-backed beta endpoint",
+      "identifier": "J. Res. NIST 102, 455 (1997); ENSDF 63Ni beta- decay",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4882146/",
+      "use": "Q_epsilon(63Cu->63Ni) = -66.945 keV under atomic-mass beta-minus convention"
+    },
+    {
+      "quantity": "63Ni_excited_state",
+      "energy_keV": 87.220,
+      "Jpi": "5/2-",
+      "authority": "NNDC ENSDF Adopted Levels, evaluated September 2023",
+      "url": "https://www.nndc.bnl.gov/ensnds/63/Ni/adopted.pdf"
+    },
+    {
+      "quantity": "63Cu_ground_state",
+      "energy_keV": 0.0,
+      "Jpi": "3/2-",
+      "authority": "NNDC ENSDF 63Ni beta- decay / 63Cu adopted levels",
+      "url": "https://www.nndc.bnl.gov/nudat3/getdecaydataset.jsp?dsid=63ni+bM+decay&nucleus=63CU"
+    },
+    {
+      "quantity": "Ni_K_vacancy_binding_energy",
+      "value_eV_selected": 8331.486,
+      "note": "NIST X-ray transition database exposes multiple evaluated/measurement columns around 8.331-8.347 keV; 8331.486 eV is frozen for the comparator reconstruction and the source-column ambiguity must be propagated in any precision fold.",
+      "authority": "NIST X-ray Transition Energies Database",
+      "url": "https://physics.nist.gov/cgi-bin/XrayTrans/search.pl"
+    },
+    {
+      "quantity": "Ni_K_natural_width",
+      "value_eV": 1.39,
+      "alternate_HFR_eV": 1.36,
+      "authority": "Campbell-Papp recommended value as reproduced in Palmeri et al. nickel K-line calculations; consistent with Krause-Oliver reference-data systematics",
+      "identifier": "Radiative and Auger Decay Data for Modeling Nickel K Lines; J. Phys. Chem. Ref. Data 8, 329 (1979) background authority",
+      "note": "Atomic K-vacancy width dominates over the ~microsecond nuclear-state natural width by many orders of magnitude."
+    },
+    {
+      "quantity": "63Ni_87p2_to_63Cu_gs_BGT_forward",
+      "definition": "B(GT;i->f) standard reduced GT strength",
+      "authority": "Xin-Xu Wang et al., Astrophys. J. 984, 8 (2025), arXiv:2503.14835v2",
+      "url": "https://arxiv.org/html/2503.14835v2",
+      "models": {
+        "SM_fpd6pn": 0.00356,
+        "SM_GXPF1J": 0.00190,
+        "SM_jun45": 0.0448,
+        "SM_fpd6npn_prior": 0.00683
+      },
+      "experimental_status": "Excited-state beta-minus rates not measured experimentally; these are explicit target-specific shell-model evaluations."
+    },
+    {
+      "quantity": "reverse_BGT_63Cu_gs_to_63Ni_87p2",
+      "mapping": "B_reverse = [(2*J_Ni+1)/(2*J_Cu+1)] * B_forward = (6/4) * B_forward under the standard B(GT) definition",
+      "models": {
+        "SM_fpd6pn": 0.00534,
+        "SM_GXPF1J": 0.00285,
+        "SM_jun45": 0.0672,
+        "SM_fpd6npn_prior": 0.010245
+      },
+      "model_envelope_min": 0.00285,
+      "model_envelope_max": 0.0672,
+      "spread_factor": 23.57894736842105,
+      "guard": "Do not collapse the model envelope to a convenient central value."
+    },
+    {
+      "quantity": "reconstructed_RIOEC_resonance",
+      "formula": "E_R = -Q_epsilon + E_x + E_b = Q_beta_minus + E_x + E_b",
+      "value_keV": 162.496486,
+      "external_comparator_keV": 162.5,
+      "comparator_authority": "Akhmedov, Lasserre & Maturi, arXiv:2608.25001 (2026)",
+      "status": "CONSISTENT; comparator not used as input"
+    }
+  ],
+  "classification_basis": "All preregistered 0065 target-package components are independently recoverable. The weak normalization is theoretical rather than measured and carries a ~23.6x B(GT) model envelope; this uncertainty must be retained in the subsequent fold.",
+  "proposed_classification": "PASS_G8_CU63_PROVENANCE_REOPENED"
+}
