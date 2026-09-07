@@ -1,0 +1,45 @@
+name: COHERENT 0074a Ar SM benchmark
+
+on:
+  push:
+    paths:
+      - 'src/nmir/coherent_argon_sm_0074a.py'
+      - 'tests/test_coherent_argon_sm_0074a.py'
+      - 'scripts/benchmark_coherent_argon_sm_0074a.py'
+      - 'scripts/materialize_coherent_0074.py'
+      - 'research/prereg/0074a_coherent_argon_sm_benchmark.md'
+      - '.github/workflows/coherent-0074a-argon-sm.yml'
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install package and test runner
+        run: python -m pip install -e . pytest
+      - name: Run dedicated 0074a tests
+        run: pytest -q tests/test_coherent_argon_sm_0074a.py
+      - name: Materialize exact official COHERENT packages
+        env:
+          NMIR_0074_OUT: artifacts/coherent_0074
+        run: python scripts/materialize_coherent_0074.py > artifacts/coherent_0074_materialization.log
+      - name: Run frozen 0074a scientific benchmark
+        env:
+          NMIR_0074_INPUT: artifacts/coherent_0074
+          NMIR_0074A_RESULT: artifacts/coherent_0074a/result.json
+        run: python scripts/benchmark_coherent_argon_sm_0074a.py
+      - name: Archive raw scientific result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherent-0074a-argon-sm-result
+          path: |
+            artifacts/coherent_0074a/result.json
+            artifacts/coherent_0074_materialization.log
+          if-no-files-found: error
+          retention-days: 90
