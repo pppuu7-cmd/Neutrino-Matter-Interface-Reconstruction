@@ -1,0 +1,39 @@
+name: NMIR 0079 Fayet fifth-force primary authority audit
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_fayet_fifth_force_authority_0079.py'
+      - 'tests/test_audit_fayet_fifth_force_0079.py'
+      - 'research/prereg/0079_bl_fifth_force_primary_authority_audit.md'
+      - '.github/workflows/0079-fayet-fifth-force-authority.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run dedicated regression tests
+        run: python -m pytest -q tests/test_audit_fayet_fifth_force_0079.py
+      - name: Run frozen 0079 primary-source audit
+        run: python scripts/audit_fayet_fifth_force_authority_0079.py
+      - name: Hash machine result
+        if: always()
+        run: |
+          if [ -f fayet_fifth_force_authority_0079.json ]; then
+            sha256sum fayet_fifth_force_authority_0079.json
+          fi
+      - name: Upload authority ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0079-fayet-fifth-force-authority
+          path: fayet_fifth_force_authority_0079.json
+          if-no-files-found: error
