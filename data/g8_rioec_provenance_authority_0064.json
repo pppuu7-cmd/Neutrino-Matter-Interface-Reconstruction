@@ -1,0 +1,89 @@
+{
+  "iteration": "0064",
+  "date": "2026-09-07",
+  "gate": "G8/F2-F4 target-specific thermal-solar anti-nu_e RIOEC provenance feasibility",
+  "prereg_commit": "5e2e183e92dd4c23dab9c3d0d17ca16f6e456b3f",
+  "source_authorities": [
+    {
+      "id": "Haxton_Lin_2000",
+      "type": "primary_theory",
+      "title": "The Very Low Energy Solar Flux of Electron and Heavy-Flavor Neutrinos and Antineutrinos",
+      "authors": ["W. C. Haxton", "Wei Lin"],
+      "doi": "10.1016/S0370-2693(00)00764-4",
+      "arxiv": "nucl-th/0006055",
+      "channel_identity": "thermal solar neutrinos and antineutrinos of all flavors from pair processes",
+      "earth_flux_statement": "per-flavor spectral flux density is calculated; abstract reports 1e8-1e9 cm^-2 s^-1 MeV^-1 below about 5 keV",
+      "production_processes": ["Compton production including plasmon-pole diagrams", "neutral-current decay of thermally populated nuclear states", "plasmon decay", "free-to-bound electron transitions"],
+      "source_side_status": "PRIMARY_PHYSICAL_ANTI_NU_SOURCE_EXISTS",
+      "limitation_for_next_numeric_fold": "exact machine-readable anti-nu_e spectral table is not yet locally frozen in NMIR; a later numerical fold must materialize/digitize/recompute it prospectively rather than use chat-carried plot values"
+    },
+    {
+      "id": "Arguelles_et_al_2026",
+      "type": "primary_modern_theory_detection_study",
+      "title": "Towards the Detection of Thermal Solar Neutrinos",
+      "authors": ["Carlos A. Arguelles", "Christopher V. Cappiello", "P. S. Bhupal Dev", "Pablo Figueroa", "Gonzalo Herrera", "Icarus Scoville"],
+      "arxiv": "2606.15904",
+      "channel_identity": "keV thermal solar neutrinos from electroweak processes in solar plasma",
+      "role": "modern Standard-Model thermal-flux authority and detector-use cross-check",
+      "source_side_status": "SUPPORTING_PRIMARY_AUTHORITY",
+      "limitation": "the accessible metadata establishes the physical SM thermal component but is not by itself a locally frozen electron-antineutrino differential spectrum"
+    }
+  ],
+  "rioec_formalism_authorities": [
+    {
+      "id": "Oldeman_Meloni_Saitta_2010",
+      "type": "primary_rioec_formalism",
+      "title": "Resonant antineutrino induced electron capture with low energy bound-beta beams",
+      "doi": "10.1140/epjc/s10052-009-1209-6",
+      "arxiv": "0905.1029",
+      "channel": "anti-nu_e induced orbital electron capture",
+      "key_formula_structure": "sigma_RIOEC proportional to Breit-Wigner factor times Gamma_beta_b/Gamma; Gamma_beta_b is the reverse bound-beta partial width",
+      "scientific_implication": "target linewidth alone cannot fix integrated entrance strength; an independently grounded reverse weak width/matrix element is mandatory"
+    },
+    {
+      "id": "Akhmedov_Lasserre_Maturi_2026",
+      "type": "primary_current_rioec_proposal",
+      "title": "Resonant Induced Orbital Electron Capture: Novel method for low-energy anti-nu_e detection",
+      "arxiv": "2608.25001",
+      "channel_identity": "anti-nu_e + [e^- + (Z,A)] -> (Z-1,A)*",
+      "kinematic_relation": "E_R = -Q_epsilon + E_x + E_b",
+      "candidate_scope": "15 candidate nuclides below 2 MeV; prominent public summaries name 63Cu, 129Xe, 159Tb",
+      "thermal_solar_claim": "paper explicitly discusses keV-scale thermal solar antineutrinos",
+      "audit_status": "CANDIDATE_AND_KINEMATIC_AUTHORITY_ONLY_FOR_THIS_GATE",
+      "reason": "NMIR requires an independently evaluated target-specific entrance-strength package before W/kg ranking; candidate identification is not sufficient F4 evidence"
+    }
+  ],
+  "target_strength_audit": [
+    {
+      "target": "63Cu",
+      "evidence": "2026 LiquidO geoneutrino primary study gives allowed 63Cu->63Ni/63Ni* charged-current transitions but states cross-section knowledge is highly sensitive to Log(ft) and calls for refined nuclear input or reactor calibration; a 10% Log(ft) change changes the cross section by about a factor 3",
+      "authority": "LiquidO Collaboration, Communications Physics 9, 95 (2026), DOI 10.1038/s42005-026-02518-6",
+      "status": "NOT_INDEPENDENTLY_STRENGTH_CLOSED_FOR_RIOEC",
+      "reason": "the relevant weak strength is not demonstrated at the precision/transition mapping needed for a target-specific resonant fold; moreover the ordinary IBD transition is not automatically the exact excited-state RIOEC reverse width"
+    },
+    {
+      "target": "159Tb",
+      "evidence": "NNDC/ENSDF publicly contains 159Gd beta-minus and 159Dy EC decay datasets feeding 159Tb, demonstrating that evaluated weak-decay data exist around the isobaric system",
+      "authority": "NNDC ENSDF 159Tb datasets",
+      "status": "PARTIAL_NUCLEAR_DATA_ONLY",
+      "reason": "the audit did not identify an independently evaluated reverse weak width for the exact daughter excited state plus atomic shell that produces a thermal-eV/keV RIOEC resonance; ground-state/isobar decay data cannot be substituted"
+    },
+    {
+      "target": "129Xe",
+      "evidence": "129I beta-minus decay to 129Xe is well established, but no audited source in this gate supplies a complete exact-state RIOEC entrance-strength/width package for a thermal-eV/keV resonance",
+      "status": "PARTIAL_NUCLEAR_DATA_ONLY",
+      "reason": "known neighboring beta decay does not by itself fix the reverse width of whichever excited daughter/shell is required by E_R=-Q_epsilon+E_x+E_b"
+    }
+  ],
+  "guards_checked": {
+    "ordinary_solar_nu_e_substitution": false,
+    "standard_oscillation_nu_to_antinu_conversion_assumed": false,
+    "linewidth_used_as_integrated_strength": false,
+    "candidate_kinematic_match_promoted_to_F4_strength": false,
+    "cross_detector_or_cross_transition_strength_multiplication": false
+  },
+  "classification": "BLOCKED_ENTRANCE_STRENGTH",
+  "source_side_conclusion": "A physical Standard-Model thermal-solar antineutrino source class is independently established in primary literature. Exact differential spectrum materialization is still required before a numeric fold, but the source class itself is not the principal scientific blocker.",
+  "target_side_conclusion": "No audited candidate in this iteration has a complete independently evaluated exact-state reverse weak entrance-strength/width package tied to the thermal-eV/keV RIOEC resonance. Therefore F4 fails closed and no events/kg/s or W/kg fold is allowed.",
+  "next_action": "Do not scan more isotopes blindly. Either obtain a target paper/evaluated-data package that explicitly fixes the exact-state reverse bound-beta/EC weak width for a thermal-window RIOEC resonance, or move to the next independent OPEN class-level gate. If such a package appears, first locally freeze the differential anti-nu_e spectrum and target data under a new preregistration."
+}
