@@ -61,11 +61,14 @@ def extract_bound(ctx: str | None):
 def extract_cl(ctx: str | None):
     if not ctx:
         return None
-    # Exact source uses TeX `95\\% C.L\\@.`; fixtures may use ordinary `95\\% C.L.`.
-    for pattern in [
-        r"(\d{2,3})\\%\s*C\.?\s*L(?:\\@)?\. ?",
-        r"(\d{2,3})\s*%\s*C\.?\s*L(?:\\@)?\. ?",
-    ]:
+    # Primary TeX may put percent in math mode and C.L. outside it:
+    # `$95\\%$ C.L\\@.`. Permit only TeX/punctuation/whitespace between the
+    # percent token and the C.L. token; the numerical CL itself is unchanged.
+    patterns = [
+        r"(\d{2,3})\\%[^A-Za-z0-9]{0,24}C\.?\s*L(?:\\@)?\. ?",
+        r"(\d{2,3})\s*%[^A-Za-z0-9]{0,24}C\.?\s*L(?:\\@)?\. ?",
+    ]
+    for pattern in patterns:
         m = re.search(pattern, ctx, re.I)
         if m:
             return int(m.group(1))
