@@ -46,52 +46,61 @@ def decimal_candidates(ctx: str | None):
 def extract_bound(ctx: str | None):
     if not ctx:
         return None
-    # Accept TeX punctuation/macros between an inequality word and the frozen source number.
     patterns = [
         r"(?:lesssim|leq|<|upper bound)[^0-9]{0,80}(0\.\d+)",
-        r"(0\.\d+)[^0-9]{0,80}(?:95\\?%|95\s*%)[^A-Za-z]{0,20}C\.?L\. ?",
+        r"(0\.\d+)[^0-9]{0,80}95\\%[^A-Za-z]{0,20}C\.?L\. ?",
     ]
     for pattern in patterns:
         m = re.search(pattern, ctx, re.I)
         if m:
             return float(m.group(1))
-    vals = decimal_candidates(ctx)
-    # Fail closed unless exactly one sub-0.1 candidate is present locally.
-    vals = sorted(set(x for x in vals if 0 < x < 0.1))
+    vals = sorted(set(x for x in decimal_candidates(ctx) if 0 < x < 0.1))
     return vals[0] if len(vals) == 1 else None
 
 
 def extract_cl(ctx: str | None):
     if not ctx:
         return None
-    m = re.search(r"(\d{2,3})\\?%\s*C\.?\s*L\. ?", ctx, re.I)
-    if m:
-        return int(m.group(1))
+    for pattern in [r"(\d{2,3})\\%\s*C\.?\s*L\. ?", r"(\d{2,3})\s*%\s*C\.?\s*L\. ?"]:
+        m = re.search(pattern, ctx, re.I)
+        if m:
+            return int(m.group(1))
     return None
+
+
+def definition_semantics(ctx: str | None):
+    if not ctx:
+        return {"recovered": False, "kind": None, "uses_absolute": None}
+    has_delta = "Delta Y_p" in ctx or "\\Delta Y_p" in ctx or "dYp" in ctx
+    has_bsm = "BSM" in ctx
+    has_sm = "SM" in ctx
+    if not (has_delta and has_bsm and has_sm):
+        return {"recovered": False, "kind": None, "uses_absolute": None}
+    absolute = bool("\\left|" in ctx or "\\abs" in ctx or re.search(r"\|\s*Y", ctx))
+    signed = bool(re.search(r"BSM[^=]{0,80}-[^=]{0,80}SM", ctx, re.S))
+    if absolute:
+        return {"recovered": True, "kind": "absolute_difference", "uses_absolute": True}
+    if signed:
+        return {"recovered": True, "kind": "signed_BSM_minus_SM", "uses_absolute": False}
+    return {"recovered": False, "kind": None, "uses_absolute": None}
 
 
 def classify_text(text: str):
     fig7 = context(text, MAJORANA_ASSET)
     fig8 = context(text, DIRAC_ASSET)
     bound_ctx = context(text, "a conservative upper bound") or context(text, "A conservative upper bound")
-    definition_ctx = context(text, "We define the BSM deviation of helium abundance")
+    definition_ctx = context(text, "BSM deviation of helium abundance")
 
     threshold = extract_bound(bound_ctx)
     confidence = extract_cl(bound_ctx)
-
-    abs_sign = bool(definition_ctx and (
-        "\\left|" in definition_ctx or "\\abs" in definition_ctx or
-        re.search(r"\|\s*Y", definition_ctx)
-    ))
-    delta_yp_definition = bool(definition_ctx and ("Y_p" in definition_ctx or "\\Yp" in definition_ctx) and ("SM" in definition_ctx or "SBBN" in definition_ctx))
+    definition = definition_semantics(definition_ctx)
 
     checks = {
         "fig7_majorana_yp": bool(fig7 and "Majorana" in fig7 and ("Y_p" in fig7 or "Yp" in fig7 or "dYp" in fig7 or "Delta Y" in fig7)),
         "fig8_dirac_same_semantics": bool(fig8 and "Dirac" in fig8 and ("Same as" in fig8 or "same as" in fig8)),
         "conservative_numeric_threshold_recovered": threshold is not None,
         "confidence_level_recovered": confidence is not None,
-        "delta_yp_definition_recovered": delta_yp_definition,
-        "absolute_value_convention_recovered": abs_sign,
+        "delta_yp_sign_or_absolute_convention_recovered": definition["recovered"],
         "bbn_not_cmb_threshold_context": bool(bound_ctx and ("Y_p" in bound_ctx or "Yp" in bound_ctx or "dYp" in bound_ctx or "helium" in bound_ctx.lower())),
     }
 
@@ -108,7 +117,8 @@ def classify_text(text: str):
         "frozen_source_result": {
             "delta_Yp_upper_bound": threshold,
             "confidence_level_percent": confidence,
-            "delta_Yp_uses_absolute_deviation": abs_sign,
+            "delta_Yp_definition_kind": definition["kind"],
+            "delta_Yp_uses_absolute_deviation": definition["uses_absolute"],
             "majorana_asset": MAJORANA_ASSET,
             "dirac_asset": DIRAC_ASSET,
         },
