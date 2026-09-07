@@ -1,0 +1,22 @@
+name: NMIR 0067 G8 Cu63 thermal tail
+on:
+  push:
+    paths:
+      - 'scripts/g8_cu63_thermal_tail_0067.py'
+      - '.github/workflows/g8_cu63_thermal_tail_0067.yml'
+  workflow_dispatch:
+jobs:
+  g8-tail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy
+      - name: Run frozen 0067 source-tail recomputation
+        run: python scripts/g8_cu63_thermal_tail_0067.py | tee g8_cu63_tail_0067.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: g8-cu63-tail-0067
+          path: g8_cu63_tail_0067.json
