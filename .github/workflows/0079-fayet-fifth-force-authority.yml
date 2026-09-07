@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
       - name: Run dedicated regression tests
         run: python -m pytest -q tests/test_audit_fayet_fifth_force_0079.py
       - name: Run frozen 0079 primary-source audit
