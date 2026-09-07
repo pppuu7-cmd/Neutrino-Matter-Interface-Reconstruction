@@ -32,7 +32,10 @@ COMMON_RN_FM = 5.5
 QF = 0.0878
 LIGHT_YIELD_PE_PER_KEVEE = 13.348
 ACC_A, ACC_K, ACC_X0 = 0.6655, 0.4942, 10.8507
-PE_MIN, PE_MAX_EXCLUSIVE = 0, 30
+# Released first-observation coincidence grids cover 6 <= PE < 30.
+PE_ANALYSIS_MIN, PE_ANALYSIS_MAX_EXCLUSIVE = 6, 30
+# Numerical Poisson support is deliberately wider than the analysis ROI so the
+# omitted probability tail can be tested independently of event selection.
 POISSON_SUM_MAX_EXCLUSIVE = 160
 
 
@@ -87,20 +90,36 @@ def acceptance_at_pe_center(pe_integer: int) -> float:
     return h * ACC_A / (1.0 + math.exp(-ACC_K * (x - ACC_X0)))
 
 
-def poisson_acceptance(mu: float, *, apply_acceptance: bool = True, pe_max_exclusive: int = PE_MAX_EXCLUSIVE) -> tuple[float, float]:
+def poisson_acceptance(
+    mu: float,
+    *,
+    apply_acceptance: bool = True,
+    pe_max_exclusive: int = POISSON_SUM_MAX_EXCLUSIVE,
+    restrict_analysis_window: bool = True,
+) -> tuple[float, float]:
+    """Return selected Poisson probability and omitted numerical tail.
+
+    The numerical sum extends well past the released analysis ROI.  Selection
+    weight is zero outside 6 <= PE < 30 when ``restrict_analysis_window`` is
+    true.  This keeps the frozen analysis support distinct from the numerical
+    Poisson-tail convergence check.
+    """
     if mu < 0.0:
         raise ValueError("negative Poisson mean")
     p = math.exp(-mu)
     accepted = 0.0
     included = p
-    if apply_acceptance:
-        accepted += p * acceptance_at_pe_center(0)
-    else:
-        accepted += p
+
+    def weight(n: int) -> float:
+        if restrict_analysis_window and not (PE_ANALYSIS_MIN <= n < PE_ANALYSIS_MAX_EXCLUSIVE):
+            return 0.0
+        return acceptance_at_pe_center(n) if apply_acceptance else 1.0
+
+    accepted += p * weight(0)
     for n in range(1, pe_max_exclusive):
         p *= mu / n
         included += p
-        accepted += p * (acceptance_at_pe_center(n) if apply_acceptance else 1.0)
+        accepted += p * weight(n)
     return accepted, max(0.0, 1.0 - included)
 
 
@@ -143,7 +162,7 @@ def nucleus_events(*, z: int, n: int, mass_u: float, rp_fm: float, flavor: str, 
         qw = gvp * z * fp + GVN * n * fn
         dsdt = GF_GEV2**2 * m / math.pi * qw**2 * GEV2_TO_CM2 * _source_factor(t, m, flavor)
         mu = light_yield * qf * t * 1.0e6
-        acc, tail = poisson_acceptance(mu, apply_acceptance=apply_acceptance, pe_max_exclusive=POISSON_SUM_MAX_EXCLUSIVE)
+        acc, tail = poisson_acceptance(mu, apply_acceptance=apply_acceptance)
         max_tail = max(max_tail, tail)
         vals.append(dsdt * acc)
     sigma = _integrate(vals, dt)
