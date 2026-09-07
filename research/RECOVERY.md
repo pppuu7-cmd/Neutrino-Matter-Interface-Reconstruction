@@ -4,8 +4,8 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0081_bl_bbn_observational_semantics.md`, commit `65cfeb05f855a0ee7c582733cdbc658349364ce2`.
-Current prospective gate: `research/prereg/0081a_bl_bbn_vector_calibration_semantic_identity.md`, frozen commit `ad37205e6a30188f4129fdca8e0d49a156ab6e36`.
+Latest completed immutable record: `research/iterations/0081a_bl_bbn_vector_calibration_semantic_identity.md`, commit `ec8267af5ebfab72fb5346f2c91031cb1737fd40`.
+Current prospective gate: `research/prereg/0082_bl_stellar_sn_primary_source_asset_authority.md`, frozen commit `bbf55baeeb013fbd5c273b75490c5e987aeceb81`.
 `NMIR_READINESS: 94%`.
 
 ## Mandatory recovery order
@@ -50,27 +50,31 @@ Primary: Esseili & Kribs arXiv `2308.07955v2`, source SHA256 `484f1fa28985897def
 0080c `PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_95CL_SEMANTICS`, immutable commit `755911fd5afcca77c3c0d54e7f41e1b6aa9b7462`, corrected run/job `34161487414/101864078212`, artifact `10032738989`, ZIP SHA256 `bcdef158881eec04c098014acfa934fb734638271c7aea265a0da3a3dd54e726`. Hard current-CMB exclusion is `Delta N_eff>=0.4` at 95% C.L. = light blue + dark blue; green is strongly disfavored only.
 0080d `PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_EXCLUDED_GEOMETRY`, immutable commit `9da3a5a0627a472815e1eabbec21df37672f5953`; run/job `34161859886/101865153356`, artifact `10032854190`, ZIP SHA256 `f00a461bb3780538d341c47b39b11ede9a4b5b34e928d679d2844c51db9d23bc`, raw JSON SHA256 `2d288fedc2da00da1a44e1536d0555bd5931a0052fbc48f29e4984bab2c66f97`. Majorana: one valid component, area `48.332188584322665 decade^2`; Dirac: one valid component, area `45.129364149717375 decade^2`; native fills only, no raster/manual input or topology repair. This raised readiness 93% -> 94%.
 
-0080e `PASS_COSMOLOGY_B_L_SCENARIO_CONDITIONAL_AUTHORITY`, immutable commit `eafbae4ca8b526d9c515351e0cdeac37569c2d55`; run/job `34164286854/101872133978`, artifact `10033631352`. Majorana and Dirac are explicit alternative scenarios; no source combination/weight/preference rule exists, so scenario-independent union/intersection is unauthorized. Hosted provenance was later corrected fail-closed: raw job log, GitHub artifact metadata and independently downloaded bytes agree on raw JSON SHA256 `381c04707c1f9d29ce88ca1ff3b728a55e2de1b59b1ac256f6f4c580e451037f` and ZIP SHA256 `9a1f92cd70bad33a441ec5eac18ecdfc3311f36f6f48e877094ac6177282293e`. Corrected ledger commit `8b7edaa82124595c361d7a6fa18a923ad3b3f641`; immutable erratum commit `9ec9c2e63cfad2fac96250daa263bb9b45d25de6`. Scientific classification did not change.
+0080e `PASS_COSMOLOGY_B_L_SCENARIO_CONDITIONAL_AUTHORITY`, immutable commit `eafbae4ca8b526d9c515351e0cdeac37569c2d55`; run/job `34164286854/101872133978`, artifact `10033631352`. Majorana and Dirac are explicit alternative scenarios; no source combination/weight/preference rule exists, so scenario-independent union/intersection is unauthorized. Corrected raw JSON SHA256 `381c04707c1f9d29ce88ca1ff3b728a55e2de1b59b1ac256f6f4c580e451037f`, ZIP SHA256 `9a1f92cd70bad33a441ec5eac18ecdfc3311f36f6f48e877094ac6177282293e`; erratum commit `9ec9c2e63cfad2fac96250daa263bb9b45d25de6`.
 
 ### 0081 — BBN observational semantics
-0081 **`PASS_COSMOLOGY_B_L_BBN_OBSERVATIONAL_SEMANTICS`**, immutable commit `65cfeb05f855a0ee7c582733cdbc658349364ce2`; authority ledger commit `82323ebaaca3220de2fbaa34750305bf2db19c1a`; successful run/job `34164891666/101873875465`, artifact `10033820001`, artifact ZIP SHA256 `d33e63b8716ad3af82650653734395e333f52744138f2340824b85343927f705`, raw JSON SHA256 `cbdceeabcd7f55094096028be481c26cdf18493018401c0c6092f2ac56a2b33c`. GitHub digest and independently downloaded ZIP/inner JSON match those hashes. Dedicated tests: 6 passed.
+0081 `PASS_COSMOLOGY_B_L_BBN_OBSERVATIONAL_SEMANTICS`, immutable commit `65cfeb05f855a0ee7c582733cdbc658349364ce2`; authority ledger commit `82323ebaaca3220de2fbaa34750305bf2db19c1a`; run/job `34164891666/101873875465`, artifact `10033820001`, ZIP SHA256 `d33e63b8716ad3af82650653734395e333f52744138f2340824b85343927f705`, raw JSON SHA256 `cbdceeabcd7f55094096028be481c26cdf18493018401c0c6092f2ac56a2b33c`. Primary TeX fixes signed `Delta Y_p = Y_p(BSM)-Y_p(SM) = 0.008` at 95% C.L. for Figure 7 Majorana and Figure 8 Dirac.
 
-Primary TeX fixes the present-observation BBN criterion as the conservative **signed** `Delta Y_p = Y_p(BSM)-Y_p(SM) = 0.008` at **95% C.L.** Figure 7 is Majorana; Figure 8 explicitly has the same BBN semantics for Dirac. No vector path/color or excluded geometry was read in 0081. Earlier runs `34164735098/101873432383` and `34164808383/101873639242` are implementation-invalid parser/regression failures, not scientific BLOCKED; the frozen contract was never weakened. Because 0081 resolves semantics but does not yet add a materialized excluded region, readiness remains 94%.
+### 0081a — BBN vector calibration + semantic identity
+0081a **`BLOCKED_COSMOLOGY_B_L_BBN_VECTOR_CALIBRATION_SEMANTIC_IDENTITY`**, immutable commit `ec8267af5ebfab72fb5346f2c91031cb1737fd40`; persistent result commit `dfccfe08dee2ad7922749dcebc56175fffed51f1`; authoritative prereg commit `ad37205e6a30188f4129fdca8e0d49a156ab6e36`; implementation freeze `27ac3703547c67f5e130baba9b884688ef176a13`; run/job `34165337031/101875151196`, artifact `10033955293`, raw JSON SHA256 `daf2f687d8d817ce20f9568aeb27843ff7fe8b9d7e94391dffb844946b41f34e`, ZIP SHA256 `d5c1495ce4a1dee6928093aec79de0b3aea8dddcc76e21b93082263afae4445a`, dedicated tests `4 passed`.
 
-## Current prospective gate — 0081a
-`research/prereg/0081a_bl_bbn_vector_calibration_semantic_identity.md`, frozen commit `ad37205e6a30188f4129fdca8e0d49a156ab6e36`.
+The BBN assets expose only two source-native labeled x-axis major anchors (`0.1`, `1`), below the frozen >=4-anchor requirement, and the source-native `0.008` label is adjacent to multiple non-overlay blue vector styles in both scenarios. The dashed-red CMB overlay was successfully excluded. Borrowing the CMB transform, changing color/adjacency tolerances, choosing a blue style by appearance, or manual/raster inference is forbidden. Therefore no 0081b BBN polygon is authorized. This is a reproducibility/provenance blocker, not a failure of BBN physics. Readiness remains 94%.
 
-0081a must independently calibrate both BBN vector panels from source-native tick geometry and uniquely identify the `Delta Y_p=0.008` contour while explicitly excluding dashed-red CMB overlays. Ordinary and leave-one-out axis residual ceilings are `0.015 decade`; Majorana/Dirac transforms must agree to `0.015 decade` at common ticks. No BBN excluded polygon may be constructed inside 0081a.
+### 0082 — current stellar/SN source-authority gate
+Prospective contract `research/prereg/0082_bl_stellar_sn_primary_source_asset_authority.md`, frozen commit `bbf55baeeb013fbd5c273b75490c5e987aeceb81`.
+
+The frozen source set is Hong–Shin–Yun `2012.05427v3`, Cerdeño et al. `2106.11660v3`, and Shin–Yun `2110.03362v2`. The 2022 Shin–Yun primary is included because it explicitly revisits the SN1987A B-L constraint, strengthens the transverse-polarization exclusion relative to the previous derivation, and reports a new longitudinal-polarization excluded region. 0082 is source/asset authority only: no contour extraction, no union, no claim that the newer SN result supersedes every NS1987A/Cas-A cooling result.
 
 ## Current funnel state
-- BSM/F8: 0081a is highest-value frozen gate.
+- BSM/F8: 0082 is the highest-value frozen executable gate.
+- BBN geometry route: BLOCKED at 0081a under no-manual-inference contract.
 - G9 persistent-source method branch: blocked at 0077 under frozen assumptions.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G8 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
 
 ## Exact next gate
-Execute 0081a exactly as frozen at commit `ad37205e6a30188f4129fdca8e0d49a156ab6e36`. PASS may only authorize a separately preregistered 0081b excluded-side/topology geometry gate. BLOCKED/FAIL retires the current BBN geometry route without manual contour inference.
+Execute 0082 exactly as frozen at commit `bbf55baeeb013fbd5c273b75490c5e987aeceb81`: hash and inventory the three exact arXiv source archives, verify explicit B-L semantics, identify source-native vector/document or numerical/code candidate routes, and machine-check the Shin–Yun revisit statement. PASS may only authorize a separately preregistered semantic/scope/vector-asset gate; no stellar/SN excluded polygon may be constructed inside 0082.
 
 ## Critical guards
-No raster/manual contour reading. No post-result convention factor, excluded-side assignment, scenario selection or threshold relaxation. No Asimov substitution for required observed likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without identity provenance. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent primary authority. No F9 multiplication of unvalidated gains.
+No raster/manual contour reading. No post-result convention factor, excluded-side assignment, scenario/source selection or threshold relaxation. No Asimov substitution for required observed likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without identity provenance. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent primary authority. No Hong/Cerdeño/Shin-Yun union or supersession claim absent scope authority. No F9 multiplication of unvalidated gains.
