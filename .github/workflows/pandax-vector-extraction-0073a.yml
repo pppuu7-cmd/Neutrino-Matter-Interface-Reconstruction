@@ -1,0 +1,52 @@
+name: NMIR 0073a PandaX vector extraction
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pandax-vector-extraction-0073a.yml'
+      - 'scripts/extract_pandax_root_vectors_0073a.py'
+      - 'research/prereg/0073a_pandax_root_vector_extraction.md'
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF parser dependencies
+        run: python -m pip install --disable-pip-version-check 'PyMuPDF==1.26.4' 'numpy==2.3.2'
+      - name: Fetch primary source and execute frozen 0073a extraction
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit/src
+          curl --fail --location --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 120 \
+            'https://export.arxiv.org/e-print/2206.02339v3' -o audit/2206.02339v3.src
+          echo 'b077b657e30a2efc07fb37f3c389d365ef670c408a5dc42cafc7af06a5e75db3  audit/2206.02339v3.src' | sha256sum -c -
+          tar -xf audit/2206.02339v3.src -C audit/src
+          sha256sum audit/src/Fig1EffAndXsec.pdf audit/src/Fig3_bestFit_gpu.pdf | tee audit/figure-sha256.txt
+          python scripts/extract_pandax_root_vectors_0073a.py audit/src audit/pandax_vector_inputs_0073a.json | tee audit/raw-result.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('audit/pandax_vector_inputs_0073a.json').read_text())
+          print('CLASSIFICATION='+r['classification'])
+          print('OBSERVED_COUNTS='+','.join(map(str,r['fig3']['observed']['counts'])))
+          print('OBSERVED_SUM='+str(r['fig3']['observed']['sum']))
+          print('FIG3_E_CAL_MAX_RESIDUAL='+str(r['fig3']['energy_calibration']['max_residual_keV']))
+          print('FIG3_Y_CAL_MAX_RESIDUAL='+str(r['fig3']['rate_calibration']['max_residual_events_per_keV']))
+          print('FIG1_EFF_CAL_MAX_RESIDUAL='+str(r['fig1']['efficiency_calibration']['max_residual_abs']))
+          print('FIG1_EFF_POINTS='+str(r['fig1']['efficiency_curve']['n_points']))
+          print('ROUNDTRIP_MAX_PT='+str(r['fig1']['efficiency_curve']['roundtrip_max_pt']))
+          print('BLOCKER='+str(r['blocker']))
+          if r['classification'] != 'PARTIAL_PASS_VECTOR_DATA_EFFICIENCY_ONLY':
+              raise SystemExit('Frozen expected branch not reached; inspect as scientific result, do not reinterpret green CI')
+          PY
+      - name: Upload raw scientific artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pandax-vector-extraction-0073a
+          path: audit/
+          if-no-files-found: error
