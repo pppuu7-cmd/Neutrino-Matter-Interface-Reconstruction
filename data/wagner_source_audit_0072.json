@@ -1,0 +1,247 @@
+{
+  "archive_format": "tar.gz",
+  "classification": "PRIMARY_VECTOR_ASSET_FOUND_REQUIRES_CALIBRATION",
+  "download_bytes": 2733483,
+  "download_sha256": "c1fd33d880b5810ede631284ddb91738d5df8e1816c3f47f4bef58a9eaa4e6e3",
+  "figure6_named_assets": [
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": true,
+      "mentions_wep": true,
+      "name": "WEP_figure6.eps",
+      "sha256": "4adafc21e896aa3e19490a586e9249fb9b7c947ad9cbe9efd3416d5e00466882",
+      "size": 581517
+    }
+  ],
+  "file_count": 11,
+  "iteration": "0072",
+  "members": [
+    {
+      "extension": ".bbl",
+      "is_raster": false,
+      "is_vector_candidate": false,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP10.bbl",
+      "sha256": "29673785be874f90943c52d1846ea60add45e6fb55a8c102339e0cec6f41ad0c",
+      "size": 4486
+    },
+    {
+      "extension": ".tex",
+      "is_raster": false,
+      "is_vector_candidate": false,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP10.tex",
+      "sha256": "4f355cfbeebd7f9b6e84962861202974f7fc1354465e7999727a13eb4022d205",
+      "size": 48110
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure1.eps",
+      "sha256": "9cdcc097bfcf164619e22f1d149c67b59072b310fbb21b1f9b3340023f8c939b",
+      "size": 224761
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure2.eps",
+      "sha256": "034a18e7a9b5fd3896d47252f5f260e8fb4996e51812e06983b5660fd4590ac4",
+      "size": 160072
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure3.eps",
+      "sha256": "e49c00f906f8b48e3d28f92449cbf0a172916b7c799acff0772f78f97e5603fc",
+      "size": 2854525
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure4.eps",
+      "sha256": "d5435f42d93b97b8dd27431e764ab2078c27c06a824f466c2f994a83869b3293",
+      "size": 165448
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure5.eps",
+      "sha256": "1ecbfde802968bce1806d765b22324a29ce8ccc04dab31e393aa61cf7efc3451",
+      "size": 44065
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": true,
+      "mentions_wep": true,
+      "name": "WEP_figure6.eps",
+      "sha256": "4adafc21e896aa3e19490a586e9249fb9b7c947ad9cbe9efd3416d5e00466882",
+      "size": 581517
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure7.eps",
+      "sha256": "1d98abfe7435b439262631971e49aed159b847f44f7863fb05d99b616c10333e",
+      "size": 128873
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure8.eps",
+      "sha256": "335ec670ca404a0bc33f336792667204224de2b0d4e6bb7bcdd8acd7517d80da",
+      "size": 90683
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure9.eps",
+      "sha256": "08b3e18beff7b7ce0e098dab432a79a1417a24b90c72a732e248c2bd83a4800e",
+      "size": 233409
+    }
+  ],
+  "purpose": "primary source-asset audit only; no raster digitization",
+  "raster_figure6_candidates": [],
+  "source": "Wagner et al., arXiv:1207.2442v1",
+  "transport": {
+    "content_type": "application/gzip",
+    "etag": "\"sha256:ba5c55890a3accc501a3099a7201fe2370079d19fb042278ceb5452d0dbe9d26\"",
+    "final_url": "https://arxiv.org/src/1207.2442",
+    "http_status": 200,
+    "last_modified": "Tue, 10 Aug 2021 20:07:25 GMT",
+    "requested_url": "https://arxiv.org/e-print/1207.2442"
+  },
+  "vector_figure6_candidates": [
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": true,
+      "mentions_wep": true,
+      "name": "WEP_figure6.eps",
+      "sha256": "4adafc21e896aa3e19490a586e9249fb9b7c947ad9cbe9efd3416d5e00466882",
+      "size": 581517
+    }
+  ],
+  "wep_named_graphics": [
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure1.eps",
+      "sha256": "9cdcc097bfcf164619e22f1d149c67b59072b310fbb21b1f9b3340023f8c939b",
+      "size": 224761
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure2.eps",
+      "sha256": "034a18e7a9b5fd3896d47252f5f260e8fb4996e51812e06983b5660fd4590ac4",
+      "size": 160072
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure3.eps",
+      "sha256": "e49c00f906f8b48e3d28f92449cbf0a172916b7c799acff0772f78f97e5603fc",
+      "size": 2854525
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure4.eps",
+      "sha256": "d5435f42d93b97b8dd27431e764ab2078c27c06a824f466c2f994a83869b3293",
+      "size": 165448
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure5.eps",
+      "sha256": "1ecbfde802968bce1806d765b22324a29ce8ccc04dab31e393aa61cf7efc3451",
+      "size": 44065
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": true,
+      "mentions_wep": true,
+      "name": "WEP_figure6.eps",
+      "sha256": "4adafc21e896aa3e19490a586e9249fb9b7c947ad9cbe9efd3416d5e00466882",
+      "size": 581517
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure7.eps",
+      "sha256": "1d98abfe7435b439262631971e49aed159b847f44f7863fb05d99b616c10333e",
+      "size": 128873
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure8.eps",
+      "sha256": "335ec670ca404a0bc33f336792667204224de2b0d4e6bb7bcdd8acd7517d80da",
+      "size": 90683
+    },
+    {
+      "extension": ".eps",
+      "is_raster": false,
+      "is_vector_candidate": true,
+      "mentions_figure6": false,
+      "mentions_wep": true,
+      "name": "WEP_figure9.eps",
+      "sha256": "08b3e18beff7b7ce0e098dab432a79a1417a24b90c72a732e248c2bd83a4800e",
+      "size": 233409
+    }
+  ]
+}
