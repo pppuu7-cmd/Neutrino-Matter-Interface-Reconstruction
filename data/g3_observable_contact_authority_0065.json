@@ -1,0 +1,90 @@
+{
+  "iteration": "0065",
+  "date": "2026-09-07",
+  "gate": "G3/F4-F6 observable-driven absolute short-range weak-current ceiling audit",
+  "prereg_commit": "7f727dbfb509500c93b1d9502e8f3197ee1d18e7",
+  "authorities": [
+    {
+      "id": "Lovato_et_al_2014_12C_neutral_weak_sum_rules",
+      "doi": "10.1103/PhysRevLett.112.182502",
+      "arxiv": "1401.2605",
+      "type": "primary_ab_initio_inclusive_sum_rule",
+      "observable": "neutral weak longitudinal/transverse response sum rules in 12C",
+      "result": "one- plus two-body realistic currents give significant two-body contributions, about 30% of calculated strength",
+      "mapping_status": "TARGET_AND_MODEL_SPECIFIC",
+      "pass_criterion_failure": "sum rules are evaluated using a specific realistic Hamiltonian and specified one-/two-body currents; they do not furnish a regulator/scheme-independent inequality isolating an arbitrary short-range contact coefficient across target classes"
+    },
+    {
+      "id": "Ekstrom_et_al_2014_GT",
+      "doi": "10.1103/PhysRevLett.113.262504",
+      "arxiv": "1406.4696",
+      "type": "primary_chiral_EFT_GT_strength",
+      "observable": "Gamow-Teller strengths / Ikeda-sum comparison in 14C and 22,24O",
+      "result": "consistent two-body currents reduce the calculated summed GT strength, with reported q^2 about 0.84-0.92",
+      "mapping_status": "NOT_UNIVERSAL_CONTACT_BOUND",
+      "pass_criterion_failure": "the result is a calculation for selected nuclei with fitted/optimized interactions and consistent currents; the ordinary one-body Ikeda sum does not become a coefficient-independent upper bound on arbitrary two-body contact-current strength"
+    },
+    {
+      "id": "Ney_Engel_Schunck_2022",
+      "doi": "10.1103/PhysRevC.105.034349",
+      "arxiv": "2112.14621",
+      "type": "primary_heavy_nucleus_two_body_current_systematics",
+      "observable": "summed GT strength and beta-decay rates in heavy nuclei",
+      "result": "two-body currents usually quench summed GT strength but can enhance individual low-lying transitions; effect varies with neutron excess/density",
+      "mapping_status": "TARGET_DEPENDENT_AND_INTERFERENCE_SENSITIVE",
+      "pass_criterion_failure": "variation across nuclei and transition-level enhancement shows that a single observed quenching factor is not a universal maximum for the short-range operator"
+    },
+    {
+      "id": "Marcucci_et_al_2012_muon_capture",
+      "doi": "10.1103/PhysRevLett.108.052502",
+      "type": "primary_chiral_EFT_muon_capture",
+      "observable": "muon capture on deuteron and 3He",
+      "result": "c_D and c_E are constrained by binding energies and triton Gamow-Teller matrix element, then muon-capture rates are predicted/compared",
+      "mapping_status": "CALIBRATION_NOT_THEOREM",
+      "pass_criterion_failure": "the short-range axial-current LEC is fixed through a few-body calibration; the measured capture observable does not itself provide a regulator-independent cross-target upper inequality on the contact-current norm"
+    },
+    {
+      "id": "Ricci_et_al_2009_muon_capture_EFT",
+      "arxiv": "0912.1989",
+      "type": "primary_muon_capture_model_comparison",
+      "observable": "muon capture on deuterium",
+      "result": "the EFT current contains a low-energy constant d_R that cannot be extracted from one-particle data or first principles in that formulation; comparative capture-rate analysis is used to extract it",
+      "mapping_status": "OBSERVABLE_FIT_REQUIRED",
+      "pass_criterion_failure": "direct evidence that the two-body contact coefficient is inferred within a nuclear model/observable mapping rather than bounded by a universal observable-only theorem"
+    },
+    {
+      "id": "Gnech_Marcucci_Viviani_2023",
+      "arxiv": "2305.07568",
+      "type": "primary_modern_muon_capture_uncertainty_analysis",
+      "observable": "deuteron muon-capture rates and spectrum",
+      "result": "predictions explicitly track interaction/current chiral truncation, axial-form-factor, and model uncertainties",
+      "mapping_status": "MODEL_AND_EFT_UNCERTAINTY_DEPENDENT",
+      "pass_criterion_failure": "useful validation observable, but not a coefficient-independent target-class operator-norm ceiling"
+    },
+    {
+      "id": "Jokiniemi_et_al_2024_muon_capture",
+      "doi": "10.1103/PhysRevC.109.065501",
+      "type": "primary_ab_initio_muon_capture",
+      "observable": "partial muon-capture rates in 6Li, 12C, 16O",
+      "result": "measured capture rates are proposed as probes/validation of finite-q electroweak currents via ab initio theory",
+      "mapping_status": "VALIDATION_REQUIRES_NUCLEAR_THEORY",
+      "pass_criterion_failure": "the primary motivation is comparison of measured rates with reliable ab initio predictions; no observable-only inequality isolating arbitrary short-range two-/higher-body strength is supplied"
+    }
+  ],
+  "structural_findings": {
+    "inclusive_sum_rule_route": "Inclusive weak sum rules are positive for the total response but contain one-body, two-body, and interference pieces determined by the chosen current/Hamiltonian. Positivity of the total response does not isolate a positive norm of an arbitrary contact sub-operator when interference/cancellation is allowed.",
+    "ikeda_route": "The standard Ikeda relation concerns the Gamow-Teller one-body spin-isospin operator. Primary calculations including two-body currents report modifications/quenching rather than a theorem bounding an arbitrary two-body contact coefficient by 3(N-Z).",
+    "muon_capture_route": "Muon capture is a valuable finite-q validation/calibration observable, but primary EFT studies determine or test short-range-current information within specified Hamiltonian/current schemes and few-body/nuclear models; this does not yield a regulator-independent target-class hard ceiling.",
+    "selected_nucleus_route": "Observed/calculated percent-level corrections in finite nuclei remain evidence-distance constraints. They cannot be promoted to a universal maximum without an operator inequality that the audited authorities do not provide."
+  },
+  "guards_checked": {
+    "ikeda_promoted_to_arbitrary_two_body_bound": false,
+    "total_response_agreement_used_despite_interference": false,
+    "selected_nucleus_used_as_universal_maximum": false,
+    "eft_naturalness_or_fitted_LEC_range_used_as_hard_bound": false,
+    "hard_lmax_reused": false
+  },
+  "classification": "PASS_NO_COEFFICIENT_INDEPENDENT_OBSERVABLE_MAP / RESIDUAL_OPEN",
+  "conclusion": "The audited inclusive and calibration observables constrain physical weak responses and are valuable empirical validators, but none supplies the prospectively required regulator/scheme-independent finite target-class inequality isolating the absolute short-range two-/higher-body weak-current strength. The observable-driven route is therefore closed as a universal-ceiling route, while the physical contact-coefficient residual remains open.",
+  "next_action": "Do not repeat selected-nucleus percent corrections, fitted-LEC ranges, Ikeda-as-contact-bound, or naive finite-l unitarity. Re-rank independent OPEN gates after reconciliation; any further G3 attempt must introduce a genuinely new theorem/assumption, otherwise keep the residual explicitly open."
+}
