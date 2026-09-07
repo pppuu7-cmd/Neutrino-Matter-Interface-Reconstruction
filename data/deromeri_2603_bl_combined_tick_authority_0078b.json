@@ -1,0 +1,17 @@
+{
+  "iteration": "0078b",
+  "source": "arXiv:2603.00554 source asset vector_BL_PnX_XnT_LZ_combined.pdf",
+  "source_archive_sha256": "09ab22f753ac3f5fbde5be65ac50926de67b0638550366d158aadcfde8e92564",
+  "asset_sha256": "ace761499623535907263e780a6e96a17474adf418d3f9363dae8e28bc5e7a39",
+  "semantic_authority": {
+    "model": "vector B-L",
+    "confidence_level": "90% CL",
+    "combined_curve": "PnX + XnT + LZ (CEvNS)",
+    "caption_color": "magenta",
+    "x_label": "m_V [GeV]",
+    "y_label": "g_B-L"
+  },
+  "x_tick_log10_GeV": [-5, -4, -3, -2, -1, 0, 1],
+  "y_tick_log10_gBL": [-8, -7, -6, -5, -4, -3, -2],
+  "authority_rule": "Tick exponents and semantics are frozen from machine-extracted primary PDF text before any vector-path color or geometry classification."
+}
