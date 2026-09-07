@@ -9,7 +9,7 @@ Every idea passes: F0 objective -> F1 microscopic channel -> F2 production/absor
 Closed in stated scopes unless a genuinely new assumption is introduced: naive static `N^2`; geometry-only fixed-column gain; passive local density/phonon or spin/magnon free superextensive gain; extensive-budget long-range-pair free gain; passive stable finite linear/nonlinear mediator free gain after energy accounting; linewidth narrowing as new integrated resonance strength; metastable stored-energy avalanche as neutrino-energy gain; bounded finite-range k-local higher-body free superextensive gain; actual-SM growing-coordination survivor absent in audited passive-SM scope.
 
 ## Highest-value OPEN gate
-1. **G5/G6 / F8 — iteration 0070 primary BSM constraints ledger.** Iteration 0069 changed branch status only to `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; no BSM response/enhancement scan is allowed yet. Freeze coupling/operator conventions and primary laboratory, stellar/astrophysical, cosmological and fifth-force constraints before any NMIR BSM calculation.
+1. **G5/G6 / F8 — iteration 0071 gauge-complete `U(1)_{B-L}` primary constraints ledger.** 0069 authorizes constraints-only BSM work. 0070 showed the generic vector+scalar+axial common ledger is normalization-blocked. 0071 therefore freezes one anomaly-free benchmark in `(m_V,g_BL)` before any BSM response calculation.
 2. **G3 / F4-F6 — absolute short-range/contact-current residual.** Physically OPEN. 0059/0062/0065 retire three different universal-ceiling routes; reopen only with a genuinely new theorem/physical assumption.
 3. **G2 / F7-F8 — measured scalable topology rejection × bulk acceptance.** 0063 remains `BLOCKED_NOT_ACTIONABLE`; reopen only with genuinely new same-configuration sub-keV measured evidence.
 4. **G8 / F4-F7 — Cu63 RIOEC normalization.** 0067 source tail is validated, but 0068 is `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; reopen when exact primary continuous-spectrum normalization can be materialized without secondary substitution.
@@ -33,39 +33,39 @@ RIOEC entrance is electron antineutrino; ordinary solar fusion `nu_e` is forbidd
 
 0067 authoritative run/job `34081044588/101616231800`, artifact `10003691395`, ZIP SHA256 `22cc917e5ac275fb509d78b69565736a0d73f433f45461bb20d4d0e01232bfb9`; classification `PASS_SOURCE_TAIL_RECOMPUTED / RATE_FOLD_OPEN`; `dPhi_anti-nu_e/dE(E_R)=3.528363521736758e-41 cm^-2 s^-1 MeV^-1`.
 
-0068 prereg commit `44abb5844e6bbcd358fd224052cf7bce92f2e881`; ledger commit `dfe1b11538079a7cb76c7c1aedba0c8c366ff50d`; iteration commit `0a7d726dbb599d78831f91a888c1947a6c6d542c`; classification **`BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`**. The primary record confirms continuous-spectrum RIOEC concept, but the exact line-shape normalization, `B(GT)` mapping, K-shell atomic factor, spin/statistical factors and unit chain were not independently materialized from primary full-text authority. Secondary summaries are not allowed to fill the gap. No Cu63 rate or W/kg is claimed.
+0068 prereg commit `44abb5844e6bbcd358fd224052cf7bce92f2e881`; ledger commit `dfe1b11538079a7cb76c7c1aedba0c8c366ff50d`; iteration commit `0a7d726dbb599d78831f91a888c1947a6c6d542c`; classification **`BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`**. No Cu63 rate or W/kg is claimed.
 
 ## G9 authority
 0061 `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`. Frozen 10-kpc Galactic CCSN transparent-Sun expected utility remains negligible after finite-source/alignment/duty accounting.
 
-## BSM status
+## BSM authority
 0066 failed the unchanged unlock criterion because G8/Cu63 was then both quantitatively unbounded and immediately actionable.
 
-0069 prospectively re-applied the same criterion after 0068 changed G8 to an authority blocker. Prereg commit `cb02acc5ed6f7dd9463c0d06353b6ca6d6f5ee56`; ledger commit `76434353545f5aa70f19c770b9286b4d24955740`; iteration commit `3dd60cea7d9314dcab72badb0f2aa64c9680c58a`.
+0069 prospectively re-applied the same criterion after 0068 changed G8 to an authority blocker and classified **`PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`**. This is not `BSM_PASS` and gives no permission for an enhancement scan.
 
-Classification: **`PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`**.
-- G2: `BLOCKED_NOT_ACTIONABLE`.
-- G3: `OPEN_NOT_CURRENTLY_ACTIONABLE`, explicitly unsolved.
-- G8: `BLOCKED_NOT_ACTIONABLE` at primary normalization authority.
-- G9: `STRONG_NEGATIVE_SCOPED`.
+0070 prereg commit `14c8feecd9dbf127b30d5c834a857a53eaedabd6`; explicit convention amendment commit `502a21da07e258285ec3223a1b5271da7c6aae74`; ledger commit `ae1d1731201f91386746232e38068eef9c20f79a`; iteration commit `28a77c5c4b67e4b762f1ac434d8143213d98ffa7`.
 
-This is not `BSM_PASS` and gives no scientific readiness credit by itself.
+0070 classification: **`BLOCKED_BSM_CONSTRAINT_NORMALIZATION`**.
 
-## Current prospective gate — 0070
-`research/prereg/0070_bsm_primary_constraints_ledger_contract.md`, commit `14c8feecd9dbf127b30d5c834a857a53eaedabd6`.
+The reason is class-level, not lack of literature. A primary 2025 CEvNS/direct-detection analysis gives a consistent universal-coupling convention and separate B-L benchmark, but explicitly notes that astrophysical/cosmological regions are strongly model dependent. Under the 0070a independent scalar and axial coupling conventions, collider visible/invisible limits, stellar/SN production/trapping, BBN/CMB thermal history, fifth-force mappings and axial UV/anomaly assumptions cannot be transported into one common external envelope without extra post-hoc model assumptions. Such recasting is forbidden.
 
-Before any response scan, freeze separate vector, scalar and axial/spin-dependent light-mediator conventions: mediator mass, neutrino coupling, matter coupling/operator normalization, whether limits constrain products or individual couplings, and target species. Then freeze applicable primary laboratory neutrino-scattering/CEvNS, collider/fixed-target, stellar/supernova, cosmological, and fifth-force/equivalence-principle constraints with provenance and assumptions.
+The clean actionable subclass is anomaly-free `U(1)_{B-L}`, where the relative neutrino/electron/quark charges are fixed and a single `g_BL` can be used consistently.
 
-Do not silently merge incompatible conventions. Only parameter space surviving the frozen ledger may enter a later prospective NMIR-response gate.
+## Current prospective gate — 0071
+`research/prereg/0071_b_minus_l_primary_constraints_contract.md`, commit `80d93debb2a20e35d6e06fa3000591f82ffbd1a8`.
+
+Freeze primary external constraints for `U(1)_{B-L}` over `1e-6 eV <= m_V <= 10 GeV` in the single plane `(m_V,g_BL)`. Required families: low-energy neutrino scattering/CEvNS, collider/fixed-target where applicable, stellar/SN, cosmology and fifth-force/long-range-force. Every retained contour must state provenance, mass range, CL where given, and decay/trapping/thermal-history assumptions. Do not import phenomenological universal-vector contours unless an exact B-L mapping is explicit.
+
+Only after `PASS_B_MINUS_L_CONSTRAINT_LEDGER_FROZEN` with reproducible surviving space may a separate prospective B-L NMIR response bound be opened.
 
 ## F10 snapshot
 - G2 detector chain: requirements strongly constrained; public achievement blocker remains.
 - G3 finite-range collective scaling and actual-SM growing coordination: strong-negative scoped; absolute contact coefficient residual OPEN.
 - G8 Cu63: target/source provenance PASS; primary RIOEC normalization BLOCKED.
 - G9 10-kpc CCSN solar-lens utility: physical focusing PASS / utility STRONG NEGATIVE.
-- BSM: **UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY**, no mechanism PASS and no enhancement scan yet.
+- BSM: **UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY**; generic 3-class normalization blocked by 0070; B-L 0071 prospective; no mechanism PASS and no enhancement scan yet.
 
 ## Exact next gate
-Execute 0070. Freeze primary BSM external constraints and coupling conventions first. Only after `PASS_BSM_CONSTRAINT_LEDGER_FROZEN` may a separate prospective NMIR BSM response calculation be opened.
+Execute 0071. Freeze the gauge-complete `U(1)_{B-L}` primary external constraints ledger first. Only after a surviving region is reproducibly established may a separate prospective NMIR response calculation be opened.
 
 `NMIR_READINESS: 89%`.
