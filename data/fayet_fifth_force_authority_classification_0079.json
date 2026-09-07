@@ -1,0 +1,56 @@
+{
+  "iteration": "0079",
+  "date": "2026-09-07",
+  "classification": "PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_AUTHORITY",
+  "scope": "Primary-authority classification only. No finite-mass contour and no BSM response/enhancement scan.",
+  "hosted_audit": {
+    "run_id": 34160053648,
+    "job_id": 101859746603,
+    "artifact_id": 10032282068,
+    "result_sha256": "d28969f005758558cf370d1dd90841652191c9c8cb531b03b8eb9fd2734c987d",
+    "artifact_zip_sha256": "24a0b8789afe0e32a5016f44b369517a490f4629a3390a16afcfac188df9ef55",
+    "dedicated_tests": "4 passed"
+  },
+  "primary_sources": [
+    {
+      "id": "arXiv:1809.04991v2",
+      "doi": "10.1103/PhysRevD.99.055043",
+      "sha256": "ed233fa73a149ba9801d442339a2c5fd3b5051c1dc2caa1584a000760fcff29b",
+      "role": "preferred later primary authority under frozen source order",
+      "facts": {
+        "effective_B_minus_L_interaction": "epsilon_{B-L} (B-L) e (eq. 19)",
+        "two_sigma_epsilon_bound": "|epsilon_{B-L}| < 0.84e-24 (Table V / eq. 43)",
+        "relative_force_bound": "|bar alpha_g(B-L)| < 2.2e-13 at 2 sigma (eq. 33)",
+        "bar_alpha_relation": "bar alpha_g(B-L) = alpha_g(B-L)/4",
+        "force_strength_relation": "alpha_g approximately +/- 1.2536e36 epsilon^2; sign depends on spin convention",
+        "nm_ir_mapping": "For NMIR L_int = g_BL V_mu J_{B-L}^mu, the coefficient multiplying the pure B-L current is g_BL = e |epsilon_{B-L}|. Fayet g'' is a distinct UV-normalized extra-U(1) coupling and must not be identified with NMIR g_BL.",
+        "uv_specific_relation": "epsilon_{B-L} e approximately -(5/4) g'' (eq. 49)",
+        "range_scope": "long-range/asymptotic; published MICROSCOPE result is stated for range large compared with Earth scale, not as a reproducible finite-mass contour"
+      }
+    },
+    {
+      "id": "arXiv:1712.00856v2",
+      "doi": "10.1103/PhysRevD.97.055039",
+      "sha256": "e058c6338db1151bf631a2c2c5eb09102cb521327227ff5288570e51744cc03d",
+      "role": "supporting earlier primary authority for range semantics",
+      "facts": {
+        "yukawa_potential": "V_U proportional epsilon_{B-L}^2 N1 N2 exp(-r/lambda_U)/r (eq. 22)",
+        "two_sigma_epsilon_bound": "|epsilon_{B-L}| < 0.73e-24 (eq. 39), summarized as <0.8e-24 (eq. 40)",
+        "range_scope": "lambda_U assumed infinite or somewhat larger than Earth diameter for quoted bound; sensitivity rapidly degrades for smaller lambda_U, especially well below satellite altitude 710 km",
+        "finite_range_authority": "No exact numerical finite-range contour/table sufficient for NMIR materialization was identified; the qualitative damping discussion is not used as a finite-mass bound."
+      }
+    }
+  ],
+  "resolution": {
+    "coupling_convention_resolved": true,
+    "signed_or_absolute_resolved": true,
+    "confidence_convention_resolved": true,
+    "stat_syst_treatment_resolved": true,
+    "nm_ir_normalization_resolved": true,
+    "range_assumption_resolved": true,
+    "finite_range_curve_available": false,
+    "new_finite_mass_limit_authorized": false,
+    "asymptotic_materialization_authorized": true
+  },
+  "decision": "Freeze 0079a for the strict long-range/asymptotic m_V -> 0 limit only, using the later 2019 primary bound and g_BL=e|epsilon_{B-L}|. Do not invent a finite-mass Yukawa turn-off. Continue searching a separate finite-range low-mass family after 0079a."
+}
