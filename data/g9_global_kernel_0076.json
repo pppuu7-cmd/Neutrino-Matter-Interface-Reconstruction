@@ -1,0 +1,28 @@
+{
+  "status": "SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL",
+  "contract_commit": "05a3354dd2f8cdbba1f2dd04342161b515a10304",
+  "run_id": 34149715242,
+  "job_id": 101829231239,
+  "artifact_id": 10029092681,
+  "artifact_zip_sha256": "759f9b79acf8d4a990190c63389571e912b2c7afa619cec055ed13094a68f26c",
+  "raw_result_sha256": "66a99ff6abc86aaae465568086c6e6efb1b277dbab95ce58bfc1508bdb735340",
+  "dedicated_tests": "5 passed in 0.03s",
+  "criteria": {
+    "root_recovery_pass": true,
+    "root_uniqueness_pass": true,
+    "area_invariants_pass": true,
+    "local_authority_pass": false,
+    "grid_refinement_pass": false
+  },
+  "max_base_refined_area_relative_difference": 0.7391843634769288,
+  "local_100m": {
+    "observer_generating_root_b_over_Rsun": 0.024,
+    "receiver_radius_cm": 10000.0,
+    "global_mu_aperture": 59368342.34353704,
+    "exact_one_ring_mu": 69875418.96262653,
+    "relative_error": 0.1503687101283685,
+    "global_contains_one_ring": false
+  },
+  "diagnosis": "The scan-grid/sign-change crossing finder misses narrow |y|<=r preimages near radial extrema/caustics; base-vs-bisected results can differ by O(1). Frozen 0.5% criteria therefore fail. No tolerance was relaxed and no 0075 utility result was reused.",
+  "next_method": "Prospectively validate explicit turning-point/monotone-segment decomposition before any persistent-source convolution."
+}
