@@ -1,0 +1,56 @@
+{
+  "classification": "PASS_B_L_STELLAR_SN_PRIMARY_SOURCE_ASSET_AUTHORITY",
+  "guard": "Source/archive and candidate-asset authority only; no contour extraction, raster digitization, excluded-side assignment, cross-source union/intersection, supersession claim, global B-L envelope, or response scan.",
+  "iteration": "0082",
+  "sources": {
+    "cerdeno_et_al_2021": {
+      "archive_bytes": 336509,
+      "archive_sha256": "f70c812c983fbe911e9a298ed7dd2a06d8199a13b5d9b0500633d014af65de5d",
+      "arxiv": "2106.11660v3",
+      "candidate_machine_native_route": true,
+      "includegraphics_resolved": {"Figures/BL_constraints.pdf":["Figures/BL_constraints.pdf"],"Figures/LNC_constraints.pdf":["Figures/LNC_constraints.pdf"],"Figures/LNV_constraints.pdf":["Figures/LNV_constraints.pdf"],"Figures/diagram_scalar.pdf":["Figures/diagram_scalar.pdf"],"Figures/diagram_vector.pdf":["Figures/diagram_vector.pdf"],"Figures/medium_effects_BL.pdf":["Figures/medium_effects_BL.pdf"],"Figures/medium_effects_BL_tot.pdf":["Figures/medium_effects_BL_tot.pdf"],"Figures/medium_effects_scalar.pdf":["Figures/medium_effects_scalar.pdf"],"Figures/medium_effects_scalar_tot.pdf":["Figures/medium_effects_scalar_tot.pdf"]},
+      "member_count": 13,
+      "numeric_code_assets": [],
+      "raster_assets": [],
+      "referenced_vector_assets": ["Figures/BL_constraints.pdf","Figures/LNC_constraints.pdf","Figures/LNV_constraints.pdf","Figures/diagram_scalar.pdf","Figures/diagram_vector.pdf","Figures/medium_effects_BL.pdf","Figures/medium_effects_BL_tot.pdf","Figures/medium_effects_scalar.pdf","Figures/medium_effects_scalar_tot.pdf"],
+      "role": "sn1987a_diffusion_medium_effects",
+      "source_key": "cerdeno_et_al_2021",
+      "source_url": "https://export.arxiv.org/e-print/2106.11660v3",
+      "status": "PASS_SOURCE_AUTHORITY",
+      "text_flags": {"cas_a":false,"constraint_or_bound":true,"explicit_b_l":true,"longitudinal":false,"medium_effect":true,"ns1987a":false,"revisit":false,"sn1987a":true,"transverse":false,"young_neutron_star":false}
+    },
+    "hong_shin_yun_2021": {
+      "archive_bytes": 2085288,
+      "archive_sha256": "6daae1b2d8491cb294a90ecb23d3bcee27c1a8b9dfe5674c2d47e12d735d24bc",
+      "arxiv": "2012.05427v3",
+      "candidate_machine_native_route": true,
+      "member_count": 15,
+      "numeric_code_assets": [],
+      "raster_assets": [],
+      "referenced_vector_assets": ["B-LConstraints.pdf","DPConstraints.pdf","M17_B-L_Hint.pdf","M17_DP_Hint.pdf","TRHistory_strong.pdf","money_lum_CCDK.pdf","money_lum_CCDK_B-L.pdf","money_teff_CCDK.pdf","money_teff_CCDK_B-L.pdf","money_teff_CCDK_DP_NS1987A.pdf","money_teff_T73.pdf","money_teff_T73_DP_NS1987A.pdf","pbf_a.pdf","pbf_v.pdf"],
+      "role": "young_neutron_star_cooling",
+      "source_key": "hong_shin_yun_2021",
+      "source_url": "https://export.arxiv.org/e-print/2012.05427v3",
+      "status": "PASS_SOURCE_AUTHORITY",
+      "text_flags": {"cas_a":true,"constraint_or_bound":true,"explicit_b_l":true,"longitudinal":true,"medium_effect":true,"ns1987a":true,"revisit":true,"sn1987a":true,"transverse":true,"young_neutron_star":true}
+    },
+    "shin_yun_2022": {
+      "archive_bytes": 392986,
+      "archive_sha256": "7af77fa64e46b53e901f88e3a8ef118effcb598dcd505e16e16d3aa31ab049bd",
+      "arxiv": "2110.03362v2",
+      "candidate_machine_native_route": true,
+      "member_count": 9,
+      "numeric_code_assets": [],
+      "raster_assets": [],
+      "referenced_vector_assets": ["B-L_Constraints.pdf","NNbrem.pdf","NNbrem_Internal_Contact.pdf","NS1987A.pdf","spectral_SN1987A.pdf"],
+      "role": "sn1987a_and_ns1987a_bremsstrahlung_update",
+      "shin_yun_revisit_semantics_pass": true,
+      "source_key": "shin_yun_2022",
+      "source_url": "https://export.arxiv.org/e-print/2110.03362v2",
+      "status": "PASS_SOURCE_AUTHORITY",
+      "text_flags": {"cas_a":true,"constraint_or_bound":true,"explicit_b_l":true,"longitudinal":true,"medium_effect":true,"ns1987a":true,"revisit":true,"sn1987a":true,"transverse":true,"young_neutron_star":true}
+    }
+  },
+  "hosted_run": {"run_id":34166836428,"job_id":101879452299,"artifact_id":10034419759,"raw_json_sha256":"f24f6e1d5f3726a1943b59cd298509b1b9304f21ba503defeb860461107467a7","artifact_zip_sha256":"decf86739ac910ed42cd0a836d8223e34a8ac16e1a9bb15cfa3740a9fbe97b77","dedicated_tests":"5 passed in 0.05s"},
+  "baseline_ci": {"run_id":34166836976,"conclusion":"success"}
+}
