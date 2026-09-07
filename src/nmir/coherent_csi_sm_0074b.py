@@ -33,6 +33,7 @@ QF = 0.0878
 LIGHT_YIELD_PE_PER_KEVEE = 13.348
 ACC_A, ACC_K, ACC_X0 = 0.6655, 0.4942, 10.8507
 PE_MIN, PE_MAX_EXCLUSIVE = 0, 30
+POISSON_SUM_MAX_EXCLUSIVE = 160
 
 
 def spherical_j1(x: float) -> float:
@@ -142,7 +143,7 @@ def nucleus_events(*, z: int, n: int, mass_u: float, rp_fm: float, flavor: str, 
         qw = gvp * z * fp + GVN * n * fn
         dsdt = GF_GEV2**2 * m / math.pi * qw**2 * GEV2_TO_CM2 * _source_factor(t, m, flavor)
         mu = light_yield * qf * t * 1.0e6
-        acc, tail = poisson_acceptance(mu, apply_acceptance=apply_acceptance, pe_max_exclusive=100)
+        acc, tail = poisson_acceptance(mu, apply_acceptance=apply_acceptance, pe_max_exclusive=POISSON_SUM_MAX_EXCLUSIVE)
         max_tail = max(max_tail, tail)
         vals.append(dsdt * acc)
     sigma = _integrate(vals, dt)
