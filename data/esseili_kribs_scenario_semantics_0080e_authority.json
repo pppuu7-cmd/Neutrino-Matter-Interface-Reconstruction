@@ -1,0 +1,50 @@
+{
+  "iteration": "0080e",
+  "classification": "PASS_COSMOLOGY_B_L_SCENARIO_CONDITIONAL_AUTHORITY",
+  "source": {
+    "url": "https://export.arxiv.org/e-print/2308.07955v2",
+    "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+    "main_tex": "neff_arXiv_v2.tex",
+    "main_tex_sha256": "f77b577688b3609c574985b05fc9a213709c958ded60a511478357f1f881d678"
+  },
+  "checks": {
+    "two_scenarios_explicit": true,
+    "dirac_one_of_two_cases": true,
+    "majorana_explicit_alternative": true,
+    "majorana_and_dirac_results_separate": true,
+    "explicit_common_combination_rule_detected": false
+  },
+  "common_combination_candidate_contexts": [],
+  "ledger_semantics": {
+    "majorana": "separate scenario-conditioned branch",
+    "dirac": "separate scenario-conditioned branch",
+    "scenario_independent_union_or_intersection_authorized": false,
+    "external_neutrino_nature_assumption_used": false
+  },
+  "successful_run": {
+    "run_id": 34164286854,
+    "job_id": 101872133978,
+    "artifact_id": 10033631352,
+    "raw_json_sha256": "381c0470a03cf468df56601ca04cb9a1763676fe11d05a25b5e7c049e8d1037f",
+    "artifact_zip_sha256": "21f3953dad41891087004cabdc613ba9903cc62d684dd69ceb80944146856820"
+  },
+  "implementation_history": {
+    "initial_run_id": 34164118315,
+    "initial_job_id": 101871667719,
+    "initial_status": "IMPLEMENTATION_INVALID_BEFORE_SCIENTIFIC_AUDIT",
+    "reason": "TeX caption sentence ending `.}` was not split before a neighboring model-building phrase; regression test correctly rejected the parser.",
+    "fix_commit": "c1603d2e23ef114b239c57e4afae488dba0744a0",
+    "scientific_contract_changed": false
+  },
+  "repository_integrity": {
+    "baseline_run_id": 34164374756,
+    "baseline_job_id": 101872392194,
+    "pytest": "PASS",
+    "nmir_baseline": "PASS",
+    "ci_dependency_fix_commits": [
+      "39d3ddb18a9da8d4319116c9d29f6c7e44894b0a",
+      "bb5df1a5135b04c6b7b552f7acac2f55d1571107"
+    ]
+  },
+  "guard": "No Majorana/Dirac geometry union or intersection is authorized. No external assumption about neutrino nature was used."
+}
