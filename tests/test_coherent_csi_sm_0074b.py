@@ -1,8 +1,8 @@
 import math
 from nmir.coherent_csi_sm_0074b import (
-    QF, LIGHT_YIELD_PE_PER_KEVEE, acceptance_at_pe_center,
-    calculate_events, poisson_acceptance, recoil_endpoint_gev,
-    inverse_recoil_threshold_gev,
+    QF, LIGHT_YIELD_PE_PER_KEVEE, PE_ANALYSIS_MIN, PE_ANALYSIS_MAX_EXCLUSIVE,
+    acceptance_at_pe_center, calculate_events, poisson_acceptance,
+    recoil_endpoint_gev, inverse_recoil_threshold_gev,
 )
 
 
@@ -17,13 +17,26 @@ def test_acceptance_step_and_bounds():
     assert acceptance_at_pe_center(0) == 0.0
     assert acceptance_at_pe_center(4) == 0.0
     assert 0.0 < acceptance_at_pe_center(5) < acceptance_at_pe_center(6) < 1.0
+    assert PE_ANALYSIS_MIN == 6
+    assert PE_ANALYSIS_MAX_EXCLUSIVE == 30
 
 
-def test_poisson_normalization_tail():
+def test_poisson_normalization_tail_independent_of_roi():
     for mu in (0.0, 0.5, 5.0, 20.0, 50.0):
-        total, tail = poisson_acceptance(mu, apply_acceptance=False, pe_max_exclusive=100)
+        total, tail = poisson_acceptance(
+            mu,
+            apply_acceptance=False,
+            pe_max_exclusive=160,
+            restrict_analysis_window=False,
+        )
         assert abs(total + tail - 1.0) < 1e-12
         assert tail <= 1e-8
+
+
+def test_roi_selection_is_strictly_smaller_than_full_poisson_support():
+    roi, _ = poisson_acceptance(30.0, apply_acceptance=False, restrict_analysis_window=True)
+    all_pe, _ = poisson_acceptance(30.0, apply_acceptance=False, restrict_analysis_window=False)
+    assert 0.0 < roi < all_pe <= 1.0
 
 
 def test_components_nonnegative_and_refinement():
