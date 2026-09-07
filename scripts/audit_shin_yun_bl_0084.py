@@ -8,7 +8,15 @@ BL_RE = re.compile(r"B\s*[-–]?\s*L|U\s*\(\s*1\s*\)\s*_?\{?B\s*[-–]?\s*L\}?|B
 OBS_RE = re.compile(r"SN\s*1987A|NS\s*1987A|Cas\s*A|neutron\s+star|supernova", re.I)
 REV_RE = re.compile(r"revis\w*|supersed\w*|replac\w*|weaken\w*|strengthen\w*|improv\w*|update\w*|previous\w*|earlier\w*|compared?\s+to", re.I)
 NUM_RE = re.compile(r"(?:<|>|\\lesssim|\\gtrsim|\\sim|=)?\s*(?:\d+(?:\.\d*)?|\.\d+)\s*(?:\\times\s*)?10\s*\^\s*\{?[-+]?\d+\}?|(?:<|>|=|\\lesssim|\\gtrsim|\\sim)\s*\d+(?:\.\d*)?(?:e|E)[-+]?\d+")
-MASS_RE = re.compile(r"(?:m_[^\s,;]{0,30}|mass[^,;.]{0,80})(?:MeV|keV|eV|GeV|O\s*\([^)]*\))", re.I)
+# Source-native coupling relations. This intentionally excludes unrelated nearby
+# density/luminosity/temperature numbers that happen to occur in a B-L paragraph.
+COUPLING_REL_RE = re.compile(
+    r"e\s*\^\s*\\prime(?:\s*m_\{?[^<>=,;]{0,80})?\s*"
+    r"(?:<|>|\\lesssim|\\gtrsim|\\sim|=)\s*"
+    r"(?:\d+(?:\.\d*)?|\.\d+)\s*(?:\\times\s*)?10\s*\^\s*\{?[-+]?\d+\}?",
+    re.I,
+)
+MASS_RE = re.compile(r"(?:m_[^\s,;]{0,50}|mass[^,;.]{0,100})(?:MeV|keV|eV|GeV|O\s*\([^)]*\)|\\mathcal\{O\}[^,;.]*)", re.I)
 CONF_RE = re.compile(r"\b(?:90|95|99)\s*\\?%|confidence|C\.L\.", re.I)
 
 
@@ -45,7 +53,6 @@ def contexts(text, window=650):
     for m in BL_RE.finditer(clean):
         a, b = max(0, m.start()-window), min(len(clean), m.end()+window)
         spans.append(clean[a:b])
-    # deterministic dedup preserving order
     seen, uniq = set(), []
     for x in spans:
         key = hashlib.sha256(x.encode()).hexdigest()
@@ -56,6 +63,7 @@ def contexts(text, window=650):
 
 def classify_record(ctx, filename):
     nums = [m.group(0).strip() for m in NUM_RE.finditer(ctx)]
+    coupling_relations = [m.group(0).strip() for m in COUPLING_REL_RE.finditer(ctx)]
     obs = sorted(set(m.group(0) for m in OBS_RE.finditer(ctx)), key=str.lower)
     rev = sorted(set(m.group(0) for m in REV_RE.finditer(ctx)), key=str.lower)
     masses = [m.group(0).strip() for m in MASS_RE.finditer(ctx)]
@@ -63,6 +71,7 @@ def classify_record(ctx, filename):
     return {
         "file": filename,
         "numbers": nums,
+        "coupling_relations": coupling_relations,
         "observations": obs,
         "revision_terms": rev,
         "mass_phrases": masses,
@@ -82,10 +91,10 @@ def audit(blob):
     for name, text in members:
         for ctx in contexts(text):
             records.append(classify_record(ctx, name))
-    numerical = [r for r in records if r["numbers"]]
-    bound = [r for r in numerical if r["observations"]]
+    coupling = [r for r in records if r["coupling_relations"]]
+    bound = [r for r in coupling if r["observations"]]
     revision = [r for r in records if r["revision_terms"]]
-    unresolved = [r for r in numerical if not r["observations"]]
+    unresolved = [r for r in coupling if not r["observations"]]
     if bound and not unresolved:
         classification = "PASS_SHIN_YUN_B_L_REVISION_SCOPE_AUTHORITY" if revision else "PASS_SHIN_YUN_B_L_ANALYTICAL_ANCHOR_ONLY"
     else:
@@ -94,10 +103,10 @@ def audit(blob):
         "classification": classification,
         "tex_files": [n for n,_ in members],
         "record_count": len(records),
-        "numerical_record_count": len(numerical),
+        "coupling_record_count": len(coupling),
         "bound_record_count": len(bound),
         "revision_record_count": len(revision),
-        "unresolved_numerical_record_count": len(unresolved),
+        "unresolved_coupling_record_count": len(unresolved),
         "records": records,
     })
     return result
@@ -120,7 +129,8 @@ def main():
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(res, f, indent=2, ensure_ascii=False, sort_keys=True)
         f.write("\n")
-    print(json.dumps({k:res[k] for k in ["classification","archive_sha256","record_count","numerical_record_count","bound_record_count","revision_record_count","unresolved_numerical_record_count"] if k in res}, indent=2))
+    keys=["classification","archive_sha256","record_count","coupling_record_count","bound_record_count","revision_record_count","unresolved_coupling_record_count"]
+    print(json.dumps({k:res[k] for k in keys if k in res}, indent=2))
     if res["classification"].startswith("INFRASTRUCTURE_FAIL"):
         raise SystemExit(2)
 
