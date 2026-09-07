@@ -1,0 +1,36 @@
+name: NMIR G9 persistent known-direction solar lens
+
+on:
+  push:
+    paths:
+      - 'src/nmir/g9_persistent_lens.py'
+      - 'tests/test_g9_persistent_lens.py'
+      - 'scripts/g9_persistent_lens_benchmark.py'
+      - '.github/workflows/g9-persistent-lens.yml'
+  workflow_dispatch:
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install package and test dependency
+        run: python -m pip install -e . pytest
+      - name: Run dedicated regression tests
+        run: pytest -q tests/test_g9_persistent_lens.py
+      - name: Run fail-closed 0075 benchmark
+        run: python scripts/g9_persistent_lens_benchmark.py
+      - name: Hash scientific result
+        if: always()
+        run: |
+          if [ -f g9_persistent_lens_result.json ]; then sha256sum g9_persistent_lens_result.json; fi
+      - name: Upload scientific result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0075-result
+          path: g9_persistent_lens_result.json
+          if-no-files-found: error
