@@ -4,10 +4,10 @@ Last reconciled: 2026-09-07
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0074a_coherent_argon_sm_benchmark.md`
-Current prospective subgate: `research/prereg/0074b_coherent_csi_sm_response_benchmark.md`
+Latest completed immutable record: `research/iterations/0074b_coherent_csi_sm_response_benchmark.md`
+Current prospective subgate: `research/prereg/0074c_coherent_combined_likelihood_benchmark_authority_audit.md`
 Current parent gate: 0074 COHERENT CsI+Ar B-L likelihood materialization.
-`NMIR_READINESS: 90%`.
+`NMIR_READINESS: 91%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository is scientific authority; chat is not. Green CI alone is not scientific PASS; inspect raw scientific log/artifact against the frozen contract.
@@ -49,26 +49,31 @@ Official COHERENT packages hash-pinned: Ar Analysis A Zenodo `10.5281/zenodo.390
 ### 0074a Ar SM normalization — PASS
 Prospective prereg `research/prereg/0074a_coherent_argon_sm_benchmark.md`, commit `09ca12d9d82b96ee38502d639196adbb162dad65`, froze primary target `128 ± 17` pre-fit CEvNS events before independent calculation. Release `cevnspdf.txt` was forbidden as calculated answer; fitted `159±43` forbidden as target.
 
-Implementation commit `0b2361c8e421e09d35448029507159404f18eb5d`. First hosted run/job `34135721502/101786088632` is preserved as `INFRASTRUCTURE_FAIL`: tests passed but shell redirection failed before materialization/science. Workflow-only mkdir fix `1dd4043956285e8da6290be2d44d75a28872574c` changed no scientific input/formula/criterion.
+Authoritative hosted scientific run/job `34135884676/101786622645`; artifact `10023995784`; ZIP SHA256 `b96835cb2533839b303c2acc36150e296797de487d826591adff5194efd8c55f`. Independent fine result **`134.21440238243503` events**; refinement `2.2205861676146713e-7`; all frozen checks pass. Immutable iteration commit `cff6a3c5cac64e050e6d9cd6271625d4bd51da19`. Classification **`PASS_COHERENT_AR_SM_NORMALIZATION_BENCHMARK`**.
 
-Authoritative hosted scientific run/job `34135884676/101786622645`; artifact `10023995784`, 4619 bytes; ZIP SHA256 `b96835cb2533839b303c2acc36150e296797de487d826591adff5194efd8c55f`, independently reproduced after download. Raw job log inspected directly.
+### 0074b CsI SM response — PASS
+Prospective prereg commit `c47769b51c186f2b1eda2aed72c02e5ca6eb7030` froze `173 ± 48` SM CEvNS events before independent output; fitted `134 ± 22` was forbidden as target. Same-analysis response uses fixed QF `0.0878`, light yield `13.348 PE/keVee`, Poisson PE smearing, official acceptance, and released analysis support **`6 <= PE < 30`**.
 
-Independent fine result (`n_t=8000`): prompt `nu_mu=30.4161042922515`, delayed `nu_e=42.276166423657926`, delayed `anti-nu_mu=61.52213166652559`, total **`N_calc=134.21440238243503` events**. Coarse `n_t=2000` total `134.21443218589957`; refinement fraction `2.2205861676146713e-7`. No-efficiency total `258.65709512626637`; `F=1` total `180.3718386900809`. All frozen checks pass, including `|N_calc-128|=6.21440238243503 <=17`. Hosted dedicated tests `6 passed`. Guards: no `cevnspdf` answer, no fitted-159 target, no B-L scan. Immutable iteration commit `cff6a3c5cac64e050e6d9cd6271625d4bd51da19`.
+Fail-closed chronology is preserved. Run `34140156775` stopped before science because the numerical Poisson support failed the frozen `1e-8` tail guard. Run/job `34140406355/101800883715` produced `161.42374070335802` but is explicitly **IMPLEMENTATION_INVALID / NEVER SCIENTIFIC AUTHORITY** because acceptance was applied above the released `PE<30` support. Run `34140540384` is a sequential implementation/test mismatch only. No gate criterion or target changed.
 
-Classification: **`PASS_COHERENT_AR_SM_NORMALIZATION_BENCHMARK`**. This validates the Ar SM source+target+response chain only; overall 0074 is still OPEN and no B-L contour is authorized.
+Authoritative corrected hosted run/job **`34140558778/101801362484`** at head `1fe2821033ce8b384f3ef1b5500ce942e91a7bad`; raw log inspected directly. Artifact **`10025718339`**, 828 bytes; ZIP SHA256 **`177ca00c47990c3917627f8febe3fd5b2561e984c41e2a6316b32168c14a44d9`**. Dedicated tests: `6 passed`.
 
-### 0074b CsI SM response — PROSPECTIVE
-Frozen before independent CsI signal output in `research/prereg/0074b_coherent_csi_sm_response_benchmark.md`, commit `c47769b51c186f2b1eda2aed72c02e5ca6eb7030`. Same-analysis first-observation package only. Primary benchmark is **`173 ± 48` SM CEvNS events**; fitted excess `134 ± 22` is forbidden as target. Frozen response uses constant 2017-release QF `0.0878`, light yield `13.348 PE/keVee`, Poisson PE smearing, official logistic/step acceptance, exact Cs-133 and I-127 recoil spectra, <=0.5% numerical refinement, nonnegative flavor/isotope pieces, acceptance/F=1 monotonic checks and <=1e-8 PE tail truncation. No B-L scan is authorized by this prereg.
+Fine result: Cs `78.42740602657219`, I `74.41686623239733`, total **`152.8442722589695 events`**. Refinement `9.408514258279292e-08`; max omitted Poisson tail `2.3314683517128287e-15`; no-acceptance `444.96597491730245`; `F=1` `352.1840873381009`; +1% QF and +1% light yield each give `154.66729168860792`. All frozen target/refinement/support/positivity/monotonic checks pass. Machine-readable authority `data/coherent_csi_sm_0074b.json`, commit `f0bfe484d301f459b7a4a2a4686db6f2eb98a478`; immutable iteration commit `0aea54b90ec3da1c26edeb3812940d3f9c83c120`.
+
+Classification: **`PASS_COHERENT_CSI_SM_RESPONSE_BENCHMARK`**. This validates the first-observation CsI SM response only, not the exact combined Cadeddu likelihood or any B-L exclusion.
+
+### 0074c combined-likelihood benchmark authority audit — PROSPECTIVE
+Frozen before any combined likelihood minimization in `research/prereg/0074c_coherent_combined_likelihood_benchmark_authority_audit.md`, commit `80d8ffaae102d8c5a3ba731dc1e8ae3b7e4d9d41`. Documentary gate only: pin exact CsI/Ar fit supports, templates, nuisance widths/correlations, likelihood statistic/profiling domain, and at least one non-circular primary numerical SM/background likelihood benchmark with tolerance before executing reproduction. Standalone 0074a/0074b normalization targets and fitted CsI excess are forbidden as combined-likelihood benchmark. No B-L point may be evaluated.
 
 ## Current funnel state
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G8 source/target provenance PASS, exact normalization BLOCKED.
 - G9 frozen source class strong-negative utility.
-- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner partial PASS + blue semantic FAIL; PandaX full profile BLOCKED; COHERENT primary bytes PASS, Ar SM normalization PASS, 0074b CsI response prospectively frozen. No global B-L envelope.
+- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner partial PASS + blue semantic FAIL; PandaX full profile BLOCKED; COHERENT primary bytes PASS, Ar response PASS, CsI response PASS, combined-likelihood benchmark authority audit now highest-value OPEN. No global B-L envelope.
 
 ## Exact next gate
-Execute **0074b** exactly as frozen in commit `c47769b51c186f2b1eda2aed72c02e5ca6eb7030`. Before accepting any PASS, inspect hosted raw log/artifact and require `abs(N_calc-173)<=48` plus all frozen refinement/support/Poisson/monotonic criteria. If 0074b passes, prospectively freeze the exact combined CsI+Ar SM/background likelihood-reproduction statistic before any `(m_V,g_BL)` scan. Overall 0074 remains OPEN until that combined validation passes.
+Execute **0074c** exactly as frozen at commit `80d8ffaae102d8c5a3ba731dc1e8ae3b7e4d9d41`: audit primary Cadeddu paper/supplement plus official COHERENT companion/code for an exact non-circular combined-likelihood benchmark, while pinning all bins/templates/nuisances/statistic conventions. PASS requires a benchmark+tolerance frozen before any reproduction. If no such primary benchmark exists after allowed primary routes are exhausted, classify `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY` without inventing a tolerance. No `(m_V,g_BL)` scan yet.
 
 ## Critical guards
 Raster/manual contour reading forbidden. No Asimov substitution for a required primary observed-data likelihood. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result tolerance relaxation. No F9 multiplication of unvalidated gains.
