@@ -1,0 +1,68 @@
+{
+  "iteration": "0074c",
+  "classification": "BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY",
+  "date": "2026-09-07",
+  "parent_prereg_commit": "80d8ffaae102d8c5a3ba731dc1e8ae3b7e4d9d41",
+  "scope": "Documentary primary-authority audit only; no likelihood minimization and no B-L point evaluated.",
+  "primary_analysis": {
+    "citation": "M. Cadeddu et al., JHEP 01 (2021) 116, arXiv:2008.05022v3",
+    "csi": {
+      "support": "12 bins i=4..15 of the first-observation CsI spectrum",
+      "statistic": "Gaussian least-squares chi2_CsI with signal, background and quenching-factor nuisance penalties",
+      "nuisances": {
+        "alpha_c_signal_sigma": 0.112,
+        "beta_c_background_sigma": 0.25,
+        "eta_quenching_sigma": 0.051
+      }
+    },
+    "argon": {
+      "support": "Analysis A, 0 <= Eee < 120 keVee, 12 bins of width 10 keVee",
+      "statistic": "Gaussian least-squares chi2_Ar with CEvNS, PBRN and LBRN normalization nuisance penalties and BRN energy-shape term in per-bin variance",
+      "nuisances": {
+        "CEvNS_sigma_fixed_Rn": 0.134,
+        "PBRN_sigma": 0.32,
+        "LBRN_sigma": 1.0,
+        "BRNES_uncorrelated_per_bin": 0.017
+      }
+    },
+    "combined_convention": "Independent detector contributions are combined by adding the detector least-squares functions; detector-specific nuisance parameters remain detector-specific absent contrary primary provenance."
+  },
+  "official_releases": [
+    {
+      "doi": "10.5281/zenodo.1228631",
+      "role": "CsI first-observation data release",
+      "hash_manifest": "data/coherent_primary_packages_0074_manifest.json",
+      "audit_result": "Data, acceptance/response and basic interaction/example material are present; no same-analysis combined CsI+Ar likelihood reference point or combined-fit benchmark is supplied."
+    },
+    {
+      "doi": "10.5281/zenodo.3903810",
+      "role": "Ar Analysis A data release",
+      "hash_manifest": "data/coherent_primary_packages_0074_manifest.json",
+      "audit_result": "Observed data, CEvNS/background PDFs, efficiency, parameters, systematics and plotting/reading helpers are present; no same-analysis combined CsI+Ar likelihood reference point or combined-fit benchmark is supplied."
+    }
+  ],
+  "benchmark_search": {
+    "acceptable_forms_required_by_prereg": [
+      "published SM best-fit or minimum chi-square/likelihood value with sufficient definition",
+      "published profiled nuisance best-fit values plus expectation sufficient for a frozen tolerance",
+      "official collaboration example-code likelihood output/reference point from the same releases"
+    ],
+    "found": false,
+    "paper_notes": "The paper publishes exclusion contours and mentions a Delta-chi2 > 120 statement for the universal-model (g-2)_mu region, but this is not an exact SM/background combined-likelihood reference point and cannot define a non-circular reproduction tolerance.",
+    "forbidden_substitutes": [
+      "0074a Ar standalone 128 +/- 17 normalization target",
+      "0074b CsI standalone 173 +/- 48 normalization target",
+      "CsI fitted excess 134 +/- 22",
+      "manual/raster reading of B-L or universal exclusion contours",
+      "secondary reproduction chosen as authority"
+    ]
+  },
+  "frozen_gate_checks": {
+    "exact_supports_pinned": true,
+    "templates_mapped_to_primary_inputs_or_analytic_construction": true,
+    "nuisance_widths_and_correlation_structure_pinned": true,
+    "statistic_and_profiling_convention_pinned": true,
+    "non_circular_primary_numerical_combined_benchmark_with_pre_result_tolerance": false
+  },
+  "next_action": "Retire the exact combined-likelihood B-L route unless genuinely new primary benchmark authority appears. No (m_V,g_BL) scan is permitted. Return to the highest-value actionable OPEN funnel class; currently G3 is physically open but not executable, G2 and G8 are blocked, so the next research action must identify a genuinely new class-level executable route rather than weakening 0074c."
+}
