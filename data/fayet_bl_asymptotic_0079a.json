@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "double_decimal_e_rel_le_1e-12": true,
+    "double_decimal_g_rel_le_1e-12": true,
+    "epsilon_roundtrip_rel_le_1e-12": true,
+    "finite_mass_contour_emitted": false,
+    "gross_convention_guard": true,
+    "uv_gpp_identified_as_distinct": true
+  },
+  "classification": "PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_MATERIALIZATION",
+  "diagnostic_only": {
+    "earth_diameter_m": 12742000.0,
+    "guard": "reference scale only; NOT a hard validity edge because primary says somewhat larger than Earth diameter",
+    "hbar_c_eV_m": 1.973269804e-07,
+    "one_earth_diameter_compton_mass_eV": 1.5486342834719824e-14
+  },
+  "electromagnetic_normalization": {
+    "alpha_inverse_zero_momentum": 137.035999177,
+    "e_decimal": "0.302822120768996952965801316780388657925223129927549566670448",
+    "e_heaviside_lorentz": 0.30282212076899695
+  },
+  "hosted_run": {
+    "run_id": 34160325335,
+    "job_id": 101860584123,
+    "artifact_id": 10032369690,
+    "raw_result_sha256": "1f8af81dd4150366aefc7821c35285af766bfe2801f6b6dc9d57a1ba3af17511",
+    "artifact_zip_sha256": "bdc7c75c13bc8c10a0698c58953072aa0f5d2540463ca3db9088272496b7cb2e",
+    "dedicated_tests": "4 passed in 0.01s"
+  },
+  "iteration": "0079a",
+  "primary_authority": {
+    "arxiv": "1809.04991v2",
+    "confidence": "2 sigma",
+    "epsilon_B_minus_L_upper": 8.4e-25,
+    "mapping": "g_BL = e * |epsilon_{B-L}| for NMIR pure B-L current",
+    "source_sha256": "ed233fa73a149ba9801d442339a2c5fd3b5051c1dc2caa1584a000760fcff29b",
+    "uv_note": "Fayet g'' is a separate UV-normalized coupling; it is not NMIR g_BL."
+  },
+  "replication": {
+    "relative_e_double_vs_decimal": 0.0,
+    "relative_epsilon_roundtrip": 0.0,
+    "relative_g_double_vs_decimal": 0.0
+  },
+  "result": {
+    "g_BL_upper_2sigma": 2.5437058144595744e-25,
+    "g_BL_upper_2sigma_rounded_2sf": 2.5e-25,
+    "scientific_statement": "g_BL < 2.5e-25 at 2 sigma in the strict long-range/asymptotic limit"
+  },
+  "scope": "strict long-range/asymptotic m_V -> 0 datum only; no finite-mass exclusion"
+}
