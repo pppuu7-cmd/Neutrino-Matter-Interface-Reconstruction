@@ -1,0 +1,61 @@
+{
+  "iteration": "0072",
+  "date": "2026-09-07",
+  "status": "PARTIAL_ROUTE_AUDIT_NO_CONTOUR_PASS_YET",
+  "frozen_contract": "research/prereg/0072_b_minus_l_contour_materialization_contract.md",
+  "model": {
+    "interaction": "L_int = g_BL V_mu J_{B-L}^mu",
+    "mass_interval_eV": [1e-6, 1e10]
+  },
+  "low_mass_fifth_force": {
+    "primary_authority": {
+      "citation": "T. A. Wagner, S. Schlamminger, J. H. Gundlach, E. G. Adelberger, Class. Quantum Grav. 29 (2012) 184002, arXiv:1207.2442",
+      "content": "Primary Eot-Wash WEP analysis gives a 95% CL vector-Yukawa bound for q_tilde=N=B-L as a function of lambda in Fig. 6, derived from Be-Ti/Be-Al lab-fixed differential accelerations and a geophysical source model.",
+      "normalization": "alpha_tilde = g_tilde^2/(4*pi*G*u^2) in magnitude for vector exchange",
+      "conversion_factor_g_per_sqrt_alpha": 2.70463357586823e-19,
+      "conversion_note": "Using G_N=6.70883e-39 GeV^-2 and u=0.93149410242 GeV. Thus g_BL = 2.70463357586823e-19*sqrt(|alpha_tilde|) when the paper's dimensionless B-L charge convention is identified with the frozen g_BL current convention.",
+      "range_relation": "lambda = hbar*c/m_V"
+    },
+    "materialization_route": {
+      "allowed_route": 2,
+      "plan": "Recover the primary arXiv/publisher vector figure/source and extract the EW Fig. 6 path with calibrated log axes; validate conversion and endpoints against primary text/table. Do not raster-digitize by eye.",
+      "current_status": "PRIMARY_VECTOR_PATH_NOT_YET_MATERIALIZED"
+    },
+    "secondary_validation_only": {
+      "source": "cajohare/AxionLimits docs/gBL.md and limit_data/VectorB-L/EotwashEP.txt",
+      "role": "Locator/regression target only; explicitly not accepted as 0072 primary authority.",
+      "reported_mass_span_eV": [2.0777949773099642e-24, 6.6086388743203215e-6],
+      "near_frozen_lower_edge_example": {
+        "m_eV": 1.073903817077052e-6,
+        "g_BL": 5.10309948748322e-22,
+        "implied_alpha_tilde_from_primary_conversion": 3.559085604069644e-6
+      },
+      "guard": "Agreement with this secondary numeric curve is necessary as a regression cross-check but never sufficient for PASS."
+    },
+    "coverage_note": "The frozen lower mass edge 1e-6 eV corresponds to a force range of about 0.197 m. MICROSCOPE alone is not a valid sole controller at this edge; finite-range Eot-Wash/ISL-class authority is required."
+  },
+  "short_range_isl_crosscheck": {
+    "primary_example": "D. J. Kapner et al., Phys. Rev. Lett. 98, 021101 (2007), DOI 10.1103/PhysRevLett.98.021101",
+    "scope": "Primary torsion-balance inverse-square-law data at 55 micrometers to mm scales; constrains generic Yukawa gravity-strength alpha, not automatically the exact frozen B-L charge coupling.",
+    "status": "RECAST_REQUIRED_NOT_PRIMARY_B_L_CONTOUR",
+    "guard": "Do not promote a composition-independent ISL alpha curve to g_BL without explicitly freezing source/test B-L charge-to-mass factors."
+  },
+  "direct_detection_route": {
+    "primary_authority": "V. De Romeri, D. K. Papoulias, C. A. Ternes, JHEP 05 (2024) 165, arXiv:2402.05506",
+    "route": 3,
+    "evidence": "The paper publishes the Poissonian chi-square structure and nuisance treatment for LZ/PandaX-4T, while PandaX publicly releases experimental spectra/background components. This makes an independent same-convention reproduction plausible for at least the PandaX component.",
+    "status": "ACTIONABLE_REPRODUCTION_ROUTE_NOT_EXECUTED",
+    "guard": "A reproduced individual experiment contour does not by itself close the full 1e-6 eV--10 GeV global interval."
+  },
+  "acceptance": {
+    "primary_contours_materialized": 0,
+    "global_allowed_region_authorized": false,
+    "manual_plot_reading_used": false,
+    "secondary_data_used_as_authority": false
+  },
+  "next_actions": [
+    "Attempt primary vector/source extraction of Eot-Wash B-L Fig. 6 and validate against the frozen secondary regression target without using it as authority.",
+    "In parallel, recover/reproduce a primary PandaX/LZ/XENONnT B-L direct-detection contour using released experiment data and the De Romeri likelihood convention.",
+    "Audit Esseili-Kribs BBN/CMB and Hong-Shin-Yun stellar source products for author code/tables before considering independent reproduction."
+  ]
+}
