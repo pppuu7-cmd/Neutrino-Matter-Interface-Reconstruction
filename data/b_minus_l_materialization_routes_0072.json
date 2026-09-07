@@ -9,16 +9,29 @@
   },
   "low_mass_fifth_force": {
     "primary_authority": {
-      "citation": "T. A. Wagner, S. Schlamminger, J. H. Gundlach, E. G. Adelberger, Class. Quantum Grav. 29 (2012) 184002, arXiv:1207.2442",
+      "citation": "T. A. Wagner, S. Schlamminger, J. H. Gundlach, E. G. Adelberger, Class. Quantum Grav. 29 (2012) 184002, arXiv:1207.2442v1",
+      "primary_html": "https://arxiv.org/html/1207.2442v1",
       "content": "Primary Eot-Wash WEP analysis gives a 95% CL vector-Yukawa bound for q_tilde=N=B-L as a function of lambda in Fig. 6, derived from Be-Ti/Be-Al lab-fixed differential accelerations and a geophysical source model.",
-      "normalization": "alpha_tilde = g_tilde^2/(4*pi*G*u^2) in magnitude for vector exchange",
+      "normalization": "alpha_tilde = +/- g_tilde^2/(4*pi*G*u^2); use magnitude for the vector exclusion strength",
       "conversion_factor_g_per_sqrt_alpha": 2.70463357586823e-19,
-      "conversion_note": "Using G_N=6.70883e-39 GeV^-2 and u=0.93149410242 GeV. Thus g_BL = 2.70463357586823e-19*sqrt(|alpha_tilde|) when the paper's dimensionless B-L charge convention is identified with the frozen g_BL current convention.",
-      "range_relation": "lambda = hbar*c/m_V"
+      "conversion_note": "Using G_N=6.70883e-39 GeV^-2 and u=0.93149410242 GeV. Thus |g_BL| = 2.70463357586823e-19*sqrt(|alpha_tilde|) when q_tilde=N=B-L is identified with the frozen B-L current convention.",
+      "range_relation": "lambda = hbar*c/m_V",
+      "primary_text_validation": {
+        "equation_2": "V_OBE = +/- g_tilde^2/(4*pi) * q_i*q_A/r * exp(-r/lambda), vector sign positive in the paper's convention",
+        "equation_4": "alpha_tilde = +/- g_tilde^2/(4*pi*G*u^2)",
+        "figure_6_caption": "95% CL upper bounds on vector Yukawa strength coupled to q_tilde=B-L; EW curve comes from the lab-fixed results",
+        "primary_range_statement": "The terrestrial attractor plus local geophysical model extends sensitivity down to about 1 m range."
+      }
     },
     "materialization_route": {
       "allowed_route": 2,
-      "plan": "Recover the primary arXiv/publisher vector figure/source and extract the EW Fig. 6 path with calibrated log axes; validate conversion and endpoints against primary text/table. Do not raster-digitize by eye.",
+      "route_2_audit": {
+        "arxiv_html_figure_asset": "https://arxiv.org/html/1207.2442v1/WEP_figure6.png",
+        "asset_type": "raster PNG",
+        "status": "RASTER_ONLY_AT_HTML_LAYER",
+        "scientific_guard": "The frozen 0072 contract forbids manual/raster point reading, so the HTML figure asset cannot be used as numerical authority.",
+        "source_archive_status": "TeX source is linked by arXiv but the source archive/vector asset has not yet been materialized through the available tool path; therefore route 2 is not declared exhausted."
+      },
       "current_status": "PRIMARY_VECTOR_PATH_NOT_YET_MATERIALIZED"
     },
     "secondary_validation_only": {
@@ -32,7 +45,7 @@
       },
       "guard": "Agreement with this secondary numeric curve is necessary as a regression cross-check but never sufficient for PASS."
     },
-    "coverage_note": "The frozen lower mass edge 1e-6 eV corresponds to a force range of about 0.197 m. MICROSCOPE alone is not a valid sole controller at this edge; finite-range Eot-Wash/ISL-class authority is required."
+    "coverage_note": "The frozen lower mass edge 1e-6 eV corresponds to a force range of 0.1973269804 m. MICROSCOPE alone is not a valid sole controller at this edge; finite-range Eot-Wash/ISL-class authority is required."
   },
   "short_range_isl_crosscheck": {
     "primary_example": "D. J. Kapner et al., Phys. Rev. Lett. 98, 021101 (2007), DOI 10.1103/PhysRevLett.98.021101",
@@ -42,20 +55,44 @@
   },
   "direct_detection_route": {
     "primary_authority": "V. De Romeri, D. K. Papoulias, C. A. Ternes, JHEP 05 (2024) 165, arXiv:2402.05506",
+    "publisher_record": "SCOAP3 record 85500; CC-BY fulltext XML and PDF/A are exposed by the publisher repository.",
     "route": 3,
-    "evidence": "The paper publishes the Poissonian chi-square structure and nuisance treatment for LZ/PandaX-4T, while PandaX publicly releases experimental spectra/background components. This makes an independent same-convention reproduction plausible for at least the PandaX component.",
+    "evidence": "The paper publishes the event-rate and Poissonian chi-square/nuisance structure for LZ/PandaX-4T. PandaX-4T separately publishes its solar-pp electron-recoil measurement over 24-144 keV with 0.63 tonne-year exposure, providing a primary experimental anchor for a same-convention reproduction.",
     "status": "ACTIONABLE_REPRODUCTION_ROUTE_NOT_EXECUTED",
     "guard": "A reproduced individual experiment contour does not by itself close the full 1e-6 eV--10 GeV global interval."
+  },
+  "cosmology_stellar_route_audit": {
+    "esseili_kribs": {
+      "citation": "H. Esseili and G. D. Kribs, JCAP 05 (2024) 110, arXiv:2308.07955",
+      "scope": "gauged U(1)_{B-L} Delta N_eff, approximately 1 eV to 100 MeV",
+      "status": "PRIMARY_PAPER_IDENTIFIED_NO_AUTHOR_NUMERICAL_PRODUCT_MATERIALIZED_YET"
+    },
+    "hong_shin_yun": {
+      "citation": "D. K. Hong, C. S. Shin and S. Yun, Phys. Rev. D 103, 123031 (2021), arXiv:2012.05427",
+      "scope": "young-neutron-star cooling; B-L coupling bound below O(0.1 MeV) under stated cooling assumptions",
+      "status": "PRIMARY_PAPER_IDENTIFIED_NO_AUTHOR_NUMERICAL_PRODUCT_MATERIALIZED_YET"
+    },
+    "guard": "Graphical contours or quoted asymptotic statements may guide coverage but cannot be substituted for the numerical contour required by 0072."
+  },
+  "ci_validation": {
+    "head_sha": "a78ce79fe41c594b91b2b2fdb78d181cd751318f",
+    "run_id": 34102211415,
+    "job_id": 101678992936,
+    "conclusion": "success",
+    "raw_log_inspected": true,
+    "pytest": "356 passed in 14.10s",
+    "scientific_role": "infrastructure/convention-helper validation only; not a contour PASS"
   },
   "acceptance": {
     "primary_contours_materialized": 0,
     "global_allowed_region_authorized": false,
     "manual_plot_reading_used": false,
-    "secondary_data_used_as_authority": false
+    "secondary_data_used_as_authority": false,
+    "route_2_declared_exhausted": false
   },
   "next_actions": [
-    "Attempt primary vector/source extraction of Eot-Wash B-L Fig. 6 and validate against the frozen secondary regression target without using it as authority.",
-    "In parallel, recover/reproduce a primary PandaX/LZ/XENONnT B-L direct-detection contour using released experiment data and the De Romeri likelihood convention.",
-    "Audit Esseili-Kribs BBN/CMB and Hong-Shin-Yun stellar source products for author code/tables before considering independent reproduction."
+    "Materialize the arXiv TeX/source archive for 1207.2442 and determine whether WEP_figure6 exists as EPS/PDF/vector data; if vector, calibrate the primary path and validate against text plus the non-authoritative regression curve.",
+    "If the Eot-Wash source archive remains unavailable, preserve the blocker and execute a primary same-convention PandaX reproduction from released experimental information under the De Romeri likelihood convention.",
+    "Audit Esseili-Kribs and Hong-Shin-Yun author/source archives for code/tables before any plot extraction or likelihood reproduction."
   ]
 }
