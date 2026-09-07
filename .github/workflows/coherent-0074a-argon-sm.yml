@@ -27,7 +27,9 @@ jobs:
       - name: Materialize exact official COHERENT packages
         env:
           NMIR_0074_OUT: artifacts/coherent_0074
-        run: python scripts/materialize_coherent_0074.py > artifacts/coherent_0074_materialization.log
+        run: |
+          mkdir -p artifacts
+          python scripts/materialize_coherent_0074.py > artifacts/coherent_0074_materialization.log
       - name: Run frozen 0074a scientific benchmark
         env:
           NMIR_0074_INPUT: artifacts/coherent_0074
