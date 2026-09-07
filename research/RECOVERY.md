@@ -5,6 +5,7 @@ Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
 Latest completed immutable record: `research/iterations/0074a_coherent_argon_sm_benchmark.md`
+Current prospective subgate: `research/prereg/0074b_coherent_csi_sm_response_benchmark.md`
 Current parent gate: 0074 COHERENT CsI+Ar B-L likelihood materialization.
 `NMIR_READINESS: 90%`.
 
@@ -56,15 +57,18 @@ Independent fine result (`n_t=8000`): prompt `nu_mu=30.4161042922515`, delayed `
 
 Classification: **`PASS_COHERENT_AR_SM_NORMALIZATION_BENCHMARK`**. This validates the Ar SM source+target+response chain only; overall 0074 is still OPEN and no B-L contour is authorized.
 
+### 0074b CsI SM response — PROSPECTIVE
+Frozen before independent CsI signal output in `research/prereg/0074b_coherent_csi_sm_response_benchmark.md`, commit `c47769b51c186f2b1eda2aed72c02e5ca6eb7030`. Same-analysis first-observation package only. Primary benchmark is **`173 ± 48` SM CEvNS events**; fitted excess `134 ± 22` is forbidden as target. Frozen response uses constant 2017-release QF `0.0878`, light yield `13.348 PE/keVee`, Poisson PE smearing, official logistic/step acceptance, exact Cs-133 and I-127 recoil spectra, <=0.5% numerical refinement, nonnegative flavor/isotope pieces, acceptance/F=1 monotonic checks and <=1e-8 PE tail truncation. No B-L scan is authorized by this prereg.
+
 ## Current funnel state
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G8 source/target provenance PASS, exact normalization BLOCKED.
 - G9 frozen source class strong-negative utility.
-- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner partial PASS + blue semantic FAIL; PandaX full profile BLOCKED; COHERENT primary bytes PASS and Ar SM normalization PASS, but CsI/combined likelihood validation remains OPEN. No global B-L envelope.
+- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner partial PASS + blue semantic FAIL; PandaX full profile BLOCKED; COHERENT primary bytes PASS, Ar SM normalization PASS, 0074b CsI response prospectively frozen. No global B-L envelope.
 
 ## Exact next gate
-Within parent 0074, prospectively freeze the remaining **CsI/combined-likelihood validation** before any result-dependent calculation. Use only the already hash-pinned first-observation package and primary Cadeddu likelihood convention. Prefer a non-circular primary CsI SM/response normalization benchmark; if the release supplies no independent numerical signal target, preregister an exact data-model/likelihood reproduction criterion before inspecting the reproduced statistic. Only after this gate passes may overall 0074 be classified PASS and a separate `(m_V,g_BL)` exclusion calculation be preregistered. No B-L scan yet.
+Execute **0074b** exactly as frozen in commit `c47769b51c186f2b1eda2aed72c02e5ca6eb7030`. Before accepting any PASS, inspect hosted raw log/artifact and require `abs(N_calc-173)<=48` plus all frozen refinement/support/Poisson/monotonic criteria. If 0074b passes, prospectively freeze the exact combined CsI+Ar SM/background likelihood-reproduction statistic before any `(m_V,g_BL)` scan. Overall 0074 remains OPEN until that combined validation passes.
 
 ## Critical guards
 Raster/manual contour reading forbidden. No Asimov substitution for a required primary observed-data likelihood. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result tolerance relaxation. No F9 multiplication of unvalidated gains.
