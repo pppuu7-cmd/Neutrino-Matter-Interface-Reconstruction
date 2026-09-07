@@ -1,0 +1,41 @@
+{
+  "iteration": "0068",
+  "date": "2026-09-07",
+  "gate": "G8/F4-F7 primary RIOEC normalization materialization",
+  "prospective_contract": "research/prereg/0068_g8_cu63_rioec_normalization_contract.md",
+  "classification": "BLOCKED_RIOEC_NORMALIZATION_AUTHORITY",
+  "primary_authority": {
+    "title": "Resonant Induced Orbital Electron Capture: Novel method for low-energy anti-nu_e detection",
+    "authors": ["Evgeny Akhmedov", "Thierry Lasserre", "Leonardo Maturi"],
+    "arxiv": "2608.25001",
+    "submitted": "2026-08-25",
+    "version_seen": "v1",
+    "primary_record_url": "https://arxiv.org/abs/2608.25001",
+    "primary_record_observations": [
+      "RIOEC is resonant and requires the antineutrino energy to match the atomic/nuclear energy difference.",
+      "For continuous-spectrum sources the effective cross section depends on the spectral intensity of the anti-nu_e flux at resonance rather than on neutrino energy alone."
+    ]
+  },
+  "required_package_audit": {
+    "continuous_spectrum_rate_or_cross_section_formula": "NOT_MATERIALIZED_FROM_PRIMARY_FULL_TEXT",
+    "line_shape_and_normalization": "NOT_MATERIALIZED_FROM_PRIMARY_FULL_TEXT",
+    "BGT_to_entrance_strength_mapping": "NOT_MATERIALIZED_FROM_PRIMARY_FULL_TEXT",
+    "K_shell_atomic_factor": "NOT_MATERIALIZED_FROM_PRIMARY_FULL_TEXT",
+    "spin_statistical_factors": "NOT_MATERIALIZED_FROM_PRIMARY_FULL_TEXT",
+    "constants_and_unit_chain_per_target_atom": "NOT_MATERIALIZED_FROM_PRIMARY_FULL_TEXT",
+    "target_number_to_events_per_kg_s": "TRIVIAL_ONCE_PER_ATOM_RATE_EXISTS_BUT_RATE_NORMALIZATION_BLOCKED"
+  },
+  "secondary_cross_check_not_used_as_authority": {
+    "observation": "A secondary review displays a Breit-Wigner form sigma = [B0 Gamma/(2 pi)]/[(E-E_R)^2+Gamma^2/4] and a continuous-source relation proportional to B0 S(E_R).",
+    "policy": "Not accepted to fill the primary normalization package because the frozen 0068 contract explicitly forbids secondary-source substitution for missing factors."
+  },
+  "frozen_inherited_inputs_not_folded": {
+    "channel": "63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5/2-)",
+    "E_R_keV": 162.496486,
+    "B_reverse_min": 0.00285,
+    "B_reverse_max": 0.0672,
+    "source_differential_flux_cm-2_s-1_MeV-1": 3.528363521736758e-41
+  },
+  "scientific_guard": "No Cu63 RIOEC event rate or W/kg is computed in 0068. Missing primary normalization factors are not guessed, imported from secondary summaries, or inferred post hoc from candidate tables.",
+  "next_action": "Re-run the formal BSM unlock-readiness audit under the existing blocker-limited criterion, treating G8 as authority-blocked rather than actionable, while preserving the separate OPEN G3 absolute contact-current residual and G2 public-achievement blocker."
+}
