@@ -1,0 +1,38 @@
+{
+  "iteration": "0072a",
+  "date": "2026-09-07",
+  "purpose": "Freeze printed primary Figure-6 axis values before any EPS-coordinate calibration, as required by the prospective 0072a amendment.",
+  "primary_source": {
+    "citation": "Wagner, Schlamminger, Gundlach, Adelberger, Torsion-balance tests of the weak equivalence principle, Class. Quantum Grav. 29 (2012) 184002, arXiv:1207.2442v1",
+    "figure": 6,
+    "panel": "left",
+    "source_asset_for_coordinates": "WEP_figure6.eps",
+    "source_eps_sha256": "4adafc21e896aa3e19490a586e9249fb9b7c947ad9cbe9efd3416d5e00466882"
+  },
+  "axis_labels": {
+    "x": {
+      "quantity": "lambda",
+      "unit": "m",
+      "scale": "log10",
+      "printed_major_values": [0.01, 1.0, 100.0, 10000.0, 1000000.0, 100000000.0, 10000000000.0, 1000000000000.0],
+      "printed_major_log10": [-2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0],
+      "order": "left_to_right"
+    },
+    "y": {
+      "quantity": "abs(alpha_tilde)",
+      "unit": "dimensionless",
+      "scale": "log10",
+      "printed_major_values": [1e-11, 1e-10, 1e-9, 1e-8, 1e-7, 1e-6, 1e-5],
+      "printed_major_log10": [-11.0, -10.0, -9.0, -8.0, -7.0, -6.0, -5.0],
+      "order": "bottom_to_top"
+    }
+  },
+  "curve_labels_printed_in_left_panel": ["EW", "EW 94", "EW 99", "Princeton", "Moscow", "LLR"],
+  "caption_authority": "Left panel: 95% CL upper bounds on vector Yukawa strength coupled to q_tilde=B-L. Princeton, Moscow, EW94, EW99 correspond to refs [1], [2], [8], [11]; two LLR constraints are lunar-laser-ranging constraints.",
+  "guards": [
+    "Printed tick values are frozen before the coordinate transform.",
+    "No raster coordinate or hand-read contour point is scientific input.",
+    "EPS vector geometry alone supplies tick/curve coordinates.",
+    "The 0072a acceptance threshold remains max back-projection residual <= 2e-3 decades on each axis."
+  ]
+}
