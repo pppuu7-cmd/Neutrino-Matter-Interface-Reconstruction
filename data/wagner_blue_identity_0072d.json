@@ -1,0 +1,86 @@
+{
+  "chain_labels": {},
+  "classification": "SCIENTIFIC_FAIL_WAGNER_BLUE_IDENTITY",
+  "conditions": {
+    "bottom_candidates": [],
+    "pairwise_failures": [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "top_candidates": []
+  },
+  "frozen_margin_eps_y": 1e-06,
+  "guard": "Semantic identity resolution only. 0072b physical points unchanged; EW94_short and EW94_long remain disconnected and must never be interpolated across their gap.",
+  "iteration": "0072d",
+  "pairwise_orders": [
+    {
+      "i": 0,
+      "j": 1,
+      "max_y_i_minus_j": -0.3624576470588239,
+      "min_y_i_minus_j": -0.6790000000000003,
+      "overlap": [
+        2.349,
+        3.678
+      ],
+      "status": "j_above_i"
+    },
+    {
+      "i": 0,
+      "j": 2,
+      "max_y_i_minus_j": -0.2831969999999979,
+      "min_y_i_minus_j": -0.4259999999999997,
+      "overlap": [
+        4.348,
+        6.68
+      ],
+      "status": "j_above_i"
+    },
+    {
+      "i": 0,
+      "j": 3,
+      "max_y_i_minus_j": 1.15,
+      "min_y_i_minus_j": -2.925,
+      "overlap": [
+        2.154,
+        5.361
+      ],
+      "status": "crossing_or_tie"
+    },
+    {
+      "i": 1,
+      "j": 2,
+      "overlap": null,
+      "status": "disjoint"
+    },
+    {
+      "i": 1,
+      "j": 3,
+      "max_y_i_minus_j": 0.9835333333333338,
+      "min_y_i_minus_j": -0.6579786666666667,
+      "overlap": [
+        2.349,
+        3.678
+      ],
+      "status": "crossing_or_tie"
+    },
+    {
+      "i": 2,
+      "j": 3,
+      "max_y_i_minus_j": -1.2136666666666667,
+      "min_y_i_minus_j": -2.583,
+      "overlap": [
+        4.348,
+        5.361
+      ],
+      "status": "j_above_i"
+    }
+  ],
+  "resolved_curves": {},
+  "samples_per_overlap": 101
+}
