@@ -1,0 +1,95 @@
+{
+  "iteration": "0074",
+  "date": "2026-09-07",
+  "status": "IN_PROGRESS_AR_PRIMARY_RELEASE_MATERIALIZABLE_CSI_HASH_OPEN",
+  "prereg_commit": "1e9ffedebf56a5c07e14676a3aed03bfebd4ae23",
+  "primary_b_minus_l_authority": {
+    "citation": "M. Cadeddu et al., JHEP 01 (2021) 116, arXiv:2008.05022",
+    "model": "gauged U(1)_{B-L}",
+    "charges_as_published": {
+      "lepton": 1,
+      "quark": "-1/3"
+    },
+    "cevns_amplitude_structure": "Q_l,SM - [g_Zprime^2/(sqrt(2) G_F)] * [Z F_Z(q^2)+N F_N(q^2)]/[q^2+M_Zprime^2]",
+    "note": "The exact published sign/charge convention must be preserved algebraically; no universal-vector relabelling is allowed."
+  },
+  "csi_fit": {
+    "energy_bins_used": "i=4..15 (12 bins)",
+    "nuisances": {
+      "signal_alpha_sigma": 0.112,
+      "background_beta_sigma": 0.25,
+      "quenching_eta_sigma": 0.051
+    },
+    "quenching_scope": "Chicago-3 quenching-factor range used by Cadeddu et al.",
+    "public_release_status": "OFFICIAL_RELEASE_LINK_CONFIRMED_BYTES_HASH_OPEN"
+  },
+  "argon_fit": {
+    "analysis": "COHERENT CENNS-10 Analysis A",
+    "energy_range_keVee": [0,120],
+    "energy_bins": 12,
+    "bin_width_keVee": 10,
+    "nuisance_sigmas": {
+      "CEvNS": 0.134,
+      "PBRN": 0.32,
+      "LBRN": 1.0,
+      "BRN_energy_shape_uncorrelated": 0.017
+    },
+    "official_release": {
+      "zenodo_doi": "10.5281/zenodo.3903810",
+      "version": "1.0",
+      "status": "PRIMARY_NUMERICAL_PACKAGE_PUBLIC_AND_ANALYSIS_A_MATCHED",
+      "observed_and_model_categories_confirmed": [
+        "datanobkgsub.txt",
+        "energydata1d.txt",
+        "f90data1d.txt",
+        "cevnspdf.txt",
+        "bkgpdf.txt",
+        "brnpdf.txt_or_named_variants",
+        "CENNS10AnlAEfficiency.txt",
+        "LArParametersAnlA.yaml",
+        "systerrors1denergy.txt"
+      ],
+      "sha256_status": "OPEN_BYTES_NOT_YET_HASH_PINNED"
+    }
+  },
+  "shared_primary_inputs": {
+    "flux": {
+      "argon_r": "(9 +/- 0.9)e-2",
+      "argon_N_POT": "13.7e22",
+      "argon_baseline_m": 27.5,
+      "csi_r": 0.08,
+      "csi_N_POT": "17.6e22",
+      "csi_baseline_m": 19.3
+    },
+    "target_masses_kg": {
+      "CsI": 14.6,
+      "Ar": 24.0
+    },
+    "weak_couplings": {
+      "gV_p_nue": 0.0401,
+      "gV_p_numu": 0.0318,
+      "gV_n": -0.5094
+    },
+    "form_factor": "Helm",
+    "proton_rms_fm": {
+      "Cs": 4.804,
+      "I": 4.749,
+      "Ar": 3.448
+    },
+    "adopted_neutron_rms_fm": {
+      "Cs": 5.01,
+      "I": 4.94,
+      "Ar": 3.55
+    }
+  },
+  "benchmark_gate": {
+    "status": "NOT_YET_FROZEN_NUMERIC_TARGET_TOLERANCE",
+    "guard": "No SM/background reproduction output may be interpreted before a primary numerical target and prospective tolerance are frozen. No B-L scan is authorized."
+  },
+  "current_blockers": [
+    "Hash-materialize official CsI 2018 release package and exact Cadeddu-compatible quenching/acceptance/background inputs",
+    "Hash-materialize official Ar Analysis-A numerical files",
+    "Extract and freeze a non-circular primary SM/background benchmark target and tolerance before computing benchmark output"
+  ],
+  "classification_if_stopped_now": "PARTIAL_PASS_COHERENT_INPUTS"
+}
