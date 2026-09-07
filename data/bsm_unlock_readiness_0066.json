@@ -1,0 +1,18 @@
+{
+  "iteration": "0066",
+  "date": "2026-09-07",
+  "classification": "FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE",
+  "prereg_commit": "77ecef8795ccdcd7ec990b2f280fdf39012c5c15",
+  "pre_result_amendment_commit": "0534ea599560b050f576e9b706864f41ca797f3c",
+  "survivors": {
+    "G2": {"status": "BLOCKED_NOT_ACTIONABLE", "authority": "0063", "reason": "No same-configuration sub-keV measured rejection x bulk-NR acceptance pair in frozen public authority."},
+    "G3": {"status": "OPEN_NOT_CURRENTLY_ACTIONABLE_BY_RETIRED_ROUTES", "authority": "0059/0062/0065", "reason": "Absolute short-range/contact-current coefficient residual remains open; three universal-ceiling routes retired and no new theorem/input presently identified."},
+    "G8": {"status": "OPEN_ACTIONABLE", "authority": "0065_g8 concurrent record b6553966b90cbe6a35662ba975507217ca6f04c9", "reason": "63Cu exact crossed B(GT) package reopens F4; next quantitative gate is thermal-solar anti-nu_e spectral tail at E_R=162.496486 keV and rate fold."},
+    "G9": {"status": "STRONG_NEGATIVE_SCOPED", "authority": "0061", "reason": "10-kpc Galactic CCSN transparent-Sun occurrence/alignment-weighted utility strong-negative."},
+    "G4": {"status": "STRONG_NEGATIVE_SCOPED", "authority": "0025/0027/0028/0032/0038/0039", "reason": "Integrated-strength, sum-rule/extensivity and passive mediator-energy guards apply in frozen scopes."},
+    "G10": {"status": "STRONG_NEGATIVE_SCOPED", "authority": "0034", "reason": "Fixed-column geometry-only ordering/composition gain closed in frozen scope."}
+  },
+  "unlock_criterion_failed": 2,
+  "failure_reason": "G8 contains a principal passive-SM residual that is quantitatively unbounded and immediately actionable with presently available primary target-side authority; therefore BSM must remain locked.",
+  "next_gate": "G8 Cu63 thermal-solar anti-nu_e high-energy-tail provenance/materialization and source-overlap/rate feasibility at 162.496486 keV."
+}
