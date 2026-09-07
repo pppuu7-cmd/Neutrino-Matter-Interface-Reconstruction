@@ -26,8 +26,8 @@ def fd_ratio(ne_cm3,T):
     def ints(eta):
         y=x*x-eta
         f=np.where(y>50,np.exp(-y),1/(np.exp(y)+1))
-        i=np.trapz(x*x*f,x)
-        ip=np.trapz(x*x*f*(1-f),x)
+        i=np.trapezoid(x*x*f,x)
+        ip=np.trapezoid(x*x*f*(1-f),x)
         return i,ip
     lo,hi=-20,10
     for _ in range(80):
@@ -45,7 +45,7 @@ def spectral_kernel(T,Ebar,n=6000):
     w=e+Ebar
     ng=1/np.expm1(w/T)
     y=ng*(e*e)*(Ebar*Ebar)/w*(w*w-(2/3)*e*Ebar)
-    return np.trapz(y,e)
+    return np.trapezoid(y,e)
 
 
 def parse(txt):
