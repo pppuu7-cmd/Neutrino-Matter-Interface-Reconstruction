@@ -5,8 +5,8 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable validated scientific record: `research/iterations/0060_long_range_sm_operator_scaling_audit.md`
-Current readiness: `NMIR_READINESS: 86%`.
+Latest immutable validated scientific record: `research/iterations/0061_g9_ccsn_solar_lens_utility.md`
+Current readiness: `NMIR_READINESS: 87%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, then newest numbered iteration/prereg files, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal Actions. Chat history is not authority. Do not duplicate running work. Green CI is infrastructure success only until the frozen scientific benchmark/log/artifact or primary-source evidence ledger is checked against its prospective contract.
@@ -37,6 +37,7 @@ Do not reopen without a genuinely new assumption; exact scopes are in immutable 
 - 0047 bounded finite-range k-local two-/higher-body current class: `PASS_KLOCAL_EXTENSIVITY`; no free superextensive first-moment scaling at fixed support size, norm and site incidence.
 - 0048 empirical/EFT absolute-strength stress: `PASS_EMPIRICAL_STRENGTH_STRONG_NEGATIVE`; even 100× the largest frozen empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg requires extra amplitude `28796.42286 = 28511.31×` empirical anchor. Evidence-distance, not a universal theorem.
 - 0060 actual-SM long-range/growing-coordination audit: `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR` in the preregistered passive-SM scope. Massive W/Z and pion-range kernels saturate; SM charge-radius/anapole photon contribution is low-q contact-like; the massless-photon magnetic-moment channel does not provide an unclosed free passive collective gain once electromagnetic field-energy/response budgets are enforced. This is scoped, not a universal QFT theorem.
+- 0061 10-kpc Galactic CCSN transparent-Sun lens utility: `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`. A large finite receiver-integrated instantaneous focusing effect exists, but even an impossible perfect full-solar-disk collection ceiling gives only `~1+9.4e-9` alignment/duty-weighted expected multiplier, far below the preregistered useful-survivor threshold 2.
 
 ## G2 CEvNS / detector chain — validated through 0058
 - 0041–0046 close source-opening, physical Be7 profile suppression, continuous-A inverse design, exact-mass correction, real-nucleus full-solar optimization and the target/threshold phase diagram. 0046 authority: run/job `34052930672/101539642497`, artifact `9995368376`, SHA256 `046953d77896362afaaf5da0ff2015ddb36958196c0b921cc5e3f0ff4efe3951`, raw 29 tests PASS.
@@ -69,20 +70,30 @@ Frozen evidence ledger: `data/g3_long_range_sm_operator_authority_0060.json`, le
 Classification: `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR`.
 Baseline CI run `34065084111` was SUCCESS but is infrastructure-only.
 
-Frozen scaling test: `I(R)=rho*∫4*pi*r^2|K(r)|dr`. For `K=C exp(-m r)/r`, `m>0`, `I(R)` tends to a finite constant. W/Z exchange is therefore microscopic short-range; pion/multipion exchange is finite-range; contact currents revert to the separate 0059 coefficient question. The SM effective charge-radius/anapole electromagnetic piece is low-q contact-like because its form factor carries `q^2`, cancelling the photon pole. A mass-linked SM neutrino magnetic moment does couple through the photon, but a passive macroscopic electromagnetic field carries its own extensive field-energy/current-source budget and is not an unclosed neutrino-sourced superextensive gain under the frozen mediator/field-energy closures.
-
 **Remaining G3 residual:** the absolute short-range/contact coefficient residual from 0059. The separate long-range/growing-coordination loophole is closed in the 0060 audited SM scope.
 
+## G9 distant-source focusing — validated benchmark through 0061
+Immutable authority: `research/iterations/0061_g9_ccsn_solar_lens_utility.md`.
+Preregistration commit: `4396de3ae532b574f76e3a34d935b08e51746868`.
+Scientific run/job `34071432319/101589393517`, artifact `10000583684`, artifact ZIP SHA256 `8ddb043e5ef0fdcccbd046c28a87ded8ad27077797144cf6fa51bba4f5557c76`, result JSON SHA256 `94765d46a4e18b0f335f2658ffc9cd0db86526f055ebda8131f0ccfb6b1522cd`.
+Classification: `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY` for the preregistered 10-kpc Galactic CCSN benchmark.
+
+The locally frozen Nakazato 20-Msun, Z=0.02, 200-ms-revival spectrum gives `N_all=1.0648982e58`, `E_all=1.9194865e53 erg`, and unlensed all-flavour fluence `8.900146153964761e11 cm^-2` at 10 kpc. The validated Model-S ring `b/Rsun=0.024` focuses at `24.073780819657056 AU`. A 21-km source projects to only `0.2451 mm` there. Receiver-integrated one-ring finite-source magnification is large and finite: lower bounds `3.6765e9`, `3.7260e8`, `6.9875e7` for receiver radii 1, 10, 100 m respectively. Yet the optimistic isotropic alignment probabilities are only `1.93e-26`, `1.93e-24`, `1.93e-22`. Even granting impossible perfect collection of the entire solar disk gives expected multipliers only `1.00000000934` across those receiver scales. Thus physical focusing survives but stochastic Galactic-burst utility is class-strong-negative under the frozen benchmark.
+
+This does not rule out every known-direction or persistent distant neutrino source; any such new source class must be preregistered independently rather than inheriting CCSN gains.
+
 ## Other OPEN survivors
+- G3 absolute short-range/contact-current coefficient residual remains OPEN after 0059; the next gate should seek a genuinely coefficient-independent physical bound rather than repeating EFT-naturalness/fitted-LEC arguments.
+- G2 measured scalable underground topology rejection × bulk acceptance anchor remains OPEN.
 - G8 target-specific thermal-solar anti-nu_e RIOEC OPEN/BLOCKED until a primary thermal-solar anti-nu_e spectral density and independently evaluated entrance strength/width are frozen; ordinary solar nu_e flux is forbidden for this entrance channel.
-- G9 transparent-Sun focal scale robust/partial; distant-source physical flux × finite-source/alignment/duty-cycle utility OPEN. Solar-neutrino self-lensing is inapplicable.
+- G9 stochastic Galactic CCSN utility is strong-negative through 0061; only a genuinely different source class with independently frozen direction/duty/flux can reopen utility.
 - G10 geometry-only staggered/fixed-column and passive mixing gains closed; only genuinely structure-induced microscopic-response changes could reopen under a new hypothesis.
 - BSM/light mediator remains LOCKED pending formal unlock audit.
 
 ## Exact next funnel gate
-**G9 / F3-F7 distant-source physical gravitational focusing utility.** Prospectively freeze one real distant neutrino-source class and quantify: unlensed source flux at Earth/Sun, transparent-Sun lens geometry, source angular size, alignment probability/duty cycle, receiver-integrated finite-source magnification and resulting event/W/kg effect. Do not use point-caustic divergence, do not multiply any unvalidated detector or target gain, and do not treat solar-neutrino self-lensing as applicable.
+**G3 / F4-F6 absolute short-range/contact-current residual via coefficient-independent inclusive bound.** Prospectively test whether partial-wave unitarity plus finite target size/finite incident momentum can provide a regulator/scheme-independent upper bound on the *inclusive* neutrino–nucleus cross section/deposited-power contribution without assuming EFT naturalness or a fitted contact coefficient. Fold any valid bound over the already frozen full solar spectra and score W/kg with `E_dep,nu<=E_nu`.
 
-If a suitable real source cannot be frozen with recoverable physical flux/size/duty-cycle authority, classify the branch `BLOCKED_SOURCE_AUTHORITY` and move to G8 only if its thermal-solar anti-nu_e spectrum plus independent entrance-strength blockers have become resolvable.
+This gate must fail honestly if the resulting unitarity/geometric ceiling is too weak to constrain the 1-W/kg bridge; a weak universal ceiling is still a scientific result and must not be tightened post hoc. Do not substitute selected-nucleus cross sections, EFT truncation bands, or fitted `c_D` ranges for the coefficient-independent bound.
 
 ## Research-gate snapshot
 | Gate | Status |
@@ -90,12 +101,12 @@ If a suitable real source cannot be frozen with recoverable physical flux/size/d
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
 | G2 many-body/detection | **STRONG PARTIAL PASS — through 0058 requirements CLOSED; measured scalable underground rejection×acceptance anchor OPEN** |
-| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT stress strongly negative; 0059 absolute contact hard-bound audit NEGATIVE with residual OPEN; 0060 genuine long-range/growing-coordination residual CLOSED in audited SM scope** |
+| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — finite-range k-local scaling CLOSED; empirical/EFT stress strongly negative; 0059 absolute contact hard-bound audit NEGATIVE with residual OPEN; 0060 genuine long-range/growing-coordination residual CLOSED; coefficient-independent inclusive ceiling next** |
 | G4 engineered resonance/polarization/periodicity | PARTIAL |
 | G5/G6 BSM | LOCKED pending unlock audit |
 | G7 production↔absorption | PARTIAL PASS |
 | G8 resonance integrated strength | PARTIAL PASS; target-specific thermal anti-nu RIOEC OPEN/BLOCKED |
-| G9 gravity | PARTIAL PASS; distant-source utility OPEN and now highest-value independent survivor |
+| G9 gravity | **PHYSICAL FOCUSING PASS; 10-kpc Galactic CCSN utility STRONG NEGATIVE through 0061; other source classes require independent preregistration** |
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen geometry-only scope |
 
 ## Critical guards
