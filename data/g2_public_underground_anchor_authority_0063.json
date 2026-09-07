@@ -1,0 +1,70 @@
+{
+  "gate": "0063_g2_measured_underground_topology_anchor",
+  "frozen_date": "2026-09-07",
+  "requirement_authority": {
+    "iteration": "0058",
+    "full_acceptance_rejection_min": 14400000.0,
+    "full_acceptance_rejection_max": 17800000.0,
+    "note": "Exact 0058 repository values remain authoritative; rounded here only for evidence-gap comparison."
+  },
+  "sources": [
+    {
+      "id": "CRESST_III_DATA_2019",
+      "primary": true,
+      "citation": "CRESST Collaboration, Description of CRESST-III Data, arXiv:1905.07335",
+      "detector_environment": "underground CRESST-III",
+      "threshold_or_window": "30.1 eV nuclear-recoil threshold reported for released best module",
+      "measured_nr_acceptance_same_cut": false,
+      "measured_detectorwide_rejection_same_population": false,
+      "classification": "THRESHOLD_AND_SELECTED_EVENT_DATA_ONLY",
+      "reason_not_comparable": "Publishes selected events/acceptance region and detector data description, but does not provide a detector-wide measured low-energy topology/background rejection factor paired with a same-selection bulk-NR acceptance suitable for direct 0058 comparison."
+    },
+    {
+      "id": "CRESST_LEE_2022",
+      "primary": true,
+      "citation": "CRESST Collaboration, Latest observations on the low energy excess in CRESST-III, arXiv:2207.09375",
+      "detector_environment": "CRESST-III campaign; underground experiment context",
+      "threshold_or_window": "low-energy excess study",
+      "measured_nr_acceptance_same_cut": false,
+      "measured_detectorwide_rejection_same_population": false,
+      "classification": "BACKGROUND_ORIGIN_STUDY",
+      "reason_not_comparable": "Constrains possible origins of the LEE but does not report the preregistered measured combined rejection x bulk-NR acceptance achievement pair."
+    },
+    {
+      "id": "CRESST_NR_CAL_2023",
+      "primary": true,
+      "citation": "CRESST Collaboration, Observation of a low energy nuclear recoil peak in the neutron calibration data of the CRESST-III Experiment, arXiv:2303.15315",
+      "detector_environment": "CRESST-III detector modules with neutron calibration",
+      "threshold_or_window": "112 eV nuclear-recoil calibration peak",
+      "measured_nr_acceptance_same_cut": false,
+      "measured_detectorwide_rejection_same_population": false,
+      "classification": "LOW_ENERGY_NR_CALIBRATION_ANCHOR",
+      "reason_not_comparable": "Provides a genuine low-energy NR calibration anchor but not a detector-wide underground background rejection/leakage measurement paired with the same NR acceptance."
+    },
+    {
+      "id": "SUPERCDMS_HVEV_2025",
+      "primary": true,
+      "citation": "SuperCDMS Collaboration, Light dark matter constraints from SuperCDMS HVeV detectors operated underground with an anticoincidence event selection, Phys. Rev. D 111, 012006",
+      "detector_environment": "underground, 225 m.w.e., multi-HVeV housing",
+      "threshold_or_window": "eV-scale electron-recoil / charge-quanta search",
+      "measured_nr_acceptance_same_cut": false,
+      "measured_detectorwide_rejection_same_population": false,
+      "classification": "UNDERGROUND_ANTICOINCIDENCE_MECHANISM_NOT_NRLINKE_COMPARATOR",
+      "reason_not_comparable": "Demonstrates underground anticoincidence/pile-up improvement for an electron-scattering analysis, not a measured CEvNS-like bulk nuclear-recoil rejection x acceptance pair. Cross-section sensitivity improvement is not a background rejection factor."
+    },
+    {
+      "id": "CDMS_SOUDAN_2005",
+      "primary": true,
+      "citation": "CDMS Collaboration, Exclusion Limits on the WIMP-Nucleon Cross-Section from the First Run of the Cryogenic Dark Matter Search in the Soudan Underground Lab, arXiv:astro-ph/0507190",
+      "detector_environment": "Soudan underground laboratory, 2090 m.w.e.",
+      "threshold_or_window": ">10 keV recoil energies",
+      "measured_nr_acceptance_same_cut": true,
+      "measured_detectorwide_rejection_same_population": true,
+      "classification": "MEASURED_DISCRIMINATION_BUT_ENERGY_WINDOW_NOT_COMPARABLE",
+      "reported_discrimination": "bulk photon rejection >99.99%; surface-event rejection >96%",
+      "reason_not_comparable": "This is a real measured underground rejection/efficiency example, but its >10 keV regime is orders of magnitude above the 10-100 eV NMIR/CRESST low-energy regime and therefore fails the frozen comparable-window criterion."
+    }
+  ],
+  "classification": "BLOCKED_PUBLIC_ACHIEVEMENT_ANCHOR",
+  "summary": "Targeted primary-source audit found genuine low-energy thresholds, NR calibration and topology/anticoincidence mechanisms, plus older high-energy measured discrimination, but no same-configuration underground sub-keV detector result with both measured background rejection/leakage and measured CEvNS-like bulk-NR acceptance suitable for direct comparison to the 0058 1.44e7-1.78e7 requirement."
+}
