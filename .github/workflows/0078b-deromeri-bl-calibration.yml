@@ -1,0 +1,34 @@
+name: NMIR 0078b combined solar-CEvNS B-L calibration
+
+on:
+  push:
+    paths:
+      - 'scripts/calibrate_deromeri_bl_combined_0078b.py'
+      - 'data/deromeri_2603_bl_combined_tick_authority_0078b.json'
+      - 'research/prereg/0078b_deromeri_bl_combined_vector_calibration.md'
+      - '.github/workflows/0078b-deromeri-bl-calibration.yml'
+  workflow_dispatch:
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install vector PDF dependency
+        run: python -m pip install PyMuPDF
+      - name: Run frozen 0078b calibration
+        run: python scripts/calibrate_deromeri_bl_combined_0078b.py
+      - name: Hash result
+        if: always()
+        run: |
+          if [ -f deromeri_bl_combined_calibration_0078b.json ]; then sha256sum deromeri_bl_combined_calibration_0078b.json; fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0078b-bl-calibration
+          path: deromeri_bl_combined_calibration_0078b.json
+          if-no-files-found: error
