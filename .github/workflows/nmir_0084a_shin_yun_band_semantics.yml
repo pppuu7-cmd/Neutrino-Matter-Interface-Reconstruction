@@ -1,0 +1,43 @@
+name: NMIR 0084a Shin-Yun SN1987A band semantics
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/prereg/0084a_shin_yun_sn1987a_band_semantics.md'
+      - 'scripts/audit_shin_yun_band_semantics_0084a.py'
+      - 'tests/test_shin_yun_band_semantics_0084a.py'
+      - '.github/workflows/nmir_0084a_shin_yun_band_semantics.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Regression tests
+        run: python -m pytest -q tests/test_shin_yun_band_semantics_0084a.py
+      - name: Exact-source semantic audit
+        run: python scripts/audit_shin_yun_band_semantics_0084a.py --output data/shin_yun_band_semantics_0084a.json
+      - name: Enforce frozen classification family
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/shin_yun_band_semantics_0084a.json'))
+          assert d['classification'] in {'PASS_SHIN_YUN_SN1987A_BAND_SEMANTICS','BLOCKED_SHIN_YUN_SN1987A_BAND_SEMANTICS'}
+          assert d['archive_sha256']=='7af77fa64e46b53e901f88e3a8ef118effcb598dcd505e16e16d3aa31ab049bd'
+          PY
+      - name: Hash raw result
+        run: sha256sum data/shin_yun_band_semantics_0084a.json | tee data/shin_yun_band_semantics_0084a.sha256
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nmir-0084a-shin-yun-band-semantics
+          path: |
+            data/shin_yun_band_semantics_0084a.json
+            data/shin_yun_band_semantics_0084a.sha256
+          if-no-files-found: error
