@@ -4,13 +4,19 @@ P=pathlib.Path(__file__).resolve().parents[1]/"scripts"/"audit_hong_bl_source_te
 spec=importlib.util.spec_from_file_location("m0083",P); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
 def test_anchor_patterns_accept_source_style_statement():
-    s=r"For the $U(1)_{B-L}$ gauge boson, when its mass is lower than $\mathcal{O}(0.1)\,{\rm MeV}$, we obtain the cooling bound $e^{\prime}<10^{-13}$."
+    s=r"For the $U(1)_{B-L}$ gauge boson, when its mass is lower than $\mathcal{O}(0.1)\,{\rm MeV}$, we obtain the cooling bound $e^{\prime}<5\times10^{-13}$."
     s=m.compact(s)
     assert m.has_bl(s)
-    assert m.has_eprime_bound(s)
-    assert m.has_low_mass_domain(s)
+    b=m.extract_eprime_upper_bounds(s)
+    assert len(b)==1 and abs(b[0]["value"]-5e-13)<1e-27
+    assert m.has_low_mass_domain(s) is True
     assert m.has_cooling_result_context(s)
     assert not m.exact_mass_inequality(s)
+
+def test_bound_extractor_accepts_unit_factor():
+    s=m.compact(r"$e^{\prime}<10^{-13}$")
+    b=m.extract_eprime_upper_bounds(s)
+    assert len(b)==1 and b[0]["factor"]==1.0 and b[0]["exponent"]==-13
 
 def test_exact_mass_requires_explicit_nonapproximate_inequality():
     s=m.compact(r"For $U(1)_{B-L}$ cooling, $m_{Z'}<0.1\,{\rm MeV}$ and $e^{\prime}<10^{-13}$ are excluded above the coupling bound.")
