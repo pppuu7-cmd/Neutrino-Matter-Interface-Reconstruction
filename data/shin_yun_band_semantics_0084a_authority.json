@@ -1,0 +1,52 @@
+{
+  "iteration": "0084a",
+  "classification": "PASS_SHIN_YUN_SN1987A_BAND_SEMANTICS",
+  "primary_source": "Shin & Yun, arXiv:2110.03362v2",
+  "source_archive_sha256": "7af77fa64e46b53e901f88e3a8ef118effcb598dcd505e16e16d3aa31ab049bd",
+  "prereg_commit": "e3162927be26ca7e72b4a20440dbe6754393705a",
+  "authoritative_head": "891db67c2af53fcf2f33713d7a8f509e4fdceb75",
+  "authoritative_run": 34171720462,
+  "authoritative_job": 101893145840,
+  "artifact_id": 10035914608,
+  "artifact_size_bytes": 2652,
+  "artifact_zip_sha256": "8ab3fd02571aa755a9303570fac907bc0be88d5a9cbf03e5e7a76c9a8e0b8aee",
+  "raw_json_sha256": "5e964a12dd8e54e6f94346cb07f489ec6b23f5ccac6ec94e71f2e02878e3f947",
+  "tests": "3 passed in 0.03s",
+  "semantics": {
+    "excluded_region_explicit": true,
+    "reabsorption_explicit": true,
+    "transverse_low_boundary": "e' < 1e-11 for m_gamma' < 20 MeV",
+    "transverse_high_allowed_body": "e' > 1.5e-8 allowed for m_gamma' < 2 m_e",
+    "transverse_high_allowed_conclusion": "e' > 1.5e-8 allowed for m_gamma' < 1 MeV",
+    "longitudinal_low_allowed": "e' m_gamma' < 7.4e-10 MeV for m_gamma' < 20 MeV",
+    "longitudinal_high_allowed_body": "e' m_gamma' > 1.2e-5 MeV allowed for m_gamma' < 2 m_e",
+    "longitudinal_high_allowed_conclusion": "e' m_gamma' > 1.2e-5 MeV allowed for m_gamma' < 1 MeV",
+    "domain_policy": "body <2 m_e and conclusion <1 MeV remain distinct source-statement-conditioned domains until a separately preregistered constant/convention gate",
+    "topology_guard": "low/free-streaming boundary is not an all-larger-coupling exclusion; source explicitly restores high-coupling allowed/reabsorbed branches"
+  },
+  "historical_invalid_runs": [
+    {
+      "run": 34171573790,
+      "job": 101892735690,
+      "artifact": 10035869701,
+      "raw_json_sha256": "31e5c3d3d0353c01f2c2bb015cc27823c5ed444825f5f5d953f03c1a12e7726e",
+      "artifact_zip_sha256": "e426f2c3c38070883e75c8226fbb6615d954d641d40699933930f8c9339379be",
+      "classification": "IMPLEMENTATION_INVALID_TEX_CLAUSE_FALSE_NEGATIVE"
+    },
+    {
+      "run": 34171635267,
+      "job": 101892904188,
+      "artifact": 10035887716,
+      "raw_json_sha256": "04cf41ae826767d150b20e0a8cddeb72c12c92353e7bd2de3ed1db4c6763f2eb",
+      "artifact_zip_sha256": "3b3c740c9d66b5d611807d62337414468880b8ef9405e6559b48163cf285ec58",
+      "classification": "IMPLEMENTATION_INVALID_CONCLUSION_BLOCK_FALSE_NEGATIVE"
+    }
+  ],
+  "guards": [
+    "No raster/OCR/manual contour reading.",
+    "Do not numerically identify 2 m_e with 1 MeV inside 0084a.",
+    "Do not merge transverse and longitudinal branches.",
+    "Do not create area/global envelope from 0084a alone.",
+    "Do not convert source e' to NMIR g_BL without separate convention authority."
+  ]
+}
