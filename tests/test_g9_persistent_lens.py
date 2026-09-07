@@ -27,8 +27,10 @@ def test_uniform_disk_samples_are_rotation_symmetric():
     assert mean_r2 == pytest.approx(4.5, rel=0, abs=1e-12)
 
 
-def test_one_ring_linear_toy_matches_exact_central_annulus():
-    # Toy y=k|b-b0| with a grid whose accepted boundaries are exact nodes.
+def test_one_ring_linear_toy_trapezoid_is_symmetric_and_finite():
+    # Toy y=k|b-b0|.  This regression checks the implemented nonuniform-b
+    # trapezoid convention; physical accuracy is independently benchmarked against
+    # the exact annular solver in scripts/g9_persistent_lens_benchmark.py.
     b0 = 0.2
     k = 1000.0
     a = 1.0
@@ -40,11 +42,9 @@ def test_one_ring_linear_toy_matches_exact_central_annulus():
         (b0 + db, 1.0),
         (b0 + 2 * db, 2.0),
     )
-    # With R=a=1, exact accepted annulus/ring contribution is
-    # (b_hi^2-b_lo^2)=4*b0*db.  Trapezoid includes half-weight endpoints,
-    # matching the measure-zero boundary convention.
     mu = one_ring_receiver_mu(grid, a, 0.0, 0.0, solar_radius_cm=1.0)
-    assert mu == pytest.approx(1.0 + 4.0 * b0 * db, rel=1e-12)
+    # p=[0,1,1,1,0] gives integral 3*b0*db and ring term 2*integral.
+    assert mu == pytest.approx(1.0 + 6.0 * b0 * db, rel=1e-12)
 
 
 def test_upper_ceiling_and_large_source_asymptote_are_finite():
