@@ -1,0 +1,38 @@
+{
+  "iteration": "0080",
+  "classification": "PASS_COSMOLOGY_B_L_VECTOR_ASSET_AUTHORITY",
+  "source_url": "https://export.arxiv.org/e-print/2308.07955v2",
+  "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+  "source_bytes": 771703,
+  "member_count": 13,
+  "main_tex": "neff_arXiv_v2.tex",
+  "target_assets": {
+    "figure_5_majorana_delta_neff": "Presentation/CnstrntPlotMajoranaNeff.pdf",
+    "figure_6_dirac_delta_neff": "Presentation/CnstrntPlotDiracNeff.pdf",
+    "figure_7_majorana_delta_yp": "Presentation/CnstrntPlotMajoranaYp.pdf",
+    "figure_8_dirac_delta_yp": "Presentation/CnstrntPlotDiracYp.pdf"
+  },
+  "target_asset_kind": "vector_pdf",
+  "target_raster_assets": [],
+  "unresolved_target_refs": [],
+  "numerical_asset_candidates": [],
+  "caption_semantics": {
+    "figure_5": "Majorana Delta N_eff regions 0.05,0.1,0.2,0.3,0.4,0.5; caption states current Planck constraints exclude approximately Delta N_eff >=0.3-0.4 depending dataset",
+    "figure_6": "Dirac Delta N_eff, same region levels as figure 5",
+    "figure_7": "Majorana Delta Y_p; caption states conservative Delta Y_p=0.008 upper bound at 95% C.L.",
+    "figure_8": "Dirac Delta Y_p, same convention as figure 7"
+  },
+  "hosted_run": {
+    "run_id": 34160801805,
+    "job_id": 101862078831,
+    "artifact_id": 10032522988,
+    "raw_json_sha256": "351a0bb97f2b7310085a6f3313c58f2cba5bc97b6988ba2c2dfcfc278b1a4b7e",
+    "artifact_zip_sha256": "0efba64740d815961673d5bfb8f72cdc60ed0ccdea351fc5cbe4820f20aeae66",
+    "dedicated_tests": "4 passed in 0.04s"
+  },
+  "baseline_ci": {
+    "run_id": 34160801817,
+    "conclusion": "success"
+  },
+  "guard": "Source-asset authority only; no contour values, axis calibration, raster digitization, observational-threshold choice, scenario combination, or envelope union performed."
+}
