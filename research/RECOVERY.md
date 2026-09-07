@@ -4,8 +4,8 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0081a_bl_bbn_vector_calibration_semantic_identity.md`, commit `ec8267af5ebfab72fb5346f2c91031cb1737fd40`.
-Current prospective gate: `research/prereg/0082_bl_stellar_sn_primary_source_asset_authority.md`, frozen commit `bbf55baeeb013fbd5c273b75490c5e987aeceb81`.
+Latest completed immutable record: `research/iterations/0082b_bl_stellar_sn_vector_axis_authority.md`, commit `d6e3767a55ccbdd6407f06b01024859f85d9ea54`.
+Current prospective gate: `research/prereg/0082c_cerdeno_bl_axis_calibration.md`, frozen commit `0e2477aed4ef076f72e6c401d13140a739892bd3`.
 `NMIR_READINESS: 94%`.
 
 ## Mandatory recovery order
@@ -18,63 +18,50 @@ NMIR is a discovery funnel, not a material scan. Separate focusing/state control
 Closed in stated scopes unless a genuinely new assumption changes them: naive static `N^2`; geometry-only fixed-column gain; passive local density/phonon or spin/magnon free superextensive gain; extensive-budget long-range-pair free gain; passive stable finite linear/nonlinear mediator free gain after energy accounting; linewidth narrowing as new integrated strength; metastable avalanche as neutrino-energy gain; bounded finite-range k-local higher-body free superextensive gain; no actual-SM growing-coordination survivor in audited passive-SM scope.
 
 ## G2
-0049 transfer requirement: 10-kg Ar40, 10 accepted solar CEvNS/year -> `eta=0.42207478` at 10 eV, `0.75683153` at 20 eV, impossible `2.35795954` at 40 eV. 0050/0051 close known-background and nuisance-aware budgets. Representative S=10/year ceilings: 3sigma/30% `4.274968302863348/year`; 5sigma/30% `1.0806120114381677/year`; 5sigma/50% `0.692094879071742/year`. 0058 needs `1.44e7–1.78e7` additional rejection at full acceptance. 0063 `BLOCKED_PUBLIC_ACHIEVEMENT_ANCHOR`; G2 remains `BLOCKED_NOT_ACTIONABLE` pending genuinely new same-configuration sub-keV measured rejection×bulk-NR acceptance.
+0049 transfer requirement: 10-kg Ar40, 10 accepted solar CEvNS/year -> `eta=0.42207478` at 10 eV, `0.75683153` at 20 eV, impossible `2.35795954` at 40 eV. 0050/0051 close known-background and nuisance-aware budgets. Representative S=10/year ceilings: 3sigma/30% `4.274968302863348/year`; 5sigma/30% `1.0806120114381677/year`; 5sigma/50% `0.692094879071742/year`. 0063 `BLOCKED_NOT_ACTIONABLE` pending genuinely new same-configuration sub-keV measured rejection × bulk-NR acceptance.
 
 ## G3
-0047 `PASS_KLOCAL_EXTENSIVITY`. 0048 empirical/EFT absolute-strength stress strongly negative but not theorem: 100× empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg needs amplitude `28796.42286 = 28511.31×` anchor. 0059 no universal coefficient hard bound; 0060 no actual-SM growing-coordination survivor in audited passive scope; 0062 partial-wave route is not coefficient-independent and too weak; 0065 `PASS_NO_COEFFICIENT_INDEPENDENT_OBSERVABLE_MAP / RESIDUAL_OPEN`. Absolute short-range/contact coefficient remains physically OPEN with no currently identified executable coefficient-independent route.
+0047 `PASS_KLOCAL_EXTENSIVITY`. 0048 empirical/EFT absolute-strength stress strongly negative but not theorem: 100× empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg needs amplitude `28796.42286 = 28511.31×` anchor. 0065 leaves the absolute short-range/contact coefficient physically `OPEN_NOT_CURRENTLY_ACTIONABLE`; no coefficient-independent observable map has been established.
 
 ## G8
-Exact Cu63 RIOEC state: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5/2-)`, `E_R=162.496486 keV`, `B_reverse=2.85e-3...6.72e-2`. 0067 `PASS_SOURCE_TAIL_RECOMPUTED / RATE_FOLD_OPEN`, run/job `34081044588/101616231800`, artifact `10003691395`, `dPhi_anti-nu_e/dE(E_R)=3.528363521736758e-41 cm^-2 s^-1 MeV^-1`. 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; no Cu63 rate/Wkg claimed.
+Cu63 RIOEC source-tail recomputation passed in 0067, but 0068 remains `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; no Cu63 absolute rate/Wkg is claimed.
 
 ## G9
-0061 `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`; 10-kpc Galactic CCSN transparent-Sun utility negligible after finite-source/alignment/duty accounting. Persistent/known-direction sources explicitly remained out of scope. 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`; 0076 `SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL`; 0077 `BLOCKED_G9_TURNING_POINT_KERNEL`, run/job `34153760956/101841193992`, artifact `10030249765`, ZIP SHA256 `f9873870bbf8f615366c18fef9edb56d4b907148f2d6d60dff70d60a0b096620`. This closes that numerical branch, not transparent-Sun focusing as a physical possibility.
+0061 established transparent-Sun focusing is physically possible but strongly negative for a 10-kpc Galactic CCSN after finite-source/alignment/duty accounting. The persistent-source numerical branch later terminated at 0077 `BLOCKED_G9_TURNING_POINT_KERNEL`, run/job `34153760956/101841193992`, artifact `10030249765`, ZIP SHA256 `f9873870bbf8f615366c18fef9edb56d4b907148f2d6d60dff70d60a0b096620`. This is a numerical-method branch blocker, not a physical no-go.
 
 ## BSM / B-L authority
-0069 `PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`; response/enhancement remains locked pending a reproducible external envelope and formal gate. 0071 requires primary B-L constraints across `1e-6 eV <= m_V <= 10 GeV`; global envelope remains incomplete.
+0069 `PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`; BSM response/enhancement remains locked pending a reproducible external envelope and formal unlock gate. Global 0071 coverage target remains `1e-6 eV <= m_V <= 10 GeV`.
 
-0072 Wagner is partial: some long-range curves materialized, blue EW-family semantic identity/global side unresolved. 0073 PandaX full-profile likelihood blocked by unavailable separated minor backgrounds. 0074a Ar SM normalization PASS (`134.21440238243503` vs `128±17`); 0074b CsI response PASS (`152.8442722589695` vs `173±48`); 0074c `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`.
+0078c `PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION / PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`, run/job `34155151971/101845330760`, artifact `10030703063`, ZIP SHA256 `ea59df50c4f1cbb5938effd455bdc0528b91b95753f0cfdc393437efe98a9378`; De Romeri et al. filled 90% CL solar-CEvNS polygon area `12.51987545543835 decade^2`.
 
-0078c `PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION / PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`, run/job `34155151971/101845330760`, artifact `10030703063`, ZIP SHA256 `ea59df50c4f1cbb5938effd455bdc0528b91b95753f0cfdc393437efe98a9378`. De Romeri et al. filled 90% CL solar-CEvNS polygon has one valid component, area `12.51987545543835 decade^2`.
+0079/0079a give only the long-range fifth-force asymptotic anchor: strict `g_BL<2.5437058144595744e-25`, conservatively `2.5e-25` at 2sigma. No finite-mass continuation is authorized.
 
-### 0079/0079a — long-range fifth force
-0079 `PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_AUTHORITY`, immutable commit `9afcbabe4827e42e60c0beaf61396ac4b745a1a0`; run/job `34160053648/101859746603`, artifact `10032282068`, ZIP SHA256 `24a0b8789afe0e32a5016f44b369517a490f4629a3390a16afcfac188df9ef55`. Fayet primary fixes `g_BL=e|epsilon_B-L|`, 2sigma long-range `|epsilon_B-L|<0.84e-24`; no finite-mass numerical continuation is authorized.
+0080d `PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_EXCLUDED_GEOMETRY`: Majorana hard-CMB excluded area `48.332188584322665 decade^2`; Dirac `45.129364149717375 decade^2`. 0080e proves Majorana and Dirac are alternative scenario-conditioned branches; no union/intersection is source-authorized.
 
-0079a `PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_MATERIALIZATION`, immutable commit `9e6818fa49492da391736c6ec5216bc23bbd7307`; run/job `34160325335/101860584123`, artifact `10032369690`, ZIP SHA256 `bdc7c75c13bc8c10a0698c58953072aa0f5d2540463ca3db9088272496b7cb2e`. With `e=0.30282212076899695`, strict long-range `g_BL<2.5437058144595744e-25`, conservatively `2.5e-25` at 2sigma. Earth-diameter Compton mass is diagnostic only, not a turn-off. This raised readiness 92% -> 93%.
+0081 `PASS_COSMOLOGY_B_L_BBN_OBSERVATIONAL_SEMANTICS`: signed `Delta Y_p=Y_p(BSM)-Y_p(SM)=0.008` at 95% C.L. 0081a is `BLOCKED_COSMOLOGY_B_L_BBN_VECTOR_CALIBRATION_SEMANTIC_IDENTITY`; the native BBN assets do not meet the frozen independent x-axis anchor and unique-threshold-path requirements, so no BBN polygon is authorized.
 
-### 0080–0080e — cosmology/CMB chain
-Primary: Esseili & Kribs arXiv `2308.07955v2`, source SHA256 `484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c`.
+### 0082 — stellar/SN primary source assets
+0082 `PASS_B_L_STELLAR_SN_PRIMARY_SOURCE_ASSET_AUTHORITY`, immutable commit `3199a7b30df23a1fcced5151116697eb0cacd572`; run/job `34166836428/101879452299`, artifact `10034419759`, raw JSON SHA256 `f24f6e1d5f3726a1943b59cd298509b1b9304f21ba503defeb860461107467a7`, ZIP SHA256 `decf86739ac910ed42cd0a836d8223e34a8ac16e1a9bb15cfa3740a9fbe97b77`. Exact archives and hashes are frozen for Hong–Shin–Yun `2012.05427v3`, Cerdeño et al. `2106.11660v3`, and Shin–Yun `2110.03362v2`; all three have explicit B-L semantics and source-native candidate figure assets. Shin–Yun explicitly revisits the SN1987A B-L constraint.
 
-0080 `PASS_COSMOLOGY_B_L_VECTOR_ASSET_AUTHORITY`, run/job `34160801805/101862078831`, artifact `10032522988`.
-0080a `PASS_COSMOLOGY_B_L_VECTOR_INTEGRITY`, run/job `34161020276/101862718302`, artifact `10032589964`: Figs 5–8 are vector-native, zero image XObjects.
-0080b `PASS_COSMOLOGY_B_L_CMB_AXIS_CALIBRATION`, run/job `34161277512/101863457667`, artifact `10032672039`: `log10(m_X/MeV)=0.014151317772708815*x-6.9932501456724525`, `log10(g_X)=-0.0329969798924973*y-2.6510803066554596`; frozen calibration tolerances passed.
-0080c `PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_95CL_SEMANTICS`, immutable commit `755911fd5afcca77c3c0d54e7f41e1b6aa9b7462`, corrected run/job `34161487414/101864078212`, artifact `10032738989`, ZIP SHA256 `bcdef158881eec04c098014acfa934fb734638271c7aea265a0da3a3dd54e726`. Hard current-CMB exclusion is `Delta N_eff>=0.4` at 95% C.L. = light blue + dark blue; green is strongly disfavored only.
-0080d `PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_EXCLUDED_GEOMETRY`, immutable commit `9da3a5a0627a472815e1eabbec21df37672f5953`; run/job `34161859886/101865153356`, artifact `10032854190`, ZIP SHA256 `f00a461bb3780538d341c47b39b11ede9a4b5b34e928d679d2844c51db9d23bc`, raw JSON SHA256 `2d288fedc2da00da1a44e1536d0555bd5931a0052fbc48f29e4984bab2c66f97`. Majorana: one valid component, area `48.332188584322665 decade^2`; Dirac: one valid component, area `45.129364149717375 decade^2`; native fills only, no raster/manual input or topology repair. This raised readiness 93% -> 94%.
+0082a `PASS_B_L_STELLAR_SN_SEMANTIC_SCOPE_AUTHORITY`, immutable commit `fe3e3e44eff2d5b752c5792e72445dd7f2bbedce`; run/job `34167424919/101881140465`, artifact `10034602959`, raw JSON SHA256 `333c79aaa14170777ac68b8754c8f9b03e8929cef803c5989d95b19ed0862e9c`, ZIP SHA256 `f11ef6a5138b0766cabe94b5a8bf55c60859acf355f48b84d75ded19e55eb0ef`. Controlling summary assets are prospectively fixed as Hong `B-LConstraints.pdf`, Cerdeño `Figures/BL_constraints.pdf`, Shin–Yun `B-L_Constraints.pdf`. Shin–Yun revises explicit SN1987A/NS1987A branches but does not source-authorize blanket replacement of Cas A/all young-NS constraints.
 
-0080e `PASS_COSMOLOGY_B_L_SCENARIO_CONDITIONAL_AUTHORITY`, immutable commit `eafbae4ca8b526d9c515351e0cdeac37569c2d55`; run/job `34164286854/101872133978`, artifact `10033631352`. Majorana and Dirac are explicit alternative scenarios; no source combination/weight/preference rule exists, so scenario-independent union/intersection is unauthorized. Corrected raw JSON SHA256 `381c04707c1f9d29ce88ca1ff3b728a55e2de1b59b1ac256f6f4c580e451037f`, ZIP SHA256 `9a1f92cd70bad33a441ec5eac18ecdfc3311f36f6f48e877094ac6177282293e`; erratum commit `9ec9c2e63cfad2fac96250daa263bb9b45d25de6`.
+0082b `BLOCKED_B_L_STELLAR_SN_VECTOR_AXIS_AUTHORITY`, immutable commit `d6e3767a55ccbdd6407f06b01024859f85d9ea54`; run/job `34167754777/101882075294`, artifact `10034702610`, raw JSON SHA256 `121b91f5675b96f12a05e4c784ad2ce6b72f3f123df41e82a7834d68ddffa858`, ZIP SHA256 `b5864ae65d5e521e3c9b26471db2d90ce8e916d5fddacbaec99367e1acd4c294`. Scoped result: Hong and Shin–Yun controlling PDFs are raster-only and therefore blocked for vector geometry under the no-raster/manual contract. Cerdeño `Figures/BL_constraints.pdf` independently passes vector integrity and axis-authority sufficiency: SHA256 `6557571159bd7d279e9b78e026c79c2974fd487db86dcf3f60b566e54318d07f`, 0 image XObjects, 104 drawings, 22716 path items, 44 text spans, 8 x anchors spanning 5 decades and 9 y anchors spanning `4.698970004336019` decades.
 
-### 0081 — BBN observational semantics
-0081 `PASS_COSMOLOGY_B_L_BBN_OBSERVATIONAL_SEMANTICS`, immutable commit `65cfeb05f855a0ee7c582733cdbc658349364ce2`; authority ledger commit `82323ebaaca3220de2fbaa34750305bf2db19c1a`; run/job `34164891666/101873875465`, artifact `10033820001`, ZIP SHA256 `d33e63b8716ad3af82650653734395e333f52744138f2340824b85343927f705`, raw JSON SHA256 `cbdceeabcd7f55094096028be481c26cdf18493018401c0c6092f2ac56a2b33c`. Primary TeX fixes signed `Delta Y_p = Y_p(BSM)-Y_p(SM) = 0.008` at 95% C.L. for Figure 7 Majorana and Figure 8 Dirac.
-
-### 0081a — BBN vector calibration + semantic identity
-0081a **`BLOCKED_COSMOLOGY_B_L_BBN_VECTOR_CALIBRATION_SEMANTIC_IDENTITY`**, immutable commit `ec8267af5ebfab72fb5346f2c91031cb1737fd40`; persistent result commit `dfccfe08dee2ad7922749dcebc56175fffed51f1`; authoritative prereg commit `ad37205e6a30188f4129fdca8e0d49a156ab6e36`; implementation freeze `27ac3703547c67f5e130baba9b884688ef176a13`; run/job `34165337031/101875151196`, artifact `10033955293`, raw JSON SHA256 `daf2f687d8d817ce20f9568aeb27843ff7fe8b9d7e94391dffb844946b41f34e`, ZIP SHA256 `d5c1495ce4a1dee6928093aec79de0b3aea8dddcc76e21b93082263afae4445a`, dedicated tests `4 passed`.
-
-The BBN assets expose only two source-native labeled x-axis major anchors (`0.1`, `1`), below the frozen >=4-anchor requirement, and the source-native `0.008` label is adjacent to multiple non-overlay blue vector styles in both scenarios. The dashed-red CMB overlay was successfully excluded. Borrowing the CMB transform, changing color/adjacency tolerances, choosing a blue style by appearance, or manual/raster inference is forbidden. Therefore no 0081b BBN polygon is authorized. This is a reproducibility/provenance blocker, not a failure of BBN physics. Readiness remains 94%.
-
-### 0082 — current stellar/SN source-authority gate
-Prospective contract `research/prereg/0082_bl_stellar_sn_primary_source_asset_authority.md`, frozen commit `bbf55baeeb013fbd5c273b75490c5e987aeceb81`.
-
-The frozen source set is Hong–Shin–Yun `2012.05427v3`, Cerdeño et al. `2106.11660v3`, and Shin–Yun `2110.03362v2`. The 2022 Shin–Yun primary is included because it explicitly revisits the SN1987A B-L constraint, strengthens the transverse-polarization exclusion relative to the previous derivation, and reports a new longitudinal-polarization excluded region. 0082 is source/asset authority only: no contour extraction, no union, no claim that the newer SN result supersedes every NS1987A/Cas-A cooling result.
+### 0082c — current prospective gate
+`research/prereg/0082c_cerdeno_bl_axis_calibration.md`, frozen commit `0e2477aed4ef076f72e6c401d13140a739892bd3`. Use only Cerdeño `2106.11660v3` and exact asset SHA above. Reconstruct fragmented power-of-ten ticks from source-native PyMuPDF spans; require >=4 distinct major ticks and >=3 decades per axis. Independently fit `log10(value)=a*coordinate+b`; ordinary and leave-one-out max residuals must each be <=`0.015 decade`, with correct slope signs and no duplicate exponents at distinct ticks. No curve/path/color information or excluded geometry may be read in 0082c.
 
 ## Current funnel state
-- BSM/F8: 0082 is the highest-value frozen executable gate.
-- BBN geometry route: BLOCKED at 0081a under no-manual-inference contract.
-- G9 persistent-source method branch: blocked at 0077 under frozen assumptions.
-- G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
-- G2 `BLOCKED_NOT_ACTIONABLE`.
-- G8 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
+- BSM/F8: 0082c is the highest-value frozen executable gate.
+- Cerdeño stellar/SN vector route: executable only through 0082c; no contour yet.
+- Hong/Shin–Yun vector geometry: BLOCKED raster-only; source-text analytical bounds remain a possible separately preregistered route.
+- BBN geometry: BLOCKED at 0081a.
+- G9 persistent-source method: blocked at 0077.
+- G3 absolute contact coefficient: `OPEN_NOT_CURRENTLY_ACTIONABLE`.
+- G2: `BLOCKED_NOT_ACTIONABLE`.
+- G8: `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
 
 ## Exact next gate
-Execute 0082 exactly as frozen at commit `bbf55baeeb013fbd5c273b75490c5e987aeceb81`: hash and inventory the three exact arXiv source archives, verify explicit B-L semantics, identify source-native vector/document or numerical/code candidate routes, and machine-check the Shin–Yun revisit statement. PASS may only authorize a separately preregistered semantic/scope/vector-asset gate; no stellar/SN excluded polygon may be constructed inside 0082.
+Execute 0082c exactly as frozen at commit `0e2477aed4ef076f72e6c401d13140a739892bd3`. PASS may only authorize a separately preregistered Cerdeño source-own curve semantic-identity/excluded-geometry gate. BLOCKED/FAIL retires the Cerdeño vector-geometry route and returns to source-text analytical bounds or another missing 0071 family.
 
 ## Critical guards
-No raster/manual contour reading. No post-result convention factor, excluded-side assignment, scenario/source selection or threshold relaxation. No Asimov substitution for required observed likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without identity provenance. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent primary authority. No Hong/Cerdeño/Shin-Yun union or supersession claim absent scope authority. No F9 multiplication of unvalidated gains.
+No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No Asimov substitution for required observed likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without identity provenance. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent primary authority. No Hong/Cerdeño/Shin–Yun union or supersession claim absent dedicated scope authority. No F9 multiplication of unvalidated gains.
