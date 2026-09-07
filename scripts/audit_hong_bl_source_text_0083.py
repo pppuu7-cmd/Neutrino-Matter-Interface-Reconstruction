@@ -22,7 +22,9 @@ def strip_comments(s):
 def compact(s):
     s=strip_comments(s)
     s=s.replace("\n"," ")
+    # Normalize both \rm{MeV} and {\rm MeV}-style unit wrappers without changing numerical content.
     s=re.sub(r"\\(?:mathrm|text|rm|mbox)\s*\{([^{}]*)\}",r"\1",s)
+    s=re.sub(r"\{\\(?:mathrm|text|rm|mbox)\s+([^{}]+)\}",r"\1",s)
     s=s.replace("\\,"," ").replace("\\!","").replace("~"," ")
     s=re.sub(r"\s+"," ",s)
     return s
