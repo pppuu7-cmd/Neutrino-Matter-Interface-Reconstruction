@@ -1,0 +1,15 @@
+{
+  "iteration":"0080b",
+  "classification":"PASS_COSMOLOGY_B_L_CMB_AXIS_CALIBRATION",
+  "source_sha256":"484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+  "calibration": {
+    "log10_mX_MeV": {"a":0.014151317772708815,"b":-6.9932501456724525,"max_abs_residual_decade":0.00159947053961762,"max_abs_loo_decade":0.0020872056238765424},
+    "log10_gX": {"a":-0.0329969798924973,"b":-2.6510803066554596,"max_abs_residual_decade":0.010719098650080916,"max_abs_loo_decade":0.011974107570777992}
+  },
+  "cross_panel_replication": {"majorana_vs_dirac_max_abs_x_difference_decade":0.0,"majorana_vs_dirac_max_abs_y_difference_decade":0.0,"threshold_decade":1e-5},
+  "tick_authority": {"x_exponents":[-6,-5,-4,-3,-2,-1,0,1,2,3],"y_exponents":[-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3],"fit_and_loo_threshold_decade":0.015},
+  "delta_neff_text_inventory": {"majorana":[0.05,0.1,0.2,0.3,0.4,0.5],"dirac":[0.05,0.1,0.2,0.5]},
+  "hosted_run": {"run_id":34161277512,"job_id":101863457667,"artifact_id":10032672039,"raw_json_sha256":"de9c9b5365dd1b7b5502d44dfdc04d4547aac997508845079ebeb04d1e300b0c","artifact_zip_sha256":"98155106b7b4fb72d8a89314ab6b64eb99798f41fcecd5e48ae0944cb4247a44","dedicated_tests":"3 passed in 0.12s"},
+  "baseline_ci": {"run_id":34161277519,"conclusion":"success"},
+  "guard":"Axis calibration and text-level inventory only; no path/color selection, Planck threshold choice, excluded-region materialization, scenario union, global envelope union, or BSM response scan."
+}
