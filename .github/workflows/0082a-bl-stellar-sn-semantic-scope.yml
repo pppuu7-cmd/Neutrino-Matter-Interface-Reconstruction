@@ -1,0 +1,47 @@
+name: NMIR 0082a B-L stellar SN semantic scope
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/prereg/0082a_bl_stellar_sn_semantic_scope_authority.md'
+      - 'scripts/audit_bl_stellar_sn_semantic_scope_0082a.py'
+      - 'tests/test_audit_bl_stellar_sn_semantic_scope_0082a.py'
+      - '.github/workflows/0082a-bl-stellar-sn-semantic-scope.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated 0082a tests
+        run: python -m pytest -q tests/test_audit_bl_stellar_sn_semantic_scope_0082a.py
+      - name: Run frozen 0082a semantic-scope audit
+        id: audit
+        continue-on-error: true
+        run: python scripts/audit_bl_stellar_sn_semantic_scope_0082a.py
+      - name: Hash raw result
+        if: always()
+        run: |
+          if [ -f bl_stellar_sn_semantic_scope_0082a.json ]; then
+            sha256sum bl_stellar_sn_semantic_scope_0082a.json
+          fi
+      - name: Upload raw result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0082a-bl-stellar-sn-semantic-scope
+          path: bl_stellar_sn_semantic_scope_0082a.json
+          if-no-files-found: error
+      - name: Enforce frozen classification
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = "success"
