@@ -4,8 +4,8 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0082b_bl_stellar_sn_vector_axis_authority.md`, commit `d6e3767a55ccbdd6407f06b01024859f85d9ea54`.
-Current prospective gate: `research/prereg/0082c_cerdeno_bl_axis_calibration.md`, frozen commit `0e2477aed4ef076f72e6c401d13140a739892bd3`.
+Latest completed immutable record: `research/iterations/0082c_cerdeno_bl_axis_calibration.md`, commit `95c01f16fab209605680064044d63d9fce6a4685`.
+Current prospective gate: `research/prereg/0083_hong_bl_source_text_analytical_authority.md`, frozen commit `d03a50e0ae2c1f83b5327b5c47d71fc3106fe525`; executable hosted head `a91966fbce8c32a709ae94931f6477e1034b3df3`, run `34169010025` queued at reconciliation.
 `NMIR_READINESS: 94%`.
 
 ## Mandatory recovery order
@@ -45,15 +45,17 @@ Cu63 RIOEC source-tail recomputation passed in 0067, but 0068 remains `BLOCKED_R
 
 0082a `PASS_B_L_STELLAR_SN_SEMANTIC_SCOPE_AUTHORITY`, immutable commit `fe3e3e44eff2d5b752c5792e72445dd7f2bbedce`; run/job `34167424919/101881140465`, artifact `10034602959`, raw JSON SHA256 `333c79aaa14170777ac68b8754c8f9b03e8929cef803c5989d95b19ed0862e9c`, ZIP SHA256 `f11ef6a5138b0766cabe94b5a8bf55c60859acf355f48b84d75ded19e55eb0ef`. Controlling summary assets are prospectively fixed as Hong `B-LConstraints.pdf`, Cerdeño `Figures/BL_constraints.pdf`, Shin–Yun `B-L_Constraints.pdf`. Shin–Yun revises explicit SN1987A/NS1987A branches but does not source-authorize blanket replacement of Cas A/all young-NS constraints.
 
-0082b `BLOCKED_B_L_STELLAR_SN_VECTOR_AXIS_AUTHORITY`, immutable commit `d6e3767a55ccbdd6407f06b01024859f85d9ea54`; run/job `34167754777/101882075294`, artifact `10034702610`, raw JSON SHA256 `121b91f5675b96f12a05e4c784ad2ce6b72f3f123df41e82a7834d68ddffa858`, ZIP SHA256 `b5864ae65d5e521e3c9b26471db2d90ce8e916d5fddacbaec99367e1acd4c294`. Scoped result: Hong and Shin–Yun controlling PDFs are raster-only and therefore blocked for vector geometry under the no-raster/manual contract. Cerdeño `Figures/BL_constraints.pdf` independently passes vector integrity and axis-authority sufficiency: SHA256 `6557571159bd7d279e9b78e026c79c2974fd487db86dcf3f60b566e54318d07f`, 0 image XObjects, 104 drawings, 22716 path items, 44 text spans, 8 x anchors spanning 5 decades and 9 y anchors spanning `4.698970004336019` decades.
+0082b `BLOCKED_B_L_STELLAR_SN_VECTOR_AXIS_AUTHORITY`, immutable commit `d6e3767a55ccbdd6407f06b01024859f85d9ea54`; run/job `34167754777/101882075294`, artifact `10034702610`, raw JSON SHA256 `121b91f5675b96f12a05e4c784ad2ce6b72f3f123df41e82a7834d68ddffa858`, ZIP SHA256 `b5864ae65d5e521e3c9b26471db2d90ce8e916d5fddacbaec99367e1acd4c294`. Hong and Shin–Yun controlling PDFs are raster-only and blocked for vector geometry. Cerdeño independently passed vector integrity/axis-text sufficiency precheck.
 
-### 0082c — current prospective gate
-`research/prereg/0082c_cerdeno_bl_axis_calibration.md`, frozen commit `0e2477aed4ef076f72e6c401d13140a739892bd3`. Use only Cerdeño `2106.11660v3` and exact asset SHA above. Reconstruct fragmented power-of-ten ticks from source-native PyMuPDF spans; require >=4 distinct major ticks and >=3 decades per axis. Independently fit `log10(value)=a*coordinate+b`; ordinary and leave-one-out max residuals must each be <=`0.015 decade`, with correct slope signs and no duplicate exponents at distinct ticks. No curve/path/color information or excluded geometry may be read in 0082c.
+0082c final authority is `BLOCKED_CERDENO_B_L_AXIS_CALIBRATION`, immutable commit `95c01f16fab209605680064044d63d9fce6a4685`. Historical run/job `34168121697/101883111550`, artifact `10034819460` is retained as `INFRASTRUCTURE_FAIL_PARSER_CONFORMANCE`, not scientific authority. Conformance rerun/job `34168779858/101884961619`, artifact `10035019993`, head `36bdb70707e2d4970a75ce52bc25c1098b23d0af`, GitHub artifact digest `sha256:8dc01a9c97a765563c24089ac538cdb30dffd3b49b5a04c9727510a8f6c6093a`, raw JSON SHA256 `0f5026982a4a88990a39c07908fc64a978511e946ea572d3b49dc61070b09d03`. Decisive blocker: source-native y-axis text reconstruction yielded `tick_count=0`, so the preregistered >=4 signed major-tick requirement fails closed. The Cerdeño vector-contour route is retired under the no-raster/manual contract; no Cerdeño excluded polygon is authorized.
+
+### 0083 — current prospective source-text route
+`research/prereg/0083_hong_bl_source_text_analytical_authority.md`, frozen commit `d03a50e0ae2c1f83b5327b5c47d71fc3106fe525`. Use only Hong–Shin–Yun `2012.05427v3`, exact source archive SHA `6daae1b2d8491cb294a90ecb23d3bcee27c1a8b9dfe5674c2d47e12d735d24bc`. The public abstract already exposes an approximate low-mass B-L statement (`e' < 1e-13` for mass below `O(0.1 MeV)`); 0083 prospectively tests machine source-text authority, separating an analytical low-mass anchor from exact finite-mass materialization authority. `O(0.1 MeV)` may not be silently promoted to the exact endpoint `0.1 MeV`.
 
 ## Current funnel state
-- BSM/F8: 0082c is the highest-value frozen executable gate.
-- Cerdeño stellar/SN vector route: executable only through 0082c; no contour yet.
-- Hong/Shin–Yun vector geometry: BLOCKED raster-only; source-text analytical bounds remain a possible separately preregistered route.
+- BSM/F8: 0083 is the highest-value frozen executable gate; run `34169010025` was queued at this reconciliation.
+- Cerdeño stellar/SN vector geometry: BLOCKED/retired at 0082c under the frozen text/no-raster contract.
+- Hong/Shin–Yun vector geometry: BLOCKED raster-only; source-text analytical bounds are the active route.
 - BBN geometry: BLOCKED at 0081a.
 - G9 persistent-source method: blocked at 0077.
 - G3 absolute contact coefficient: `OPEN_NOT_CURRENTLY_ACTIONABLE`.
@@ -61,7 +63,7 @@ Cu63 RIOEC source-tail recomputation passed in 0067, but 0068 remains `BLOCKED_R
 - G8: `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
 
 ## Exact next gate
-Execute 0082c exactly as frozen at commit `0e2477aed4ef076f72e6c401d13140a739892bd3`. PASS may only authorize a separately preregistered Cerdeño source-own curve semantic-identity/excluded-geometry gate. BLOCKED/FAIL retires the Cerdeño vector-geometry route and returns to source-text analytical bounds or another missing 0071 family.
+Consume hosted 0083 run `34169010025` against its frozen source-text contract. If the Hong analytical anchor passes but exact finite-mass authority is blocked, retain only the source-qualified low-mass analytical anchor with no excluded-area claim, then prospectively audit Shin–Yun `2110.03362v2` source text for exact revised SN1987A/NS1987A numerical authority or advance to another missing 0071 family. If exact finite-mass text authority passes, preregister a separate materialization gate before creating geometry.
 
 ## Critical guards
-No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No Asimov substitution for required observed likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without identity provenance. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent primary authority. No Hong/Cerdeño/Shin–Yun union or supersession claim absent dedicated scope authority. No F9 multiplication of unvalidated gains.
+No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No conversion of `O(0.1 MeV)` into an exact finite endpoint. No Asimov substitution for required observed likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without identity provenance. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent primary authority. No Hong/Cerdeño/Shin–Yun union or supersession claim absent dedicated scope authority. No F9 multiplication of unvalidated gains.
