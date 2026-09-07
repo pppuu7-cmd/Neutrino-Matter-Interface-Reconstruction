@@ -1,0 +1,39 @@
+name: NMIR 0079a Fayet asymptotic B-L materialization
+
+on:
+  push:
+    paths:
+      - 'scripts/materialize_fayet_bl_asymptotic_0079a.py'
+      - 'tests/test_materialize_fayet_bl_asymptotic_0079a.py'
+      - 'research/prereg/0079a_bl_fifth_force_asymptotic_materialization.md'
+      - '.github/workflows/0079a-fayet-bl-asymptotic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated tests
+        run: python -m pytest -q tests/test_materialize_fayet_bl_asymptotic_0079a.py
+      - name: Run frozen 0079a materialization
+        run: python scripts/materialize_fayet_bl_asymptotic_0079a.py
+      - name: Hash result
+        if: always()
+        run: |
+          if [ -f fayet_bl_asymptotic_0079a.json ]; then sha256sum fayet_bl_asymptotic_0079a.json; fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0079a-fayet-bl-asymptotic
+          path: fayet_bl_asymptotic_0079a.json
+          if-no-files-found: error
