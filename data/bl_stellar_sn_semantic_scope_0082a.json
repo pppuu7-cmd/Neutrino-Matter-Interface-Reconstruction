@@ -1,0 +1,54 @@
+{
+  "iteration": "0082a",
+  "classification": "PASS_B_L_STELLAR_SN_SEMANTIC_SCOPE_AUTHORITY",
+  "frozen_prereg_commit": "3c978de292d259e8beacbe0cfed6c0dd474e498b",
+  "source_authority": {
+    "hong_shin_yun_2021": {
+      "arxiv": "2012.05427v3",
+      "archive_sha256": "6daae1b2d8491cb294a90ecb23d3bcee27c1a8b9dfe5674c2d47e12d735d24bc",
+      "controlling_constraint_asset": "B-LConstraints.pdf",
+      "figure_label": "fig:B-LConstraints",
+      "scope": ["SN1987A", "NS1987A", "Cas_A", "global_summary_other_constraints"],
+      "native_parameter_convention": "B-L gauge coupling denoted e' in the model text; gauge-boson mass denoted m_{gamma'} / m_{gamma^prime}. No cross-paper conversion is performed in 0082a."
+    },
+    "cerdeno_et_al_2021": {
+      "arxiv": "2106.11660v3",
+      "archive_sha256": "f70c812c983fbe911e9a298ed7dd2a06d8199a13b5d9b0500633d014af65de5d",
+      "controlling_constraint_asset": "Figures/BL_constraints.pdf",
+      "figure_label": "fig:vector_constraints",
+      "scope": ["global_summary_other_constraints"],
+      "diagnostic_not_geometry_authority": ["Figures/medium_effects_BL.pdf"],
+      "native_parameter_convention": "g_{B-L}; c_q=g_{B-L}/3 and charged/neutral leptons carry -g_{B-L}; vector mediator Z' with mass m_{Z'}."
+    },
+    "shin_yun_2022": {
+      "arxiv": "2110.03362v2",
+      "archive_sha256": "7af77fa64e46b53e901f88e3a8ef118effcb598dcd505e16e16d3aa31ab049bd",
+      "controlling_constraint_asset": "B-L_Constraints.pdf",
+      "figure_label": "fig:bound",
+      "scope": ["SN1987A", "NS1987A", "Cas_A", "transverse", "longitudinal", "global_summary_other_constraints"],
+      "native_parameter_convention": "B-L gauge coupling denoted e'; gauge-boson mass denoted m_{gamma'} / m_{gamma^prime}. No cross-paper conversion is performed in 0082a.",
+      "revision_scope": {
+        "revised_sn1987a_transverse": true,
+        "new_sn1987a_longitudinal_region": true,
+        "source_revisits_ns1987a_constraint": true,
+        "explicit_replace_cas_a": false,
+        "explicit_replace_generic_young_ns": false
+      }
+    }
+  },
+  "hosted_run": {
+    "run_id": 34167424919,
+    "job_id": 101881140465,
+    "artifact_id": 10034602959,
+    "head_sha": "ff111f4f09ace38cd9cae83309a8726e97b938c2",
+    "dedicated_tests": "5 passed in 0.06s",
+    "raw_json_sha256": "333c79aaa14170777ac68b8754c8f9b03e8929cef803c5989d95b19ed0862e9c",
+    "artifact_zip_sha256": "f11ef6a5138b0766cabe94b5a8bf55c60859acf355f48b84d75ded19e55eb0ef",
+    "artifact_bytes_independently_verified": true
+  },
+  "baseline_ci": {
+    "run_id": 34167424840,
+    "conclusion": "success"
+  },
+  "guard": "Semantic/scope and native parameter-convention authority only. No PDF drawing/path/color inspection, no axis calibration, no numerical contour extraction, no cross-paper union/intersection, no generic young-NS/Cas-A supersession, no cross-paper coupling conversion, no global B-L envelope, no response scan."
+}
