@@ -1,0 +1,32 @@
+name: NMIR 0078a De Romeri B-L vector integrity
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_deromeri_2603_vector_integrity_0078a.py'
+      - '.github/workflows/0078a-deromeri-vector-integrity.yml'
+  workflow_dispatch:
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF vector audit dependency
+        run: python -m pip install PyMuPDF
+      - name: Audit frozen B-L vector assets
+        run: python scripts/audit_deromeri_2603_vector_integrity_0078a.py
+      - name: Hash result
+        if: always()
+        run: |
+          if [ -f deromeri_2603_vector_integrity_0078a.json ]; then sha256sum deromeri_2603_vector_integrity_0078a.json; fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0078a-vector-integrity
+          path: deromeri_2603_vector_integrity_0078a.json
+          if-no-files-found: error
