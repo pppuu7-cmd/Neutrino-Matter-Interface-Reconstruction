@@ -1,19 +1,36 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, hashlib, io, json, math, re, tarfile, urllib.request
+import argparse, hashlib, io, json, re, tarfile, urllib.request
 from collections import defaultdict
 
 URL='https://arxiv.org/e-print/1207.2442'; TARGET='WEP_figure6.eps'
 NUM=r'[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][+-]?\d+)?'
-TOK_RE=re.compile(rf'({NUM}|C|M|L|SN|SL|N|CFN)')
+# PostScript operators must be complete whitespace-delimited tokens.  Matching bare
+# letters over the whole EPS would misread comments/labels such as Creator as C/M/L.
+TOK_RE=re.compile(rf'(?<!\S)({NUM}|C|M|L|SN|SL|N|CFN)(?!\S)')
+
+def tokenize_eps(text: str) -> list[str]:
+    toks=[]
+    for line in text.splitlines():
+        stripped=line.lstrip()
+        if not stripped or stripped.startswith('%'):
+            continue
+        # Remove a trailing PostScript comment only when it starts outside a literal
+        # string.  The Wagner graphics command stream used here has no needed % inside
+        # command operands; fail-closed token boundaries still prevent text glyphs from
+        # becoming drawing operators.
+        if '%' in line:
+            line=line.split('%',1)[0]
+        toks.extend(TOK_RE.findall(line))
+    return toks
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--output',required=True); args=ap.parse_args()
-    req=urllib.request.Request(URL,headers={'User-Agent':'NMIR-0072a-path-parser/1.0'})
+    req=urllib.request.Request(URL,headers={'User-Agent':'NMIR-0072a-path-parser/1.1'})
     with urllib.request.urlopen(req,timeout=60) as r: body=r.read()
     with tarfile.open(fileobj=io.BytesIO(body),mode='r:gz') as tf: eps=tf.extractfile(tf.getmember(TARGET)).read()
     text=eps.decode('latin-1',errors='replace')
-    toks=TOK_RE.findall(text)
+    toks=tokenize_eps(text)
     stack=[]; color=(0.0,0.0,0.0); width=None; path=[]; paths=[]
     def popn(n):
         nonlocal stack
@@ -55,7 +72,6 @@ def main():
             xs += [p['bbox'][0],p['bbox'][2]]; ys += [p['bbox'][1],p['bbox'][3]]
         longest=sorted(items,key=lambda z:z[1]['n'],reverse=True)[:20]
         colors.append({'color':list(c),'path_count':len(items),'bbox':[min(xs),min(ys),max(xs),max(ys)],'longest_paths':[{'index':i,'n':p['n'],'linewidth':p['linewidth'],'bbox':p['bbox'],'first':p['first'],'last':p['last']} for i,p in longest]})
-    # Keep full points only for long non-black candidate curves; black is dominated by axes/text glyphs.
     candidates=[]
     for i,p in enumerate(paths):
         if tuple(p['color'])!=(0.0,0.0,0.0) and p['n']>=10:
