@@ -1,0 +1,49 @@
+{
+  "iteration": "0073",
+  "classification": "PARTIAL_PASS_PANDAX_INPUTS_NEED_ONE_NAMED_COMPONENT",
+  "frozen_prereg_commit": "20ee0ab7cf4ab3d709c147a4826d4b24897cc83a",
+  "authorities": {
+    "de_romeri": "arXiv:2402.05506v2; JHEP 05 (2024) 165",
+    "pandax": "arXiv:2206.02339v3; Phys. Rev. Lett. 129 (2022) 161804"
+  },
+  "materialized_from_primary_text": {
+    "exposure_ton_year": 0.63,
+    "pandax_energy_bin_width_keV": 1.0,
+    "published_spectrum_bins_count": 30,
+    "total_data_events": 1058,
+    "background_total_best_fit_events": 1060,
+    "resolution_approx_sigma_keV": "0.073 + 0.173 E_vis - 6.5e-3 E_vis^2 + 1.1e-4 E_vis^3, E_vis in keV",
+    "background_nuisances": {
+      "tritium_set_1": {"nominal": "float", "sigma": null},
+      "tritium_set_2": {"nominal": "float", "sigma": null},
+      "tritium_set_3": {"nominal": "float", "sigma": null},
+      "tritium_set_4": {"nominal": "float", "sigma": null},
+      "tritium_set_5": {"nominal": "float", "sigma": null},
+      "flat_ER_sets_1_2_3_5": {"nominal_effcorr_events": 251.6, "fractional_sigma": 0.09},
+      "flat_ER_set_4": {"nominal_effcorr_events": 240.5, "fractional_sigma": 0.09},
+      "Xe136": {"nominal_effcorr_events": 31.1, "fractional_sigma": 0.16},
+      "Xe127_L_shell": {"nominal_effcorr_events": 8.13, "fractional_sigma": 0.25},
+      "accidental": {"nominal_effcorr_events": 2.43, "fractional_sigma": 0.20},
+      "surface": {"nominal_effcorr_events": 0.47, "fractional_sigma": 0.25},
+      "neutron": {"nominal_effcorr_events": 1.15, "fractional_sigma": 0.50},
+      "B8": {"nominal_effcorr_events": 0.64, "fractional_sigma": 0.28}
+    },
+    "de_romeri_signal_fluxes": ["pp", "7Be"],
+    "de_romeri_sin2theta23": 0.5,
+    "de_romeri_statistic": "Poisson least-squares Eq. (11), profiled over separate background and solar-flux nuisance normalizations",
+    "de_romeri_published_limit_cl": 0.90
+  },
+  "still_missing_controlling_inputs": [
+    "exact per-bin observed PandaX Fig.3 counts as numerical data, without raster/manual reading",
+    "exact per-bin spectra for every background component used by De Romeri et al.",
+    "machine-readable PandaX efficiency curve used in De Romeri Eq.(8)",
+    "exact fit bin range/edges as used by De Romeri beyond the primary statement of 30 one-keV bins",
+    "hash-pinned solar spectra/normalizations and flux nuisance values",
+    "exact B-L cross-section convention extraction into executable code",
+    "frozen later Delta-chi2 threshold after benchmark reproduction"
+  ],
+  "source_transport_note": "The arXiv HTML exposes Table I and the approximate resolution polynomial, but the Fig.3 per-bin numerical arrays are not exposed as text. An attempted source-archive download in the analysis environment failed at DNS transport before source availability could be scientifically assessed; therefore this is not BLOCKED_PRIMARY_LIKELIHOOD_INPUTS.",
+  "no_contour_emitted": true,
+  "no_manual_raster_digitization": true,
+  "next_action": "Materialize the arXiv:2206.02339 source archive or an author/public numerical release and inspect Fig.3 source assets for deterministic per-bin data/background arrays and efficiency information. If absent after source-level inspection, classify BLOCKED_PRIMARY_LIKELIHOOD_INPUTS; otherwise freeze a separate SM benchmark reproduction contract."
+}
