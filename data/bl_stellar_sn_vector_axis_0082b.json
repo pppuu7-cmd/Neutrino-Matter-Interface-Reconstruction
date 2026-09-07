@@ -1,0 +1,69 @@
+{
+  "iteration": "0082b",
+  "classification": "BLOCKED_B_L_STELLAR_SN_VECTOR_AXIS_AUTHORITY",
+  "frozen_prereg_commit": "a46c4fd6b6e74a63bd70d4358f0218752bfd11cd",
+  "implementation_note": "The first hosted run 34167709304 was implementation-invalid because the synthetic PDF fixture used Unicode superscripts unsupported by its built-in font; the exact-source audit was never executed. Commit 440c7f8a5edd0d53d146bfe203c043fa54f42e1e changed only fixture labels to equivalent ASCII decimals and did not alter frozen scientific criteria or scientific audit code.",
+  "sources": {
+    "cerdeno_et_al_2021": {
+      "asset": "Figures/BL_constraints.pdf",
+      "asset_sha256": "6557571159bd7d279e9b78e026c79c2974fd487db86dcf3f60b566e54318d07f",
+      "bytes": 185486,
+      "passed": true,
+      "page_count": 1,
+      "page_size": [540.0,396.0],
+      "image_xobject_count": 0,
+      "drawing_count": 104,
+      "path_item_count": 22716,
+      "text_span_count": 44,
+      "mass_axis_identity": true,
+      "coupling_axis_identity": true,
+      "x_anchor_count": 8,
+      "y_anchor_count": 9,
+      "x_span_decade": 5.0,
+      "y_span_decade": 4.698970004336019,
+      "vector_geometry_route": "AUTHORIZED_FOR_NEXT_PREREG"
+    },
+    "hong_shin_yun_2021": {
+      "asset": "B-LConstraints.pdf",
+      "asset_sha256": "658d3664fd51689726553d86d7c5edb8014c53a6812f80b0b1d758e91e859cb7",
+      "bytes": 443808,
+      "passed": false,
+      "page_count": 1,
+      "page_size": [3488.0,3447.0],
+      "image_xobject_count": 1,
+      "drawing_count": 0,
+      "path_item_count": 0,
+      "text_span_count": 0,
+      "x_anchor_count": 0,
+      "y_anchor_count": 0,
+      "vector_geometry_route": "BLOCKED_RASTER_ONLY_SUMMARY_PDF"
+    },
+    "shin_yun_2022": {
+      "asset": "B-L_Constraints.pdf",
+      "asset_sha256": "2dd30e71ebcccd1e637ace0dc1b571bb8e8946dbafbc5481bae46bda1a958acd",
+      "bytes": 130241,
+      "passed": false,
+      "page_count": 1,
+      "page_size": [360.0,361.0],
+      "image_xobject_count": 1,
+      "drawing_count": 0,
+      "path_item_count": 0,
+      "text_span_count": 0,
+      "x_anchor_count": 0,
+      "y_anchor_count": 0,
+      "vector_geometry_route": "BLOCKED_RASTER_ONLY_SUMMARY_PDF"
+    }
+  },
+  "hosted_run": {
+    "run_id": 34167754777,
+    "job_id": 101882075294,
+    "artifact_id": 10034702610,
+    "head_sha": "440c7f8a5edd0d53d146bfe203c043fa54f42e1e",
+    "dedicated_tests": "4 passed in 0.14s",
+    "raw_json_sha256": "121b91f5675b96f12a05e4c784ad2ce6b72f3f123df41e82a7834d68ddffa858",
+    "artifact_zip_sha256": "b5864ae65d5e521e3c9b26471db2d90ce8e916d5fddacbaec99367e1acd4c294",
+    "artifact_bytes_independently_verified": true
+  },
+  "baseline_ci": {"run_id":34167754778,"conclusion":"success"},
+  "guard": "Overall BLOCKED means all-three-source vector-axis authority failed. It does not revoke Cerdeño's independently passing vector route or the source/semantic authority of Hong/Shin. No raster/manual fallback, no curve selection, no contour geometry, no cross-paper conversion or union."
+}
