@@ -12,7 +12,7 @@ def fetch(url):
     last=None
     for i in range(3):
         try:
-            req=urllib.request.Request(url,headers={"User-Agent":"NMIR-0083a-r1/1.0"})
+            req=urllib.request.Request(url,headers={"User-Agent":"NMIR-0083a-r1/1.1"})
             with urllib.request.urlopen(req,timeout=90) as r:return r.read()
         except Exception as e:
             last=e; time.sleep(2**i)
@@ -55,10 +55,19 @@ def relations(text):
     out=[r for r in out if r['kind']=='interval' or not any(i['start']<=r['start'] and r['end']<=i['end'] for i in ints)]
     return sorted(out,key=lambda r:(r['start'],r['end'],r['kind']))
 
+def _terminal(text,i):
+    ch=text[i]
+    if ch in '!?': return True
+    if ch!='.': return False
+    # A decimal point such as 0.1 is not sentence punctuation.
+    if i>0 and i+1<len(text) and text[i-1].isdigit() and text[i+1].isdigit(): return False
+    return True
+
 def statement(text,start,end):
-    left=max(text.rfind('.',0,start),text.rfind('!',0,start),text.rfind('?',0,start))
-    rights=[p for p in (text.find('.',end),text.find('!',end),text.find('?',end)) if p!=-1]
-    right=min(rights) if rights else min(len(text),end+1200)
+    lefts=[i for i in range(0,start) if _terminal(text,i)]
+    rights=[i for i in range(end,len(text)) if _terminal(text,i)]
+    left=lefts[-1] if lefts else -1
+    right=rights[0] if rights else min(len(text)-1,end+1200)
     return text[left+1:right+1].strip()
 
 def context(text,start,end,radius=1000): return text[max(0,start-radius):min(len(text),end+radius)]
@@ -69,7 +78,6 @@ def observation(stmt,ctx):
     if 'ns1987a' in s: return 'NS1987A'
     if 'sn1987a' in s: return 'SN1987A'
     c=ctx.lower()
-    # General abstract/result scope when multiple young-NS remnants appear nearby but no single observation is attached to this statement.
     if 'young neutron star' in c or 'young ns' in c: return 'general_young_NS'
     return 'unresolved'
 
@@ -132,7 +140,6 @@ def audit(fetcher=fetch):
             ctx=context(t,rr['start'],rr['end'])
             if not re.search(r"B.?L|U\(1\)|Cas\s*A|Cassiopeia|NS1987A|SN1987A|cooling|bound|constraint|excluded|hint",ctx,re.I): continue
             x=record(f,t,rr)
-            # Numeric benchmarks with no result role are not branch statements under the prereg extraction universe.
             if x['role']!='unresolved': rec.append(x)
     unresolved=[r for r in rec if not r['branch_resolved']]
     constraints=[r for r in rec if r['branch_resolved'] and r['role']=='constraint_bound']
