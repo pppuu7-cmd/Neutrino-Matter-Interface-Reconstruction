@@ -1,0 +1,27 @@
+name: COHERENT 0074 materialize
+
+on:
+  push:
+    paths:
+      - 'scripts/materialize_coherent_0074.py'
+      - '.github/workflows/coherent-0074-materialize.yml'
+  workflow_dispatch:
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize official Zenodo packages and verify checksums
+        run: python scripts/materialize_coherent_0074.py
+      - name: Archive exact primary package bytes and manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherent-0074-primary-packages
+          path: artifacts/coherent_0074/
+          if-no-files-found: error
+          retention-days: 90
