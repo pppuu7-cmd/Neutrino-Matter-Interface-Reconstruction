@@ -1,0 +1,13 @@
+{
+  "iteration": "0080d",
+  "classification": "PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_EXCLUDED_GEOMETRY",
+  "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+  "semantics": {"confidence":"95% C.L.","hard_exclusion":"Delta N_eff >= 0.4","selected_native_fills":{"dark_blue":[0.0,0.46666,0.733322],"light_blue":[0.199997,0.733322,0.933319]},"green_excluded_from_hard_polygon":true},
+  "calibration": {"log10_mX_MeV":"0.014151317772708815*x_pdf - 6.9932501456724525","log10_gX":"-0.0329969798924973*y_pdf - 2.6510803066554596"},
+  "scenarios": {
+    "Majorana": {"component_count":1,"area_decade2":48.332188584322665,"bounds_log10_GeV_log10g":[-8.997577562091603,-10.774903928382372,-1.2015738249824954,-3.0186996528406036],"selected_drawing_ids":[37,42],"area_refinement_rel":0.0,"symdiff_refinement_rel":0.0,"boundary_control_max_pt":8.526512829121202e-14,"valid":true},
+    "Dirac": {"component_count":1,"area_decade2":45.129364149717375,"bounds_log10_GeV_log10g":[-8.997577562091603,-10.572401176797548,-1.9985338229221234,-3.0186996528406036],"selected_drawing_ids":[46,51],"area_refinement_rel":0.0,"symdiff_refinement_rel":0.0,"boundary_control_max_pt":4.33283902393262e-14,"valid":true}
+  },
+  "hosted": {"run":34161859886,"job":101865153356,"artifact":10032854190,"artifact_zip_bytes":1228,"artifact_zip_sha256":"f00a461bb3780538d341c47b39b11ede9a4b5b34e928d679d2844c51db9d23bc","raw_json_bytes":7430,"raw_json_sha256":"2d288fedc2da00da1a44e1536d0555bd5931a0052fbc48f29e4984bab2c66f97","dedicated_tests":"4 passed in 0.23s"},
+  "guard":"Majorana and Dirac remain separate scenario-conditioned regions. No green inclusion, raster/manual input, topology repair, global-envelope union or BSM response scan."
+}
