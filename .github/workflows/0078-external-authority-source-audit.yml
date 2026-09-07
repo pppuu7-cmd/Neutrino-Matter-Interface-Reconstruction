@@ -1,0 +1,30 @@
+name: NMIR 0078 external authority source audit
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_deromeri_2603_source_0078.py'
+      - '.github/workflows/0078-external-authority-source-audit.yml'
+  workflow_dispatch:
+
+jobs:
+  audit-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit arXiv source and B-L figure assets
+        run: python scripts/audit_deromeri_2603_source_0078.py
+      - name: Hash audit result
+        if: always()
+        run: |
+          if [ -f deromeri_2603_source_audit_0078.json ]; then sha256sum deromeri_2603_source_audit_0078.json; fi
+      - name: Upload audit result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0078-source-audit
+          path: deromeri_2603_source_audit_0078.json
+          if-no-files-found: error
