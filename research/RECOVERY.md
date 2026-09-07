@@ -5,7 +5,7 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable scientific/architecture record: `research/iterations/0071_b_minus_l_primary_constraints_ledger.md`
+Latest completed immutable scientific/architecture record: `research/iterations/0071_b_minus_l_primary_constraints_ledger.md`
 Current prospective gate: `research/prereg/0072_b_minus_l_contour_materialization_contract.md`
 Current readiness: `NMIR_READINESS: 89%`.
 
@@ -59,38 +59,49 @@ Exact-state Cu63 target package authority:
 - reverse-strength envelope `B_reverse=2.85e-3...6.72e-2` (~23.58× spread).
 
 0067 source-tail gate: prereg `e42cd8ccd8a321cfa850b87b0fbd8d11bed30956`; authoritative run/job `34081044588/101616231800`; artifact `10003691395`; ZIP SHA256 `22cc917e5ac275fb509d78b69565736a0d73f433f45461bb20d4d0e01232bfb9`; classification `PASS_SOURCE_TAIL_RECOMPUTED / RATE_FOLD_OPEN`.
-Validated source numbers from Haxton-Lin ordinary-Compton Eq. (9)+BP98: `dPhi_anti-nu_e/dE(162.496486 keV)=3.528363521736758e-41 cm^-2 s^-1 MeV^-1`; 5-keV sanity value `3.765698986767552e7`; 6000->12000 relative change `5.832844895924436e-8`; BP98 blob SHA256 `6bd3c2d9cde15b74cf1fcebe1620566e2b3d832c09e65fc36d5422a6ef0bf198`.
+Validated source value: `dPhi_anti-nu_e/dE(162.496486 keV)=3.528363521736758e-41 cm^-2 s^-1 MeV^-1`.
 
-0068 primary normalization/materialization gate: prereg commit `44abb5844e6bbcd358fd224052cf7bce92f2e881`; ledger commit `dfe1b11538079a7cb76c7c1aedba0c8c366ff50d`; immutable note commit `0a7d726dbb599d78831f91a888c1947a6c6d542c`; classification **`BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`**.
+0068 classification **`BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`**. No Cu63 rate or W/kg is claimed.
 
 **G8 state:** `BLOCKED_NOT_ACTIONABLE` at primary normalization authority. This is not a physical no-go.
 
 ## G9 distant-source focusing
-0061: `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`. At `b/Rsun=0.024`, focus `24.073780819657056 AU`; 21-km source at 10 kpc projects to `0.2451 mm`; 1/10/100-m alignment probabilities `~1.93e-26,1.93e-24,1.93e-22`; impossible full-solar-disk collection still yields expected multiplier only `~1.00000000934`.
+0061: `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`. Frozen 10-kpc Galactic CCSN transparent-Sun expected utility remains negligible after finite-source/alignment/duty accounting.
 
-## BSM lock/unlock and constraint authority
+## BSM lock/unlock and completed constraint authority
 0066: `FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE` because G8/Cu63 was then immediately actionable.
 
 0069 re-applied the unchanged criterion after 0068 changed G8 to an authority blocker and classified **`PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`**. BSM response/enhancement scans remain forbidden until constraints are frozen.
 
 0070 classification: **`BLOCKED_BSM_CONSTRAINT_NORMALIZATION`**. A generic vector+scalar+axial common ledger cannot be built without post-hoc coupling/branching/thermal-history/UV assumptions. Anomaly-free `U(1)_{B-L}` remains the clean actionable gauge-complete benchmark.
 
-0071 prereg commit `80d93debb2a20e35d6e06fa3000591f82ffbd1a8`; machine-readable primary-family ledger commit `70a282743c9b9b0d6c1ab495ee45eed61e2f0e99`; immutable iteration commit `805140c678211c5ebc1e586eb031e2e6f2ab96f1`.
-
-0071 classification: **`BLOCKED_B_MINUS_L_PRIMARY_CONTOUR_MATERIALIZATION`**.
-- All required primary B-L constraint families were identified in compatible model language: CEvNS/neutrino scattering, neutrino-electron/direct detection, collider context, stellar/SN, cosmology and fifth force.
-- Representative authorities include Cadeddu et al. JHEP 01 (2021) 116; De Romeri et al. JHEP 05 (2024) 165; Hong-Shin-Yun PRD 103 (2021) 123031; Esseili-Kribs JCAP 05 (2024) 110; and MICROSCOPE-derived long-range B-L analyses.
-- The blocker is numerical reproducibility: several controlling constraints are published primarily as graphical contours without a common machine-readable table. 0071 forbids reading values by eye from uncalibrated plots.
-- No global surviving region and no full-interval exclusion is therefore claimed.
+0071 classification: **`BLOCKED_B_MINUS_L_PRIMARY_CONTOUR_MATERIALIZATION`**. All required primary B-L constraint families were identified, but several controlling constraints are graphical and cannot be combined reproducibly without an auditable materialization step. Prereg `80d93debb2a20e35d6e06fa3000591f82ffbd1a8`; ledger `70a282743c9b9b0d6c1ab495ee45eed61e2f0e99`; immutable note `805140c678211c5ebc1e586eb031e2e6f2ab96f1`.
 
 BSM remains **`UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`**. No B-L NMIR response/enhancement scan is allowed.
 
-## Current prospective gate — 0072
-`research/prereg/0072_b_minus_l_contour_materialization_contract.md`, prereg commit `837a092a46d3b0d99f222c3777af8499f01c2062`.
+## 0072 in-progress authority — reproducible B-L contour materialization
+Prospective contract: `research/prereg/0072_b_minus_l_contour_materialization_contract.md`, prereg commit `837a092a46d3b0d99f222c3777af8499f01c2062`.
 
-Materialize controlling primary B-L contours by auditable routes only: author/publisher numerical data or public code first; otherwise calibrated vector-path extraction from PDF/XML/SVG; otherwise independent likelihood reproduction under the exact primary B-L convention. Manual raster plot reading is forbidden.
+Commits newer than the previous recovery reconciliation were inspected before new science:
+- `bd686278ef20bdf7febaaa5c00b53a5b4e77dc33` — route audit ledger;
+- `814e3dc8519c258c95649f66545c89ff9919fc16` — audited Yukawa/B-L conversion helpers;
+- `a78ce79fe41c594b91b2b2fdb78d181cd751318f` — conversion tests;
+- `04df3420e198f14579d506b04f6ec0980391db0e` — expanded primary-route audit.
 
-Priority order: fifth-force low-mass region; BBN/CMB + stellar/SN eV–MeV region; CEvNS/neutrino-electron/direct-detection keV–GeV region. Only after enough validated contours cover the full frozen `1e-6 eV–10 GeV` interval may a global allowed region be frozen.
+Low-mass fifth-force authority is now normalized without contour invention:
+- Wagner et al. arXiv:1207.2442 gives `alpha_tilde = +/- g_tilde^2/(4*pi*G*u^2)` and explicitly states Fig. 6 is the 95% CL vector-Yukawa bound for `q_tilde=N=B-L` derived from lab-fixed Eot-Wash data plus geophysical source modelling.
+- Frozen conversion helper: `|g_BL| = 2.70463357586823e-19*sqrt(|alpha_tilde|)` and `m_V[eV]=1.973269804e-7/lambda[m]`.
+- The frozen lower mass edge `1e-6 eV` corresponds to `lambda=0.1973269804 m`.
+- The arXiv HTML layer exposes Fig. 6 only as raster `WEP_figure6.png`; manual/raster digitization is forbidden by 0072. The TeX source archive is linked but its vector asset has not yet been materialized through the available route, so route 2 is **not** declared exhausted.
+- Secondary `AxionLimits/EotwashEP.txt` remains regression-only and is not scientific authority.
+
+Direct-detection route remains independently actionable: De Romeri–Papoulias–Ternes JHEP 05 (2024) 165 publishes the same-convention B-L event-rate/likelihood framework, while primary PandaX-4T solar-pp electron-recoil information provides an experimental anchor for route-3 reproduction. No contour has yet been accepted from this route.
+
+Cosmology/stellar authorities Esseili–Kribs (arXiv:2308.07955) and Hong–Shin–Yun (arXiv:2012.05427) are identified, but no author numerical data/code product has yet been materialized.
+
+**0072 acceptance remains open:** `primary_contours_materialized=0`; no global allowed region is authorized; no manual plot reading or secondary contour authority has been used.
+
+Latest inspected CI: run/job `34102211415/101678992936` on head `a78ce79fe41c594b91b2b2fdb78d181cd751318f`, completed success. Raw log inspected: `356 passed in 14.10s`. This validates infrastructure/convention helpers only and is **not** a scientific contour PASS.
 
 ## Research-gate snapshot
 | Gate | Status |
@@ -100,14 +111,14 @@ Priority order: fifth-force low-mass region; BBN/CMB + stellar/SN eV–MeV regio
 | G2 many-body/detection | **BLOCKED_NOT_ACTIONABLE through 0063** |
 | G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS; absolute contact coefficient OPEN_NOT_CURRENTLY_ACTIONABLE** |
 | G4 engineered resonance/polarization/periodicity | broad passive guards CLOSED in stated scopes |
-| G5/G6 BSM | **UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY; generic normalization BLOCKED via 0070; B-L contour materialization prospective 0072** |
+| G5/G6 BSM | **UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY; B-L contour materialization 0072 IN PROGRESS** |
 | G7 production↔absorption | PARTIAL PASS |
 | G8 RIOEC | **Cu63 target/source provenance PASS; normalization authority BLOCKED via 0068** |
 | G9 gravity | **physical focusing PASS; 10-kpc CCSN utility STRONG NEGATIVE** |
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen scope |
 
 ## Exact next funnel gate
-**Execute 0072 first.** Reproducibly materialize primary `U(1)_{B-L}` constraints in `(m_V,g_BL)` without manual plot reading. No NMIR BSM enhancement calculation until a global external allowed region is immutable and a separate response contract is prospectively frozen.
+**Continue 0072.** First attempt to materialize the arXiv TeX/source archive for Wagner et al. and determine whether Fig. 6 has an EPS/PDF/vector source suitable for calibrated primary extraction. If that route remains unavailable, preserve the blocker and execute the independent same-convention PandaX/De-Romeri route-3 reproduction. In parallel audit Esseili–Kribs and Hong–Shin–Yun source archives for code/tables. No NMIR BSM response calculation until enough primary contours are validated to freeze the global allowed region.
 
 ## Critical guards
 Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Selected-nucleus two-body corrections are not universal maxima. A fitted EFT LEC range is not regulator-independent authority. A per-partial-wave unitarity bound does not justify a hard universal `lmax≈kR`. Inclusive response agreement does not isolate arbitrary contact strength when interference is allowed. Metastable amplification requires stored-energy/reset accounting. Low threshold is not full efficiency. Cross-detector rejection × acceptance multiplication is forbidden. Ordinary solar `nu_e` is forbidden for RIOEC. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
