@@ -5,36 +5,35 @@ from collections import defaultdict
 
 URL='https://arxiv.org/e-print/1207.2442'; TARGET='WEP_figure6.eps'
 NUM=r'[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][+-]?\d+)?'
-# PostScript operators must be complete whitespace-delimited tokens.  Matching bare
-# letters over the whole EPS would misread comments/labels such as Creator as C/M/L.
-TOK_RE=re.compile(rf'(?<!\S)({NUM}|C|M|L|SN|SL|N|CFN)(?!\S)')
+# Parse complete PostScript words, including nuisance operators that consume numeric
+# operands.  This is deliberately a tiny fail-closed interpreter for the GRAF EPS,
+# not a generic PostScript evaluator.
+WORD_RE=re.compile(rf'(?<!\S)({NUM}|[A-Za-z][A-Za-z0-9]*)(?!\S)')
+DRAW_OPS={'C','M','L','SN','SL','N','CFN'}
+ARITY={'C':3,'M':2,'L':2,'SL':1,'translate':2,'scale':2,'setlinecap':1,'setlinejoin':1,'setgray':1,'setmiterlimit':1}
+ZERO_ARITY={'SN','N','CFN','gsave','grestore','showpage','stroke','newpath','closepath'}
 
 def tokenize_eps(text: str) -> list[str]:
+    """Return only numeric operands and drawing operators, consuming nuisance ops.
+
+    Numeric operands preceding known non-drawing operators are removed so they can
+    never leak into a later C/M/L/SL operation. Unknown words clear the operand stack
+    in the interpreter below; this tokenizer stays useful for simple regression tests.
+    """
     toks=[]
     for line in text.splitlines():
         stripped=line.lstrip()
         if not stripped or stripped.startswith('%'):
             continue
-        # Remove a trailing PostScript comment only when it starts outside a literal
-        # string.  The Wagner graphics command stream used here has no needed % inside
-        # command operands; fail-closed token boundaries still prevent text glyphs from
-        # becoming drawing operators.
-        if '%' in line:
-            line=line.split('%',1)[0]
-        toks.extend(TOK_RE.findall(line))
+        if '%' in line: line=line.split('%',1)[0]
+        toks.extend(WORD_RE.findall(line))
     return toks
 
-def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--output',required=True); args=ap.parse_args()
-    req=urllib.request.Request(URL,headers={'User-Agent':'NMIR-0072a-path-parser/1.1'})
-    with urllib.request.urlopen(req,timeout=60) as r: body=r.read()
-    with tarfile.open(fileobj=io.BytesIO(body),mode='r:gz') as tf: eps=tf.extractfile(tf.getmember(TARGET)).read()
-    text=eps.decode('latin-1',errors='replace')
-    toks=tokenize_eps(text)
+def parse_paths(text: str):
     stack=[]; color=(0.0,0.0,0.0); width=None; path=[]; paths=[]
     def popn(n):
-        nonlocal stack
-        if len(stack)<n: return None
+        if len(stack)<n:
+            stack.clear(); return None
         vals=stack[-n:]; del stack[-n:]; return vals
     def flush():
         nonlocal path
@@ -42,7 +41,7 @@ def main():
             xs=[p[0] for p in path]; ys=[p[1] for p in path]
             paths.append({'color':list(color),'linewidth':width,'n':len(path),'bbox':[min(xs),min(ys),max(xs),max(ys)],'first':list(path[0]),'last':list(path[-1]),'points':path[:]})
         path=[]
-    for t in toks:
+    for t in tokenize_eps(text):
         if re.fullmatch(NUM,t): stack.append(float(t)); continue
         if t=='C':
             vals=popn(3)
@@ -61,22 +60,37 @@ def main():
                 if not path: path=[tuple(vals)]
                 else: path.append(tuple(vals))
         elif t in ('SN','N','CFN'):
-            flush()
-    flush()
+            flush(); stack.clear()
+        elif t in ARITY:
+            popn(ARITY[t])
+        elif t in ZERO_ARITY:
+            if t in ('stroke','newpath','closepath'): flush()
+            stack.clear()
+        else:
+            # Definitions, font/text machinery, transforms not explicitly modeled:
+            # clear any pending operands so they cannot contaminate later draw ops.
+            stack.clear()
+    flush(); return paths
+
+def main():
+    ap=argparse.ArgumentParser(); ap.add_argument('--output',required=True); args=ap.parse_args()
+    req=urllib.request.Request(URL,headers={'User-Agent':'NMIR-0072a-path-parser/1.2'})
+    with urllib.request.urlopen(req,timeout=60) as r: body=r.read()
+    with tarfile.open(fileobj=io.BytesIO(body),mode='r:gz') as tf: eps=tf.extractfile(tf.getmember(TARGET)).read()
+    text=eps.decode('latin-1',errors='replace'); paths=parse_paths(text)
     by=defaultdict(list)
     for i,p in enumerate(paths): by[tuple(p['color'])].append((i,p))
     colors=[]
     for c, items in by.items():
         xs=[]; ys=[]
-        for _,p in items:
-            xs += [p['bbox'][0],p['bbox'][2]]; ys += [p['bbox'][1],p['bbox'][3]]
+        for _,p in items: xs += [p['bbox'][0],p['bbox'][2]]; ys += [p['bbox'][1],p['bbox'][3]]
         longest=sorted(items,key=lambda z:z[1]['n'],reverse=True)[:20]
         colors.append({'color':list(c),'path_count':len(items),'bbox':[min(xs),min(ys),max(xs),max(ys)],'longest_paths':[{'index':i,'n':p['n'],'linewidth':p['linewidth'],'bbox':p['bbox'],'first':p['first'],'last':p['last']} for i,p in longest]})
     candidates=[]
     for i,p in enumerate(paths):
         if tuple(p['color'])!=(0.0,0.0,0.0) and p['n']>=10:
             candidates.append({'index':i,**p})
-    out={'iteration':'0072a','eps_sha256':hashlib.sha256(eps).hexdigest(),'path_count':len(paths),'colors':sorted(colors,key=lambda x:(x['color'])),'candidate_nonblack_paths':candidates}
+    out={'iteration':'0072a','parser_version':'1.2','eps_sha256':hashlib.sha256(eps).hexdigest(),'path_count':len(paths),'colors':sorted(colors,key=lambda x:(x['color'])),'candidate_nonblack_paths':candidates}
     with open(args.output,'w',encoding='utf-8') as f: json.dump(out,f,indent=2,sort_keys=True); f.write('\n')
     print(json.dumps({'path_count':len(paths),'colors':[(x['color'],x['path_count']) for x in colors],'candidate_nonblack_count':len(candidates)},sort_keys=True))
 if __name__=='__main__': main()
