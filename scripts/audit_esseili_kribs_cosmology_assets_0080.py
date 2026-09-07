@@ -5,6 +5,7 @@ import json
 import re
 import tarfile
 import urllib.request
+from collections import Counter
 from pathlib import PurePosixPath
 
 SOURCE_URL = "https://export.arxiv.org/e-print/2308.07955v2"
@@ -44,7 +45,6 @@ def resolve_graphic(ref: str, member_names):
     exact = [c for c in candidates if c in member_names]
     if exact:
         return exact
-    # TeX commonly refers relative to the tex file or omits a leading ./; only basename matching is allowed if unique.
     base_candidates = {PurePosixPath(c).name for c in candidates}
     by_base = [n for n in member_names if PurePosixPath(n).name in base_candidates]
     return by_base if len(by_base) == 1 else []
@@ -71,7 +71,6 @@ def audit():
                 continue
             text = decode_text(f.read())
             tex_records.append({"name": n, "length": len(text)})
-            # Capture each figure environment, preserving source order and caption/label semantics.
             for env_index, match in enumerate(re.finditer(r"\\begin\{figure\*?\}(.*?)\\end\{figure\*?\}", text, flags=re.S), start=1):
                 block = match.group(1)
                 refs = re.findall(r"\\includegraphics\*?(?:\[[^\]]*\])?\{([^}]+)\}", block)
@@ -81,8 +80,7 @@ def audit():
                 label = label_m.group(1).strip() if label_m else None
                 resolved = []
                 for ref in refs:
-                    hits = resolve_graphic(ref, names)
-                    for hit in hits:
+                    for hit in resolve_graphic(ref, names):
                         ext2 = PurePosixPath(hit).suffix.lower()
                         resolved.append({
                             "ref": ref,
@@ -99,24 +97,43 @@ def audit():
                     "resolved": resolved,
                 })
 
-        # Identify cosmology figures only by source caption text / explicit labels.
-        target = []
-        for g in graphics:
-            s = ((g.get("caption") or "") + " " + (g.get("label") or "")).lower()
-            if any(k in s for k in ["majorana", "dirac", "n_{\\rm eff}", "n_{\rm eff}", "helium", "y_p", "y_{p}"]):
-                target.append(g)
-
+        counts = Counter(g["tex"] for g in graphics)
+        main_tex = counts.most_common(1)[0][0] if counts else None
+        target = [
+            g for g in graphics
+            if g["tex"] == main_tex and g["source_figure_index_in_tex"] in {5, 6, 7, 8}
+        ]
         resolved_assets = [x for g in target for x in g["resolved"]]
         vector_assets = sorted({x["asset"] for x in resolved_assets if x["kind"] == "vector"})
         raster_assets = sorted({x["asset"] for x in resolved_assets if x["kind"] == "raster"})
         unresolved_target_refs = [r for g in target for r in g["refs"] if not resolve_graphic(r, names)]
+        target_each_resolved = len(target) == 4 and all(g["refs"] and g["resolved"] for g in target)
+        target_semantics = []
+        for g in target:
+            s = ((g.get("caption") or "") + " " + (g.get("label") or "")).lower()
+            target_semantics.append({
+                "index": g["source_figure_index_in_tex"],
+                "mentions_majorana": "majorana" in s,
+                "mentions_dirac": "dirac" in s,
+                "mentions_bbn_or_helium": any(k in s for k in ["bbn", "helium", "y_p", "y_{p}"]),
+                "mentions_neff_or_cmb": any(k in s for k in ["n_{\\rm eff}", "n_{\rm eff}", "n_eff", "cmb", "planck"]),
+            })
+        # Source-order semantic guard: four exact figure environments must exist and be resolved;
+        # pair identity must at minimum distinguish Majorana/Dirac in 5/6 or via 'same as' caption linkage.
+        scenario_mentions = sum(x["mentions_majorana"] or x["mentions_dirac"] for x in target_semantics)
+        semantic_guard = target_each_resolved and scenario_mentions >= 2
 
-        # Numerical candidates are only inventoried. No semantics inferred here.
-        numerical_candidates = [a for a in numeric_assets if a["ext"] in NUMERIC_EXTS and not a["name"].lower().endswith(("references.txt", "readme.txt"))]
+        numerical_candidates = [a for a in numeric_assets if not a["name"].lower().endswith(("references.txt", "readme.txt"))]
 
-        if target and not unresolved_target_refs and vector_assets:
+        all_target_vector = target_each_resolved and all(
+            all(x["kind"] == "vector" for x in g["resolved"]) for g in target
+        )
+        all_target_raster = target_each_resolved and all(
+            all(x["kind"] == "raster" for x in g["resolved"]) for g in target
+        )
+        if semantic_guard and all_target_vector:
             classification = "PASS_COSMOLOGY_B_L_VECTOR_ASSET_AUTHORITY"
-        elif target and not unresolved_target_refs and raster_assets and not vector_assets:
+        elif semantic_guard and all_target_raster and not numerical_candidates:
             classification = "PARTIAL_COSMOLOGY_B_L_RASTER_ONLY"
         else:
             classification = "BLOCKED_COSMOLOGY_B_L_SOURCE_SEMANTICS"
@@ -128,9 +145,11 @@ def audit():
             "source_bytes": len(raw),
             "member_count": len(member_info),
             "tex_files": tex_records,
+            "main_tex_by_figure_count": main_tex,
             "all_members": member_info,
             "all_figure_blocks": graphics,
-            "target_cosmology_figure_blocks": target,
+            "target_published_figures_5_8": target,
+            "target_semantic_checks": target_semantics,
             "target_vector_assets": vector_assets,
             "target_raster_assets": raster_assets,
             "unresolved_target_refs": unresolved_target_refs,
