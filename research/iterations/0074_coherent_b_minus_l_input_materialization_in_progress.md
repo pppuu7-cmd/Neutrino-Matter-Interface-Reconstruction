@@ -14,7 +14,7 @@ Radiatively corrected weak couplings used by the analysis are `gV^p(nu_e)=0.0401
 ## CsI fit structure
 Cadeddu et al. use bins `i=4..15` (12 bins) because the fit is restricted to the Chicago-3 quenching-factor range. The least-squares nuisance widths are signal normalization `sigma_alpha=0.112`, background normalization `sigma_beta=0.25`, and quenching normalization `sigma_eta=0.051`.
 
-The official COHERENT data page confirms the first-observation CsI public release and links its Zenodo/direct archive. Exact package bytes and hashes still need to be materialized before the gate can close.
+The official COHERENT data page confirms the first-observation CsI public release and links Zenodo record `1228631`. Exact package bytes and hashes are being materialized by the hosted fail-closed route below.
 
 ## Ar fit structure and public numerical package
 Cadeddu et al. use COHERENT liquid-Ar `Analysis A`, reconstructed range `0–120 keVee` in 12 bins of 10 keVee. Frozen nuisance widths from the primary analysis are CEvNS `13.4%`, prompt beam-related neutrons `32%`, late beam-related neutrons `100%`, plus uncorrelated beam-related-neutron energy-shape uncertainty `sqrt(0.058^2/12)=1.7%` per energy bin.
@@ -22,6 +22,11 @@ Cadeddu et al. use COHERENT liquid-Ar `Analysis A`, reconstructed range `0–120
 The official COHERENT public-data page links Zenodo DOI `10.5281/zenodo.3903810`, version 1.0, explicitly corresponding to Analysis A of the first liquid-Ar CEvNS measurement. The record exposes primary numerical files covering observed data, CEvNS/background PDFs, Analysis-A efficiency, parameters, and systematic-error inputs, including `datanobkgsub.txt`, `energydata1d.txt`, `f90data1d.txt`, `cevnspdf.txt`, `bkgpdf.txt`, BRN PDF files, `CENNS10AnlAEfficiency.txt`, `LArParametersAnlA.yaml`, and `systerrors1denergy.txt`.
 
 This removes the question of whether the Ar side is publicly materializable. It does **not** yet establish a scientific likelihood reproduction: bytes/SHA256 pins and the preregistered SM/background benchmark are still open.
+
+## Hosted byte-level materialization route
+To remove local-network dependence without changing the scientific contract, commit `85bf59471b9b18ac7da823f9b242dfc2a67f8450` added `scripts/materialize_coherent_0074.py`. It queries only the frozen official Zenodo record IDs `3903810` (Ar Analysis A) and `1228631` (CsI first observation), downloads every exposed file, requires exact file sizes, verifies any Zenodo `md5:` checksum, computes SHA256 for every file, and emits a machine-readable manifest. It performs no likelihood or B-L calculation.
+
+Commit `bfe83c5b54507fb3677cf86e8ab994cd3dc0dfd9` added `.github/workflows/coherent-0074-materialize.yml`, which archives the exact primary bytes plus manifest as a GitHub Actions artifact. Hosted run `34130108479`, job `101767911241`, is currently `in_progress` in the materialization step. Do not duplicate it. Green completion will not be scientific PASS; raw log, manifest and artifact bytes/hash must be inspected before accepting the package pins.
 
 ## Scientific guards
 No B-L parameter scan has been performed. No contour points were read from a plot. No missing covariance/background term was replaced by an Asimov/diagonal approximation. No different-generation COHERENT release was mixed into the fit.
