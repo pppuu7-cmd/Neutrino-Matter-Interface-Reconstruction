@@ -9,8 +9,11 @@ on:
       - 'scripts/summarize_wagner_geometry_0072.py'
       - 'scripts/extract_wagner_axis_ticks_0072a.py'
       - 'scripts/calibrate_wagner_axes_0072b.py'
+      - 'scripts/extract_wagner_named_curves_0072c.py'
       - 'data/wagner_figure6_tick_authority_0072a.json'
       - 'research/prereg/0072b_wagner_axis_tick_association.md'
+      - 'research/prereg/0072c_wagner_named_curve_chaining.md'
+      - 'research/amendments/0072c_llr_label_correction.md'
       - '.github/workflows/b-minus-l-wagner-source-audit.yml'
   workflow_dispatch:
 
@@ -35,6 +38,7 @@ jobs:
           python scripts/summarize_wagner_geometry_0072.py --paths-json artifacts/wagner_eps_paths_0072.json --output artifacts/wagner_geometry_summary_0072.json
           python scripts/extract_wagner_axis_ticks_0072a.py --output artifacts/wagner_axis_ticks_0072a.json
           python scripts/calibrate_wagner_axes_0072b.py --axis-json artifacts/wagner_axis_ticks_0072a.json --tick-authority data/wagner_figure6_tick_authority_0072a.json --output artifacts/wagner_axis_calibration_0072b.json
+          python scripts/extract_wagner_named_curves_0072c.py --axis-calibration artifacts/wagner_axis_calibration_0072b.json --output artifacts/wagner_named_curves_0072c.json
       - name: Show raw audit results
         if: always()
         run: |
@@ -43,6 +47,15 @@ jobs:
           cat artifacts/wagner_geometry_summary_0072.json || true
           cat artifacts/wagner_axis_ticks_0072a.json || true
           cat artifacts/wagner_axis_calibration_0072b.json || true
+          python - <<'PY'
+          import json
+          p='artifacts/wagner_named_curves_0072c.json'
+          try:
+              d=json.load(open(p))
+              print(json.dumps({k:d[k] for k in ['classification','topology','identity','roundtrip_max_abs_eps']},indent=2,sort_keys=True))
+          except Exception as e:
+              print(e)
+          PY
           sha256sum artifacts/*.json || true
       - name: Persist auditable results on main
         if: success()
@@ -53,13 +66,14 @@ jobs:
           cp artifacts/wagner_geometry_summary_0072.json data/wagner_geometry_summary_0072.json
           cp artifacts/wagner_axis_ticks_0072a.json data/wagner_axis_ticks_0072a.json
           cp artifacts/wagner_axis_calibration_0072b.json data/wagner_axis_calibration_0072b.json
+          cp artifacts/wagner_named_curves_0072c.json data/wagner_named_curves_0072c.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/wagner_source_audit_0072.json data/wagner_eps_probe_0072.json data/wagner_eps_paths_0072.json data/wagner_geometry_summary_0072.json data/wagner_axis_ticks_0072a.json data/wagner_axis_calibration_0072b.json
+          git add data/wagner_source_audit_0072.json data/wagner_eps_probe_0072.json data/wagner_eps_paths_0072.json data/wagner_geometry_summary_0072.json data/wagner_axis_ticks_0072a.json data/wagner_axis_calibration_0072b.json data/wagner_named_curves_0072c.json
           if git diff --cached --quiet; then
             echo 'No result change to commit.'
           else
-            git commit -m 'Record hosted Wagner axis calibration for 0072b'
+            git commit -m 'Record hosted Wagner named curves for 0072c'
             git push
           fi
       - name: Upload immutable audit artifact
