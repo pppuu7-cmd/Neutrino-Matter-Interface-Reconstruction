@@ -1,0 +1,44 @@
+{
+  "iteration": "0080c",
+  "classification": "PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_95CL_SEMANTICS",
+  "source_url": "https://export.arxiv.org/e-print/2308.07955v2",
+  "source_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+  "main_tex": "neff_arXiv_v2.tex",
+  "main_tex_sha256": "f77b577688b3609c574985b05fc9a213709c958ded60a511478357f1f881d678",
+  "main_tex_bytes": 137562,
+  "checks": {
+    "planck_phrase": true,
+    "planck_range_0p3_0p4": true,
+    "planck_dataset_dependence": true,
+    "conservative_phrase": true,
+    "conservative_range_0p3_0p4": true,
+    "conservative_95cl": true,
+    "dark_light_blue_ruled_out": true,
+    "green_strongly_disfavored": true,
+    "fig5_levels": true,
+    "fig5_color_order": true,
+    "fig6_same_as_fig5": true
+  },
+  "frozen_nmir_semantics": {
+    "hard_exclusion_delta_neff_min": 0.4,
+    "confidence": "95% C.L.",
+    "hard_excluded_colors": ["light blue", "dark blue"],
+    "not_hard_excluded_color": "green",
+    "green_semantics": "strongly disfavored only"
+  },
+  "hosted": {
+    "authoritative_run": 34161487414,
+    "authoritative_job": 101864078212,
+    "artifact": 10032738989,
+    "artifact_zip_bytes": 2322,
+    "artifact_zip_sha256": "bcdef158881eec04c098014acfa934fb734638271c7aea265a0da3a3dd54e726",
+    "raw_json_bytes": 7133,
+    "raw_json_sha256": "95e1bb45150f54c3c23a9f8d3db6f49dba17102dc563de267cb56f8a77cd5bd6",
+    "dedicated_tests": "3 passed in 0.04s",
+    "superseded_parser_run": 34161423753,
+    "superseded_parser_job": 101863884618,
+    "superseded_artifact": 10032719610,
+    "superseded_classification": "IMPLEMENTATION_INVALID_TEX_PARSER_FALSE_NEGATIVES"
+  },
+  "guard": "Primary textual semantics only. No vector path extraction, no manual figure reading, no interpolation, no scenario/global-envelope union, and no BSM response scan."
+}
