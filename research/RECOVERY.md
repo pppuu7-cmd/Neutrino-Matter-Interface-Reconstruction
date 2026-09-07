@@ -4,7 +4,7 @@ Last reconciled: 2026-09-07
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0073a_pandax_root_vector_extraction.md`
+Latest completed immutable record: `research/iterations/0073b_pandax_separated_minor_background_audit.md`
 `NMIR_READINESS: 89%`.
 
 ## Recovery order
@@ -37,40 +37,32 @@ Parent prereg commit `837a092a46d3b0d99f222c3777af8499f01c2062`. Primary Wagner 
 0072b `PASS_WAGNER_AXIS_CALIBRATION`: max axis residuals `0.0012151893845810946` and `0.0008843296043608007` decades under frozen 0.002 threshold. 0072c `PARTIAL_PASS_WAGNER_VECTOR_CURVES`: Princeton, Moscow, LLR inverse-square/precession and LLR differential-acceleration accepted. 0072d `SCIENTIFIC_FAIL_WAGNER_BLUE_IDENTITY`: four blue chains cross under preregistered pairwise-order rule; no post-hoc semantic rescue. Hosted run/job `34112933849/101713070731`; artifact `10015072386`, ZIP SHA256 `ce4db4c90c234e79b60d019f3e8b9326bf81860a9ec365e75400fd40d58ea8ce`; immutable commit `d2fe40f5890879671ab7a686194cfc1b990d5920`.
 
 ## 0073 PandaX / De-Romeri independent route
-Parent prereg: `research/prereg/0073_pandax_b_minus_l_likelihood_input_materialization.md`, commit `20ee0ab7cf4ab3d709c147a4826d4b24897cc83a`. Initial documentary result `PARTIAL_PASS_PANDAX_INPUTS_NEED_ONE_NAMED_COMPONENT`, ledger `fd5f6fb92bee6c9390e462fe3358852ae4431ca0`, immutable iteration `a5e3ce79cf2be80937e8a37877ab01a8dd1d7938`.
-
-Previously frozen primary inputs: exposure `0.63 ton*year`; De-Romeri pp+7Be Eq.(8)/(10) event structure and Eq.(11) Poisson profile likelihood; PandaX Table-I nuisances (tritium free; flat ER 9%; Xe136 16%; Xe127 25%; accidental 20%; surface 25%; neutron 50%; B8 28%); total selected data 1058; approximate resolution polynomial.
+Parent prereg commit `20ee0ab7cf4ab3d709c147a4826d4b24897cc83a`.
 
 ### 0073a — primary ROOT-vector extraction
-Prospective contract commit `70763859ab41e03ce58925c3b39287de4ecb2d1b`. Classification: **`PARTIAL_PASS_VECTOR_DATA_EFFICIENCY_ONLY`**. Immutable iteration commit `a83158d84b603796a81103fc36e5c2fd70204d3e`; summary ledger commit `9d2cc9f4285c42bf092af4d6681d2bf8c772bf63`; extractor commit `51812e62634b287ab1b5d09a06fcdff92c13408b`; workflow commit `f728bf2b4a034082a210020f28231bd9c8d525f2`.
+Prereq contract commit `70763859ab41e03ce58925c3b39287de4ecb2d1b`; classification `PARTIAL_PASS_VECTOR_DATA_EFFICIENCY_ONLY`; immutable commit `a83158d84b603796a81103fc36e5c2fd70204d3e`. Primary arXiv:2206.02339v3 archive SHA256 `b077b657e30a2efc07fb37f3c389d365ef670c408a5dc42cafc7af06a5e75db3`. Accepted exact observed counts for 0–30 keV 1-keV bins: `[3,39,67,73,90,71,70,53,54,64,57,41,38,44,26,29,18,23,24,22,8,26,18,23,26,20,19,7,3,2]`, sum exactly 1058. Primary efficiency extraction yields 301 deterministic points. Hosted scientific authority run/job `34119097740/101732725133`; artifact `10017450789`; ZIP SHA256 `8d58850fca7067c84bc439b4efb1809ee321b9e574f6ae652798dc01ea971e14`.
 
-Primary arXiv:2206.02339v3 source archive is now materialized and hash-pinned: SHA256 `b077b657e30a2efc07fb37f3c389d365ef670c408a5dc42cafc7af06a5e75db3`. Target primary vector PDFs contain zero raster images:
-- `Fig1EffAndXsec.pdf` SHA256 `278d32e97b25724a58ae5b003ab4ab834710efde95fd53ba91d093af8d2379be`;
-- `Fig3_bestFit_gpu.pdf` SHA256 `fd35badb5eb0ed280caf90691c32a96e8ec65271af28be180f7c9d6c027fe56d`.
+### 0073b — separated minor-background public-primary audit
+Frozen prereg commit `750dcc8c6e433e761ca31b47c42c8c11567471bd`. Classification: **`BLOCKED_PRIMARY_LIKELIHOOD_INPUTS`**. Machine-readable audit commit `db7e863322a2e02a6f71f9b30b26f2e118aa1f6f`; immutable iteration commit `579a730f4c8e608a99c70e930f82e4d97df0f866`.
 
-Hosted scientific authority: run/job `34119097740/101732725133`; artifact `10017450789`; artifact ZIP SHA256 `8d58850fca7067c84bc439b4efb1809ee321b9e574f6ae652798dc01ea971e14`; raw result JSON SHA256 `0f208e5e9ed4c732af28365dffd4ab8becfe45e7f34cf8525ba2c974e4f4304e`. Raw log inspected directly.
+The official PandaX public release index has no dedicated release for PRL 129, 161804 / arXiv:2206.02339. The commissioning `First Analysis` page exposes only `eff_RDQ_graph.root` and `PandaX4T_Data_ne.xlsx`; it does not provide the four separated 0–30 keV minor-background templates. SCOAP3 exposes PDF/XML only. Exact HEPData DOI/arXiv/title searches and public author-code/data searches produced no same-analysis four-template package. A dedicated PandaX neutron-background study exists but does not supply the complete same-selection set needed by the frozen likelihood. Later/different PandaX releases cannot be substituted without explicit selection/response/template identity provenance.
 
-Accepted exact 1-keV observed counts for centers 0.5...29.5 keV:
-`[3,39,67,73,90,71,70,53,54,64,57,41,38,44,26,29,18,23,24,22,8,26,18,23,26,20,19,7,3,2]`.
-Their sum is exactly `1058`, independently matching the primary stated total. Vector calibration residuals: Fig3 energy `3.0486563563414393e-05 keV`; rate `1.2735119541673612e-04 events/keV`; max half-keV-center residual `3.0862317444757537e-05 keV`; max integer-count residual `2.560689226527302e-04 event`.
+Therefore neutron, solar-8B, accidental, and surface/wall remain unavailable as individually normalized 30-bin templates. Fig. 3's grouped curve may not be split. The PandaX full-profile B-L likelihood route is retired under current public-primary evidence. 0073a observed bins and efficiency remain accepted standalone products; no PandaX B-L contour is authorized.
 
-The primary Fig1 vector source yields a deterministic 301-point efficiency central curve; efficiency-axis residual `9.833461238617502e-07`, round-trip max `6.355287432313019e-14 pt`, extracted range about `9.82e-7...0.80793125`. Full array is in artifact `10017450789` and reproducible from the hash-pinned PDFs with `scripts/extract_pandax_root_vectors_0073a.py`.
+## 0074 — current prospective gate
+`research/prereg/0074_coherent_b_minus_l_likelihood_materialization.md`, commit `1e9ffedebf56a5c07e14676a3aed03bfebd4ae23`.
 
-Controlling blocker: primary Fig3 publishes `neutron + 8B + accidental + wall/surface` as one grouped vector family, while the likelihood requires distinct nuisance normalizations (50%, 28%, 20%, 25%). The grouped curve cannot be silently split. Therefore no PandaX full-profile likelihood and no B-L contour are authorized.
-
-### 0073b — current prospective gate
-`research/prereg/0073b_pandax_separated_minor_background_author_data_audit.md`, commit `750dcc8c6e433e761ca31b47c42c8c11567471bd`.
-Audit official PandaX/publisher/author numerical releases for **separate** neutron, 8B, accidental and surface/wall 0–30 keV templates tied to the same selection/configuration. PASS requires all four hash-pinned templates with normalization/provenance and <=1% consistency with Table-I totals. No proportional splitting, raster reading, cross-analysis substitution or B-L calculation.
+Independently materialize the explicit B-L COHERENT CsI+Ar likelihood of Cadeddu et al. (JHEP 01 (2021) 116, arXiv:2008.05022) from primary/public COHERENT releases. Required before any B-L scan: exact observed bins, flux/source, response/acceptance/quenching, backgrounds, covariance/nuisances, SM CEvNS convention, and exact B-L interference/coupling normalization. A primary numerical SM/background benchmark and tolerance must be frozen before reproduction output is inspected. No contour reading by eye and no mixing incompatible COHERENT releases.
 
 ## Current funnel state
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G8 source/target provenance PASS, exact normalization BLOCKED.
 - G9 frozen source class strong-negative utility.
-- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner route partial PASS + blue semantic FAIL; PandaX route has exact observed spectrum + efficiency PASS but separated minor-background templates OPEN; no global B-L envelope.
+- BSM `UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`; Wagner route partial PASS + blue semantic FAIL; PandaX full-profile route BLOCKED by missing separated public-primary background templates; COHERENT B-L likelihood materialization 0074 is highest-value OPEN gate; no global B-L envelope.
 
 ## Exact next gate
-Execute 0073b. Exhaust primary/public PandaX data-release, publisher supplemental/HEPData/SCOAP3 and author-code/data routes for separate neutron, 8B, accidental and surface/wall templates. If all four materialize under frozen provenance/normalization criteria, prospectively preregister a PandaX SM/background benchmark reproduction. If at least one controlling component remains available only as a grouped curve/total or incompatible-analysis input after those routes are exhausted, classify `BLOCKED_PRIMARY_LIKELIHOOD_INPUTS` and retire the full-profile PandaX route without weakening the gate.
+Execute 0074. Materialize the exact Cadeddu/COHERENT CsI+Ar likelihood inputs and prospectively freeze a primary SM/background benchmark tolerance before computing its result. Only if that benchmark passes may a separate B-L contour scan be preregistered.
 
 ## Critical guards
-Raster/manual contour reading forbidden. No Asimov substitution for observed PandaX data. No proportional decomposition of grouped minor backgrounds. No XENON/LZ detector-function substitution. No assumption that another PandaX analysis uses identical response/background shapes without explicit same-configuration provenance. No post-result relaxation. No F9 multiplication of unvalidated gains.
+Raster/manual contour reading forbidden. No Asimov substitution for observed data when a primary observed-data likelihood is required. No proportional decomposition of grouped PandaX minor backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result relaxation. No F9 multiplication of unvalidated gains.
