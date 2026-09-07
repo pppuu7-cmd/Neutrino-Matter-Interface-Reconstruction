@@ -4,8 +4,8 @@ Last reconciled: 2026-09-07
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0074c_coherent_combined_likelihood_benchmark_authority_audit.md`
-Current prospective subgate: `research/prereg/0075_g9_persistent_known_direction_solar_lens_admissibility.md`, commit `60dfd94c269e8d5b3a23f73043c779099cd15783`.
+Latest completed immutable record: `research/iterations/0075_g9_persistent_known_direction_solar_lens_admissibility.md`, commit `0f5d60d2d114c3676363420ff2ea85f2fa0e9c3a`.
+Current prospective subgate: `research/prereg/0076_g9_global_multiimage_radial_kernel.md`, commit `05a3354dd2f8cdbba1f2dd04342161b515a10304`.
 `NMIR_READINESS: 91%`.
 
 ## Mandatory recovery order
@@ -21,28 +21,27 @@ Closed in stated scopes unless a genuinely new assumption changes them: naive st
 0049 transfer requirement: 10-kg Ar40, 10 accepted solar CEvNS/year -> `eta=0.42207478` at 10 eV, `0.75683153` at 20 eV, impossible `2.35795954` at 40 eV. 0050/0051 close known-background and nuisance-aware budgets. Representative S=10/year ceilings: 3sigma/30% `4.274968302863348/year`; 5sigma/30% `1.0806120114381677/year`; 5sigma/50% `0.692094879071742/year`. 0058 needs `1.44e7–1.78e7` additional rejection at full acceptance. 0063 `BLOCKED_PUBLIC_ACHIEVEMENT_ANCHOR`; G2 `BLOCKED_NOT_ACTIONABLE` pending genuinely new same-configuration sub-keV measured rejection×bulk-NR acceptance.
 
 ## G3
-0047 `PASS_KLOCAL_EXTENSIVITY`. 0048 empirical/EFT absolute-strength stress strongly negative but not theorem: 100× empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg needs amplitude `28796.42286 = 28511.31×` anchor. 0059 no universal coefficient hard bound; 0060 no actual-SM growing-coordination survivor in audited passive scope; 0062 partial-wave route is not coefficient-independent and too weak; 0065 `PASS_NO_COEFFICIENT_INDEPENDENT_OBSERVABLE_MAP / RESIDUAL_OPEN`. Absolute short-range/contact coefficient remains physically OPEN with no currently identified executable coefficient-independent route. 0065 specifically forbids repeating inclusive-response, GT/Ikeda or muon-capture information as a universal hard ceiling without a genuinely new operator theorem/assumption.
+0047 `PASS_KLOCAL_EXTENSIVITY`. 0048 empirical/EFT absolute-strength stress strongly negative but not theorem: 100× empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg needs amplitude `28796.42286 = 28511.31×` anchor. 0059 no universal coefficient hard bound; 0060 no actual-SM growing-coordination survivor in audited passive scope; 0062 partial-wave route is not coefficient-independent and too weak; 0065 `PASS_NO_COEFFICIENT_INDEPENDENT_OBSERVABLE_MAP / RESIDUAL_OPEN`. Absolute short-range/contact coefficient remains physically OPEN with no currently identified executable coefficient-independent route. 0065 forbids repeating inclusive-response, GT/Ikeda or muon-capture information as a universal hard ceiling without a genuinely new operator theorem/assumption.
 
 ## G8
 Exact Cu63 RIOEC state: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5/2-)`, `E_R=162.496486 keV`, `B_reverse=2.85e-3...6.72e-2`. 0067 `PASS_SOURCE_TAIL_RECOMPUTED / RATE_FOLD_OPEN`, run/job `34081044588/101616231800`, artifact `10003691395`, `dPhi_anti-nu_e/dE(E_R)=3.528363521736758e-41 cm^-2 s^-1 MeV^-1`. 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; no Cu63 rate/Wkg claimed. Ordinary solar `nu_e` forbidden for RIOEC.
 
 ## G9
-0061 `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`; frozen 10-kpc Galactic CCSN transparent-Sun utility negligible after finite-source/alignment/duty accounting. Its immutable scope explicitly does not close persistent/known-direction sources.
+0061 `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`, run/job `34071432319/101589393517`, artifact `10000583684`; frozen 10-kpc Galactic CCSN transparent-Sun utility negligible after finite-source/alignment/duty accounting. Its immutable scope explicitly did not close persistent/known-direction sources.
 
-### 0075 persistent/known-direction class — RUNNING
-Preregistered before any new utility calculation at commit `60dfd94c269e8d5b3a23f73043c779099cd15783`. This is a class-level map, not a named-source scan. It asks whether deliberate observer positioning for a persistent known-direction source removes the random-source alignment penalty while finite source size, receiver size and transverse position error remain explicit.
+### 0075 persistent/known-direction class — CLOSED BLOCKED
+Prospective contract commit `60dfd94c269e8d5b3a23f73043c779099cd15783`. Corrected implementation head `844ca8fcd5bfd46649a48bc37df39eb8a44c6c98`; hosted run/job `34149433817/101828380178`; artifact `10028826311`; artifact ZIP SHA256 `1c60e0ce3756250d82632df8b407202df98cd1bfe74774216950e8c4a0864ed8`. Artifact metadata digest and independently downloaded ZIP hash matched exactly, and the raw JSON artifact was inspected directly.
 
-Frozen grid: receiver radii `1,10,100 m`; source angular radius `1e-18...1e-6 rad`; transverse position errors `0,0.01,0.1,1,10,100 m`; representative validated focal distance `24.073780819657056 AU` plus neighboring valid focal rings from the same pinned Model-S implementation. Outputs must include real receiver-integrated magnification, an optimistic whole-solar-aperture ceiling, gain-threshold tolerances and critical source angular sizes. `PASS_G9_PERSISTENT_KNOWN_DIRECTION_SURVIVOR` requires a nonzero finite region with real-lens `mu>=2`; exact alignment alone is insufficient. No named astrophysical source may be declared viable until a later primary-source audit.
+Classification: **`BLOCKED_G9_PERSISTENT_GEOMETRY`**. Exact reason: `local focal branch turned before requested support`. No `mu>=2` survivor, no strong-negative utility map, and no grid point was claimed. Repository raw-result copy `data/g9_persistent_lens_0075.json`, commit `576c0ce88195686743d1c4d0651ae322a14e0f92`; immutable iteration commit `0f5d60d2d114c3676363420ff2ea85f2fa0e9c3a`.
 
-Implementation is now staged without changing the preregistered PASS threshold or grid:
-- finite-source/position convolution module `src/nmir/g9_persistent_lens.py`, commit `394d2ccaebcaa768727a230ff2b601df679c9eea`;
-- dedicated tests `tests/test_g9_persistent_lens.py`, initial commit `50b9dccfd6e6dd1628894d6582da2c164d99933f`, quadrature-regression correction `844ca8fcd5bfd46649a48bc37df39eb8a44c6c98` (test-only implementation correction before any scientific result);
-- fail-closed benchmark `scripts/g9_persistent_lens_benchmark.py`, commit `943c72cd5a64d7ed9253940567f8870204ca8560`;
-- hosted workflow `.github/workflows/g9-persistent-lens.yml`, commit `9636808657831a55c69353f153ca8773b29e88a8`.
+The blocker is sharply localized: the pinned Model-S lens equation exists globally in impact parameter, but the 0061 local one-ring monotone solver cannot be continued through a radial turn without a validated multi-image segmentation/no-double-counting rule. Stale run `34149348350` is non-authoritative regardless of status.
 
-The benchmark reuses the pinned Model-S radial focal map, evaluates focal-ring roots `b/Rsun = 0.020, 0.024, 0.030`, integrates an explicitly finite uniform angular source and circular receiver with transverse centre error, and independently checks an impossible full-solar-aperture duty=1 ceiling. It also prospectively enforces point-annulus reproduction (`<=3%`) and source-quadrature refinement (`<=5%`) as implementation-validation guards. `mu_real` is reported as unlensed baseline 1 plus the finite accepted one-ring contribution, which analytically approaches 1 for sufficiently large uniform-source blur; no time-averaged duty is claimed.
+### 0076 global multi-image radial kernel — RUNNING
+Prospectively frozen before any 0076 numerical result at commit `05a3354dd2f8cdbba1f2dd04342161b515a10304`. This is a geometry/method validation gate only; it is forbidden to inspect/classify the old 0075 utility map.
 
-Hosted scientific run on the corrected head is `34149433817`, job `101828380178`; at this reconciliation it is `queued`. Earlier run `34149348350` is a stale pre-test-correction head and must never become authority even if it later turns green. Do not launch another 0075 copy while corrected run `34149433817` is queued/in progress. Scientific classification remains OPEN until raw job output and artifact from the corrected run are inspected.
+Frozen method: full validated impact domain `1e-4<=b/Rsun<=1`; observer-distance controls generated by `b/Rsun=0.020,0.024,0.030`; discover/refine all signed-map roots; insert roots so narrow caustic intervals cannot be missed; solve disjoint global preimages of `|y|<=r` for `r=1e0...1e9 cm`; sum each impact annulus once. PASS requires root recovery within `1e-10`, nonnegative monotone cumulative area <= `pi R_sun^2`, local exact one-ring reproduction within `0.5%`, and base-vs-once-bisected-grid cumulative area agreement within `0.5%`.
+
+Implementation: `src/nmir/g9_global_kernel.py` commit `554c2b806ab4d22efa1c3dd18e60e268c8f8ff48`; tests commit `3004a5a6f7fbf45fa639d0104e8958849cb51ec4`; benchmark commit `448540cd0af75550f4a211c3ae66cf5fad0d5025`; workflow commit `e6bf01e281d5f4f70c54e6ca74c23f27c3bdf776`. Hosted run/job `34149715242/101829231239` is in progress at this reconciliation; dedicated regression tests have completed successfully and the fail-closed scientific benchmark is running. Do not duplicate it. No scientific classification until its raw artifact is terminal and inspected.
 
 ## BSM architecture
 0069 `PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`; this is not BSM-response PASS. 0070 generic vector+scalar+axial constraint composition `BLOCKED_BSM_CONSTRAINT_NORMALIZATION`; gauge-complete `U(1)_{B-L}` selected. 0071 `BLOCKED_B_MINUS_L_PRIMARY_CONTOUR_MATERIALIZATION`. No NMIR B-L response/enhancement scan until reproducible external constraints are frozen.
@@ -61,17 +60,17 @@ Official COHERENT packages hash-pinned: Ar Analysis A Zenodo `10.5281/zenodo.390
 
 0074b `PASS_COHERENT_CSI_SM_RESPONSE_BENCHMARK`: run/job `34140558778/101801362484`, artifact `10025718339`, `152.8442722589695` events vs frozen `173±48`, exact released `6<=PE<30` support.
 
-0074c prospective documentary contract commit `80d8ffaae102d8c5a3ba731dc1e8ae3b7e4d9d41` required a same-analysis non-circular numerical combined-likelihood benchmark with tolerance before any minimization. Primary paper/releases pin supports, templates, nuisances and detector least-squares formulas but provide no exact combined SM/background `chi2_min`, complete profiled nuisance vector or official likelihood reference point adequate for a pre-result tolerance. Classification **`BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`**. No likelihood minimization and no `(m_V,g_BL)` point were evaluated. Machine-readable audit commit `17c41bf043015a3cf11dd5d33033f8ba3bc5451c`; immutable iteration commit `0aba4bdd59c31086b472b6b77e49c28af16e1ee1`. Exact route retired unless genuinely new primary benchmark authority appears.
+0074c contract commit `80d8ffaae102d8c5a3ba731dc1e8ae3b7e4d9d41` required a same-analysis non-circular numerical combined-likelihood benchmark with tolerance before minimization. Primary paper/releases pin supports, templates, nuisances and detector least-squares formulas but provide no exact combined SM/background `chi2_min`, complete profiled nuisance vector or official likelihood reference point adequate for a pre-result tolerance. Classification **`BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`**. Machine-readable audit commit `17c41bf043015a3cf11dd5d33033f8ba3bc5451c`; immutable iteration commit `0aba4bdd59c31086b472b6b77e49c28af16e1ee1`. No likelihood minimization and no `(m_V,g_BL)` point evaluated.
 
 ## Current funnel state
+- G9 0075 is closed BLOCKED on local geometry; 0076 global multi-image method gate is running and is the highest-value executable route.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G8 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
-- G9 0061 CCSN class strong-negative; 0075 persistent known-direction corrected hosted gate queued and scientific classification still OPEN.
 - BSM constraints-only; no global B-L envelope and no B-L response scan.
 
 ## Exact next gate
-Do not duplicate 0075. Inspect corrected hosted run/job `34149433817/101828380178` when terminal, inspect its raw benchmark output and uploaded `nmir-g9-0075-result` artifact/hash, and classify strictly against prereg commit `60dfd94c269e8d5b3a23f73043c779099cd15783`. If scientific PASS/strong-negative/BLOCKED is obtained, persist the machine-readable result, immutable iteration 0075 note, and reconcile RECOVERY/FUNNEL before selecting the next funnel gate.
+Do not duplicate 0076. Inspect run/job `34149715242/101829231239` when terminal, inspect the raw `nmir-g9-0076-result` artifact and hash, and classify strictly against prereg commit `05a3354dd2f8cdbba1f2dd04342161b515a10304`. PASS may only authorize a separately preregistered future finite-source persistent-source convolution. BLOCKED/FAIL closes at the exact geometry/validation failure without tolerance relaxation.
 
 ## Critical guards
 Raster/manual contour reading forbidden. No Asimov substitution for a required primary observed-data likelihood. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No post-result tolerance relaxation. No F9 multiplication of unvalidated gains.
