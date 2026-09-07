@@ -1,0 +1,54 @@
+{
+  "iteration": "0069",
+  "date": "2026-09-07",
+  "prereg": "research/prereg/0069_bsm_unlock_reaudit_after_g8_block.md",
+  "classification": "PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY",
+  "criterion_change_from_0066": "NONE",
+  "survivors": {
+    "G2": {
+      "status": "BLOCKED_NOT_ACTIONABLE",
+      "authority": "iteration 0063",
+      "missing": "public same-configuration sub-keV measured rejection x bulk-NR acceptance pair",
+      "guard": "no cross-detector multiplication"
+    },
+    "G3": {
+      "status": "OPEN_NOT_CURRENTLY_ACTIONABLE",
+      "authority": ["0059", "0062", "0065"],
+      "missing": "a genuinely new coefficient-independent theorem or physical assumption yielding an absolute short-range/contact-current ceiling",
+      "guard": "residual remains physically OPEN; not counted as closed"
+    },
+    "G8": {
+      "status": "BLOCKED_NOT_ACTIONABLE",
+      "authority": ["0067", "0068"],
+      "known": "source tail at 162.496486 keV is recomputed and frozen",
+      "missing": "exact primary continuous-spectrum RIOEC normalization package including line shape, B(GT) mapping, K-shell atomic factor, spin factors and unit chain",
+      "guard": "secondary summaries cannot supply missing normalization"
+    },
+    "G9": {
+      "status": "STRONG_NEGATIVE_SCOPED",
+      "authority": "0061",
+      "scope": "10-kpc Galactic CCSN transparent-Sun solar-lens utility with finite source/alignment/duty accounting"
+    },
+    "G4_G10": {
+      "status": "STRONG_NEGATIVE_SCOPED",
+      "authority": "frozen broad passive guards",
+      "guard": "no composition of unvalidated gains"
+    }
+  },
+  "criterion_evaluation": {
+    "all_principal_branches_have_current_state": true,
+    "any_quantitatively_unbounded_and_immediately_actionable_SM_branch": false,
+    "all_open_or_blocked_residuals_explicit": true,
+    "broad_no_free_lunch_guards_preserved": true,
+    "unlock_scope_limited_to_constraints_ledger": true
+  },
+  "allowed_bsm_status": "UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY",
+  "not_allowed": [
+    "BSM mechanism PASS claim",
+    "coupling tuning to NMIR before external constraints freeze",
+    "BSM enhancement scan",
+    "multiplication with unresolved SM/detector/focusing/resonance gains"
+  ],
+  "next_gate": "Prospectively freeze a primary-source external BSM constraints ledger over mediator mass, coupling and operator structure before any NMIR BSM response calculation.",
+  "readiness_credit": 0
+}
