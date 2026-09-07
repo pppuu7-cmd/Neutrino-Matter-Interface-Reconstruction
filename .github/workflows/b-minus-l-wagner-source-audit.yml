@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/materialize_wagner_source_0072.py'
       - 'scripts/probe_wagner_eps_0072.py'
+      - 'scripts/summarize_wagner_eps_paths_0072.py'
       - '.github/workflows/b-minus-l-wagner-source-audit.yml'
   workflow_dispatch:
 
@@ -25,24 +26,31 @@ jobs:
           mkdir -p artifacts data
           python scripts/materialize_wagner_source_0072.py --output artifacts/wagner_source_audit_0072.json
           python scripts/probe_wagner_eps_0072.py --output artifacts/wagner_eps_probe_0072.json
+          python scripts/summarize_wagner_eps_paths_0072.py --output artifacts/wagner_eps_paths_0072.json
       - name: Show raw audit results
         if: always()
         run: |
           cat artifacts/wagner_source_audit_0072.json || true
           cat artifacts/wagner_eps_probe_0072.json || true
+          python - <<'PY'
+          import json
+          p=json.load(open('artifacts/wagner_eps_paths_0072.json'))
+          print(json.dumps({'path_count':p['path_count'],'colors':p['colors'],'candidate_nonblack_count':len(p['candidate_nonblack_paths'])},indent=2))
+          PY
           sha256sum artifacts/*.json || true
       - name: Persist auditable results on main
         if: success()
         run: |
           cp artifacts/wagner_source_audit_0072.json data/wagner_source_audit_0072.json
           cp artifacts/wagner_eps_probe_0072.json data/wagner_eps_probe_0072.json
+          cp artifacts/wagner_eps_paths_0072.json data/wagner_eps_paths_0072.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/wagner_source_audit_0072.json data/wagner_eps_probe_0072.json
+          git add data/wagner_source_audit_0072.json data/wagner_eps_probe_0072.json data/wagner_eps_paths_0072.json
           if git diff --cached --quiet; then
             echo 'No result change to commit.'
           else
-            git commit -m 'Record hosted Wagner EPS structure probe for 0072'
+            git commit -m 'Record hosted Wagner EPS path parse for 0072a'
             git push
           fi
       - name: Upload immutable audit artifact
