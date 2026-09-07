@@ -5,8 +5,8 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable scientific/architecture record: `research/iterations/0070_bsm_primary_constraints_ledger_audit.md`
-Current prospective gate: `research/prereg/0071_b_minus_l_primary_constraints_contract.md`
+Latest immutable scientific/architecture record: `research/iterations/0071_b_minus_l_primary_constraints_ledger.md`
+Current prospective gate: `research/prereg/0072_b_minus_l_contour_materialization_contract.md`
 Current readiness: `NMIR_READINESS: 89%`.
 
 ## Mandatory recovery order
@@ -62,7 +62,6 @@ Exact-state Cu63 target package authority:
 Validated source numbers from Haxton-Lin ordinary-Compton Eq. (9)+BP98: `dPhi_anti-nu_e/dE(162.496486 keV)=3.528363521736758e-41 cm^-2 s^-1 MeV^-1`; 5-keV sanity value `3.765698986767552e7`; 6000->12000 relative change `5.832844895924436e-8`; BP98 blob SHA256 `6bd3c2d9cde15b74cf1fcebe1620566e2b3d832c09e65fc36d5422a6ef0bf198`.
 
 0068 primary normalization/materialization gate: prereg commit `44abb5844e6bbcd358fd224052cf7bce92f2e881`; ledger commit `dfe1b11538079a7cb76c7c1aedba0c8c366ff50d`; immutable note commit `0a7d726dbb599d78831f91a888c1947a6c6d542c`; classification **`BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`**.
-The primary record confirms the resonant continuous-spectrum concept, but the exact implementation package required by prereg — line-shape normalization, `B(GT)`→entrance-strength mapping, K-shell atomic factor, spin/statistical factors, constants/unit chain — was not independently materialized from primary full-text authority. A secondary review was explicitly not used to fill missing factors. Therefore no Cu63 rate or W/kg is claimed.
 
 **G8 state:** `BLOCKED_NOT_ACTIONABLE` at primary normalization authority. This is not a physical no-go.
 
@@ -74,23 +73,24 @@ The primary record confirms the resonant continuous-spectrum concept, but the ex
 
 0069 re-applied the unchanged criterion after 0068 changed G8 to an authority blocker and classified **`PASS_UNLOCK_BSM_CONSTRAINT_LEDGER_ONLY`**. BSM response/enhancement scans remain forbidden until constraints are frozen.
 
-0070 parent prereg commit `14c8feecd9dbf127b30d5c834a857a53eaedabd6`; explicit convention amendment commit `502a21da07e258285ec3223a1b5271da7c6aae74`; machine-readable audit ledger commit `ae1d1731201f91386746232e38068eef9c20f79a`; immutable iteration commit `28a77c5c4b67e4b762f1ac434d8143213d98ffa7`.
+0070 classification: **`BLOCKED_BSM_CONSTRAINT_NORMALIZATION`**. A generic vector+scalar+axial common ledger cannot be built without post-hoc coupling/branching/thermal-history/UV assumptions. Anomaly-free `U(1)_{B-L}` remains the clean actionable gauge-complete benchmark.
 
-0070 classification: **`BLOCKED_BSM_CONSTRAINT_NORMALIZATION`**.
-- Primary low-energy laboratory analyses can be normalized under explicit benchmark conventions.
-- A generic scalar class with independent neutrino/electron/quark couplings cannot inherit collider, stellar/SN, cosmological or fifth-force contours without extra branching-ratio, thermal-history, chirality/UV or hadronic assumptions.
-- A generic axial class similarly depends on quark/lepton coupling relations, nuclear spin conventions and UV completion/anomaly-cancellation assumptions.
-- Therefore no common vector+scalar+axial external envelope may be fabricated by recasting incompatible contours.
-- Anomaly-free `U(1)_{B-L}` is singled out as an actionable gauge-complete vector benchmark because the ordinary-matter/neutrino charge relation is fixed by the model.
+0071 prereg commit `80d93debb2a20e35d6e06fa3000591f82ffbd1a8`; machine-readable primary-family ledger commit `70a282743c9b9b0d6c1ab495ee45eed61e2f0e99`; immutable iteration commit `805140c678211c5ebc1e586eb031e2e6f2ab96f1`.
 
-This blocker does not re-lock BSM entirely: status remains **`UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`**. It forbids a response scan and promotes a narrower, well-defined constraints gate.
+0071 classification: **`BLOCKED_B_MINUS_L_PRIMARY_CONTOUR_MATERIALIZATION`**.
+- All required primary B-L constraint families were identified in compatible model language: CEvNS/neutrino scattering, neutrino-electron/direct detection, collider context, stellar/SN, cosmology and fifth force.
+- Representative authorities include Cadeddu et al. JHEP 01 (2021) 116; De Romeri et al. JHEP 05 (2024) 165; Hong-Shin-Yun PRD 103 (2021) 123031; Esseili-Kribs JCAP 05 (2024) 110; and MICROSCOPE-derived long-range B-L analyses.
+- The blocker is numerical reproducibility: several controlling constraints are published primarily as graphical contours without a common machine-readable table. 0071 forbids reading values by eye from uncalibrated plots.
+- No global surviving region and no full-interval exclusion is therefore claimed.
 
-## Current prospective gate — 0071
-`research/prereg/0071_b_minus_l_primary_constraints_contract.md`, prereg commit `80d93debb2a20e35d6e06fa3000591f82ffbd1a8`.
+BSM remains **`UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY`**. No B-L NMIR response/enhancement scan is allowed.
 
-Audit only gauge-complete `U(1)_{B-L}` in the plane `(m_V,g_BL)` over the frozen discovery interval `1e-6 eV <= m_V <= 10 GeV`. Freeze primary laboratory neutrino/CEvNS, collider/fixed-target, stellar/SN, cosmological and fifth-force constraints under the same B-L charge convention, with explicit assumptions. Do not import universal-vector/product-coupling contours without exact mapping.
+## Current prospective gate — 0072
+`research/prereg/0072_b_minus_l_contour_materialization_contract.md`, prereg commit `837a092a46d3b0d99f222c3777af8499f01c2062`.
 
-Only after `PASS_B_MINUS_L_CONSTRAINT_LEDGER_FROZEN` with a reproducible surviving region may a separate prospective NMIR B-L response bound be opened.
+Materialize controlling primary B-L contours by auditable routes only: author/publisher numerical data or public code first; otherwise calibrated vector-path extraction from PDF/XML/SVG; otherwise independent likelihood reproduction under the exact primary B-L convention. Manual raster plot reading is forbidden.
+
+Priority order: fifth-force low-mass region; BBN/CMB + stellar/SN eV–MeV region; CEvNS/neutrino-electron/direct-detection keV–GeV region. Only after enough validated contours cover the full frozen `1e-6 eV–10 GeV` interval may a global allowed region be frozen.
 
 ## Research-gate snapshot
 | Gate | Status |
@@ -100,14 +100,14 @@ Only after `PASS_B_MINUS_L_CONSTRAINT_LEDGER_FROZEN` with a reproducible survivi
 | G2 many-body/detection | **BLOCKED_NOT_ACTIONABLE through 0063** |
 | G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS; absolute contact coefficient OPEN_NOT_CURRENTLY_ACTIONABLE** |
 | G4 engineered resonance/polarization/periodicity | broad passive guards CLOSED in stated scopes |
-| G5/G6 BSM | **UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY; generic 3-class normalization BLOCKED via 0070; B-L 0071 prospective** |
+| G5/G6 BSM | **UNLOCKED_FOR_CONSTRAINT_LEDGER_ONLY; generic normalization BLOCKED via 0070; B-L contour materialization prospective 0072** |
 | G7 production↔absorption | PARTIAL PASS |
 | G8 RIOEC | **Cu63 target/source provenance PASS; normalization authority BLOCKED via 0068** |
 | G9 gravity | **physical focusing PASS; 10-kpc CCSN utility STRONG NEGATIVE** |
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen scope |
 
 ## Exact next funnel gate
-**Execute 0071 first.** Freeze the gauge-complete `U(1)_{B-L}` primary external constraints ledger in `(m_V,g_BL)`. No NMIR BSM enhancement calculation until this ledger is immutable and a separate prospective response contract is frozen.
+**Execute 0072 first.** Reproducibly materialize primary `U(1)_{B-L}` constraints in `(m_V,g_BL)` without manual plot reading. No NMIR BSM enhancement calculation until a global external allowed region is immutable and a separate response contract is prospectively frozen.
 
 ## Critical guards
 Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Selected-nucleus two-body corrections are not universal maxima. A fitted EFT LEC range is not regulator-independent authority. A per-partial-wave unitarity bound does not justify a hard universal `lmax≈kR`. Inclusive response agreement does not isolate arbitrary contact strength when interference is allowed. Metastable amplification requires stored-energy/reset accounting. Low threshold is not full efficiency. Cross-detector rejection × acceptance multiplication is forbidden. Ordinary solar `nu_e` is forbidden for RIOEC. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
