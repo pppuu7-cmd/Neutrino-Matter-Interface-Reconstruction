@@ -5,7 +5,8 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable scientific record: `research/iterations/0065_g3_observable_driven_contact_ceiling.md`
+Latest immutable scientific record: `research/iterations/0066_bsm_unlock_readiness_audit.md`
+Current prospective gate: `research/prereg/0067_g8_cu63_thermal_tail_rate_gate.md`
 Current readiness: `NMIR_READINESS: 88%`.
 
 ## Mandatory recovery order
@@ -20,7 +21,7 @@ Daughter decay, target preparation, stored free energy, pumping, mediator prepar
 
 ## Stable baseline authority
 - Tritium measured-ft inverse capture: `sigma(v/c)≈7.785e-45 cm^2`, ~0.7% from published `7.84e-45`.
-- Solar authority: B16 GS98/AGSS09met fluxes; locally pinned pp/hep/B8/CNO spectra; thermally broadened Be7; daytime adiabatic 3-flavour MSW for charged-current folds. CEvNS is active-flavour neutral current and has no Pee factor.
+- Solar authority: B16 GS98/AGSS09met fusion fluxes; locally pinned pp/hep/B8/CNO spectra; thermally broadened Be7; daytime adiabatic 3-flavour MSW for charged-current folds. CEvNS is active-flavour neutral current and has no Pee factor.
 - Charged-current validated target leader: pure 7Li/GS98 `1.06589117e-21 W/kg`, ~`9.38e20` below 1 W/kg. This is not an all-nucleus theorem.
 
 ## Broad frozen class closures
@@ -36,69 +37,70 @@ Do not reopen without a genuinely new assumption; exact scopes are in immutable 
 - 0040 metastable avalanche: `DETECTION PASS-SURVIVOR / NEUTRINO-ENERGY-GAIN STRONG_NEGATIVE_SCOPED`.
 - 0047 bounded finite-range k-local two-/higher-body current: `PASS_KLOCAL_EXTENSIVITY`.
 - 0048 empirical/EFT strength stress: strongly negative but not a universal theorem. Even 100× the largest frozen empirical extra-amplitude anchor gives `1.301537448e-5 W/kg`; bridge to 1 W/kg requires amplitude `28796.42286 = 28511.31×` empirical anchor.
-- 0060 actual-SM long-range/growing-coordination audit: `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR` in the preregistered passive-SM scope.
-- 0061 10-kpc Galactic CCSN transparent-Sun lens: `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`; even an impossible perfect full-solar-disk collection ceiling gives only `~1+9.4e-9` occurrence/alignment-weighted expected multiplier.
+- 0060 actual-SM long-range/growing-coordination audit: `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR` in preregistered passive-SM scope.
+- 0061 10-kpc Galactic CCSN transparent-Sun lens: `PASS_G9_PHYSICAL_BUT_STRONG_NEGATIVE_UTILITY`; impossible perfect full-solar-disk collection still gives only `~1+9.4e-9` occurrence/alignment-weighted expected multiplier.
 
-## G2 CEvNS / detector chain — validated through 0063
-0041–0046 close source-opening, physical Be7 profile suppression, continuous-A inverse design, exact-mass correction, real-nucleus full-solar optimization and target/threshold phase diagram. 0046 run/job `34052930672/101539642497`, artifact `9995368376`, SHA256 `046953d77896362afaaf5da0ff2015ddb36958196c0b921cc5e3f0ff4efe3951`, raw 29 tests PASS.
+## G2 CEvNS / detector chain
+0041–0046 close source-opening, physical Be7 profile suppression, continuous-A inverse design, exact-mass correction, real-nucleus full-solar optimization and target/threshold phase diagram. 0046 run/job `34052930672/101539642497`, artifact `9995368376`, raw 29 tests PASS.
 
-0049 `PASS_DETECTOR_TRANSFER_RATE_REQUIREMENT`: for 10-kg Ar40 and 10 accepted CEvNS/year, required `eta=<epsilon_NR>*f_live` is `0.42207478` at 10 eV, `0.75683153` at 20 eV, and impossible `2.35795954` at 40 eV. Run/job `34057771059/101552695624`, artifact `9996491115`.
+0049 `PASS_DETECTOR_TRANSFER_RATE_REQUIREMENT`: 10-kg Ar40 and 10 accepted CEvNS/year requires `eta=<epsilon_NR>*f_live = 0.42207478` at 10 eV, `0.75683153` at 20 eV, and impossible `2.35795954` at 40 eV.
 
-0050 known-background and 0051 nuisance-aware accepted-background requirements closed. For `S=10/year`, representative 0051 ceilings: 3σ/30% `4.274968302863348/year`; 5σ/30% `1.0806120114381677/year`; 5σ/50% `0.692094879071742/year`.
+0050/0051 close known-background and nuisance-aware accepted-background requirements. Representative 0051 ceilings for S=10/year: 3σ/30% `4.274968302863348/year`; 5σ/30% `1.0806120114381677/year`; 5σ/50% `0.692094879071742/year`.
 
-0052 measured-threshold CRESST-III Si transfer fold: rerun/job `34058921851/101555813480`, artifact `9996833564`; Si28 10-eV full-solar all-cuts surrogate `2.8034257861113496e-3 events/(kg day)`, effective mass for 10/year `9.766089763 kg`.
+0052 CRESST-III Si transfer fold gives Si28 10-eV full-solar all-cuts surrogate `2.8034257861113496e-3 events/(kg day)` and mass `9.766089763 kg` for 10/year. 0053 unchanged-per-kg LEE stress gives `4.482974815542e9` accepted events/year and order `1e9` required rejection. 0054–0058 close mitigation/time-information/required-performance envelopes; 0058 still needs `1.44e7–1.78e7` additional rejection at full signal acceptance.
 
-0053 current central CRESST Si LEE stress gives `4.482974815542e9` accepted events/year under unchanged-per-kg scaling and order `1e9` required rejection. 0054 finds a DoubleTES topology mechanism but no comparable detector-wide measured rejection × bulk acceptance pair. 0055–0057 close waiting-time, finite-horizon and exact time-information requirement maps; 0057 still needs `1.44e7–1.78e7` extra uniform rejection for 30 events/3 y/5σ under frozen optimistic assumptions.
+0063 classification `BLOCKED_PUBLIC_ACHIEVEMENT_ANCHOR`: no public same-configuration sub-keV measured rejection × bulk-NR acceptance pair satisfying the frozen comparator. No cross-detector multiplication.
 
-0058 `PASS_REQUIRED_TOPOLOGY_PERFORMANCE_ENVELOPE / PUBLIC_ACHIEVEMENT_ANCHOR_OPEN`: run/job `34061477253/101562663106`, artifact `9997604078`, SHA256 `ff0ad8d14663358cb8d3136570c2297ecfdce21895e500b05a71f93d133274fa`. Full signal acceptance needs `1.44e7–1.78e7`; 50% fixed-exposure acceptance `9.41e7–1.11e8`; 30% `4.58e8–5.25e8`.
+**G2 state:** strong partial pass / public-achievement blocker. Reopen only with genuinely new measured comparable evidence.
 
-0063 prereg `b52a9f810c677ea29a22f1001e05f044b6e4ecdf`; evidence ledger `data/g2_public_underground_anchor_authority_0063.json`, commit `519617dac8dc934e100d17983c8c15bc3e40a19f`; immutable note `research/iterations/0063_g2_measured_underground_topology_anchor.md`; classification `BLOCKED_PUBLIC_ACHIEVEMENT_ANCHOR`. Public literature has low threshold, NR calibration and topology/discrimination ingredients, but no same-configuration sub-keV measured rejection × bulk-NR acceptance pair satisfying the frozen comparator. No cross-detector multiplication is allowed.
+## G3 passive-SM deposited-power status
+0059 `PASS_NO_UNIVERSAL_HARD_BOUND_FOUND / RESIDUAL_OPEN`: χEFT authority supplies operator structure/renormalization/matching but no regulator-independent finite cross-target contact coefficient/operator-norm ceiling.
 
-**G2 state:** strong partial pass / public achievement blocker. Reopen only with genuinely new measured comparable evidence.
+0060 closes actual-SM growing-coordination residual in audited passive-SM scope.
 
-## G3 passive-SM deposited-power status — validated through 0065
-Leading/allowed, finite-q, one-body, local density/spin, passive mediator, bounded finite-range k-local collective scaling and actual-SM long-range/growing-coordination residual are closed/strong-negative in stated scopes. The empirical/EFT higher-body amplitude stress is strongly negative but not a theorem.
+0062 run/job `34071960179/101590826472`, artifact `10000809024`; final classification `FAIL_UNITARITY_MODEL / HARD_LMAX_NOT_COEFFICIENT_INDEPENDENT; DIAGNOSTIC_BOUND_TOO_WEAK / RESIDUAL_OPEN`. Finite-l diagnostic is `520819.2495826213 W/kg`; floor-control `130204.81239565533 W/kg`.
 
-0059 `PASS_NO_UNIVERSAL_HARD_BOUND_FOUND / RESIDUAL_OPEN`: frozen χEFT authority supplies operator structure/renormalization/matching but no regulator-independent finite cross-target coefficient/operator-norm inequality.
+0065 G3 classification `PASS_NO_COEFFICIENT_INDEPENDENT_OBSERVABLE_MAP / RESIDUAL_OPEN`: inclusive weak sum rules, GT/Ikeda information and ordinary muon capture constrain/validate specified current models but do not yield the required regulator/scheme-independent target-class inequality isolating an arbitrary short-range two-/higher-body weak-current contribution.
 
-0060 `PASS_NO_SM_GROWING_COORDINATION_SURVIVOR` in the audited passive-SM scope.
+**Remaining G3 residual:** absolute short-range/contact-current coefficient residual remains OPEN. 0059/0062/0065 retire three distinct universal-ceiling routes. Any further attempt requires a genuinely new theorem/physical assumption.
 
-0062 parent prereg `9b8bf25e8f152bf4cb75936e4d50f7ac34df7b87`; pre-result amendment `440d4739ad2b5a35bd44b568f421d1ebcddf2426`; run/job `34071960179/101590826472`; artifact `10000809024`; ZIP SHA256 `316b03ef097529333039fd342cecba20aef45b0093bb84e1875d2b0f413f0caf`; raw 6 tests PASS. Diagnostic finite-l result `520819.2495826213 W/kg`, floor-control `130204.81239565533 W/kg`. Final classification: `FAIL_UNITARITY_MODEL / HARD_LMAX_NOT_COEFFICIENT_INDEPENDENT; DIAGNOSTIC_BOUND_TOO_WEAK / RESIDUAL_OPEN`. Do not rescue it post hoc with smaller `lmax`, radius, fitted LECs or EFT naturalness.
+## G8 RIOEC authority — reopened Cu63 branch
+0035 channel guard: RIOEC entrance is electron antineutrino; ordinary pp/CNO/B8 solar `nu_e` flux is forbidden. 0025/0035 establish the resonance integrated-strength/source-profile guard.
 
-0065 prospective prereg `research/prereg/0065_g3_observable_driven_contact_ceiling.md`, commit `7f727dbfb509500c93b1d9502e8f3197ee1d18e7`; frozen authority ledger `data/g3_observable_contact_authority_0065.json`, commit `ef72e39d37b7006902a2b7c6670411c21aec37d2`; immutable note `research/iterations/0065_g3_observable_driven_contact_ceiling.md`, commit `60530440a90ff7f2d80e4859230734b0656e677d`.
+0064 classification was `BLOCKED_ENTRANCE_STRENGTH` for the then-audited candidates.
 
-0065 classification: **`PASS_NO_COEFFICIENT_INDEPENDENT_OBSERVABLE_MAP / RESIDUAL_OPEN`**. Inclusive neutral-weak response sum rules, Gamow-Teller/Ikeda information, charge-changing strengths and ordinary muon-capture data are genuine constraints/validators, but the audited primary literature does not supply the prospectively required regulator/scheme-independent finite target-class inequality isolating an arbitrary short-range two-/higher-body weak-current contribution. Total inclusive response contains one-body, two-body and interference pieces; selected-nucleus agreement or quenching cannot be promoted to a universal contact coefficient maximum without an additional operator theorem. Muon-capture studies constrain/test LECs through specified few-body/nuclear Hamiltonian-current mappings rather than an observable-only universal ceiling.
+A concurrent prospectively frozen exact-state follow-up existed before 0066 and must be retained despite the duplicate numeric namespace:
+- G8 prereg commit `3e52add9f3881f96b8409fb7474af564f114a395`;
+- authority ledger commit `4d64aa7a95f1f794af303c467aa81fd9752fa2a2`;
+- immutable G8 result commit `b6553966b90cbe6a35662ba975507217ca6f04c9`;
+- result file `research/iterations/0065_g8_cu63_crossed_bgt_loophole_audit.md`;
+- classification `PASS_G8_CU63_PROVENANCE_REOPENED`.
 
-**Remaining G3 residual:** absolute short-range/contact-current coefficient residual remains OPEN. Three distinct universal-ceiling routes are now retired: theory-authority hard-bound search (0059), naive finite-l unitarity (0062), and observable-driven inclusive mapping (0065). Any further G3 attempt must introduce a genuinely new theorem/physical assumption rather than repackage these routes.
+Exact channel: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5/2-)`. Independent inputs reconstruct `E_R=162.496486 keV`. Exact crossed shell-model strength exists with mandatory reverse-strength envelope `B_reverse=2.85e-3...6.72e-2`, a factor ~23.58 model spread. This is F4 provenance only, not a useful-rate result.
 
-## G8 resonance / RIOEC — validated provenance through 0064
-0035 established the channel-identity guard: RIOEC is an electron-antineutrino entrance channel; ordinary pp/CNO/B8 solar `nu_e` flux is forbidden. 0035 also validated the resonance area/source-profile no-free-lunch rule: narrowing a line creates no integrated entrance strength.
+Primary Haxton-Lin thermal-solar authority establishes that simple Compton production dominates the high-energy tail above ~5 keV and that the electron-antineutrino thermal spectrum is determined by leptonic thermal processes/core temperature and density. However no 162.5-keV differential flux value may be read from a plotted curve or invented; it must be recovered/recomputed under 0067 before a rate fold.
 
-0064 prospective prereg: `research/prereg/0064_g8_rioec_provenance_feasibility.md`, commit `5e2e183e92dd4c23dab9c3d0d17ca16f6e456b3f`.
-Evidence ledger: `data/g8_rioec_provenance_authority_0064.json`, commit `f464f7baa796c515105cbf93e99aa351b26f2c10`.
-Immutable note: `research/iterations/0064_g8_rioec_provenance_feasibility.md`, commit `5e394ccbb461a6814b8cbba1f6baab07761620d6`.
-Classification: **`BLOCKED_ENTRANCE_STRENGTH`**.
+## G9 distant-source focusing
+0061 immutable authority `research/iterations/0061_g9_ccsn_solar_lens_utility.md`; run/job `34071432319/101589393517`, artifact `10000583684`. At `b/Rsun=0.024`, focus is `24.073780819657056 AU`; 21-km source at 10 kpc projects to `0.2451 mm`; 1/10/100-m receiver alignment probabilities are only `~1.93e-26,1.93e-24,1.93e-22`. Frozen Galactic CCSN utility is strong-negative.
 
-Source-side conclusion: a physical Standard-Model thermal-solar antineutrino source class is independently established by Haxton & Lin (2000), who calculate low-energy solar neutrino and antineutrino fluxes of all flavors from thermal pair processes; modern 2026 thermal-solar-neutrino work independently supports the physical keV source class. A later numeric fold must still locally freeze/materialize the exact differential `anti-nu_e` spectrum.
+## Iteration 0066 — BSM unlock audit
+Prospective prereg commit `77ecef8795ccdcd7ec990b2f280fdf39012c5c15`. Pre-result evidence-set amendment commit `0534ea599560b050f576e9b706864f41ca797f3c` corrected the existence of the concurrent Cu63 G8 result without changing the frozen criterion.
 
-Target-side conclusion: primary RIOEC formalism contains the reverse bound-beta partial width `Gamma_beta_b/Gamma`, so linewidth alone cannot determine F4 strength. The 2026 candidate proposal supplies channel/kinematic candidates, but the audited 63Cu/129Xe/159Tb evidence does not provide a complete independently evaluated exact-state reverse weak width tied to the required thermal-eV/keV daughter excitation + atomic shell. Therefore no events/kg/s or W/kg fold is authorized.
+Machine-readable survivor ledger: `data/bsm_unlock_readiness_0066.json`, commit `7af07949d90c8aefe9889665920a0520e106ccd1`.
+Immutable note: `research/iterations/0066_bsm_unlock_readiness_audit.md`, commit `51138ebbffc9e667948a1769c80bd1d594f96699`.
 
-Reopen G8 only if an independently evaluated exact-state entrance-strength package appears; then prospectively freeze both it and the differential thermal `anti-nu_e` spectrum before calculation. Do not blind-scan more isotopes.
+Classification: **`FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE`**.
 
-## G9 distant-source focusing — validated through 0061
-Immutable authority: `research/iterations/0061_g9_ccsn_solar_lens_utility.md`; prereg `4396de3ae532b574f76e3a34d935b08e51746868`; run/job `34071432319/101589393517`; artifact `10000583684`; ZIP SHA256 `8ddb043e5ef0fdcccbd046c28a87ded8ad27077797144cf6fa51bba4f5557c76`.
+Reason: frozen unlock criterion 2 fails because G8/Cu63 is a principal passive-SM branch that remains quantitatively unbounded and is immediately actionable with the newly available exact-state target authority. BSM/light mediator therefore remains **LOCKED**. No BSM constraint ledger is authorized yet.
 
-At `b/Rsun=0.024`, focus is `24.073780819657056 AU`. A 21-km source at 10 kpc projects to `0.2451 mm`; receiver-integrated magnification is finite but alignment probabilities are `~1.93e-26,1.93e-24,1.93e-22` for 1/10/100-m receivers. Galactic CCSN utility is strong-negative for this frozen benchmark. New source classes require independent preregistration.
+0066 is an architecture/readiness audit failure, not a new physics closure, so readiness does not increase.
 
-## Other OPEN survivors
-- G3 absolute short-range/contact-current coefficient residual remains physically OPEN, but 0059/0062/0065 retire three attempted universal-ceiling routes.
-- G2 public-achievement blocker until new measured sub-keV rejection × bulk-NR acceptance evidence appears.
-- G8 target-specific thermal-solar RIOEC is `BLOCKED_ENTRANCE_STRENGTH` through 0064; source class exists, exact target F4 strength does not yet.
-- G9 CCSN utility strong-negative; genuinely different source classes may be tested independently.
-- BSM/light mediator remains LOCKED pending formal unlock audit.
+## Current prospective gate — 0067
+Prereg: `research/prereg/0067_g8_cu63_thermal_tail_rate_gate.md`, commit `e42cd8ccd8a321cfa850b87b0fbd8d11bed30956`.
 
-## Exact next funnel gate
-**Formal BSM-unlock readiness audit / survivor re-ranking, without yet promoting a BSM solution.** The principal passive-SM funnel is now highly constrained: broad one-body/many-body/geometry/resonance/gravity classes are closed or strong-negative in stated scopes; G2 and G8 are evidence-blocked; G3 retains an absolute contact coefficient residual but three distinct universal-ceiling routes have failed/closed without producing a theorem. Prospectively define explicit unlock criteria asking whether remaining SM residuals are sufficiently bounded or explicitly blocker-limited to justify opening a constraints-only BSM/light-mediator quantitative branch. The audit must not count unresolved G3 contact strength as closed and must not treat documentation maturity as physics closure. If unlock criteria fail, keep BSM locked and identify the exact missing SM theorem/evidence.
+Question: can the Standard-Model thermal-solar electron-antineutrino differential spectrum be recovered or recomputed under primary authority at `E_R=162.496486 keV`? If yes, freeze it locally and fold with the complete reverse-B(GT) envelope and atomic factors to get events/(kg s), events/(kg day), and neutrino-supplied W/kg. If primary authority is not controlled at that energy, classify `BLOCKED_HIGH_ENERGY_TAIL`; plotted-spectrum extrapolation is forbidden.
+
+Current primary-source audit: Haxton & Lin explicitly identify the ordinary Compton process as dominating the thermal high-energy tail above ~5 keV and say the full `anti-nu_e` spectrum is governed by calculable leptonic thermal processes. Their quoted flux-density significance is for the low-keV region; therefore 162.5-keV numerical normalization remains to be reproduced rather than inferred from the plot.
 
 ## Research-gate snapshot
 | Gate | Status |
@@ -106,13 +108,16 @@ At `b/Rsun=0.024`, focus is `24.073780819657056 AU`. A 21-km source at 10 kpc pr
 | G0 weak/capture normalization | PARTIAL PASS |
 | G1 static macroscopic coherence | PARTIAL NEGATIVE |
 | G2 many-body/detection | **STRONG PARTIAL PASS / PUBLIC ACHIEVEMENT BLOCKED through 0063** |
-| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — long-range residual CLOSED; absolute contact coefficient residual OPEN; 0059/0062/0065 universal-ceiling routes retired** |
-| G4 engineered resonance/polarization/periodicity | PARTIAL |
-| G5/G6 BSM | LOCKED pending formal unlock audit |
+| G3 maximum passive-SM deposited power | **STRONG PARTIAL PASS — long-range residual CLOSED; absolute contact coefficient residual OPEN** |
+| G4 engineered resonance/polarization/periodicity | PARTIAL / broad passive guards CLOSED in stated scopes |
+| G5/G6 BSM | **LOCKED — 0066 FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE** |
 | G7 production↔absorption | PARTIAL PASS |
-| G8 resonance integrated strength | **PARTIAL PASS / BLOCKED_ENTRANCE_STRENGTH through 0064** |
+| G8 resonance integrated strength | **Cu63 F4 PROVENANCE REOPENED; 162.5-keV thermal-tail/rate gate OPEN_ACTIONABLE under 0067** |
 | G9 gravity | **PHYSICAL FOCUSING PASS; 10-kpc Galactic CCSN utility STRONG NEGATIVE** |
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen geometry-only scope |
 
+## Exact next funnel gate
+**Execute 0067 G8/Cu63 thermal-solar high-energy-tail provenance/materialization first.** Recover or recompute a controlled primary-authority `anti-nu_e` differential flux at `162.496486 keV`. Do not use ordinary solar neutrinos and do not extrapolate a plotted spectrum. If the source tail is reproducible, fold the full exact-state strength envelope and classify the rate. If it is not reproducible, retain `BLOCKED_HIGH_ENERGY_TAIL`. Only after this result may the BSM unlock audit be reconsidered.
+
 ## Critical guards
-Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Gravitational gain requires source geometry, finite source/Liouville and receiver integration. Selected-nucleus two-body corrections are not universal maxima. Empirical amplitude anchors are evidence-distance constraints, not coefficient theorems. A fitted EFT LEC range is not regulator-independent authority. A per-partial-wave unitarity bound does not by itself justify a hard universal `l_max≈kR`. Inclusive total-response agreement does not isolate an arbitrary contact sub-operator when interference is allowed. The ordinary Ikeda sum rule is not automatically a bound on arbitrary two-body contact-current strength. Metastable amplification requires stored-energy/reset accounting. Accepted-background requirements are not raw site backgrounds. Low measured threshold is not full all-cuts efficiency. A topology handle is not a measured rejection factor. Cross-detector rejection × acceptance multiplication is forbidden. Ordinary solar `nu_e` is forbidden for RIOEC. A kinematic RIOEC candidate is not an F4 entrance strength. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
+Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Selected-nucleus two-body corrections are not universal maxima. A fitted EFT LEC range is not regulator-independent authority. A per-partial-wave unitarity bound does not justify a hard universal `lmax≈kR`. Inclusive total-response agreement does not isolate arbitrary contact strength when interference is allowed. Metastable amplification requires stored-energy/reset accounting. Low measured threshold is not full efficiency. A topology handle is not a measured rejection factor. Cross-detector rejection × acceptance multiplication is forbidden. Ordinary solar `nu_e` is forbidden for RIOEC. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
