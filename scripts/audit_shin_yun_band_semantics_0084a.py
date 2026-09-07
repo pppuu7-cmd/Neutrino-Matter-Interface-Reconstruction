@@ -29,7 +29,9 @@ def audit(blob):
         return {'classification':'INFRASTRUCTURE_FAIL_ARCHIVE_HASH','archive_sha256':h,'expected_sha256':SHA}
     t=text_from(blob)
     body=block(r'We eventually find the constraint from SN1987A.{0,2200}',t)
-    concl=block(r'We have revisited the constraint on U\(1\)_\{\\rm B-L\} gauge bosons from SN1987A.{0,1900}',t)
+    # TeX source wraps U(1)_{B-L} in math delimiters; anchor on the invariant prose
+    # and SN1987A observation rather than markup spelling.
+    concl=block(r'We have revisited the constraint.{0,180}?SN1987A.{0,1900}',t)
     checks={
       'excluded_region_explicit':has(r'parameter\s+space\s+excluded\s+by\s+SN1987A|regions?[^\.]{0,180}excluded\s+by\s+SN1987A',body or t),
       'reabsorption_explicit':has(r'gross\s+emission\s+rate[^\.]{0,180}reabsorption',body or t),
@@ -38,10 +40,10 @@ def audit(blob):
       'L_low_body':has(r'e\^\\prime\s*m_\{\\gamma\^\\prime\}\s*<\s*7\.4\s*\\times\s*10\^\{-10\}',body),
       'L_high_body_value':has(r'e\^\\prime\s*m_\{\\gamma\^\\prime\}\s*>\s*1\.2\s*\\times\s*10\^\{-5\}',body),
       'body_2me_allowed':has(r'are\s+allowed\s+for\s*\$?m_\{\\gamma\^\\prime\}\s*<\s*2m_e',body),
-      'conclusion_revisited_SN1987A':has(r'revisited\s+the\s+constraint[^;\.]{0,140}SN1987A',concl or t),
+      'conclusion_revisited_SN1987A':has(r'revisited\s+the\s+constraint.{0,180}SN1987A',concl),
       'T_high_conclusion_value':has(r'e\^\\prime\s*>\s*1\.5\s*\\times\s*10\^\{-8\}',concl),
       'L_high_conclusion_value':has(r'e\^\\prime\s*m_\{\\gamma\^\\prime\}\s*>\s*1\.2\s*\\times\s*10\^\{-5\}',concl),
-      'conclusion_1mev_domain':has(r'm_\{\\gamma\^\\prime\}\s*<\s*1\s*\\?,?\s*\{?\\rm\s+MeV\}?|m_\{\\gamma\^\\prime\}\s*<\s*1[^;]{0,25}MeV',concl),
+      'conclusion_1mev_domain':has(r'm_\{\\gamma\^\\prime\}\s*<\s*1[^;]{0,35}MeV',concl),
       'conclusion_allowed_word':has(r'allowed',concl),
     }
     passed=bool(body and concl) and all(checks.values())
