@@ -4,9 +4,9 @@ Last reconciled: 2026-09-07
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0078c_deromeri_bl_excluded_region.md`, commit `7fb6cee3ad6f6129d04cc12d00a319096498db6a`.
-Current prospective gate: `research/prereg/0079_bl_fifth_force_primary_authority_audit.md`, frozen commit `f6aee806dc77fa7e69c4187f741ec7423cb3bbec`.
-`NMIR_READINESS: 92%`.
+Latest completed immutable record: `research/iterations/0080c_bl_cmb_observational_semantics.md`, commit `755911fd5afcca77c3c0d54e7f41e1b6aa9b7462`.
+Current prospective gate: `research/prereg/0080d_bl_cmb_conservative_excluded_geometry.md`, frozen commit `53e54a16b86f6d422c2f6ee505a7be22f8212a2c`.
+`NMIR_READINESS: 93%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository is scientific authority; chat is not. Green CI alone is not scientific PASS; inspect raw scientific output/artifact bytes.
@@ -40,30 +40,38 @@ Exact Cu63 RIOEC state: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5
 
 0072 Wagner long-range vector route is partial: Princeton/Moscow/LLR curves materialized but blue EW-family semantic identity and global excluded-side authority remain unresolved. 0073 PandaX full-profile likelihood is blocked by unavailable separated minor-background templates. 0074a Ar SM normalization PASS (`134.21440238243503` vs `128±17`), 0074b CsI response PASS (`152.8442722589695` vs `173±48`), 0074c `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`.
 
-0078 external-authority refresh found a genuinely new reproducible B-L family. 0078a `PASS_PRIMARY_B_L_VECTOR_ASSET_INTEGRITY`, run/job `34154515131/101843445080`. 0078b `PASS_COMBINED_SOLAR_CEVNS_B_L_VECTOR_CALIBRATION`, run/job `34154728073/101844079794`, artifact `10030555477`, raw JSON SHA256 `785605b660efeabf13d1825bf8f66fa4a1e4d4f8675514c45f76cd036a5171de`.
+0078c `PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION / PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`, run/job `34155151971/101845330760`, artifact `10030703063`, ZIP SHA256 `ea59df50c4f1cbb5938effd455bdc0528b91b95753f0cfdc393437efe98a9378`. Primary De Romeri et al. arXiv `2603.00554` filled magenta 90% CL XENONnT+PandaX-4T+LZ region yields one valid polygon, area `12.51987545543835 decade^2`, with exact frozen topology/refinement controls passed.
 
-0078c **`PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION`** and **`PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`**. Run/job `34155151971/101845330760`, workflow head `a0bdaf4619a4da37f8ecd93445f8cbaf2c509e5b`; artifact `10030703063`, 6673 bytes; artifact ZIP SHA256 `ea59df50c4f1cbb5938effd455bdc0528b91b95753f0cfdc393437efe98a9378`; artifact payload SHA256 `0339cfbcfd2ccc5689fdb82473082ffe9ebb26964ed255411952e98b72047ca5`; result commit `dd43ebba8c1e6ff4f58899f63cab7641758eac60`; immutable note `7fb6cee3ad6f6129d04cc12d00a319096498db6a`.
+### 0079/0079a — long-range fifth-force B-L anchor
+0079 `PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_AUTHORITY`, immutable commit `9afcbabe4827e42e60c0beaf61396ac4b745a1a0`; run/job `34160053648/101859746603`, artifact `10032282068`, artifact ZIP SHA256 `24a0b8789afe0e32a5016f44b369517a490f4629a3390a16afcfac188df9ef55`. Primary Fayet arXiv `1809.04991v2` defines the pure B-L interaction through `epsilon_{B-L}(B-L)e`; NMIR mapping is `g_BL=e|epsilon_{B-L}|`. The published 2sigma long-range bound is `|epsilon_{B-L}|<0.84e-24`. Finite-mass/Yukawa continuation is NOT authorized: the companion source discusses weakening at shorter range but supplies no reproducible finite-range numerical contour/table/extended-Earth model.
 
-Primary authority is De Romeri et al. arXiv `2603.00554`, source SHA256 `09ab22f753ac3f5fbde5be65ac50926de67b0638550366d158aadcfde8e92564`; vector asset `vector_BL_PnX_XnT_LZ_combined.pdf`, SHA256 `ace761499623535907263e780a6e96a17474adf418d3f9363dae8e28bc5e7a39`. The filled magenta 90% CL combined XENONnT+PandaX-4T+LZ region yields one valid clipped polygon over `-5 <= log10(m_V/GeV) <= 1`, `-8 <= log10(g_BL) <= -2`, area `12.51987545543835 decade^2`; 32/64 subdivision and symmetric-difference discrepancies are zero; all 50 stroke controls pass. Artifact bytes were independently downloaded and inspected; no manual digitization/topology repair/excluded-side inference was used.
+0079a `PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_MATERIALIZATION`, immutable commit `9e6818fa49492da391736c6ec5216bc23bbd7307`; run/job `34160325335/101860584123`, artifact `10032369690`, ZIP SHA256 `bdc7c75c13bc8c10a0698c58953072aa0f5d2540463ca3db9088272496b7cb2e`. With `alpha_EM(0)^-1=137.035999177`, `e=0.30282212076899695`, the strict long-range anchor is `g_BL < 2.5437058144595744e-25`, reported conservatively `2.5e-25` at 2sigma. The Earth-diameter Compton mass diagnostic `1.5486342834719824e-14 eV` is not a validity edge and must not be used as a finite-mass turn-off. This new reproducible physical external constraint raises readiness from 92% to 93%.
 
-This closes a new external scientific constraint family and raises readiness to 92%, but the global 0071 envelope remains incomplete. COHERENT 0074c remains blocked; Wagner side authority unresolved; other required families not yet common-envelope materialized. No B-L response/enhancement scan is allowed.
+### 0080–0080c — cosmology/CMB authority chain
+0080 `PASS_COSMOLOGY_B_L_VECTOR_ASSET_AUTHORITY`, immutable commit `a18afd634d89c38765d0964a87b9520e83d376c8`; run/job `34160801805/101862078831`, artifact `10032522988`, ZIP SHA256 `0efba64740d815961673d5bfb8f72cdc60ed0ccdea351fc5cbe4820f20aeae66`. Primary Esseili & Kribs arXiv `2308.07955v2`, source SHA256 `484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c`; Figs 5–8 are exact vector PDF assets and no separate numeric asset was found.
 
-## Current prospective gate — 0079
-`research/prereg/0079_bl_fifth_force_primary_authority_audit.md`, frozen commit `f6aee806dc77fa7e69c4187f741ec7423cb3bbec`.
+0080a `PASS_COSMOLOGY_B_L_VECTOR_INTEGRITY`, immutable commit `bcfdc8085bee135cf587f20952851cbf2ed01c0c`; run/job `34161020276/101862718302`, artifact `10032589964`, ZIP SHA256 `ba912daf553e3ba449bf0b39613e5ab4381d30fe18314aaff9726bbeb1d6dbe9`. All four target PDFs are one-page vector-native assets with zero image XObjects and extractable text/path geometry.
 
-0079 audits low-mass long-range/fifth-force B-L authority from primary Fayet/MICROSCOPE sources, with exact source identifiers frozen before any new numerical conversion: Phys. Rev. D 99, 055043 (2019), arXiv `1809.04991v2`, DOI `10.1103/PhysRevD.99.055043`, plus arXiv `1712.00856` as companion primary authority. The audit must resolve the source definitions of `epsilon_{B-L}`, `alpha_g/bar alpha_g`, confidence convention, exact mapping into NMIR `g_BL`, and physical range/Yukawa-mass applicability. Source bytes must be hash-pinned. No `g_BL` value or finite-mass contour may be committed until that authority passes.
+0080b `PASS_COSMOLOGY_B_L_CMB_AXIS_CALIBRATION`, immutable commit `5ed6fe12342fb07edefe1b80ed5cf893b7486d23`; run/job `34161277512/101863457667`, artifact `10032672039`, ZIP SHA256 `98155106b7b4fb72d8a89314ab6b64eb99798f41fcecd5e48ae0944cb4247a44`. Both CMB panels independently recover the same transforms: `log10(m_X/MeV)=0.014151317772708815*x-6.9932501456724525`; `log10(g_X)=-0.0329969798924973*y-2.6510803066554596`. Frozen 0.015-decade ordinary/LOO and cross-panel controls passed.
 
-Frozen outcomes distinguish asymptotic-only authority from finite-range authority. If only a strict long-range bound is supported, it may be materialized later only in the explicitly justified asymptotic domain; no invented Yukawa turn-off. If finite-range primary numerics/vector geometry exists, a separate 0079a extraction/calculation must be preregistered before values are produced.
+0080c `PASS_COSMOLOGY_B_L_CMB_CONSERVATIVE_95CL_SEMANTICS`, immutable commit `755911fd5afcca77c3c0d54e7f41e1b6aa9b7462`; corrected run/job `34161487414/101864078212`, artifact `10032738989`, ZIP SHA256 `bcdef158881eec04c098014acfa934fb734638271c7aea265a0da3a3dd54e726`, raw JSON SHA256 `95e1bb45150f54c3c23a9f8d3db6f49dba17102dc563de267cb56f8a77cd5bd6`. Primary source authorizes the prospectively frozen conservative rule: hard current-CMB exclusion is `Delta N_eff>=0.4` at 95% C.L. = light-blue + dark-blue only; green (`0.3<=Delta N_eff<0.4`) is strongly disfavored only. Initial run `34161423753/101863884618` is permanently `IMPLEMENTATION_INVALID_TEX_PARSER_FALSE_NEGATIVES`; its parser was fixed without changing the physics/semantics contract.
+
+No cosmology excluded polygon has yet been materialized. No Majorana/Dirac union or preference is authorized. Global 0071 B-L envelope remains incomplete; response/enhancement scan remains forbidden.
+
+## Current prospective gate — 0080d
+`research/prereg/0080d_bl_cmb_conservative_excluded_geometry.md`, frozen commit `53e54a16b86f6d422c2f6ee505a7be22f8212a2c`.
+
+0080d may materialize only the native-vector light-blue + dark-blue (`Delta N_eff>=0.4`) hard-excluded region, separately for Majorana and Dirac. Exact source-native color identity must determine selected objects; no raster/manual reading. Base/refined Bezier subdivision uses `0.02/0.01 pt`; area and symmetric-difference stability must each be <=0.5%; boundary round-trip must be <=0.02 pt; topology repair, green inclusion, scenario union, global-envelope union and BSM response calculation are forbidden.
 
 ## Current funnel state
-- BSM/F8: 0079 is the highest-value executable/frozen gate.
+- BSM/F8: 0080d is the highest-value executable/frozen gate.
 - G9 persistent-source method branch: blocked at 0077 under frozen numerical assumptions; no post-hoc patch.
 - G3 absolute contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 - G2 `BLOCKED_NOT_ACTIONABLE`.
 - G8 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
 
 ## Exact next gate
-Execute 0079 exactly as frozen at commit `f6aee806dc77fa7e69c4187f741ec7423cb3bbec`: obtain/hash primary source bytes, extract the exact B-L coupling and long-range/Yukawa conventions, persist a machine-readable authority ledger, and classify strictly as `PASS_FIFTH_FORCE_B_L_ASYMPTOTIC_AUTHORITY`, `PASS_FIFTH_FORCE_B_L_FINITE_RANGE_AUTHORITY`, `PARTIAL_FIFTH_FORCE_AUTHORITY`, `SCIENTIFIC_FAIL_FIFTH_FORCE_AUTHORITY`, or `INFRASTRUCTURE_FAIL`. Do not calculate a new mass-coupling exclusion until a PASS authorizes a separately preregistered 0079a gate.
+Execute 0080d exactly as frozen at commit `53e54a16b86f6d422c2f6ee505a7be22f8212a2c`: verify PDF hashes, determine exact vector color/object identities, map only light-blue + dark-blue geometry through the 0080b transforms, keep Majorana/Dirac separate, run frozen refinement/topology/boundary controls, persist raw artifact/hash and classify without post-result relaxation. Only PASS may authorize a separately preregistered scenario-semantics/envelope gate.
 
 ## Critical guards
-No raster/manual contour reading. No post-result convention factor or excluded-side assignment. No Asimov substitution for required primary observed-data likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No F9 multiplication of unvalidated gains.
+No raster/manual contour reading. No post-result convention factor or excluded-side assignment. No Asimov substitution for required primary observed-data likelihoods. No proportional splitting of grouped backgrounds. No cross-analysis response/template substitution without explicit identity provenance. No F9 multiplication of unvalidated gains. No finite-mass extrapolation of the 0079a asymptotic fifth-force anchor.
