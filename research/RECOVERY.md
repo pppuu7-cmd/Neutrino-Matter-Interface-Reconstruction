@@ -5,9 +5,9 @@ Program: Neutrino–Matter Interface Reconstruction (NMIR)
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Recovery protocol: `research/RECOVERY_MANUAL.md`
 Funnel authority: `research/NMIR_FUNNEL.md`
-Latest immutable scientific record: `research/iterations/0066_bsm_unlock_readiness_audit.md`
-Current prospective gate: `research/prereg/0067_g8_cu63_thermal_tail_rate_gate.md`
-Current readiness: `NMIR_READINESS: 88%`.
+Latest immutable scientific record: `research/iterations/0067_g8_cu63_thermal_tail_source_recomputation.md`
+Current prospective gate: `research/prereg/0068_g8_cu63_rioec_normalization_contract.md`
+Current readiness: `NMIR_READINESS: 89%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` completely, then this file, then `NMIR_FUNNEL.md`, newest numbered iteration and its prereg/amendments, recent commits newer than this reconciliation, and relevant queued/in-progress/newly-terminal Actions. Chat is never authority. Do not duplicate running work. Green CI is infrastructure success only until raw logs/artifacts or a frozen primary-evidence ledger are checked against the prospective criterion.
@@ -64,43 +64,50 @@ Do not reopen without a genuinely new assumption; exact scopes are in immutable 
 
 **Remaining G3 residual:** absolute short-range/contact-current coefficient residual remains OPEN. 0059/0062/0065 retire three distinct universal-ceiling routes. Any further attempt requires a genuinely new theorem/physical assumption.
 
-## G8 RIOEC authority — reopened Cu63 branch
+## G8 RIOEC authority — Cu63 branch
 0035 channel guard: RIOEC entrance is electron antineutrino; ordinary pp/CNO/B8 solar `nu_e` flux is forbidden. 0025/0035 establish the resonance integrated-strength/source-profile guard.
 
-0064 classification was `BLOCKED_ENTRANCE_STRENGTH` for the then-audited candidates.
-
-A concurrent prospectively frozen exact-state follow-up existed before 0066 and must be retained despite the duplicate numeric namespace:
-- G8 prereg commit `3e52add9f3881f96b8409fb7474af564f114a395`;
+0064 was `BLOCKED_ENTRANCE_STRENGTH` for the then-audited candidates. A concurrent prospectively frozen exact-state follow-up later established `PASS_G8_CU63_PROVENANCE_REOPENED`:
+- prereg commit `3e52add9f3881f96b8409fb7474af564f114a395`;
 - authority ledger commit `4d64aa7a95f1f794af303c467aa81fd9752fa2a2`;
-- immutable G8 result commit `b6553966b90cbe6a35662ba975507217ca6f04c9`;
-- result file `research/iterations/0065_g8_cu63_crossed_bgt_loophole_audit.md`;
-- classification `PASS_G8_CU63_PROVENANCE_REOPENED`.
+- immutable result commit `b6553966b90cbe6a35662ba975507217ca6f04c9`;
+- exact channel `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5/2-)`;
+- `E_R=162.496486 keV`;
+- mandatory reverse-strength envelope `B_reverse=2.85e-3...6.72e-2` (~23.58× spread).
 
-Exact channel: `63Cu(g.s.,3/2-) + anti-nu_e + e_K -> 63Ni*(87.220 keV,5/2-)`. Independent inputs reconstruct `E_R=162.496486 keV`. Exact crossed shell-model strength exists with mandatory reverse-strength envelope `B_reverse=2.85e-3...6.72e-2`, a factor ~23.58 model spread. This is F4 provenance only, not a useful-rate result.
+### Iteration 0067 — source-side high-energy-tail closure
+Prospective contract: `research/prereg/0067_g8_cu63_thermal_tail_rate_gate.md`, commit `e42cd8ccd8a321cfa850b87b0fbd8d11bed30956`.
 
-Primary Haxton-Lin thermal-solar authority establishes that simple Compton production dominates the high-energy tail above ~5 keV and that the electron-antineutrino thermal spectrum is determined by leptonic thermal processes/core temperature and density. However no 162.5-keV differential flux value may be read from a plotted curve or invented; it must be recovered/recomputed under 0067 before a rate fold.
+Implementation `704c55c09e36c3e62d67af7e355d649f1171eb79`; NumPy-API-only fix `a7eb05109ee3a5e6a119d20bf6a19a6215705748`.
+
+First hosted run `34081007772` was `INFRASTRUCTURE_FAIL` because NumPy 2.4 removed `np.trapz`; no physics result was produced and no criterion changed.
+
+Authoritative rerun/job `34081044588/101616231800`, artifact `10003691395`, artifact ZIP SHA256 `22cc917e5ac275fb509d78b69565736a0d73f433f45461bb20d4d0e01232bfb9`. Raw decoded log inspected.
+
+Classification for the source-side substantive sub-gate: **`PASS_SOURCE_TAIL_RECOMPUTED / RATE_FOLD_OPEN`**.
+
+Using Haxton-Lin ordinary-Compton Eq. (9) with BP98 radial `T,rho,X`, Fermi blocking and 1-AU dilution:
+- BP98 blob SHA256 `6bd3c2d9cde15b74cf1fcebe1620566e2b3d832c09e65fc36d5422a6ef0bf198`;
+- `dPhi_anti-nu_e/dE(162.496486 keV) = 3.528363521736758e-41 cm^-2 s^-1 MeV^-1`;
+- 5-keV sanity check `3.765698986767552e7 cm^-2 s^-1 MeV^-1`;
+- 6000->12000 kernel-grid relative change `5.832844895924436e-8`;
+- Fermi-blocking ratio `0.9652620161900424...0.9989419936712352`.
+
+Machine-readable ledger: `data/g8_cu63_thermal_tail_0067.json`, commit `edd952a6c4ab2e0e5676e699efe3e13c84aaf3f3`.
+Immutable note: `research/iterations/0067_g8_cu63_thermal_tail_source_recomputation.md`, commit `190d7f406593b5b1b9612493a85e252be133fa24`.
+
+This removes the high-energy-tail provenance blocker but does not yet claim a final RIOEC rate. The next step must prospectively freeze the exact primary RIOEC normalization before any rate calculation.
+
+### Current prospective gate — 0068
+`research/prereg/0068_g8_cu63_rioec_normalization_contract.md`, commit `44abb5844e6bbcd358fd224052cf7bce92f2e881`.
+
+Recover from primary Akhmedov–Lasserre–Maturi RIOEC authority the exact continuous-spectrum rate/cross-section formula, line-shape normalization, B(GT)->entrance-strength mapping, K-shell atomic factor, spin/statistical factors, constants and units. No rate calculation is allowed before this package is frozen. If primary authority is insufficient, classify `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; do not fill gaps from secondary reviews.
 
 ## G9 distant-source focusing
 0061 immutable authority `research/iterations/0061_g9_ccsn_solar_lens_utility.md`; run/job `34071432319/101589393517`, artifact `10000583684`. At `b/Rsun=0.024`, focus is `24.073780819657056 AU`; 21-km source at 10 kpc projects to `0.2451 mm`; 1/10/100-m receiver alignment probabilities are only `~1.93e-26,1.93e-24,1.93e-22`. Frozen Galactic CCSN utility is strong-negative.
 
-## Iteration 0066 — BSM unlock audit
-Prospective prereg commit `77ecef8795ccdcd7ec990b2f280fdf39012c5c15`. Pre-result evidence-set amendment commit `0534ea599560b050f576e9b706864f41ca797f3c` corrected the existence of the concurrent Cu63 G8 result without changing the frozen criterion.
-
-Machine-readable survivor ledger: `data/bsm_unlock_readiness_0066.json`, commit `7af07949d90c8aefe9889665920a0520e106ccd1`.
-Immutable note: `research/iterations/0066_bsm_unlock_readiness_audit.md`, commit `51138ebbffc9e667948a1769c80bd1d594f96699`.
-
-Classification: **`FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE`**.
-
-Reason: frozen unlock criterion 2 fails because G8/Cu63 is a principal passive-SM branch that remains quantitatively unbounded and is immediately actionable with the newly available exact-state target authority. BSM/light mediator therefore remains **LOCKED**. No BSM constraint ledger is authorized yet.
-
-0066 is an architecture/readiness audit failure, not a new physics closure, so readiness does not increase.
-
-## Current prospective gate — 0067
-Prereg: `research/prereg/0067_g8_cu63_thermal_tail_rate_gate.md`, commit `e42cd8ccd8a321cfa850b87b0fbd8d11bed30956`.
-
-Question: can the Standard-Model thermal-solar electron-antineutrino differential spectrum be recovered or recomputed under primary authority at `E_R=162.496486 keV`? If yes, freeze it locally and fold with the complete reverse-B(GT) envelope and atomic factors to get events/(kg s), events/(kg day), and neutrino-supplied W/kg. If primary authority is not controlled at that energy, classify `BLOCKED_HIGH_ENERGY_TAIL`; plotted-spectrum extrapolation is forbidden.
-
-Current primary-source audit: Haxton & Lin explicitly identify the ordinary Compton process as dominating the thermal high-energy tail above ~5 keV and say the full `anti-nu_e` spectrum is governed by calculable leptonic thermal processes. Their quoted flux-density significance is for the low-keV region; therefore 162.5-keV numerical normalization remains to be reproduced rather than inferred from the plot.
+## BSM lock authority
+0066 prereg `77ecef8795ccdcd7ec990b2f280fdf39012c5c15`; pre-result amendment `0534ea599560b050f576e9b706864f41ca797f3c`; classification **`FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE`** because G8/Cu63 remained an immediately actionable principal SM branch. BSM/light mediator remains LOCKED until the G8 chain is either quantitatively closed or genuinely blocker-limited under the frozen unlock criterion.
 
 ## Research-gate snapshot
 | Gate | Status |
@@ -112,12 +119,12 @@ Current primary-source audit: Haxton & Lin explicitly identify the ordinary Comp
 | G4 engineered resonance/polarization/periodicity | PARTIAL / broad passive guards CLOSED in stated scopes |
 | G5/G6 BSM | **LOCKED — 0066 FAIL_KEEP_BSM_LOCKED_OPEN_SM_ACTIONABLE** |
 | G7 production↔absorption | PARTIAL PASS |
-| G8 resonance integrated strength | **Cu63 F4 PROVENANCE REOPENED; 162.5-keV thermal-tail/rate gate OPEN_ACTIONABLE under 0067** |
+| G8 resonance integrated strength | **Cu63 exact-state F4 PASS; source tail at 162.5 keV RECOMPUTED; primary RIOEC normalization OPEN under 0068** |
 | G9 gravity | **PHYSICAL FOCUSING PASS; 10-kpc Galactic CCSN utility STRONG NEGATIVE** |
 | G10 fixed-column geometry/composition | STRONG NEGATIVE in frozen geometry-only scope |
 
 ## Exact next funnel gate
-**Execute 0067 G8/Cu63 thermal-solar high-energy-tail provenance/materialization first.** Recover or recompute a controlled primary-authority `anti-nu_e` differential flux at `162.496486 keV`. Do not use ordinary solar neutrinos and do not extrapolate a plotted spectrum. If the source tail is reproducible, fold the full exact-state strength envelope and classify the rate. If it is not reproducible, retain `BLOCKED_HIGH_ENERGY_TAIL`. Only after this result may the BSM unlock audit be reconsidered.
+**Execute 0068 first.** Materialize the exact primary RIOEC continuous-spectrum normalization package. Only on `PASS_RIOEC_NORMALIZATION_MATERIALIZED` may a new prospective numerical-fold contract be frozen and the validated 0067 source tail folded with the complete `B_reverse=2.85e-3...6.72e-2` envelope to events/(kg s), events/(kg day) and neutrino-supplied W/kg.
 
 ## Critical guards
 Event/detection gain != interaction gain != neutrino-energy gain. Peak resonance != integrated capture. Directional coherence != integrated opacity. Selected-nucleus two-body corrections are not universal maxima. A fitted EFT LEC range is not regulator-independent authority. A per-partial-wave unitarity bound does not justify a hard universal `lmax≈kR`. Inclusive total-response agreement does not isolate arbitrary contact strength when interference is allowed. Metastable amplification requires stored-energy/reset accounting. Low measured threshold is not full efficiency. A topology handle is not a measured rejection factor. Cross-detector rejection × acceptance multiplication is forbidden. Ordinary solar `nu_e` is forbidden for RIOEC. Frozen criteria are never weakened after results. No F9 multiplication of unvalidated gains.
