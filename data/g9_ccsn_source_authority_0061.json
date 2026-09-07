@@ -1,0 +1,60 @@
+{
+  "iteration": "0061",
+  "gate": "G9 distant-source solar-lens utility",
+  "benchmark_distance_kpc": 10.0,
+  "fluence_model": {
+    "authority": "Nakazato et al., Astrophys. J. Suppl. 205 (2013) 2, arXiv:1210.6841",
+    "database": "Supernova Neutrino Database, Nakazato, guide dated 2021-06-15",
+    "model": {
+      "initial_mass_msun": 20.0,
+      "metallicity_Z": 0.02,
+      "shock_revival_ms": 200.0,
+      "eos": "Shen",
+      "file": "integ2002.data",
+      "integration_horizon_s": 20.0
+    },
+    "primary_url": "https://asphwww.ph.noda.tus.ac.jp/snn/integ2002.data",
+    "local_path": "data/g9_ccsn_nakazato_integ2002.data",
+    "source_payload_sha256": "3e422ceff392d2f70521b4bbda7ad8df4674a69ed1c55b693b88e46e27dfa03b",
+    "github_blob_sha1": "e8dfc9f616cdd62cf26224ac32e528c429dbb6fc",
+    "materialization_run": 34071104818,
+    "materialization_job": 101588491017,
+    "materialization_artifact": 10000475043,
+    "artifact_zip_sha256": "c3b1ed43e8452455c34a8d3bd1081ae4f4dfe661e6e8b88eda464fc928c94a30",
+    "file_format": "First row is total N_nue, N_nuebar, N_nux, E_nue, E_nuebar, E_nux; nux denotes the average of nu_mu, anti-nu_mu, nu_tau, anti-nu_tau and therefore carries multiplicity four for all-flavour totals. Remaining rows are 20 energy bins with differential number [/MeV] and energy [erg/MeV], integrated to 20 s.",
+    "total_number": {
+      "nu_e": 2.211848e57,
+      "anti_nu_e": 1.590254e57,
+      "nu_x_per_heavy_species": 1.711720e57,
+      "all_flavour_including_4_nu_x": 1.0648982e58
+    },
+    "total_energy_erg": {
+      "nu_e": 3.302304e52,
+      "anti_nu_e": 2.823673e52,
+      "nu_x_per_heavy_species": 3.267222e52,
+      "all_flavour_including_4_nu_x": 1.9194865e53
+    },
+    "unlensed_all_flavour_fluence_at_10kpc_cm_minus2": 8.900146153964761e11,
+    "unlensed_all_flavour_energy_fluence_at_10kpc_erg_cm_minus2": 1.6042576079631165e7
+  },
+  "source_size": {
+    "fiducial_radius_km": 21.0,
+    "authority": "Delfan Azari et al., arXiv:1910.06176, self-consistent 2D Boltzmann CCSN simulation",
+    "authority_statement": "positive detections are reported in the vicinity of the neutrino sphere at r approximately 16-21 km",
+    "role": "independently frozen finite-source size control; not used to renormalize the Nakazato luminosity/spectrum",
+    "sensitivity_guard": "0061 must report sensitivity to a substantially larger radius control before interpreting utility"
+  },
+  "occurrence_rate": {
+    "authority": "Rozwadowska, Vissani & Cappellaro, New Astronomy 83 (2021), arXiv:2009.03438",
+    "galactic_core_collapse_rate_per_100yr": 1.63,
+    "one_sigma_per_100yr": 0.46,
+    "mean_interval_year": 61.0,
+    "mean_interval_minus_year": 14.0,
+    "mean_interval_plus_year": 24.0
+  },
+  "provenance_notes": [
+    "The 10-kpc distance is preregistered normalization, not an occurrence prediction.",
+    "The source-radius authority is deliberately kept separate from the fluence normalization; it is only a finite-source geometric scale. A radius sensitivity scan is mandatory.",
+    "No detector, metastable, resonance or structured-matter gain is included."
+  ]
+}
