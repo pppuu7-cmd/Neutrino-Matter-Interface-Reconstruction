@@ -1,0 +1,41 @@
+{
+  "iteration": "0084",
+  "classification": "PASS_SHIN_YUN_B_L_REVISION_SCOPE_AUTHORITY",
+  "primary_source": "Shin & Yun, arXiv:2110.03362v2",
+  "source_archive_sha256": "7af77fa64e46b53e901f88e3a8ef118effcb598dcd505e16e16d3aa31ab049bd",
+  "authoritative_run": 34171357240,
+  "authoritative_job": 101892123279,
+  "artifact_id": 10035801098,
+  "artifact_zip_sha256": "affa60027833b66607c08d6291f82bd5eb06a7ad4a15b5d38a07c8e6ddb637e2",
+  "raw_json_sha256": "6af4872374b8f0090d02476843e7a2fa79505c812f183129b7446e2a6c514db9",
+  "source_native_authority": {
+    "SN1987A_transverse": {
+      "role": "excluded-band boundary semantics",
+      "free_streaming_upper_boundary": "e' < 1e-11",
+      "free_streaming_mass_domain": "m_gamma' < 20 MeV",
+      "high_coupling_allowed_boundary_body": "e' > 1.5e-8 is allowed for m_gamma' < 2 m_e",
+      "high_coupling_allowed_boundary_conclusion": "e' > 1.5e-8 is allowed for m_gamma' < 1 MeV",
+      "revision_scope": "SN1987A transverse bound is revisited and stated to be one order of magnitude more stringent than the earlier derivation of Knapen et al.; no source authority here for superseding Hong Cas A."
+    },
+    "SN1987A_longitudinal": {
+      "role": "excluded-band boundary semantics in product e' m_gamma'",
+      "low_coupling_allowed_boundary": "e' m_gamma' < 7.4e-10 MeV for m_gamma' < 20 MeV",
+      "high_coupling_allowed_boundary_body": "e' m_gamma' > 1.2e-5 MeV is allowed for m_gamma' < 2 m_e",
+      "high_coupling_allowed_boundary_conclusion": "e' m_gamma' > 1.2e-5 MeV is allowed for m_gamma' < 1 MeV"
+    },
+    "NS1987A": {
+      "role": "constraint_bound",
+      "constraint": "e' < 1.5e-12",
+      "mass_domain": "m_gamma' <= T_NS1987A = O(10^9 K) = O(0.1 MeV)",
+      "lower_boundary": "source explicitly states no lower bound from NS1987A",
+      "fiducial_envelope_parameter_context": "eta = 1e-7 cooling curve; source notes eta >= 1e-8 is demanded for standard-cooling luminosity matching"
+    }
+  },
+  "guards": [
+    "Do not promote O(0.1 MeV) to exact 0.1 MeV.",
+    "Do not interpret e'<1e-11 alone as excluding all larger couplings: the source explicitly has high-coupling allowed/trapping branches.",
+    "Do not blanket-supersede Hong Cas A or general young-NS branches.",
+    "Do not merge transverse and longitudinal relations into one boundary.",
+    "No raster/manual contour reading was used."
+  ]
+}
