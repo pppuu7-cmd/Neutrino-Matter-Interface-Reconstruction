@@ -1,0 +1,111 @@
+name: 0090f G9 full ray-centric survivor scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/g9_full_ray_centric_survivor_scan_0090f.py'
+      - 'scripts/g9_full_ray_centric_survivor_scan_0090f_aggregate.py'
+      - 'tests/test_g9_full_ray_centric_survivor_scan_0090f.py'
+      - 'research/prereg/0090f_g9_full_ray_centric_finite_source_survivor_scan.md'
+      - '.github/workflows/0090f-g9-full-ray-centric-survivor-scan.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy pytest mpmath
+      - name: Preflight contract/grid sanity only
+        run: PYTHONPATH=src:scripts pytest -q tests/test_g9_full_ray_centric_survivor_scan_0090f.py
+
+  science:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0, 1, 2]
+        receiver: [0, 1, 2]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy mpmath
+      - name: Execute frozen 150-row full-grid shard
+        continue-on-error: true
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_full_ray_centric_survivor_scan_0090f.py \
+            --control ${{ matrix.control }} --receiver ${{ matrix.receiver }} \
+            --output g9_0090f_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+      - name: Record shard hash
+        if: always()
+        run: sha256sum g9_0090f_shard_${{ matrix.control }}_${{ matrix.receiver }}.json || true
+      - name: Upload raw full-grid shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090f-shard-${{ matrix.control }}-${{ matrix.receiver }}
+          path: g9_0090f_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+          if-no-files-found: error
+      - name: Preserve hard shard failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0090f_shard_${{ matrix.control }}_${{ matrix.receiver }}.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']; print('0090f shard status:',s)
+          if s in {'SCIENTIFIC_FAIL_G9_FULL_RAY_CENTRIC_INVARIANT','INFRASTRUCTURE_FAIL_G9_0090F'}:
+              raise SystemExit(1)
+          PY
+
+  aggregate:
+    if: always()
+    needs: [preflight, science]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: nmir-g9-0090f-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate frozen full-grid classification
+        continue-on-error: true
+        run: python scripts/g9_full_ray_centric_survivor_scan_0090f_aggregate.py --input shards --output g9_0090f_result.json
+      - name: Record aggregate hash
+        if: always()
+        run: sha256sum g9_0090f_result.json || true
+      - name: Upload aggregate authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090f-authoritative
+          path: g9_0090f_result.json
+          if-no-files-found: error
+      - name: Preserve hard aggregate failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0090f_result.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']; print('0090f aggregate status:',s)
+          if s in {'SCIENTIFIC_FAIL_G9_FULL_RAY_CENTRIC_INVARIANT','INFRASTRUCTURE_FAIL_G9_0090F'}:
+              raise SystemExit(1)
+          PY
