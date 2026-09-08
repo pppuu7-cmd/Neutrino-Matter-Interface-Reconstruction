@@ -1,0 +1,40 @@
+name: NMIR 0089e G9 mesh-free narrow-preimage replica
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0089e_g9_mesh_free_narrow_preimage_replica.md'
+      - 'scripts/g9_mesh_free_narrow_preimage_replica_0089e.py'
+      - 'tests/test_g9_mesh_free_narrow_preimage_replica_0089e.py'
+      - '.github/workflows/0089e-g9-mesh-free-narrow-preimage-replica.yml'
+  workflow_dispatch:
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pytest numpy mpmath
+      - name: Run dedicated 0089e regression tests
+        env:
+          PYTHONPATH: src:.
+        run: pytest -q tests/test_g9_mesh_free_narrow_preimage_replica_0089e.py
+      - name: Execute exact frozen 0089e mesh-free replica
+        env:
+          PYTHONPATH: src:.
+        run: python scripts/g9_mesh_free_narrow_preimage_replica_0089e.py
+      - name: Record raw JSON SHA256
+        if: always()
+        run: if [ -f g9_0089e_result.json ]; then sha256sum g9_0089e_result.json; fi
+      - name: Upload exact 0089e artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089e-mesh-free-narrow-preimage-replica
+          path: g9_0089e_result.json
+          if-no-files-found: error
