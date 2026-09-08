@@ -1,0 +1,44 @@
+{
+  "classification": "BLOCKED_FIFTH_FORCE_FINITE_MASS_SUPPORT_AUTHORITY",
+  "frozen_target_eV": [
+    6.845530367110015e-06,
+    1.4057345497828417
+  ],
+  "guards": {
+    "arbitrary_yukawa_suppression_threshold_not_used": true,
+    "asymptotic_bound_unchanged": true,
+    "bsm_response_scan_authorized": false,
+    "earth_radius_or_diameter_not_used_as_endpoint": true,
+    "orbital_altitude_not_used_as_endpoint": true
+  },
+  "iteration": "0087e",
+  "next_action": "move to localized BBN-tail actionability gate",
+  "passing_routes": [],
+  "routes": {
+    "A_explicit_finite_mass_interval": {
+      "pass": false,
+      "reason": "no source-explicit pair of finite positive mediator-mass endpoints"
+    },
+    "B_explicit_finite_force_range_interval": {
+      "pass": false,
+      "reason": "no source-explicit pair of finite positive force-range endpoints"
+    },
+    "C_source_explicit_yukawa_response_and_domain": {
+      "finite_range_curve_available": false,
+      "pass": false,
+      "reason": "Yukawa form exists, but no experiment-defined finite domain with both endpoints; qualitative Earth/altitude scales are forbidden cutoffs",
+      "yukawa_formula_present": true
+    }
+  },
+  "scope": "Fayet/MICROSCOPE primary finite-mass support authority only; no coupling-side geometry",
+  "source_provenance": {
+    "authority_ledger": "data/fayet_fifth_force_authority_classification_0079.json",
+    "authority_ledger_sha256": "e3c78305d7474f9d7dbfa4b42903d9a211126d6cbcbb32f8d503a97e0d4d45a3",
+    "exact_hashes_match_validated_0079_ledger": true,
+    "exact_primary_source_sha256": {
+      "1712.00856v2": "e058c6338db1151bf631a2c2c5eb09102cb521327227ff5288570e51744cc03d",
+      "1809.04991v2": "ed233fa73a149ba9801d442339a2c5fd3b5051c1dc2caa1584a000760fcff29b"
+    }
+  },
+  "threat_comparison": "UNRESOLVED_MASS_SUPPORT_THREAT"
+}
