@@ -1,0 +1,35 @@
+name: NMIR 0087c Cerdeño mass-support-only authority
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0087c_cerdeno_mass_support_only_authority.md'
+      - 'scripts/audit_cerdeno_mass_support_only_0087c.py'
+      - 'tests/test_audit_cerdeno_mass_support_only_0087c.py'
+      - '.github/workflows/0087c-cerdeno-mass-support-only.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact parser/runtime dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pymupdf pytest
+      - name: Run prospective 0087c regression tests
+        run: pytest -q tests/test_audit_cerdeno_mass_support_only_0087c.py
+      - name: Execute frozen 0087c audit
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/audit_cerdeno_mass_support_only_0087c.py
+      - name: Upload exact 0087c artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087c-cerdeno-mass-support-only
+          path: cerdeno_mass_support_only_0087c.json
+          if-no-files-found: error
