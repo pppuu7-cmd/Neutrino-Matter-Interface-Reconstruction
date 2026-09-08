@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import urllib.request
 
+import mpmath as mp
 import numpy as np
 from numpy.polynomial.legendre import leggauss as numpy_leggauss
 
@@ -21,6 +22,7 @@ from nmir.g9_continuous_projection import continuous_focal_distance_au
 from nmir.gravity_extended import AU_CM, parse_model_s_text
 
 CONTRACT = "c9d9e46860ef55bec2a5aaaafdac19f6e9de551b"
+AMENDMENT = "c95fd80e7b2a54d04f83103e7678acbe8c51f6c6"
 THETA_INDICES = (0, 12, 24)
 DELTA_M = (0.0, 0.1, 100.0)
 REPLICAS = {"L": (16, 32), "H": (32, 64)}  # angular, radial
@@ -29,6 +31,8 @@ ABS_SMALL_TOL = 1e-10
 MAP_TOL = 2e-11
 OVERLAP_SYM_TOL = 2e-14
 OVERLAP_SCALE_TOL = 2e-13
+MP_RATIO_TRIGGER = 1e-3
+MP_DPS = 60
 
 
 class Blocked(RuntimeError):
@@ -57,6 +61,40 @@ def cached_leggauss(order: int):
 radial.leggauss = cached_leggauss
 
 
+def _circle_overlap_mp(s: float, a: float, h: float) -> float:
+    with mp.workdps(MP_DPS):
+        ss=mp.mpf(s); aa=mp.mpf(a); hh=mp.mpf(h)
+        c1=(hh*hh+ss*ss-aa*aa)/(2*hh*ss)
+        c2=(hh*hh+aa*aa-ss*ss)/(2*hh*aa)
+        c1=max(mp.mpf(-1),min(mp.mpf(1),c1))
+        c2=max(mp.mpf(-1),min(mp.mpf(1),c2))
+        rad=(-hh+ss+aa)*(hh+ss-aa)*(hh-ss+aa)*(hh+ss+aa)
+        if rad < 0:
+            rad=mp.mpf(0)
+        out=ss*ss*mp.acos(c1)+aa*aa*mp.acos(c2)-mp.mpf('0.5')*mp.sqrt(rad)
+        cap=mp.pi*min(ss,aa)**2
+        tol=mp.mpf('1e-50')*max(cap,mp.mpf(1))
+        if out < -tol or out > cap+tol or not mp.isfinite(out):
+            raise ScientificFail("dual-disk high-precision overlap invariant")
+        out=max(mp.mpf(0),min(cap,out))
+        return float(out)
+
+
+def _circle_overlap_double_partial(s: float, a: float, h: float) -> float | None:
+    c1=(h*h+s*s-a*a)/(2.0*h*s)
+    c2=(h*h+a*a-s*s)/(2.0*h*a)
+    c1=min(1.0,max(-1.0,c1)); c2=min(1.0,max(-1.0,c2))
+    rad=(-h+s+a)*(h+s-a)*(h-s+a)*(h+s+a)
+    if rad < 0.0:
+        return None
+    out=s*s*math.acos(c1)+a*a*math.acos(c2)-0.5*math.sqrt(rad)
+    cap=math.pi*min(s,a)**2
+    eps=1e-13*max(cap,1.0)
+    if not math.isfinite(out) or out < -eps or out > cap+eps:
+        return None
+    return min(cap,max(0.0,out))
+
+
 def circle_overlap(s: float, a: float, h: float) -> float:
     s=float(s); a=float(a); h=float(h)
     if not (math.isfinite(s) and math.isfinite(a) and math.isfinite(h)):
@@ -67,20 +105,19 @@ def circle_overlap(s: float, a: float, h: float) -> float:
         return 0.0
     if h <= abs(s-a):
         return math.pi*min(s,a)**2
-    # Strict partial-overlap branch.
-    c1=(h*h+s*s-a*a)/(2.0*h*s)
-    c2=(h*h+a*a-s*s)/(2.0*h*a)
-    c1=min(1.0,max(-1.0,c1)); c2=min(1.0,max(-1.0,c2))
-    rad=(-h+s+a)*(h+s-a)*(h-s+a)*(h+s+a)
-    if rad<0.0:
-        scale=max((s+a+h)**4,1.0)
-        if rad < -5e-14*scale:
-            raise ScientificFail("dual-disk radicand invariant")
-        rad=0.0
-    out=s*s*math.acos(c1)+a*a*math.acos(c2)-0.5*math.sqrt(rad)
+    # Strict partial-overlap branch. Amendment 0090e-r1 freezes a
+    # high-precision evaluation for disparate radii and as a deterministic
+    # fallback when the direct IEEE-754 expression loses its exact range.
+    ratio=min(s,a)/max(s,a,h)
+    if ratio < MP_RATIO_TRIGGER:
+        out=_circle_overlap_mp(s,a,h)
+    else:
+        out=_circle_overlap_double_partial(s,a,h)
+        if out is None:
+            out=_circle_overlap_mp(s,a,h)
     cap=math.pi*min(s,a)**2
     eps=1e-13*max(cap,1.0)
-    if out < -eps or out > cap+eps or not math.isfinite(out):
+    if not math.isfinite(out) or out < -eps or out > cap+eps:
         raise ScientificFail("dual-disk overlap range invariant")
     return min(cap,max(0.0,out))
 
@@ -257,7 +294,7 @@ def run_shard(ci: int,ri: int) -> dict:
         raise InfrastructureFail(f"shard row cardinality mismatch {len(rows)}")
     return {
         "status":"SHARD_PASS_G9_RAY_CENTRIC_DUAL_DISK",
-        "contract":CONTRACT,"head_sha":os.getenv("GITHUB_SHA"),"model_s_blob":MODEL_S_BLOB,
+        "contract":CONTRACT,"amendment":AMENDMENT,"head_sha":os.getenv("GITHUB_SHA"),"model_s_blob":MODEL_S_BLOB,
         "control_index":ci,"receiver_index":ri,"x0":x0,"z_au":z,"turn_x":turn,
         "receiver_m":float(RECEIVERS_M[ri]),"focal_drift":focal_drift,"batch_scalar_max_rel":map_conf,
         "overlap_controls":controls,
@@ -275,13 +312,13 @@ def main():
         result=run_shard(args.control,args.receiver); exit_code=0
     except Blocked as e:
         result={"status":"BLOCKED_G9_RAY_CENTRIC_DUAL_DISK_CONVOLUTION","reason":str(e),
-                "control_index":args.control,"receiver_index":args.receiver,"contract":CONTRACT,"head_sha":os.getenv("GITHUB_SHA")}; exit_code=0
+                "control_index":args.control,"receiver_index":args.receiver,"contract":CONTRACT,"amendment":AMENDMENT,"head_sha":os.getenv("GITHUB_SHA")}; exit_code=0
     except ScientificFail as e:
         result={"status":"SCIENTIFIC_FAIL_G9_DUAL_DISK_INVARIANT","reason":str(e),
-                "control_index":args.control,"receiver_index":args.receiver,"contract":CONTRACT,"head_sha":os.getenv("GITHUB_SHA")}; exit_code=1
+                "control_index":args.control,"receiver_index":args.receiver,"contract":CONTRACT,"amendment":AMENDMENT,"head_sha":os.getenv("GITHUB_SHA")}; exit_code=1
     except Exception as e:
         result={"status":"INFRASTRUCTURE_FAIL_G9_0090E","reason":repr(e),
-                "control_index":args.control,"receiver_index":args.receiver,"contract":CONTRACT,"head_sha":os.getenv("GITHUB_SHA")}; exit_code=1
+                "control_index":args.control,"receiver_index":args.receiver,"contract":CONTRACT,"amendment":AMENDMENT,"head_sha":os.getenv("GITHUB_SHA")}; exit_code=1
     Path(args.output).write_text(json.dumps(result,indent=2,sort_keys=True)+"\n")
     print(json.dumps({k:v for k,v in result.items() if k!="rows"},indent=2,sort_keys=True))
     raise SystemExit(exit_code)
