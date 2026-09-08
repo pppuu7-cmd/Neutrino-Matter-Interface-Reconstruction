@@ -1,0 +1,41 @@
+name: NMIR 0087g restricted below-1eV completeness
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_restricted_below_1eV_completeness_0087g.py'
+      - 'tests/test_restricted_below_1eV_completeness_0087g.py'
+      - 'research/prereg/0087g_restricted_below_1eV_completeness_final_lock.md'
+      - '.github/workflows/0087g-restricted-below-1ev-completeness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  restricted-completeness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated regression tests
+        run: python -m pytest -q tests/test_restricted_below_1eV_completeness_0087g.py
+      - name: Run frozen 0087g audit
+        run: python scripts/audit_restricted_below_1eV_completeness_0087g.py
+      - name: Hash machine result
+        if: always()
+        run: |
+          if [ -f restricted_below_1eV_completeness_0087g.json ]; then
+            sha256sum restricted_below_1eV_completeness_0087g.json
+          fi
+      - name: Upload scientific ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087g-restricted-below-1ev-completeness
+          path: restricted_below_1eV_completeness_0087g.json
+          if-no-files-found: error
