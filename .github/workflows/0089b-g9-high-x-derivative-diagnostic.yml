@@ -1,0 +1,37 @@
+name: NMIR 0089b G9 high-x derivative conformance diagnostic
+
+on:
+  push:
+    paths:
+      - 'research/amendments/0089b_high_x_derivative_conformance_diagnostic.md'
+      - 'scripts/g9_0089b_high_x_derivative_diag.py'
+      - 'tests/test_g9_0089b_high_x_derivative_diag.py'
+      - '.github/workflows/0089b-g9-high-x-derivative-diagnostic.yml'
+  workflow_dispatch:
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact diagnostic dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pytest mpmath
+      - name: Run dedicated diagnostic regression tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_g9_0089b_high_x_derivative_diag.py
+      - name: Execute frozen high-x derivative conformance diagnostic
+        env:
+          PYTHONPATH: src
+        run: python scripts/g9_0089b_high_x_derivative_diag.py
+      - name: Upload exact diagnostic artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089b-high-x-derivative-diagnostic
+          path: g9_0089b_high_x_derivative_diag.json
+          if-no-files-found: error
