@@ -1,0 +1,38 @@
+name: NMIR 0089 G9 frozen-discrete-map derivative authority
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0089_g9_frozen_discrete_map_derivative_authority.md'
+      - 'src/nmir/g9_discrete_map_derivative.py'
+      - 'scripts/audit_g9_frozen_discrete_map_derivative_0089.py'
+      - 'tests/test_g9_frozen_discrete_map_derivative_0089.py'
+      - '.github/workflows/0089-g9-frozen-discrete-map-derivative-authority.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact audit dependencies
+        run: python -m pip install --upgrade pip && python -m pip install mpmath pytest
+      - name: Run dedicated 0089 regression tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_g9_frozen_discrete_map_derivative_0089.py
+      - name: Execute frozen 0089 derivative-authority audit
+        env:
+          PYTHONPATH: src
+        run: python scripts/audit_g9_frozen_discrete_map_derivative_0089.py
+      - name: Upload exact 0089 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089-derivative-authority
+          path: g9_0089_derivative_authority.json
+          if-no-files-found: error
