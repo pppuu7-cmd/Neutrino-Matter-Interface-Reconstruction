@@ -37,6 +37,19 @@ def parse_limited(path: Path):
     return u, rho[idx]
 
 
+def parse_fixed_5e16(lines):
+    vals = []
+    for line in lines:
+        if not line.strip():
+            continue
+        # Official GONG transfer format: 1p5e16.9 => up to five 16-char fields/record.
+        for j in range(0, len(line), 16):
+            field = line[j:j + 16]
+            if field.strip():
+                vals.append(float(field))
+    return np.asarray(vals, dtype=float)
+
+
 def parse_fgong(path: Path):
     lines = path.read_text(encoding="utf-8").splitlines()
     if len(lines) < 8:
@@ -57,7 +70,7 @@ def parse_fgong(path: Path):
     if header_index is None:
         raise ValueError("unexpected integer header")
     nn, iconst, ivar, ivers = hdr
-    vals = np.fromstring(" ".join(lines[header_index + 1:]), sep=" ")
+    vals = parse_fixed_5e16(lines[header_index + 1:])
     need = iconst + nn * ivar
     if vals.size != need:
         raise ValueError(f"GONG payload length mismatch: {vals.size} != {need}")
