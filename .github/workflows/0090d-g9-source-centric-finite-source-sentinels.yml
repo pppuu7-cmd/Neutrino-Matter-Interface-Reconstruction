@@ -1,0 +1,111 @@
+name: 0090d G9 source-centric finite-source sentinels
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/g9_source_centric_finite_source_0090d.py'
+      - 'scripts/g9_source_centric_finite_source_0090d_aggregate.py'
+      - 'tests/test_g9_source_centric_finite_source_0090d.py'
+      - 'research/prereg/0090d_g9_source_centric_finite_source_sentinel_authority.md'
+      - '.github/workflows/0090d-g9-source-centric-finite-source-sentinels.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Preflight code-path sanity only
+        run: PYTHONPATH=src:scripts pytest -q tests/test_g9_source_centric_finite_source_0090d.py
+
+  science:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0, 1, 2]
+        receiver: [0, 1, 2]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy
+      - name: Execute frozen sentinel shard
+        continue-on-error: true
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_source_centric_finite_source_0090d.py \
+            --control ${{ matrix.control }} --receiver ${{ matrix.receiver }} \
+            --output g9_0090d_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+      - name: Record shard hash
+        if: always()
+        run: sha256sum g9_0090d_shard_${{ matrix.control }}_${{ matrix.receiver }}.json || true
+      - name: Upload shard artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090d-shard-${{ matrix.control }}-${{ matrix.receiver }}
+          path: g9_0090d_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+          if-no-files-found: error
+      - name: Preserve hard shard failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0090d_shard_${{ matrix.control }}_${{ matrix.receiver }}.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']; print('0090d shard status:',s)
+          if s in {'SCIENTIFIC_FAIL_G9_SOURCE_CENTRIC_FINITE_SOURCE_INVARIANT','INFRASTRUCTURE_FAIL_G9_0090D'}:
+              raise SystemExit(1)
+          PY
+
+  aggregate:
+    if: always()
+    needs: [preflight, science]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: nmir-g9-0090d-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate frozen scientific classification
+        continue-on-error: true
+        run: python scripts/g9_source_centric_finite_source_0090d_aggregate.py --input shards --output g9_0090d_result.json
+      - name: Record aggregate hash
+        if: always()
+        run: sha256sum g9_0090d_result.json || true
+      - name: Upload aggregate authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090d-authoritative
+          path: g9_0090d_result.json
+          if-no-files-found: error
+      - name: Preserve hard aggregate failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0090d_result.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']; print('0090d aggregate status:',s)
+          if s in {'SCIENTIFIC_FAIL_G9_SOURCE_CENTRIC_FINITE_SOURCE_INVARIANT','INFRASTRUCTURE_FAIL_G9_0090D'}:
+              raise SystemExit(1)
+          PY
