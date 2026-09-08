@@ -1,0 +1,26 @@
+{
+  "iteration": "0087g",
+  "classification": "BLOCKED_RESTRICTED_BELOW_1EV_COMPLETENESS",
+  "scope": "restricted below-1-eV completeness/final-lock audit; no new geometry",
+  "domain_eV": [6.845530367110015e-6, 1.0],
+  "accepted_disjoint_or_nonoverlap": {
+    "na64": "PROVABLY_MASS_DISJOINT_FROM_0087B_LOWMASS_TARGET",
+    "bbn_below_1eV": "NO_ACCEPTED_0087B_SUPPORT_OVERLAP_BELOW_1EV"
+  },
+  "unresolved_completeness_blockers": {
+    "cerdeno": "BLOCKED_CERDENO_MASS_SUPPORT_ONLY_AUTHORITY",
+    "coherent": "BLOCKED_COHERENT_MASS_SUPPORT_ONLY_AUTHORITY",
+    "fifth_force": "BLOCKED_FIFTH_FORCE_FINITE_MASS_SUPPORT_AUTHORITY"
+  },
+  "blocked_family_as_null_assumption": false,
+  "complete_allowed_region_certified": false,
+  "global_external_envelope_certified": false,
+  "bsm_response_unlock": false,
+  "run_id": 34191935749,
+  "job_id": 101951601761,
+  "artifact_id": 10042503439,
+  "artifact_zip_sha256": "3804d491f748c7e45de348e2010bc76a985d55b23400dc0d91e8862b3b34fd28",
+  "raw_json_sha256": "66b9e68296ef6dbffd2464506b17623e390750d83864a8e94652ecf9e0174d9a",
+  "tests": "4 passed in 0.02s",
+  "next_action": "return to another physically actionable NMIR frontier; do not manufacture missing B-L constraints"
+}
