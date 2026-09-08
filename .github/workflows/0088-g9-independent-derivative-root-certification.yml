@@ -1,0 +1,37 @@
+name: NMIR G9 0088 independent derivative root certification
+
+on:
+  push:
+    paths:
+      - 'src/nmir/g9_independent_derivative.py'
+      - 'tests/test_g9_independent_derivative.py'
+      - 'scripts/g9_independent_derivative_benchmark_0088.py'
+      - '.github/workflows/0088-g9-independent-derivative-root-certification.yml'
+  workflow_dispatch:
+
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install package and test dependency
+        run: python -m pip install -e . pytest
+      - name: Run dedicated 0088 regression tests
+        run: pytest -q tests/test_g9_independent_derivative.py
+      - name: Run frozen fail-closed 0088 benchmark
+        run: python scripts/g9_independent_derivative_benchmark_0088.py
+      - name: Hash raw scientific result
+        if: always()
+        run: |
+          if [ -f g9_0088_result.json ]; then sha256sum g9_0088_result.json; fi
+      - name: Upload scientific result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0088-result
+          path: g9_0088_result.json
+          if-no-files-found: error
