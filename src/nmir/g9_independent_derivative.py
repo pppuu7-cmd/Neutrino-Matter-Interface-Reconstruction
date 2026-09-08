@@ -1,8 +1,8 @@
 """Public 0088 root-locator API; continuous geometry is locator-only authority."""
-from .g9_independent_derivative_v2 import (
+from .g9_independent_derivative_v3 import (
     RootCertificationBlocked,
     RootBracket,
-    simpson as adaptive_simpson,
+    converged_simpson as adaptive_simpson,
     mass_derivative as continuous_mass_and_derivative,
     derivative as independent_derivative,
     roots as isolate_sign_roots,
