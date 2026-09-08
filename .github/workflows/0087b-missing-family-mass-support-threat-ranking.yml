@@ -1,0 +1,34 @@
+name: NMIR 0087b missing-family mass-support threat ranking
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0087b_missing_family_mass_support_threat_ranking.md'
+      - 'scripts/audit_missing_family_mass_support_threat_ranking_0087b.py'
+      - 'tests/test_audit_missing_family_mass_support_threat_ranking_0087b.py'
+      - '.github/workflows/0087b-missing-family-mass-support-threat-ranking.yml'
+  workflow_dispatch:
+
+jobs:
+  rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact geometry/runtime dependencies
+        run: python -m pip install --upgrade pip && python -m pip install shapely pymupdf pytest
+      - name: Run prospective threat-ranking regression tests
+        run: pytest -q tests/test_audit_missing_family_mass_support_threat_ranking_0087b.py
+      - name: Execute frozen 0087b audit
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/audit_missing_family_mass_support_threat_ranking_0087b.py
+      - name: Upload exact threat-ranking artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087b-missing-family-mass-support-threat-ranking
+          path: missing_family_mass_support_threat_ranking_0087b.json
+          if-no-files-found: error
