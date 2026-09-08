@@ -41,7 +41,6 @@ def parse_fgong(path: Path):
     lines = path.read_text(encoding="utf-8").splitlines()
     if len(lines) < 8:
         raise ValueError("GONG file too short")
-    # Model-S file has three text header records followed by the integer header record.
     hdr = [int(x) for x in lines[3].split()]
     if len(hdr) != 4:
         raise ValueError("unexpected integer header")
@@ -148,6 +147,7 @@ def main():
         "status": status,
         "reason": reason,
         "provenance": {
+            "archive_landing_url": "https://users-phys.au.dk/jcd/solar_models/",
             "limited_model_s_sha256": sha256(args.limited),
             "fgong_model_s_sha256": sha256(args.fgong),
             "gong_format_pdf_sha256": sha256(args.format),
