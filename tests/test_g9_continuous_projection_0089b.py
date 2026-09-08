@@ -5,11 +5,17 @@ from nmir.g9_continuous_projection import (
     continuous_projected_mass_derivative_g_per_x,
     continuous_projected_mass_g,
 )
-from nmir.gravity_extended import RadialDensityProfile, uniform_sphere_projected_fraction
+from nmir.gravity_extended import RadialDensityProfile
 
 
 def rel(a, b):
     return abs(a - b) / max(abs(a), abs(b), 1e-300)
+
+
+def stable_uniform_sphere_projected_fraction(x):
+    if x == 1.0:
+        return 1.0
+    return -math.expm1(1.5 * math.log1p(-x * x))
 
 
 def test_constant_density_matches_uniform_sphere_projection_exactly():
@@ -18,7 +24,7 @@ def test_constant_density_matches_uniform_sphere_projection_exactly():
     total = 4.0 * math.pi * r**3 * 3.0 / 3.0
     for x in (1e-4, 0.02, 0.17, 0.5, 0.91, 1.0):
         got = continuous_projected_mass_g(profile, x, r)
-        want = total * uniform_sphere_projected_fraction(x)
+        want = total * stable_uniform_sphere_projected_fraction(x)
         assert rel(got, want) < 2e-12
 
 
