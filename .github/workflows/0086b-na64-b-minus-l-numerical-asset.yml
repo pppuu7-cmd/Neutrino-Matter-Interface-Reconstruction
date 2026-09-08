@@ -1,0 +1,36 @@
+name: NMIR 0086b NA64 B-L numerical asset materialization
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/audit_na64_b_minus_l_numerical_asset_0086b.py'
+      - 'tests/test_audit_na64_b_minus_l_numerical_asset_0086b.py'
+      - '.github/workflows/0086b-na64-b-minus-l-numerical-asset.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install audit dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest pymupdf
+      - name: Run prospective regression tests
+        run: python -m pytest -q tests/test_audit_na64_b_minus_l_numerical_asset_0086b.py
+      - name: Execute frozen 0086b source-asset audit
+        run: |
+          mkdir -p artifacts/0086b
+          python scripts/audit_na64_b_minus_l_numerical_asset_0086b.py --output artifacts/0086b/na64_b_minus_l_asset_audit_0086b.json
+          sha256sum artifacts/0086b/na64_b_minus_l_asset_audit_0086b.json | tee artifacts/0086b/RAW_JSON_SHA256.txt
+      - name: Upload exact audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0086b-na64-b-minus-l-asset-audit
+          path: artifacts/0086b/
+          if-no-files-found: error
