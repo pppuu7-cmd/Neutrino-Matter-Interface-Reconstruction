@@ -1,0 +1,42 @@
+name: NMIR 0087e fifth-force finite-mass support authority
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_fifth_force_finite_mass_support_0087e.py'
+      - 'tests/test_fifth_force_finite_mass_support_0087e.py'
+      - 'research/prereg/0087e_fifth_force_finite_mass_support_authority.md'
+      - 'data/fayet_fifth_force_authority_classification_0079.json'
+      - '.github/workflows/0087e-fifth-force-finite-mass-support.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mass-support-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated regression tests
+        run: python -m pytest -q tests/test_fifth_force_finite_mass_support_0087e.py
+      - name: Run frozen 0087e authority gate
+        run: python scripts/audit_fifth_force_finite_mass_support_0087e.py
+      - name: Hash machine result
+        if: always()
+        run: |
+          if [ -f fifth_force_finite_mass_support_0087e.json ]; then
+            sha256sum fifth_force_finite_mass_support_0087e.json
+          fi
+      - name: Upload scientific ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087e-fifth-force-finite-mass-support
+          path: fifth_force_finite_mass_support_0087e.json
+          if-no-files-found: error
