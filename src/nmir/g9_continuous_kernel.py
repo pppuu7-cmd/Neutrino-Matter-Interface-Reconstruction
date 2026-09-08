@@ -1,7 +1,7 @@
 """Monotone-branch radial-kernel primitives for NMIR iteration 0089d.
 
-This module never discovers turning points.  Callers must supply the certified
-branch boundaries from iteration 0089c.  The authoritative signed map remains
+This module never discovers turning points. Callers must supply the certified
+branch boundaries from iteration 0089c. The authoritative signed map remains
 scalar; dense-array evaluators are validation replicas only.
 """
 from __future__ import annotations
@@ -25,8 +25,14 @@ def bisect_monotone_target(
     target: float,
     *,
     width: float = 1e-12,
+    residual_tol: float | None = None,
 ) -> float:
-    """Solve y(x)=target on a certified monotone branch by bisection."""
+    """Solve y(x)=target on a certified monotone branch by deterministic bisection.
+
+    When ``residual_tol`` is supplied, both the frozen width requirement and the
+    frozen map-residual requirement must be met. This is a numerical-conformance
+    condition, not a relaxed scientific criterion.
+    """
     yl = yfn(lo) - target
     yr = yfn(hi) - target
     if not (math.isfinite(yl) and math.isfinite(yr)):
@@ -37,18 +43,26 @@ def bisect_monotone_target(
         return hi
     if yl * yr > 0.0:
         raise KernelBlocked("target is not bracketed by certified monotone branch")
-    while hi - lo > width:
+    for _ in range(256):
         mid = 0.5 * (lo + hi)
         ym = yfn(mid) - target
         if not math.isfinite(ym):
             raise KernelBlocked("non-finite target bisection value")
-        if ym == 0.0:
+        width_ok = (hi - lo) <= width
+        residual_ok = residual_tol is None or abs(ym) <= residual_tol
+        if ym == 0.0 or (width_ok and residual_ok):
             return mid
         if yl * ym <= 0.0:
             hi, yr = mid, ym
         else:
             lo, yl = mid, ym
-    return 0.5 * (lo + hi)
+        if mid == lo or mid == hi:
+            break
+    candidate = lo if abs(yl) <= abs(yr) else hi
+    residual = abs(yfn(candidate) - target)
+    if (hi - lo) <= width and (residual_tol is None or residual <= residual_tol):
+        return candidate
+    raise KernelBlocked("bisection cannot satisfy frozen width/residual requirements")
 
 
 def branch_crossings(
@@ -60,9 +74,12 @@ def branch_crossings(
         raise KernelBlocked("non-finite branch endpoint map")
     low, high = min(ylo, yhi), max(ylo, yhi)
     roots: dict[float, float] = {}
+    residual_tol = max(1e-4, 2e-10 * float(radius))
     for target in (0.0, float(radius), -float(radius)):
         if low <= target <= high:
-            roots[target] = bisect_monotone_target(yfn, lo, hi, target)
+            roots[target] = bisect_monotone_target(
+                yfn, lo, hi, target, residual_tol=residual_tol
+            )
     return roots
 
 
@@ -91,7 +108,13 @@ def accepted_branch_interval(
             return hi
         if value in roots:
             return roots[value]
-        return bisect_monotone_target(yfn, lo, hi, value)
+        return bisect_monotone_target(
+            yfn,
+            lo,
+            hi,
+            value,
+            residual_tol=max(1e-4, 2e-10 * float(radius)),
+        )
 
     x_a = x_for(keep_low)
     x_b = x_for(keep_high)
