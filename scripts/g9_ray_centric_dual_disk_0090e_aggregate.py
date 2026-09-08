@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 
 CONTRACT="c9d9e46860ef55bec2a5aaaafdac19f6e9de551b"
+AMENDMENT="c95fd80e7b2a54d04f83103e7678acbe8c51f6c6"
 PASS_SHARD="SHARD_PASS_G9_RAY_CENTRIC_DUAL_DISK"
 BLOCKED="BLOCKED_G9_RAY_CENTRIC_DUAL_DISK_CONVOLUTION"
 SCI_FAIL="SCIENTIFIC_FAIL_G9_DUAL_DISK_INVARIANT"
@@ -20,22 +21,23 @@ def main():
     files=sorted(Path(args.input).rglob("g9_0090e_shard_*.json"))
     head=os.getenv("GITHUB_SHA")
     if len(files)!=9:
-        result={"status":INFRA,"reason":f"expected 9 shard JSONs, found {len(files)}","contract":CONTRACT,"head_sha":head}
+        result={"status":INFRA,"reason":f"expected 9 shard JSONs, found {len(files)}","contract":CONTRACT,"amendment":AMENDMENT,"head_sha":head}
     else:
-        rows=[]; payloads=[]; bad_contract=[]; bad_head=[]
+        rows=[]; payloads=[]; bad_contract=[]; bad_amendment=[]; bad_head=[]
         for p in files:
             d=json.loads(p.read_text()); payloads.append(d)
             if d.get("contract")!=CONTRACT: bad_contract.append(str(p))
+            if d.get("amendment")!=AMENDMENT: bad_amendment.append(str(p))
             if d.get("head_sha")!=head: bad_head.append(str(p))
         statuses=collections.Counter(d.get("status","MISSING_STATUS") for d in payloads)
         pairs={(d.get("control_index"),d.get("receiver_index")) for d in payloads}
         for d in payloads:
             rows.extend(d.get("rows",[]))
-        base={"contract":CONTRACT,"head_sha":head,"shard_count":len(payloads),"status_counts":dict(statuses),
+        base={"contract":CONTRACT,"amendment":AMENDMENT,"head_sha":head,"shard_count":len(payloads),"status_counts":dict(statuses),
               "pair_count":len(pairs),"row_count":len(rows)}
-        if bad_contract or bad_head or len(pairs)!=9:
-            result={**base,"status":INFRA,"reason":"shard contract/head/pair identity mismatch",
-                    "bad_contract":bad_contract,"bad_head":bad_head}
+        if bad_contract or bad_amendment or bad_head or len(pairs)!=9:
+            result={**base,"status":INFRA,"reason":"shard contract/amendment/head/pair identity mismatch",
+                    "bad_contract":bad_contract,"bad_amendment":bad_amendment,"bad_head":bad_head}
         elif statuses.get(INFRA,0) or "MISSING_STATUS" in statuses:
             result={**base,"status":INFRA,"reason":"one or more shard infrastructure failures"}
         elif statuses.get(SCI_FAIL,0):
