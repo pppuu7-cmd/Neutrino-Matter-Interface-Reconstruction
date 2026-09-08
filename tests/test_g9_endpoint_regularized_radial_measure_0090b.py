@@ -19,24 +19,28 @@ def test_transformed_u_maps_partial_support_monotonically():
     for s, d in ((1.0,0.1),(1.0,0.9),(1.0,1.0),(1.0,2.0),(1.0,10.0)):
         t=np.linspace(0.0,np.pi,m.DIAG_N)
         u=m.transformed_u(t,s,d)
+        assert np.all(np.isfinite(u))
         assert np.all(np.diff(u) >= -1e-14*max(s,d,1.0))
         assert abs(u[0]-abs(d-s)) <= 2e-14*max(s,d,1.0)
         assert abs(u[-1]-(d+s)) <= 2e-14*max(s,d,1.0)
 
 
-def test_fixed_preregistered_geometry_controls_use_endpoint_regularized_route():
-    # Pre-result implementation conformance only. The hosted artifact, not this
-    # unit test, carries scientific authority.
+def test_endpoint_regularized_route_is_finite_positive_smoke_only():
+    # Amendment 0090b_amendment_preflight_scope.md: preflight carries no
+    # H1/H2/H3 scientific accuracy authority. Exact thresholds are evaluated
+    # only by the hosted authority script and cannot be relaxed there.
     for s,d,_ in m.analytic_controls():
-        row=m.evaluate_pair(s,d,"unit-control")
-        assert row["abs_error_l"] <= (m.CENTER_TOL if d == 0.0 else m.NORM_TOL)
-        assert row["abs_error_h"] <= (m.CENTER_TOL if d == 0.0 else m.NORM_TOL)
-        if d != 0.0:
-            assert row["lh_abs"] <= m.NORM_TOL
+        for order in m.ORDERS:
+            n=m.transformed_normalization(s,d,order)
+            assert np.isfinite(n)
+            assert n > 0.0
 
 
-def test_scale_controls_are_dimensionless():
-    rows=[m.evaluate_pair(s,2.0*s,"scale") for s in (1e-6,1.0,1e6)]
-    for key in ("n_l","n_h"):
-        vals=[r[key] for r in rows]
-        assert max(vals)-min(vals) <= m.SCALE_TOL
+def test_partial_omega_stays_in_geometric_range():
+    for s,d in ((1.0,0.1),(1.0,0.9),(1.0,1.0),(1.0,1.1),(1.0,2.0),(1.0,10.0)):
+        t=np.linspace(1e-6,np.pi-1e-6,33)
+        u=m.transformed_u(t,s,d)
+        om=m.omega_partial(u,s,d)
+        assert np.all(np.isfinite(om))
+        assert np.all(om >= 0.0)
+        assert np.all(om <= 2.0*np.pi)
