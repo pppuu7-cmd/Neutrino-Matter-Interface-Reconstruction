@@ -1,0 +1,91 @@
+name: NMIR 0090 G9 persistent finite-source global convolution
+
+on:
+  push:
+    paths:
+      - 'src/nmir/g9_persistent_global.py'
+      - 'scripts/g9_persistent_global_0090.py'
+      - 'scripts/g9_persistent_global_0090_r1.py'
+      - 'scripts/g9_persistent_global_0090_aggregate.py'
+      - 'tests/test_g9_persistent_global_0090.py'
+      - 'research/prereg/0090_g9_persistent_finite_source_global_convolution.md'
+      - 'research/amendments/0090_exact_point_control_implementation.md'
+      - '.github/workflows/0090-g9-persistent-finite-source-global-convolution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Run dedicated 0090 regression tests
+        env:
+          PYTHONPATH: src
+        run: python -m pytest -q tests/test_g9_persistent_global_0090.py
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0, 1, 2]
+        receiver: [0, 1, 2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --disable-pip-version-check numpy
+      - name: Execute frozen 0090 shard
+        env:
+          PYTHONPATH: src
+        run: >-
+          python scripts/g9_persistent_global_0090_r1.py
+          --control ${{ matrix.control }}
+          --receiver ${{ matrix.receiver }}
+          --output g9_0090_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+      - name: Upload exact 0090 shard artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090-shard-${{ matrix.control }}-${{ matrix.receiver }}
+          path: g9_0090_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+          if-no-files-found: error
+
+  aggregate:
+    if: always()
+    needs: [preflight, shard]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download all 0090 shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: nmir-g9-0090-shard-*
+          path: shards
+      - name: Aggregate frozen 0090 scientific classification
+        run: python scripts/g9_persistent_global_0090_aggregate.py --input shards --output g9_0090_result.json
+      - name: Upload authoritative 0090 aggregate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090-persistent-global-convolution
+          path: g9_0090_result.json
+          if-no-files-found: error
