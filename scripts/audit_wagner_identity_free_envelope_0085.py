@@ -30,7 +30,7 @@ def sha256(b: bytes) -> str:
 
 
 def fetch(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "NMIR-0085/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "NMIR-0085/1.1"})
     with urllib.request.urlopen(req, timeout=90) as r:
         return r.read()
 
@@ -87,16 +87,15 @@ def source_text_authority(tf: tarfile.TarFile):
             t = raw.decode("latin-1")
         texts.append((m.name, normalize_tex(t)))
     merged = " ".join(t for _, t in texts)
-    upper = "95% cl upper bound" in merged or "95 % cl upper bound" in merged or "95\% cl upper bound" in merged
-    # TeX normalization can separate B-L punctuation/macros; allow both exact and nearby B/L wording.
+    upper = bool(re.search(r"\b95\s*%\s*cl\s+upper\s+bounds?\b", merged))
     bl = bool(re.search(r"b\s*-\s*l|bminusl|baryon.{0,80}lepton", merged))
     fig6 = "figure 6" in merged or "fig. 6" in merged or "fig 6" in merged or "wep_figure6" in merged
     vector = "vector yukawa" in merged
-    # Preserve short evidence windows for auditability.
     evidence = []
-    for needle in ["95% cl upper bound", "vector yukawa", "b-l", "figure 6"]:
-        p = merged.find(needle)
-        if p >= 0:
+    for pat in [r"95\s*%\s*cl\s+upper\s+bounds?", r"vector yukawa", r"b\s*-\s*l", r"figure 6|wep_figure6"]:
+        m = re.search(pat, merged)
+        if m:
+            p = m.start()
             evidence.append(merged[max(0, p - 220): min(len(merged), p + 420)])
     return {"tex_files": [n for n, _ in texts], "upper_bounds_95cl": upper, "B_minus_L": bl,
             "figure6_context": fig6, "vector_yukawa": vector, "evidence": evidence[:8]}
@@ -202,7 +201,8 @@ def support_runs(samples):
         if s["supported"]:
             cur.append(s)
         elif cur:
-            runs.append(cur); cur = []
+            runs.append(cur)
+            cur = []
     if cur:
         runs.append(cur)
     return [{"x_min": r[0]["x"], "x_max": r[-1]["x"], "n_samples": len(r)} for r in runs]
@@ -225,7 +225,7 @@ def audit(fetcher=fetch):
     topology_ok = all(topology[f]["retained"] == EXPECTED[f] for f in EXPECTED) and len(comps) == 8
     monotonic_ok = all(c["x_monotonic"] for c in comps)
     finite_ok = all(c["finite_positive"] for c in comps)
-    source_ok = src["upper_bounds_95cl"] and src["B_minus_L"] and src["vector_yukawa"]
+    source_ok = src["upper_bounds_95cl"] and src["B_minus_L"] and src["vector_yukawa"] and src["figure6_context"]
     roundtrip_ok = max_rt <= ROUNDTRIP_TOL
 
     coarse_x = make_grid(comps, 20001) if topology_ok and monotonic_ok and finite_ok else []
@@ -237,19 +237,20 @@ def audit(fetcher=fetch):
                        "active_component": None if e is None else e[1], "n_supported_components": 0 if e is None else e[2]})
     supported = [s for s in coarse if s["supported"]]
 
-    # Name/order invariance: reverse IDs/order but leave geometry unchanged.
     renamed = []
     for k, c in enumerate(reversed(comps)):
-        z = dict(c); z["anonymous_id"] = f"anon_perm_{k}"; renamed.append(z)
+        z = dict(c)
+        z["anonymous_id"] = f"anon_perm_{k}"
+        renamed.append(z)
     inv_max = 0.0
     for s in supported:
         e2 = envelope_at(renamed, s["x"])
         if e2 is None:
-            inv_max = float("inf"); break
+            inv_max = float("inf")
+            break
         inv_max = max(inv_max, abs(e2[0] - s["y"]))
     invariance_ok = inv_max <= 1e-12
 
-    # Independent finer grid + shared direct check points.
     fine_x = make_grid(comps, 40001) if coarse_x else []
     fine_support = sum(envelope_at(comps, x) is not None for x in fine_x)
     shared_x = []
@@ -262,7 +263,8 @@ def audit(fetcher=fetch):
         a = envelope_at(comps, x)
         b = envelope_at(list(reversed(comps)), x)
         if (a is None) != (b is None):
-            fine_check_max = float("inf"); break
+            fine_check_max = float("inf")
+            break
         if a is not None:
             shared_supported += 1
             fine_check_max = max(fine_check_max, abs(a[0] - b[0]))
@@ -277,7 +279,6 @@ def audit(fetcher=fetch):
     else:
         cls = "SCIENTIFIC_FAIL_WAGNER_IDENTITY_FREE_B_L_UPPER_ENVELOPE"
 
-    # Compact authoritative envelope: all source vertices plus deterministic 20001 grid supported points.
     env_points = [{"m_V_eV": s["m_V_eV"], "g_BL": s["g_BL"], "active_component": s["active_component"],
                    "n_supported_components": s["n_supported_components"]} for s in supported]
     active_counts = defaultdict(int)
@@ -286,7 +287,8 @@ def audit(fetcher=fetch):
 
     return {
         "iteration": "0085", "classification": cls, "eps_sha256": sha256(eps),
-        "source_text_authority": src, "axis_calibration_sha": cal.get("eps_sha256"),
+        "source_text_authority": src, "source_authority_ok": source_ok,
+        "axis_calibration_sha": cal.get("eps_sha256"),
         "topology": topology, "topology_ok": topology_ok, "component_count": len(comps),
         "components": comps, "dropped_fragments": dropped, "monotonic_ok": monotonic_ok,
         "finite_positive_ok": finite_ok, "roundtrip_max_abs_eps": max_rt, "roundtrip_ok": roundtrip_ok,
@@ -308,8 +310,9 @@ def main():
     r = audit()
     fn = "wagner_identity_free_upper_envelope_0085.json"
     with open(fn, "w", encoding="utf-8") as f:
-        json.dump(r, f, indent=2, sort_keys=True); f.write("\n")
-    summary = {k: r[k] for k in ["iteration", "classification", "eps_sha256", "topology", "component_count",
+        json.dump(r, f, indent=2, sort_keys=True)
+        f.write("\n")
+    summary = {k: r[k] for k in ["iteration", "classification", "eps_sha256", "source_authority_ok", "topology", "component_count",
         "monotonic_ok", "roundtrip_max_abs_eps", "supported_mass_min_eV", "supported_mass_max_eV",
         "supported_grid_point_count", "active_component_sample_counts", "name_order_invariance_max_decade",
         "fine_shared_max_decade", "support_runs", "envelope_semantics"]}
