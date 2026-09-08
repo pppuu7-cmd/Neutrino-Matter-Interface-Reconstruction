@@ -1,10 +1,13 @@
 import importlib.util
 import math
 from pathlib import Path
+import sys
 
 import numpy as np
 
-P=Path(__file__).parents[1]/"scripts"/"g9_radial_source_measure_0090a.py"
+SCRIPTS=Path(__file__).parents[1]/"scripts"
+sys.path.insert(0,str(SCRIPTS))
+P=SCRIPTS/"g9_radial_source_measure_0090a.py"
 spec=importlib.util.spec_from_file_location("g9_0090a",P)
 m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
@@ -28,7 +31,6 @@ def test_phi_fraction_degenerate_and_geometric_cases():
     assert m.phi_fraction(np.array([0.0]),np.array([3.0]),a)[0]==0.0
     assert m.phi_fraction(np.array([1.0]),np.array([0.0]),a)[0]==1.0
     assert m.phi_fraction(np.array([3.0]),np.array([0.0]),a)[0]==0.0
-    # Equal y=u=a gives acos(1/2)/pi=1/3.
     got=m.phi_fraction(np.array([a]),np.array([a]),a)[0]
     assert abs(got-1/3)<1e-14
 
