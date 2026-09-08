@@ -1,0 +1,94 @@
+name: NMIR 0090a G9 radial-source measure quadrature authority
+
+on:
+  push:
+    paths:
+      - 'scripts/g9_radial_source_measure_0090a.py'
+      - 'scripts/g9_radial_source_measure_0090a_aggregate.py'
+      - 'tests/test_g9_radial_source_measure_0090a.py'
+      - 'research/prereg/0090a_g9_radial_source_measure_quadrature_authority.md'
+      - '.github/workflows/0090a-g9-radial-source-measure-quadrature-authority.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Run dedicated 0090a regression tests
+        env:
+          PYTHONPATH: src
+        run: python -m pytest -q tests/test_g9_radial_source_measure_0090a.py
+
+  shard:
+    needs: preflight
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0, 1, 2]
+        receiver: [0, 1, 2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --disable-pip-version-check numpy
+      - name: Execute exact frozen 0090a shard
+        env:
+          PYTHONPATH: src
+        run: >-
+          python scripts/g9_radial_source_measure_0090a.py
+          --control ${{ matrix.control }}
+          --receiver ${{ matrix.receiver }}
+          --output g9_0090a_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+      - name: Hash exact 0090a shard JSON
+        if: always()
+        run: sha256sum g9_0090a_shard_${{ matrix.control }}_${{ matrix.receiver }}.json || true
+      - name: Upload exact 0090a shard artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090a-shard-${{ matrix.control }}-${{ matrix.receiver }}
+          path: g9_0090a_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+          if-no-files-found: error
+
+  aggregate:
+    if: always()
+    needs: [preflight, shard]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download all 0090a shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: nmir-g9-0090a-shard-*
+          path: shards
+      - name: Aggregate frozen 0090a scientific classification
+        run: python scripts/g9_radial_source_measure_0090a_aggregate.py --input shards --output g9_0090a_result.json
+      - name: Hash authoritative 0090a aggregate JSON
+        if: always()
+        run: sha256sum g9_0090a_result.json || true
+      - name: Upload authoritative 0090a aggregate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090a-radial-source-measure
+          path: g9_0090a_result.json
+          if-no-files-found: error
