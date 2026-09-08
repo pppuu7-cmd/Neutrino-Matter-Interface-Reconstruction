@@ -1,0 +1,57 @@
+name: 0090c G9 source-centric exact measure
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/g9_source_centric_exact_measure_0090c.py'
+      - 'tests/test_g9_source_centric_exact_measure_0090c.py'
+      - 'research/prereg/0090c_g9_source_centric_exact_measure_authority.md'
+      - '.github/workflows/0090c-g9-source-centric-exact-measure.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  authority:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact runtime dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Preflight implementation sanity only
+        run: PYTHONPATH=src:scripts pytest -q tests/test_g9_source_centric_exact_measure_0090c.py
+      - name: Execute exact frozen 0090c authority calculation
+        id: science
+        continue-on-error: true
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_source_centric_exact_measure_0090c.py --output g9_0090c_result.json
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+      - name: Record inner result hash
+        if: always()
+        run: sha256sum g9_0090c_result.json || true
+      - name: Upload raw authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0090c-source-centric-exact-measure
+          path: g9_0090c_result.json
+          if-no-files-found: error
+      - name: Preserve hard scientific/infrastructure failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0090c_result.json')
+          if not p.exists():
+              raise SystemExit(1)
+          status=json.loads(p.read_text())['status']
+          print('0090c payload status:', status)
+          if status in {'SCIENTIFIC_FAIL_G9_SOURCE_CENTRIC_GEOMETRY','INFRASTRUCTURE_FAIL_G9_0090C'}:
+              raise SystemExit(1)
+          PY
