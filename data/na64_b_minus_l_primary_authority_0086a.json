@@ -1,0 +1,50 @@
+{
+  "iteration": "0086a",
+  "classification": "PASS_B_L_COLLIDER_FIXED_TARGET_PRIMARY_AUTHORITY",
+  "primary_source": {
+    "collaboration": "NA64 Collaboration",
+    "title": "Improved limits on a new Z' in B-L scenarios with the NA64 experiment at CERN",
+    "arxiv": "2606.17320v2",
+    "submitted": "2026-06-15",
+    "revised": "2026-06-30",
+    "report_number": "CERN-EP-2026-166",
+    "stable_url": "https://arxiv.org/abs/2606.17320"
+  },
+  "frozen_model_identity": {
+    "interaction": "gauged U(1)_{B-L}",
+    "source_coupling_symbol": "g_{Z'}",
+    "nmir_coupling_symbol": "g_BL",
+    "mapping": "g_{Z'} = g_{B-L} = sqrt(4*pi*alpha_{B-L})",
+    "standard_B_minus_L_charges": true
+  },
+  "experiment": {
+    "type": "electron fixed-target missing-energy search",
+    "dataset": "full NA64 2016-2022 electron dataset",
+    "electrons_on_target": "(9.4 +/- 0.5)e11",
+    "production_notes": [
+      "electron-nucleus production",
+      "resonant e+e- annihilation relevant around 200-300 MeV",
+      "source explicitly states epsilon*e -> g_B-L replacement for the production normalization in the discussed mapping"
+    ]
+  },
+  "decay_and_scenario_semantics": {
+    "unbroken_B_minus_L": "Dirac-neutrino scenario with three light right-handed neutrinos; invisible neutrino branching is model-relevant",
+    "broken_or_majorana_variants": "must remain separate where the source distinguishes neutrino/right-handed-neutrino content",
+    "dark_sector_invisible": "separate benchmark/scenario; must not be post-hoc merged with the unbroken B-L case",
+    "visible_invisible_assumptions_must_be_preserved": true
+  },
+  "authority_scope": {
+    "same_convention_primary_constraint": true,
+    "nonzero_mass_support": true,
+    "numerical_contour_materialized_here": false,
+    "source_asset_geometry_audited_here": false,
+    "child_materialization_gate_required": true
+  },
+  "guards": [
+    "no generic dark-photon contour imported without the primary B-L mapping",
+    "no raster/OCR/manual contour reading",
+    "no visible/invisible scenario union",
+    "no right-handed-neutrino assumption suppression",
+    "no cross-family B-L union in 0086a"
+  ]
+}
