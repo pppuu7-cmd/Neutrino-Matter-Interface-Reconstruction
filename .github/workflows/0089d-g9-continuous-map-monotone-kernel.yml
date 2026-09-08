@@ -6,6 +6,7 @@ on:
       - 'research/prereg/0089d_g9_continuous_map_monotone_kernel.md'
       - 'research/prereg/0089d_amendment_bulk_evaluator.md'
       - 'scripts/g9_0089d_bulk_conformance.py'
+      - 'scripts/g9_0089d_contract_runner.py'
       - 'scripts/g9_continuous_map_monotone_kernel_0089d.py'
       - 'tests/test_g9_continuous_kernel_0089d.py'
       - 'src/nmir/g9_continuous_kernel.py'
@@ -32,10 +33,10 @@ jobs:
         env:
           PYTHONPATH: src
         run: pytest -q tests/test_g9_continuous_kernel_0089d.py
-      - name: Execute frozen 0089d kernel certification
+      - name: Execute exact frozen 0089d kernel certification
         env:
           PYTHONPATH: src
-        run: python scripts/g9_continuous_map_monotone_kernel_0089d.py
+        run: python scripts/g9_0089d_contract_runner.py
       - name: Record raw JSON SHA256
         if: always()
         run: if [ -f g9_0089d_result.json ]; then sha256sum g9_0089d_result.json; fi
