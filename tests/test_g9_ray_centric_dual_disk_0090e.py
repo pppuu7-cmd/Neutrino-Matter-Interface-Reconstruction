@@ -19,6 +19,18 @@ def test_circle_overlap_partial_symmetry_and_scale():
         assert math.isclose(oc,o,rel_tol=2e-13,abs_tol=1e-20)
 
 
+def test_extreme_radius_partial_overlap_float_conformance():
+    # Amendment 0090e-r1: conformance-only control for the cancellation regime.
+    s=3.5903488968e-4
+    a=100.0
+    for frac in (-0.75,-0.1,0.0,0.1,0.75):
+        h=a+frac*s
+        o=g.circle_overlap(s,a,h)
+        cap=math.pi*s*s
+        assert math.isfinite(o)
+        assert 0.0 <= o <= cap
+
+
 def test_angular_kernel_centered_exact_and_split_sanity():
     s,a=4.0,2.0
     for y in (0.0,1.0,3.0,7.0):
