@@ -7,7 +7,7 @@ boundaries.  The source/offset semantics are inherited from iteration 0075.
 from __future__ import annotations
 
 import math
-from typing import Callable, Iterable, Sequence
+from typing import Callable, Sequence
 
 from .g9_persistent_lens import point_receiver_azimuth_fraction, uniform_disk_offset_samples
 
@@ -133,8 +133,7 @@ def accepted_area_for_offsets(
     a = float(receiver_radius_cm)
     r_sun = float(solar_radius_cm)
     points = transition_points_for_offsets(yfn, branches, offsets_cm, a)
-    # Retain branch boundaries even when two adjacent branches share a turn.
-    bset = set(float(v) for pair in branches for v in pair)
+    point_source = all(float(u) == 0.0 for u in offsets_cm)
     total_integral = 0.0
     max_panels = 0
     subintervals = 0
@@ -154,8 +153,19 @@ def accepted_area_for_offsets(
         for left, right in zip(local, local[1:]):
             if right <= left:
                 continue
-            # 2*pi*R^2*x dx is applied outside the normalized Simpson integral.
-            val, panels = converged_simpson(lambda x: x * accept(x), left, right, tol=tol, max_n=max_n)
+            if point_source:
+                # For u=0, f_phi is exactly the indicator |y|<=a.  The
+                # transition splitter already put every |y|=a root on an
+                # interval boundary, so the midpoint classifies the entire
+                # open subinterval and its x dx integral is analytic.  This
+                # avoids asking Simpson to converge across an endpoint jump;
+                # it changes no frozen 0090 physics or tolerance.
+                inside = abs(yfn(0.5 * (left + right))) <= a
+                val = 0.5 * (right * right - left * left) if inside else 0.0
+                panels = 0
+            else:
+                # 2*pi*R^2*x dx is applied outside the normalized Simpson integral.
+                val, panels = converged_simpson(lambda x: x * accept(x), left, right, tol=tol, max_n=max_n)
             if val < -1e-18 or not math.isfinite(val):
                 raise PersistentConvolutionScientificFail("negative/nonfinite accepted integral")
             val = max(0.0, val)
