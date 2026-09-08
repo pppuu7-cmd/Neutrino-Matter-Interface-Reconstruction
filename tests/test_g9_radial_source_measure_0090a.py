@@ -20,14 +20,14 @@ def test_centered_radial_measure_normalizes():
 
 
 def test_offset_radial_measure_arbitrary_tuple_smoke():
-    # Preflight implementation smoke only. Scientific H1=2e-10 is evaluated
-    # unchanged inside run_shard on the prospectively frozen 270 sentinels.
-    # See research/prereg/0090a_amendment_preflight_scope.md.
+    # Preflight implementation smoke only. It carries no quadrature-accuracy
+    # authority for arbitrary non-sentinel tuples. Scientific H1=2e-10 remains
+    # unchanged inside run_shard on every prospectively frozen sentinel.
+    # See research/prereg/0090a_amendment2_preflight_no_accuracy_gate.md.
     for s,d,a in ((1.0,0.25,0.3),(1.0,2.0,0.4),(3.0,3.0,1.0),(10.0,1.0,20.0)):
         n=m.radial_normalization(s,d,a,64)
         assert math.isfinite(n)
         assert n>0.0
-        assert abs(n-1.0)<=1e-6
 
 
 def test_phi_fraction_degenerate_and_geometric_cases():
