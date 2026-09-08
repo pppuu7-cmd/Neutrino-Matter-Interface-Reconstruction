@@ -1,0 +1,59 @@
+name: 0092b-a1 G9 Model-S composition authority
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/amendments/0092b_a1_model_s_gong_composition_authority.md'
+      - 'scripts/g9_model_s_composition_0092b_a1.py'
+      - 'tests/test_g9_model_s_composition_0092b_a1.py'
+      - '.github/workflows/0092b-a1-g9-model-s-composition.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  composition:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install numpy pytest
+      - name: Run dedicated conformance tests
+        run: python -m pytest -q tests/test_g9_model_s_composition_0092b_a1.py
+      - name: Fetch official Model-S authority files
+        run: |
+          curl --fail --location --retry 5 --retry-all-errors --user-agent 'NMIR-0092b-a1/1.0' \
+            'https://users-phys.au.dk/jcd/solar_models/cptrho.l5bi.d.15c' -o model_s_cptrho.l5bi.d.15c
+          curl --fail --location --retry 5 --retry-all-errors --user-agent 'NMIR-0092b-a1/1.0' \
+            'https://users-phys.au.dk/jcd/solar_models/fgong.l5bi.d.15c' -o model_s_fgong.l5bi.d.15c
+          curl --fail --location --retry 5 --retry-all-errors --user-agent 'NMIR-0092b-a1/1.0' \
+            'https://users-phys.au.dk/jcd/solar_models/file-format.pdf' -o model_s_gong_file_format.pdf
+          sha256sum model_s_cptrho.l5bi.d.15c model_s_fgong.l5bi.d.15c model_s_gong_file_format.pdf
+          head -n 5 model_s_fgong.l5bi.d.15c
+      - name: Execute exact frozen composition authority
+        run: |
+          python scripts/g9_model_s_composition_0092b_a1.py \
+            --limited model_s_cptrho.l5bi.d.15c \
+            --fgong model_s_fgong.l5bi.d.15c \
+            --format model_s_gong_file_format.pdf \
+            --output g9_0092b_a1_model_s_composition.json
+      - name: Hash result
+        if: always()
+        run: sha256sum g9_0092b_a1_model_s_composition.json || true
+      - name: Upload authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0092b-a1-model-s-composition-authority
+          path: |
+            g9_0092b_a1_model_s_composition.json
+            model_s_cptrho.l5bi.d.15c
+            model_s_fgong.l5bi.d.15c
+            model_s_gong_file_format.pdf
+          if-no-files-found: error
