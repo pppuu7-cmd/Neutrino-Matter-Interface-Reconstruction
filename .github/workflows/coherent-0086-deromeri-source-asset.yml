@@ -1,0 +1,41 @@
+name: NMIR 0086 De Romeri COHERENT source asset authority
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0086_deromeri_coherent_updated_combined_source_asset_authority.md'
+      - 'scripts/audit_deromeri_coherent_source_asset_0086.py'
+      - '.github/workflows/coherent-0086-deromeri-source-asset.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile audit
+        run: python -m py_compile scripts/audit_deromeri_coherent_source_asset_0086.py
+      - name: Run frozen source asset audit
+        id: audit
+        continue-on-error: true
+        run: |
+          mkdir -p artifacts
+          python scripts/audit_deromeri_coherent_source_asset_0086.py
+      - name: Hash result
+        if: always()
+        run: sha256sum artifacts/deromeri_coherent_source_asset_0086.json | tee artifacts/deromeri_coherent_source_asset_0086.sha256
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherent-0086-deromeri-source-asset
+          path: |
+            artifacts/deromeri_coherent_source_asset_0086.json
+            artifacts/deromeri_coherent_source_asset_0086.sha256
+          if-no-files-found: error
+      - name: Enforce frozen classification
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = "success"
