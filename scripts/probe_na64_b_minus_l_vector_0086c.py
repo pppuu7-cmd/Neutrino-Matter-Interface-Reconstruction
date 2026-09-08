@@ -27,6 +27,10 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def safe_float(value, default=0.0) -> float:
+    return float(default if value is None else value)
+
+
 def download() -> tuple[bytes, str]:
     errs=[]
     for u in URLS:
@@ -86,7 +90,7 @@ def main() -> int:
                         "text":sp.get("text",""),
                         "bbox":[float(x) for x in sp.get("bbox",[])],
                         "origin":[float(x) for x in sp.get("origin",[])],
-                        "size":float(sp.get("size",0.0)),
+                        "size":safe_float(sp.get("size")),
                         "font":sp.get("font"),
                         "flags":sp.get("flags"),
                     })
@@ -97,11 +101,11 @@ def main() -> int:
                 "rect":[float(d["rect"].x0),float(d["rect"].y0),float(d["rect"].x1),float(d["rect"].y1)],
                 "color":list(d.get("color")) if d.get("color") is not None else None,
                 "fill":list(d.get("fill")) if d.get("fill") is not None else None,
-                "width":float(d.get("width",0.0)),
+                "width":safe_float(d.get("width")),
                 "dashes":d.get("dashes"),
                 "closePath":bool(d.get("closePath",False)),
-                "fill_opacity":float(d.get("fill_opacity",1.0)),
-                "stroke_opacity":float(d.get("stroke_opacity",1.0)),
+                "fill_opacity":safe_float(d.get("fill_opacity"),1.0),
+                "stroke_opacity":safe_float(d.get("stroke_opacity"),1.0),
                 "items":[drawing_item(it) for it in d.get("items",[])],
             })
         pages.append({
