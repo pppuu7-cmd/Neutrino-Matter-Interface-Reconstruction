@@ -2,19 +2,20 @@
 """Conformance wrapper for frozen NMIR 0085.
 
 Scientific contract is unchanged. The only repair is removal of literal TeX
-math-mode `$` delimiters during source-text normalization.
+math-mode `$` delimiters during source-text normalization, followed by
+whitespace re-collapse.
 """
 import json
+import re
 import audit_wagner_identity_free_envelope_0085 as base
 
 _original_normalize_tex = base.normalize_tex
 
 
 def normalize_tex_r1(s: str) -> str:
-    return _original_normalize_tex(s).replace("$", " ")
+    return re.sub(r"\s+", " ", _original_normalize_tex(s).replace("$", " ")).strip()
 
 
-# source_text_authority resolves normalize_tex from the base module's globals.
 base.normalize_tex = normalize_tex_r1
 
 
@@ -22,7 +23,7 @@ def audit(fetcher=base.fetch):
     r = base.audit(fetcher=fetcher)
     r["iteration"] = "0085-r1"
     r["parent_gate"] = "0085"
-    r["parser_conformance"] = "remove_literal_TeX_math_mode_dollar_delimiters_only"
+    r["parser_conformance"] = "remove_literal_TeX_math_mode_dollar_delimiters_and_recollapse_whitespace_only"
     return r
 
 
