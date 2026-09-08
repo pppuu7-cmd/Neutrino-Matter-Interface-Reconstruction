@@ -1,0 +1,38 @@
+name: NMIR 0089b G9 continuous piecewise-linear projection authority
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0089b_g9_continuous_piecewise_linear_projection_authority.md'
+      - 'src/nmir/g9_continuous_projection.py'
+      - 'scripts/g9_continuous_projection_authority_0089b.py'
+      - 'tests/test_g9_continuous_projection_0089b.py'
+      - '.github/workflows/0089b-g9-continuous-projection-authority.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 'pypy3.10'
+      - name: Install exact audit dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pytest mpmath
+      - name: Run dedicated 0089b algebra regression tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_g9_continuous_projection_0089b.py
+      - name: Execute frozen 0089b continuous-projection authority audit
+        env:
+          PYTHONPATH: src
+        run: python scripts/g9_continuous_projection_authority_0089b.py
+      - name: Upload exact 0089b artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089b-continuous-projection-authority
+          path: g9_0089b_result.json
+          if-no-files-found: error
