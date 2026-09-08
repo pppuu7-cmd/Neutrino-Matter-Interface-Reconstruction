@@ -9,6 +9,7 @@ on:
       - 'scripts/g9_ray_centric_dual_disk_0090e_aggregate.py'
       - 'tests/test_g9_ray_centric_dual_disk_0090e.py'
       - 'research/prereg/0090e_g9_ray_centric_dual_disk_overlap_sentinel_authority.md'
+      - 'research/amendments/0090e_overlap_float_conformance_r1.md'
       - '.github/workflows/0090e-g9-ray-centric-dual-disk-sentinels.yml'
 
 permissions:
@@ -23,7 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install --disable-pip-version-check numpy pytest
+      - run: python -m pip install --disable-pip-version-check numpy pytest mpmath
       - name: Preflight code-path sanity only
         run: PYTHONPATH=src:scripts pytest -q tests/test_g9_ray_centric_dual_disk_0090e.py
 
@@ -41,7 +42,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install --disable-pip-version-check numpy
+      - run: python -m pip install --disable-pip-version-check numpy mpmath
       - name: Execute frozen dual-disk sentinel shard
         continue-on-error: true
         run: |
