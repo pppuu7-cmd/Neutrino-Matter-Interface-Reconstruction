@@ -53,14 +53,16 @@ def _piecewise(f: Callable[[float], float], points: Sequence[float], tol: float)
 
 
 def continuous_mass_and_derivative(profile: RadialDensityProfile, x: float, radius_cm: float, tol: float = 1e-11) -> tuple[float,float]:
-    if not 0.0 < x < 1.0:
-        raise ValueError("x must lie in (0,1)")
+    if not 0.0 < x <= 1.0:
+        raise ValueError("x must lie in (0,1]")
     rpts=list(profile.radius_fraction)+[x,0.0,1.0]
     def radial(u: float) -> float:
         if u<=0: return 0.0
         frac=1.0 if u<=x else 1.0-math.sqrt(max(0.0,1.0-(x/u)**2))
         return u*u*_interp_density(profile,u)*frac
     mass=4*math.pi*radius_cm**3*_piecewise(radial,rpts,tol)
+    if x == 1.0:
+        return mass, 0.0
     top=math.acos(x); tpts=[0.0,top]
     for r in profile.radius_fraction:
         if x<r<1.0: tpts.append(math.acos(x/r))
