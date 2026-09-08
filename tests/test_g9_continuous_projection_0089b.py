@@ -1,6 +1,9 @@
 import math
 
 from nmir.g9_continuous_projection import (
+    _derivative_shell_tspace,
+    _ja,
+    _jb,
     continuous_focal_distance_au,
     continuous_projected_mass_derivative_g_per_x,
     continuous_projected_mass_g,
@@ -58,3 +61,25 @@ def test_focal_distance_is_finite_positive():
     for x in (1e-4, 0.02, 0.4, 1.0):
         f = continuous_focal_distance_au(profile, x, 6.96e10)
         assert math.isfinite(f) and f > 0
+
+
+def test_endpoint_centered_shell_matches_prior_closed_form_when_well_conditioned():
+    x, lo, hi = 0.37, 0.22, 0.81
+    rho_lo, rho_hi = 4.2, 0.7
+    lower = max(lo, x)
+    a = (rho_hi - rho_lo) / (hi - lo)
+    b = rho_lo - a * lo
+    old = a * (_ja(hi, x) - _ja(lower, x)) + b * (_jb(hi, x) - _jb(lower, x))
+    new = _derivative_shell_tspace(x, lo, hi, rho_lo, rho_hi)
+    assert rel(old, new) < 2e-14
+
+
+def test_endpoint_centered_shell_stays_finite_near_surface():
+    value = _derivative_shell_tspace(
+        0.99999825,
+        0.9999965,
+        1.0,
+        2.0253139e-7,
+        1.9979759e-7,
+    )
+    assert math.isfinite(value) and value > 0.0
