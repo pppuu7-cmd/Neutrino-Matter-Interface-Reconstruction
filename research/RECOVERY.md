@@ -4,8 +4,8 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable scientific record: `research/iterations/0090a_r3_g9_radial_source_measure_blocked.md`, record commit **`861ca1c6af4bfe55a654701f9e1b259ffc3fab03`**, classification **`BLOCKED_G9_RADIAL_SOURCE_MEASURE_QUADRATURE`**.
-Current prospectively frozen scientific gate: `research/prereg/0090b_g9_endpoint_regularized_radial_measure_authority.md`, frozen commit **`c46110eecf6fae9719d37f8f3a378206c2706324`**.
+Latest completed immutable scientific record: `research/iterations/0090c_g9_source_centric_exact_measure_pass.md`, record commit **`781b95d259f5ee2339e39167869e947547e3704b`**, classification **`PASS_G9_SOURCE_CENTRIC_EXACT_MEASURE_AUTHORITY`**.
+Current prospectively frozen scientific gate: `research/prereg/0090d_g9_source_centric_finite_source_sentinel_authority.md`, frozen commit **`44a9f2d9a28d7169da6166eef0634df91121434a`**; hosted execution head **`1dbacc4cc41a557889e0677849d2fc1095399b3b`**, run **`34266454694`**.
 `NMIR_READINESS: 98%`.
 
 ## Mandatory recovery order
@@ -33,7 +33,10 @@ Separate focusing/state control, microscopic interaction probability, detector v
 - 0089e-r2 **`PASS_G9_MESH_FREE_NARROW_PREIMAGE_REPLICA`**.
 - 0090 **`BLOCKED_G9_PERSISTENT_CONVOLUTION_NUMERICS`**: frozen 2-D source quadrature/Simpson method cannot certify finite-source convolution; not a physical no-survivor result.
 - 0090a-r1/r2 **`INFRASTRUCTURE_FAIL_G9_0090A`**: both stopped in non-scientific preflight before any scientific shard.
-- 0090a-r3 **`BLOCKED_G9_RADIAL_SOURCE_MEASURE_QUADRATURE`**: preflight passed, all nine scientific shards executed, and every shard failed the unchanged H1 radial-normalization criterion before finite-source area rows.
+- 0090a-r3 **`BLOCKED_G9_RADIAL_SOURCE_MEASURE_QUADRATURE`**: all nine scientific shards failed unchanged H1 direct-radial normalization before finite-source area rows.
+- 0090b-r1 **`INFRASTRUCTURE_FAIL_G9_0090B`**: pytest incorrectly enforced H1/H2 before authority payload; no scientific result.
+- 0090b-r2 **`BLOCKED_G9_ENDPOINT_REGULARIZED_RADIAL_MEASURE`**: hosted authority executed and fixed external control `d/s=1.1` exceeded the frozen endpoint-regularized normalization/L-H threshold. No order escalation allowed.
+- 0090c **`PASS_G9_SOURCE_CENTRIC_EXACT_MEASURE_AUTHORITY`**: exactly normalized source-centred `(q,phi)` probability measure passes all frozen geometry/moment controls and all 90 physical source geometries.
 
 ## 0089e-r2 validated geometry authority
 Prereg `da8e7c5664cf0980b3490926036231bea9270fcb`; execution head `466f6fee04f6052e4c758cb613290f33610373e8`; run/job `34227872401/102066360966`; artifact `10061342281`; ZIP SHA256 `d76b3937a9ea0fcced50769c8098642b96e1345dd1f5b77bbd1754f53c104bb3`; inner JSON SHA256 `010a9f55c11c9bb7c7020293f2ebef9ce3e00b4dc8401ade700a417c327ba56e`.
@@ -51,36 +54,57 @@ Parent prereg **`fb4aad7d1ffe23fb4863d09e26c0c3b20f47364c`**. Preflight-only ame
 Hosted authority:
 - run **`34259571174`**
 - preflight job `102173841087` success
-- nine scientific shard jobs: `102173925468`, `102173925477`, `102173925489`, `102173925499`, `102173925411`, `102173925384`, `102173925414`, `102173925623`, `102173925538`
 - aggregate job **`102174309495`**
 - aggregate artifact **`10069347381`**
 - independently verified aggregate ZIP SHA256 **`d626896f0641da052d7c63730d9b906cf7c09535b4f5c68a2934bc66b9be7c01`**
 - independently verified inner `g9_0090a_result.json` SHA256 **`1667c471a0f02c88f25cb9e85e2d42d9d4a675db8cb4967619f1cd29bd417f8f`**.
 
-Every raw shard payload has exact contract `fb4aad7d...`, exact head `c87b9b0...`, status `BLOCKED_G9_RADIAL_SOURCE_MEASURE_QUADRATURE`, reason `radial source normalization exceeds frozen threshold`. Aggregate has `shard_count=9`, `status_counts={BLOCKED_G9_RADIAL_SOURCE_MEASURE_QUADRATURE:9}`. Because the frozen script raises on the first H1 miss, no finite-source rows are produced and H2 cannot be promoted or inferred. The result strictly says that direct fixed-order Gauss-Legendre integration in source radius `u` failed to certify the displaced-disk radial measure to `2e-10` on the frozen sentinel experiment. It does not invalidate the exact geometric measure or the physical focusing class.
+Every raw shard payload has status `BLOCKED_G9_RADIAL_SOURCE_MEASURE_QUADRATURE`, reason `radial source normalization exceeds frozen threshold`. Because the frozen script raises on the first H1 miss, no finite-source rows are produced. The result strictly says that direct fixed-order Gauss-Legendre integration in displaced source radius `u` failed to certify the source measure to `2e-10`; it is not a physical no-go.
 
-Immutable result note: `research/iterations/0090a_r3_g9_radial_source_measure_blocked.md`, record commit `861ca1c6af4bfe55a654701f9e1b259ffc3fab03`.
+## 0090b-r2 authoritative result
+Parent prereg **`c46110eecf6fae9719d37f8f3a378206c2706324`**. Preflight-scope amendment **`350ed2cb6da6485f230e429c0d35b18938d64e56`** changed orchestration only. Execution head **`cf9904f7a3c65601d13982c2e76b9cfd9fcd51f4`**.
 
-## Current 0090b prospective front
-Frozen prereg **`c46110eecf6fae9719d37f8f3a378206c2706324`** asks a narrower independent question: certify the displaced-disk radial measure using an endpoint-regularized variable, without direct numerical GL integration of `p(u)` in `u` and without any lens accepted-area calculation.
+Hosted authority:
+- run/job **`34265645704/102194200480`**
+- artifact **`10071689978`**
+- independently verified ZIP SHA256 **`9c2ccebcdf24dd65780788ec39e1bda3ad6a8f251ee9a85acde72f322ce120d7`**
+- independently verified inner JSON SHA256 **`d442cea592cb5028374adf373e05ef40427fb8fb8cdea0a3a24c59b0a58dc04d`**
+- classification **`BLOCKED_G9_ENDPOINT_REGULARIZED_RADIAL_MEASURE`**
+- reason `endpoint-regularized normalization exceeds frozen threshold: external_d_over_s=1.1`.
 
-For `d>0`, freeze
+This is a numerical source-measure BLOCKED result under fixed `t`-quadrature orders 32/64 and frozen `2e-10`; it is not a lens-convolution/no-survivor result. Parent prereg forbids post-result order escalation.
 
-`u(t)=sqrt(d^2+s^2-2*d*s*cos(t)), 0<=t<=pi`,
+Immutable note: `research/iterations/0090b_r2_g9_endpoint_regularized_radial_measure_blocked.md`, record commit **`bb71e27d31f784b2fb50d687ddf8074ad39fcd4a`**.
 
-so `du/dt=d*s*sin(t)/u`, and evaluate
+## 0090c authoritative PASS
+Prereg **`19245cf8a119e010ef161ebaeb4113a74d083158`** freezes source-centred coordinates `q=r^2/s^2`, azimuth `phi`, exact measure `dP=dq*dphi/(2*pi)`, L/H replicas `16x32` and `32x64`, 9 dimensionless controls and all 90 physical source geometries.
 
-`N_partial = d/(pi*s) * integral_0^pi Omega(u(t);s,d)*sin(t) dt`.
+Hosted authority:
+- execution head **`08469606889f29044a97f8b25fe8d796dd94b935`**
+- run/job **`34266104933/102195751262`**
+- artifact **`10071870838`**
+- independently verified ZIP SHA256 **`879e858a503849df690bf577faf8e3490bba9f0ca3018dbc6543d471e3652040`**
+- independently verified inner JSON SHA256 **`17e8a9390983fde216e9b2199f3aa800ed0c4f6ac92e769eef3663ea6557944a`**
+- classification **`PASS_G9_SOURCE_CENTRIC_EXACT_MEASURE_AUTHORITY`**.
 
-For `d<s`, add the analytic full-ring contribution `N_full=(s-d)^2/s^2`; for `d>=s`, `N_full=0`; for `d=0`, normalization is analytic. Fixed replicas remain GL orders 32 and 64 in `t`; no adaptive/result-selected refinement. The physical set is the 90 unique source geometries inherited uniformly from 0090a (3 controls x 5 theta indices x 6 offsets), plus fixed analytic/scale controls. Both L and H must satisfy normalization `<=2e-10`, replica agreement `<=2e-10`, and fixed dimensionless scale replicas `<=2e-12`.
+Authoritative maxima: normalization/moment identity error `1.1102230246251565e-16`; L/H moment difference `1.1102230246251565e-16`; Cartesian/hypot geometry residual `4.440869091360169e-16`; all focal drifts `0.0`. The PASS removes the source-probability normalization bottleneck by construction, but contains no lens accepted-area or magnification result.
 
-PASS 0090b authorizes only a separately preregistered finite-source lens-convolution method gate. It cannot produce `mu_real`, a survivor, a named-source claim or a full 1350 scan.
+Immutable note: `research/iterations/0090c_g9_source_centric_exact_measure_pass.md`, record commit **`781b95d259f5ee2339e39167869e947547e3704b`**.
+
+## Current 0090d prospective/execution front
+Prereg **`44a9f2d9a28d7169da6166eef0634df91121434a`** asks the next narrower question: can 0090c's exact `(q,phi)` source measure be convolved with the already certified global signed lens map on a fixed 81-sentinel set with reproducible L/H replicas?
+
+Frozen sentinel suite: 9 `(observer,receiver)` shards; within each, theta indices `{0,12,24}` x offsets `{0,0.1,100} m`, total 81 rows. L uses source `8x16` with inherited root-split `area_at_u` order 32; H uses source `16x32` with `area_at_u` order 64. Point-source and smallest-source aligned controls are fixed at 0.5%; finite-source L/H convergence is 0.5% in magnification excess or absolute `1e-10` in the tiny-excess branch. No radial normalization factor may be applied.
+
+Hosted execution head **`1dbacc4cc41a557889e0677849d2fc1095399b3b`**, run **`34266454694`**. Preflight has completed successfully; the 9 scientific shards are the authority experiment. Do not infer PASS/BLOCKED from workflow color until aggregate/raw artifacts are terminal and independently inspected.
+
+PASS 0090d can authorize only a separately preregistered full-grid G9 scan; it is not itself a final survivor count. Full 1350 scan remains forbidden during this gate.
 
 ## BSM / B-L authority
 0069 unlocks only the constraints ledger. BSM response/enhancement remains **LOCKED** pending reproducible external-envelope completeness + formal unlock. 0084b Shin-Yun and 0085 Wagner remain PASS. 0074a/0074b detector response benchmarks remain PASS; 0074c combined-likelihood numerical benchmark remains BLOCKED. 0087/0087a are partial topology authority only; 0087c Cerdeno, 0087d COHERENT mass support, 0087e finite-mass fifth-force, 0087f BBN tail and 0087g restricted-below-1-eV completeness remain BLOCKED.
 
 ## Exact next action
-Implement 0090b strictly from prereg `c46110eec...`: endpoint-regularized normalization only -> dedicated tests -> hosted reproducibility artifact -> raw log + independent artifact/hash inspection. Do not rerun 0090a, do not increase its orders, and do not start a finite-source or 1350-point lens scan before a separately frozen post-0090b gate.
+Complete hosted 0090d run `34266454694` -> inspect all 9 raw shard payloads and aggregate -> independently verify artifacts/hashes -> classify strictly from prereg `44a9f2d9...`. On PASS, freeze a separate full-grid finite-source G9 gate before any 1350-row calculation. On BLOCKED, do not raise the frozen 0090d source or `b` orders and do not relax 0.5%.
 
 ## Critical guards
-No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch/promotion of 0077/0088/0089a/0089d/0090/0090a; no result-selected G9 nodes/orders/intervals/tolerances.
+No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch/promotion of 0077/0088/0089a/0089d/0090/0090a/0090b; no result-selected G9 nodes/orders/intervals/tolerances.
