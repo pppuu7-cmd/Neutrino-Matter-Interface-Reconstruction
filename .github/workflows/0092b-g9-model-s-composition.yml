@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/g9_ccsn_mev_composition_0092b.py'
+      - 'scripts/g9_ccsn_mev_composition_0092b_r1.py'
       - 'research/prereg/0092b_g9_ccsn_mev_solar_transmission_authority.md'
       - 'research/amendments/0092b_a1_model_s_gong_composition_authority.md'
       - '.github/workflows/0092b-g9-model-s-composition.yml'
@@ -39,9 +40,9 @@ jobs:
             --output file-format.pdf
           sha256sum cptrho.l5bi.d.15c fgong.l5bi.d.15c file-format.pdf
           head -n 7 fgong.l5bi.d.15c
-      - name: Execute frozen H-He-Z chord composition calculation
+      - name: Execute frozen H-He-Z chord composition calculation r1
         run: |
-          python scripts/g9_ccsn_mev_composition_0092b.py \
+          python scripts/g9_ccsn_mev_composition_0092b_r1.py \
             --density cptrho.l5bi.d.15c \
             --fgong fgong.l5bi.d.15c \
             --format-pdf file-format.pdf \
