@@ -1,0 +1,30 @@
+name: NMIR 0087d source-semantic parser diagnostic
+
+on:
+  push:
+    paths:
+      - 'scripts/diagnose_coherent_source_semantics_0087d.py'
+      - '.github/workflows/0087d-semantic-diagnostic.yml'
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install parser dependency
+        run: python -m pip install pymupdf
+      - name: Extract exact source semantic contexts only
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/diagnose_coherent_source_semantics_0087d.py
+      - name: Upload semantic diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087d-source-semantic-diagnostic
+          path: coherent_source_semantics_0087d_diagnostic.json
+          if-no-files-found: error
