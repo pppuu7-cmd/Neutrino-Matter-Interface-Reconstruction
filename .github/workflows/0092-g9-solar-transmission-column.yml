@@ -1,0 +1,48 @@
+name: 0092 G9 Model-S solar transmission column
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/g9_solar_transmission_column_0092.py'
+      - 'research/prereg/0092_g9_solar_transmission_authority.md'
+      - '.github/workflows/0092-g9-solar-transmission-column.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  model-s-column:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch official Christensen-Dalsgaard Model S table
+        run: |
+          curl --fail --location --retry 5 --retry-all-errors \
+            --user-agent 'NMIR-0092-reproducibility/1.0' \
+            'https://users-phys.au.dk/jcd/solar_models/cptrho.l5bi.d.15c' \
+            --output model_s_cptrho.l5bi.d.15c
+          sha256sum model_s_cptrho.l5bi.d.15c
+          head -n 6 model_s_cptrho.l5bi.d.15c
+      - name: Execute frozen Model-S column calculation
+        run: |
+          python scripts/g9_solar_transmission_column_0092.py \
+            --model-s model_s_cptrho.l5bi.d.15c \
+            --output g9_0092_model_s_column.json
+      - name: Hash result
+        if: always()
+        run: sha256sum g9_0092_model_s_column.json || true
+      - name: Upload authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0092-model-s-column-authority
+          path: |
+            g9_0092_model_s_column.json
+            model_s_cptrho.l5bi.d.15c
+          if-no-files-found: error
