@@ -27,12 +27,7 @@ def bisect_monotone_target(
     width: float = 1e-12,
     residual_tol: float | None = None,
 ) -> float:
-    """Solve y(x)=target on a certified monotone branch by deterministic bisection.
-
-    When ``residual_tol`` is supplied, both the frozen width requirement and the
-    frozen map-residual requirement must be met. This is a numerical-conformance
-    condition, not a relaxed scientific criterion.
-    """
+    """Solve y(x)=target on a certified monotone branch by deterministic bisection."""
     yl = yfn(lo) - target
     yr = yfn(hi) - target
     if not (math.isfinite(yl) and math.isfinite(yr)):
@@ -44,11 +39,14 @@ def bisect_monotone_target(
     if yl * yr > 0.0:
         raise KernelBlocked("target is not bracketed by certified monotone branch")
     for _ in range(256):
-        mid = 0.5 * (lo + hi)
+        old_lo, old_hi = lo, hi
+        mid = 0.5 * (old_lo + old_hi)
+        if mid == old_lo or mid == old_hi:
+            break
         ym = yfn(mid) - target
         if not math.isfinite(ym):
             raise KernelBlocked("non-finite target bisection value")
-        width_ok = (hi - lo) <= width
+        width_ok = (old_hi - old_lo) <= width
         residual_ok = residual_tol is None or abs(ym) <= residual_tol
         if ym == 0.0 or (width_ok and residual_ok):
             return mid
@@ -56,8 +54,6 @@ def bisect_monotone_target(
             hi, yr = mid, ym
         else:
             lo, yl = mid, ym
-        if mid == lo or mid == hi:
-            break
     candidate = lo if abs(yl) <= abs(yr) else hi
     residual = abs(yfn(candidate) - target)
     if (hi - lo) <= width and (residual_tol is None or residual <= residual_tol):
