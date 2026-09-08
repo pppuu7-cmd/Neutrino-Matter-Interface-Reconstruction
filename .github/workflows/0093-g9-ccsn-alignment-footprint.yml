@@ -1,0 +1,98 @@
+name: 0093 G9 CCSN alignment footprint
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/g9_ccsn_alignment_footprint_0093.py'
+      - 'scripts/g9_ccsn_alignment_footprint_0093_aggregate.py'
+      - 'research/prereg/0093_g9_ccsn_alignment_footprint_expansion.md'
+      - 'data/g9_ccsn_source_authority_0061.json'
+      - '.github/workflows/0093-g9-ccsn-alignment-footprint.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  science:
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0, 1, 2]
+        receiver: [0, 1, 2]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy mpmath
+      - name: Execute frozen CCSN alignment-footprint shard
+        continue-on-error: true
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_ccsn_alignment_footprint_0093.py \
+            --control ${{ matrix.control }} --receiver ${{ matrix.receiver }} \
+            --output g9_0093_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+      - name: Hash shard
+        if: always()
+        run: sha256sum g9_0093_shard_${{ matrix.control }}_${{ matrix.receiver }}.json || true
+      - name: Upload raw shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0093-shard-${{ matrix.control }}-${{ matrix.receiver }}
+          path: g9_0093_shard_${{ matrix.control }}_${{ matrix.receiver }}.json
+          if-no-files-found: error
+      - name: Preserve hard shard failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0093_shard_${{ matrix.control }}_${{ matrix.receiver }}.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']; print('0093 shard status:',s)
+          if s != 'SHARD_PASS_G9_CCSN_ALIGNMENT_FOOTPRINT_SCAN': raise SystemExit(1)
+          PY
+
+  aggregate:
+    if: always()
+    needs: [science]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: nmir-g9-0093-shard-*
+          path: shards
+          merge-multiple: true
+      - name: Aggregate frozen 0093 classification
+        continue-on-error: true
+        run: |
+          python scripts/g9_ccsn_alignment_footprint_0093_aggregate.py \
+            --input shards --output g9_0093_result.json
+      - name: Hash aggregate
+        if: always()
+        run: sha256sum g9_0093_result.json || true
+      - name: Upload aggregate authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0093-authoritative
+          path: g9_0093_result.json
+          if-no-files-found: error
+      - name: Preserve scientific/infrastructure aggregate failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0093_result.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']; print('0093 aggregate status:',s)
+          if s.startswith('SCIENTIFIC_FAIL_') or s.startswith('INFRASTRUCTURE_FAIL_'): raise SystemExit(1)
+          PY
