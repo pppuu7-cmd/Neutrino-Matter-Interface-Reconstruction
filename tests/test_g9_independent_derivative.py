@@ -17,7 +17,6 @@ def test_adaptive_simpson_polynomial():
 
 
 def test_uniform_sphere_projection_and_derivative():
-    # Constant density is represented exactly by the piecewise-linear profile.
     p = RadialDensityProfile((0.0, 1.0), (1.0, 1.0))
     x = 0.37
     mass, dmass = continuous_mass_and_derivative(p, x, 1.0)
@@ -28,7 +27,7 @@ def test_uniform_sphere_projection_and_derivative():
 
 
 def test_known_multi_turn_root_set():
-    grid = tuple(i / 100.0 for i in range(1, 100))
+    grid = tuple((i + 0.37) / 100.0 for i in range(100))
     fn = lambda x: (x - 0.2) * (x - 0.5) * (x - 0.8)
     roots = isolate_sign_roots(fn, grid)
     assert [r.root for r in roots] == pytest.approx([0.2, 0.5, 0.8], abs=1e-11)
