@@ -4,9 +4,9 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0084a_shin_yun_sn1987a_band_semantics.md`, commit `13e415364d12a2cc0f028e3e7172b2bef85795ca`.
-Current next gate: 0084b Shin–Yun SN1987A analytical geometry/convention authority, prospectively frozen in `research/prereg/0084b_shin_yun_sn1987a_analytical_geometry_authority.md`, commit `6dd35ebe3b23846c30380e47b3cf14801fcd7313` before any 0084b geometry.
-`NMIR_READINESS: 96%`.
+Latest completed immutable record: `research/iterations/0085_wagner_identity_free_upper_envelope.md`, commit `059c1cc890b1c6260b018d0b68575a4866cb699c`.
+Current next gate: 0086 B-L external-family completeness/actionability audit; must be prospectively frozen before classifying readiness for cross-family composition.
+`NMIR_READINESS: 98%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository is scientific authority; chat is not. Green CI alone is not scientific PASS; inspect raw scientific output/artifact bytes.
@@ -24,7 +24,7 @@ G8: 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`; no Cu63 absolute rate/Wkg.
 G9: persistent-source numerical route blocked at 0077 `BLOCKED_G9_TURNING_POINT_KERNEL`, not a physical no-go.
 
 ## BSM / B-L authority
-0069 unlocks **constraint ledger only**. BSM response/enhancement remains locked pending reproducible external envelope + formal unlock. Global 0071 target remains `1e-6 eV <= m_V <= 10 GeV`.
+0069 unlocks **constraint ledger only**. BSM response/enhancement remains locked pending reproducible external envelope + formal unlock. Global 0071 target remains `1e-6 eV <= m_V <= 10 GeV` and requires all applicable primary families: low-energy neutrino scattering, collider/fixed-target, stellar/SN, cosmology, and fifth-force/EP.
 
 0078c `PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION / PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`; De Romeri 90% CL polygon area `12.51987545543835 decade^2`.
 
@@ -38,35 +38,19 @@ G9: persistent-source numerical route blocked at 0077 `BLOCKED_G9_TURNING_POINT_
 
 0083 `PASS_HONG_B_L_SOURCE_TEXT_ANALYTICAL_ANCHOR / BLOCKED_HONG_B_L_EXACT_FINITE_MASS_TEXT_AUTHORITY`; 0083a `PASS_HONG_B_L_BRANCH_SCOPE_IDENTITY`. Hong exact finite-mass geometry remains blocked by approximate `O(0.1 MeV)` endpoints.
 
-### 0084 — Shin–Yun source-text revision authority
-Final: `PASS_SHIN_YUN_B_L_REVISION_SCOPE_AUTHORITY`.
-Authoritative run/job `34171357240/101892123279`, artifact `10035801098`, ZIP SHA256 `affa60027833b66607c08d6291f82bd5eb06a7ad4a15b5d38a07c8e6ddb637e2`, raw JSON SHA256 `6af4872374b8f0090d02476843e7a2fa79505c812f183129b7446e2a6c514db9`; immutable commit `3d4e2804d0cbc49ba2e7140e1df78e238a575d69`.
+0084/0084a establish Shin–Yun revision and band semantics. 0084b `PASS_SHIN_YUN_SN1987A_ANALYTICAL_GEOMETRY_AUTHORITY`, immutable commit `6ba279050b232ec1a3f6e672c6a8471ab91ca6df`; authoritative run/job `34173289135/101897646086`, artifact `10036398152`, ZIP SHA256 `03a5566ccafec2e6dda99927b7abd63a0e5188b39b0b5d5d96ed06d95f7ff5ed`, raw JSON SHA256 `483f6ad0864e10aee6fb16b6ab78ad97fbfb2a904bbd155d54fb51848ee0be7b`. It materializes four separate low-mass objects without union: T/L × BODY_NATIVE/CONCLUSION_SUMMARY. BODY_NATIVE endpoint uses `2m_e=1.02199790138 MeV`; CONCLUSION_SUMMARY remains exactly `1 MeV`. T excluded areas: `38.14310918376516` and `38.113095108668176 decade^2`; L areas: `50.559178355656044` and `50.51939431579979 decade^2`.
 
-Source-native branches:
-- SN1987A T low/free-streaming boundary `e'<1e-11` for `m<20 MeV`;
-- SN1987A T high-coupling allowed branch `e'>1.5e-8`, body `<2m_e`, conclusion `<1 MeV`;
-- SN1987A L low allowed/boundary `e'm<7.4e-10 MeV` for `m<20 MeV`;
-- SN1987A L high allowed branch `e'm>1.2e-5 MeV`, body `<2m_e`, conclusion `<1 MeV`;
-- NS1987A `e'<1.5e-12` for approximate `O(0.1 MeV)` mass scale, explicitly no lower bound.
+0085 `PASS_WAGNER_IDENTITY_FREE_B_L_UPPER_ENVELOPE`, immutable commit `059c1cc890b1c6260b018d0b68575a4866cb699c`. Authoritative run/job `34174047570/101899820199`, artifact `10036642116`, ZIP SHA256 `8b8df51229ed18e34ca415cd15404a0250f79329bcbe42f9cf0a100abf55a404`, raw JSON SHA256 `a73cef7477ed604f9c8d03b137cec02fbd50b1dab415a452959a3127b76e6313`; dedicated tests `3 passed`. Raw log directly reports classification `PASS_WAGNER_IDENTITY_FREE_B_L_UPPER_ENVELOPE`, eight retained source components, transform round-trip residual `8.881784197001252e-16`, name/order and fine-grid invariance `0.0 decade`. The anonymous pointwise strongest published 95% CL upper-limit envelope has support `1e-6 <= m_V <= 6.845530367110015e-6 eV`; `g_BL=1.4919699084771585e-22` at the lower endpoint and `1.2097149888731938e-21` at the upper endpoint. It is not a statistically combined 95% CL curve and does not identify anonymous `blue_3` as EW/EW94/EW99.
 
-Revision language explicitly revisits the earlier Knapen SN1987A derivation; it does not blanket-supersede Hong Cas A/all young NS.
-
-### 0084a — SN1987A excluded-band semantics
-Final: `PASS_SHIN_YUN_SN1987A_BAND_SEMANTICS`.
-Prospective prereg commit `e3162927be26ca7e72b4a20440dbe6754393705a`.
-Authoritative head `891db67c2af53fcf2f33713d7a8f509e4fdceb75`; run/job `34171720462/101893145840`; artifact `10035914608`, 2652 bytes; ZIP SHA256 `8ab3fd02571aa755a9303570fac907bc0be88d5a9cbf03e5e7a76c9a8e0b8aee`; raw JSON SHA256 `5e964a12dd8e54e6f94346cb07f489ec6b23f5ccac6ec94e71f2e02878e3f947`; tests `3 passed in 0.03s`. GitHub digest, independently downloaded ZIP and independently extracted JSON hashes all agree. Compact ledger commit `edbe1d8310842671d7974b61226fbd078f68ebad`; immutable iteration commit `13e415364d12a2cc0f028e3e7172b2bef85795ca`.
-
-Scientific meaning: SN1987A is band-like, not one-sided. The low/free-streaming boundary cannot be promoted to exclusion of all larger coupling because the source explicitly supplies high-coupling allowed/reabsorbed branches. T and L remain separate. BODY_NATIVE `<2m_e` and CONCLUSION_SUMMARY `<1 MeV` remain distinct source-statement-conditioned domain descriptions. No high-coupling branch is authorized above those low-mass domains up to 20 MeV; source says it weakens above threshold, so no text-only closed polygon may be extrapolated there.
-
-Historical 0084a run/job `34171573790/101892735690`, artifact `10035869701`, is `IMPLEMENTATION_INVALID_TEX_CLAUSE_FALSE_NEGATIVE`; run/job `34171635267/101892904188`, artifact `10035887716`, is `IMPLEMENTATION_INVALID_CONCLUSION_BLOCK_FALSE_NEGATIVE`. Both raw results contained controlling source semantics; parser-only repairs changed no scientific criteria.
+0074c remains `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`: exact CsI/Ar supports, nuisance structure and statistic are pinned, but no non-circular primary numerical combined benchmark/tolerance exists in the audited routes. That exact combined-likelihood reproduction route remains retired unless genuinely new primary authority appears.
 
 ## Current funnel state
-Highest-value OPEN executable gate: **0084b**. It is frozen before geometry and must resolve source `e'`↔NMIR `g_BL` convention, authoritative electron-mass provenance for BODY_NATIVE conversion, retain BODY_NATIVE and CONCLUSION_SUMMARY separately, forbid high-mass extrapolation, keep T/L separate, and require analytic-vs-independent numerical area agreement <= `1e-8` for any partial low-mass geometry.
+Highest-value OPEN executable gate: **0086 B-L external-family completeness/actionability audit**. Before any cross-family union or BSM response, prospectively classify every required 0071 family as authoritative, explicitly blocked/retired with frozen reason, or still missing. In particular, verify whether the collider/fixed-target family has ever been independently closed in the same `g_BL` convention rather than silently omitted. Do not reopen 0074c unless genuinely new primary benchmark authority is found.
 
-Global B-L envelope remains incomplete. COHERENT combined-likelihood benchmark remains blocked; Wagner global-side authority unresolved; finite-mass fifth-force continuation unauthorized; BBN geometry blocked; Hong/Cerdeño vector routes blocked/retired. BSM response/enhancement remains locked.
+Global B-L envelope remains incomplete. No cross-family union/composition is yet authorized. COHERENT combined-likelihood benchmark remains blocked; finite-mass fifth-force continuation unauthorized; BBN geometry blocked; Hong/Cerdeño exact geometries blocked/retired; Majorana/Dirac and Shin–Yun scenario/polarization variants remain separate. BSM response/enhancement remains locked.
 
 ## Exact next gate
-Execute 0084b strictly under prereg commit `6dd35ebe...`. Before any area, freeze exact primary-source coupling convention and an authoritative electron rest-energy constant if BODY_NATIVE is converted. Then, only if those authority checks PASS, materialize four separate partial low-mass objects: T/L × BODY_NATIVE/CONCLUSION_SUMMARY. Do not union them or extend the high-coupling boundary toward 20 MeV. A later envelope composition requires its own prospective contract.
+Preregister and execute 0086 as a documentary class-level completeness/actionability audit. PASS only if every required 0071 family is either represented by reproducible same-convention authority or prospectively and explicitly retired/blocked in a way that still permits a conservative scenario-aware envelope. If any mandatory family is simply missing, return a scoped BLOCKED classification and make that missing family the next gate. No numerical cross-family union in 0086.
 
 ## Critical guards
-No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No `O(0.1 MeV)`→exact endpoint. No source-rounded `2m_e≈1 MeV`→exact identity. No high-coupling extrapolation to 20 MeV. No T/L union. No hint-to-exclusion promotion. No unconditional Hong conditional intervals. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent authority. No cross-family B-L union or BSM response scan before dedicated unlock.
+No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No `O(0.1 MeV)`→exact endpoint. No source-rounded `2m_e≈1 MeV`→exact identity. No high-coupling extrapolation to 20 MeV. No T/L union. No Majorana/Dirac union/intersection absent authority. No finite-mass extrapolation of 0079a. No statistical-combination claim for Wagner. No cross-family B-L union or BSM response scan before a dedicated composition/completeness PASS and formal unlock.
