@@ -1,6 +1,9 @@
-import importlib.util, math, pathlib
+import importlib.util, math, pathlib, sys
 
-P=pathlib.Path(__file__).resolve().parents[1]/'scripts'/'audit_wagner_identity_free_envelope_0085.py'
+SCRIPTS=pathlib.Path(__file__).resolve().parents[1]/'scripts'
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0,str(SCRIPTS))
+P=SCRIPTS/'audit_wagner_identity_free_envelope_0085.py'
 spec=importlib.util.spec_from_file_location('m0085',P); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
 
