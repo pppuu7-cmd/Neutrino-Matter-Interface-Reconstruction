@@ -45,7 +45,7 @@ def _fb(u: float, x: float) -> float:
 
 
 def _ja(u: float, x: float) -> float:
-    """Antiderivative for u^2/sqrt(u^2-x^2), with constant irrelevant."""
+    """Antiderivative for u^2/sqrt(u^2-x^2), retained for diagnostics/tests."""
     if u < x or x <= 0.0:
         raise ValueError("require 0 < x <= u")
     root = math.sqrt(max(0.0, (u - x) * (u + x)))
@@ -53,7 +53,7 @@ def _ja(u: float, x: float) -> float:
 
 
 def _jb(u: float, x: float) -> float:
-    """Antiderivative for u/sqrt(u^2-x^2)."""
+    """Antiderivative for u/sqrt(u^2-x^2), retained for diagnostics/tests."""
     if u < x or x <= 0.0:
         raise ValueError("require 0 < x <= u")
     return math.sqrt(max(0.0, (u - x) * (u + x)))
@@ -61,6 +61,38 @@ def _jb(u: float, x: float) -> float:
 
 def _poly(a: float, b: float, lo: float, hi: float) -> float:
     return a * (hi**4 - lo**4) / 4.0 + b * (hi**3 - lo**3) / 3.0
+
+
+def _derivative_shell_tspace(
+    x: float,
+    lo: float,
+    hi: float,
+    rho_lo: float,
+    rho_hi: float,
+) -> float:
+    """Exact endpoint-centered shell integral for u*rho/sqrt(u^2-x^2).
+
+    The lower integration endpoint is max(lo, x).  This is algebraically
+    equivalent to a*DeltaJ_A+b*DeltaJ_B but avoids acosh(u/x) near unity and
+    the associated large a/b cancellation (0089b stability amendment).
+    """
+    if not (0.0 < x < hi and lo < hi):
+        raise ValueError("require 0 < x < hi and lo < hi")
+    lower = max(lo, x)
+    a = (rho_hi - rho_lo) / (hi - lo)
+    rho_lower = math.fsum([rho_lo, a * (lower - lo)])
+    t_lower = math.sqrt(max(0.0, (lower - x) * (lower + x)))
+    t_hi = math.sqrt(max(0.0, (hi - x) * (hi + x)))
+    dt = t_hi - t_lower
+    delta_asinh = math.asinh(t_hi / x) - math.asinh(t_lower / x)
+    delta_k = math.fsum(
+        [
+            0.5 * (hi * t_hi - lower * t_lower),
+            0.5 * x * x * delta_asinh,
+            -lower * dt,
+        ]
+    )
+    return math.fsum([rho_lower * dt, a * delta_k])
 
 
 def continuous_projected_mass_g(
@@ -117,12 +149,7 @@ def continuous_projected_mass_derivative_g_per_x(
         hi = min(hi, 1.0)
         if hi <= x or hi <= lo:
             continue
-        lower = max(lo, x)
-        a, b = _coeff(lo, hi, rlo, rhi)
-        pieces.append(
-            a * (_ja(hi, x) - _ja(lower, x))
-            + b * (_jb(hi, x) - _jb(lower, x))
-        )
+        pieces.append(_derivative_shell_tspace(x, lo, hi, rlo, rhi))
     value = 4.0 * math.pi * radius_cm**3 * x * math.fsum(pieces)
     if not math.isfinite(value) or value < 0.0:
         raise ValueError("non-finite/negative continuous projected-mass derivative")
