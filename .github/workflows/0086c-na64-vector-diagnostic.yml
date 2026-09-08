@@ -1,0 +1,31 @@
+name: NMIR 0086c NA64 vector diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/probe_na64_b_minus_l_vector_0086c.py'
+      - '.github/workflows/0086c-na64-vector-diagnostic.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install vector parser
+        run: python -m pip install pymupdf
+      - name: Probe exact frozen vector asset without scientific classification
+        run: |
+          mkdir -p artifacts/0086c-probe
+          python scripts/probe_na64_b_minus_l_vector_0086c.py --output artifacts/0086c-probe/na64_vector_probe_0086c.json
+          sha256sum artifacts/0086c-probe/na64_vector_probe_0086c.json | tee artifacts/0086c-probe/RAW_JSON_SHA256.txt
+      - name: Upload diagnostic artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0086c-na64-vector-diagnostic
+          path: artifacts/0086c-probe/
+          if-no-files-found: error
