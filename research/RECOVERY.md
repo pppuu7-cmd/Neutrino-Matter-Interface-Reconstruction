@@ -5,8 +5,8 @@ Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
 100%-closure contract: `research/NMIR_V1_READINESS_100_CONTRACT.md`, frozen commit `f64bf4d84f176dc532d7e64f45dd224a42e846c1`.
-Latest completed immutable scientific record: `research/iterations/0094_g9_ccsn_prospective_actionability_fail.md`, record commit `cf52eb5c982e35444b379d5f8892ace48ffe79ee`.
-`NMIR_READINESS: 99%`.
+Latest completed immutable closure record: `research/iterations/0095_nmir_v1_readiness_100_closure.md`, record commit `79239ae972f18ff718e38ff832bbe6f6a985bd78`.
+`NMIR_READINESS: 100%`.
 
 ## Mandatory recovery rule
 Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs/amendments -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository + independently validated Actions artifacts are authority. Green workflow status alone is never scientific PASS.
@@ -22,7 +22,7 @@ Keep focusing/state-control gain, microscopic interaction probability, detector 
 
 These labels are terminal v1 scope labels, not claims that the physical effect is zero.
 
-## G9 authority chain — current v1 front
+## G9 authority chain — closed v1 front
 Historical numerical failures/blocks remain immutable. Successful independent geometry path: 0089b PASS -> 0089c PASS -> 0089e-r2 PASS -> 0090c PASS -> 0090e-r1 PASS -> 0090f `PASS_G9_FULL_GRID_FINITE_NONZERO_SURVIVORS`.
 
 ### 0090f finite-source geometry PASS
@@ -64,13 +64,25 @@ Scope: one observer + generic future 10-kpc CCSN + current frozen authority. Thi
 
 0094 supplies the single post-0093 actionability classification required by R100-3.
 
+## 0095 NMIR v1 readiness closure
+Immutable record `research/iterations/0095_nmir_v1_readiness_100_closure.md`, record commit `79239ae972f18ff718e38ff832bbe6f6a985bd78`.
+Classification: `PASS_NMIR_V1_READINESS_100_CLOSURE`.
+
+The pre-closure baseline/reconciliation run `34283294595`, head `4d59161fd87d1e37ed0bad2159a3ee14d61917ba`, completed successfully. Job `102252908373` completed successfully; dependency install, full `python -m pytest -q`, and `python -m nmir.baseline` all passed. This CI is reproducibility/infrastructure evidence only and is not promoted to a scientific PASS.
+
+R100-1 through R100-6 are satisfied exactly under the frozen contract. There was no queued/in-progress scientific result capable of changing a v1 classification at declaration. The gain-composition guard remains closed; all non-G9 frontiers retain explicit terminal v1 labels; repository recovery remains chat-independent; and no high-value result-dependent calculation using already-available authority/data remains authorized inside frozen v1.
+
 ## Current readiness / Actions state
-`NMIR_READINESS: 99%` is justified by the new reproducible 0093 scientific topology BLOCKED plus reproducible 0094 scoped scientific FAIL. 100% is intentionally not declared in this reconciliation because the frozen R100 contract requires final repository/CI reconciliation and no relevant uninspected execution at declaration time. Baseline CI triggered by the newest record commit was still in progress at this reconciliation; it is infrastructure evidence, not scientific evidence.
+`NMIR_READINESS: 100%`.
+
+Meaning: the frozen NMIR v1 research funnel has no remaining executable, unclassified high-value uncertainty inside its declared scope; surviving effects, scoped negatives and external-data blocks are reproducibly classified. This is not engineering TRL, not a probability of a practical device, not completeness over all conceivable BSM theories or future experiments, and not a statement that BLOCKED branches are physically null.
+
+The 0095 documentation commits may trigger baseline CI after closure. Such CI is repository-integrity evidence and does not reopen a scientific classification unless it reveals a reproducibility defect in committed v1 code.
 
 ## Exact next action
-Do **not** start another G9 science calculation inside NMIR v1. First consume the terminal baseline/reconciliation Actions state, audit R100-1 through R100-6 against the frozen `NMIR_V1_READINESS_100_CONTRACT.md`, synchronize this file and `NMIR_FUNNEL.md`, and only if every condition is satisfied with no queued/in-progress result capable of changing a v1 classification, write the immutable v1 closure record and declare `NMIR_READINESS: 100%`.
+No result-dependent scientific calculation remains inside frozen NMIR v1. Preserve v1 records immutably.
 
-Any physical reopening after that must require new external data/authority, a new scientific assumption, or explicit v2 scope. In particular, do not reopen 0092b-a2 with a post-result representative metal nucleus and do not repair 0093 by post-result grid densification.
+Any physical continuation must first define a new prospective v2 assumption/data authority, use genuinely new external experimental/observational information, or explicitly enter engineering/detector optimization outside the v1 research classification. In particular, do not reopen 0092b-a2 with a post-result representative metal nucleus, do not repair 0093 by post-result grid densification, and do not unlock BSM response/enhancement without a new formal completeness/unlock gate.
 
 ## Critical guards
 No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc promotion of failed/blocked G9 numerics. No result-selected G9 nodes/orders/intervals/tolerances. No EM/PSF source size promoted to physical neutrino morphology. No DIS extrapolation into MeV solar propagation. No photospheric abundance promoted to the deep solar chord. No post-result representative metal nucleus. No claim that TeV opacity kills the CCSN MeV branch. No claim that `NMIR_READINESS` is engineering TRL or probability of a useful device.
