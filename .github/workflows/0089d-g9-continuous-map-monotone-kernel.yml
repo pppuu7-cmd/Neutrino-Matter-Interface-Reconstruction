@@ -5,6 +5,7 @@ on:
     paths:
       - 'research/prereg/0089d_g9_continuous_map_monotone_kernel.md'
       - 'research/prereg/0089d_amendment_bulk_evaluator.md'
+      - 'scripts/g9_0089d_bulk_conformance.py'
       - 'scripts/g9_continuous_map_monotone_kernel_0089d.py'
       - 'tests/test_g9_continuous_kernel_0089d.py'
       - 'src/nmir/g9_continuous_kernel.py'
@@ -23,6 +24,10 @@ jobs:
           python-version: '3.12'
       - name: Install exact audit dependencies
         run: python -m pip install --upgrade pip && python -m pip install pytest numpy
+      - name: Verify frozen bulk evaluator mass/focal conformance
+        env:
+          PYTHONPATH: src
+        run: python scripts/g9_0089d_bulk_conformance.py
       - name: Run dedicated 0089d regression tests
         env:
           PYTHONPATH: src
