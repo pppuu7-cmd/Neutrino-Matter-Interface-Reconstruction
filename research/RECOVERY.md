@@ -1,139 +1,76 @@
 # NMIR Recovery / Source-of-Truth State
 
-Last reconciled: 2026-09-08
+Last reconciled: 2026-09-09
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable scientific record: `research/iterations/0092b_a1_r3_model_s_composition_authority_pass.md`, record commit **`684f8c47ea7b438fac3289665c6136340ffd05ef`**.
-Current prospectively frozen scientific gate: `research/prereg/0092b_a2_mev_interaction_envelope_authority.md`, frozen commit **`4d0736b9ce5c1a44a467d81d63f0767805a3af1c`**.
-`NMIR_READINESS: 98%`.
+100%-closure contract: `research/NMIR_V1_READINESS_100_CONTRACT.md`, frozen commit `f64bf4d84f176dc532d7e64f45dd224a42e846c1`.
+Latest completed immutable scientific record: `research/iterations/0094_g9_ccsn_prospective_actionability_fail.md`, record commit `cf52eb5c982e35444b379d5f8892ace48ffe79ee`.
+`NMIR_READINESS: 99%`.
 
 ## Mandatory recovery rule
 Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs/amendments -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository + independently validated Actions artifacts are authority. Green workflow status alone is never scientific PASS.
 
 ## Frozen mission / accounting
-Keep focusing/state control, microscopic interaction probability, detector visibility/amplification and irreversible neutrino-supplied deposited energy separate. Event gain != interaction gain != neutrino-energy gain. Stored/pump/preparation/reset energy is not neutrino-supplied power. Never multiply unvalidated gains.
+Keep focusing/state-control gain, microscopic interaction probability, detector visibility/amplification and irreversible neutrino-supplied deposited energy separate. Event gain != interaction gain != neutrino-energy gain. Stored/pump/preparation/reset energy is not neutrino-supplied power. Never multiply unvalidated gains.
 
-## Stable non-BSM frontiers
-- G2: 0063 `BLOCKED_NOT_ACTIONABLE` pending same-configuration measured sub-keV rejection x bulk-NR acceptance.
-- G3: 0065 universal short-range/contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
+## Stable non-G9 frontiers for NMIR v1
+- G2: 0063 `BLOCKED_NOT_ACTIONABLE`; requires same-configuration measured sub-keV topology rejection x bulk-NR acceptance.
+- G3: 0065 `OPEN_NOT_CURRENTLY_ACTIONABLE`; no actionable universal short-range/contact coefficient authority recovered in v1.
 - G8: 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
+- BSM/B-L: 0069 unlocks only the constraints ledger. 0084b Shin-Yun and 0085 Wagner remain PASS; 0074a/0074b detector response benchmarks remain PASS; 0074c combined-likelihood benchmark remains BLOCKED; 0087c/0087d/0087e/0087f/0087g remain their recorded external-authority blocks. **BSM response/enhancement remains LOCKED.**
 
-## G9 authority chain — current front
-Historical numerical failures/blocks remain immutable and are not retroactively promoted: 0075/0077/0089a/0089d/0090/0090a/0090b remain their recorded BLOCKED/FAIL classes. The independent successful path is:
+These labels are terminal v1 scope labels, not claims that the physical effect is zero.
 
-- 0089b `PASS_G9_CONTINUOUS_PIECEWISE_LINEAR_PROJECTION_AUTHORITY`.
-- 0089c `PASS_G9_CONTINUOUS_MAP_TURNING_ROOT_CERTIFICATION`.
-- 0089e-r2 `PASS_G9_MESH_FREE_NARROW_PREIMAGE_REPLICA`.
-- 0090c `PASS_G9_SOURCE_CENTRIC_EXACT_MEASURE_AUTHORITY`.
-- 0090e-r1 `PASS_G9_RAY_CENTRIC_DUAL_DISK_SENTINEL_AUTHORITY`.
-- 0090f **`PASS_G9_FULL_GRID_FINITE_NONZERO_SURVIVORS`**.
-- 0091 **`BLOCKED_G9_REAL_SOURCE_AUTHORITY`**.
-- 0092 **`PASS_G9_0092_MODEL_S_COLUMN_AUTHORITY`**.
-- 0092a **`BLOCKED_G9_0092A_CROSS_SECTION_AUTHORITY_MIXED`**, containing a source-regime `SCIENTIFIC_FAIL_G9_TRANSPARENT_SUN_ASSUMPTION` at the 1.5-TeV NGC-1068 endpoint.
-- 0092b-a1-r3 **`PASS_G9_0092B_MODEL_S_COMPOSITION_AUTHORITY`**.
+## G9 authority chain — current v1 front
+Historical numerical failures/blocks remain immutable. Successful independent geometry path: 0089b PASS -> 0089c PASS -> 0089e-r2 PASS -> 0090c PASS -> 0090e-r1 PASS -> 0090f `PASS_G9_FULL_GRID_FINITE_NONZERO_SURVIVORS`.
 
-### 0090f validated full-grid finite-source PASS
-Prereg `fc277e3695ebeb2628d133b9385e7d7d2e12a5d5`; execution head `f0f2a857b9fb5dbeecdd7abe4788f0e826516025`; run/job `34270367643/102211319629`; artifact `10073678384`; ZIP SHA256 `1f55ba0d1c041d8711e12b63b02aaa6be820359f62c2541e2bd59b99532b8ff0`; inner JSON SHA256 `71831e971932c2d347e2f79c4c315c839ae853b2968d75545bb6a3b97ead6083`.
+### 0090f finite-source geometry PASS
+Execution `f0f2a857b9fb5dbeecdd7abe4788f0e826516025`; run/job `34270367643/102211319629`; artifact `10073678384`; ZIP SHA256 `1f55ba0d1c041d8711e12b63b02aaa6be820359f62c2541e2bd59b99532b8ff0`; inner JSON `71831e971932c2d347e2f79c4c315c839ae853b2968d75545bb6a3b97ead6083`. All 1125 nonzero-offset frozen rows satisfy `mu>=2`. This is numerical focusing geometry only.
 
-Frozen grid: 3 observers x 3 receiver radii x 25 source angular radii x 6 offsets = 1350 rows. All 1125 nonzero-offset rows satisfy the preregistered finite-nonzero survivor condition `theta>0`, `delta>0`, `mu>=2`. Global `mu_min=157.28015230029052`, `mu_max=2852164397.158548`. This is an abstract Model-S finite-source numerical survivor result only; no named-source realizability, duty cycle, detector/material gain or neutrino-power claim follows.
+### 0091 real-source authority
+Immutable record `8bc8898f2193e9a4059b35f1ede3bf5597ca504a`: `BLOCKED_G9_REAL_SOURCE_AUTHORITY`. NGC 1068/TXS physical neutrino morphology/centroid authority remains insufficient under the no-EM-proxy rule; generic 10-kpc CCSN retained as morphology-compatible but prospective-alignment unresolved.
 
-### 0091 named-source realizability BLOCKED
-Prereg `4bf6979684c287e65a2f37b5ef0e092a787698a0`; immutable record `8bc8898f2193e9a4059b35f1ede3bf5597ca504a`; classification `BLOCKED_G9_REAL_SOURCE_AUTHORITY`.
+### 0092 / 0092a / 0092b-a1 solar propagation chain
+- 0092 `PASS_G9_0092_MODEL_S_COLUMN_AUTHORITY`: run/job/artifact `34274667136/102224608870/10075203769`; `Sigma=2.9324883602905845e12 g cm^-2` on frozen `b/Rsun=0.024` ray.
+- 0092a mixed authority: record `975838ae5150e9e4295e3e902f1946d659492c93`; NGC-1068 1.5-TeV transparent-Sun assumption scientifically FAILS with conservative CC-only `tau=7.946935948872507`; this does not decide CCSN MeV propagation.
+- 0092b-a1 `PASS_G9_0092B_MODEL_S_COMPOSITION_AUTHORITY`: run/job/artifact `34277614693/102234398138/10076333882`; H/He/Z chord columns close independently to the 0092 total.
 
-Frozen candidates:
-- NGC 1068: `BLOCKED_G9_NAMED_SOURCE_NEUTRINO_MORPHOLOGY_AUTHORITY`; observed neutrino source evidence exists, but no direct authoritative physical neutrino-emitting angular radius/centroid tight enough for the 0090f map without an EM/model proxy.
-- TXS 0506+056: same morphology-authority blocker; also episodic.
-- generic Galactic CCSN at 10 kpc: neutrinosphere angular size lies inside 0090f theta support, but the generic future event lacks a prospectively fixed sky direction tied to the <=100-m source-plane offset support; `BLOCKED_G9_NAMED_SOURCE_ALIGNMENT_AUTHORITY`.
+### 0092b-a2 terminal external-authority closure
+Immutable record `research/iterations/0092b_a2_v1_terminal_external_authority_closure.md`, commit `015f004c5f574b2715b63935bb8f53b19122df28`.
+Classification: `BLOCKED_G9_0092B_A2_NUCLEAR_CHANNEL_AUTHORITY_TERMINAL_V1`.
 
-0091 is not a physical no-go. It exposed solar-matter transmission as a separate compatibility gate.
+This satisfies the R100-2 external-authority terminal route only. The exact missing authority is either isotope/element-resolved deep-solar composition plus complete target-specific 5–50 MeV CC+NC nuclear responses, or a rigorous target-independent all-multipole upper envelope tight enough for the frozen `tau_total_upper<=0.1` test. No transparent/opaque CCSN-Sun conclusion is authorized.
 
-### 0092 validated Model-S solar-column PASS
-Parent prereg `29ad32defe3d18983bb26f6e1e58005bc3d95e9e`; execution head `cf2093e46acd2770bdead2963a8444d5cb4f4d71`; run/job `34274667136/102224608870`; artifact `10075203769`.
+### 0093 CCSN alignment-footprint topology BLOCKED
+Prereg commit `ffaa7706bf335b301833fe49754297b804cf713a`; execution head `66eb5bcfcc9abf9240cb0b5716665143fbbab8ff`; run/aggregate job/artifact `34279135188/102244800175/10077508208`.
+Independent artifact hashes: ZIP `1bef56077626433de111870e8c41c6a5460f8c6cc7d332b58171ded2015c73e6`; inner JSON `9a5aea9e1d3fd00a16781870e93ee95956a3886ed47edb3a244155ce0dd23a5b`.
+Immutable record commit `ed5ccf5ffab40305ae0ad32a4a2a1263e63cdae3`.
 
-Official Christensen-Dalsgaard Model-S file was fetched directly during hosted execution. Exact file SHA256 `65ecb920ed81b6b41f733cb8ab6f8c30941f7c743b0b6fec831de30e9a7322cc`. Independent artifact validation: ZIP SHA256 `21037786abe3cd62d9b6baf1ee2a4414c5dc9d5de92ca12cf26eef9a33e2d396`; inner JSON SHA256 `23fe3a1d43b4483225c30184e818e16beb61e3fe3c02b847152fcb623a7f24e9`.
+Classification: `BLOCKED_G9_CCSN_ALIGNMENT_TOPOLOGY` because the prospectively fixed 18-family scan contains 39 sampled `mu<2 -> mu>=2` re-entries. The first refined crossing (~4.88 arcsec in the conservative family) is descriptive only and cannot be promoted to a global monotone footprint. Map-derived strict no-overlap ceilings remain valid.
 
-For the frozen `b/Rsun=0.024` ray:
-- `Sigma = 2.9324883602905845e12 g cm^-2`;
-- `N_N = 1.7659857664161126e36 cm^-2`;
-- coarse/fine relative difference `3.2685418524731032e-12` vs frozen `1e-4` requirement;
-- linear-vs-log-rho sensitivity `2.5699089258994556e-6`.
+### 0094 generic 10-kpc CCSN prospective actionability FAIL
+Prereg commit `5f978fef2afcd2426dca50ca52fe86d63f4e2a68`; implementation/test commits `cdaa5bb2b9b75e8f37ea0d8ff3776d15eb872bb9` / `2e074347fe30cfe01e3b7c90d80a9412f91df8ad`.
 
-Classification `PASS_G9_0092_MODEL_S_COLUMN_AUTHORITY`. This validates the solar chord column only, not transmission at any energy.
+r1 `34282992175/102251931250` is infrastructure-only: hosted image lacked pytest and no scientific step executed. Infrastructure-only dependency provisioning commit `8ea1696ba879e265b616a0425440d554e9133446` did not alter the frozen science contract.
 
-Immutable note: `research/iterations/0092_g9_model_s_solar_column_authority_pass.md`, record commit `dab1a5c0ea08c4d2dcbcdc53947027b9d18be21c`.
+Authoritative r2: head `8ea1696ba879e265b616a0425440d554e9133446`; run/job `34283127183/102252360926`; artifact `10078391371`; dedicated tests `3 passed`. Raw log and independent download agree on ZIP SHA256 `3d0d20cc6f1336009bc0b941e1b74a77b2609b9857173f226c708328d51b9971` and inner JSON SHA256 `b161632eae1253a53b012211bc30d3da06c29c89c26fb7ffe50e134c16cb7431`.
 
-### 0092a validated mixed cross-section/transmission result
-Prereg `c6820c20ad96ea189d5bb15439f5155bbdeaaf82`; execution head `b8396e9f1440cbb80e9ee8e664e61fde00615603`; run/job `34276868882/102231933804`; artifact `10076044489`; dedicated tests `2 passed`.
+Classification: **`SCIENTIFIC_FAIL_G9_CCSN_PROSPECTIVE_ACTIONABILITY_V1`**.
 
-Independent artifact validation:
-- ZIP SHA256 `8b7fa8fc988327de2a4242edcb04a273fc9bbf939967d99ca7ea233194218557`;
-- inner `g9_0092a_cross_section_authority.json` SHA256 `ead1e74ae32410b0bcf307632606b2f77cbabd10d056ab5cd311068d56227bfe`.
+The gate deliberately used the most generous strict 0093 support ceiling rather than a first-crossing footprint: `beta_zero,max=1.855767162642536e-4 rad=38.27794542421865 arcsec`, from `d_zero=665553864.2779205 m` at `z=23.97365833326344 AU`. The frozen published 10-kpc prompt pointing control is `3 deg`, broader by factor `282.1468049109759`. Frozen pre-SN authorities cover 510 pc operationally / <1 kpc directionally, not the 10-kpc benchmark; a burst-triggered neutrino alert is not pre-positioning information for the same leading burst wavefront. The isotropic cap `8.609679358340117e-9` is a scale control only, not a Galactic CCSN probability.
 
-Frozen direct high-energy authority: FASER nu_mu charged-current coefficient `(0.5 +/- 0.2)e-38 cm^2 GeV^-1` over 520–1760 GeV. The preregistered conservative central-minus-1sigma sentinel at 1.5 TeV is `0.3e-38 cm^2 GeV^-1`, hence
+Scope: one observer + generic future 10-kpc CCSN + current frozen authority. This is not a no-go for a pre-positioned swarm, a known nearby progenitor, future sub-arcsecond pre-SN localization, or a different v2 architecture.
 
-`sigma_CC_lower = 4.5e-36 cm^2`,
+0094 supplies the single post-0093 actionability classification required by R100-3.
 
-`tau_CC_lower = N_N*sigma = 7.946935948872507`,
-
-`T0 <= exp(-tau) = 3.5374439669189366e-4`.
-
-Therefore the exact NGC-1068 low-end source/ray regime is **`SCIENTIFIC_FAIL_G9_TRANSPARENT_SUN_ASSUMPTION`** even under this conservative CC-only lower sentinel. This invalidates the transparent/unattenuated-Sun approximation for that 1.5-TeV reference ray; it does not invalidate gravitational focusing geometry generally.
-
-The overall 0092a gate remains mixed BLOCKED:
-- NGC 1068 1.5 TeV: scientific transparent-Sun FAIL;
-- TXS 290 TeV: `BLOCKED_G9_0092A_HIGH_ENERGY_AUTHORITY` pending an exact numerical cross-section authority under the frozen contract;
-- CCSN 5–50 MeV: initially `BLOCKED_G9_0092A_MEV_TOTAL_CROSS_SECTION_AUTHORITY` pending chord composition + complete low-energy interaction accounting.
-
-### 0092b-a1 validated Model-S composition PASS
-Parent prereg `66341d7eb7322e958a52dc30fb24d4e2b3e44647`; prospective composition amendment `8e7466013f0e978be9c036ec9ca10f4aa005cb66`.
-
-Two earlier hosted candidates are immutable infrastructure failures only:
-- r1 `34277408907/102233717306`: blank-record header parser assumption;
-- r2 `34277513371/102234063162`: whitespace parser incompatible with official fixed-width `1p5e16.9` format.
-
-Neither produced a scientific composition result and neither altered the gate.
-
-Authoritative r3 execution head `e1c2e584f7d5b80ce00f7b8c34c2c8011573e5a8`; run/job `34277614693/102234398138`; artifact `10076333882`; dedicated tests `3 passed`.
-
-Independent validation:
-- artifact ZIP SHA256 `bf9a7dcdfab0bf05d7ca936c61bba54f2cd39841cd380316bf4a421da71aa4ec`;
-- result JSON SHA256 `1edda4508f0ce73ffc025adce7c0a867c301cd301a8e65a0509ac75d70df2291`;
-- limited Model-S SHA256 `65ecb920ed81b6b41f733cb8ab6f8c30941f7c743b0b6fec831de30e9a7322cc`;
-- extensive GONG Model-S SHA256 `a30c31b9f6af2e5918f49d3808c0dade54f9946133b679b86949fc73625c2393`;
-- official GONG format PDF SHA256 `9614e18f6eed3f7121352539651c502ae84b7b13bb308b091a66157b45a597b5`.
-
-Official GONG header is `nn=2482, iconst=15, ivar=25, ivers=210`. Under the prospectively frozen official-format semantics, `var(6)=X`, `var(17)=Z` for v210, and `Y=1-X-Z`. The validated 0092 limited file remains density authority; GONG supplies composition fractions only.
-
-At `b/Rsun=0.024`: `X=0.35554806874807887`, `Y=0.6241438995900526`, `Z=0.02030803166186854`.
-
-Fine component columns:
-- `Sigma_H=1.5217827389419937e12 g cm^-2`, `N_H=9.16438985041013e35 cm^-2`;
-- `Sigma_He=1.3518482663979014e12 g cm^-2`, `N_He=2.035255134462346e35 cm^-2`;
-- `Sigma_Z=5.8857354950716446e10 g cm^-2`.
-
-Component sum `2.9324883602906113e12 g cm^-2` closes to the independent 0092 total with relative error `9.157911456241502e-15`. Coarse/fine discrepancies are `1.287e-11`, `7.508e-12`, `2.913e-12` for H/He/Z, all far below the frozen `1e-4` gate.
-
-Classification **`PASS_G9_0092B_MODEL_S_COMPOSITION_AUTHORITY`**. This closes deep-solar H/He/Z chord composition authority only. No representative metal nucleus was chosen and no 5–50 MeV total optical depth has yet been certified.
-
-Immutable record: `research/iterations/0092b_a1_r3_model_s_composition_authority_pass.md`, commit `684f8c47ea7b438fac3289665c6136340ffd05ef`.
-
-## Current frozen gate — 0092b-a2 MeV interaction-envelope authority
-Prereg commit `4d0736b9ce5c1a44a467d81d63f0767805a3af1c`.
-
-The remaining 0092b blocker is no longer deep-solar composition. The new gate freezes exact energies `{5,10,20,30,40,50} MeV`, all six active neutrino/antineutrino flavor states, and requires a non-double-counted total-removal upper envelope covering at minimum IBD on H where applicable, neutrino-electron scattering, CEvNS/coherent NC, and relevant incoherent CC/NC nuclear interactions.
-
-The unresolved metal mixture must be handled prospectively either by a Model-S-compatible elemental/isotopic radial distribution or by a proved composition-independent conservative metal envelope based only on the validated `Sigma_Z`. No representative O/Fe nucleus may be selected post-result. Formaggio-Zeller is the review anchor; MeV-valid channel-specific primary authority may supersede it. High-energy DIS remains forbidden.
-
-A 0092b-a2 PASS authorizes a separate terminal optical-depth calculation under the already frozen parent thinness criterion `tau_total_upper<=0.1`; it does not itself establish transmission thinness.
-
-## BSM / B-L authority
-0069 unlocks only the constraints ledger. BSM response/enhancement remains **LOCKED** pending reproducible external-envelope completeness + formal unlock. 0084b Shin-Yun and 0085 Wagner remain PASS. 0074a/0074b detector response benchmarks remain PASS; 0074c combined-likelihood numerical benchmark remains BLOCKED. 0087/0087a are partial topology authority only; 0087c Cerdeño, 0087d COHERENT mass support, 0087e finite-mass fifth-force, 0087f BBN tail and 0087g restricted-below-1-eV completeness remain BLOCKED.
+## Current readiness / Actions state
+`NMIR_READINESS: 99%` is justified by the new reproducible 0093 scientific topology BLOCKED plus reproducible 0094 scoped scientific FAIL. 100% is intentionally not declared in this reconciliation because the frozen R100 contract requires final repository/CI reconciliation and no relevant uninspected execution at declaration time. Baseline CI triggered by the newest record commit was still in progress at this reconciliation; it is infrastructure evidence, not scientific evidence.
 
 ## Exact next action
-Do not recompute composition and do not reopen 0092a. Execute 0092b-a2 as an authority ledger first: freeze MeV-valid formulas/tables, flavor applicability and exact provenance; resolve the metal-mixture upper-envelope issue prospectively; only after a reproducible `PASS_G9_0092B_A2_MEV_INTERACTION_ENVELOPE_AUTHORITY` may a separate terminal 0092b optical-depth calculation evaluate the pre-existing `tau_total_upper<=0.1` criterion.
+Do **not** start another G9 science calculation inside NMIR v1. First consume the terminal baseline/reconciliation Actions state, audit R100-1 through R100-6 against the frozen `NMIR_V1_READINESS_100_CONTRACT.md`, synchronize this file and `NMIR_FUNNEL.md`, and only if every condition is satisfied with no queued/in-progress result capable of changing a v1 classification, write the immutable v1 closure record and declare `NMIR_READINESS: 100%`.
 
-A separate exact 290-TeV TXS cross-section gate remains allowed but lower priority because TXS is already named-source morphology BLOCKED in 0091.
+Any physical reopening after that must require new external data/authority, a new scientific assumption, or explicit v2 scope. In particular, do not reopen 0092b-a2 with a post-result representative metal nucleus and do not repair 0093 by post-result grid densification.
 
 ## Critical guards
-No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc promotion of failed/blocked G9 numerics. No result-selected G9 nodes/orders/intervals/tolerances. No EM/PSF source size promoted to physical neutrino morphology. No DIS extrapolation into MeV solar propagation. No photospheric abundance promoted to the deep solar chord. No post-result representative metal nucleus. No claim that TeV opacity kills the CCSN MeV branch.
+No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc promotion of failed/blocked G9 numerics. No result-selected G9 nodes/orders/intervals/tolerances. No EM/PSF source size promoted to physical neutrino morphology. No DIS extrapolation into MeV solar propagation. No photospheric abundance promoted to the deep solar chord. No post-result representative metal nucleus. No claim that TeV opacity kills the CCSN MeV branch. No claim that `NMIR_READINESS` is engineering TRL or probability of a useful device.
