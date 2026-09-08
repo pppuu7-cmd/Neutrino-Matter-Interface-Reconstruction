@@ -4,8 +4,8 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable scientific record: `research/iterations/0092a_g9_cross_section_authority_mixed_blocked.md`, record commit **`975838ae5150e9e4295e3e902f1946d659492c93`**.
-Current prospectively frozen scientific gate: `research/prereg/0092b_g9_ccsn_mev_solar_transmission_authority.md`, frozen commit **`66341d7eb7322e958a52dc30fb24d4e2b3e44647`**.
+Latest completed immutable scientific record: `research/iterations/0092b_a1_r3_model_s_composition_authority_pass.md`, record commit **`684f8c47ea7b438fac3289665c6136340ffd05ef`**.
+Current prospectively frozen scientific gate: `research/prereg/0092b_a2_mev_interaction_envelope_authority.md`, frozen commit **`4d0736b9ce5c1a44a467d81d63f0767805a3af1c`**.
 `NMIR_READINESS: 98%`.
 
 ## Mandatory recovery rule
@@ -31,6 +31,7 @@ Historical numerical failures/blocks remain immutable and are not retroactively 
 - 0091 **`BLOCKED_G9_REAL_SOURCE_AUTHORITY`**.
 - 0092 **`PASS_G9_0092_MODEL_S_COLUMN_AUTHORITY`**.
 - 0092a **`BLOCKED_G9_0092A_CROSS_SECTION_AUTHORITY_MIXED`**, containing a source-regime `SCIENTIFIC_FAIL_G9_TRANSPARENT_SUN_ASSUMPTION` at the 1.5-TeV NGC-1068 endpoint.
+- 0092b-a1-r3 **`PASS_G9_0092B_MODEL_S_COMPOSITION_AUTHORITY`**.
 
 ### 0090f validated full-grid finite-source PASS
 Prereg `fc277e3695ebeb2628d133b9385e7d7d2e12a5d5`; execution head `f0f2a857b9fb5dbeecdd7abe4788f0e826516025`; run/job `34270367643/102211319629`; artifact `10073678384`; ZIP SHA256 `1f55ba0d1c041d8711e12b63b02aaa6be820359f62c2541e2bd59b99532b8ff0`; inner JSON SHA256 `71831e971932c2d347e2f79c4c315c839ae853b2968d75545bb6a3b97ead6083`.
@@ -82,24 +83,57 @@ Therefore the exact NGC-1068 low-end source/ray regime is **`SCIENTIFIC_FAIL_G9_
 The overall 0092a gate remains mixed BLOCKED:
 - NGC 1068 1.5 TeV: scientific transparent-Sun FAIL;
 - TXS 290 TeV: `BLOCKED_G9_0092A_HIGH_ENERGY_AUTHORITY` pending an exact numerical cross-section authority under the frozen contract;
-- CCSN 5–50 MeV: `BLOCKED_G9_0092A_MEV_TOTAL_CROSS_SECTION_AUTHORITY` because a conservative total optical-depth upper bound requires prospectively frozen chord composition + coherent/incoherent low-energy channel accounting. No DIS extrapolation or post-result composition choice is allowed.
+- CCSN 5–50 MeV: initially `BLOCKED_G9_0092A_MEV_TOTAL_CROSS_SECTION_AUTHORITY` pending chord composition + complete low-energy interaction accounting.
 
-Immutable note: `research/iterations/0092a_g9_cross_section_authority_mixed_blocked.md`, record commit `975838ae5150e9e4295e3e902f1946d659492c93`.
+### 0092b-a1 validated Model-S composition PASS
+Parent prereg `66341d7eb7322e958a52dc30fb24d4e2b3e44647`; prospective composition amendment `8e7466013f0e978be9c036ec9ca10f4aa005cb66`.
 
-## Current frozen gate — 0092b CCSN-MeV solar transmission
-Prereg commit `66341d7eb7322e958a52dc30fb24d4e2b3e44647`.
+Two earlier hosted candidates are immutable infrastructure failures only:
+- r1 `34277408907/102233717306`: blank-record header parser assumption;
+- r2 `34277513371/102234063162`: whitespace parser incompatible with official fixed-width `1p5e16.9` format.
 
-Question: can an authority-backed conservative total Standard-Model interaction optical-depth upper bound over the frozen `5–50 MeV` CCSN interval prove the exact Model-S reference chord thin (`tau_total<=0.1`)?
+Neither produced a scientific composition result and neither altered the gate.
 
-0092b freezes the validated 0092 density/column, requires a reproducible chord-composition authority or a prospectively derived composition-independent upper bound, and audits at minimum neutrino-electron scattering, NC nuclear/nucleon scattering, CC channels and CEvNS. High-energy DIS is forbidden. A photospheric composition may not be promoted to the deep chord composition.
+Authoritative r3 execution head `e1c2e584f7d5b80ce00f7b8c34c2c8011573e5a8`; run/job `34277614693/102234398138`; artifact `10076333882`; dedicated tests `3 passed`.
 
-PASS would establish only solar transmission compatibility for the CCSN-MeV ray; 0091's prospective alignment blocker would remain. BLOCKED may not be repaired by choosing a convenient abundance mix after seeing a result.
+Independent validation:
+- artifact ZIP SHA256 `bf9a7dcdfab0bf05d7ca936c61bba54f2cd39841cd380316bf4a421da71aa4ec`;
+- result JSON SHA256 `1edda4508f0ce73ffc025adce7c0a867c301cd301a8e65a0509ac75d70df2291`;
+- limited Model-S SHA256 `65ecb920ed81b6b41f733cb8ab6f8c30941f7c743b0b6fec831de30e9a7322cc`;
+- extensive GONG Model-S SHA256 `a30c31b9f6af2e5918f49d3808c0dade54f9946133b679b86949fc73625c2393`;
+- official GONG format PDF SHA256 `9614e18f6eed3f7121352539651c502ae84b7b13bb308b091a66157b45a597b5`.
+
+Official GONG header is `nn=2482, iconst=15, ivar=25, ivers=210`. Under the prospectively frozen official-format semantics, `var(6)=X`, `var(17)=Z` for v210, and `Y=1-X-Z`. The validated 0092 limited file remains density authority; GONG supplies composition fractions only.
+
+At `b/Rsun=0.024`: `X=0.35554806874807887`, `Y=0.6241438995900526`, `Z=0.02030803166186854`.
+
+Fine component columns:
+- `Sigma_H=1.5217827389419937e12 g cm^-2`, `N_H=9.16438985041013e35 cm^-2`;
+- `Sigma_He=1.3518482663979014e12 g cm^-2`, `N_He=2.035255134462346e35 cm^-2`;
+- `Sigma_Z=5.8857354950716446e10 g cm^-2`.
+
+Component sum `2.9324883602906113e12 g cm^-2` closes to the independent 0092 total with relative error `9.157911456241502e-15`. Coarse/fine discrepancies are `1.287e-11`, `7.508e-12`, `2.913e-12` for H/He/Z, all far below the frozen `1e-4` gate.
+
+Classification **`PASS_G9_0092B_MODEL_S_COMPOSITION_AUTHORITY`**. This closes deep-solar H/He/Z chord composition authority only. No representative metal nucleus was chosen and no 5–50 MeV total optical depth has yet been certified.
+
+Immutable record: `research/iterations/0092b_a1_r3_model_s_composition_authority_pass.md`, commit `684f8c47ea7b438fac3289665c6136340ffd05ef`.
+
+## Current frozen gate — 0092b-a2 MeV interaction-envelope authority
+Prereg commit `4d0736b9ce5c1a44a467d81d63f0767805a3af1c`.
+
+The remaining 0092b blocker is no longer deep-solar composition. The new gate freezes exact energies `{5,10,20,30,40,50} MeV`, all six active neutrino/antineutrino flavor states, and requires a non-double-counted total-removal upper envelope covering at minimum IBD on H where applicable, neutrino-electron scattering, CEvNS/coherent NC, and relevant incoherent CC/NC nuclear interactions.
+
+The unresolved metal mixture must be handled prospectively either by a Model-S-compatible elemental/isotopic radial distribution or by a proved composition-independent conservative metal envelope based only on the validated `Sigma_Z`. No representative O/Fe nucleus may be selected post-result. Formaggio-Zeller is the review anchor; MeV-valid channel-specific primary authority may supersede it. High-energy DIS remains forbidden.
+
+A 0092b-a2 PASS authorizes a separate terminal optical-depth calculation under the already frozen parent thinness criterion `tau_total_upper<=0.1`; it does not itself establish transmission thinness.
 
 ## BSM / B-L authority
 0069 unlocks only the constraints ledger. BSM response/enhancement remains **LOCKED** pending reproducible external-envelope completeness + formal unlock. 0084b Shin-Yun and 0085 Wagner remain PASS. 0074a/0074b detector response benchmarks remain PASS; 0074c combined-likelihood numerical benchmark remains BLOCKED. 0087/0087a are partial topology authority only; 0087c Cerdeño, 0087d COHERENT mass support, 0087e finite-mass fifth-force, 0087f BBN tail and 0087g restricted-below-1-eV completeness remain BLOCKED.
 
 ## Exact next action
-Do not reopen 0092a thresholds. Execute 0092b only after locating and freezing a reproducible deep-solar/chord composition authority or prospectively deriving a rigorous composition-independent upper bound, then freeze the low-energy channel/cross-section ledger before evaluating `tau_total`. Independently, a later exact 290-TeV TXS cross-section gate is allowed but lower priority because TXS remains named-source morphology BLOCKED in 0091.
+Do not recompute composition and do not reopen 0092a. Execute 0092b-a2 as an authority ledger first: freeze MeV-valid formulas/tables, flavor applicability and exact provenance; resolve the metal-mixture upper-envelope issue prospectively; only after a reproducible `PASS_G9_0092B_A2_MEV_INTERACTION_ENVELOPE_AUTHORITY` may a separate terminal 0092b optical-depth calculation evaluate the pre-existing `tau_total_upper<=0.1` criterion.
+
+A separate exact 290-TeV TXS cross-section gate remains allowed but lower priority because TXS is already named-source morphology BLOCKED in 0091.
 
 ## Critical guards
-No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc promotion of failed/blocked G9 numerics. No result-selected G9 nodes/orders/intervals/tolerances. No EM/PSF source size promoted to physical neutrino morphology. No DIS extrapolation into MeV solar propagation. No claim that TeV opacity kills the CCSN MeV branch.
+No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc promotion of failed/blocked G9 numerics. No result-selected G9 nodes/orders/intervals/tolerances. No EM/PSF source size promoted to physical neutrino morphology. No DIS extrapolation into MeV solar propagation. No photospheric abundance promoted to the deep solar chord. No post-result representative metal nucleus. No claim that TeV opacity kills the CCSN MeV branch.
