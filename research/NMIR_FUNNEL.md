@@ -9,9 +9,9 @@ F0 objective -> F1 microscopic channel -> F2 production/absorption where applica
 Closed in stated scopes unless a genuinely new assumption changes them: naive static `N^2`; geometry-only fixed-column gain; passive local density/phonon or spin/magnon free superextensive gain; extensive-budget long-range-pair free gain; passive stable finite linear/nonlinear mediator free gain after energy accounting; linewidth narrowing as new integrated strength; metastable stored-energy avalanche as neutrino-energy gain; bounded finite-range k-local higher-body free superextensive gain; no actual-SM growing-coordination survivor in audited passive-SM scope.
 
 ## Highest-value currently executable gate
-**BSM / F8 — 0084b Shin–Yun SN1987A analytical geometry/convention authority.** Prospective contract frozen in `research/prereg/0084b_shin_yun_sn1987a_analytical_geometry_authority.md`, commit `6dd35ebe3b23846c30380e47b3cf14801fcd7313`, before any 0084b geometry.
+**BSM / F8 — 0086 B-L external-family completeness/actionability audit.** It must be prospectively frozen before any classification based on the accumulated 0071-family results.
 
-Before any area calculation 0084b must resolve: exact source `e'` ↔ NMIR `g_BL` coupling convention; authoritative electron rest-energy provenance if BODY_NATIVE `<2m_e` is converted; separate BODY_NATIVE and CONCLUSION_SUMMARY domains; and exact low-mass interval where both low and high SN1987A boundaries are source-authorized. No high-coupling extrapolation toward 20 MeV is allowed. T and L remain separate. Any straight/log-affine analytic area must agree with an independent sampled/numerical area to relative `1e-8`.
+The audit must use the original 0071 required-family list: (1) low-energy laboratory neutrino scattering/CEvNS/neutrino-electron; (2) collider/fixed-target visible/invisible with decay assumptions; (3) stellar/SN; (4) cosmology BBN/CMB/free-streaming; (5) fifth-force/EP/long-range. Every family must be classified as reproducibly authoritative in the same `g_BL` convention, explicitly BLOCKED/RETIRED for a frozen reason, or MISSING. No cross-family numerical union is permitted in 0086. A silently missing family forces BLOCKED and becomes the next gate.
 
 ## B-L external-authority progress
 0078c `PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION / PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`; De Romeri 90% CL solar-CEvNS filled polygon area `12.51987545543835 decade^2`.
@@ -26,13 +26,13 @@ Before any area calculation 0084b must resolve: exact source `e'` ↔ NMIR `g_BL
 
 0083/0083a establish Hong source-text analytical anchors and branch identity; exact finite-mass Hong geometry remains blocked by approximate `O(0.1 MeV)` endpoints.
 
-0084 `PASS_SHIN_YUN_B_L_REVISION_SCOPE_AUTHORITY`, immutable commit `3d4e2804d0cbc49ba2e7140e1df78e238a575d69`. Authoritative run/job `34171357240/101892123279`, artifact `10035801098`, ZIP SHA256 `affa60027833b66607c08d6291f82bd5eb06a7ad4a15b5d38a07c8e6ddb637e2`, raw JSON SHA256 `6af4872374b8f0090d02476843e7a2fa79505c812f183129b7446e2a6c514db9`. Source text supplies exact SN1987A T/L analytical boundary relations and NS1987A approximate-domain bound; explicit revision scope is the earlier Knapen SN1987A derivation, not Hong Cas A.
+0084/0084a establish Shin–Yun revision and excluded-band semantics. 0084b `PASS_SHIN_YUN_SN1987A_ANALYTICAL_GEOMETRY_AUTHORITY`, immutable commit `6ba279050b232ec1a3f6e672c6a8471ab91ca6df`, run/job `34173289135/101897646086`, artifact `10036398152`, ZIP SHA256 `03a5566ccafec2e6dda99927b7abd63a0e5188b39b0b5d5d96ed06d95f7ff5ed`, raw JSON SHA256 `483f6ad0864e10aee6fb16b6ab78ad97fbfb2a904bbd155d54fb51848ee0be7b`. It materializes four separate T/L × BODY_NATIVE/CONCLUSION_SUMMARY low-mass excluded geometries and forbids their union absent a later gate.
 
-0084a `PASS_SHIN_YUN_SN1987A_BAND_SEMANTICS`, immutable commit `13e415364d12a2cc0f028e3e7172b2bef85795ca`. Authoritative run/job `34171720462/101893145840`, artifact `10035914608`, ZIP SHA256 `8ab3fd02571aa755a9303570fac907bc0be88d5a9cbf03e5e7a76c9a8e0b8aee`, raw JSON SHA256 `5e964a12dd8e54e6f94346cb07f489ec6b23f5ccac6ec94e71f2e02878e3f947`; tests `3 passed`. Independent artifact/hash inspection agrees with hosted log.
+0085 `PASS_WAGNER_IDENTITY_FREE_B_L_UPPER_ENVELOPE`, immutable commit `059c1cc890b1c6260b018d0b68575a4866cb699c`, run/job `34174047570/101899820199`, artifact `10036642116`, ZIP SHA256 `8b8df51229ed18e34ca415cd15404a0250f79329bcbe42f9cf0a100abf55a404`, raw JSON SHA256 `a73cef7477ed604f9c8d03b137cec02fbd50b1dab415a452959a3127b76e6313`. Raw log gives eight retained source components and an anonymous strongest published 95% CL upper-limit envelope over `1e-6 <= m_V <= 6.845530367110015e-6 eV`. It is not a joint/statistically combined 95% CL result.
 
-0084a scientific semantics: SN1987A is band-like, not one-sided. T low/free-streaming `e'<1e-11` for `m<20 MeV`; T high allowed `e'>1.5e-8`, body `<2m_e`, conclusion `<1 MeV`. L low allowed `e'm<7.4e-10 MeV`; L high allowed `e'm>1.2e-5 MeV`, with the same body/conclusion low-mass domain distinction. Above the low-mass threshold the source says lower/high-coupling bounds weaken, so exact text does not authorize closing the polygon up to 20 MeV.
+0074c remains `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`; exact CsI/Ar combined reproduction may not be revived without genuinely new primary numerical benchmark authority.
 
-The global 0071 B-L envelope remains incomplete. COHERENT 0074c benchmark authority blocked, Wagner global-side authority unresolved, finite-mass fifth-force continuation unauthorized, BBN geometry blocked, Hong/Cerdeño vector routes blocked/retired, and Shin–Yun finite-area geometry awaits 0084b. BSM response/enhancement remains forbidden.
+The global 0071 B-L envelope remains incomplete and uncomposed. BSM response/enhancement remains forbidden.
 
 ## Other frontier classes
 1. G3 absolute short-range/contact-current residual: physically OPEN but not currently executable.
@@ -41,9 +41,9 @@ The global 0071 B-L envelope remains incomplete. COHERENT 0074c benchmark author
 4. G9 persistent-source geometry: numerical branch blocked at 0077; not a physical no-go.
 
 ## Exact next gate
-Execute 0084b under frozen commit `6dd35ebe...`. First audit/freeze coupling convention and electron-mass constant authority, without area. Only if those pass, materialize four separate partial low-mass objects: T/L × BODY_NATIVE/CONCLUSION_SUMMARY, within source-authorized domains and the global 0071 clip. No union, no high-mass extrapolation, no post-result selection. A later cross-family envelope composition requires its own prospective contract.
+Freeze and execute 0086. The gate must answer whether the current ledger has independent same-convention authority or explicit retirement/blocking for **all five** original 0071 families. In particular, inspect collider/fixed-target coverage rather than assuming it is represented by CEvNS/cosmology/stellar results. If a required family is missing, return a scoped BLOCKED result and make that family the exact next gate. Only a completeness PASS may authorize a later scenario-aware cross-family composition preregistration.
 
 ## Guards
-No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No `O(0.1 MeV)`→exact endpoint. No source-rounded `2m_e≈1 MeV`→exact identity. No high-coupling extrapolation to 20 MeV. No T/L union. No hint-to-exclusion promotion. No unconditional use of conditional Hong intervals. No finite-mass extrapolation of 0079a. No Majorana/Dirac union/intersection absent authority. No BSM response scan or multiplication of unvalidated gains.
+No raster/manual contour reading. No post-result convention factor, excluded-side assignment, source/scenario selection or threshold relaxation. No `O(0.1 MeV)`→exact endpoint. No source-rounded `2m_e≈1 MeV`→exact identity. No high-coupling extrapolation to 20 MeV. No T/L union. No Majorana/Dirac union/intersection absent authority. No finite-mass extrapolation of 0079a. No Wagner statistical-combination claim. No cross-family B-L union or BSM response scan before a dedicated completeness/composition PASS and formal unlock.
 
-`NMIR_READINESS: 96%`.
+`NMIR_READINESS: 98%`.
