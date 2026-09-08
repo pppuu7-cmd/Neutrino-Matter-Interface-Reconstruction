@@ -9,9 +9,9 @@ F0 objective -> F1 microscopic channel -> F2 production/absorption where applica
 Closed in stated scopes unless a genuinely new assumption changes them: naive static `N^2`; geometry-only fixed-column gain; passive local density/phonon or spin/magnon free superextensive gain; extensive-budget long-range-pair free gain; passive stable finite linear/nonlinear mediator free gain after energy accounting; linewidth narrowing as new integrated strength; metastable stored-energy avalanche as neutrino-energy gain; bounded finite-range k-local higher-body free superextensive gain; no actual-SM growing-coordination survivor in audited passive-SM scope.
 
 ## Highest-value currently executable gate
-**G9 / F3-F7 — 0089d continuous-map monotone-segment radial kernel**, prospectively frozen commit **`8eab0935d54cb930495b55cbc3025225729f109c`**.
+**G9 / F3-F7 — 0089e independent mesh-free narrow-preimage replica**, prospectively frozen commit **`da8e7c5664cf0980b3490926036231bea9270fcb`**.
 
-0089b established accepted continuous-map authority; 0089c has now reproducibly certified its turning roots. 0089d is the first gate allowed to compute accepted preimage areas, while finite-source/persistent-source utility remains forbidden.
+0089d remains immutably BLOCKED under its fixed N=2^18/N=2^19 grid validation. 0089e is a new scientific question using a standalone high-precision mesh-free replica; it cannot retroactively pass 0089d.
 
 ## G9 authority front
 - 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`.
@@ -21,29 +21,22 @@ Closed in stated scopes unless a genuinely new assumption changes them: naive st
 - 0089 `PASS_G9_FROZEN_DISCRETE_MAP_DERIVATIVE_AUTHORITY`.
 - 0089a `BLOCKED_G9_FROZEN_MAP_TURNING_ROOT_CERTIFICATION`; source-knot orientation instability closes that discrete-map partition route only.
 - 0089b `PASS_G9_CONTINUOUS_PIECEWISE_LINEAR_PROJECTION_AUTHORITY`, immutable record `40f88288c7996d105446918e78cce29aa4c99d83`.
-- 0089c **`PASS_G9_CONTINUOUS_MAP_TURNING_ROOT_CERTIFICATION`**, immutable record `e8fc4e6856d6326e6c273a96cb46f6b660467d96`.
+- 0089c `PASS_G9_CONTINUOUS_MAP_TURNING_ROOT_CERTIFICATION`, immutable record `e8fc4e6856d6326e6c273a96cb46f6b660467d96`.
+- 0089d **`BLOCKED_G9_CONTINUOUS_MAP_MONOTONE_KERNEL`**, immutable record **`ed5ea1635bc56e15ad8af294f169a5fbcdf44723`**.
 
-### 0089c validated authority
-Prereg `1f96b318b437d6a5aecf815ef829ef09a8adc7e6`; run/job **`34214036230/102021451956`**; head `92f58076f32eb9a977c8fc1d1ccea9b171214527`; tests `3 passed`; artifact **`10051169835`**; independently verified ZIP SHA256 **`3897ec7ff193b133ebff195f181472da27b3ff098129855527d1debd5e3684d2`**; inner JSON SHA256 **`097f0cc4a2aa2ff900d5bf1e47b2f36da088bbb567fb7d9bc325d5ea50077f8d`**.
+### 0089d validated authority
+Parent prereg `8eab0935d54cb930495b55cbc3025225729f109c`; bulk amendment `33f7b72b7429993b09321cd5674fa1eff3219812`; run/job **`34218369356/102035420870`**; head **`2e49e9c196cc8560cdc1b68f696172b5849ee6e7`**; tests `4 passed`; artifact **`10052800239`**; independently verified ZIP SHA256 **`72d18d3cae44d44a6194ed67940ee4e4b71973fedcdb349fc479f899cb397905`**; inner JSON SHA256 **`72de2daaf4118cf9869b3e4a271a8c99bdd718471d8c535e20c71f336fc703f9`**.
 
-Frozen result:
-- 79-point independent mass/focal/derivative cross-check max symrel `2.2200669216010985e-16 / 5.486245728015033e-16 / 3.227517559539168e-14`;
-- Q32/Q64: exactly one matched turning root at every observer control;
-- 2400 source-knot stress checks pass per control;
-- 153663 signed-map FD midpoint checks pass per control;
-- turning roots: `0.01150432239489928`, `0.013783440937996098`, `0.01718034337813724` for controls generated from `x0=0.020,0.024,0.030` respectively.
+B0 preflight passed at ~6e-16 symmetric-relative discrepancy for both mass and focal distance. The exact frozen V4 validation then returned max branch-vs-N19 relative difference `1.0` and max N18-vs-N19 difference `1.0`, with reason `fixed indicator replica cannot resolve a finite narrow accepted interval`. The prereg explicitly requires BLOCKED in that situation and forbids result-selected grid refinement.
 
-This certifies turning structure only, not accepted areas or focusing utility.
+This does not invalidate the accepted 0089c turning structure. It blocks 0089d full radial-kernel authority under that gate's validation method.
 
-## 0089d frozen gate
-Use only the accepted 0089b continuous signed map and the final 0089c turning roots to partition `1e-4<=x<=1` into monotone branches. For observer controls generated from `x0={0.020,0.024,0.030}` and radii `r=1e0...1e9 cm` by decades, solve `y_c=0,+r,-r` by deterministic bisection only inside certified monotone branches.
+## 0089e frozen gate
+Use the exact same Model-S source, 0089b continuous density/projection definition, 0089c branch boundaries, observer controls and radii, but implement the high-precision authority independently with `mpmath` and no import of the accepted projection/kernel implementation for its mass/focal/map calculation.
 
-Authority area:
-`A_acc=pi R_sun^2 sum_i(x_hi_i^2-x_lo_i^2)` over disjoint accepted preimage intervals. `K=A_acc/(pi r^2)` is explicitly only a geometry diagnostic.
+Two fixed replicas are required: 60 and 90 decimal digits. Roots are obtained only by pure high-precision bisection within the already certified monotone branches; no spatial scan or result-selected refinement. Compare root sets/topology and areas between precisions, then compare the existing double-precision branch object to the 90-dps authority. Root, residual, area and inherited one-ring tolerances are frozen in `research/prereg/0089e_g9_mesh_free_narrow_preimage_replica.md`.
 
-Frozen criteria retain the old 0077 **0.5%** standards: exact one-ring containment/reproduction for `x0=0.024` and 1/10/100 m; independent fixed uniform indicator-grid replicas at `N=2^18` and `N=2^19`, each agreeing with the branch answer/refinement within 0.5%; finite/nonnegative/nondecreasing/aperture-bounded area; branch orientation, crossing residual, midpoint-classification and no-positive-width-double-counting checks. If a finite interval is narrower than the fixed replica resolution, classify BLOCKED rather than add result-selected nodes.
-
-No source-size, alignment/positioning, duty cycle or persistent-source convolution is permitted in 0089d. Only a reproducible PASS may authorize that separate next gate.
+PASS creates only a new mesh-free narrow-preimage geometry authority and cannot change the immutable 0089d BLOCKED result. No source-size, alignment/positioning, duty cycle or persistent-source convolution is permitted in 0089e.
 
 ## B-L external-authority front
 0084b Shin–Yun analytical geometry and 0085 Wagner identity-free envelope remain PASS. 0074a/0074b response benchmarks remain PASS; 0074c combined likelihood remains BLOCKED. 0087/0087a topology is partial-authority only. 0087c Cerdeño, 0087d COHERENT mass support, 0087e finite-mass fifth-force, 0087f BBN-tail and 0087g restricted-below-1-eV completeness remain BLOCKED. BSM response/enhancement remains **LOCKED**.
@@ -55,9 +48,9 @@ No source-size, alignment/positioning, duty cycle or persistent-source convoluti
 4. BSM external-envelope completeness: BLOCKED; response remains LOCKED.
 
 ## Exact next gate
-Implement and run 0089d exactly from prereg commit `8eab0935d54cb930495b55cbc3025225729f109c`: frozen monotone partition -> deterministic target crossings -> disjoint accepted intervals -> analytic annular area -> one-ring/indicator-grid/area-invariant validation. Consume raw log and independently hash-verify artifact before classification. Do not duplicate an in-progress run and do not compute finite-source/persistent-source utility in this gate.
+Implement and run 0089e exactly from prereg commit **`da8e7c5664cf0980b3490926036231bea9270fcb`**: independent high-precision continuous projection -> fixed 60/90-dps branch target bisection -> accepted intervals and analytic annular area -> precision-replica checks -> independent double-vs-high-precision comparison -> inherited one-ring guard. Consume raw log and independently hash-verify artifact before classification. Do not duplicate running work and do not compute finite-source/persistent-source utility.
 
 ## Guards
-No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch of 0077/0088/0089a, no result-selected G9 nodes and no relaxation of frozen G9 validation requirements.
+No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch of 0077/0088/0089a/0089d, no result-selected G9 nodes and no relaxation of frozen G9 validation requirements.
 
 `NMIR_READINESS: 98%`.
