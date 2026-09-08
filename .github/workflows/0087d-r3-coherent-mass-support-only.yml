@@ -1,0 +1,41 @@
+name: NMIR 0087d-r3 COHERENT B-L mass-support-only authority
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0087d_coherent_mass_support_only_authority.md'
+      - 'research/amendments/0087d_route_b_constraint_semantic_conformance_r3.md'
+      - 'scripts/audit_coherent_mass_support_only_0087d.py'
+      - 'scripts/audit_coherent_mass_support_only_0087d_r1.py'
+      - 'scripts/audit_coherent_mass_support_only_0087d_r2.py'
+      - 'scripts/audit_coherent_mass_support_only_0087d_r3.py'
+      - 'tests/test_audit_coherent_mass_support_only_0087d.py'
+      - 'tests/test_audit_coherent_mass_support_only_0087d_r2.py'
+      - 'tests/test_audit_coherent_mass_support_only_0087d_r3.py'
+      - '.github/workflows/0087d-r3-coherent-mass-support-only.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install parser/runtime dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pymupdf pytest
+      - name: Run frozen plus parser-conformance tests
+        run: pytest -q tests/test_audit_coherent_mass_support_only_0087d.py tests/test_audit_coherent_mass_support_only_0087d_r2.py tests/test_audit_coherent_mass_support_only_0087d_r3.py
+      - name: Execute unchanged 0087d scientific contract via r3 wrapper
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/audit_coherent_mass_support_only_0087d_r3.py
+      - name: Upload exact 0087d-r3 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087d-r3-coherent-mass-support-only
+          path: coherent_mass_support_only_0087d_r3.json
+          if-no-files-found: error
