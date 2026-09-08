@@ -16,6 +16,7 @@ result = {
     "ngc1068_low_endpoint": {
         "energy_GeV": E_GEV,
         "authority": "FASER Collaboration, PRL 133, 021802 (2024), arXiv:2403.12520",
+        "authority_url": "https://arxiv.org/abs/2403.12520",
         "reported_numu_cc_sigma_over_E_central_cm2_GeV": 0.5e-38,
         "reported_numu_cc_sigma_over_E_1sigma_cm2_GeV": 0.2e-38,
         "frozen_conservative_lower_coeff_cm2_GeV": FASER_NU_MU_CC_COEFF_LOWER,
@@ -26,10 +27,15 @@ result = {
         "reason": "authority-backed conservative CC lower optical depth exceeds unity at 1.5 TeV"
     },
     "txs_290TeV": {
+        "consistency_authorities": [
+            "Cooper-Sarkar, Mertsch & Sarkar, JHEP 08 (2011) 042, arXiv:1106.3723v2",
+            "IceCube, Nature 551 (2017), arXiv:1711.08119"
+        ],
         "classification": "BLOCKED_G9_0092A_HIGH_ENERGY_AUTHORITY",
         "reason": "exact numerical 290-TeV cross-section authority not yet frozen in machine-readable form; no post-result extrapolation used"
     },
     "ccsn_5_50MeV": {
+        "review_authority": "Formaggio & Zeller, Rev. Mod. Phys. 84, 1307 (2012), arXiv:1305.7513",
         "classification": "BLOCKED_G9_0092A_MEV_TOTAL_CROSS_SECTION_AUTHORITY",
         "reason": "conservative total low-energy interaction upper bound requires prospectively frozen solar composition plus coherent/incoherent channel accounting"
     },
