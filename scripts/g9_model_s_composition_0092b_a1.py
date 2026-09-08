@@ -41,11 +41,23 @@ def parse_fgong(path: Path):
     lines = path.read_text(encoding="utf-8").splitlines()
     if len(lines) < 8:
         raise ValueError("GONG file too short")
-    hdr = [int(x) for x in lines[3].split()]
-    if len(hdr) != 4:
+    header_index = None
+    hdr = None
+    for i, line in enumerate(lines[:12]):
+        p = line.split()
+        if len(p) != 4:
+            continue
+        try:
+            q = [int(x) for x in p]
+        except ValueError:
+            continue
+        if q[0] > 0 and q[1] > 0 and q[2] > 0 and q[3] > 0:
+            header_index, hdr = i, q
+            break
+    if header_index is None:
         raise ValueError("unexpected integer header")
     nn, iconst, ivar, ivers = hdr
-    vals = np.fromstring(" ".join(lines[4:]), sep=" ")
+    vals = np.fromstring(" ".join(lines[header_index + 1:]), sep=" ")
     need = iconst + nn * ivar
     if vals.size != need:
         raise ValueError(f"GONG payload length mismatch: {vals.size} != {need}")
