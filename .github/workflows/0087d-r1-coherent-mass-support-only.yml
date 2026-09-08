@@ -1,0 +1,36 @@
+name: NMIR 0087d-r1 COHERENT B-L mass-support-only authority
+
+on:
+  push:
+    paths:
+      - 'research/amendments/0087d_starred_includegraphics_parser_conformance.md'
+      - 'scripts/audit_coherent_mass_support_only_0087d.py'
+      - 'scripts/audit_coherent_mass_support_only_0087d_r1.py'
+      - 'tests/test_audit_coherent_mass_support_only_0087d.py'
+      - '.github/workflows/0087d-r1-coherent-mass-support-only.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install parser/runtime dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pymupdf pytest
+      - name: Run parser-conformance regression tests
+        run: pytest -q tests/test_audit_coherent_mass_support_only_0087d.py
+      - name: Execute frozen 0087d scientific contract via r1 wrapper
+        env:
+          PYTHONPATH: scripts
+        run: python scripts/audit_coherent_mass_support_only_0087d_r1.py
+      - name: Upload exact 0087d-r1 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087d-r1-coherent-mass-support-only
+          path: coherent_mass_support_only_0087d_r1.json
+          if-no-files-found: error
