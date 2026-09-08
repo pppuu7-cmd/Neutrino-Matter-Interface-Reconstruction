@@ -4,8 +4,9 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable scientific record: `research/iterations/0089a_g9_frozen_map_turning_root_certification.md` (terminal scientific blocker; do not reinterpret as physical no-go).
-Current prospective contract: `research/prereg/0089b_g9_continuous_piecewise_linear_projection_authority.md`, frozen commit `5d99cd6cd4d3a5f1f9defecfbd7f4036c93b8636`, with implementation/reference-conformance amendments frozen before each retry. `NMIR_READINESS: 98%`.
+Latest completed immutable scientific record: `research/iterations/0089b_g9_continuous_piecewise_linear_projection_authority.md`, commit `40f88288c7996d105446918e78cce29aa4c99d83`, classification `PASS_G9_CONTINUOUS_PIECEWISE_LINEAR_PROJECTION_AUTHORITY`.
+Current prospective contract: `research/prereg/0089c_g9_continuous_map_turning_root_certification.md`, frozen commit `1f96b318b437d6a5aecf815ef829ef09a8adc7e6`.
+`NMIR_READINESS: 98%`.
 
 ## Mandatory recovery order
 Read `RECOVERY_MANUAL.md` -> this file -> `NMIR_FUNNEL.md` -> newest numbered iterations/preregs/amendments -> commits newer than this reconciliation -> relevant queued/in-progress/newly-terminal Actions. Repository and validated GitHub Actions artifacts are authority; green CI alone is never scientific PASS.
@@ -19,44 +20,53 @@ G3: 0047 `PASS_KLOCAL_EXTENSIVITY`; 0048 absolute-strength stress strongly negat
 G8: 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
 
 ## G9 authority chain
-- 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`: validated local one-ring branch turns before the frozen finite-blur map is covered.
-- 0076 `SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL`: scan-grid sign-change crossing detection missed narrow caustic preimages; base/refined area disagreed strongly.
-- 0077 `BLOCKED_G9_TURNING_POINT_KERNEL`: unresolved derivative sign reversal inside a nominal monotone segment. Numerical-method blocker, not physical no-go.
-- 0088: infrastructure/root-certification route exhausted numerical quadrature before scientific classification; no physical conclusion.
-- 0089 `PASS_G9_FROZEN_DISCRETE_MAP_DERIVATIVE_AUTHORITY`: exact piecewise derivative of the actual frozen trapezoidal `projected_mass_g` map validated on all open Model-S radial-knot intervals. Derivative authority only.
-- 0089a `BLOCKED_G9_FROZEN_MAP_TURNING_ROOT_CERTIFICATION`: both CPython and PyPy hosted replicas independently terminate with `unstable knot-boundary orientation`. This closes the frozen moving-point trapezoidal root-partition route only. No roots/areas/kernel/persistent-source quantity is promoted.
+- 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`.
+- 0076 `SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL`: scan-grid sign-change crossing detection missed narrow caustic preimages.
+- 0077 `BLOCKED_G9_TURNING_POINT_KERNEL`: unresolved derivative reversal in a nominal monotone segment.
+- 0088 exhausted a numerical continuous-derivative locator before scientific classification; no physical conclusion.
+- 0089 `PASS_G9_FROZEN_DISCRETE_MAP_DERIVATIVE_AUTHORITY` for the actual moving-point trapezoidal map.
+- 0089a `BLOCKED_G9_FROZEN_MAP_TURNING_ROOT_CERTIFICATION`: CPython/PyPy replicas both hit unstable source-knot boundary orientation. This closes that discrete-map root-partition route only.
+- 0089b `PASS_G9_CONTINUOUS_PIECEWISE_LINEAR_PROJECTION_AUTHORITY`: exact closed-form projection of the same frozen continuously linearly interpolated Model-S density passes independent high-precision authority, all-source-knot derivative-continuity and inherited 0.5% map-compatibility gates.
 
-## 0089 validated authority
-Prereg commit `b64dd44f483e1753ebbcbb60e3f68f06a21f7ad5`; immutable iteration commit `554a3b6d29804877915dc1fd524c4932c3d3a8b5`; run/job `34204310210/101990111998`; artifact `10047184672`; artifact ZIP SHA256 `2093b05093c81de00d464d7b5b55efe20be4d33ae056c52482ad92406b408a56`; raw JSON SHA256 `4093c574c83ee0c2ef4d2f0043a579558af1b008e66324880bc8cf35f259dc2c`. V1 7203 points max mass discrepancy `1.0515670787751558e-14`; V2 max analytic/reference derivative `7.473825379514015e-12`, h-vs-h/2 `1.977759571654202e-11`; V3/V4 PASS.
+## 0089b authoritative scientific result
+Scientific prereg commit `5d99cd6cd4d3a5f1f9defecfbd7f4036c93b8636`; immutable result commit `40f88288c7996d105446918e78cce29aa4c99d83`.
+Hosted run/job **`34213225896/102018855558`**, hosted head `e4891230d6fcbdf379dbcda0571d6fc4ca90f5c3`; dedicated tests `7 passed in 0.15s`; artifact **`10050706570`**.
+Independent artifact verification: ZIP SHA256 **`2303e2c8280365e0d0e3f8b38364a2a7f45e911da5aad4d84cf9e4f6c9360ed9`**; extracted `g9_0089b_result.json` SHA256 **`e35ba20581d433daf9d85685a805fb85299f2ab58bda34987346928d4782070c`**.
+Model-S blob SHA1 `e3a0fad3ff877338aad926dbd0a9a43e6c0a897f`.
 
-## 0089a terminal authority
-Prereg frozen commit `e350cd19beec7c9d3ca9f43a439337ef9e88a099`.
-CPython: run/job `34209664773/102007385687`, head `bc7c493203cefa87a3b6cb384cf2baa724a884d6`, artifact `10049541112`, ZIP SHA256 `178cbac01d152f1374a60187862e753bc14051077fbee06e1879040b60d903b5`, inner JSON SHA256 `b27ca27f317154918c53011074e07122f19060795f6e639461a33553d15c8f64`.
-PyPy conformance replica: run/job `34210222751/102009184130`, head `960119f94280da2af808fb382d3c93917d669fca`, artifact `10049484438`, ZIP SHA256 `6d5206211da0c53953cd534747571cada91f60023569a908409eee143afc1ea2`, inner JSON SHA256 `974230e4a82b29d4a3550dbf6c3bce37990aec2358a8126cbefe37af82837306`; dedicated tests `6 passed`. Both report the same status/reason and exact Model-S blob.
+Frozen result summary:
+- V0 external-antiderivative max rel `2.0279853818144804e-81`; toy five-point max rel `2.0506983119669857e-10`.
+- V1, 47 frozen points: max mass rel **`4.510003732611039e-13`** at `x=1e-4` vs threshold `1e-10`; max derivative rel **`6.5184329458976905e-12`** at `x=0.99999825` vs threshold `1e-9`.
+- V2, all 2400 positive source knots: max smallest-offset scaled derivative-continuity error **`1.5255834512405636e-05`** at `x=0.0013911`, below frozen `2e-5`.
+- V3, frozen 3001-point grid: max continuous-vs-discrete mass symrel **`0.004580294256676816`** and focal-distance symrel **`0.004580294256676684`**, both at `x=1e-4`, below frozen `0.005`; RMS both ~`0.0015515341`.
 
-## Current 0089b continuous-projection authority gate
-Scientific preregistration frozen commit: `5d99cd6cd4d3a5f1f9defecfbd7f4036c93b8636`.
-Purpose: analytically project the same frozen continuous piecewise-linear Model-S density field, eliminating the moving-point trapezoidal source-knot cusp mechanism. Production evaluator uses exact closed-form interval primitives and no numerical quadrature. PASS, if eventually obtained, authorizes only a separate continuous-map turning-root preregistration; it does not authorize areas/kernel/persistent-source work.
+0089b therefore removes the moving-point trapezoidal source-knot derivative pathology in this accepted representation while remaining within the inherited map-compatibility ceiling. It does **not** certify turning roots, accepted areas, kernels or utility.
 
-V0-V3 thresholds remain exactly as preregistered: V1 mass `<=1e-10`, derivative `<=1e-9`; V2 knot-continuity smallest-offset scaled agreement `<=2e-5` plus monotone convergence; V3 continuous-vs-frozen-discrete mass and focal-distance symmetric relative maxima `<=0.005` on frozen `combined_scan_grid()`.
+## 0089b implementation-conformance history
+All repairs were prospectively frozen and scientific thresholds never changed:
+- observability amendment `011fd76e317a61b725b86126a1308ebb61bf5d7a`;
+- V1 mass theta-reference identity repair `2300db976ba40d7d2bc7c4d87316baecc0162b38`;
+- high-x diagnostic contract `0460ed7026167db314959c51509b7b6a9fd04328`;
+- validated high-x diagnostic run/job `34212969375/102018040810`, artifact `10050562702`, ZIP SHA256 `3ce57426e607ab3258381b9a653732d656a1b4f8b84e0f4ddc35ad1ffeb04fcc`, inner JSON SHA256 `74b235e0ac5160ef7538a11f85db99322a52b7a06cf2e67f454559aceb7cdf4b`;
+- diagnostic proved two independent 100-digit derivative references agree to `3.08298265610274e-97`, while prior production differed by `3.6792373931063796e-08`; active-shell cancellation ratio `7784.261664298522`;
+- endpoint-centered algebraically equivalent t-space production repair frozen `a0ee082787ab15fab1a5677b40f5c3af501ee29a`, then final hosted scientific PASS above.
 
-Implementation/reference-conformance history (not scientific PASS/BLOCKED):
-1. Initial V1 hosted run `34211066432/102011926841`, artifact `10049814915`, ZIP SHA256 `5c47e7383d6dafb766a02ce0b8eb57d838c82a8f723e8916d05d9a15cb594de3`: `INFRASTRUCTURE_FAIL_G9_CONTINUOUS_PROJECTION_IMPLEMENTATION` at frozen `x=1e-4`; no V2/V3 observed.
-2. Observability-only amendment frozen commit `011fd76e317a61b725b86126a1308ebb61bf5d7a`. Retry run/job `34212250608/102015721854`, artifact `10050286628`, independently verified ZIP SHA256 `4e7254813693db414bc291cb9f7fa3966ec5c6bc143bc4219474812772d1155e`, inner JSON SHA256 `309f046ab7a7b3ae98964f3236a490044c91657c9aeadc374cf1947df58addfb`. At `x=1e-4`, derivative rel mismatch `4.509854236931335e-13` but mass-reference mismatch `0.999999769015761`, localizing an independent-reference mass transform defect.
-3. Reference-only theta-identity repair frozen commit `2300db976ba40d7d2bc7c4d87316baecc0162b38`; implementation commit `1443f44e828c595e34b6c18d773b55bf9b5fc5c1`. Retry run/job `34212522107/102016600507`, artifact `10050421483`, independently verified ZIP SHA256 `115791057578a5328c4f73cf60730ab103b6e3111501fd31abb635ba512ae6da`, inner JSON SHA256 `9a2d0517b47d165d73733aaea9c10468b8795c7473042af95c8bda041e9cffe2`. Corrected V1 mass reference now agrees at the terminal high-x point to `2.7517694270327773e-17`, but derivative mismatch at frozen `x=0.99999825` is `3.6792373931063796e-08 > 1e-9`; status remains `INFRASTRUCTURE_FAIL_G9_CONTINUOUS_PROJECTION_IMPLEMENTATION`. No V2/V3 values have been produced/inspected.
+## Current G9 gate: 0089c
+Prospective prereg commit: **`1f96b318b437d6a5aecf815ef829ef09a8adc7e6`**.
+Question: certify only the turning roots of the accepted continuous signed map
+`y_c=x R_sun[1-z/F_c(x)]`
+for controls generated from `x0={0.020,0.024,0.030}`, over `1e-4<=x<=1`, using accepted analytic
+`D_c=1+q-x q M_c'/M_c`, `q=z/F_c`.
 
-Do not relabel any 0089b infrastructure run as scientific BLOCKED/FAIL. Do not relax V1 or modify production/reference formulas without a new prospective implementation-diagnostic/amendment that preserves all scientific thresholds.
+Frozen root certification uses every Model-S source knot as a result-independent audit anchor plus Q32/Q64 meshes in every source cell, scale-aware `tau_D=2e-10*max(1,|1+q|,|x q M'/M|)`, deterministic bisection, all-knot one-sided continuity stress, independent signed-map central finite-difference root confirmation at local `w/{4096,8192,16384}`, Q64 no-missed-root stress, and generating-map controls. No roots/signs were evaluated before prereg commit.
+
+PASS may authorize only a separately preregistered kernel/accepted-area reconstruction gate. No `y=±r`, area, kernel, one-ring, finite-source, alignment or persistent-source quantity is permitted in 0089c.
 
 ## BSM / B-L authority
-0069 unlocks constraint ledger only. BSM response/enhancement remains LOCKED pending reproducible external envelope + formal unlock. Global 0071 target remains `1e-6 eV <= m_V <= 10 GeV` and requires applicable primary families: low-energy neutrino scattering, collider/fixed-target, stellar/SN, cosmology, fifth-force/EP.
-
-Accepted/scoped authority: 0078c solar CEvNS B-L area `12.51987545543835 decade^2`; 0079/0079a long-range fifth-force asymptotic `g_BL<2.5437058144595744e-25` with no finite-mass continuation; 0080d hard-CMB Majorana `48.332188584322665` and Dirac `45.129364149717375 decade^2`; 0081 signed BBN criterion `Delta Y_p=0.008` with 0081a blocked vector semantics; 0084b Shin–Yun SN1987A analytical geometry PASS; 0085 Wagner identity-free strongest-published 95% CL upper-limit support `1e-6 <= m_V <= 6.845530367110015e-6 eV`; 0086/0086a collider/fixed-target authority; 0074c combined COHERENT likelihood still blocked while 0074a/0074b remain PASS.
-
-## 0087 low-mass topology/completeness front
-0087/0087a establish disconnected partial-authority topology only. 0087b target `6.845530367110015e-6 .. 1.4057345497828417 eV`; NA64 mass-disjoint; known BBN overlap only `1.0 .. 1.4057345497828417 eV`, `2.7840644564136232%` target log-width. 0087c Cerdeño BLOCKED; 0087d COHERENT BLOCKED; 0087e finite-mass fifth-force BLOCKED; 0087f BBN-tail BLOCKED; 0087g restricted-below-1-eV completeness BLOCKED. BSM remains LOCKED.
+0069 unlocks constraint ledger only. BSM response/enhancement remains **LOCKED** pending reproducible external envelope + formal unlock. 0084b Shin–Yun and 0085 Wagner remain PASS. 0074a/0074b detector response benchmarks remain PASS; 0074c combined-likelihood numerical benchmark remains BLOCKED. 0087/0087a topology is partial-authority only; 0087c Cerdeño, 0087d COHERENT mass support, 0087e finite-mass fifth-force, 0087f BBN-tail and 0087g restricted-below-1-eV completeness remain BLOCKED.
 
 ## Exact next action
-0089b remains the highest-value actionable G9 gate but is scientifically unclassified. First diagnose the frozen high-x V1 derivative discrepancy without changing any scientific criterion or inspecting/performing V2/V3. A new prospective implementation-diagnostic contract must determine whether the `x=0.99999825` discrepancy is production closed-form cancellation or independent-reference error. Only a prospectively authorized algebraically equivalent stability repair may then be attempted. After any retry, consume raw log and independently hash ZIP/JSON before classification. No root/area/kernel/persistent-source calculation is allowed until 0089b PASS and a separate root preregistration.
+Implement 0089c code/tests/fail-closed hosted workflow strictly from prereg commit `1f96b318...`, then execute once. First classify raw job log and independently verify artifact ZIP + inner result hash. Do not launch duplicate work. No accepted-area/kernel/persistent-source calculation before a reproducible 0089c PASS and a new prospective contract.
 
 ## Critical guards
-No raster/manual contour reading. No generic dark-photon epsilon contour imported as B-L absent exact complete mapping. No visible/invisible or RHN scenario union. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering 0081a criteria. No blocked-family-as-null assumption. No cross-family B-L union or BSM response scan before dedicated composition/completeness PASS and formal unlock. No post-hoc patch of 0077/0088/0089a, no result-selected turning nodes, and no relaxation of frozen G9 validation thresholds.
+No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch of 0077/0088/0089a, no result-selected G9 nodes and no relaxation of frozen G9 validation thresholds.
