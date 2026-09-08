@@ -1,0 +1,41 @@
+name: NMIR 0086a De Romeri combined likelihood benchmark authority
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0086a_deromeri_coherent_combined_likelihood_benchmark_authority.md'
+      - 'scripts/audit_deromeri_coherent_benchmark_authority_0086a.py'
+      - '.github/workflows/coherent-0086a-deromeri-benchmark-authority.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile extractor
+        run: python -m py_compile scripts/audit_deromeri_coherent_benchmark_authority_0086a.py
+      - name: Extract frozen source-text evidence
+        id: audit
+        continue-on-error: true
+        run: |
+          mkdir -p artifacts
+          python scripts/audit_deromeri_coherent_benchmark_authority_0086a.py
+      - name: Hash result
+        if: always()
+        run: sha256sum artifacts/deromeri_coherent_benchmark_authority_0086a.json | tee artifacts/deromeri_coherent_benchmark_authority_0086a.sha256
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherent-0086a-deromeri-benchmark-authority
+          path: |
+            artifacts/deromeri_coherent_benchmark_authority_0086a.json
+            artifacts/deromeri_coherent_benchmark_authority_0086a.sha256
+          if-no-files-found: error
+      - name: Enforce evidence extraction
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = "success"
