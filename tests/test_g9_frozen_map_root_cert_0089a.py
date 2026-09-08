@@ -1,4 +1,3 @@
-import math
 import pytest
 
 from nmir.g9_frozen_map_root_cert import (
@@ -66,4 +65,5 @@ def test_scale_aware_threshold_is_not_relaxed():
     assert sign_with_tau(1e-6, 1.0) == 1
     assert sign_with_tau(-1e-6, 1.0) == -1
     assert sign_with_tau(1e-12, 1.0) == 0
-    assert sign_with_tau(1.0, float("inf")) == 0 if False else True
+    with pytest.raises(RootCertificationBlocked):
+        sign_with_tau(1.0, float("inf"))
