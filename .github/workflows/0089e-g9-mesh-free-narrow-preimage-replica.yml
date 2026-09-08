@@ -12,7 +12,10 @@ on:
 jobs:
   certify:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # Infrastructure-only extension after the first authoritative candidate hit the
+    # previous 45-minute job timeout before producing any scientific H1-H4 result.
+    # Scientific code, precisions, topology, radii, formulas, and thresholds are unchanged.
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
