@@ -1,0 +1,41 @@
+name: NMIR 0085-r1 Wagner identity-free B-L upper envelope conformance
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/amendments/0085_source_caption_parser_conformance_r1.md'
+      - 'scripts/audit_wagner_identity_free_envelope_0085_r1.py'
+      - 'tests/test_audit_wagner_identity_free_envelope_0085_r1.py'
+      - '.github/workflows/0085-r1-wagner-identity-free-envelope.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scientific-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install pytest
+      - name: Run dedicated conformance tests
+        run: python -m pytest -q tests/test_audit_wagner_identity_free_envelope_0085_r1.py
+      - name: Run frozen 0085-r1 audit
+        id: audit
+        continue-on-error: true
+        run: python scripts/audit_wagner_identity_free_envelope_0085_r1.py
+      - name: Hash result
+        if: always()
+        run: if [ -f wagner_identity_free_upper_envelope_0085_r1.json ]; then sha256sum wagner_identity_free_upper_envelope_0085_r1.json; fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0085-r1-wagner-identity-free-envelope
+          path: wagner_identity_free_upper_envelope_0085_r1.json
+          if-no-files-found: error
+      - name: Enforce frozen classification
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = "success"
