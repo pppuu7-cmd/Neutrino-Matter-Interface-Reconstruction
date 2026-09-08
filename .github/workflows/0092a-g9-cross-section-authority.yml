@@ -1,0 +1,38 @@
+name: 0092a G9 cross-section authority
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/prereg/0092a_g9_cross_section_authority.md'
+      - 'scripts/g9_cross_section_authority_0092a.py'
+      - 'tests/test_g9_cross_section_authority_0092a.py'
+      - '.github/workflows/0092a-g9-cross-section-authority.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pytest
+        run: python -m pip install pytest
+      - name: Run dedicated conformance tests
+        run: python -m pytest -q tests/test_g9_cross_section_authority_0092a.py
+      - name: Execute frozen 0092a authority sentinel
+        run: python scripts/g9_cross_section_authority_0092a.py
+      - name: Hash result
+        run: sha256sum g9_0092a_cross_section_authority.json
+      - name: Upload authority artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0092a-cross-section-authority
+          path: g9_0092a_cross_section_authority.json
+          if-no-files-found: error
