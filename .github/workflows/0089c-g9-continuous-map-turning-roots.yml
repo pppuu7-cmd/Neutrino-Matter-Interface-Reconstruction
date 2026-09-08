@@ -1,0 +1,39 @@
+name: NMIR 0089c G9 continuous-map turning-root certification
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0089c_g9_continuous_map_turning_root_certification.md'
+      - 'research/amendments/0089c_bulk_evaluator_conformance.md'
+      - 'scripts/g9_continuous_map_turning_roots_0089c.py'
+      - 'tests/test_g9_continuous_map_turning_roots_0089c.py'
+      - 'src/nmir/g9_continuous_projection.py'
+      - '.github/workflows/0089c-g9-continuous-map-turning-roots.yml'
+  workflow_dispatch:
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pytest numpy
+      - name: Run dedicated 0089c regression tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_g9_continuous_map_turning_roots_0089c.py
+      - name: Execute frozen 0089c root certification
+        env:
+          PYTHONPATH: src
+        run: python scripts/g9_continuous_map_turning_roots_0089c.py
+      - name: Upload exact 0089c artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089c-continuous-map-turning-roots
+          path: g9_0089c_result.json
+          if-no-files-found: error
