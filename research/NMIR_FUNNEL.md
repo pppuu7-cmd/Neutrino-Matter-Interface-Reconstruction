@@ -9,9 +9,9 @@ F0 objective -> F1 microscopic channel -> F2 production/absorption where applica
 Closed in stated scopes unless a genuinely new assumption changes them: naive static `N^2`; geometry-only fixed-column gain; passive local density/phonon or spin/magnon free superextensive gain; extensive-budget long-range-pair free gain; passive stable finite linear/nonlinear mediator free gain after energy accounting; linewidth narrowing as new integrated strength; metastable stored-energy avalanche as neutrino-energy gain; bounded finite-range k-local higher-body free superextensive gain; no actual-SM growing-coordination survivor in audited passive-SM scope.
 
 ## Highest-value executable frontier
-**G9 / F3-F7 — finite-source/alignment/persistent-source continuation after 0089e.**
+**G9 / F3-F7 — independent finite-source numerical authority after 0090.**
 
-0089e-r2 is now **`PASS_G9_MESH_FREE_NARROW_PREIMAGE_REPLICA`**. Before any finite-source numerical result, the historical 0075 assumptions must be recovered and a new prospective contract frozen. 0089d remains immutable BLOCKED under its fixed-mesh validation and is not retroactively upgraded.
+0090 is now immutable **`BLOCKED_G9_PERSISTENT_CONVOLUTION_NUMERICS`** under its prospectively frozen equal-area source quadrature + transition-split composite-Simpson method. It is not a physical no-survivor result. The next prospectively frozen gate is 0090a, commit `fb4aad7d1ffe23fb4863d09e26c0c3b20f47364c`, which uses an exact displaced-disk radial source measure and fixed Gauss-Legendre replicas. No 0090 criterion is relaxed or retroactively promoted.
 
 ## G9 authority front
 - 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`.
@@ -25,13 +25,19 @@ Closed in stated scopes unless a genuinely new assumption changes them: naive st
 - 0089d `BLOCKED_G9_CONTINUOUS_MAP_MONOTONE_KERNEL`, immutable record `ed5ea1635bc56e15ad8af294f169a5fbcdf44723`; fixed midpoint meshes cannot resolve a finite narrow accepted interval.
 - 0089e-r1 `INFRASTRUCTURE_FAIL_G9_0089E` due the original 45-minute runtime limit before a scientific artifact.
 - 0089e-r2 **`PASS_G9_MESH_FREE_NARROW_PREIMAGE_REPLICA`**, immutable record `d994e9a388603cf61c2a26471605473e93e1602b`.
+- 0090 **`BLOCKED_G9_PERSISTENT_CONVOLUTION_NUMERICS`**, immutable record commit `51dd4e8a904163ba1746790658f53e50fc109b88`.
 
-### 0089e-r2 validated authority
-Prereg `da8e7c5664cf0980b3490926036231bea9270fcb`; infrastructure-only timeout extension head `466f6fee04f6052e4c758cb613290f33610373e8`; run/job `34227872401/102066360966`; tests `4 passed`; artifact `10061342281`; independently verified ZIP SHA256 `d76b3937a9ea0fcced50769c8098642b96e1345dd1f5b77bbd1754f53c104bb3`; inner JSON SHA256 `010a9f55c11c9bb7c7020293f2ebef9ce3e00b4dc8401ade700a417c327ba56e`.
+### 0090 validated authority
+Prereg `cf8ffbcca69477939430272777f573d94e4b1e24`; point-control-only amendment `f4d6538c551d724949089435707137d7155fd6ed`; hosted head `48b9313aa10fd13f63ed7b3b2c98d0ac12428ff6`; run `34241211305`; aggregate job `102112686829`; artifact `10062169885`; independently verified ZIP SHA256 `607220c60161046caf2ac36e4bbd9be487e756a34624c6931f7ce6a558e909bb`; inner JSON SHA256 `1dfdf40a86cf099d32c278a0bb963b7f4f55f8b852fd2637ffbe38b1d2303326`.
 
-H1: max 60-vs-90 root disagreement `1.6093783306292206e-62`, topology identical. H2: max 60-vs-90 area rel `6.149719436396269e-54`. H3: max double-vs-90 endpoint `4.4593495562850194e-13` in x and area rel `6.431489360829985e-5`, both well inside frozen thresholds. H4 one-ring errors at x0=.024 and 100/1000/10000 cm are all below `6e-10`, versus 0.5% acceptance.
+All nine shards returned the preregistered numerical BLOCKED class. Direct raw logs show at least two frozen failure modes: source 12x24 vs 24x48 final-excess disagreement beyond 0.5%, and composite-Simpson failure to converge to `1e-8` by the frozen 4096-panel ceiling. Aggregate has zero certified rows of expected 1350; that zero is not a physical zero-survivor count.
 
-Interpretation: the narrow preimages are independently reproducible without a spatial mesh. The 0089d fixed-grid blocker is methodological, not an unresolved ambiguity in the accepted-preimage geometry. This establishes a usable mesh-free radial geometry authority, but no source-size, alignment, duty-cycle, persistent-source utility or physical gain claim yet.
+### Frozen 0090a method-authority gate
+Prereg `fb4aad7d1ffe23fb4863d09e26c0c3b20f47364c`.
+
+0090a analytically reduces the displaced uniform source disk to the exact one-dimensional radial measure `p(u;s,d)=u*Omega(u;s,d)/(pi*s^2)`, retains the certified 0089b/0089c global signed map and exact receiver-circle overlap fraction, and replaces composite Simpson with transition-split deterministic Gauss-Legendre replicas. Fixed orders are L=`32x32` and H=`64x64` for source-u/b integration. Fixed sentinel coverage is all three observer controls, all three receiver radii, theta indices `{0,6,12,18,24}` and all six frozen offsets: 270 nonzero-source tuples plus point controls.
+
+PASS requires exact provenance/geometry invariants, radial-measure normalization to `2e-10`, inherited point-control agreement <=0.5%, and L/H final-excess agreement under the same 0.5% threshold. PASS opens only a separately preregistered full-grid gate; it cannot itself establish `mu_real>=2` survivor authority.
 
 ## B-L external-authority front
 0084b Shin–Yun analytical geometry and 0085 Wagner identity-free envelope remain PASS. 0074a/0074b response benchmarks remain PASS; 0074c combined likelihood remains BLOCKED. 0087/0087a topology is partial-authority only. 0087c Cerdeño, 0087d COHERENT mass support, 0087e finite-mass fifth-force, 0087f BBN-tail and 0087g restricted-below-1-eV completeness remain BLOCKED. BSM response/enhancement remains **LOCKED**.
@@ -43,9 +49,9 @@ Interpretation: the narrow preimages are independently reproducible without a sp
 4. BSM external-envelope completeness: BLOCKED; response remains LOCKED.
 
 ## Exact next gate
-Recover the exact 0075 persistent-source/source-size/alignment assumptions and relevant code/records. Then, **before inspecting any new finite-source numerical result**, prospectively preregister the smallest gate that convolves the certified 0089b/0089c/0089e radial geometry with a frozen source-position/source-extent model. It must keep point-source geometric area, finite-source averaging, alignment probability/positioning, time/duty-cycle averaging and any downstream detection gain as distinct quantities. PASS may authorize a further persistent-source feasibility calculation; it may not by itself establish energy gain or BSM response.
+Implement and execute 0090a exactly from prereg commit `fb4aad7d...`: exact displaced-disk radial measure -> certified branch/transition roots -> fixed Gauss-Legendre 32/32 and 64/64 replicas -> all 270 frozen sentinels + point controls -> raw log and independent artifact/hash inspection. Do not run a full 1350-point radial class map until 0090a itself is a reproducible PASS and a separate full-grid contract has been frozen.
 
 ## Guards
-No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch of 0077/0088/0089a/0089d, no result-selected G9 nodes and no relaxation of frozen G9 validation requirements.
+No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch/promotion of 0077/0088/0089a/0089d/0090, no result-selected G9 nodes/orders/intervals and no relaxation of frozen G9 validation requirements.
 
 `NMIR_READINESS: 98%`.
