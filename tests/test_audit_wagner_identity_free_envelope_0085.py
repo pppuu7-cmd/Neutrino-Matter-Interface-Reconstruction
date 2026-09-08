@@ -1,4 +1,4 @@
-import importlib.util, math, pathlib, sys
+import importlib.util, io, math, pathlib, sys, tarfile
 
 SCRIPTS=pathlib.Path(__file__).resolve().parents[1]/'scripts'
 if str(SCRIPTS) not in sys.path:
@@ -44,3 +44,18 @@ def test_transform_roundtrip_formula_positive():
 def test_expected_topology_frozen_to_corrected_0072d():
     assert m.EXPECTED=={'blue':4,'red':1,'orange':1,'magenta':2}
     assert sum(m.EXPECTED.values())==8
+
+
+def test_source_caption_accepts_exact_spaced_plural_wagner_wording():
+    tex=r'''\begin{figure}\includegraphics{WEP_figure6.eps}\caption{The left panel shows $95\,\%$ CL upper bounds on the strength of a vector Yukawa interaction coupled to $\tilde q=B-L$.}\end{figure}'''
+    buf=io.BytesIO()
+    with tarfile.open(fileobj=buf,mode='w:gz') as tf:
+        raw=tex.encode()
+        info=tarfile.TarInfo('WEP10.tex'); info.size=len(raw); tf.addfile(info,io.BytesIO(raw))
+    buf.seek(0)
+    with tarfile.open(fileobj=buf,mode='r:gz') as tf:
+        a=m.source_text_authority(tf)
+    assert a['upper_bounds_95cl']
+    assert a['B_minus_L']
+    assert a['figure6_context']
+    assert a['vector_yukawa']
