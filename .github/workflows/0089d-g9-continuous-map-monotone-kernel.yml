@@ -1,0 +1,43 @@
+name: NMIR 0089d G9 continuous-map monotone kernel
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0089d_g9_continuous_map_monotone_kernel.md'
+      - 'research/prereg/0089d_amendment_bulk_evaluator.md'
+      - 'scripts/g9_continuous_map_monotone_kernel_0089d.py'
+      - 'tests/test_g9_continuous_kernel_0089d.py'
+      - 'src/nmir/g9_continuous_kernel.py'
+      - 'src/nmir/g9_continuous_projection.py'
+      - '.github/workflows/0089d-g9-continuous-map-monotone-kernel.yml'
+  workflow_dispatch:
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact audit dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pytest numpy
+      - name: Run dedicated 0089d regression tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_g9_continuous_kernel_0089d.py
+      - name: Execute frozen 0089d kernel certification
+        env:
+          PYTHONPATH: src
+        run: python scripts/g9_continuous_map_monotone_kernel_0089d.py
+      - name: Record raw JSON SHA256
+        if: always()
+        run: if [ -f g9_0089d_result.json ]; then sha256sum g9_0089d_result.json; fi
+      - name: Upload exact 0089d artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089d-continuous-map-monotone-kernel
+          path: g9_0089d_result.json
+          if-no-files-found: error
