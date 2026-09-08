@@ -1,4 +1,4 @@
-import importlib.util, io, math, pathlib, sys, tarfile
+import importlib.util, math, pathlib, sys
 
 SCRIPTS=pathlib.Path(__file__).resolve().parents[1]/'scripts'
 if str(SCRIPTS) not in sys.path:
@@ -46,16 +46,7 @@ def test_expected_topology_frozen_to_corrected_0072d():
     assert sum(m.EXPECTED.values())==8
 
 
-def test_source_caption_accepts_exact_spaced_plural_wagner_wording():
-    tex=r'''\begin{figure}\includegraphics{WEP_figure6.eps}\caption{The left panel shows $95 \%$ CL upper bounds on the strength of a vector Yukawa interaction coupled to $\tilde q=B-L$.}\end{figure}'''
-    buf=io.BytesIO()
-    with tarfile.open(fileobj=buf,mode='w:gz') as tf:
-        raw=tex.encode()
-        info=tarfile.TarInfo('WEP10.tex'); info.size=len(raw); tf.addfile(info,io.BytesIO(raw))
-    buf.seek(0)
-    with tarfile.open(fileobj=buf,mode='r:gz') as tf:
-        a=m.source_text_authority(tf)
-    assert a['upper_bounds_95cl']
-    assert a['B_minus_L']
-    assert a['figure6_context']
-    assert a['vector_yukawa']
+def test_exact_caption_conformance_is_delegated_to_0085_r1():
+    assert (SCRIPTS/'audit_wagner_identity_free_envelope_0085_r1.py').is_file()
+    r1_test=pathlib.Path(__file__).with_name('test_audit_wagner_identity_free_envelope_0085_r1.py')
+    assert r1_test.is_file()
