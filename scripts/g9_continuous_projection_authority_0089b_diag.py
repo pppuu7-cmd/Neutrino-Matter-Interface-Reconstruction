@@ -16,6 +16,53 @@ base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)
 
 
+def _mp_reference_mass_theta_repaired(profile, x_float: float, radius_cm: float, nodes, weights):
+    """Reference-only repair frozen in amendment 0089b_v1_mass_theta_reference_identity."""
+    x = mp.mpf(repr(x_float))
+    rscale = mp.mpf(repr(radius_cm))
+    rs = [mp.mpf(repr(v)) for v in profile.radius_fraction]
+    ys = [mp.mpf(repr(v)) for v in profile.density_g_cm3]
+    mass_parts = []
+    deriv_parts = []
+    for lo, hi, rlo, rhi in zip(rs, rs[1:], ys, ys[1:]):
+        if lo >= 1:
+            break
+        hi = min(hi, mp.mpf(1))
+        if hi <= lo:
+            continue
+        a, b = base._coeff(lo, hi, rlo, rhi)
+        rho = lambda u, a=a, b=b: a * u + b
+        if hi <= x:
+            mass_parts.append(base._glint(lambda u: u * u * rho(u), lo, hi, nodes, weights))
+        else:
+            if lo < x:
+                mass_parts.append(base._glint(lambda u: u * u * rho(u), lo, x, nodes, weights))
+                lower = x
+            else:
+                lower = lo
+            th_lo = mp.mpf(0) if lower == x else mp.acos(x / lower)
+            th_hi = mp.acos(x / hi)
+
+            def mass_theta(th):
+                c = mp.cos(th)
+                s = mp.sin(th)
+                u = x / c
+                # Exact identity: sqrt(1-(x/u)^2)=sin(theta).
+                # Rationalized 1-s = c^2/(1+s) avoids cancellation near pi/2.
+                return x**3 * rho(u) * s / (c * c * (1 + s))
+
+            mass_parts.append(base._glint(mass_theta, th_lo, th_hi, nodes, weights))
+
+            def deriv_theta(th):
+                c = mp.cos(th)
+                u = x / c
+                return x * x * rho(u) / (c * c)
+
+            deriv_parts.append(base._glint(deriv_theta, th_lo, th_hi, nodes, weights))
+    factor = 4 * mp.pi * rscale**3
+    return factor * mp.fsum(mass_parts), factor * mp.fsum(deriv_parts)
+
+
 def _v1_with_observability(profile) -> dict:
     mp.mp.dps = 80
     nodes, weights = base._gauss_rule(32)
@@ -38,7 +85,7 @@ def _v1_with_observability(profile) -> dict:
     worst_d_x = None
     rows = []
     for x in xs:
-        ref_m, ref_d = base._mp_reference(profile, x, base.R, nodes, weights)
+        ref_m, ref_d = _mp_reference_mass_theta_repaired(profile, x, base.R, nodes, weights)
         got_m = base.continuous_projected_mass_g(profile, x, base.R)
         got_d = base.continuous_projected_mass_derivative_g_per_x(profile, x, base.R)
         got_m_mp = mp.mpf(repr(got_m))
