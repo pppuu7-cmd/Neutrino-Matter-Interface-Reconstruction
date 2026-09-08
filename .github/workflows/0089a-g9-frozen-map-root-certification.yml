@@ -1,0 +1,39 @@
+name: NMIR 0089a G9 frozen-map root certification
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0089a_g9_frozen_map_turning_root_certification.md'
+      - 'src/nmir/g9_discrete_map_derivative.py'
+      - 'src/nmir/g9_frozen_map_root_cert.py'
+      - 'scripts/g9_frozen_map_root_cert_0089a.py'
+      - 'tests/test_g9_frozen_map_root_cert_0089a.py'
+      - '.github/workflows/0089a-g9-frozen-map-root-certification.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact audit dependencies
+        run: python -m pip install --upgrade pip && python -m pip install pytest
+      - name: Run dedicated 0089a regression tests
+        env:
+          PYTHONPATH: src
+        run: pytest -q tests/test_g9_frozen_map_root_cert_0089a.py
+      - name: Execute frozen 0089a root-certification audit
+        env:
+          PYTHONPATH: src
+        run: python scripts/g9_frozen_map_root_cert_0089a.py
+      - name: Upload exact 0089a artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-g9-0089a-root-certification
+          path: g9_0089a_result.json
+          if-no-files-found: error
