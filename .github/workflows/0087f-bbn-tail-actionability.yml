@@ -1,0 +1,47 @@
+name: NMIR 0087f BBN-tail actionability authority
+
+on:
+  push:
+    paths:
+      - 'scripts/audit_bbn_tail_actionability_0087f.py'
+      - 'tests/test_bbn_tail_actionability_0087f.py'
+      - 'research/prereg/0087f_bbn_tail_actionability_authority.md'
+      - '.github/workflows/0087f-bbn-tail-actionability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bbn-tail-authority:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Run dedicated regression tests
+        run: python -m pytest -q tests/test_bbn_tail_actionability_0087f.py
+      - name: Fetch exact primary arXiv source archive
+        run: |
+          curl -L --fail --retry 4 --retry-delay 3 \
+            -o 2308.07955v2.tar.gz \
+            https://export.arxiv.org/e-print/2308.07955v2
+          echo '484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c  2308.07955v2.tar.gz' | sha256sum -c -
+      - name: Run frozen 0087f authority gate
+        run: python scripts/audit_bbn_tail_actionability_0087f.py --archive 2308.07955v2.tar.gz
+      - name: Hash machine result
+        if: always()
+        run: |
+          if [ -f bbn_tail_actionability_0087f.json ]; then
+            sha256sum bbn_tail_actionability_0087f.json
+          fi
+      - name: Upload scientific ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087f-bbn-tail-actionability
+          path: bbn_tail_actionability_0087f.json
+          if-no-files-found: error
