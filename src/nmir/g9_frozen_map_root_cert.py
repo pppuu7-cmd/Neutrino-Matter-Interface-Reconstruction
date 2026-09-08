@@ -1,6 +1,6 @@
 """Deterministic helpers for NMIR 0089a frozen-map piecewise root certification.
 
-This module contains no Model-S physics and no area/kernel calculation.  It only
+This module contains no Model-S physics and no area/kernel calculation. It only
 implements the preregistered sign threshold, fixed probe meshes, sign-changing
 root isolation and Q32/Q64 set matching.
 """
@@ -73,29 +73,47 @@ def bisect_root(fn: Callable[[float], float], lo: float, hi: float,
 def roots_from_probes(fn: Callable[[float], float], sign_fn: Callable[[float], int],
                       points: Iterable[float]) -> tuple[CertifiedRoot, ...]:
     xs = tuple(sorted(set(points)))
-    vals = [fn(x) for x in xs]
     signs = [sign_fn(x) for x in xs]
-    roots: list[CertifiedRoot] = []
-    for i, s in enumerate(signs):
-        if s != 0:
-            continue
-        left = next((j for j in range(i-1, -1, -1) if signs[j] != 0), None)
-        right = next((j for j in range(i+1, len(xs)) if signs[j] != 0), None)
-        if left is None or right is None or signs[left] == signs[right]:
-            raise RootCertificationBlocked("unassociated near-zero derivative probe")
+    candidate_brackets: list[tuple[float, float]] = []
+
     for x0, x1, s0, s1 in zip(xs, xs[1:], signs, signs[1:]):
         if s0 != 0 and s1 != 0 and s0 != s1:
-            roots.append(bisect_root(fn, x0, x1))
-    # If a near-zero probe lies between opposite certified signs, ensure it is
-    # represented by exactly one isolated sign-changing root.
+            candidate_brackets.append((x0, x1))
+
+    # A preregistered near-zero probe is allowed only when the nearest certified
+    # signs on its two sides are opposite, in which case the entire certified
+    # bracket is isolated deterministically. Otherwise fail closed.
     for i, s in enumerate(signs):
         if s != 0:
             continue
-        left = next((j for j in range(i-1, -1, -1) if signs[j] != 0), None)
-        right = next((j for j in range(i+1, len(xs)) if signs[j] != 0), None)
-        contained = [r for r in roots if xs[left] <= r.root <= xs[right]] if left is not None and right is not None else []
+        left = next((j for j in range(i - 1, -1, -1) if signs[j] != 0), None)
+        right = next((j for j in range(i + 1, len(xs)) if signs[j] != 0), None)
+        if left is None or right is None or signs[left] == signs[right]:
+            raise RootCertificationBlocked("unassociated near-zero derivative probe")
+        candidate_brackets.append((xs[left], xs[right]))
+
+    roots: list[CertifiedRoot] = []
+    for lo, hi in sorted(set(candidate_brackets)):
+        r = bisect_root(fn, lo, hi)
+        if roots and abs(r.root - roots[-1].root) <= 1.0e-10:
+            if r.orientation != roots[-1].orientation:
+                raise RootCertificationBlocked("duplicate near-zero root has inconsistent orientation")
+            # Keep the narrower deterministic bracket.
+            if (r.hi - r.lo) < (roots[-1].hi - roots[-1].lo):
+                roots[-1] = r
+        else:
+            roots.append(r)
+
+    # Every zero-threshold probe must be uniquely associated with one root.
+    for i, s in enumerate(signs):
+        if s != 0:
+            continue
+        left = next(j for j in range(i - 1, -1, -1) if signs[j] != 0)
+        right = next(j for j in range(i + 1, len(xs)) if signs[j] != 0)
+        contained = [r for r in roots if xs[left] <= r.root <= xs[right]]
         if len(contained) != 1:
             raise RootCertificationBlocked("near-zero probe not uniquely associated with isolated root")
+
     roots.sort(key=lambda r: r.root)
     return tuple(roots)
 
