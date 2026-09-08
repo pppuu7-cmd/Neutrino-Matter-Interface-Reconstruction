@@ -1,0 +1,41 @@
+name: NMIR 0087 authoritative partial B-L topology discovery
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/audit_partial_bl_topology_discovery_0087.py'
+      - 'tests/test_partial_bl_topology_discovery_0087.py'
+      - '.github/workflows/0087-authoritative-partial-bl-topology.yml'
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact geometry/runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest shapely pymupdf
+      - name: Run prospective topology regression tests
+        env:
+          PYTHONPATH: .:scripts
+        run: python -m pytest -q tests/test_partial_bl_topology_discovery_0087.py
+      - name: Execute frozen 0087 discovery audit
+        env:
+          PYTHONPATH: .:scripts
+        run: |
+          mkdir -p artifacts/0087
+          cd artifacts/0087
+          python ../../scripts/audit_partial_bl_topology_discovery_0087.py
+          sha256sum partial_bl_topology_discovery_0087.json | tee RAW_JSON_SHA256.txt
+      - name: Upload exact discovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0087-authoritative-partial-bl-topology
+          path: artifacts/0087/
+          if-no-files-found: error
