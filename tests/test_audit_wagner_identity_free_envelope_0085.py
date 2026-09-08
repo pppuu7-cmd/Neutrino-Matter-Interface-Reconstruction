@@ -47,7 +47,7 @@ def test_expected_topology_frozen_to_corrected_0072d():
 
 
 def test_source_caption_accepts_exact_spaced_plural_wagner_wording():
-    tex=r'''\begin{figure}\includegraphics{WEP_figure6.eps}\caption{The left panel shows $95\,\%$ CL upper bounds on the strength of a vector Yukawa interaction coupled to $\tilde q=B-L$.}\end{figure}'''
+    tex=r'''\begin{figure}\includegraphics{WEP_figure6.eps}\caption{The left panel shows $95 \%$ CL upper bounds on the strength of a vector Yukawa interaction coupled to $\tilde q=B-L$.}\end{figure}'''
     buf=io.BytesIO()
     with tarfile.open(fileobj=buf,mode='w:gz') as tf:
         raw=tex.encode()
