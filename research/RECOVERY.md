@@ -4,8 +4,8 @@ Last reconciled: 2026-09-08
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Protocol: `research/RECOVERY_MANUAL.md`
 Funnel: `research/NMIR_FUNNEL.md`
-Latest completed immutable record: `research/iterations/0087g_restricted_below_1eV_completeness_final_lock.md`, commit `ba4bedf88194c04a469b1cc8044d9704f663858b`.
-Current next gate: 0088 `G9 independent-derivative turning-root certification`, prospectively frozen before any new numerical result in commit `7471acdf876e5a990505369db8a6888225052913`.
+Latest completed immutable record: `research/iterations/0088_g9_independent_derivative_root_certification.md`, commit `5bddca20f64a459848a5397eaa70c853d4e95f11`.
+Current next gate: prospectively preregister 0089 `G9 frozen-discrete-map exact derivative authority`; 0088 itself is terminal and may not be patched post hoc.
 `NMIR_READINESS: 98%`.
 
 ## Mandatory recovery order
@@ -18,38 +18,57 @@ NMIR is a discovery funnel, not a material scan. Separate focusing/state control
 G2: 0049/0050/0051 transfer/background/nuisance requirements closed; 0063 `BLOCKED_NOT_ACTIONABLE` pending same-configuration measured sub-keV rejection × bulk-NR acceptance.
 G3: 0047 `PASS_KLOCAL_EXTENSIVITY`; 0048 absolute-strength stress strongly negative but not theorem; 0065 universal short-range/contact coefficient `OPEN_NOT_CURRENTLY_ACTIONABLE`.
 G8: 0068 `BLOCKED_RIOEC_NORMALIZATION_AUTHORITY`.
-G9: 0075 persistent known-direction branch was blocked by local branch turning; 0076 scan-grid global kernel failed near narrow caustic preimages; 0077 `BLOCKED_G9_TURNING_POINT_KERNEL` because a derivative sign reversal remained unresolved inside a nominal monotone segment. This is a numerical-method blocker, not a physical no-go. 0088 is a genuinely new independent-derivative/root-certification gate; it may not patch 0077 with result-selected nodes or relax its 0.5% criteria.
+
+G9 historical chain:
+- 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`: validated local one-ring branch turns before the frozen finite-blur map is covered.
+- 0076 `SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL`: scan-grid sign-change crossing detection missed narrow caustic preimages; base/refined area disagreed strongly.
+- 0077 `BLOCKED_G9_TURNING_POINT_KERNEL`: unresolved derivative sign reversal inside a nominal monotone segment. Numerical-method blocker, not physical no-go.
+- 0088 `BLOCKED_G9_ROOT_CERTIFICATION`: separate independent continuous-derivative/root method also failed closed; it is terminal under its prereg and may not be tuned further.
+
+## 0088 terminal G9 authority
+0088 prospective contract: `research/prereg/0088_g9_independent_derivative_root_certification.md`, frozen commit `7471acdf876e5a990505369db8a6888225052913`. It kept the pinned Model-S physics/map/domain and used an independently derived continuous projected-mass derivative only as a turning-root locator, followed by mandatory original-map FD confirmation at step scales `1`, `1/2`, `1/4`, fixed 8-way dyadic audits, 4x tighter quadrature root replication and unchanged 0.5% controls.
+
+Authoritative final hosted result:
+- head `902864b8dd40c4781de253fb3ef8920889c8e3ea`;
+- run/job `34196995659/101968787464`;
+- workflow infrastructure conclusion `success`;
+- artifact `10044630410`;
+- ZIP SHA256 `2275feb6c86a7d21f8ae282120819b6bcfef31be3f98346bca66cfbd237813ab`;
+- raw JSON SHA256 `2e19a1125ea4737f584d3dc5e36f0ef61fce97aad9b4187080ed309bff95b57d`;
+- benchmark JSON SHA256 `5146378af85e88b46f37a47cec70b3f9e6e098dfac0cab339430e17008c26578`;
+- scientific classification `BLOCKED_G9_ROOT_CERTIFICATION`;
+- exact blocker `RuntimeError('composite Simpson convergence exhausted')`.
+
+The benchmark remained exact at `3.3603942459095247` with all benchmark relative errors `0.0`, so this is not source corruption or hosted infrastructure. The prereg explicitly requires `BLOCKED/FAIL -> close this numerical route and return to another frontier`; therefore no Simpson node-cap/tolerance/threshold adjustment, result-selected nodes or 0.5% relaxation is allowed inside 0088.
+
+A structurally new G9 route is now justified: `gravity_extended.projected_mass_g` — the authoritative frozen map — is a trapezoidal sum on fixed Model-S radial knots plus the inserted split point `x=b/R`, whereas 0088 intentionally differentiated a separately continuous/interpolated projected-mass representation. 0089 may prospectively derive the exact piecewise derivative of the **frozen discrete trapezoidal map itself**, with no Simpson quadrature. 0089 must authorize only that derivative evaluator; root certification, if any, belongs to a later preregistered gate.
 
 ## BSM / B-L authority
 0069 unlocks constraint ledger only. BSM response/enhancement remains LOCKED pending reproducible external envelope + formal unlock. Global 0071 target remains `1e-6 eV <= m_V <= 10 GeV` and requires applicable primary families: low-energy neutrino scattering, collider/fixed-target, stellar/SN, cosmology, fifth-force/EP.
 
-Accepted geometry/authority:
-- 0078c `PASS_SOLAR_CEVNS_B_L_EXCLUDED_REGION / PASS_PARTIAL_B_L_EXTERNAL_ENVELOPE`; De Romeri 90% CL area `12.51987545543835 decade^2`.
+Accepted/scoped authority:
+- 0078c solar CEvNS B-L excluded area `12.51987545543835 decade^2`.
 - 0079/0079a long-range fifth-force asymptotic `g_BL<2.5437058144595744e-25`, conservative `2.5e-25` at 2sigma; no finite-mass continuation.
-- 0080d hard-CMB excluded areas: Majorana `48.332188584322665 decade^2`, Dirac `45.129364149717375 decade^2`; 0080e keeps scenarios separate.
-- 0081 fixes signed BBN criterion `Delta Y_p=0.008` at 95% C.L.; 0081a remains `BLOCKED_COSMOLOGY_B_L_BBN_VECTOR_CALIBRATION_SEMANTIC_IDENTITY`.
-- 0084b `PASS_SHIN_YUN_SN1987A_ANALYTICAL_GEOMETRY_AUTHORITY`; four separate T/L × BODY_NATIVE/CONCLUSION_SUMMARY objects.
-- 0085 `PASS_WAGNER_IDENTITY_FREE_B_L_UPPER_ENVELOPE`; anonymous strongest-published 95% CL upper-limit support `1e-6 <= m_V <= 6.845530367110015e-6 eV`, not a statistical combination.
-- 0086/0086a restore collider/fixed-target authority; NA64 is provably mass-disjoint only from the 0087b low-mass candidate.
-- 0074c remains `BLOCKED_COMBINED_LIKELIHOOD_BENCHMARK_AUTHORITY`; 0074a Ar and 0074b CsI response benchmarks remain PASS.
+- 0080d hard-CMB excluded areas Majorana `48.332188584322665`, Dirac `45.129364149717375 decade^2`; alternatives remain separate.
+- 0081 signed BBN criterion `Delta Y_p=0.008` at 95% C.L.; 0081a still blocks BBN vector calibration semantics.
+- 0084b Shin–Yun SN1987A analytical geometry PASS.
+- 0085 Wagner identity-free strongest-published 95% CL upper-limit support `1e-6 <= m_V <= 6.845530367110015e-6 eV`, not a statistical combination.
+- 0086/0086a restore collider/fixed-target authority; NA64 is mass-disjoint only from the 0087b low-mass candidate.
+- 0074c combined COHERENT likelihood remains blocked while 0074a Ar and 0074b CsI benchmarks remain PASS.
 
 ## 0087 low-mass topology/completeness front
-0087/0087a establish a disconnected **partial-authority** topology candidate/stress result only. No global allowed-region claim; relay validation failed and surviving components touch analysis-window boundaries.
+0087/0087a establish disconnected **partial-authority** topology only; no global allowed-region claim.
 
-0087b `PASS_MISSING_FAMILY_MASS_SUPPORT_THREAT_RANKING`, immutable `9b8b25da3fa7fa673d25bbbc68a6d8c992ab89e8`, run/job `34180108203/101917304692`, artifact `10038593302`. Conservative target: `6.845530367110015e-6 <= m_V <= 1.4057345497828417 eV`. NA64 is mass-disjoint. Known BBN overlap is only `1.0 .. 1.4057345497828417 eV`, width `0.1479033189422942 decade`, `2.7840644564136232%` of target log-width.
+0087b `PASS_MISSING_FAMILY_MASS_SUPPORT_THREAT_RANKING`, run/job `34180108203/101917304692`, artifact `10038593302`. Conservative target `6.845530367110015e-6 <= m_V <= 1.4057345497828417 eV`; NA64 is mass-disjoint; known BBN overlap only `1.0 .. 1.4057345497828417 eV`, `2.7840644564136232%` target log-width.
 
-0087c `BLOCKED_CERDENO_MASS_SUPPORT_ONLY_AUTHORITY`: insufficient signed major x ticks; no finite support promoted.
-0087d `BLOCKED_COHERENT_MASS_SUPPORT_ONLY_AUTHORITY`, authoritative r3 run/job `34181815894/101922266159`, artifact `10039164892`; no unique finite interval / insufficient x ticks. This does not weaken 0074c.
-0087e `BLOCKED_FIFTH_FORCE_FINITE_MASS_SUPPORT_AUTHORITY`, immutable `629868b842b621c80a77a62da7e14c0c4a98ddb3`, run/job `34184676660/101930508258`, artifact `10040096596`; exact Fayet sources provide no source-authorized finite endpoint pair. No Earth/orbit/arbitrary Yukawa cutoff was invented.
-0087f `BLOCKED_BBN_TAIL_ACTIONABILITY_AUTHORITY`, immutable `ab50d835001ffca039ee56efb7653e6f73f8954b`, run/job `34188359798/101941153107`, artifact `10041300094`; the `1.0 .. 1.4057345497828417 eV` BBN tail remains unresolved.
+0087c Cerdeño mass support `BLOCKED`; 0087d COHERENT mass support `BLOCKED`; 0087e finite-mass fifth-force support `BLOCKED`; 0087f BBN tail actionability `BLOCKED`.
 
-0087g `BLOCKED_RESTRICTED_BELOW_1EV_COMPLETENESS`, immutable `ba4bedf88194c04a469b1cc8044d9704f663858b`, prereg `6d844c292d902fc3f492f827d981e5760aa003c4`.
-Authoritative run/job `34191935749/101951601761`, artifact `10042503439`, artifact ZIP SHA256 `3804d491f748c7e45de348e2010bc76a985d55b23400dc0d91e8862b3b34fd28`, raw JSON SHA256 `66b9e68296ef6dbffd2464506b17623e390750d83864a8e94652ecf9e0174d9a`; dedicated tests `4 passed in 0.02s`. Raw job log was inspected and artifact ZIP/inner JSON were independently hash-verified. NA64 is disjoint and the accepted BBN overlap begins at 1 eV, but Cerdeño, COHERENT and finite-mass fifth-force remain unresolved without accepted disjointness/irrelevance authority below 1 eV. Therefore the strict-below-1-eV topology is only partial-authority, not a certified complete/global allowed region. No blocker was treated as null and BSM remains LOCKED.
+0087g `BLOCKED_RESTRICTED_BELOW_1EV_COMPLETENESS`, immutable `ba4bedf88194c04a469b1cc8044d9704f663858b`, run/job `34191935749/101951601761`, artifact `10042503439`, ZIP SHA256 `3804d491f748c7e45de348e2010bc76a985d55b23400dc0d91e8862b3b34fd28`, raw JSON SHA256 `66b9e68296ef6dbffd2464506b17623e390750d83864a8e94652ecf9e0174d9a`. Below 1 eV the candidate remains partial-authority because Cerdeño/COHERENT/finite-mass fifth-force irrelevance is unresolved. BSM remains LOCKED.
 
-## Current funnel state
-The B-L completeness route is cleanly blocked by missing source authority rather than by an executable calculation. Do not manufacture those missing constraints. 0088 is now the highest-value executable gate.
+## Current funnel state / exact next action
+The B-L completeness route is source-authority blocked rather than computation-actionable. G2/G3/G8 are also non-actionable/source-blocked. The highest-value executable front remains G9, but 0088 is closed.
 
-0088 freezes the same pinned Model-S physics/map/domain and observer/radius controls as 0076/0077. Its genuinely new ingredient is an independently derived continuous projected-mass derivative used only to propose turning roots, followed by mandatory confirmation against the original authoritative map at finite-difference step scales `1`, `1/2`, `1/4`, a pre-fixed 8-way dyadic audit of every original scan interval, tighter-quadrature root-set replication, and the unchanged 0.5% one-ring/area-replica criteria. Any unexplained derivative reversal, zero/sign ambiguity or root-set mismatch is `BLOCKED_G9_ROOT_CERTIFICATION`; no node may be added after seeing the result. Only `PASS_G9_INDEPENDENT_DERIVATIVE_ROOT_CERTIFIED_KERNEL` may reopen a separately preregistered finite-source persistent-source convolution.
+Next: prospectively freeze 0089 as a **derivative-authority-only** gate. Derive the exact piecewise derivative of the actual frozen `projected_mass_g` trapezoidal algorithm on each Model-S radial-knot interval. Validate it against the frozen map at result-independent points and independent numerical/toy controls. Do not search turning roots, build monotone partitions, compute multiimage areas or reopen persistent-source convolution in 0089. Only a derivative-authority PASS may justify a later separate root-certification preregistration.
 
 ## Critical guards
-No raster/manual contour reading. No generic dark-photon epsilon contour imported as B-L absent exact complete mapping. No visible/invisible or RHN scenario union. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering 0081a criteria. No mass-support-only exclusion claim. No blocked-family-as-null assumption. No cross-family B-L union or BSM response scan before dedicated composition/completeness PASS and formal unlock. No post-hoc patch of the 0077 scan grid, no result-selected turning nodes, and no relaxation of the 0.5% G9 containment/refinement criteria.
+No raster/manual contour reading. No generic dark-photon epsilon contour imported as B-L absent exact complete mapping. No visible/invisible or RHN scenario union. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering 0081a criteria. No blocked-family-as-null assumption. No cross-family B-L union or BSM response scan before dedicated composition/completeness PASS and formal unlock. No post-hoc patch of 0077 or 0088, no result-selected turning nodes, and no relaxation of frozen G9 validation thresholds.
