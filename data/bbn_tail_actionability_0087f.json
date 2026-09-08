@@ -1,0 +1,18 @@
+{
+  "iteration": "0087f",
+  "classification": "BLOCKED_BBN_TAIL_ACTIONABILITY_AUTHORITY",
+  "scope": "Esseili-Kribs v2 BBN tail authority only; no topology recomposition",
+  "source_archive_sha256": "484f1fa28985897def86bff6c4399ce074ede6b0cd8ce565d169dc320be47a8c",
+  "frozen_tail_eV": [1.0, 1.4057345497828417],
+  "route_A": "BLOCKED_NO_EXACT_FULL_TAIL_COUPLING_FUNCTION",
+  "route_B": "BLOCKED_NO_MACHINE_READABLE_BBN_TABLE",
+  "route_C": "BLOCKED_NO_GENUINELY_NEW_VECTOR_AUTHORITY",
+  "run_id": 34188359798,
+  "job_id": 101941153107,
+  "artifact_id": 10041300094,
+  "artifact_zip_sha256": "c8e82453876efdbd14d99b6f6777bb53c292d7d17b81323e1ab0aa46c1eccebc",
+  "raw_json_sha256": "4407df54099d3b269b8ecad65751fab1c0094aff53da41fc6cadd47b50d6d4d3",
+  "tests": "4 passed in 0.03s",
+  "bsm_response_scan_authorized": false,
+  "next_action": "preserve unresolved BBN tail; preregister restricted-below-1-eV completeness/final-lock audit"
+}
