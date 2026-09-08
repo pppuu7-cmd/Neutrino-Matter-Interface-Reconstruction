@@ -13,6 +13,10 @@ Closed in stated scopes unless a genuinely new assumption changes them: naive st
 
 0089d remains immutably BLOCKED under its fixed N=2^18/N=2^19 grid validation. 0089e is a new scientific question using a standalone high-precision mesh-free replica; it cannot retroactively pass 0089d.
 
+The first hosted 0089e candidate, run/job **`34222930733/102050078006`**, is preserved as **`INFRASTRUCTURE_FAIL_G9_0089E`** because the exact frozen scientific command hit the previous 45-minute workflow timeout before any H1-H4 result JSON existed. Dedicated tests passed; the run has no artifact. This is not scientific BLOCKED/FAIL/PASS.
+
+An infrastructure-only workflow change at commit **`466f6fee04f6052e4c758cb613290f33610373e8`** extends only `timeout-minutes: 45 -> 180`; scientific code, precisions, source, branch structure, radii, formulas and thresholds are unchanged. Replacement candidate run **`34227872401`** is in progress and must not be duplicated.
+
 ## G9 authority front
 - 0075 `BLOCKED_G9_PERSISTENT_GEOMETRY`.
 - 0076 `SCIENTIFIC_FAIL_G9_GLOBAL_MULTIIMAGE_KERNEL` from missed narrow caustic preimages by scan-grid sign-change crossing detection.
@@ -23,6 +27,7 @@ Closed in stated scopes unless a genuinely new assumption changes them: naive st
 - 0089b `PASS_G9_CONTINUOUS_PIECEWISE_LINEAR_PROJECTION_AUTHORITY`, immutable record `40f88288c7996d105446918e78cce29aa4c99d83`.
 - 0089c `PASS_G9_CONTINUOUS_MAP_TURNING_ROOT_CERTIFICATION`, immutable record `e8fc4e6856d6326e6c273a96cb46f6b660467d96`.
 - 0089d **`BLOCKED_G9_CONTINUOUS_MAP_MONOTONE_KERNEL`**, immutable record **`ed5ea1635bc56e15ad8af294f169a5fbcdf44723`**.
+- 0089e-r1 **`INFRASTRUCTURE_FAIL_G9_0089E`**, immutable infrastructure record `3b321ef833c302b0774d6ca6818d92218402090f`; scientific 0089e status remains OPEN.
 
 ### 0089d validated authority
 Parent prereg `8eab0935d54cb930495b55cbc3025225729f109c`; bulk amendment `33f7b72b7429993b09321cd5674fa1eff3219812`; run/job **`34218369356/102035420870`**; head **`2e49e9c196cc8560cdc1b68f696172b5849ee6e7`**; tests `4 passed`; artifact **`10052800239`**; independently verified ZIP SHA256 **`72d18d3cae44d44a6194ed67940ee4e4b71973fedcdb349fc479f899cb397905`**; inner JSON SHA256 **`72de2daaf4118cf9869b3e4a271a8c99bdd718471d8c535e20c71f336fc703f9`**.
@@ -48,7 +53,7 @@ PASS creates only a new mesh-free narrow-preimage geometry authority and cannot 
 4. BSM external-envelope completeness: BLOCKED; response remains LOCKED.
 
 ## Exact next gate
-Implement and run 0089e exactly from prereg commit **`da8e7c5664cf0980b3490926036231bea9270fcb`**: independent high-precision continuous projection -> fixed 60/90-dps branch target bisection -> accepted intervals and analytic annular area -> precision-replica checks -> independent double-vs-high-precision comparison -> inherited one-ring guard. Consume raw log and independently hash-verify artifact before classification. Do not duplicate running work and do not compute finite-source/persistent-source utility.
+Do not launch another 0089e copy. First consume terminal run **`34227872401`**: raw job log -> artifact list -> independent ZIP + inner JSON SHA256 verification -> frozen H0-H4 classification. Only a reproducible `PASS_G9_MESH_FREE_NARROW_PREIMAGE_REPLICA` may authorize a separately preregistered finite-source/alignment/persistent-source gate. If the candidate again fails before H1-H4, preserve the infrastructure failure and prospectively freeze an infrastructure-equivalent execution strategy without changing scientific criteria.
 
 ## Guards
 No raster/manual contour reading. No generic dark-photon contour promoted to B-L absent exact mapping. No Majorana/Dirac union/intersection. No T/L union. No finite-mass extrapolation of 0079a. No arbitrary Yukawa threshold. No Wagner statistical-combination claim. No COHERENT benchmark interpolation. No lowering blocked-family criteria. No blocked-family-as-null assumption. No BSM response scan before dedicated completeness PASS and formal unlock. No post-hoc patch of 0077/0088/0089a/0089d, no result-selected G9 nodes and no relaxation of frozen G9 validation requirements.
