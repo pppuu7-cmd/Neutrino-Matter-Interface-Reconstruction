@@ -1,0 +1,81 @@
+name: 0098 v2 G9 line-holding propulsion authority
+
+on:
+  workflow_run:
+    workflows: ['0097 v2 G9 Betelgeuse line tracking']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      parent_run_id:
+        description: 'Authoritative 0097 workflow run id'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PARENT_RUN_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.parent_run_id || github.event.workflow_run.id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download authoritative 0097 parent artifact
+        run: |
+          mkdir -p parent
+          gh run download "$PARENT_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name nmir-v2-g9-0097-authoritative \
+            --dir parent
+          test -f parent/g9_0097_result.json
+          sha256sum parent/g9_0097_result.json
+      - name: Verify frozen 0097 parent provenance
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('parent/g9_0097_result.json'))
+          assert p.get('prereg_commit') == '53863048c2d5b5803c9e120794c21fe415f1b319', p.get('prereg_commit')
+          print('0097 parent status:', p.get('status'))
+          print('0097 prereg:', p.get('prereg_commit'))
+          PY
+      - name: Capture parent artifact id
+        run: |
+          ARTIFACT_ID=$(gh api \
+            -H 'Accept: application/vnd.github+json' \
+            "/repos/$GITHUB_REPOSITORY/actions/runs/$PARENT_RUN_ID/artifacts" \
+            --jq '.artifacts[] | select(.name=="nmir-v2-g9-0097-authoritative") | .id' | head -n1)
+          test -n "$ARTIFACT_ID"
+          echo "PARENT_ARTIFACT_ID=$ARTIFACT_ID" >> "$GITHUB_ENV"
+      - name: Execute frozen 0098 propulsion resource gate
+        env:
+          PARENT_ARTIFACT_ID: ${{ env.PARENT_ARTIFACT_ID }}
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_line_holding_propulsion_0098.py \
+            --parent parent/g9_0097_result.json \
+            --output g9_0098_result.json
+      - name: Hash 0098 authority
+        run: sha256sum g9_0098_result.json
+      - name: Upload authoritative 0098 result
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-g9-0098-authoritative
+          path: g9_0098_result.json
+          if-no-files-found: error
+      - name: Preserve infrastructure failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0098_result.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']
+          print('0098 terminal status:', s)
+          if s.startswith('INFRASTRUCTURE_FAIL_'): raise SystemExit(1)
+          PY
