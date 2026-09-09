@@ -38,15 +38,19 @@ def test_equal_q_roundtrip_signed_rho_values():
         assert math.isclose(recovered.mediator_mass_gev, mass, rel_tol=2e-12)
 
 
-def test_mass_roundtrip_spans_four_decades_in_mass_over_q():
+def test_mass_roundtrip_spans_four_decades_for_both_real_target_pairs():
     rho = 0.35
     q = 0.04
-    for mass_over_q in (1e-2, 1e-1, 1.0, 1e1, 1e2):
-        mass = mass_over_q * q
-        r1, r2 = forward_ratios(rho, mass, q)
-        recovered = recover_equal_q_parameters(r1, r2, q, *AR40, *I127, *MEDIUM)
-        assert math.isclose(recovered.rho_gp_over_gn, rho, rel_tol=2e-11, abs_tol=2e-11)
-        assert math.isclose(recovered.mediator_mass_gev, mass, rel_tol=2e-9)
+    for target2 in (CS133, I127):
+        for mass_over_q in (1e-2, 1e-1, 1.0, 1e1, 1e2):
+            mass = mass_over_q * q
+            # Generate and invert the same explicitly named target pair.  This
+            # prevents a silent fixture mismatch from masquerading as a
+            # light-mediator conditioning failure.
+            r1, r2 = forward_ratios(rho, mass, q, target1=AR40, target2=target2)
+            recovered = recover_equal_q_parameters(r1, r2, q, *AR40, *target2, *MEDIUM)
+            assert math.isclose(recovered.rho_gp_over_gn, rho, rel_tol=2e-11, abs_tol=2e-11)
+            assert math.isclose(recovered.mediator_mass_gev, mass, rel_tol=2e-9)
 
 
 def test_proportional_targets_fail_rho_identification():
