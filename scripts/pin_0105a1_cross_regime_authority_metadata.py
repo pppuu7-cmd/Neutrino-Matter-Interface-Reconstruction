@@ -9,6 +9,8 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import socket
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -23,21 +25,40 @@ COHERENT_RELEASES = {
     "ar": {"record_id": 3903810, "doi": "10.5281/zenodo.3903810"},
 }
 
+TRANSIENT_HTTP_CODES = frozenset({429, 500, 502, 503, 504})
+RETRY_DELAYS_SECONDS = (2, 4, 8)
+MAX_FETCH_ATTEMPTS = 1 + len(RETRY_DELAYS_SECONDS)
+
 
 def fetch_bytes(url: str) -> bytes:
-    request = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "Mozilla/5.0 NMIR/0105a1 authority metadata pin",
-            "Accept": "application/json, text/plain;q=0.9, */*;q=0.8",
-        },
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=120) as response:
-            return response.read()
-    except urllib.error.HTTPError as exc:
-        host = urllib.parse.urlsplit(url).netloc
-        raise RuntimeError(f"BLOCKED_0105A1_METADATA_HTTP_{exc.code} host={host}") from exc
+    host = urllib.parse.urlsplit(url).netloc
+    last_error: BaseException | None = None
+    for attempt in range(1, MAX_FETCH_ATTEMPTS + 1):
+        request = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 NMIR/0105a1 authority metadata pin",
+                "Accept": "application/json, text/plain;q=0.9, */*;q=0.8",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=90) as response:
+                return response.read()
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            if exc.code not in TRANSIENT_HTTP_CODES:
+                raise RuntimeError(
+                    f"BLOCKED_0105A1_METADATA_HTTP_{exc.code} host={host} attempt={attempt}"
+                ) from exc
+        except (urllib.error.URLError, TimeoutError, socket.timeout) as exc:
+            last_error = exc
+
+        if attempt < MAX_FETCH_ATTEMPTS:
+            time.sleep(RETRY_DELAYS_SECONDS[attempt - 1])
+
+    raise RuntimeError(
+        f"BLOCKED_0105A1_METADATA_TRANSPORT host={host} attempts={MAX_FETCH_ATTEMPTS}"
+    ) from last_error
 
 
 def sha256_bytes(data: bytes) -> str:
