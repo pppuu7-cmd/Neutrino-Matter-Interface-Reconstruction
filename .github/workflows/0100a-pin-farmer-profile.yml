@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install pinning test dependencies
+        run: python -m pip install --disable-pip-version-check pytest
+
       - name: Run deterministic parser unit tests
         env:
           PYTHONPATH: .
