@@ -26,18 +26,23 @@ def range_information_kernel_from_f(finite_q_factor: float) -> float:
     return 4.0 * f * f * (1.0 - f) * (1.0 - f)
 
 
+def range_information_kernel_mass_ratio(mass_over_q: float) -> float:
+    """Return reciprocal-stable K_eta(x), x=mX/q>0.
+
+    Analytically K=4*x^4/(1+x^2)^4.  For x>1 evaluate the exactly
+    reciprocal form at y=1/x, avoiding loss of precision from 1-f as f->1.
+    """
+    x = _positive("mass_over_q", mass_over_q)
+    y = x if x <= 1.0 else 1.0 / x
+    y2 = y * y
+    return 4.0 * y2 * y2 / ((1.0 + y2) ** 4)
+
+
 def range_information_kernel(mediator_mass_gev: float, q_gev: float) -> float:
     """Return the common fixed-absolute-covariance range-information kernel."""
     mass = _positive("mediator_mass_gev", mediator_mass_gev)
     q = _positive("q_gev", q_gev)
-    return range_information_kernel_from_f(finite_q_ratio(mass, q))
-
-
-def range_information_kernel_mass_ratio(mass_over_q: float) -> float:
-    """Dimensionless convenience form K_eta(x), x=mX/q>0."""
-    x = _positive("mass_over_q", mass_over_q)
-    # Setting q=1 keeps this exactly tied to the authoritative 0105b bridge.
-    return range_information_kernel(x, 1.0)
+    return range_information_kernel_mass_ratio(mass / q)
 
 
 def composition_information_amplitude_factor(mediator_mass_gev: float, q_gev: float) -> float:
