@@ -29,7 +29,9 @@ jobs:
         run: python -m pip install --disable-pip-version-check numpy pytest
 
       - name: Run 0100 unit tests
-        run: pytest -q tests/test_benchmark_0100_standard_3flavor_msw.py
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_benchmark_0100_standard_3flavor_msw.py
 
       - name: Emit preflight JSON
         run: |
