@@ -1,0 +1,68 @@
+name: 0105a2 pin COHERENT official release route
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0105a2_coherent_official_release_route_preflight.md'
+      - 'scripts/pin_0105a2_coherent_official_release_route.py'
+      - 'tests/test_pin_0105a2_coherent_official_release_route.py'
+      - '.github/workflows/0105a2-pin-coherent-official-release-route.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  official-route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout 0105a2 code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic route tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0105a2_coherent_official_release_route.py
+
+      - name: Pin official COHERENT to Zenodo release route
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0105a2
+          python scripts/pin_0105a2_coherent_official_release_route.py \
+            --output-dir artifacts/0105a2 \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a2/run_stdout.json
+
+      - name: Assert nonterminal provenance guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0105a2/coherent_official_release_route.json').read_text())
+          assert x['status'] == 'PASS_0105A2_COHERENT_OFFICIAL_RELEASE_ROUTE_PINNED_NONTERMINAL'
+          assert x['event_byte_lock_complete'] is False
+          assert x['observed_residual_execution_allowed'] is False
+          assert x['gates']['csi_event_record_linked']
+          assert x['gates']['ar_event_record_linked']
+          PY
+
+      - name: Upload official-route provenance artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a2-coherent-official-route
+          path: |
+            artifacts/0105a2/coherent_official_data_releases.html
+            artifacts/0105a2/coherent_official_release_route.json
+            artifacts/0105a2/run_stdout.json
+          if-no-files-found: error
