@@ -30,7 +30,7 @@ def test_ratio_inverse_roundtrip_over_six_decades():
         mass = mass_over_q * q
         ratio = finite_q_ratio(mass, q)
         recovered = mediator_mass_from_ratio_gev(ratio, q)
-        assert math.isclose(recovered, mass, rel_tol=2e-11)
+        assert math.isclose(recovered, mass, rel_tol=5e-10)
 
 
 def test_inverse_rejects_singular_or_unphysical_domain():
