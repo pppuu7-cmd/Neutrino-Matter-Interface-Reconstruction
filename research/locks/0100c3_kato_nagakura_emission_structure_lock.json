@@ -1,0 +1,57 @@
+{
+  "benchmark": "NMIR-BENCHMARK-0100C3",
+  "frozen_date": "2026-09-09",
+  "purpose": "Freeze the internal structure and provenance of the prospectively locked Kato/Nagakura MESA 25 Msun neutrino-emission archive before inspecting the stellar archive or choosing any terminal evolutionary snapshot.",
+  "parent_asset_lock": "research/locks/0100c1_kato_nagakura_asset_identity_lock.json",
+  "emission_archive": {
+    "file_name": "MESA_25M.zip",
+    "published_md5": "a6c8a5dffc13d301dda139ad75a0db71",
+    "observed_md5": "a6c8a5dffc13d301dda139ad75a0db71",
+    "sha256": "8c7b1b0d72a88918661c79798aff3a248f01f2a9dce369ba7cb9ff8fc1230ed1",
+    "file_count": 2465,
+    "manifest_sha256": "8cc5a81e9c5fc00727ded4c706d1378f371ee0e2bddfa14da1a0bbb3205ff24d"
+  },
+  "lightcurve": {
+    "member_path": "25/lightcurvem25.dat",
+    "member_size_bytes": 516539,
+    "member_sha256": "233c9663d1cf1a486c151c249033693914443876d156c7281727544f97e98fc3",
+    "column_count": 11,
+    "row_count": 2464,
+    "step_min": 1,
+    "step_max": 2464,
+    "time_to_bounce_s_min": -3648585442.0,
+    "time_to_bounce_s_max": 0.19995065
+  },
+  "spectra": {
+    "member_naming_rule": "25/spectrum<integer_step>.dat",
+    "filename_mapping_rule": "spectrum<integer_step>.dat -> lightcurve first-column step",
+    "spectrum_step_count": 2464,
+    "spectrum_step_min": 1,
+    "spectrum_step_max": 2464,
+    "orphan_spectrum_steps": []
+  },
+  "discovery_provenance": {
+    "github_actions_run_id": 34396712114,
+    "github_actions_head_sha": "a5b6dfc747c779322bff7038fb9e613c47c01757",
+    "artifact_id": 10121829834,
+    "artifact_name": "nmir-benchmark-0100c2-kato-nagakura-emission-structure",
+    "artifact_digest": "sha256:65f11cb943b16a8225c1bb394bae67482e73dd93f090e4bc548347256e3bd20d"
+  },
+  "frozen_gates": {
+    "published_md5_matches": true,
+    "exactly_one_lightcurve_member": true,
+    "lightcurve_numeric_parse": true,
+    "spectrum_members_present": true,
+    "spectrum_step_names_unique": true,
+    "every_spectrum_step_exists_in_lightcurve": true
+  },
+  "scope": {
+    "emission_structure_authority_closed": true,
+    "snapshot_selection_performed": false,
+    "snapshot_mapping_to_stellar_profile_closed": false,
+    "terminal_msw_execution_allowed": false,
+    "detector_level_execution_allowed": false
+  },
+  "immutability_rule": "The archive hash, manifest hash, lightcurve member identity/hash, step range and spectrum filename-to-lightcurve mapping are frozen before stellar-archive inspection. No subset of steps may later be selected because it yields a preferred oscillation result. Snapshot selection requires a separate prospective mapping lock.",
+  "status": "PASS_0100C3_EMISSION_STRUCTURE_LOCKED_NONTERMINAL"
+}
