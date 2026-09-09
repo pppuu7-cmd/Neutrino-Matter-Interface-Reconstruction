@@ -11,6 +11,7 @@ from pathlib import Path
 from g9_persistent_global_0090 import CONTROLS
 
 PREREG_COMMIT = "53863048c2d5b5803c9e120794c21fe415f1b319"
+AMENDMENT_COMMIT = "3f873eb3ab8d90b931eb41f5ba25484fde843ced"
 PARENT_PASS = "PASS_V2_G9_BETELGEUSE_CENTRAL_SUPPORT_50MAS"
 NOT_RUN = "NOT_RUN_V2_G9_0097_PARENT_NOT_PASSED"
 ACTIVE_PASS = "PASS_V2_G9_BETELGEUSE_ACTIVE_LINE_TRACKING_KINEMATICS"
@@ -71,6 +72,7 @@ def main() -> None:
 
         base = {
             "prereg_commit": PREREG_COMMIT,
+            "amendment_0097a_commit": AMENDMENT_COMMIT,
             "head_sha": os.getenv("GITHUB_SHA"),
             "parent_status": parent_status,
             "parent_result_sha256": parent_hash,
@@ -80,6 +82,7 @@ def main() -> None:
                 "betelgeuse_astrometry": "Harper et al. 2017, arXiv:1706.06020",
                 "astronomical_unit": "IAU 2012 Resolution B2; 149597870700 m exact",
                 "solar_mass_parameter": "IAU 2015 Resolution B3 nominal (GM)_sun; 1.3271244e20 m^3 s^-2 exact nominal conversion constant",
+                "downstream_focal_halfline": "Eshleman 1979 NASA NTRS 19790065362; NASA NIAC SGL NTRS 20180006788; directional geometry only",
             },
         }
 
@@ -124,7 +127,13 @@ def main() -> None:
             t_cross_linear = 2.0 * d_support / v_orb
             t_cross_exact = 2.0 * math.asin(d_support / r) / omega
             cross_rel = abs(t_cross_linear - t_cross_exact) / max(abs(t_cross_exact), 1e-300)
-            f_duty = 2.0 * t_cross_exact / T_orb
+
+            # 0097a: the infinite source-Sun line has two geometric intersections
+            # with a circular orbit, but only the downstream source->Sun->observer
+            # half-line is a usable solar-lens window for this frozen source.
+            geometric_line_intersections = 2
+            usable_downstream_crossings = 1
+            f_duty = usable_downstream_crossings * t_cross_exact / T_orb
             n_continuous = math.ceil(1.0 / f_duty)
             continuous = f_duty >= 1.0
             passive_all_continuous = passive_all_continuous and continuous
@@ -147,7 +156,8 @@ def main() -> None:
                 "t_cross_linear_s": t_cross_linear,
                 "t_cross_exact_s": t_cross_exact,
                 "linear_exact_crossing_relative_difference": cross_rel,
-                "crossings_per_orbit": 2,
+                "geometric_line_intersections_per_orbit": geometric_line_intersections,
+                "usable_downstream_lens_crossings_per_orbit": usable_downstream_crossings,
                 "passive_duty_fraction": f_duty,
                 "N_continuous_ideal_equal_phase": n_continuous,
                 "single_passive_continuous": continuous,
@@ -195,6 +205,8 @@ def main() -> None:
             "interpretation_guards": [
                 "finite active kinematics is not spacecraft engineering feasibility",
                 "passive duty cycle is geometry only, not cost or mission design",
+                "only the downstream source-Sun-observer half-line is a usable lens crossing for the frozen source",
+                "optical SGL focal distance is not imported into the transparent-Sun neutrino focal-distance calculation",
                 "no Betelgeuse explosion date or probability is inferred",
                 "0096 support is capped at the preregistered 50 mas in this gate",
                 "no detector event, material response, deposited-energy, or useful-power gain is inferred",
@@ -205,6 +217,7 @@ def main() -> None:
             "status": INFRA,
             "reason": repr(exc),
             "prereg_commit": PREREG_COMMIT,
+            "amendment_0097a_commit": AMENDMENT_COMMIT,
             "head_sha": os.getenv("GITHUB_SHA"),
         }
 
