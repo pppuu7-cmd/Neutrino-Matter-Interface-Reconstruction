@@ -24,7 +24,7 @@ ARCHIVE_NAME = "25_final_profiles.tar.gz"
 ARCHIVE_URL = "https://zenodo.org/records/2641723/files/25_final_profiles.tar.gz?download=1"
 EXPECTED_ARCHIVE_MD5 = "762af1b62365fbe15c102fbf6f2f9142"
 MODEL_TOKEN = "25_79_0p005_ml"
-PARSER_VERSION = "0100a-v1"
+PARSER_VERSION = "0100a-v2"
 R_SUN_KM = 695700.0
 
 RADIUS_ALIASES = ("radius_km", "radius_cm", "radius", "logr")
@@ -176,7 +176,10 @@ def parse_mesa_profile(data: bytes) -> dict:
 
 def scan_archive(archive_path: Path) -> list[dict]:
     accepted: list[dict] = []
-    with tarfile.open(archive_path, mode="r:gz") as tf:
+    # The published Zenodo object is named *.tar.gz, but the frozen MD5-verified
+    # payload is currently an uncompressed TAR. Use transparent tarfile detection
+    # so archive identity is governed by the published hash, not filename suffix.
+    with tarfile.open(archive_path, mode="r:*") as tf:
         for member in tf:
             if not member.isfile() or MODEL_TOKEN not in member.name:
                 continue
@@ -256,6 +259,7 @@ def main() -> int:
             "url": ARCHIVE_URL,
             "expected_md5": EXPECTED_ARCHIVE_MD5,
             "observed_md5": observed_md5,
+            "container_open_mode": "tarfile:r:*",
         },
         "model_token": MODEL_TOKEN,
         "selected_member": selected,

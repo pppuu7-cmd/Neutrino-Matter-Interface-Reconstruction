@@ -41,9 +41,12 @@ def test_parse_mesa_profile_rejects_missing_ye():
         parse_mesa_profile(data)
 
 
-def test_scan_archive_selects_exact_model_token(tmp_path):
+@pytest.mark.parametrize("tar_mode", ["w:gz", "w"])
+def test_scan_archive_selects_exact_model_token_for_compressed_or_plain_tar(tmp_path, tar_mode):
+    # The real Zenodo asset is MD5-authoritative even if filename suffix and
+    # container compression disagree, so scanner behavior must not depend on suffix.
     archive = tmp_path / "profiles.tar.gz"
-    with tarfile.open(archive, "w:gz") as tf:
+    with tarfile.open(archive, tar_mode) as tf:
         good = fake_profile()
         info = tarfile.TarInfo(name=f"models/{MODEL_TOKEN}/final_profile.data")
         info.size = len(good)

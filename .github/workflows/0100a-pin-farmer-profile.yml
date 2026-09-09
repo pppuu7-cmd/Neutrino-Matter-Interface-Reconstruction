@@ -44,11 +44,14 @@ jobs:
       - name: Verify top-level published archive MD5
         run: |
           echo '762af1b62365fbe15c102fbf6f2f9142  external/0100a/25_final_profiles.tar.gz' | md5sum --check --strict
+          file external/0100a/25_final_profiles.tar.gz
 
       - name: Pin exact internal MESA profile and normalize rho-Ye-radius
         env:
           PYTHONPATH: .
         run: |
+          set -euo pipefail
+          mkdir -p artifacts/0100a
           python scripts/pin_0100a_farmer_profile.py \
             --archive external/0100a/25_final_profiles.tar.gz \
             --output-dir artifacts/0100a \
@@ -64,6 +67,7 @@ jobs:
           assert result['status'] == 'PASS_0100A_PROFILE_MEMBER_PINNED_NONTERMINAL'
           assert result['terminal_physics_execution_allowed'] is False
           assert result['archive']['observed_md5'] == '762af1b62365fbe15c102fbf6f2f9142'
+          assert result['archive']['container_open_mode'] == 'tarfile:r:*'
           assert result['model_token'] == '25_79_0p005_ml'
           assert result['summary']['zone_count'] >= 32
           PY
