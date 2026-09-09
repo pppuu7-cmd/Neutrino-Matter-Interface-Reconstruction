@@ -1,0 +1,70 @@
+name: 0100c pin Kato-Nagakura metadata
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0100c_kato_nagakura_25msun_coherent_source_control.md'
+      - 'scripts/pin_0100c_kato_nagakura_metadata.py'
+      - 'tests/test_pin_0100c_kato_nagakura_metadata.py'
+      - '.github/workflows/0100c-pin-kato-nagakura-metadata.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout metadata discovery code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic metadata tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0100c_kato_nagakura_metadata.py
+
+      - name: Discover exact Zenodo file metadata
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0100c
+          python scripts/pin_0100c_kato_nagakura_metadata.py \
+            --output-dir artifacts/0100c \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0100c/run_stdout.json
+
+      - name: Assert nonterminal coherent-control guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0100c/zenodo_metadata_lock_discovery.json').read_text())
+          assert x['status'] == 'PASS_0100C_ZENODO_METADATA_DISCOVERED_NONTERMINAL'
+          assert x['terminal_physics_execution_allowed'] is False
+          assert x['snapshot_mapping_authority_closed'] is False
+          assert x['stellar']['frozen_25msun_file']['key'] == '25msun.tar.gz'
+          assert x['stellar']['frozen_25msun_file']['checksum_value'] == 'b34c9573c929638afac89cec43ae7203'
+          assert all(x['gates'].values())
+          PY
+
+      - name: Upload 0100c metadata discovery artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0100c-kato-nagakura-metadata
+          path: |
+            artifacts/0100c/zenodo_metadata_lock_discovery.json
+            artifacts/0100c/emission_zenodo_metadata.json
+            artifacts/0100c/stellar_zenodo_metadata.json
+            artifacts/0100c/run_stdout.json
+          if-no-files-found: error
