@@ -1,0 +1,48 @@
+name: 0100c1d restricted mapping evidence
+
+on:
+  push:
+    branches:
+      - research/0101-authority-and-0100c
+    paths:
+      - 'research/prereg/0100c1d_restricted_mapping_evidence.md'
+      - 'research/locks/0100c1c_presn_auxiliary_manifest_lock.json'
+      - 'scripts/audit_0100c1d_restricted_mapping_evidence.py'
+      - 'tests/test_audit_0100c1d_restricted_mapping_evidence.py'
+      - '.github/workflows/0100c1d-restricted-mapping-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  restricted-mapping-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run deterministic unit tests
+        run: python tests/test_audit_0100c1d_restricted_mapping_evidence.py
+      - name: Run frozen restricted-read audit
+        run: python scripts/audit_0100c1d_restricted_mapping_evidence.py
+      - name: Emit compact classification summary
+        run: |
+          python - <<'PY'
+          import json
+          p='artifacts/0100c1d/restricted_mapping_evidence.json'
+          d=json.load(open(p, encoding='utf-8'))
+          print('classification=', d['classification'])
+          print('machine_candidate_window_count=', d['machine_candidate_window_count'])
+          for item in d['candidates']:
+              print(item['path'], item['machine_candidate_window_count'])
+          PY
+      - name: Upload immutable audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0100c1d-restricted-mapping-evidence
+          path: artifacts/0100c1d/restricted_mapping_evidence.json
+          if-no-files-found: error
+          retention-days: 90
