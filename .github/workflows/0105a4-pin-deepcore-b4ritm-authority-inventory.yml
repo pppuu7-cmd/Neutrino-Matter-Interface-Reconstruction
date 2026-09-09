@@ -1,0 +1,71 @@
+name: 0105a4 pin DeepCore B4RITM authority inventory
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0105a4_deepcore_b4ritm_authority_inventory_preflight.md'
+      - 'scripts/pin_0105a4_deepcore_b4ritm_authority_inventory.py'
+      - 'tests/test_pin_0105a4_deepcore_b4ritm_authority_inventory.py'
+      - '.github/workflows/0105a4-pin-deepcore-b4ritm-authority-inventory.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout 0105a4 code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic inventory tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0105a4_deepcore_b4ritm_authority_inventory.py
+
+      - name: Pin live B4RITM Dataverse authority inventory
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0105a4
+          python scripts/pin_0105a4_deepcore_b4ritm_authority_inventory.py \
+            --output-dir artifacts/0105a4 \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a4/run_stdout.txt
+
+      - name: Assert nonterminal B4RITM guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0105a4/deepcore_b4ritm_authority_inventory.json').read_text())
+          assert x['status'] == 'PASS_0105A4_DEEPCORE_B4RITM_AUTHORITY_INVENTORY_NONTERMINAL'
+          assert x['deepcore_consumed_byte_lock_complete'] is False
+          assert x['observed_residual_execution_allowed'] is False
+          assert x['gates']['b4ritm_identity_ok']
+          assert x['gates']['qkl28z_sterile_identity_absent']
+          assert x['gates']['inventory_nonempty']
+          assert x['gates']['all_files_have_name_size_checksum']
+          PY
+
+      - name: Upload B4RITM authority inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a4-deepcore-b4ritm-inventory
+          path: |
+            artifacts/0105a4/deepcore_b4ritm_dataverse_metadata.json
+            artifacts/0105a4/deepcore_b4ritm_authority_inventory.json
+            artifacts/0105a4/normalized_inventory_sha256.txt
+            artifacts/0105a4/run_stdout.txt
+          if-no-files-found: error
