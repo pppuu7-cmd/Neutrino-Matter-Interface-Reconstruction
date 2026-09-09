@@ -20,6 +20,8 @@ jobs:
       matrix:
         control: [0, 1, 2]
         receiver: [0, 1, 2]
+        distance: [190, 222]
+        radius: [21, 100]
     runs-on: ubuntu-24.04
     timeout-minutes: 180
     steps:
@@ -28,23 +30,25 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check numpy mpmath
-      - name: Execute frozen 0096 primary shard
+      - name: Execute one frozen 4097-point 0096 family
         continue-on-error: true
         run: |
           PYTHONPATH=src:scripts python scripts/g9_betelgeuse_central_support_0096.py \
             --mode primary \
             --control ${{ matrix.control }} \
             --receiver ${{ matrix.receiver }} \
-            --output g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}.json
-      - name: Hash primary shard
+            --distance-pc ${{ matrix.distance }} \
+            --radius-km ${{ matrix.radius }} \
+            --output g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}_${{ matrix.distance }}_${{ matrix.radius }}.json
+      - name: Hash primary family shard
         if: always()
-        run: sha256sum g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}.json || true
-      - name: Upload raw primary shard
+        run: sha256sum g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}_${{ matrix.distance }}_${{ matrix.radius }}.json || true
+      - name: Upload raw primary family shard
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: nmir-v2-g9-0096-primary-${{ matrix.control }}-${{ matrix.receiver }}
-          path: g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}.json
+          name: nmir-v2-g9-0096-primary-${{ matrix.control }}-${{ matrix.receiver }}-${{ matrix.distance }}-${{ matrix.radius }}
+          path: g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}_${{ matrix.distance }}_${{ matrix.radius }}.json
           if-no-files-found: error
 
   primary-aggregate:
@@ -62,7 +66,7 @@ jobs:
           pattern: nmir-v2-g9-0096-primary-*
           path: primary-shards
           merge-multiple: true
-      - name: Aggregate frozen primary family and select sensitivity family
+      - name: Aggregate all 36 frozen primary families and select global minimum
         continue-on-error: true
         run: |
           python scripts/g9_betelgeuse_central_support_0096_aggregate.py \
@@ -81,6 +85,10 @@ jobs:
   sensitivity:
     if: always()
     needs: [primary-aggregate]
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2, 3]
     runs-on: ubuntu-24.04
     timeout-minutes: 180
     steps:
@@ -93,22 +101,23 @@ jobs:
         with:
           name: nmir-v2-g9-0096-primary-summary
           path: primary-summary
-      - name: Execute frozen 8193-point sensitivity family
+      - name: Execute frozen 8193-point sensitivity family chunk
         continue-on-error: true
         run: |
           PYTHONPATH=src:scripts python scripts/g9_betelgeuse_central_support_0096.py \
-            --mode sensitivity \
+            --mode sensitivity-chunk \
             --spec primary-summary/g9_0096_primary_summary.json \
-            --output g9_0096_sensitivity.json
-      - name: Hash sensitivity result
+            --chunk ${{ matrix.chunk }} \
+            --output g9_0096_sensitivity_${{ matrix.chunk }}.json
+      - name: Hash sensitivity chunk
         if: always()
-        run: sha256sum g9_0096_sensitivity.json || true
-      - name: Upload sensitivity authority
+        run: sha256sum g9_0096_sensitivity_${{ matrix.chunk }}.json || true
+      - name: Upload sensitivity chunk
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: nmir-v2-g9-0096-sensitivity
-          path: g9_0096_sensitivity.json
+          name: nmir-v2-g9-0096-sensitivity-${{ matrix.chunk }}
+          path: g9_0096_sensitivity_${{ matrix.chunk }}.json
           if-no-files-found: error
 
   final:
@@ -127,15 +136,16 @@ jobs:
           path: primary-summary
       - uses: actions/download-artifact@v4
         with:
-          name: nmir-v2-g9-0096-sensitivity
+          pattern: nmir-v2-g9-0096-sensitivity-*
           path: sensitivity
+          merge-multiple: true
       - name: Produce frozen terminal 0096 classification
         continue-on-error: true
         run: |
           python scripts/g9_betelgeuse_central_support_0096_aggregate.py \
             --mode final \
             --primary primary-summary/g9_0096_primary_summary.json \
-            --sensitivity sensitivity/g9_0096_sensitivity.json \
+            --sensitivity-dir sensitivity \
             --output g9_0096_result.json
       - name: Hash terminal result
         if: always()
