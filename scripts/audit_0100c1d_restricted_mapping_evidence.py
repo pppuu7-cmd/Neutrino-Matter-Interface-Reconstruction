@@ -12,6 +12,8 @@ import hashlib
 import json
 import re
 import tarfile
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -44,14 +46,42 @@ def digest(path: Path, name: str) -> str:
     return h.hexdigest()
 
 
-def acquire(url: str, out: Path) -> None:
-    req = urllib.request.Request(url, headers={"User-Agent": "NMIR-authority-audit/0100c1d"})
-    with urllib.request.urlopen(req, timeout=180) as r, out.open("wb") as w:
-        while True:
-            chunk = r.read(1024 * 1024)
-            if not chunk:
-                break
-            w.write(chunk)
+def acquire(url: str, out: Path, attempts: int = 5) -> None:
+    """Fetch the same frozen URL with bounded transport retries.
+
+    Retrying 502/503/504/timeouts changes no authority identity or scientific
+    criterion. A temporary file is promoted only after a complete response so
+    a failed transport cannot masquerade as a cached authoritative archive.
+    """
+    tmp = out.with_suffix(out.suffix + ".partial")
+    retryable_codes = {502, 503, 504}
+    last_error: Exception | None = None
+    for attempt in range(1, attempts + 1):
+        tmp.unlink(missing_ok=True)
+        req = urllib.request.Request(url, headers={"User-Agent": "NMIR-authority-audit/0100c1d"})
+        try:
+            with urllib.request.urlopen(req, timeout=180) as r, tmp.open("wb") as w:
+                while True:
+                    chunk = r.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    w.write(chunk)
+            tmp.replace(out)
+            return
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            if exc.code not in retryable_codes or attempt == attempts:
+                raise
+        except (urllib.error.URLError, TimeoutError) as exc:
+            last_error = exc
+            if attempt == attempts:
+                raise
+        finally:
+            if not out.exists():
+                tmp.unlink(missing_ok=True)
+        time.sleep(min(2 ** (attempt - 1), 16))
+    assert last_error is not None
+    raise last_error
 
 
 def matching_windows(text: str) -> list[dict]:
