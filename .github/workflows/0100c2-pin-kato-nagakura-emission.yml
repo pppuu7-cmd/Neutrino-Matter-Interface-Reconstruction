@@ -1,0 +1,76 @@
+name: 0100c2 pin Kato-Nagakura 25M emission structure
+
+on:
+  push:
+    paths:
+      - 'research/locks/0100c1_kato_nagakura_asset_identity_lock.json'
+      - 'scripts/pin_0100c2_kato_nagakura_emission_archive.py'
+      - 'tests/test_pin_0100c2_kato_nagakura_emission_archive.py'
+      - '.github/workflows/0100c2-pin-kato-nagakura-emission.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  emission-structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout frozen emission discovery code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic emission parser tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0100c2_kato_nagakura_emission_archive.py
+
+      - name: Download prospectively frozen MESA 25M emission archive
+        run: |
+          mkdir -p external/0100c2 artifacts/0100c2
+          curl --fail --location --retry 5 --retry-delay 5 --retry-all-errors \
+            'https://zenodo.org/api/records/20618971/files/MESA_25M.zip/content' \
+            --output external/0100c2/MESA_25M.zip
+          echo 'a6c8a5dffc13d301dda139ad75a0db71  external/0100c2/MESA_25M.zip' | md5sum --check --strict
+
+      - name: Inventory lightcurve and spectrum-step structure
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          python scripts/pin_0100c2_kato_nagakura_emission_archive.py \
+            --archive external/0100c2/MESA_25M.zip \
+            --output-dir artifacts/0100c2 \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0100c2/run_stdout.json
+
+      - name: Assert nonterminal no-snapshot-selection guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0100c2/emission_archive_discovery.json').read_text())
+          assert x['status'] == 'PASS_0100C2_EMISSION_ARCHIVE_INVENTORIED_NONTERMINAL'
+          assert x['archive']['observed_md5'] == 'a6c8a5dffc13d301dda139ad75a0db71'
+          assert x['snapshot_selection_performed'] is False
+          assert x['snapshot_mapping_to_stellar_profile_closed'] is False
+          assert x['terminal_physics_execution_allowed'] is False
+          assert all(x['gates'].values())
+          PY
+
+      - name: Upload 0100c2 emission discovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0100c2-kato-nagakura-emission-structure
+          path: |
+            artifacts/0100c2/emission_archive_discovery.json
+            artifacts/0100c2/run_stdout.json
+          if-no-files-found: error
