@@ -7,6 +7,7 @@ name = "nmir"
 version = "0.1.0"
 description = "Neutrino–Matter Interface Reconstruction baseline calculations"
 requires-python = ">=3.10"
+dependencies = ["numpy>=1.26"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
