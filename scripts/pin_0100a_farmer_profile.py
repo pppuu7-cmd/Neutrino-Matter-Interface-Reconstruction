@@ -11,7 +11,6 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
-import io
 import json
 import math
 import os
@@ -46,7 +45,7 @@ def sha256_bytes(data: bytes) -> str:
 
 
 def _norm(name: str) -> str:
-    return name.strip().strip('"\'').replace("-", "_").lower()
+    return name.strip().strip("\"'").replace("-", "_").lower()
 
 
 def _find_alias(names: list[str], aliases: Iterable[str]) -> tuple[int, str] | None:
