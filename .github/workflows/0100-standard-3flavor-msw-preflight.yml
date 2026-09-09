@@ -1,0 +1,55 @@
+name: 0100 standard 3-flavor MSW preflight
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0100_known_model_benchmark_standard_3flavor_msw.md'
+      - 'scripts/benchmark_0100_standard_3flavor_msw.py'
+      - 'tests/test_benchmark_0100_standard_3flavor_msw.py'
+      - '.github/workflows/0100-standard-3flavor-msw-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mathematical-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout frozen code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install preflight dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+
+      - name: Run 0100 unit tests
+        run: pytest -q tests/test_benchmark_0100_standard_3flavor_msw.py
+
+      - name: Emit preflight JSON
+        run: |
+          mkdir -p artifacts/0100
+          python scripts/benchmark_0100_standard_3flavor_msw.py | tee artifacts/0100/preflight.json
+
+      - name: Assert non-terminal guard
+        run: |
+          python - <<'PY'
+          import json
+          with open('artifacts/0100/preflight.json', encoding='utf-8') as f:
+              result = json.load(f)
+          assert result['preflight_all_pass'] is True
+          assert result['terminal_physics_execution_allowed'] is False
+          assert result['terminal_status_ceiling'] == 'BLOCKED_0100_SOURCE_PROFILE_UNPINNED'
+          PY
+
+      - name: Upload non-terminal preflight artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0100-math-preflight
+          path: artifacts/0100/preflight.json
+          if-no-files-found: error
