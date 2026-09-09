@@ -1,0 +1,38 @@
+{
+  "benchmark": "NMIR-BENCHMARK-0100C1C",
+  "frozen_date": "2026-09-09",
+  "purpose": "Freeze the complete identity and filename-derived candidate set of the already prospectively locked Kato/Nagakura pre_sn_neutrino auxiliary archive before reading any candidate text contents for a spectrum-step to stellar-profile mapping rule.",
+  "parent_asset_lock": "research/locks/0100c1a_kato_nagakura_presn_auxiliary_asset_lock.json",
+  "archive": {
+    "published_md5": "e7282d0a7241b60a602e82d5e0e9f47f",
+    "observed_md5": "e7282d0a7241b60a602e82d5e0e9f47f",
+    "sha256": "2aca20c46ab7fb0f7d2253da13a224d24453970b19470acc3e69df84909edc1b",
+    "member_count": 44,
+    "manifest_sha256": "93fc56ec08c47aeb98c74434ba9a02eabe8001e079d72bdce67d4bb26a656a45"
+  },
+  "restricted_text_candidates": [
+    {"path":"pre_sn_neutrino/README.rst","size":1726,"sha256":"a97e371db4c82ed9cb5b1a2c5a7c1e43166db0037394df46461eb76b8861007f"},
+    {"path":"pre_sn_neutrino/history_columns.list","size":33551,"sha256":"987dd88721f7751a17876541126854431448f150aa434a5077809fd06fefa232"},
+    {"path":"pre_sn_neutrino/profile_columns.list","size":29301,"sha256":"1174c3591d72453fc1f54895003ecfbaeec2f7d0e4b682d65aaebab388122147"},
+    {"path":"pre_sn_neutrino/inlist_common","size":13204,"sha256":"de5aa4ccb5a31b9f6b41b4367f0ed30991075e3d0e03facc6a66f1fb1714be92"},
+    {"path":"pre_sn_neutrino/inlist_to_cc","size":3391,"sha256":"be7e528c6a5643d56c5a67e4e702c05a3a53c59da465b4e852a344d8a8a0e759"},
+    {"path":"pre_sn_neutrino/src/run_star_extras.f90","size":7730,"sha256":"e13aba921d975be80e7a3c8046a1d31050dc3f2ddc01f3ba0fa2e777c87dbecd"}
+  ],
+  "candidate_selection_rule": "The restricted text set above was chosen only from filenames and roles visible in the already frozen manifest: documentation, MESA history/profile column declarations, common/core-collapse inlists, and source extras. No file was selected from its content or any oscillation result.",
+  "discovery_provenance": {
+    "github_actions_run_id": 34397229323,
+    "github_actions_head_sha": "de8cf2bb7a49c5311f4ceb3534cbfbcaedfb7780",
+    "artifact_id": 10121999390,
+    "artifact_name": "nmir-benchmark-0100c1b-presn-auxiliary-manifest",
+    "artifact_digest": "sha256:5c03d7e3fc9a79a17dd91a0fa50b53741568c7df19b9164c714bcd9a5eb8f50e"
+  },
+  "scope": {
+    "auxiliary_manifest_locked": true,
+    "candidate_contents_read": false,
+    "snapshot_mapping_authority_closed": false,
+    "snapshot_selected": false,
+    "terminal_msw_execution_allowed": false
+  },
+  "immutability_rule": "Only the exact restricted_text_candidates listed here may be read in the next mapping-evidence pass. Expanding the candidate set requires a new prospective amendment based on an explicitly stated filename/role rule, never on a desired physics result.",
+  "status": "PASS_0100C1C_AUXILIARY_MANIFEST_AND_TEXT_CANDIDATES_LOCKED_NONTERMINAL"
+}
