@@ -1,0 +1,76 @@
+{
+  "benchmark": "NMIR-BENCHMARK-0100B",
+  "frozen_date": "2026-09-09",
+  "purpose": "Prospectively freeze the exact authoritative rho(r), Ye(r) source-profile identity discovered by the already-preregistered deterministic 0100a procedure before any terminal MSW physics execution.",
+  "parent_benchmark": "NMIR-BENCHMARK-0100A",
+  "parent_prereg": "research/prereg/0100a_farmer_source_profile_pinning.md",
+  "authority": {
+    "dataset_doi": "10.5281/zenodo.2641723",
+    "record_url": "https://zenodo.org/records/2641723",
+    "archive_name": "25_final_profiles.tar.gz",
+    "archive_expected_md5": "762af1b62365fbe15c102fbf6f2f9142",
+    "archive_observed_md5": "762af1b62365fbe15c102fbf6f2f9142",
+    "archive_container_open_mode": "tarfile:r:*",
+    "model_token": "25_79_0p005_ml"
+  },
+  "selected_member": {
+    "member_path": "25/25_79_0p005_ml.data",
+    "member_size_bytes": 46280920,
+    "member_sha256": "2363d2b06840af553c1078636f4d45b6060939406e8b10fcb1748a58ac6e7673"
+  },
+  "normalized_profile": {
+    "columns": [
+      "radius_km",
+      "rho_g_cm3",
+      "ye"
+    ],
+    "normalized_csv_sha256": "034a1def25e656c75b1d0628e9d22fe33eeaa7e05e2fef4d7bd100daf2aec13d",
+    "parser_version": "0100a-v2",
+    "source_columns": {
+      "radius": "radius",
+      "rho": "logRho",
+      "ye": "ye"
+    },
+    "transformations": {
+      "radius": "mesa_radius_Rsun_to_km",
+      "rho": "10pow_logrho_g_cm3",
+      "ye": "identity"
+    },
+    "summary": {
+      "zone_count": 7945,
+      "radius_km_min": 4.45745602890828,
+      "radius_km_max": 827409477.0583944,
+      "rho_g_cm3_min": 1.1618802977450438e-09,
+      "rho_g_cm3_max": 10460254427.746244,
+      "ye_min": 0.4602862136191764,
+      "ye_max": 0.772989858806044
+    }
+  },
+  "discovery_provenance": {
+    "github_actions_run_id": 34393882839,
+    "github_actions_head_sha": "425410fd1c658d8c0ee0dc7b211b84aa0373c705",
+    "artifact_id": 10120885189,
+    "artifact_name": "nmir-benchmark-0100a-farmer-profile-pin",
+    "artifact_digest": "sha256:7b9905e06dde8d5c69b1f57342d1020d5321c845bf3101d6d5c498f20ece7317"
+  },
+  "frozen_gates": {
+    "finite_values": true,
+    "minimum_zone_count": true,
+    "physical_ranges": true,
+    "strictly_increasing_radius_after_canonical_sort": true
+  },
+  "scope": {
+    "source_profile_authority_closed": true,
+    "farmer_25msun_control_only": true,
+    "betelgeuse_progenitor_claim": false,
+    "source_spectrum_authority_closed": false,
+    "detector_transport_authority_closed": false,
+    "detector_level_terminal_execution_allowed": false
+  },
+  "remaining_blocks": [
+    "BLOCKED_0100_SOURCE_SPECTRUM_AUTHORITY_UNPINNED",
+    "BLOCKED_0100_INTERACTION_TRANSPORT_AUTHORITY_NOT_CLOSED_FOR_DETECTOR_LEVEL_PREDICTIONS"
+  ],
+  "immutability_rule": "Any future terminal run using this source profile must use exactly the archive hash, member path/hash, normalized CSV hash, parser transformations, and model token frozen here. Any correction requires a new prospective amendment and a new run ID; this file must not be silently rewritten to fit a result.",
+  "status": "PASS_0100B_SOURCE_PROFILE_AUTHORITY_LOCKED"
+}
