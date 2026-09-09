@@ -15,6 +15,10 @@ def test_0098a_mmrtg_authority_is_pinned():
     assert math.isclose(m.MMRTG_EOL17_W / m.MMRTG_MASS_KG, 1.6622222222222223, rel_tol=0.0, abs_tol=1e-15)
 
 
+def test_0097a_parent_geometry_provenance_is_required():
+    assert m.EXPECTED_0097_GEOMETRY_AMENDMENT_COMMIT == "3f873eb3ab8d90b931eb41f5ba25484fde843ced"
+
+
 def test_frozen_duration_and_endurance_controls():
     assert m.HOURS_10_JULIAN_YR == 87660.0
     assert m.NEXT_DEMO_HOURS == 48000.0
