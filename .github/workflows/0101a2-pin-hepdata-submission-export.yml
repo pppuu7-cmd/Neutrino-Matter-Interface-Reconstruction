@@ -1,0 +1,83 @@
+name: 0101a2 pin HEPData original submission export
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0101a_factorized_sterile_authority_envelope.md'
+      - 'scripts/pin_0101a2_hepdata_submission_export.py'
+      - 'tests/test_pin_0101a2_hepdata_submission_export.py'
+      - '.github/workflows/0101a2-pin-hepdata-submission-export.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hepdata-export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout export discovery code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic export parser tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0101a2_hepdata_submission_export.py
+
+      - name: Download official HEPData original submission package
+        run: |
+          mkdir -p external/0101a2 artifacts/0101a2
+          curl --fail --location --retry 3 --retry-delay 3 --retry-all-errors \
+            --user-agent 'Mozilla/5.0 NMIR/0101a2' \
+            'https://www.hepdata.net/download/submission/ins3088922/1/original' \
+            --output external/0101a2/hepdata_original_submission.bin
+          ls -lh external/0101a2/hepdata_original_submission.bin
+          file external/0101a2/hepdata_original_submission.bin
+          sha256sum external/0101a2/hepdata_original_submission.bin
+
+      - name: Inventory immutable submission package
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          python scripts/pin_0101a2_hepdata_submission_export.py \
+            --package external/0101a2/hepdata_original_submission.bin \
+            --output-dir artifacts/0101a2 \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0101a2/run_stdout.json
+
+      - name: Assert nonterminal authority guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0101a2/hepdata_submission_export_discovery.json').read_text())
+          assert x['status'] == 'PASS_0101A2_HEPDATA_ORIGINAL_SUBMISSION_INVENTORIED_NONTERMINAL'
+          assert x['authority']['hepdata_doi'] == '10.17182/hepdata.166435.v1'
+          assert x['authority']['inspire_id'] == '3088922'
+          assert x['authority']['version'] == '1'
+          assert x['parameter_region_selected'] is False
+          assert x['confidence_threshold_selected'] is False
+          assert x['joint_global_likelihood_claim_allowed'] is False
+          assert x['terminal_physics_execution_allowed'] is False
+          assert all(x['gates'].values())
+          PY
+
+      - name: Upload HEPData submission discovery artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0101a2-hepdata-submission-export
+          path: |
+            artifacts/0101a2/hepdata_submission_export_discovery.json
+            artifacts/0101a2/run_stdout.json
+          if-no-files-found: error
