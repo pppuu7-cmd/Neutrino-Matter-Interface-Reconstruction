@@ -10,6 +10,7 @@ from pathlib import Path
 
 PREREG_COMMIT = "48e5904139e8782e046f4d6e7d3c548ec1880e18"
 AUTHORITY_AMENDMENT_COMMIT = "fd6504fdfffe651078603eb62576610f66049424"
+EXPECTED_0097_GEOMETRY_AMENDMENT_COMMIT = "3f873eb3ab8d90b931eb41f5ba25484fde843ced"
 PARENT_PASS = {
     "PASS_V2_G9_BETELGEUSE_ACTIVE_KINEMATICS_PASSIVE_FAIL",
     "PASS_V2_G9_BETELGEUSE_BOTH_ARCHITECTURES",
@@ -100,9 +101,12 @@ def main() -> None:
     try:
         parent = json.loads(parent_path.read_text())
         pstatus = str(parent.get("status", ""))
+        parent_geometry_amendment = str(parent.get("amendment_0097a_commit", ""))
         base = {
             "prereg_commit": PREREG_COMMIT,
             "authority_amendment_commit": AUTHORITY_AMENDMENT_COMMIT,
+            "expected_0097_geometry_amendment_commit": EXPECTED_0097_GEOMETRY_AMENDMENT_COMMIT,
+            "parent_0097_geometry_amendment_commit": parent_geometry_amendment,
             "head_sha": os.getenv("GITHUB_SHA"),
             "parent_status": pstatus,
             "parent_sha256": sha256(parent_path),
@@ -119,6 +123,8 @@ def main() -> None:
             Path(args.output).write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
             print(json.dumps(result, indent=2, sort_keys=True))
             return
+        if parent_geometry_amendment != EXPECTED_0097_GEOMETRY_AMENDMENT_COMMIT:
+            raise ValueError("0097 PASS parent lacks exact prospective 0097a downstream focal-halfline amendment provenance")
 
         controls = parent.get("observer_controls")
         if not isinstance(controls, list) or len(controls) != 3:
@@ -187,6 +193,7 @@ def main() -> None:
             "reason": repr(exc),
             "prereg_commit": PREREG_COMMIT,
             "authority_amendment_commit": AUTHORITY_AMENDMENT_COMMIT,
+            "expected_0097_geometry_amendment_commit": EXPECTED_0097_GEOMETRY_AMENDMENT_COMMIT,
             "head_sha": os.getenv("GITHUB_SHA"),
         }
     Path(args.output).write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
