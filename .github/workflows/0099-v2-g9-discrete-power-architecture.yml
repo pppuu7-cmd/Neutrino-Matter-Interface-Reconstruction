@@ -1,0 +1,82 @@
+name: 0099 v2 G9 discrete power architecture
+
+on:
+  workflow_run:
+    workflows: ['0098 v2 G9 line-holding propulsion authority']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      parent_run_id:
+        description: 'Authoritative 0098 workflow run id'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PARENT_RUN_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.parent_run_id || github.event.workflow_run.id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download authoritative 0098 parent artifact
+        run: |
+          mkdir -p parent
+          gh run download "$PARENT_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name nmir-v2-g9-0098-authoritative \
+            --dir parent
+          test -f parent/g9_0098_result.json
+          sha256sum parent/g9_0098_result.json
+      - name: Verify frozen 0098 parent provenance
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('parent/g9_0098_result.json'))
+          assert p.get('prereg_commit') == '48e5904139e8782e046f4d6e7d3c548ec1880e18', p.get('prereg_commit')
+          assert p.get('authority_amendment_commit') == 'fd6504fdfffe651078603eb62576610f66049424', p.get('authority_amendment_commit')
+          assert p.get('expected_0097_geometry_amendment_commit') == '3f873eb3ab8d90b931eb41f5ba25484fde843ced', p.get('expected_0097_geometry_amendment_commit')
+          print('0098 parent status:', p.get('status'))
+          PY
+      - name: Capture parent artifact id
+        run: |
+          ARTIFACT_ID=$(gh api \
+            -H 'Accept: application/vnd.github+json' \
+            "/repos/$GITHUB_REPOSITORY/actions/runs/$PARENT_RUN_ID/artifacts" \
+            --jq '.artifacts[] | select(.name=="nmir-v2-g9-0098-authoritative") | .id' | head -n1)
+          test -n "$ARTIFACT_ID"
+          echo "PARENT_ARTIFACT_ID=$ARTIFACT_ID" >> "$GITHUB_ENV"
+      - name: Execute frozen 0099 discrete power architecture gate
+        env:
+          PARENT_ARTIFACT_ID: ${{ env.PARENT_ARTIFACT_ID }}
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_discrete_power_architecture_0099.py \
+            --parent parent/g9_0098_result.json \
+            --output g9_0099_result.json
+      - name: Hash 0099 authority
+        run: sha256sum g9_0099_result.json
+      - name: Upload authoritative 0099 result
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-g9-0099-authoritative
+          path: g9_0099_result.json
+          if-no-files-found: error
+      - name: Preserve infrastructure failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('g9_0099_result.json')
+          if not p.exists(): raise SystemExit(1)
+          s=json.loads(p.read_text())['status']
+          print('0099 terminal status:', s)
+          if s.startswith('INFRASTRUCTURE_FAIL_'): raise SystemExit(1)
+          PY
