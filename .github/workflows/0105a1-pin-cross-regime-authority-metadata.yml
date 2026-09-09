@@ -1,0 +1,75 @@
+name: 0105a1 pin cross-regime authority metadata
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0105a1_cross_regime_authority_metadata_lock.md'
+      - 'scripts/pin_0105a1_cross_regime_authority_metadata.py'
+      - 'tests/test_pin_0105a1_cross_regime_authority_metadata.py'
+      - '.github/workflows/0105a1-pin-cross-regime-authority-metadata.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout 0105a1 code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic metadata tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0105a1_cross_regime_authority_metadata.py
+
+      - name: Pin current public DeepCore and COHERENT metadata inventories
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0105a1
+          python scripts/pin_0105a1_cross_regime_authority_metadata.py \
+            --output-dir artifacts/0105a1 \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a1/run_stdout.json
+
+      - name: Assert fail-closed nonterminal guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('artifacts/0105a1/cross_regime_authority_metadata_inventory.json')
+          x = json.loads(p.read_text())
+          assert x['status'] == 'PASS_0105A1_CROSS_REGIME_AUTHORITY_METADATA_INVENTORY_NONTERMINAL'
+          assert x['observed_residual_execution_allowed'] is False
+          assert x['joint_likelihood_claim_allowed'] is False
+          assert x['consumed_byte_sha256_lock_complete'] is False
+          assert x['icecube_deepcore']['expected_doi'] == '10.7910/DVN/B4RITM'
+          assert x['coherent']['csi']['expected_doi'] == '10.5281/zenodo.1228631'
+          assert x['coherent']['ar']['expected_doi'] == '10.5281/zenodo.3903810'
+          assert all(x['gates'].values())
+          PY
+
+      - name: Upload authority metadata inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a1-cross-regime-authority-metadata
+          path: |
+            artifacts/0105a1/cross_regime_authority_metadata_inventory.json
+            artifacts/0105a1/normalized_inventory_sha256.txt
+            artifacts/0105a1/icecube_deepcore_dataverse_metadata.json
+            artifacts/0105a1/coherent_csi_zenodo_metadata.json
+            artifacts/0105a1/coherent_ar_zenodo_metadata.json
+            artifacts/0105a1/run_stdout.json
+          if-no-files-found: error
