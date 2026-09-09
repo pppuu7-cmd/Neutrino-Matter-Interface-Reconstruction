@@ -1,0 +1,76 @@
+name: 0100c1b pin pre-SN auxiliary manifest
+
+on:
+  push:
+    paths:
+      - 'research/locks/0100c1a_kato_nagakura_presn_auxiliary_asset_lock.json'
+      - 'scripts/pin_0100c1b_presn_auxiliary_manifest.py'
+      - 'tests/test_pin_0100c1b_presn_auxiliary_manifest.py'
+      - '.github/workflows/0100c1b-pin-presn-auxiliary-manifest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auxiliary-manifest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout frozen auxiliary discovery code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic manifest tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0100c1b_presn_auxiliary_manifest.py
+
+      - name: Download prospectively frozen auxiliary archive
+        run: |
+          mkdir -p external/0100c1b artifacts/0100c1b
+          curl --fail --location --retry 5 --retry-delay 3 --retry-all-errors \
+            'https://zenodo.org/api/records/20822085/files/pre_sn_neutrino.tar.gz/content' \
+            --output external/0100c1b/pre_sn_neutrino.tar.gz
+          echo 'e7282d0a7241b60a602e82d5e0e9f47f  external/0100c1b/pre_sn_neutrino.tar.gz' | md5sum --check --strict
+
+      - name: Inventory auxiliary archive without reading mapping content
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          python scripts/pin_0100c1b_presn_auxiliary_manifest.py \
+            --archive external/0100c1b/pre_sn_neutrino.tar.gz \
+            --output-dir artifacts/0100c1b \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0100c1b/run_stdout.json
+
+      - name: Assert no content-based snapshot selection
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0100c1b/presn_auxiliary_manifest_discovery.json').read_text())
+          assert x['status'] == 'PASS_0100C1B_AUXILIARY_MANIFEST_LOCK_DISCOVERY_NONTERMINAL'
+          assert x['archive']['observed_md5'] == 'e7282d0a7241b60a602e82d5e0e9f47f'
+          assert x['content_based_snapshot_selection_performed'] is False
+          assert x['snapshot_mapping_authority_closed'] is False
+          assert x['terminal_physics_execution_allowed'] is False
+          assert all(x['gates'].values())
+          PY
+
+      - name: Upload auxiliary manifest discovery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0100c1b-presn-auxiliary-manifest
+          path: |
+            artifacts/0100c1b/presn_auxiliary_manifest_discovery.json
+            artifacts/0100c1b/run_stdout.json
+          if-no-files-found: error
