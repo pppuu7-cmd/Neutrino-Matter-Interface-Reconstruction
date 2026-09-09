@@ -1,0 +1,71 @@
+name: 0101a pin sterile authority metadata
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0101a_factorized_sterile_authority_envelope.md'
+      - 'scripts/pin_0101a_sterile_authority_metadata.py'
+      - 'tests/test_pin_0101a_sterile_authority_metadata.py'
+      - '.github/workflows/0101a-pin-sterile-authority-metadata.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout authority discovery code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic discovery tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0101a_sterile_authority_metadata.py
+
+      - name: Discover official MicroBooNE and IceCube authority metadata
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0101a
+          python scripts/pin_0101a_sterile_authority_metadata.py \
+            --output-dir artifacts/0101a \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0101a/run_stdout.json
+
+      - name: Assert nonterminal factorized-authority guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('artifacts/0101a/authority_metadata_lock_discovery.json')
+          x = json.loads(p.read_text())
+          assert x['status'] == 'PASS_0101A_AUTHORITY_METADATA_DISCOVERED_NONTERMINAL'
+          assert x['terminal_physics_execution_allowed'] is False
+          assert x['joint_global_likelihood_claim_allowed'] is False
+          assert x['microboone']['doi'] == '10.17182/hepdata.166435.v1'
+          assert x['icecube']['doi'] == '10.7910/DVN/QKL28Z'
+          assert all(x['gates'].values())
+          PY
+
+      - name: Upload authority metadata discovery artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0101a-authority-metadata
+          path: |
+            artifacts/0101a/authority_metadata_lock_discovery.json
+            artifacts/0101a/microboone_hepdata_metadata.json
+            artifacts/0101a/icecube_dataverse_metadata.json
+            artifacts/0101a/run_stdout.json
+          if-no-files-found: error
