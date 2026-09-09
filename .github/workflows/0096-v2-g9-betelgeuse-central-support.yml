@@ -1,0 +1,160 @@
+name: 0096 v2 G9 Betelgeuse central support
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/g9_betelgeuse_central_support_0096.py'
+      - 'scripts/g9_betelgeuse_central_support_0096_aggregate.py'
+      - 'research/prereg/0096_v2_g9_betelgeuse_central_support_certification.md'
+      - '.github/workflows/0096-v2-g9-betelgeuse-central-support.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  primary:
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0, 1, 2]
+        receiver: [0, 1, 2]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy mpmath
+      - name: Execute frozen 0096 primary shard
+        continue-on-error: true
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_betelgeuse_central_support_0096.py \
+            --mode primary \
+            --control ${{ matrix.control }} \
+            --receiver ${{ matrix.receiver }} \
+            --output g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}.json
+      - name: Hash primary shard
+        if: always()
+        run: sha256sum g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}.json || true
+      - name: Upload raw primary shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-primary-${{ matrix.control }}-${{ matrix.receiver }}
+          path: g9_0096_primary_${{ matrix.control }}_${{ matrix.receiver }}.json
+          if-no-files-found: error
+
+  primary-aggregate:
+    if: always()
+    needs: [primary]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: nmir-v2-g9-0096-primary-*
+          path: primary-shards
+          merge-multiple: true
+      - name: Aggregate frozen primary family and select sensitivity family
+        continue-on-error: true
+        run: |
+          python scripts/g9_betelgeuse_central_support_0096_aggregate.py \
+            --mode primary --input primary-shards --output g9_0096_primary_summary.json
+      - name: Hash primary summary
+        if: always()
+        run: sha256sum g9_0096_primary_summary.json || true
+      - name: Upload primary summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-primary-summary
+          path: g9_0096_primary_summary.json
+          if-no-files-found: error
+
+  sensitivity:
+    if: always()
+    needs: [primary-aggregate]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check numpy mpmath
+      - uses: actions/download-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-primary-summary
+          path: primary-summary
+      - name: Execute frozen 8193-point sensitivity family
+        continue-on-error: true
+        run: |
+          PYTHONPATH=src:scripts python scripts/g9_betelgeuse_central_support_0096.py \
+            --mode sensitivity \
+            --spec primary-summary/g9_0096_primary_summary.json \
+            --output g9_0096_sensitivity.json
+      - name: Hash sensitivity result
+        if: always()
+        run: sha256sum g9_0096_sensitivity.json || true
+      - name: Upload sensitivity authority
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-sensitivity
+          path: g9_0096_sensitivity.json
+          if-no-files-found: error
+
+  final:
+    if: always()
+    needs: [primary-aggregate, sensitivity]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-primary-summary
+          path: primary-summary
+      - uses: actions/download-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-sensitivity
+          path: sensitivity
+      - name: Produce frozen terminal 0096 classification
+        continue-on-error: true
+        run: |
+          python scripts/g9_betelgeuse_central_support_0096_aggregate.py \
+            --mode final \
+            --primary primary-summary/g9_0096_primary_summary.json \
+            --sensitivity sensitivity/g9_0096_sensitivity.json \
+            --output g9_0096_result.json
+      - name: Hash terminal result
+        if: always()
+        run: sha256sum g9_0096_result.json || true
+      - name: Upload authoritative 0096 result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-g9-0096-authoritative
+          path: g9_0096_result.json
+          if-no-files-found: error
+      - name: Preserve infrastructure failure exit
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p = pathlib.Path('g9_0096_result.json')
+          if not p.exists(): raise SystemExit(1)
+          s = json.loads(p.read_text())['status']
+          print('0096 terminal status:', s)
+          if s.startswith('INFRASTRUCTURE_FAIL_'): raise SystemExit(1)
+          PY
