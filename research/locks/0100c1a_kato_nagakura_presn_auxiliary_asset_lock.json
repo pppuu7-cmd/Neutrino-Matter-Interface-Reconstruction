@@ -1,0 +1,24 @@
+{
+  "benchmark": "NMIR-BENCHMARK-0100C1A",
+  "frozen_date": "2026-09-09",
+  "purpose": "Prospectively freeze the small auxiliary pre_sn_neutrino archive from the already-inventoried Kato/Nagakura stellar-model record before inspecting it for released mapping/configuration information. This auxiliary asset may not itself select a terminal physics snapshot.",
+  "parent_metadata_run": 34396228931,
+  "authority": {
+    "record_doi": "10.5281/zenodo.20822085",
+    "record_id": 20822085,
+    "file_name": "pre_sn_neutrino.tar.gz",
+    "size_bytes": 17344435,
+    "checksum_type": "md5",
+    "checksum_value": "e7282d0a7241b60a602e82d5e0e9f47f",
+    "download_url": "https://zenodo.org/api/records/20822085/files/pre_sn_neutrino.tar.gz/content"
+  },
+  "allowed_use": {
+    "inventory_files": true,
+    "inspect_mapping_or_mesa_configuration_metadata": true,
+    "choose_terminal_snapshot": false,
+    "replace_25msun_stellar_archive": false,
+    "terminal_msw_execution": false
+  },
+  "immutability_rule": "This asset identity is frozen from the prior Zenodo metadata inventory before content inspection. It is auxiliary provenance/configuration evidence only; any terminal rho/Ye profile must still come from the separately frozen 25msun.tar.gz authority and be mapped prospectively.",
+  "status": "PASS_0100C1A_AUXILIARY_PRESN_ASSET_IDENTITY_LOCKED_NONTERMINAL"
+}
