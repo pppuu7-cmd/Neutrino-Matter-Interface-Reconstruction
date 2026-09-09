@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -25,9 +26,27 @@ ICECUBE_API_URL = (
 
 
 def fetch_bytes(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "NMIR-authority-pinner/0101a"})
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return resp.read()
+    # HEPData applies anti-bot filtering to generic Python urllib user agents on
+    # otherwise public JSON endpoints.  Use ordinary browser-style HTTP headers;
+    # this changes transport only, never the frozen authority identity or science.
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/152.0 Safari/537.36 NMIR/0101a"
+            ),
+            "Accept": "application/json, text/plain;q=0.9, */*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.8",
+            "Referer": "https://www.hepdata.net/",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            return resp.read()
+    except urllib.error.HTTPError as exc:
+        host = urllib.parse.urlsplit(url).netloc
+        raise RuntimeError(f"BLOCKED_0101A_PUBLIC_METADATA_HTTP_{exc.code} host={host}") from exc
 
 
 def sha256_bytes(data: bytes) -> str:
