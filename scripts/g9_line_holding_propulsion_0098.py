@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 
 PREREG_COMMIT = "48e5904139e8782e046f4d6e7d3c548ec1880e18"
+AUTHORITY_AMENDMENT_COMMIT = "fd6504fdfffe651078603eb62576610f66049424"
 PARENT_PASS = {
     "PASS_V2_G9_BETELGEUSE_ACTIVE_KINEMATICS_PASSIVE_FAIL",
     "PASS_V2_G9_BETELGEUSE_BOTH_ARCHITECTURES",
@@ -26,7 +27,8 @@ HOURS_10_JULIAN_YR = 10.0 * 365.25 * 24.0
 NEXT_DEMO_HOURS = 48_000.0
 MMRTG_MASS_KG = 45.0
 MMRTG_BOL_W = 110.0
-MMRTG_EOL17_W = 72.0
+# 0098a: lower edge of the traceable NETS-2020 EU EODL prediction 75.2 +/- 0.4 We.
+MMRTG_EOL17_W = 74.8
 P_REFLECT_1AU_PA = 9.1e-6
 SAIL_REFERENCE_ACCEL_M_S2 = 0.35e-3
 
@@ -100,13 +102,14 @@ def main() -> None:
         pstatus = str(parent.get("status", ""))
         base = {
             "prereg_commit": PREREG_COMMIT,
+            "authority_amendment_commit": AUTHORITY_AMENDMENT_COMMIT,
             "head_sha": os.getenv("GITHUB_SHA"),
             "parent_status": pstatus,
             "parent_sha256": sha256(parent_path),
             "authorities": {
-                "advanced_NEXT_2025": "NASA NTRS 20250001749, IEPC 2025 Advanced NEXT performance table",
-                "NEXT_endurance": "NASA 2013 NEXT long-duration test: >48000 h, voluntarily terminated fully operational",
-                "MMRTG": "NASA MMRTG: 45 kg class; 110 W BOL; 72 W estimated 17-y EODL",
+                "advanced_NEXT_2025": "NASA NTRS 20250001749 / IEPC-2025-133, Advanced NEXT performance table",
+                "NEXT_endurance": "NASA NEXT LDT; frozen terminal lower-bound 48000 h; completed test authority reports 51184 h",
+                "MMRTG": "NETS 2020/ORNL-hosted Whiting analysis: EU EODL 75.2 +/- 0.4 We; 0098a uses conservative 74.8 W with 45 kg system mass; NASA confirms 110 W BOL and 17-y lifetime modeling",
                 "solar_sail_pressure": "NASA solar-sail physics: ideal reflection ~9.1e-6 N/m^2 at 1 AU",
                 "solar_sail_reference": "NASA integrated solar-sail reference: characteristic acceleration ~0.35 mm/s^2 at 1 AU",
             },
@@ -153,7 +156,7 @@ def main() -> None:
             "electric_propulsion": electric,
             "duration_authority": {
                 "ten_julian_year_hours": HOURS_10_JULIAN_YR,
-                "NEXT_demonstrated_hours": NEXT_DEMO_HOURS,
+                "NEXT_demonstrated_hours_frozen_lower_bound": NEXT_DEMO_HOURS,
                 "single_unit_coverage_ratio": single_hours_ratio,
                 "two_unit_sequential_coverage_ratio": two_hours_ratio,
                 "single_unit_status": single_duration,
@@ -183,6 +186,7 @@ def main() -> None:
             "status": INFRA,
             "reason": repr(exc),
             "prereg_commit": PREREG_COMMIT,
+            "authority_amendment_commit": AUTHORITY_AMENDMENT_COMMIT,
             "head_sha": os.getenv("GITHUB_SHA"),
         }
     Path(args.output).write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
