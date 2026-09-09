@@ -8,8 +8,16 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import g9_line_holding_propulsion_0098 as m
 
 
+def test_0098a_mmrtg_authority_is_pinned():
+    assert m.AUTHORITY_AMENDMENT_COMMIT == "fd6504fdfffe651078603eb62576610f66049424"
+    assert m.MMRTG_MASS_KG == 45.0
+    assert m.MMRTG_EOL17_W == 74.8
+    assert math.isclose(m.MMRTG_EOL17_W / m.MMRTG_MASS_KG, 1.6622222222222223, rel_tol=0.0, abs_tol=1e-15)
+
+
 def test_frozen_duration_and_endurance_controls():
     assert m.HOURS_10_JULIAN_YR == 87660.0
+    assert m.NEXT_DEMO_HOURS == 48000.0
     assert m.NEXT_DEMO_HOURS / m.HOURS_10_JULIAN_YR < 1.0
     assert 2.0 * m.NEXT_DEMO_HOURS / m.HOURS_10_JULIAN_YR > 1.0
 
