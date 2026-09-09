@@ -1,0 +1,65 @@
+name: 0101-0104 known-model mathematical preflight
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0101_known_model_benchmark_3p1_sterile_preflight.md'
+      - 'research/prereg/0102_known_model_benchmark_nsi_preflight.md'
+      - 'research/prereg/0103_known_model_benchmark_magnetic_spin_flavor_preflight.md'
+      - 'research/prereg/0104_known_model_benchmark_light_mediator_preflight.md'
+      - 'scripts/benchmark_0101_0104_known_models_preflight.py'
+      - 'tests/test_benchmark_0101_0104_known_models_preflight.py'
+      - '.github/workflows/0101-0104-known-model-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mathematical-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout frozen code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+
+      - name: Run 0101-0104 unit tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_benchmark_0101_0104_known_models_preflight.py
+
+      - name: Emit combined non-terminal preflight artifact
+        run: |
+          mkdir -p artifacts/known_models
+          python scripts/benchmark_0101_0104_known_models_preflight.py \
+            | tee artifacts/known_models/0101_0104_preflight.json
+
+      - name: Assert all preflights pass and terminal guard remains closed
+        run: |
+          python - <<'PY'
+          import json
+          with open('artifacts/known_models/0101_0104_preflight.json', encoding='utf-8') as f:
+              result = json.load(f)
+          assert result['preflight_all_pass'] is True
+          assert result['terminal_physics_execution_allowed'] is False
+          for key, item in result['results'].items():
+              assert item['status'].startswith('PASS_')
+              assert all(item['gates'].values())
+              assert item['terminal_physics_execution_allowed'] is False
+              assert item['terminal_status_ceiling'].startswith('BLOCKED_')
+          PY
+
+      - name: Upload known-model mathematical preflight artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-known-model-preflight-0101-0104
+          path: artifacts/known_models/0101_0104_preflight.json
+          if-no-files-found: error
