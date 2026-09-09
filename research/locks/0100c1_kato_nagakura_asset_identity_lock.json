@@ -1,0 +1,41 @@
+{
+  "benchmark": "NMIR-BENCHMARK-0100C1",
+  "frozen_date": "2026-09-09",
+  "purpose": "Freeze exact top-level Kato/Nagakura 25 Msun emission and stellar asset identities discovered by the preregistered 0100c metadata-only procedure before inspecting archive contents or running any MSW calculation.",
+  "parent_prereg": "research/prereg/0100c_kato_nagakura_25msun_coherent_source_control.md",
+  "emission_asset": {
+    "record_doi": "10.5281/zenodo.20618971",
+    "record_id": 20618971,
+    "file_name": "MESA_25M.zip",
+    "size_bytes": 106318148,
+    "checksum_type": "md5",
+    "checksum_value": "a6c8a5dffc13d301dda139ad75a0db71",
+    "download_url": "https://zenodo.org/api/records/20618971/files/MESA_25M.zip/content"
+  },
+  "stellar_asset": {
+    "record_doi": "10.5281/zenodo.20822085",
+    "record_id": 20822085,
+    "file_name": "25msun.tar.gz",
+    "size_bytes": 2718653047,
+    "checksum_type": "md5",
+    "checksum_value": "b34c9573c929638afac89cec43ae7203",
+    "download_url": "https://zenodo.org/api/records/20822085/files/25msun.tar.gz/content"
+  },
+  "discovery_provenance": {
+    "github_actions_run_id": 34396228931,
+    "github_actions_head_sha": "84ff9d0dfec9f78007a033896a43894dbb471ced",
+    "artifact_id": 10121604772,
+    "artifact_name": "nmir-benchmark-0100c-kato-nagakura-metadata",
+    "artifact_digest": "sha256:bf9ca6d694713d82f077163585cd3a55133279b13ac5e33d16611d900879a4e3",
+    "emission_record_metadata_sha256": "f2e69fde19b64ee96be319b01224fb58cd045c8807e85b5c8490a7dc557a8883",
+    "stellar_record_metadata_sha256": "bb16f3b7d20f476275fdbc8dcd73b21800564fde7a934fa8435e8e841e851420"
+  },
+  "allowed_next_actions": {
+    "inspect_emission_archive_after_checksum_verification": true,
+    "inspect_stellar_archive_after_checksum_verification": true,
+    "terminal_msw_execution": false,
+    "snapshot_mapping_authority_closed": false
+  },
+  "immutability_rule": "The two top-level asset identities, sizes and published MD5 values are frozen before archive-content discovery. Any replacement requires a new prospective amendment and may not be selected after viewing oscillation results.",
+  "status": "PASS_0100C1_TOP_LEVEL_ASSET_IDENTITIES_LOCKED_NONTERMINAL"
+}
