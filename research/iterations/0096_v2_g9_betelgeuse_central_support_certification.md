@@ -11,10 +11,13 @@ Classification: `PASS_V2_G9_BETELGEUSE_CENTRAL_SUPPORT_50MAS`
 - final job: `102416721251`
 - authoritative artifact: `nmir-v2-g9-0096-authoritative`
 - artifact ID: `10097881579`
-- downloaded ZIP SHA256: `b91a51170695ed921aafc6d79e14d337395df5c9eac78366359629fee20cbfeb`
-- inner `g9_0096_result.json` SHA256: `423ac94b9c4558c5aa7a0337b68a0edbb5d02490d5da083564b45ade6a92f5ca`
+- GitHub artifact digest / independently reproduced downloaded ZIP SHA256: `e75126cfe3d5a2f6ea90feb57d2d7873300c8da06134938c5d7bfd8e3f129ee7`
+- inner `g9_0096_result.json` SHA256: `be3b85c526e02447ca903600d9776b1c9241f67c7a29705493d5e81fac4b8299`
 - parent ray evaluator blob: `4bedc9431b428292f1b09613f603bea82597f9b5`
 - Model S blob: `e3a0fad3ff877338aad926dbd0a9a43e6c0a897f`
+
+### Hash correction note
+The first immutable-record draft accidentally copied two hashes from an earlier local artifact-handling state (`b91a5117...` ZIP and `423ac94b...` inner JSON). They are superseded by the values above, which were re-derived from artifact ID `10097881579` after run completion. The ZIP SHA256 now exactly matches GitHub's own artifact `digest`, and the inner JSON SHA256 exactly matches the parent hash independently recorded by the successful 0097 workflow when it downloaded the authoritative 0096 artifact. This correction changes no science result, grid, family, status, or threshold.
 
 ## Frozen family and grids
 The primary scan contained exactly 36 prospectively frozen families:
