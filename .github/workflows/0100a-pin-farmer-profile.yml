@@ -1,0 +1,76 @@
+name: 0100a pin Farmer source profile
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0100a_farmer_source_profile_pinning.md'
+      - 'scripts/pin_0100a_farmer_profile.py'
+      - 'tests/test_pin_0100a_farmer_profile.py'
+      - '.github/workflows/0100a-pin-farmer-profile.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-pinning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout frozen pinning code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run deterministic parser unit tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0100a_farmer_profile.py
+
+      - name: Download frozen Farmer 25 Msun final-profile archive
+        run: |
+          mkdir -p external/0100a
+          curl --fail --location --retry 5 --retry-delay 5 --retry-all-errors \
+            'https://zenodo.org/records/2641723/files/25_final_profiles.tar.gz?download=1' \
+            --output external/0100a/25_final_profiles.tar.gz
+          ls -lh external/0100a/25_final_profiles.tar.gz
+
+      - name: Verify top-level published archive MD5
+        run: |
+          echo '762af1b62365fbe15c102fbf6f2f9142  external/0100a/25_final_profiles.tar.gz' | md5sum --check --strict
+
+      - name: Pin exact internal MESA profile and normalize rho-Ye-radius
+        env:
+          PYTHONPATH: .
+        run: |
+          python scripts/pin_0100a_farmer_profile.py \
+            --archive external/0100a/25_final_profiles.tar.gz \
+            --output-dir artifacts/0100a \
+            | tee artifacts/0100a/run_stdout.json
+
+      - name: Assert non-terminal provenance guard
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('artifacts/0100a/source_profile_lock.json')
+          result = json.loads(p.read_text(encoding='utf-8'))
+          assert result['status'] == 'PASS_0100A_PROFILE_MEMBER_PINNED_NONTERMINAL'
+          assert result['terminal_physics_execution_allowed'] is False
+          assert result['archive']['observed_md5'] == '762af1b62365fbe15c102fbf6f2f9142'
+          assert result['model_token'] == '25_79_0p005_ml'
+          assert result['summary']['zone_count'] >= 32
+          PY
+
+      - name: Upload source-profile pinning artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-benchmark-0100a-farmer-profile-pin
+          path: |
+            artifacts/0100a/source_profile.csv
+            artifacts/0100a/source_profile_lock.json
+            artifacts/0100a/run_stdout.json
+          if-no-files-found: error
