@@ -99,8 +99,13 @@ def authority_state() -> dict:
         "0104_parameter_range_lock": ROOT / "research/locks/0104_light_mediator_terminal_lock.json",
     }
     present = {key: path.is_file() for key, path in locks.items()}
+    present_count = sum(present.values())
+    required_count = len(present)
     return {
         "locks_present": present,
+        "locks_present_count": present_count,
+        "locks_required_count": required_count,
+        "terminal_authority_lock_percent": round(100.0 * present_count / required_count, 1),
         "terminal_known_model_sweep_ready": all(present.values()),
     }
 
@@ -131,6 +136,7 @@ def run_audit() -> dict:
         "interpretation": {
             "execution_framework_ready_meaning": "all frozen benchmark slots 0100-0104 have the required repository apparatus and executable mathematical guards",
             "terminal_sweep_ready_meaning": "all externally required terminal authority locks are prospectively committed",
+            "terminal_authority_lock_percent_meaning": "fraction of the five prospectively required external authority lock files currently committed; not a probability that the physics model is correct",
             "blocked_is_not_fail": True,
         },
     }
