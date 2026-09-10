@@ -1,0 +1,47 @@
+name: NMIR v2 0105a5b R1b DeepCore machine-schema audit
+
+on:
+  push:
+    branches:
+      - research/0105-bsm-residual-reconstruction
+    paths:
+      - '.github/workflows/0105a5b-r1b-deepcore-machine-schema.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dedicated frozen tests
+        run: python -m pytest -q tests/test_audit_0105a5b_r1b_deepcore_machine_schema.py
+      - name: Execute exact frozen R1b audit
+        run: python scripts/audit_0105a5b_r1b_deepcore_machine_schema.py --output-dir artifacts/0105a5b_r1b
+      - name: Record exact execution provenance and hashes
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p artifacts/0105a5b_r1b
+          printf '%s\n' "${GITHUB_SHA}" > artifacts/0105a5b_r1b/execution_commit.txt
+          printf '%s\n' "${GITHUB_RUN_ID}" > artifacts/0105a5b_r1b/run_id.txt
+          printf '%s\n' "${GITHUB_JOB}" > artifacts/0105a5b_r1b/job_name.txt
+          if [ -f artifacts/0105a5b_r1b/deepcore_r1b_machine_schema_audit.json ]; then
+            sha256sum artifacts/0105a5b_r1b/deepcore_r1b_machine_schema_audit.json > artifacts/0105a5b_r1b/inner_sha256.txt
+          fi
+      - name: Upload immutable raw authority artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0105a5b-r1b-deepcore-machine-schema-${{ github.run_id }}
+          path: artifacts/0105a5b_r1b/
+          if-no-files-found: error
+          retention-days: 90
