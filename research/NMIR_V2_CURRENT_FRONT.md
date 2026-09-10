@@ -34,62 +34,51 @@ Frozen Stage-A authority: `10.7910/DVN/B4RITM`, release 1.0. QKL28Z remains a se
 - 0105a4d Saved Original byte lock: PASS; immutable result commit `5c7f788097e3371c4414db9cca39e02fc2ec41d4`.
 - 0105a5 exact-byte method/extract authority: PASS, NONDISCOVERY.
 - 0105a5a metadata/runinfo/Table-III authority: PASS, NONDISCOVERY.
-- R1b machine-schema/structure audit: classified BLOCKED at `BLOCKED_0105A5B_R1B_MC_COORDINATES_OUTSIDE_OBSERVED_GRID`; immutable result commit `fb673580636a795e9fda22af54edc8498b758b1c`.
+- R1b machine-schema/structure audit: historical BLOCKED at `BLOCKED_0105A5B_R1B_MC_COORDINATES_OUTSIDE_OBSERVED_GRID`; immutable result commit `fb673580636a795e9fda22af54edc8498b758b1c`.
+- R1c coordinate-semantics authority: `PASS_0105A5B_R1C_COORDINATE_SEMANTICS_AUTHORITY_NONDISCOVERY`; immutable record commit `ca6dff2338196b655be6ae8d3b575fa8179998c4`. Authority-bin mapping run/job/artifact `34451303840/102787437641/10141644643` validated exact `2 x 10 x 10` support without tolerance/rounding repair.
 
-## R1c coordinate-semantics authority — PASS
+## R1d external computational authority — BLOCKED
 
-Classification: `PASS_0105A5B_R1C_COORDINATE_SEMANTICS_AUTHORITY_NONDISCOVERY`.
+Frozen preregistration: `research/prereg/0105a5b_r1d_deepcore_external_computational_authority_preregistration.md`, commit `19f4db34117256529e475a7f5e514614899a9f04`.
 
-The authoritative B4RITM v1.0 README states that reconstructed variables are provided in the analysis binning such that events fall into the midpoint of their bin, gives exact energy/coszen/PID bin boundaries, and states that MC reconstructed variables follow the same convention as `data.csv`.
+Classification: `BLOCKED_0105A5B_R1D_EXTERNAL_COMPUTATIONAL_AUTHORITY_INCOMPLETE`.
 
-Evidence bundle:
-- head `02e7057e15b9362d6155584060a97f0b2a7fca0e`;
-- run/job `34446592643/102772608169`;
-- artifact `10139878085`;
-- ZIP SHA256 `c4e9450e772f07ca3c18a3ffb5db0f4ae972b00592ee032f501a61b4a8cc203a`;
-- inner evidence JSON SHA256 `2fcd8103d25a4a53cc2cbf64539a8710242d33d6f58e2ba9ae402039d7b4a08f`.
+Stage-2 hosted evidence:
+- execution head `66e90f5cc14d24a41eea10d44d13fed206b35884`;
+- run/job `34456783644/102804927331`;
+- artifact `10143804090`;
+- tests `3 passed`;
+- provider and independently downloaded ZIP SHA256 `456592cb8a88092d44e9300e7e4bebc725f73b8de04d8a9024ff4eb327b35c41`;
+- inner result JSON SHA256 `8ecf5f6e6c2e2b9dff647cd52ec6c304ec23fb276e43204e6892317c80e67db8`;
+- Barr source SHA256 `f128800ae1eb18fb58c27ce91941b726f1bbf42a7f7ac17a273664f3a81da0f7`;
+- CSMS source SHA256 `274b459c38d54c7b874a3353c622f9c807a1e55dcd2fc27214541e2d9f6015ce`;
+- Sibyll/MCEq source SHA256 `f31660851e50c140ea03f932141a1a61b6a2634e103a037305f7748d7f03eedb`.
 
-Before executing a mapping, amendment `research/prereg/0105a5b_r1c_amendment_01_authority_derived_bin_index_mapping.md` froze the rule as strict interior containment in the authority-published bin boundaries, independently on PID, reco-coszen and reco-energy. No tolerance, nearest-neighbour, clipping, rounding repair or residual-selected convention is permitted.
+The allowed authority chain establishes upstream Barr/MCEq physics and GENIE-versus-CSMS semantics, but does not provide a literal provider-backed complete implementation contract for all seven released directions `BarrWP/WM/YP/YM/ZP/ZM` and `DIS-CSMS`. In particular, mnemonic inference from W/Y/Z and P/M is forbidden; the exact event-level DIS-CSMS interpolation/reweighting implementation is also not recovered from allowed authority. Missing authority is BLOCKED, not permission to invent or drop a nuisance.
 
-Authoritative mapping execution:
-- prereg amendment commit `1da3021dbcf5d9372012e8c392910d8830873c4a`;
-- implementation `563b96c74f983c4adad61a8f5df9f3643a3aeeec`;
-- tests `59a5c46f6a366df5a74886418f1a130ca5ce91a2`;
-- workflow/head `aba34f036b8ded092aec19ac24b1b8690de9a9c2`;
-- run/job `34451303840/102787437641`;
-- artifact `10141644643`;
-- provider and independently downloaded ZIP SHA256 `4e0e7ca4bd9edce950cb8890cc58cca8bdf99624b9993780c83ac3b16e86ef6a`;
-- inner result JSON SHA256 `3391f2319a3876f16fb63cc45865c7f2c952658953b13853b4fa950f5626fd0f`;
-- dedicated tests: 3 passed.
-
-All frozen structural checks passed: 200 observed rows, 200 observed coordinate tuples, 200 native-MC coordinate tuples, 200 unique authority-bin keys on each side, exact equality of the two key sets and exact `2 x 10 x 10` support. The observed PID label `0.88` and native-MC label `0.875` both map to the authority-defined upper PID interval `(0.75,1.0)` without rounding or tolerance.
-
-Immutable R1c record: `research/iterations/0105a5b_r1c_deepcore_coordinate_semantics_pass.md`, record commit `ca6dff2338196b655be6ae8d3b575fa8179998c4`.
+Immutable record: `research/iterations/0105a5b_r1d_stage2_external_authority_blocked.md`, record commit `e7e8b3df98bdb584844430398bda1fd281c2eff0`.
 
 ## Current authorization
 
-R1c resolves the coordinate-semantics blocker, but standalone DeepCore standard-3nu/null reproduction remains forbidden because seven external computational authorities are unresolved: `BarrWP`, `BarrWM`, `BarrYP`, `BarrYM`, `BarrZP`, `BarrZM`, and `DIS-CSMS`.
+R1d BLOCKED means a conformance implementation of the seven external DeepCore nuisance transformations is not authorized. Standalone DeepCore standard-3nu/null reproduction therefore remains BLOCKED upstream of likelihood construction.
 
-Their next authority gate is prospectively frozen in `research/prereg/0105a5b_r1d_deepcore_external_computational_authority_preregistration.md`, commit `19f4db34117256529e475a7f5e514614899a9f04`.
-
-COHERENT complete byte authority remains transport-blocked at 0105a3.
+COHERENT complete byte authority remains transport-blocked at 0105a3 and is now the strongest independent authority-preserving actionable front.
 
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
 
 ## Exact next gates
 
-1. Execute R1d authority/provenance audit for all six Barr/MCEq directions plus DIS-CSMS against B4RITM v1.0, the exact IceCube PRD 108, 012014 / arXiv:2304.12236 authority, and only upstream sources explicitly cited there.
-2. R1d may not build an oscillated expectation or likelihood. Missing source/version/semantics is BLOCKED, not permission to drop a nuisance.
-3. Only an R1d PASS may open a separately preregistered conformance implementation of those seven transformations; standalone standard-3nu reproduction still comes after that.
-4. In parallel, only authority-preserving COHERENT 0105a3 transport recovery is permitted.
-5. Do not inspect or fit any observed BSM/model-agnostic residual.
+1. Recover COHERENT 0105a3 transport without changing the frozen 37-file source set, official collaboration->Zenodo provenance, or scientific criteria; consume any existing terminal/running workflow before launching a replacement.
+2. For DeepCore, only a new prospectively frozen external-authority acquisition gate may attempt to resolve the exact seven-direction transformation contract. R1d itself is terminal BLOCKED under its frozen source chain.
+3. Do not implement or fit DeepCore 3nu likelihood until complete nuisance authority/conformance is independently PASS.
+4. Do not inspect or fit any observed BSM/model-agnostic residual.
 
 ## Readiness accounting
 
 - DeepCore B4RITM byte authority: 100%.
 - R1b: 100% classified, historical BLOCKED.
 - R1c coordinate semantics: 100% classified, PASS NONDISCOVERY.
-- R1d external computational authority: preregistered, not yet executed.
-- COHERENT complete byte lock: transport BLOCKED.
+- R1d external computational authority: 100% classified, BLOCKED.
+- COHERENT complete byte lock: transport BLOCKED, actionable recovery remains.
 - NMIR v2 discovery-readiness: **48%** on the current stable scale.
 - `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
