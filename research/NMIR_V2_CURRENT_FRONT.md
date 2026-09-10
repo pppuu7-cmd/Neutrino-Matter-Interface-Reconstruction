@@ -34,6 +34,30 @@ Observed BSM residual execution remains forbidden until a dedicated prospective 
 - calibration dataset `10.13139/OLCF/1969085` and secondary mirrors were not substituted.
 - immutable recovery record: `research/iterations/0105a3_coherent_direct_byte_lock_recovery_pass_20260910.md`.
 
+#### Post-byte-lock SM/null semantics front
+
+0105a6c classified the official publication/release material as insufficient for an exact analyst-free likelihood implementation; exact elementary objective plus nuisance penalty/coupling/correlation wiring remains missing, so numerical SM/null reproduction is not yet authorized.
+
+The later Ar transport-recovery subchain 0105a6f/0105a6g remained provider-transport BLOCKED. 0105a6h then used the prospectively frozen `Newtrinos-org/Newtrinos.jl` commit `fa87689ddedae1929e33d66ad1f0efa1b7cce206` only as an untrusted byte carrier, with acceptance requiring exact equality to already-authoritative 0105a3 size+MD5+SHA256 identities.
+
+0105a6h authoritative hosted result:
+- execution head `1ab1f0acc91c13d4e3075661c55af513fac4a0d7`;
+- run/job `34489395472/102911871576`;
+- artifact `10157049923`;
+- dedicated guards `5 passed`;
+- provider and independently downloaded ZIP SHA256 `670099bbc11e28ccb3a083d73bb8affcd5cec2c1a98f53614b2f9b3ca765a5da`;
+- inner `result.json` SHA256 `68c3bd83e9a26de0bc3dac14b1c4fde396d23c7bf4e780fa5046c8219413c340`.
+
+Frozen four-file outcome:
+- `LArParametersAnlA.yaml`: `ACCEPTED_AS_OFFICIAL_BYTE_EQUIVALENT`, SHA256 `a206a77220436d0173c4783ae8fddeab97adf5e144f3d65005eff0870257693e`;
+- `CENNS10AnlAEfficiency.txt`: `ACCEPTED_AS_OFFICIAL_BYTE_EQUIVALENT`, SHA256 `21ce25451c1ed552752ff4a22496deab3ff5dba178bf360813eaff1d25be89e2`;
+- `readYAMLParameters.py`: carrier path returned HTTP 404;
+- `PlotExtractedData.C`: carrier path returned HTTP 404.
+
+Classification: **`BLOCKED_0105A6H_SEMANTIC_FILE_BYTE_EQUIVALENCE_INCOMPLETE`** (`2/4` accepted). This is transport/authority BLOCKED, not a Standard-Model scientific FAIL and not BSM evidence. The two accepted files may be read semantically because their bytes are exactly equal to 0105a3 identities; scientific authority remains the official COHERENT Zenodo release, not the carrier.
+
+Immutable result record: `research/iterations/0105a6h_argon_content_addressed_semantic_file_recovery.md`, record commit `2767e5e24b54a009012a15fd8262445d345f0da2`.
+
 ### DeepCore B4RITM
 
 Frozen Stage-A authority: `10.7910/DVN/B4RITM`, release 1.0. QKL28Z remains a separate sterile-control authority and is forbidden as a substitute.
@@ -68,7 +92,7 @@ Immutable record: `research/iterations/0105a5b_r1d_stage2_external_authority_blo
 
 ## Current authorization
 
-COHERENT event-release byte authority is now closed at 0105a3, so the next authority-preserving COHERENT step may prospectively recover likelihood/response/nuisance semantics and reproduce the Standard-Model CEvNS null. This does **not** authorize a BSM residual scan.
+COHERENT event-release byte authority is closed at 0105a3, but exact likelihood semantics are still incomplete. The 0105a6h partial byte recovery does not authorize numerical SM/null reproduction: two frozen Ar semantic code files remain unavailable under the currently validated transport chain.
 
 R1d BLOCKED still means a conformance implementation of the seven external DeepCore nuisance transformations is not authorized. Standalone DeepCore standard-3nu/null reproduction therefore remains BLOCKED upstream of likelihood construction.
 
@@ -76,18 +100,20 @@ R1d BLOCKED still means a conformance implementation of the seven external DeepC
 
 ## Exact next gates
 
-1. Prospectively freeze a COHERENT post-byte-lock semantics/null-reproduction gate. It may inspect authority/companion/configuration material needed to reconstruct the published SM CEvNS likelihood and nuisance model, while keeping any BSM/model-agnostic residual scan locked.
-2. Reproduce the COHERENT Standard-Model/null expectation only after that gate has frozen exact inputs, observable/binning, detector response, backgrounds, nuisance parameters, statistic and numerical tolerances.
-3. For DeepCore, only a new prospectively frozen external-authority acquisition gate may attempt to resolve the exact seven-direction transformation contract. R1d itself is terminal BLOCKED under its frozen source chain.
-4. Do not implement or fit DeepCore 3nu likelihood until complete nuisance authority/conformance is independently PASS.
-5. Do not inspect or fit any observed BSM/model-agnostic residual until the parent 0105 unlock conditions are independently satisfied.
+1. COHERENT: prospectively recover the two still-missing exact official Ar semantic byte identities `readYAMLParameters.py` and `PlotExtractedData.C` without changing their 0105a3 size+MD5+SHA256 acceptance criteria. A restored official Zenodo direct-provider route is preferred; otherwise any alternate carrier must be frozen prospectively and treated only as transport, never authority.
+2. Only after exact byte recovery, run a field-by-field likelihood-semantics completeness audit. If elementary objective or nuisance wiring remains undocumented, classify BLOCKED rather than inventing a Poisson/chi-square/interpolation convention.
+3. Reproduce the COHERENT Standard-Model/null expectation only after exact inputs, observable/binning, detector response, backgrounds, nuisance parameters, statistic and numerical tolerances are prospectively frozen and authority-complete.
+4. For DeepCore, only a new prospectively frozen external-authority acquisition gate may attempt to resolve the exact seven-direction transformation contract. R1d itself is terminal BLOCKED under its frozen source chain.
+5. Do not implement or fit DeepCore 3nu likelihood until complete nuisance authority/conformance is independently PASS.
+6. Do not inspect or fit any observed BSM/model-agnostic residual until the parent 0105 unlock conditions are independently satisfied.
 
 ## Readiness accounting
 
 - COHERENT complete event-release byte authority: **100% PASS NONTERMINAL**.
+- COHERENT post-byte-lock exact likelihood/SM-null authority layer: **BLOCKED**, with 0105a6h transport recovery at `2/4` named Ar semantic files.
 - DeepCore B4RITM byte authority: 100%.
 - R1b: 100% classified, historical BLOCKED.
 - R1c coordinate semantics: 100% classified, PASS NONDISCOVERY.
 - R1d external computational authority: 100% classified, BLOCKED.
-- NMIR v2 discovery-readiness: **48% retained on the current stable scale**. The resolved transport block is recorded as a real authority advance, but this scalar is not increased until the next substantive SM/null or complete nuisance-authority layer closes; this avoids double-counting a retry as a physics/discovery advance.
+- NMIR v2 discovery-readiness: **48% retained on the current stable scale**. Partial transport recovery and correctly preserved negative classifications do not create a new standalone SM/null scientific capability and therefore do not increase this scalar.
 - `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
