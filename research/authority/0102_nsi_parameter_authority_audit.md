@@ -54,6 +54,12 @@ where `Y_n(r)=N_n(r)/N_e(r)`.
 
 This equation exposes the medium-transfer requirement explicitly.
 
+Under the declared approximation of electrically neutral nucleonic matter, the already-pinned stellar electron fraction is sufficient to reconstruct the required neutron/electron ratio algebraically:
+
+`Y_n(r) = [1-Ye(r)] / Ye(r)`.
+
+Therefore quark-level NSI are not fundamentally impossible in NMIR. They require two additional conditions: (1) the external authority must identify the underlying `epsilon^{u,V}` and/or `epsilon^{d,V}` rather than only an Earth-effective combination, and (2) the 0102 implementation must be prospectively amended from a spatially constant `epsilon` matrix to the composition-dependent `epsilon_eff(r)` above. The present frozen constant-epsilon implementation does not silently perform that extension.
+
 ## Finding 3 — electron-only vector NSI is the cleanest terminal branch for the existing NMIR source authority
 
 For an electron-only vector interaction,
@@ -64,7 +70,7 @@ so
 
 `epsilon_eff_ab(r) = epsilon^{e,V}_ab`.
 
-The NSI matrix is then independent of `Y_n(r)` and multiplies the already-authorized electron-density potential `V_CC(r) = sqrt(2) G_F N_e(r)`. This maps directly onto the frozen 0102 `A_CC * epsilon` implementation without inferring a new stellar neutron profile.
+The NSI matrix is then independent of `Y_n(r)` and multiplies the already-authorized electron-density potential `V_CC(r) = sqrt(2) G_F N_e(r)`. This maps directly onto the frozen 0102 `A_CC * epsilon` implementation without adding a composition-dependent Hamiltonian term.
 
 This is a stronger interface match than importing Earth-effective coefficients.
 
