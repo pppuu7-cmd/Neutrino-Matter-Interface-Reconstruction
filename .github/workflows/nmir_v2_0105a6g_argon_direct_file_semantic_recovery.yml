@@ -1,5 +1,6 @@
 name: NMIR v2 0105a6g Ar direct-file semantic recovery
 
+# Transport-only retry trigger 2026-09-10; frozen scientific criteria, provider URLs and byte identities unchanged.
 on:
   push:
     branches:
