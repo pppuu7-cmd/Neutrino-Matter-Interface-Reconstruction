@@ -21,9 +21,41 @@ Observed BSM residual execution is forbidden until a prospective unlock gate exp
 ## COHERENT authority state
 
 - 0105a2 collaboration/ORNL -> Zenodo provenance: PASS.
-- 0105a3 complete 37-file direct byte lock: transport BLOCKED in its recorded hosted execution.
-- Do not substitute calibration dataset `10.13139/OLCF/1969085` for CEvNS event releases and do not use a secondary mirror without a new prospective authority rule.
-- Authority-preserving 0105a3 transport recovery is the strongest currently actionable independent front after R1d terminal classification.
+- 0105a3 complete 37-file official Zenodo direct byte lock: PASS NONTERMINAL after authority-preserving retry; run/attempt/job `34418207408/3/102834981270`, artifact `10147580844`, normalized manifest SHA256 `5ccaea9ae1b59cb60d0db0a28b98a334d8fb32fb39a436301126a32fcd523091`.
+- Frozen split: CsI `13/13`, Ar `24/24`; provider MD5 plus computed SHA256 recorded for every file.
+- Do not substitute calibration dataset `10.13139/OLCF/1969085` for the CEvNS event releases.
+
+### Post-byte-lock likelihood/null semantics
+
+0105a6c established that the presently recovered official publication/release material does not yet provide an analyst-free complete likelihood implementation contract. Numerical SM/null reproduction therefore remains unauthorized.
+
+Ar semantic transport subchain:
+- 0105a6f/0105a6g: official-provider transport BLOCKED in their recorded executions.
+- 0105a6h: prospectively frozen content-addressed transport recovery using `Newtrinos-org/Newtrinos.jl` commit `fa87689ddedae1929e33d66ad1f0efa1b7cce206` only as an untrusted byte carrier. Acceptance required exact equality to 0105a3 size+MD5+SHA256 identities.
+
+0105a6h authoritative execution:
+- head `1ab1f0acc91c13d4e3075661c55af513fac4a0d7`;
+- run/job `34489395472/102911871576`;
+- artifact `10157049923`;
+- guards `5 passed`;
+- provider and independent ZIP SHA256 `670099bbc11e28ccb3a083d73bb8affcd5cec2c1a98f53614b2f9b3ca765a5da`;
+- inner result SHA256 `68c3bd83e9a26de0bc3dac14b1c4fde396d23c7bf4e780fa5046c8219413c340`.
+
+Outcome: `2/4` exact byte identities recovered.
+- `LArParametersAnlA.yaml`: PASS byte equivalence, SHA256 `a206a77220436d0173c4783ae8fddeab97adf5e144f3d65005eff0870257693e`.
+- `CENNS10AnlAEfficiency.txt`: PASS byte equivalence, SHA256 `21ce25451c1ed552752ff4a22496deab3ff5dba178bf360813eaff1d25be89e2`.
+- `readYAMLParameters.py`: HTTP 404 at frozen carrier path.
+- `PlotExtractedData.C`: HTTP 404 at frozen carrier path.
+
+Classification: `BLOCKED_0105A6H_SEMANTIC_FILE_BYTE_EQUIVALENCE_INCOMPLETE`. This is transport/authority BLOCKED, not scientific FAIL and not BSM evidence.
+
+Immutable record: `research/iterations/0105a6h_argon_content_addressed_semantic_file_recovery.md`, record commit `2767e5e24b54a009012a15fd8262445d345f0da2`.
+
+The exact missing Ar byte identities remain:
+- `readYAMLParameters.py`: size `1814`, MD5 `708becd2d56cec1c2e672038581b8c7c`, SHA256 `3f1660c54987b9d87f47eda2d19306c2fd061ada72cfb7d3857d996164dd3cd6`.
+- `PlotExtractedData.C`: size `14020`, MD5 `1161762465460efdda35d4494a0d8547`, SHA256 `c669946d425148fab271d97f99d079b83dbd8f060fea3dd57ac7e00ebecf7d5f`.
+
+No semantic reconstruction, analogous code substitution, newline normalization or hand-written replacement is permitted.
 
 ## DeepCore authority state
 
@@ -53,25 +85,19 @@ Authoritative Stage-2 evidence:
 - CSMS 2011 source SHA256 `274b459c38d54c7b874a3353c622f9c807a1e55dcd2fc27214541e2d9f6015ce`;
 - Sibyll/MCEq 2019 source SHA256 `f31660851e50c140ea03f932141a1a61b6a2634e103a037305f7748d7f03eedb`.
 
-The allowed source chain establishes the upstream physical meaning of Barr/MCEq uncertainty construction and the GENIE/GRV98-to-CSMS variation, but it does not provide the complete literal provider-backed implementation contract required by the frozen gate for all seven released nuisance columns `BarrWP/WM/YP/YM/ZP/ZM` and `DIS-CSMS`.
-
-No mnemonic W/Y/Z or P/M mapping is inferred. No undocumented event-level DIS-CSMS interpolation is invented. Missing transformation authority remains BLOCKED; nuisance deletion or manual substitution is forbidden.
+The allowed source chain establishes upstream physical meaning but not the complete literal provider-backed implementation contract for `BarrWP/WM/YP/YM/ZP/ZM` and `DIS-CSMS`. Do not infer mnemonic mappings, invent interpolation, or drop nuisances.
 
 Immutable record: `research/iterations/0105a5b_r1d_stage2_external_authority_blocked.md`, record commit `e7e8b3df98bdb584844430398bda1fd281c2eff0`.
 
-## Consequence / current blocker
-
-A DeepCore seven-direction nuisance conformance implementation is not authorized by R1d. Therefore standalone DeepCore standard-3nu reproduction remains upstream-BLOCKED and no observed residual may be built.
-
-A future DeepCore recovery must begin with a new prospectively frozen external-authority acquisition gate using genuinely additional provider/implementation authority; it may not weaken or reinterpret R1d after the result.
-
 ## Exact next actions
 
-1. Consume any existing queued/in-progress/newly-terminal COHERENT 0105a3 transport workflow before starting new work.
-2. If no such work is running, repair only transport/runtime for the frozen 37-file official collaboration->Zenodo byte lock; source set, provenance and PASS/BLOCKED criteria remain unchanged.
-3. If transport succeeds, inspect raw artifact and exact hashes before classifying 0105a3; green CI alone is insufficient.
-4. Only after a complete COHERENT byte-lock PASS may a separately preregistered standalone SM CEvNS null-reproduction gate be opened.
-5. Do not build or inspect any observed BSM/model-agnostic residual.
+1. Consume any new terminal/running COHERENT semantic-transport workflow before starting a duplicate.
+2. Recover the two missing exact Ar semantic byte identities through a prospectively frozen transport-only route. Prefer restored official Zenodo direct delivery; any alternate carrier must be frozen before execution and contributes transport only, never authority.
+3. Validate raw artifact and independent hashes before classification; green CI is insufficient.
+4. Only after exact byte recovery may the likelihood-semantic completeness audit continue. Missing elementary likelihood/nuisance wiring remains BLOCKED rather than being reconstructed from convention.
+5. Only after authority-complete standalone COHERENT SM/null reproduction may any residual layer become eligible for a separate prospective unlock.
+6. DeepCore 3nu remains blocked until genuinely additional provider/implementation authority closes the seven-direction nuisance contract.
+7. Do not inspect or fit any observed BSM/model-agnostic residual.
 
 ## Stable guards
 
