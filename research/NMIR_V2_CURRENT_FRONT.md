@@ -24,7 +24,15 @@ Observed BSM residual execution remains forbidden until a dedicated prospective 
 ### COHERENT
 
 - 0105a2 official collaboration/ORNL semantic route to CsI Zenodo `1228631` and Ar Zenodo `3903810`: PASS.
-- 0105a3 prospectively frozen complete 37-file direct byte lock: transport BLOCKED in the recorded hosted execution. Calibration dataset `10.13139/OLCF/1969085` and secondary mirrors remain forbidden substitutes absent a new prospective rule.
+- 0105a3 prospectively frozen complete 37-file direct byte lock: **PASS NONTERMINAL** after authority-preserving transport retry.
+- successful run/attempt/job: `34418207408/3/102834981270`.
+- successful artifact: `10147580844`, `nmir-v2-0105a3-coherent-byte-lock`.
+- frozen release split: CsI `13/13`, Ar `24/24`.
+- every provider MD5 matched and an independent SHA256 was recorded for every file.
+- normalized manifest SHA256: `5ccaea9ae1b59cb60d0db0a28b98a334d8fb32fb39a436301126a32fcd523091`.
+- historical HTTP-504 transport block is retained as provenance; it is superseded as the current 0105a3 classification, not erased.
+- calibration dataset `10.13139/OLCF/1969085` and secondary mirrors were not substituted.
+- immutable recovery record: `research/iterations/0105a3_coherent_direct_byte_lock_recovery_pass_20260910.md`.
 
 ### DeepCore B4RITM
 
@@ -60,25 +68,26 @@ Immutable record: `research/iterations/0105a5b_r1d_stage2_external_authority_blo
 
 ## Current authorization
 
-R1d BLOCKED means a conformance implementation of the seven external DeepCore nuisance transformations is not authorized. Standalone DeepCore standard-3nu/null reproduction therefore remains BLOCKED upstream of likelihood construction.
+COHERENT event-release byte authority is now closed at 0105a3, so the next authority-preserving COHERENT step may prospectively recover likelihood/response/nuisance semantics and reproduce the Standard-Model CEvNS null. This does **not** authorize a BSM residual scan.
 
-COHERENT complete byte authority remains transport-blocked at 0105a3 and is now the strongest independent authority-preserving actionable front.
+R1d BLOCKED still means a conformance implementation of the seven external DeepCore nuisance transformations is not authorized. Standalone DeepCore standard-3nu/null reproduction therefore remains BLOCKED upstream of likelihood construction.
 
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
 
 ## Exact next gates
 
-1. Recover COHERENT 0105a3 transport without changing the frozen 37-file source set, official collaboration->Zenodo provenance, or scientific criteria; consume any existing terminal/running workflow before launching a replacement.
-2. For DeepCore, only a new prospectively frozen external-authority acquisition gate may attempt to resolve the exact seven-direction transformation contract. R1d itself is terminal BLOCKED under its frozen source chain.
-3. Do not implement or fit DeepCore 3nu likelihood until complete nuisance authority/conformance is independently PASS.
-4. Do not inspect or fit any observed BSM/model-agnostic residual.
+1. Prospectively freeze a COHERENT post-byte-lock semantics/null-reproduction gate. It may inspect authority/companion/configuration material needed to reconstruct the published SM CEvNS likelihood and nuisance model, while keeping any BSM/model-agnostic residual scan locked.
+2. Reproduce the COHERENT Standard-Model/null expectation only after that gate has frozen exact inputs, observable/binning, detector response, backgrounds, nuisance parameters, statistic and numerical tolerances.
+3. For DeepCore, only a new prospectively frozen external-authority acquisition gate may attempt to resolve the exact seven-direction transformation contract. R1d itself is terminal BLOCKED under its frozen source chain.
+4. Do not implement or fit DeepCore 3nu likelihood until complete nuisance authority/conformance is independently PASS.
+5. Do not inspect or fit any observed BSM/model-agnostic residual until the parent 0105 unlock conditions are independently satisfied.
 
 ## Readiness accounting
 
+- COHERENT complete event-release byte authority: **100% PASS NONTERMINAL**.
 - DeepCore B4RITM byte authority: 100%.
 - R1b: 100% classified, historical BLOCKED.
 - R1c coordinate semantics: 100% classified, PASS NONDISCOVERY.
 - R1d external computational authority: 100% classified, BLOCKED.
-- COHERENT complete byte lock: transport BLOCKED, actionable recovery remains.
-- NMIR v2 discovery-readiness: **48%** on the current stable scale.
+- NMIR v2 discovery-readiness: **48% retained on the current stable scale**. The resolved transport block is recorded as a real authority advance, but this scalar is not increased until the next substantive SM/null or complete nuisance-authority layer closes; this avoids double-counting a retry as a physics/discovery advance.
 - `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
