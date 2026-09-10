@@ -1,0 +1,75 @@
+name: 0105a4c pin DeepCore B4RITM 11-file bytes
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0105a4c_deepcore_b4ritm_corrected_11file_byte_lock_preflight.md'
+      - 'scripts/pin_0105a4c_deepcore_b4ritm_11file_bytes.py'
+      - 'tests/test_pin_0105a4c_deepcore_b4ritm_11file_bytes.py'
+      - '.github/workflows/0105a4c-pin-deepcore-b4ritm-11file-bytes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  byte-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout 0105a4c code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run deterministic authority and byte-lock tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0105a4c_deepcore_b4ritm_11file_bytes.py
+
+      - name: Hash exact frozen B4RITM 11-file release
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0105a4c
+          python scripts/pin_0105a4c_deepcore_b4ritm_11file_bytes.py \
+            --output-dir artifacts/0105a4c \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a4c/run_stdout.txt
+
+      - name: Assert corrected authority lock and non-discovery guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0105a4c/deepcore_b4ritm_11file_byte_manifest.json').read_text())
+          assert x['status'] == 'PASS_0105A4C_DEEPCORE_B4RITM_11FILE_BYTE_LOCK_NONDISCOVERY'
+          assert x['dataset_doi'] == '10.7910/DVN/B4RITM'
+          assert x['dataset_version'] == '1.0'
+          assert len(x['files']) == 11
+          assert x['gates']['live_metadata_exact_match']
+          assert x['gates']['exact_file_count_11']
+          assert x['gates']['all_provider_md5_match']
+          assert x['gates']['all_provider_sizes_match']
+          assert x['gates']['all_sha256_recorded']
+          assert x['binary_content_parsed'] is False
+          assert x['observed_residual_execution_allowed'] is False
+          assert x['bsm_interpretation_allowed'] is False
+          PY
+
+      - name: Upload manifest hashes and stdout only
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a4c-deepcore-b4ritm-11file-byte-lock
+          path: |
+            artifacts/0105a4c/deepcore_b4ritm_11file_byte_manifest.json
+            artifacts/0105a4c/manifest_sha256.txt
+            artifacts/0105a4c/run_stdout.txt
+          if-no-files-found: error
