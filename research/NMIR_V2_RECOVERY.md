@@ -1,90 +1,87 @@
-# NMIR v2 Recovery — known-progenitor G9 branch
+# NMIR v2 Recovery — 0105 residual-reconstruction front
 
-Last reconciled: 2026-09-09
+Last reconciled: 2026-09-10
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
+Authoritative branch: `research/0105-bsm-residual-reconstruction`
 
 ## Immutable parent
-NMIR v1 is closed at `NMIR_READINESS: 100%` under `research/NMIR_V1_READINESS_100_CONTRACT.md` and `research/iterations/0095_nmir_v1_readiness_100_closure.md`. Nothing in v2 relabels any v1 PASS/FAIL/BLOCKED classification.
 
-The v2 branch is motivated by the explicit scope guard in 0094: its generic-future-10-kpc-CCSN actionability FAIL is not a no-go for a specifically monitored nearby progenitor with pre-positioning or a different observer architecture.
+NMIR v1 remains closed at `NMIR_READINESS: 100%` under `research/RECOVERY.md` and `research/iterations/0095_nmir_v1_readiness_100_closure.md`. Do not relabel, reopen, or edit v1 scientific classifications from v2.
 
-## 0096 — Betelgeuse central-support certification
-Preregistration:
-- file `research/prereg/0096_v2_g9_betelgeuse_central_support_certification.md`
-- frozen prereg commit `5e8048a3d77b504bba6a79a077a1c9e153f8cb19`
+## v2 mandatory order
 
-Frozen source-position envelope:
-- Betelgeuse benchmark, already named prospectively in 0094;
-- `beta_target = 50 mas = 0.050 arcsec` radial envelope;
-- source-distance controls 190 pc and 222 pc from Harper et al. 2017;
-- neutrino-source radii 21 km and 100 km inherited from NMIR CCSN authority;
-- 3 inherited observer-distance controls x 3 receiver radii x 2 source distances x 2 source radii = 36 families;
-- 4097 fixed linear radial offsets per primary family over `[0,d_target(z)]`;
-- global worst primary family must be rerun on the fixed 8193-point sensitivity grid;
-- inherited 0090e/0090f ray-centric finite-source/finite-receiver evaluator only.
+`authority/provenance lock -> standalone SM/3nu/null reproduction -> nuisance-orthogonal residual construction -> model-agnostic low-complexity reconstruction -> mapping to frozen control families -> common microscopic operator consistency -> held-out prospective prediction`.
 
-Frozen terminal labels include `PASS_V2_G9_BETELGEUSE_CENTRAL_SUPPORT_50MAS`, `SCIENTIFIC_FAIL_V2_G9_BETELGEUSE_CENTRAL_SUPPORT_50MAS`, source-authority BLOCKED, and infrastructure FAIL.
+Observed BSM residual execution is forbidden until a prospective unlock gate explicitly permits it.
 
-Implementation provenance:
-- parent ray-centric evaluator blob pinned to `4bedc9431b428292f1b09613f603bea82597f9b5`;
-- initial implementation was performance-audited before any scientific result;
-- science grid was not changed; work was repartitioned from 9 large jobs into 36 one-family primary jobs and four deterministic sensitivity chunks whose union is exactly all 8193 frozen nodes;
-- current script commit `146b1ddace20f68e322fdb907da84928ca0e1cb2`;
-- current aggregator commit `02a00d64a50a2c38d10ca994fe5e50fcd07c35b9`;
-- current workflow commit/head `eff5996612f31c093e82a9ae0cdfdb859da8cb9a`.
+## Pre-data NONDISCOVERY results retained
 
-Authoritative 0096 Actions run:
-- workflow `0096 v2 G9 Betelgeuse central support`;
-- run id `34319781596`;
-- authoritative head `eff5996612f31c093e82a9ae0cdfdb859da8cb9a`.
+0105b/0105c/0105d/0105e remain their recorded PASS/NONDISCOVERY theoretical results. They are not evidence for BSM.
 
-Only that run is authoritative for the current 0096 implementation. Earlier transitional runs `34319282089`, `34319699247`, and `34319741478` must not be used for a terminal science verdict.
+## COHERENT authority state
 
-State at this reconciliation: primary family jobs are running/queued and no authoritative 0096 artifact has yet been produced. Do not infer PASS from preregistration, code, job progress, or the descriptive 0093 first crossing.
+- 0105a2 collaboration/ORNL -> Zenodo provenance: PASS.
+- 0105a3 complete 37-file direct byte lock: transport BLOCKED in its recorded hosted execution.
+- Do not substitute the calibration dataset `10.13139/OLCF/1969085` for the CEvNS event releases and do not use a secondary mirror without a new prospective authority rule.
 
-## 0097 — conditional Betelgeuse line-tracking architecture gate
-Preregistration:
-- file `research/prereg/0097_v2_g9_betelgeuse_line_tracking_architectures.md`
-- prereg commit `53863048c2d5b5803c9e120794c21fe415f1b319`
-- frozen before the 0096 result was known.
+## DeepCore authority state
 
-Execution condition:
-- run only if 0096 returns `PASS_V2_G9_BETELGEUSE_CENTRAL_SUPPORT_50MAS`;
-- otherwise terminally record `NOT_RUN_V2_G9_0097_PARENT_NOT_PASSED`;
-- 0097 may use only the preregistered 50-mas support even if 0096 later reveals a much wider numerical region.
+Frozen Stage-A authority is Harvard Dataverse `10.7910/DVN/B4RITM`, release 1.0. `10.7910/DVN/QKL28Z` is a separate sterile-control authority and is not a substitute.
 
-Architecture A: ideal active heliocentric line tracking over exactly 10 Julian years. Frozen source astrometry from Harper et al. 2017: `mu_alpha*cos(delta)=26.42 +/- 0.25 mas/yr`, `mu_delta=9.60 +/- 0.12 mas/yr`, conservative 2.4-mas cosmic-noise term per coordinate. Three-sigma propagated source-center authority must remain within 50 mas. Compute solar-gravity hover acceleration, ten-year ideal hover delta-v, transverse proper-motion tracking speed and acceleration. Finite kinematics is not engineering feasibility.
+- 0105a4 inventory: PASS.
+- 0105a4d Saved Original byte lock: PASS; record commit `5c7f788097e3371c4414db9cca39e02fc2ec41d4`.
+- 0105a5 exact-byte method/extract authority: PASS, NONDISCOVERY.
+- 0105a5a metadata/runinfo/Table-III authority: PASS, NONDISCOVERY.
+- R1b machine-schema audit: BLOCKED at `BLOCKED_0105A5B_R1B_MC_COORDINATES_OUTSIDE_OBSERVED_GRID`; record commit `fb673580636a795e9fda22af54edc8498b758b1c`.
 
-Architecture B: most favorable single passive circular heliocentric orbit whose plane contains the source-Sun line. Compute exact/linear crossing duration, two crossings per orbit, passive duty fraction and ideal equal-phase node count for continuous coverage. A pre-SN alert cannot rescue an observer already out of orbital phase.
+## R1c coordinate-semantics authority — authoritative PASS
 
-Implementation:
-- script `scripts/g9_betelgeuse_line_tracking_0097.py`, commit `a882aa0d0e02882499cd8bc0d945c89a479985dd`;
-- conditional workflow `.github/workflows/0097-v2-g9-betelgeuse-line-tracking.yml`, commit `b6ba9bb76fe31348a3228888db1ad207d468c283`;
-- automatic trigger is gated specifically to authoritative 0096 head `eff5996612f31c093e82a9ae0cdfdb859da8cb9a`, preventing superseded 0096 runs from launching 0097.
+Classification: `PASS_0105A5B_R1C_COORDINATE_SEMANTICS_AUTHORITY_NONDISCOVERY`.
 
-Constants frozen in implementation:
-- astronomical unit `149597870700 m`, exact under IAU 2012 Resolution B2;
-- nominal solar mass parameter `(GM)^N_sun = 1.3271244e20 m^3 s^-2`, exact nominal conversion constant under IAU 2015 Resolution B3.
+Authority-evidence execution:
+- head `02e7057e15b9362d6155584060a97f0b2a7fca0e`;
+- run/job `34446592643/102772608169`;
+- artifact `10139878085`;
+- ZIP SHA256 `c4e9450e772f07ca3c18a3ffb5db0f4ae972b00592ee032f501a61b4a8cc203a`;
+- inner evidence JSON SHA256 `2fcd8103d25a4a53cc2cbf64539a8710242d33d6f58e2ba9ae402039d7b4a08f`.
 
-Pre-result diagnostic only, not terminal authority: for z about 24 AU, 50 mas is about 870 km transverse radius; the frozen 10-year astrometric 3-sigma envelope evaluates to about 13.15 mas; ideal solar-gravity hover demand is about 3.2 km/s delta-v over 10 yr; a single circular passive orbit crosses the +/-50-mas corridor for only about 4.8 minutes per passage and has duty fraction about 1.54e-7. These values must not be promoted to the 0097 terminal result until the parent PASS and authoritative 0097 artifact exist.
+The byte-locked B4RITM README explicitly states that reconstructed variables are in the analysis binning, events fall into bin midpoints, gives exact energy/coszen/PID boundaries, and states MC follows the same convention as `data.csv`.
 
-## External authority already frozen
-- Harper et al., `An Updated 2017 Astrometric Solution for Betelgeuse`, arXiv:1706.06020: 2.4-mas cosmic noise, nominal 222 pc solution, 190 pc sensitivity solution, about 44-mas stellar angular diameter, proper-motion authority above.
-- KamLAND + Super-Kamiokande, `Combined Pre-Supernova Alert System with KamLAND and Super-Kamiokande`, arXiv:2404.09920: an operational combined pre-SN alert system; optimistic Betelgeuse-like model may provide warning up to about 12 h. This is context only, not proof that a spacecraft can be sent to 24 AU after the alert.
+Before mapping execution, amendment `research/prereg/0105a5b_r1c_amendment_01_authority_derived_bin_index_mapping.md` was frozen at commit `1da3021dbcf5d9372012e8c392910d8830873c4a`. Mapping is strict interior bin containment on each axis; no tolerance, nearest-neighbour, clipping, or rounding repair.
+
+Authoritative hosted mapping:
+- execution head `aba34f036b8ded092aec19ac24b1b8690de9a9c2`;
+- run/job `34451303840/102787437641`;
+- artifact `10141644643`;
+- provider and independently downloaded ZIP SHA256 `4e0e7ca4bd9edce950cb8890cc58cca8bdf99624b9993780c83ac3b16e86ef6a`;
+- inner result JSON SHA256 `3391f2319a3876f16fb63cc45865c7f2c952658953b13853b4fa950f5626fd0f`;
+- dedicated tests: 3 passed.
+
+All frozen 200-cell bijection checks passed. Observed PID `0.88` and MC PID `0.875` map to the same authority-defined upper interval `(0.75,1.0)` without numerical tolerance.
+
+Immutable record: `research/iterations/0105a5b_r1c_deepcore_coordinate_semantics_pass.md`, commit `ca6dff2338196b655be6ae8d3b575fa8179998c4`.
+
+## Current blocker / next authority gate
+
+Seven external computational dependencies remain unresolved and orthogonal to R1c:
+`BarrWP`, `BarrWM`, `BarrYP`, `BarrYM`, `BarrZP`, `BarrZM`, `DIS-CSMS`.
+
+R1d authority gate was prospectively frozen at commit `19f4db34117256529e475a7f5e514614899a9f04`, file `research/prereg/0105a5b_r1d_deepcore_external_computational_authority_preregistration.md`.
+
+R1d must establish exact semantics, upstream authority/version, inputs/units, nominal state, sign convention and authorized interpolation/reweighting rule for all seven dependencies. Missing authority is BLOCKED; fully specified transformations that cannot be evaluated from locked release inputs are structural FAIL. R1d computes no oscillated expectation, likelihood, nuisance fit or residual.
+
+Only an R1d PASS may open a separate conformance implementation gate. Standard-3nu reproduction remains downstream of that conformance gate.
 
 ## Exact next actions
-1. Inspect authoritative run `34319781596` only.
-2. When `nmir-v2-g9-0096-authoritative` exists, download and independently hash `g9_0096_result.json`.
-3. Verify 36 primary families, 4097 primary nodes per family, exactly 8193-node sensitivity union, global-worst-family identity, parent evaluator/blob provenance, and terminal status.
-4. Commit an immutable 0096 iteration record with run/job/artifact IDs and hashes.
-5. If and only if 0096 PASS, allow the already-preregistered 0097 workflow to execute and independently validate its artifact. If 0096 does not PASS, do not shrink the 50-mas envelope or substitute a different progenitor inside 0097.
-6. Only after 0097 is terminal decide prospectively whether a separate engineering-authority gate or a new MeV solar-transport authority gate is the highest-value v2 continuation.
 
-## Critical interpretation guards
-- Betelgeuse's ~44-mas photospheric diameter is not the neutrino-source size; the neutrino-emitting core remains the frozen 21/100-km physical source control.
-- A 50-mas PASS would certify only numerical central alignment support, not global 0093 topology.
-- Finite active stationkeeping kinematics is not spacecraft feasibility.
-- A pre-SN alert is not equivalent to post-alert ability to deploy to 24 AU.
-- Do not infer explosion timing/probability for Betelgeuse.
-- Do not reopen the v1 MeV solar-transport BLOCKED result without a new prospective authority route.
-- Never equate lens magnification with detector event gain, interaction gain, deposited energy, or useful power.
+1. Execute R1d against B4RITM v1.0 release-native README/example notebook, exact IceCube PRD 108, 012014 / arXiv:2304.12236 authority, and only upstream sources explicitly cited there.
+2. Preserve exact source bytes/checksums and commit an immutable R1d manifest/result note after hosted validation.
+3. In parallel, only authority-preserving COHERENT 0105a3 transport recovery is permitted; do not change the 37-file scientific source set.
+4. Do not build or inspect any observed residual.
+
+## Stable guards
+
+Green CI is not scientific PASS. Missing covariance/nuisance authority is BLOCKED, not permission to invent or delete a nuisance. Do not choose bins, nuisance conventions, normalizations, operator family, parameter range, or thresholds after residual inspection. Do not use generic Wilks thresholds absent demonstrated regularity. Preserve negative/BLOCKED results.
+
+`NMIR_V2_DISCOVERY_READINESS: 48%`
+`OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
