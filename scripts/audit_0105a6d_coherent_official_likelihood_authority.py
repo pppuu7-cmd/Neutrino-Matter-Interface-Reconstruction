@@ -9,7 +9,7 @@ TERMS = (
     "constraint", "profile", "nuisance", "covariance", "correlation", "minuit", "fitto",
 )
 MAX_TEXT_BYTES = 25_000_000
-UA = "NMIR-v2-0105a6d-authority-audit/1.0"
+UA = "NMIR-v2-0105a6d-authority-audit/1.1"
 
 
 def get(url):
@@ -25,8 +25,7 @@ def term_hits(text):
     lo = text.lower()
     out = {}
     for t in TERMS:
-        pat = re.escape(t.lower())
-        hits = [m.start() for m in re.finditer(pat, lo)]
+        hits = [m.start() for m in re.finditer(re.escape(t.lower()), lo)]
         if hits:
             out[t] = {"count": len(hits), "first_offsets": hits[:12]}
     return out
@@ -40,7 +39,7 @@ def decode_text(b):
         try: s = b.decode("latin-1")
         except Exception: return None
     printable = sum(ch.isprintable() or ch in "\r\n\t" for ch in s[:10000])
-    if s and printable / min(len(s),10000) < 0.90: return None
+    if s and printable / min(len(s), 10000) < 0.90: return None
     return s
 
 
@@ -67,10 +66,8 @@ def zenodo_record(record):
     return {"record": record, "metadata_url": meta_url, "metadata_sha256": sha256(meta_b), "files": files}
 
 
-def arxiv_source(arxiv_id):
-    b, resolved = get(f"https://export.arxiv.org/e-print/{arxiv_id}")
-    out = {"arxiv": arxiv_id, "resolved_url": resolved, "archive_size_bytes": len(b), "archive_sha256": sha256(b), "members": []}
-    # arXiv e-print may be tar(.gz) or a single source file.
+def parse_source_bytes(b):
+    members = []
     try:
         tf = tarfile.open(fileobj=io.BytesIO(b), mode="r:*")
         for m in tf.getmembers():
@@ -80,12 +77,38 @@ def arxiv_source(arxiv_id):
             mb = fh.read()
             text = decode_text(mb)
             if text is None: continue
-            out["members"].append({"path": m.name, "size_bytes": len(mb), "sha256": sha256(mb), "term_hits": term_hits(text)})
+            members.append({"path": m.name, "size_bytes": len(mb), "sha256": sha256(mb), "term_hits": term_hits(text)})
+        if members:
+            return "tar", members
     except tarfile.TarError:
-        text = decode_text(b)
-        if text is not None:
-            out["members"].append({"path": "single_source", "size_bytes": len(b), "sha256": sha256(b), "term_hits": term_hits(text)})
-    return out
+        pass
+    if b.startswith(b"%PDF-"):
+        return "pdf_not_source", []
+    text = decode_text(b)
+    if text is not None:
+        return "single_source", [{"path": "single_source", "size_bytes": len(b), "sha256": sha256(b), "term_hits": term_hits(text)}]
+    return "unrecognized_binary", []
+
+
+def arxiv_source(arxiv_id):
+    endpoints = (
+        f"https://export.arxiv.org/e-print/{arxiv_id}",
+        f"https://arxiv.org/e-print/{arxiv_id}",
+        f"https://export.arxiv.org/src/{arxiv_id}",
+        f"https://arxiv.org/src/{arxiv_id}",
+    )
+    attempts = []
+    for url in endpoints:
+        try:
+            b, resolved = get(url)
+            kind, members = parse_source_bytes(b)
+            attempt = {"requested_url": url, "resolved_url": resolved, "size_bytes": len(b), "sha256": sha256(b), "kind": kind, "member_count": len(members)}
+            attempts.append(attempt)
+            if members and kind in ("tar", "single_source"):
+                return {"arxiv": arxiv_id, "source_status": "PASS_SOURCE_BYTES", "resolved_url": resolved, "archive_size_bytes": len(b), "archive_sha256": sha256(b), "archive_kind": kind, "members": members, "attempts": attempts}
+        except Exception as e:
+            attempts.append({"requested_url": url, "error": type(e).__name__ + ": " + str(e)[:300]})
+    return {"arxiv": arxiv_id, "source_status": "BLOCKED_SOURCE_BYTES", "members": [], "attempts": attempts}
 
 
 def main():
@@ -107,6 +130,8 @@ def main():
         result["zenodo"][rec] = zenodo_record(rec)
     for aid in ARXIV_IDS:
         result["arxiv_sources"][aid] = arxiv_source(aid)
+    if any(v.get("source_status") != "PASS_SOURCE_BYTES" for v in result["arxiv_sources"].values()):
+        result["status"] = "BLOCKED_0105A6D_AUTHORITY_BYTE_MISMATCH_OR_TRANSPORT"
     raw = (json.dumps(result, indent=2, sort_keys=True) + "\n").encode()
     with open(args.output, "wb") as f: f.write(raw)
     print(raw.decode(), end="")
