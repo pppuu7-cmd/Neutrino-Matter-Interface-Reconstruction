@@ -1,0 +1,67 @@
+name: NMIR v2 0105a5b R1c authority bin mapping
+
+on:
+  push:
+    branches:
+      - research/0105-bsm-residual-reconstruction
+    paths:
+      - 'research/prereg/0105a5b_r1c_amendment_01_authority_derived_bin_index_mapping.md'
+      - 'scripts/audit_0105a5b_r1c_authority_bin_mapping.py'
+      - 'tests/test_audit_0105a5b_r1c_authority_bin_mapping.py'
+      - '.github/workflows/0105a5b-r1c-authority-bin-mapping.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mapping:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen test runtime
+        run: python -m pip install pytest
+      - name: Run dedicated R1c mapping tests
+        run: python -m pytest -q tests/test_audit_0105a5b_r1c_authority_bin_mapping.py
+      - name: Execute exact frozen R1c authority mapping
+        run: |
+          mkdir -p r1c_mapping_raw
+          python -m scripts.audit_0105a5b_r1c_authority_bin_mapping \
+            --output r1c_mapping_result.json \
+            --raw-dir r1c_mapping_raw
+          sha256sum r1c_mapping_result.json | tee r1c_mapping_result.sha256
+          find r1c_mapping_raw -type f -print0 | sort -z | xargs -0 sha256sum > r1c_mapping_raw.sha256
+      - name: Record execution provenance
+        if: always()
+        run: |
+          cat > execution_provenance.json <<EOF
+          {
+            "repository": "${GITHUB_REPOSITORY}",
+            "workflow": "${GITHUB_WORKFLOW}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "job": "${GITHUB_JOB}",
+            "head_sha": "${GITHUB_SHA}",
+            "ref": "${GITHUB_REF}",
+            "event": "${GITHUB_EVENT_NAME}",
+            "observed_bsm_residual_permission_percent": 0
+          }
+          EOF
+          sha256sum execution_provenance.json > execution_provenance.sha256
+      - name: Upload raw R1c mapping result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deepcore-0105a5b-r1c-authority-bin-mapping
+          path: |
+            r1c_mapping_result.json
+            r1c_mapping_result.sha256
+            r1c_mapping_raw/
+            r1c_mapping_raw.sha256
+            execution_provenance.json
+            execution_provenance.sha256
+          if-no-files-found: warn
