@@ -1,0 +1,67 @@
+name: NMIR v2 0105a6q4a Ar Neutrino-2020 poster count-law locator
+
+on:
+  push:
+    branches:
+      - research/0105-bsm-residual-reconstruction
+    paths:
+      - 'research/prereg/0105a6q4a_argon_neutrino2020_poster_count_law_locator_preregistration.md'
+      - 'scripts/audit_0105a6q4a_argon_neutrino2020_poster_count_law_locator.py'
+      - 'tests/test_0105a6q4a_argon_neutrino2020_poster_count_law_locator.py'
+      - '.github/workflows/nmir_v2_0105a6q4a_argon_neutrino2020_poster_count_law_locator.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  poster-locator:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          python -m pip install --disable-pip-version-check pytest
+      - name: Run frozen q4a guards
+        run: python -m pytest -q tests/test_0105a6q4a_argon_neutrino2020_poster_count_law_locator.py
+      - name: Recover exact q4 parent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/0105a6q4a/input/q4
+          gh api -H 'Accept: application/vnd.github+json' \
+            /repos/${GITHUB_REPOSITORY}/actions/artifacts/10168186403/zip \
+            > artifacts/0105a6q4a/input/q4.zip
+          echo '188f9c852533506c906cf39f591638a6db4812be8500e7dce953eca5c02aa1f3  artifacts/0105a6q4a/input/q4.zip' | sha256sum -c -
+          unzip -q artifacts/0105a6q4a/input/q4.zip -d artifacts/0105a6q4a/input/q4
+          echo '039bb01dc39021ce0c5a48995f9b4acbcac9a2762d9435acc0079ef81b5df396  artifacts/0105a6q4a/input/q4/result.json' | sha256sum -c -
+      - name: Execute frozen poster locator
+        run: |
+          set -o pipefail
+          PYTHONPATH=. python scripts/audit_0105a6q4a_argon_neutrino2020_poster_count_law_locator.py \
+            --parent-q4-result artifacts/0105a6q4a/input/q4/result.json \
+            --poster artifacts/0105a6q4a/input/JCZNeutrino2020CENNS10Landscape.pdf \
+            --output artifacts/0105a6q4a/result.json \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a6q4a/stdout.txt
+          sha256sum artifacts/0105a6q4a/result.json | tee artifacts/0105a6q4a/result_sha256.txt
+      - name: Remove source inputs before upload
+        if: always()
+        run: rm -rf artifacts/0105a6q4a/input
+      - name: Upload q4a result only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a6q4a-argon-neutrino2020-poster-count-law-locator
+          path: |
+            artifacts/0105a6q4a/result.json
+            artifacts/0105a6q4a/result_sha256.txt
+            artifacts/0105a6q4a/stdout.txt
+          if-no-files-found: warn
