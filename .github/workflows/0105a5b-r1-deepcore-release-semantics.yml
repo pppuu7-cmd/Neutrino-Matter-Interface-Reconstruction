@@ -1,0 +1,73 @@
+name: 0105a5b R1 DeepCore verified release semantics
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0105a5b_deepcore_3nu_null_reproduction_preflight.md'
+      - 'scripts/extract_0105a5b_deepcore_release_semantics.py'
+      - 'tests/test_extract_0105a5b_deepcore_release_semantics.py'
+      - '.github/workflows/0105a5b-r1-deepcore-release-semantics.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verified-doc-extraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout frozen 0105a5b R1 code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deterministic test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run byte-first and fail-closed tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_extract_0105a5b_deepcore_release_semantics.py
+
+      - name: Verify byte-locked docs then extract release semantics
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0105a5b_r1
+          python scripts/extract_0105a5b_deepcore_release_semantics.py --output-dir artifacts/0105a5b_r1 \
+            | tee artifacts/0105a5b_r1/run_stdout.txt
+
+      - name: Assert R1 documentation scope and residual lock
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0105a5b_r1/release_doc_extraction_manifest.json').read_text())
+          assert x['status'] == 'PASS_0105A5B_R1_VERIFIED_DOC_EXTRACTION_NONDISCOVERY'
+          assert x['dataset_doi'] == '10.7910/DVN/B4RITM'
+          assert x['all_doc_bytes_match_0105a4d'] is True
+          assert len(x['checks']) == 2
+          assert all(c['size_match'] and c['md5_match'] and c['sha256_match'] for c in x['checks'])
+          assert x['event_csv_opened'] is False
+          assert x['event_rows_parsed'] is False
+          assert x['observed_residual_execution_allowed'] is False
+          assert x['bsm_interpretation_allowed'] is False
+          PY
+
+      - name: Upload verified documentation audit only
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a5b-r1-deepcore-release-semantics
+          path: |
+            artifacts/0105a5b_r1/release_doc_extraction_manifest.json
+            artifacts/0105a5b_r1/manifest_sha256.txt
+            artifacts/0105a5b_r1/verified_readme.md
+            artifacts/0105a5b_r1/verified_example_code.py
+            artifacts/0105a5b_r1/verified_example_markdown.md
+            artifacts/0105a5b_r1/run_stdout.txt
+          if-no-files-found: error
