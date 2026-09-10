@@ -18,34 +18,36 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p probe
-
-          DB_BASE='https://journals.aps.org/prl/supplemental/10.1103/PhysRevLett.133.051801'
-          UA='Mozilla/5.0 NMIR-authority-probe/1.0'
+          UA='Mozilla/5.0 NMIR-authority-probe/1.1'
 
           echo '=== Daya Bay official supplemental payloads ===' | tee probe/summary.txt
-          for f in chiSquareMap_DayaBay_3158days.dat readme.pdf; do
-            url="$DB_BASE/$f"
-            echo "URL: $url" | tee -a probe/summary.txt
-            if curl -A "$UA" -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 120 "$url" -o "probe/$f"; then
-              bytes=$(wc -c < "probe/$f" | tr -d ' ')
-              sha=$(sha256sum "probe/$f" | awk '{print $1}')
-              echo "FETCH=PASS bytes=$bytes sha256=$sha" | tee -a probe/summary.txt
-            else
-              echo 'FETCH=FAIL' | tee -a probe/summary.txt
-            fi
+          for base in \
+            'https://journals.aps.org/prl/supplemental/10.1103/PhysRevLett.133.051801' \
+            'https://link.aps.org/supplemental/10.1103/PhysRevLett.133.051801'; do
+            for f in chiSquareMap_DayaBay_3158days.dat readme.pdf; do
+              tag=$(echo "$base" | sed 's#https://##; s#[^A-Za-z0-9]#_#g')
+              out="probe/${tag}_${f}"
+              url="$base/$f"
+              echo "URL: $url" | tee -a probe/summary.txt
+              if curl -A "$UA" -fL --retry 2 --retry-delay 1 --connect-timeout 20 --max-time 120 "$url" -o "$out"; then
+                bytes=$(wc -c < "$out" | tr -d ' ')
+                sha=$(sha256sum "$out" | awk '{print $1}')
+                echo "FETCH=PASS bytes=$bytes sha256=$sha" | tee -a probe/summary.txt
+              else
+                rm -f "$out"
+                echo 'FETCH=FAIL' | tee -a probe/summary.txt
+              fi
+            done
           done
 
           echo '=== IceCube Harvard Dataverse metadata ===' | tee -a probe/summary.txt
           DV_API='https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi%3A10.7910%2FDVN%2FQKL28Z'
-          echo "URL: $DV_API" | tee -a probe/summary.txt
           curl -A "$UA" -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 120 "$DV_API" -o probe/icecube_dataverse.json
 
           python - <<'PY' | tee -a probe/summary.txt
           import json
           from pathlib import Path
-
-          p = Path('probe/icecube_dataverse.json')
-          obj = json.loads(p.read_text())
+          obj = json.loads(Path('probe/icecube_dataverse.json').read_text())
           data = obj.get('data', {})
           v = data.get('latestVersion', {})
           print('dataset_id=', data.get('id'))
@@ -57,24 +59,32 @@ jobs:
           for entry in files:
               df = entry.get('dataFile', {})
               checksum = df.get('checksum') or {}
-              print('FILE',
-                    'id='+str(df.get('id')),
-                    'name='+str(df.get('filename')),
-                    'bytes='+str(df.get('filesize')),
-                    'type='+str(df.get('contentType')),
-                    'checksum_type='+str(checksum.get('type')),
-                    'checksum='+str(checksum.get('value')))
+              print('FILE', 'id='+str(df.get('id')), 'name='+str(df.get('filename')),
+                    'bytes='+str(df.get('filesize')), 'type='+str(df.get('contentType')),
+                    'checksum_type='+str(checksum.get('type')), 'checksum='+str(checksum.get('value')))
           PY
 
-          if [ -s probe/chiSquareMap_DayaBay_3158days.dat ]; then
-            echo '=== Daya Bay map text preflight ===' | tee -a probe/summary.txt
-            file probe/chiSquareMap_DayaBay_3158days.dat | tee -a probe/summary.txt
-            head -n 20 probe/chiSquareMap_DayaBay_3158days.dat | tee probe/dayabay_head.txt
-            tail -n 20 probe/chiSquareMap_DayaBay_3158days.dat > probe/dayabay_tail.txt
-          fi
+          echo '=== Download IceCube machine-readable tables ===' | tee -a probe/summary.txt
+          for spec in \
+            '10380079:marginalized_umu4_sq.csv' \
+            '10380082:marginalized_utau4_sq.csv' \
+            '10380081:wilks_contour_90pct.csv' \
+            '10994410:real_data_wilks_contours_reprod_mar_2025_metric_diff.csv' \
+            '10994411:real_data_wilks_contours_reprod_mar_2025_best_fit_points.csv'; do
+            id=${spec%%:*}
+            name=${spec#*:}
+            url="https://dataverse.harvard.edu/api/access/datafile/$id"
+            curl -A "$UA" -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 120 "$url" -o "probe/$name"
+            bytes=$(wc -c < "probe/$name" | tr -d ' ')
+            sha=$(sha256sum "probe/$name" | awk '{print $1}')
+            echo "ICECUBE_FILE id=$id name=$name bytes=$bytes sha256=$sha" | tee -a probe/summary.txt
+            echo "--- HEAD $name ---" | tee -a probe/schema_heads.txt
+            head -n 8 "probe/$name" | tee -a probe/schema_heads.txt
+          done
 
           sha256sum probe/* > probe/all_sha256.txt
           cat probe/summary.txt
+          cat probe/schema_heads.txt
 
       - name: Upload probe evidence
         uses: actions/upload-artifact@v4
