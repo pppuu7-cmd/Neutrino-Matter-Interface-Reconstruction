@@ -1,0 +1,68 @@
+name: NMIR v2 0105a5b R1d external authority evidence
+
+on:
+  push:
+    branches:
+      - research/0105-bsm-residual-reconstruction
+    paths:
+      - 'research/prereg/0105a5b_r1d_deepcore_external_computational_authority_preregistration.md'
+      - 'scripts/audit_0105a5b_r1d_external_authority_evidence.py'
+      - 'tests/test_audit_0105a5b_r1d_external_authority_evidence.py'
+      - '.github/workflows/0105a5b-r1d-external-authority-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen test runtime
+        run: python -m pip install pytest
+      - name: Run dedicated R1d evidence tests
+        run: python -m pytest -q tests/test_audit_0105a5b_r1d_external_authority_evidence.py
+      - name: Collect exact frozen R1d authority evidence
+        run: |
+          mkdir -p r1d_authority_raw
+          python -m scripts.audit_0105a5b_r1d_external_authority_evidence \
+            --output r1d_result.json \
+            --raw-dir r1d_authority_raw
+          sha256sum r1d_result.json | tee r1d_result.sha256
+          find r1d_authority_raw -type f -print0 | sort -z | xargs -0 sha256sum > r1d_authority_raw.sha256
+      - name: Record execution provenance
+        if: always()
+        run: |
+          cat > execution_provenance.json <<EOF
+          {
+            "repository": "${GITHUB_REPOSITORY}",
+            "workflow": "${GITHUB_WORKFLOW}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "job": "${GITHUB_JOB}",
+            "head_sha": "${GITHUB_SHA}",
+            "ref": "${GITHUB_REF}",
+            "event": "${GITHUB_EVENT_NAME}",
+            "scientific_pass_declared": false,
+            "observed_bsm_residual_permission_percent": 0
+          }
+          EOF
+          sha256sum execution_provenance.json > execution_provenance.sha256
+      - name: Upload raw R1d authority evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deepcore-0105a5b-r1d-external-authority-evidence
+          path: |
+            r1d_result.json
+            r1d_result.sha256
+            r1d_authority_raw/
+            r1d_authority_raw.sha256
+            execution_provenance.json
+            execution_provenance.sha256
+          if-no-files-found: warn
