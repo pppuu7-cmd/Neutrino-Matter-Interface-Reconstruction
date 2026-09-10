@@ -32,6 +32,9 @@ def pages(pdf:Path):
     return [norm(x) for x in chunks]
 
 def flags(t:str):
+    # Production pages are normalized to lowercase. Normalize here too so the
+    # pure predicate and its guards use the identical frozen lexical contract.
+    t=norm(t)
     l1=bool(re.search(r'pseudo[- ]data',t))
     l2=bool(re.search(r'poisson(?:ian)?|fixed total|fixed number|fixed event count|number of events is fixed|multinomial|bootstrap|resampl(?:e|ed|ing)',t))
     gen=bool(re.search(r'\bgenerat(?:e|ed|es|ing|ion)\b',t))
