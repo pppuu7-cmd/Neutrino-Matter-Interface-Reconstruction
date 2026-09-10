@@ -19,9 +19,9 @@ Yes. The authority problem separates cleanly into three distinct layers:
 
 None of these layers may be substituted for another.
 
-## Laboratory/effective magnetic-moment authority
+## Borexino magnetic-moment authority
 
-A robust experimental reference remains the Borexino Phase-II solar-neutrino analysis:
+A robust experimental reference is the Borexino Phase-II solar-neutrino analysis:
 
 - M. Agostini et al. (Borexino Collaboration), *Limiting neutrino magnetic moments with Borexino Phase-II solar neutrino data*, Phys. Rev. D 96, 091103(R) (2017).
 - DOI: `10.1103/PhysRevD.96.091103`.
@@ -29,11 +29,21 @@ A robust experimental reference remains the Borexino Phase-II solar-neutrino ana
 
 The publication explicitly distinguishes Dirac and Majorana moment matrices. For Majorana neutrinos the magnetic-moment matrix is antisymmetric and only transition moments are allowed; for Dirac neutrinos the matrix is general.
 
+### Specific Majorana transition-element bounds in the mass basis
+
+The same Borexino paper writes the effective solar-neutrino moment in the mass-eigenstate basis and, because the relevant terms enter as positive contributions for the incoherent solar mixture, derives individual 90% CL upper bounds (units `1e-11 mu_B`):
+
+- `|mu_12| <= 2.8`
+- `|mu_13| <= 3.4`
+- `|mu_23| <= 5.0`
+
+These are materially stronger authority candidates for NMIR 0103 than treating the scalar `mu_nu^eff` as if it were a transition-matrix element.
+
 ### Interpretation guard
 
-The scalar Borexino `mu_nu^eff` limit is not automatically the same parameter as the single `mu_nu` multiplying the frozen synthetic `e-mu` transition matrix in NMIR 0103. The effective scattering moment depends on the moment matrix, mixing, and arriving solar state composition.
+The Borexino transition bounds above are given in the **mass basis**. The frozen synthetic 0103 transition matrix is described as an `e-mu` transition-flavor matrix. Therefore even these specific experimental bounds cannot be inserted directly into the current matrix without prospectively declaring and validating the basis transformation.
 
-Therefore the value `2.8e-11 mu_B` may be used as a scale/upper-bound authority but cannot by itself populate a specific `e-mu` transition matrix element without a declared mapping.
+The preflight value `mu_nu = 1e-11 mu_B` remains only a mathematical fixture. Its numerical location below the published transition-element upper bounds does not turn the synthetic flavor-basis matrix into an experimentally authorized terminal point.
 
 ## Basis/convention issue exposed by the audit
 
@@ -45,7 +55,7 @@ and an antisymmetric synthetic transition-flavor matrix. This is deliberately ac
 
 For a **Majorana transition-moment** interpretation, an antisymmetric magnetic-moment matrix is structurally natural and spin-flavor conversion may connect neutrino and antineutrino sectors. For a **Dirac** interpretation, a helicity flip generally produces a right-handed sterile state rather than an active antineutrino state, so the present six-active-sector interpretation cannot simply be relabelled Dirac without an amended state-space contract.
 
-**Recommended terminal branch:** if 0103 is kept on the present six-state `nu/anti-nu` architecture, preregister it explicitly as a Majorana transition-moment benchmark and specify whether the frozen transition matrix is defined in flavor or mass basis, including the transformation used to compare it with experimental moment constraints.
+**Recommended terminal branch:** if 0103 is kept on the present six-state `nu/anti-nu` architecture, preregister it explicitly as a Majorana transition-moment benchmark. Prefer a mass-basis single-transition fixture tied directly to one of the Borexino bounds, or freeze an exact unitary basis transformation and demonstrate probability-level basis invariance before translating that bound into a flavor-basis magnetic block.
 
 This is a convention clarification, not evidence that neutrinos are Majorana particles.
 
@@ -87,8 +97,9 @@ These are candidate *model authorities*, not direct measurements of a unique rad
 
 ## Current authority classification
 
-- `MAGNETIC_MOMENT_SCALE_AUTHORITY`: **AVAILABLE** (e.g. Borexino effective limit).
-- `SPECIFIC_TRANSITION_ELEMENT_AUTHORITY`: **NOT YET PINNED**.
+- `MAGNETIC_MOMENT_SCALE_AUTHORITY`: **AVAILABLE**.
+- `MASS_BASIS_MAJORANA_TRANSITION_ELEMENT_AUTHORITY`: **AVAILABLE AS PUBLISHED NUMERIC AUTHORITY; BYTE-LEVEL PIN STILL REQUIRED**.
+- `FLAVOR_TO_MASS_BASIS_MAPPING_FOR_0103`: **NOT YET FROZEN/VALIDATED**.
 - `DIRAC_MAJORANA_TERMINAL_CONVENTION`: **NOT YET FROZEN**.
 - `BETELGEUSE_SURFACE_FIELD_AUTHORITY`: **AVAILABLE AS BOUNDARY EVIDENCE**.
 - `BETELGEUSE_INTERNAL B_perp(r) AUTHORITY`: **NOT YET PINNED**.
@@ -105,10 +116,10 @@ The 0103 funnel should reject a common but invalid shortcut:
 
 > `mu_nu` has an experimental upper limit and Betelgeuse has an observed ~1 G surface field, therefore a terminal spin-flavor prediction can be run.
 
-That conclusion does not follow. The experiment constrains an effective/matrix-dependent moment, while the stellar measurement constrains a surface-projected field. The propagation observable requires a basis-resolved transition moment and a path-resolved transverse magnetic field.
+That conclusion does not follow. The experiment constrains an effective or basis-resolved moment, while the stellar measurement constrains a surface-projected field. The propagation observable requires a correctly mapped transition moment and a path-resolved transverse magnetic field.
 
 ## Next deterministic tasks
 
-1. Extract/pin a Majorana transition-moment constraint in a declared basis that can be mapped exactly to the 0103 coupling matrix, preferably with one-transition-at-a-time semantics or a released likelihood/profile.
+1. Byte-pin the Borexino authority and prospectively choose one mass-basis Majorana transition component (or freeze/test the exact basis transform to the existing flavor-basis representation).
 2. Identify a reproducible Betelgeuse stellar/dynamo/MHD artifact that contains vector magnetic-field information across the relevant propagation region, rather than only a photospheric scalar measurement.
 3. Only after both are pinned, preregister the Majorana/basis transformation and terminal `B_perp(r)` extraction rule and create `research/locks/0103_magnetic_field_terminal_lock.json` (or a successor lock schema that separately hashes moment and field authority).
