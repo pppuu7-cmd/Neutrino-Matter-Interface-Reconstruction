@@ -1,4 +1,5 @@
 name: 0105a4d pin DeepCore B4RITM saved-original bytes
+# Trigger after workflow registration; no scientific contract change.
 
 on:
   push:
