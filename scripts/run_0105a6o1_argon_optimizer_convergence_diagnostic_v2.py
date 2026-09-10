@@ -28,7 +28,15 @@ def mu_and_A(theta, s):
     return A@x,A
 
 
-def grad(theta,n,s,B0):
+def grad(theta,n,s,B0,_fixed_nc=None):
+    """Analytic gradient of the frozen 0105a6o central objective.
+
+    scipy.optimize forwards the objective's complete ``args`` tuple to ``jac``.
+    The parent objective includes a fifth ``fixed_nc`` slot; this diagnostic is
+    central-fit only, so that slot is accepted for call-signature compatibility
+    and deliberately ignored. No objective, start, bound, anchor, or threshold
+    is changed by this software-only repair.
+    """
     x=np.asarray(theta,float); mu,A=mu_and_A(x,s)
     if np.any(mu<=0): return np.full(4,np.nan)
     g=2.*(A.T@(1.-n/mu))
