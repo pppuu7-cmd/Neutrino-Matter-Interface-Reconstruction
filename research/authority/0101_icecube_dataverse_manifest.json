@@ -1,0 +1,124 @@
+{
+  "manifest_id": "NMIR-0101-ICECUBE-DATAVERSE-MANIFEST-v1",
+  "date": "2026-09-10",
+  "status": "AUTHORITY_EVIDENCE_NOT_TERMINAL_LOCK",
+  "benchmark": "NMIR-BENCHMARK-0101",
+  "publication": {
+    "title": "Search for a light sterile neutrino with 7.5 years of IceCube DeepCore data",
+    "journal": "Phys. Rev. D 110, 072007 (2024)",
+    "doi": "10.1103/PhysRevD.110.072007"
+  },
+  "dataset": {
+    "persistent_id": "doi:10.7910/DVN/QKL28Z",
+    "persistent_url": "https://doi.org/10.7910/DVN/QKL28Z",
+    "dataverse_dataset_id": 10380078,
+    "version": "1.0",
+    "version_state": "RELEASED",
+    "file_count": 6
+  },
+  "probe_provenance": {
+    "workflow": ".github/workflows/0101-authority-payload-probe.yml",
+    "workflow_run_id": 34431143047,
+    "workflow_head_sha": "3b807a24506977396cebeebd5400dbffda7ee86d",
+    "artifact_id": 10134519918,
+    "artifact_zip_sha256": "5fbf55482a09e275907dc15c7b4ef215dd9b4fe335a66081cf8631ab8e0315f5"
+  },
+  "files": [
+    {
+      "id": 10380080,
+      "name": "expected_sensitivity_90pct.csv",
+      "bytes": 2430,
+      "official_checksum_type": "MD5",
+      "official_checksum": "05ca81d20427de678af773a6a6993bf7",
+      "downloaded_in_probe": false,
+      "role": "expected 90 percent sensitivity contour"
+    },
+    {
+      "id": 10380079,
+      "name": "marginalized_umu4_sq.csv",
+      "bytes": 20192,
+      "official_checksum_type": "MD5",
+      "official_checksum": "2a915f1d8a70e29b574c8174df5d76c9",
+      "observed_sha256": "5fd75b64e4d8db99d5244207ad3a70791202653a08e07e92d823de060fa1b957",
+      "columns": ["Umu4_sq", "Metric Difference"],
+      "rows": 500,
+      "role": "marginalized delta-chi-square scan over |U_mu4|^2"
+    },
+    {
+      "id": 10380082,
+      "name": "marginalized_utau4_sq.csv",
+      "bytes": 20168,
+      "official_checksum_type": "MD5",
+      "official_checksum": "70ef6c46ce18009306508d7c6495ebf0",
+      "observed_sha256": "ba41474ba2e6f049962185286985241d5a02414c730797e964f9f6d9ddcddbae",
+      "columns": ["Utau4_sq", "Metric Difference"],
+      "rows": 500,
+      "role": "marginalized delta-chi-square scan over |U_tau4|^2"
+    },
+    {
+      "id": 10380081,
+      "name": "wilks_contour_90pct.csv",
+      "bytes": 2239,
+      "official_checksum_type": "MD5",
+      "official_checksum": "68a0c279e213078fab7659fa9ac30694",
+      "observed_sha256": "3f1b900e80864cefa13d4b8df5a72d5296ebee62e1a850c0d1e53032b1606c50",
+      "columns": ["Umu4_sq", "Utau4_sq"],
+      "rows": 54,
+      "role": "real-data 90 percent CL Wilks contour, two degrees of freedom"
+    },
+    {
+      "id": 10994410,
+      "name": "real_data_wilks_contours_reprod_mar_2025_metric_diff.csv",
+      "bytes": 25348,
+      "official_checksum_type": "MD5",
+      "official_checksum": "31749525c87fe506640627c8df90ae70",
+      "observed_sha256": "3c16e90a1681dc6117a4e1f30773cf914fe082f14a3443b44803120ff91906e2",
+      "columns": ["Umu4_sq", "Utau4_sq", "metric_diff"],
+      "rows": 420,
+      "role": "two-dimensional delta-chi-square scan relative to global best fit"
+    },
+    {
+      "id": 10994411,
+      "name": "real_data_wilks_contours_reprod_mar_2025_best_fit_points.csv",
+      "bytes": 282505,
+      "official_checksum_type": "MD5",
+      "official_checksum": "4bf8893b8d9802861f0fc15daeb173fc",
+      "observed_sha256": "4257fa1545192bced4a3bf898011052af79831cee3092d951e8abeab66acbc20",
+      "rows": 420,
+      "role": "profiled nuisance best-fit values at each |U_mu4|^2 x |U_tau4|^2 scan point"
+    }
+  ],
+  "statistical_semantics": {
+    "metric_difference": "Dataverse describes Metric Difference/metric_diff as a delta-chi-square quantity; do not multiply by two when calculating significances.",
+    "wilks_contour_90pct": "Dataverse describes the released real-data contour as 90 percent CL assuming Wilks theorem with two degrees of freedom.",
+    "joint_with_electron_disappearance": "PROHIBITED unless a separate prospectively justified compatible joint likelihood is constructed; this manifest supplies only the IceCube mu/tau authority axis."
+  },
+  "local_integrity_observations": {
+    "marginalized_umu4_rows": 500,
+    "marginalized_umu4_range": [0.001, 0.3],
+    "marginalized_umu4_grid_min_metric_point": {
+      "Umu4_sq": 0.0041737012209946,
+      "metric_difference": 0.0005719487057803
+    },
+    "marginalized_utau4_rows": 500,
+    "marginalized_utau4_range": [0.0007, 0.3996],
+    "marginalized_utau4_grid_min_metric_point": {
+      "Utau4_sq": 0.0034764423251794,
+      "metric_difference": 0.0005719487057803
+    },
+    "two_dimensional_scan_rows": 420,
+    "two_dimensional_scan_grid_min_metric_point": {
+      "Umu4_sq": 0.0041617914502878,
+      "Utau4_sq": 0.0035155306511492,
+      "metric_difference": 0.0004508821880619
+    },
+    "wilks_90pct_contour_rows": 54,
+    "wilks_90pct_contour_coordinate_extrema": {
+      "Umu4_sq_min": 0.001,
+      "Umu4_sq_max": 0.0652870740325807,
+      "Utau4_sq_min": 0.0009373665211501,
+      "Utau4_sq_max": 0.0698389574462634
+    },
+    "interpretation_guard": "Grid-minimum and contour-coordinate extrema are integrity observations of released tables, not substitutes for the collaboration's published marginalized limits or a new confidence construction."
+  }
+}
