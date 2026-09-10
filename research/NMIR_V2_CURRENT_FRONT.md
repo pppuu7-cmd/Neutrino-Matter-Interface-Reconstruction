@@ -4,104 +4,92 @@ Last reconciled: 2026-09-10
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Authoritative v2 branch: `research/0105-bsm-residual-reconstruction`
 
-This file tracks NMIR v2 only. Frozen NMIR v1 remains closed at `NMIR_READINESS: 100%` under `research/RECOVERY.md` and must not be reopened or rewritten.
+Frozen NMIR v1 remains closed at `NMIR_READINESS: 100%` and is not reopened by this file.
 
-## v2 objective
-
-Prospectively test whether independent neutrino propagation and finite-momentum-transfer scattering authorities contain a nuisance-orthogonal, low-complexity residual that can be mapped to one common microscopic neutrino-matter operator and then make a successful held-out prediction.
-
-Required order:
+## Required methodological order
 
 `authority/provenance lock -> standalone SM/3nu/null reproduction -> nuisance-cleaned residual -> model-agnostic reconstruction -> frozen model-family mapping -> common microscopic operator consistency -> held-out prediction`.
 
 Observed BSM residual execution remains forbidden until a dedicated prospective unlock gate says otherwise.
 
-## Closed pre-data/non-discovery gates
+## Closed pre-data NONDISCOVERY gates
 
-- 0105b: common finite-range propagation/scattering bridge — PASS, NONDISCOVERY.
-- 0105c: nuisance-orthogonal residual geometry and cross-regime rank complementarity — PASS in synthetic pre-data scope, NONDISCOVERY.
-- 0105d: multi-target composition/range identifiability — PASS, NONDISCOVERY.
-- 0105e: local fixed-absolute-covariance range-information kernel — PASS, NONDISCOVERY. The pre-data kernel peaks at `m_X = q`; this is not a universal experimental sensitivity law.
+- 0105b finite-range propagation/scattering bridge: PASS, NONDISCOVERY.
+- 0105c nuisance-orthogonal residual geometry/rank complementarity: PASS in synthetic pre-data scope, NONDISCOVERY.
+- 0105d multi-target composition/range identifiability: PASS, NONDISCOVERY.
+- 0105e fixed-absolute-covariance range-information kernel: PASS, NONDISCOVERY; local optimum `m_X=q` is not a universal sensitivity law.
 
 ## Authority front
 
 ### COHERENT
 
-- 0105a2: official collaboration/ORNL semantic route to CsI Zenodo `1228631` and Ar Zenodo `3903810` — PASS.
-- 0105a3: prospectively frozen complete 37-file direct byte lock — transport BLOCKED in the recorded hosted execution. Do not substitute calibration dataset `10.13139/OLCF/1969085` or a secondary mirror without a new prospective authority rule.
+- 0105a2 official collaboration/ORNL semantic route to CsI Zenodo `1228631` and Ar Zenodo `3903810`: PASS.
+- 0105a3 prospectively frozen complete 37-file direct byte lock: transport BLOCKED in the recorded hosted execution. Calibration dataset `10.13139/OLCF/1969085` and secondary mirrors remain forbidden substitutes absent a new prospective rule.
 
-### IceCube DeepCore
+### DeepCore B4RITM
 
-Frozen Stage-A propagation authority: Dataverse `10.7910/DVN/B4RITM`, release `1.0`. `10.7910/DVN/QKL28Z` is a separate sterile-control authority and is forbidden as a substitute.
+Frozen Stage-A authority: `10.7910/DVN/B4RITM`, release 1.0. QKL28Z remains a separate sterile-control authority and is forbidden as a substitute.
 
-- 0105a4 metadata inventory: PASS; run/job/artifact `34418458353/102688456198/10129986472`.
-- 0105a4b: invalid parent-inventory/transcription path preserved as historical block.
-- 0105a4c: archival-vs-original checksum block preserved as historical diagnostic.
-- 0105a4d Saved Original byte lock: **PASS**.
-  - immutable result commit `5c7f788097e3371c4414db9cca39e02fc2ec41d4`.
-  - exact 11 files; 11/11 provider MD5, size and SHA256 gates passed.
+- 0105a4 metadata inventory: PASS.
+- 0105a4d Saved Original byte lock: PASS; immutable result commit `5c7f788097e3371c4414db9cca39e02fc2ec41d4`.
 - 0105a5 exact-byte method/extract authority: PASS, NONDISCOVERY.
 - 0105a5a metadata/runinfo/Table-III authority: PASS, NONDISCOVERY.
+- R1b machine-schema/structure audit: classified BLOCKED at `BLOCKED_0105A5B_R1B_MC_COORDINATES_OUTSIDE_OBSERVED_GRID`; immutable result commit `fb673580636a795e9fda22af54edc8498b758b1c`.
 
-## 0105a5b standard-3nu/null reproduction front
+## R1c coordinate-semantics authority — PASS
 
-The one-stage likelihood build remains forbidden. R1b was prospectively limited to byte-first machine-schema/structure authority and nuisance-dependency classification.
+Classification: `PASS_0105A5B_R1C_COORDINATE_SEMANTICS_AUTHORITY_NONDISCOVERY`.
 
-### R1b hosted result
+The authoritative B4RITM v1.0 README states that reconstructed variables are provided in the analysis binning such that events fall into the midpoint of their bin, gives exact energy/coszen/PID bin boundaries, and states that MC reconstructed variables follow the same convention as `data.csv`.
 
-**BLOCKED**: `BLOCKED_0105A5B_R1B_MACHINE_SCHEMA_OR_STRUCTURE_INCOMPLETE`.
+Evidence bundle:
+- head `02e7057e15b9362d6155584060a97f0b2a7fca0e`;
+- run/job `34446592643/102772608169`;
+- artifact `10139878085`;
+- ZIP SHA256 `c4e9450e772f07ca3c18a3ffb5db0f4ae972b00592ee032f501a61b4a8cc203a`;
+- inner evidence JSON SHA256 `2fcd8103d25a4a53cc2cbf64539a8710242d33d6f58e2ba9ae402039d7b4a08f`.
 
-Specific stopping condition: `BLOCKED_0105A5B_R1B_MC_COORDINATES_OUTSIDE_OBSERVED_GRID`.
+Before executing a mapping, amendment `research/prereg/0105a5b_r1c_amendment_01_authority_derived_bin_index_mapping.md` froze the rule as strict interior containment in the authority-published bin boundaries, independently on PID, reco-coszen and reco-energy. No tolerance, nearest-neighbour, clipping, rounding repair or residual-selected convention is permitted.
 
-- execution head `6c6a6e684b053a8464096483455da1a56efde239`
-- run/job `34438000882/102747000226`
-- artifact `10136879193`
-- provider artifact digest `sha256:cb259543e5e8d46d091b06a99e0d0f43252b03de9ba4100ee7b75d9e8ebbf85d`
-- independently downloaded inner result JSON SHA256 `ec64aad10b40435227e55b6f8be5429854032879aabe9e7107f4be0ae78c0833`
-- dedicated frozen tests: 2 passed
-- observed support: exactly 200 unique `10 x 10 x 2` cells
-- MC support: exactly 200 unique reconstructed-coordinate tuples
-- literal MC-coordinate subset of observed-coordinate tuples: false
-- seven external computational authorities remain open: six Barr/MCEq directions plus DIS-CSMS
-- immutable result note: `research/iterations/0105a5b_r1b_deepcore_machine_schema_blocked.md`, commit `fb673580636a795e9fda22af54edc8498b758b1c`
+Authoritative mapping execution:
+- prereg amendment commit `1da3021dbcf5d9372012e8c392910d8830873c4a`;
+- implementation `563b96c74f983c4adad61a8f5df9f3643a3aeeec`;
+- tests `59a5c46f6a366df5a74886418f1a130ca5ce91a2`;
+- workflow/head `aba34f036b8ded092aec19ac24b1b8690de9a9c2`;
+- run/job `34451303840/102787437641`;
+- artifact `10141644643`;
+- provider and independently downloaded ZIP SHA256 `4e0e7ca4bd9edce950cb8890cc58cca8bdf99624b9993780c83ac3b16e86ef6a`;
+- inner result JSON SHA256 `3391f2319a3876f16fb63cc45865c7f2c952658953b13853b4fa950f5626fd0f`;
+- dedicated tests: 3 passed.
 
-The preceding candidate `34434226467/102735863762` remains infrastructure-only failure (`pytest` absent before scientific execution). Its runtime-only repair did not alter the R1b gate.
+All frozen structural checks passed: 200 observed rows, 200 observed coordinate tuples, 200 native-MC coordinate tuples, 200 unique authority-bin keys on each side, exact equality of the two key sets and exact `2 x 10 x 10` support. The observed PID label `0.88` and native-MC label `0.875` both map to the authority-defined upper PID interval `(0.75,1.0)` without rounding or tolerance.
 
-No bin-center/bin-edge interpretation may be inferred from the equality of the two 200-count cardinalities.
-
-### R1c prospective authority gate
-
-R1c coordinate-semantics authority was frozen before inspection/derivation of a mapping:
-
-- prereg commit `a82b411ab55ee31479af5974bdd8b420ca0b3458`
-- prereg path `research/prereg/0105a5b_r1c_deepcore_coordinate_semantics_preregistration.md`
-
-R1c PASS requires an authority-supported deterministic total bijection between the frozen B4RITM observed representation and native MC reconstructed-coordinate representation. Missing semantics is BLOCKED; an authoritative non-bijection is a structural reproduction-path FAIL. R1c is NONDISCOVERY and cannot resolve the seven external nuisance dependencies.
+Immutable R1c record: `research/iterations/0105a5b_r1c_deepcore_coordinate_semantics_pass.md`, record commit `ca6dff2338196b655be6ae8d3b575fa8179998c4`.
 
 ## Current authorization
 
-DeepCore exact-byte authority is closed, but standalone standard-3nu/null reproduction is **not yet authorized** because R1b exposed unresolved coordinate semantics and seven external computational dependencies.
+R1c resolves the coordinate-semantics blocker, but standalone DeepCore standard-3nu/null reproduction remains forbidden because seven external computational authorities are unresolved: `BarrWP`, `BarrWM`, `BarrYP`, `BarrYM`, `BarrZP`, `BarrZM`, and `DIS-CSMS`.
 
-COHERENT complete byte authority remains transport-blocked at 0105a3, so no combined propagation+CEvNS observed residual is authorized.
+Their next authority gate is prospectively frozen in `research/prereg/0105a5b_r1d_deepcore_external_computational_authority_preregistration.md`, commit `19f4db34117256529e475a7f5e514614899a9f04`.
 
-`OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
+COHERENT complete byte authority remains transport-blocked at 0105a3.
+
+`OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
 
 ## Exact next gates
 
-1. Execute 0105a5b R1c strictly against frozen B4RITM/IceCube authority. Do not compute an oscillated expectation or likelihood during this gate.
-2. If and only if R1c PASS establishes the coordinate mapping, prospectively freeze the external-computational-authority subgate(s) for the six Barr/MCEq directions and DIS-CSMS before any full 3nu likelihood reproduction.
-3. In parallel, only authority-preserving COHERENT 0105a3 transport recovery is permitted; do not replace the frozen event releases/file set.
-4. Do not inspect or fit a BSM/model-agnostic residual.
-
-## Stable interpretation guards
-
-Green CI is not a scientific PASS. A reproduction gate must match prospectively frozen collaboration/publication benchmarks within its frozen criterion. Missing covariance/nuisance authority is `BLOCKED`, not permission to invent a covariance. Do not use post-result bin selection, nuisance deletion, re-normalization, operator selection or generic Wilks thresholds to manufacture a residual. 0105b-e are mathematical/pre-data results and are not evidence that BSM physics exists.
+1. Execute R1d authority/provenance audit for all six Barr/MCEq directions plus DIS-CSMS against B4RITM v1.0, the exact IceCube PRD 108, 012014 / arXiv:2304.12236 authority, and only upstream sources explicitly cited there.
+2. R1d may not build an oscillated expectation or likelihood. Missing source/version/semantics is BLOCKED, not permission to drop a nuisance.
+3. Only an R1d PASS may open a separately preregistered conformance implementation of those seven transformations; standalone standard-3nu reproduction still comes after that.
+4. In parallel, only authority-preserving COHERENT 0105a3 transport recovery is permitted.
+5. Do not inspect or fit any observed BSM/model-agnostic residual.
 
 ## Readiness accounting
 
-- DeepCore scoped B4RITM byte-authority lock: 100%.
-- R1b machine-schema/structure audit: 100% classified, BLOCKED.
-- R1c coordinate-semantics authority: preregistered; hosted scientific classification not yet produced.
+- DeepCore B4RITM byte authority: 100%.
+- R1b: 100% classified, historical BLOCKED.
+- R1c coordinate semantics: 100% classified, PASS NONDISCOVERY.
+- R1d external computational authority: preregistered, not yet executed.
 - COHERENT complete byte lock: transport BLOCKED.
-- NMIR v2 discovery-readiness: **46%** on the current stable scale; no increase for documentation, infrastructure repair, or a BLOCKED authority result.
+- NMIR v2 discovery-readiness: **48%** on the current stable scale.
 - `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`.
