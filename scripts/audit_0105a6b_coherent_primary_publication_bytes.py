@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse, hashlib, io, json, time, urllib.request
 from pathlib import Path
+from urllib.parse import urlparse
 from pypdf import PdfReader
 
 TARGETS = {
@@ -37,6 +38,22 @@ def normalize(text):
     return " ".join(text.replace("\u00ad", "").replace("\n", " ").split())
 
 
+def exact_versioned_arxiv_pdf_identity(resolved, arxiv_id):
+    """Accept arXiv's exact versioned /pdf/<id> endpoint with optional .pdf suffix.
+
+    arXiv currently resolves the frozen PDF URLs without appending '.pdf'.  The
+    scientific identity predicate is therefore host + exact versioned path,
+    while PDF identity itself is independently enforced by PDF magic, parsing,
+    and frozen-title text checks.
+    """
+    parsed = urlparse(resolved)
+    if parsed.scheme.lower() != "https" or parsed.netloc.lower() != "arxiv.org":
+        return False
+    path = parsed.path.rstrip("/")
+    allowed = {f"/pdf/{arxiv_id}", f"/pdf/{arxiv_id}.pdf"}
+    return path in allowed and not parsed.query and not parsed.fragment
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", required=True)
@@ -61,7 +78,7 @@ def main():
             text = "\n".join((page.extract_text() or "") for page in reader.pages)
             norm = normalize(text).lower()
             title_ok = normalize(cfg["title"]).lower() in norm
-            url_identity_ok = cfg["arxiv"].split("v")[0] in resolved and resolved.lower().endswith(".pdf")
+            url_identity_ok = exact_versioned_arxiv_pdf_identity(resolved, cfg["arxiv"])
             pdf_magic_ok = data.startswith(b"%PDF")
             entry.update({
                 "resolved_url": resolved,
