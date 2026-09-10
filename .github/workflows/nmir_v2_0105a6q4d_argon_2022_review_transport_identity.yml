@@ -1,0 +1,63 @@
+name: NMIR v2 0105a6q4d Ar 2022 review transport identity
+
+on:
+  push:
+    branches:
+      - research/0105-bsm-residual-reconstruction
+    paths:
+      - 'research/prereg/0105a6q4d_argon_2022_review_transport_identity_diagnostic_preregistration.md'
+      - 'scripts/audit_0105a6q4d_argon_2022_review_transport_identity.py'
+      - 'tests/test_0105a6q4d_argon_2022_review_transport_identity.py'
+      - '.github/workflows/nmir_v2_0105a6q4d_argon_2022_review_transport_identity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  transport-identity:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Run frozen q4d guards
+        run: python -m pytest -q tests/test_0105a6q4d_argon_2022_review_transport_identity.py
+      - name: Recover exact q4c parent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/0105a6q4d/input/q4c
+          gh api -H 'Accept: application/vnd.github+json' \
+            /repos/${GITHUB_REPOSITORY}/actions/artifacts/10174553754/zip \
+            > artifacts/0105a6q4d/input/q4c.zip
+          echo 'f68395a1f60b29d78f2df8611e4e04c8af3d1c456f06b065a197c3dad7c5d3ab  artifacts/0105a6q4d/input/q4c.zip' | sha256sum -c -
+          unzip -q artifacts/0105a6q4d/input/q4c.zip -d artifacts/0105a6q4d/input/q4c
+          echo '988fbbc0b5c2f0a74562fb33a829eaae8ff3ebedd1ded7e25376d967a43ef612  artifacts/0105a6q4d/input/q4c/result.json' | sha256sum -c -
+      - name: Execute frozen transport-only diagnostic
+        run: |
+          set -o pipefail
+          PYTHONPATH=. python scripts/audit_0105a6q4d_argon_2022_review_transport_identity.py \
+            --parent-q4c-result artifacts/0105a6q4d/input/q4c/result.json \
+            --output artifacts/0105a6q4d/result.json \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a6q4d/stdout.txt
+          sha256sum artifacts/0105a6q4d/result.json | tee artifacts/0105a6q4d/result_sha256.txt
+      - name: Remove recovered parent before upload
+        if: always()
+        run: rm -rf artifacts/0105a6q4d/input
+      - name: Upload q4d transport result only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a6q4d-argon-2022-review-transport-identity
+          path: |
+            artifacts/0105a6q4d/result.json
+            artifacts/0105a6q4d/result_sha256.txt
+            artifacts/0105a6q4d/stdout.txt
+          if-no-files-found: warn
