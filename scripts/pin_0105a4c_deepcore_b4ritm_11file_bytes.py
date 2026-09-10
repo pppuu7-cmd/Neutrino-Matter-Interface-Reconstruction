@@ -83,12 +83,21 @@ def parse_live_inventory(raw: bytes) -> tuple[dict, list[tuple[int, str, int, st
     return identity, files
 
 
+def canonical_inventory(files: list[tuple[int, str, int, str]]) -> list[tuple[int, str, int, str]]:
+    """Canonicalize API ordering without weakening exact tuple equality."""
+    return sorted(files, key=lambda row: (row[0], row[1], row[2], row[3]))
+
+
 def identity_and_inventory_valid(raw: bytes) -> tuple[bool, dict, list[tuple[int, str, int, str]]]:
     identity, files = parse_live_inventory(raw)
-    expected_identity = identity.get("identifier") == "DVN/B4RITM" and identity.get("authority") == "10.7910"
+    expected_identity = (
+        identity.get("api_status") == "OK"
+        and identity.get("identifier") == "DVN/B4RITM"
+        and identity.get("authority") == "10.7910"
+    )
     version_ok = (identity.get("version_number"), identity.get("version_minor_number")) == EXPECTED_VERSION
     released = identity.get("version_state") == "RELEASED"
-    exact_inventory = files == FROZEN
+    exact_inventory = canonical_inventory(files) == canonical_inventory(FROZEN)
     no_sterile = "QKL28Z" not in json.dumps({"identity": identity, "files": files})
     return expected_identity and version_ok and released and exact_inventory and no_sterile, identity, files
 
