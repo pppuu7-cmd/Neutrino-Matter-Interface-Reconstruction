@@ -1,0 +1,78 @@
+name: 0105a4d pin DeepCore B4RITM saved-original bytes
+
+on:
+  push:
+    paths:
+      - 'research/prereg/0105a4d_deepcore_b4ritm_original_representation_byte_lock_preflight.md'
+      - 'scripts/pin_0105a4d_deepcore_b4ritm_original_bytes.py'
+      - 'tests/test_pin_0105a4d_deepcore_b4ritm_original_bytes.py'
+      - '.github/workflows/0105a4d-pin-deepcore-b4ritm-original-bytes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-byte-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout frozen 0105a4d code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deterministic test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Run representation and fail-closed tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q tests/test_pin_0105a4d_deepcore_b4ritm_original_bytes.py
+
+      - name: Hash exact frozen B4RITM original representations
+        env:
+          PYTHONPATH: .
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/0105a4d
+          python scripts/pin_0105a4d_deepcore_b4ritm_original_bytes.py \
+            --output-dir artifacts/0105a4d \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a4d/run_stdout.txt
+
+      - name: Assert saved-original authority lock and non-discovery guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x = json.loads(Path('artifacts/0105a4d/deepcore_b4ritm_original_representation_byte_manifest.json').read_text())
+          assert x['status'] == 'PASS_0105A4D_DEEPCORE_B4RITM_ORIGINAL_REPRESENTATION_BYTE_LOCK_NONDISCOVERY'
+          assert x['dataset_doi'] == '10.7910/DVN/B4RITM'
+          assert x['dataset_version'] == '1.0'
+          assert len(x['files']) == 11
+          assert sum(f['representation'] == 'saved-original' for f in x['files']) == 9
+          assert sum(f['representation'] == 'direct' for f in x['files']) == 2
+          assert x['gates']['exact_11file_representation_metadata']
+          assert x['gates']['exact_9_saved_original_2_direct']
+          assert x['gates']['all_provider_md5_match']
+          assert x['gates']['all_provider_sizes_match']
+          assert x['gates']['all_sha256_recorded']
+          assert x['gates']['all_request_modes_exact']
+          assert x['binary_content_parsed'] is False
+          assert x['observed_residual_execution_allowed'] is False
+          assert x['bsm_interpretation_allowed'] is False
+          PY
+
+      - name: Upload manifest hashes and stdout only
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a4d-deepcore-b4ritm-original-byte-lock
+          path: |
+            artifacts/0105a4d/deepcore_b4ritm_original_representation_byte_manifest.json
+            artifacts/0105a4d/manifest_sha256.txt
+            artifacts/0105a4d/run_stdout.txt
+          if-no-files-found: error
