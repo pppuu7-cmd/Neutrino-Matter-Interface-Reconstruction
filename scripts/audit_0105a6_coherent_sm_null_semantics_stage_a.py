@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse, hashlib, io, json, re, time, urllib.parse, urllib.request
 from pathlib import Path
-from pypdf import PdfReader
 
 FILES = {
     "csi": {
@@ -45,6 +44,11 @@ def fetch(url, tries=4, timeout=60):
 
 def extract_text(name, data):
     if name.lower().endswith(".pdf"):
+        # Stage-A-only dependency. The dedicated hosted workflow installs pypdf;
+        # pure repository-wide guards should not require it merely to import
+        # the frozen inventory/constants.
+        from pypdf import PdfReader
+
         reader = PdfReader(io.BytesIO(data))
         return "\n".join((p.extract_text() or "") for p in reader.pages)
     return data.decode("utf-8", errors="strict")
