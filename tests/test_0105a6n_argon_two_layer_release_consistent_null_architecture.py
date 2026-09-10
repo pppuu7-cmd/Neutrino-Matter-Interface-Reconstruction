@@ -5,7 +5,7 @@ def parent_fixture():
     return {
         "pages": [
             {"evidence_windows": {"F1": {"window": "analysis a extended binned maximum likelihood ln f xi cevns signal is profiled"}}},
-            {"evidence_windows": {"F3": {"window": "gaussian constraint prompt brn delayed brn steady state profile likelihood cevns signal is profiled"}}},
+            {"evidence_windows": {"F3": {"window": "gaussian constraint prompt brn delayed brn steady state 3154 profile likelihood cevns signal is profiled"}}},
             {"evidence_windows": {"F6": {"window": "systematic excursion pdf uncorrelated systematic errors added in quadrature stat only 3 9 stat syst 3 5"}}},
         ]
     }
