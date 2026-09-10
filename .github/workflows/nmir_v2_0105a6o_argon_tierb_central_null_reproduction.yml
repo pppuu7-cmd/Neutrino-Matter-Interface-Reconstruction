@@ -1,0 +1,63 @@
+name: NMIR v2 0105a6o Ar Tier-B central null reproduction
+
+on:
+  push:
+    branches:
+      - research/0105-bsm-residual-reconstruction
+    paths:
+      - 'research/prereg/0105a6o_argon_tierb_release_consistent_null_numerical_preregistration.md'
+      - 'scripts/run_0105a6o_argon_tierb_central_null_reproduction_v2.py'
+      - 'tests/test_0105a6o_argon_tierb_central_null_reproduction.py'
+      - '.github/workflows/nmir_v2_0105a6o_argon_tierb_central_null_reproduction.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  tierb-central-null:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen numerical dependencies
+        run: python -m pip install --disable-pip-version-check numpy scipy pytest
+      - name: Run preregistered numerical guards
+        run: python -m pytest -q tests/test_0105a6o_argon_tierb_central_null_reproduction.py
+      - name: Recover exact 0105a6p official-byte artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/0105a6o/input
+          gh api -H 'Accept: application/vnd.github+json' \
+            /repos/${GITHUB_REPOSITORY}/actions/artifacts/10160794369/zip \
+            > artifacts/0105a6o/input/a6p.zip
+          echo 'a66b3408b22b14575f156c0be7c389589dd9865ada1f4769fe8366a1df65ec82  artifacts/0105a6o/input/a6p.zip' | sha256sum -c -
+          unzip -q artifacts/0105a6o/input/a6p.zip -d artifacts/0105a6o/input/a6p
+          echo '5b1df47a50dd4dbb2a7fbd5ee64346c2854bdbad0540bfa6f16637eb10b6bada  artifacts/0105a6o/input/a6p/manifest.json' | sha256sum -c -
+      - name: Execute prospectively frozen Tier-B central/null reproduction
+        run: |
+          set -o pipefail
+          PYTHONPATH=. python scripts/run_0105a6o_argon_tierb_central_null_reproduction_v2.py \
+            --files-dir artifacts/0105a6o/input/a6p/reconstructed_exact_official_bytes \
+            --a6p-manifest artifacts/0105a6o/input/a6p/manifest.json \
+            --output artifacts/0105a6o/result.json \
+            --git-sha "$GITHUB_SHA" \
+            | tee artifacts/0105a6o/stdout.txt
+          sha256sum artifacts/0105a6o/result.json | tee artifacts/0105a6o/result_sha256.txt
+      - name: Remove exact input bytes before result upload
+        run: rm -rf artifacts/0105a6o/input
+      - name: Upload numerical null-reproduction result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a6o-argon-tierb-central-null
+          path: |
+            artifacts/0105a6o/result.json
+            artifacts/0105a6o/result_sha256.txt
+            artifacts/0105a6o/stdout.txt
+          if-no-files-found: warn
