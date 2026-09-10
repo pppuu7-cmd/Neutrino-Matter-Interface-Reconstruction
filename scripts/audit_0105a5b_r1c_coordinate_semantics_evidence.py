@@ -19,6 +19,8 @@ from pathlib import Path
 DOI = "10.7910/DVN/B4RITM"
 FORBIDDEN_DOI = "10.7910/DVN/QKL28Z"
 VERSION = "1.0"
+VERSION_MAJOR = 1
+VERSION_MINOR = 0
 API = "https://dataverse.harvard.edu/api"
 TEXT_EXTENSIONS = {".txt", ".md", ".readme", ".csv", ".json", ".yaml", ".yml"}
 EVIDENCE_TERMS = (
@@ -43,6 +45,21 @@ def fetch_bytes(url: str) -> bytes:
 def version_url() -> str:
     pid = urllib.parse.quote(f"doi:{DOI}", safe="")
     return f"{API}/datasets/:persistentId/versions/{VERSION}?persistentId={pid}"
+
+
+def frozen_release_identity_ok(data: dict) -> bool:
+    """Check Dataverse's structured major/minor release identity.
+
+    Dataverse serializes versionNumber as numeric 1 for release 1.0, so string equality
+    against "1.0" is a transport/representation bug.  The frozen scientific release
+    remains exactly v1.0 and is checked here as major=1, minor=0.
+    """
+    try:
+        major = int(data.get("versionNumber"))
+        minor = int(data.get("versionMinorNumber", 0))
+    except (TypeError, ValueError):
+        return False
+    return major == VERSION_MAJOR and minor == VERSION_MINOR
 
 
 def documentation_candidate(label: str, content_type: str) -> bool:
@@ -85,14 +102,14 @@ def main() -> int:
         return 2
 
     data = meta.get("data", {})
-    version_number = str(data.get("versionNumber", ""))
     files = data.get("files", []) or []
-    if version_number != VERSION:
+    if not frozen_release_identity_ok(data):
         result = {
             "status": "BLOCKED_0105A5B_R1C_COORDINATE_SEMANTICS_AUTHORITY_INCOMPLETE",
             "reason": "FROZEN_RELEASE_VERSION_MISMATCH",
             "expected_version": VERSION,
-            "actual_version": version_number,
+            "actual_version_number": data.get("versionNumber"),
+            "actual_version_minor_number": data.get("versionMinorNumber"),
         }
         out_path.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
         return 3
