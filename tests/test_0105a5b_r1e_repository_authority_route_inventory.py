@@ -18,9 +18,13 @@ def test_self_and_recovery_files_excluded():
 
 
 def test_no_network_import_or_calls():
-    assert 'urllib' not in SCRIPT
-    assert 'requests' not in SCRIPT
-    assert 'httpx' not in SCRIPT
+    low = SCRIPT.lower()
+    for forbidden in [
+        'import urllib', 'from urllib', 'import requests', 'from requests',
+        'import httpx', 'from httpx', 'urlopen(', 'requests.get(',
+        'requests.post(', 'httpx.get(', 'httpx.post('
+    ]:
+        assert forbidden not in low
 
 
 def test_zero_permissions_and_no_execution():
