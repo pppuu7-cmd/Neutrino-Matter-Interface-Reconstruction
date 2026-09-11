@@ -8,7 +8,7 @@ SOURCES={
  'plaque':('https://ceem.indiana.edu/events/phd-plaques/suh-benjamin.html',23370,'f1c245e9675c1a533bc9ad03ca928820499381d576c5f6fefee59c33b91d7488'),
  'education':('https://ceem.indiana.edu/education/index.html',67845,'3de3e09e5ebdb4006c0d8b969c3f73a25b041b31534476b6bf6987bbf5591fe6'),
 }
-LITERALS=['dissertation','thesis','scholarworks','.pdf','download','benjamin suh','benjamin d. suh','towards an improved measurement of the cevns process with the cen...']
+TITLE='towards an improved measurement of the cevns process with the cen...'
 PASS='PASS_0105A6Q4FS_INSTITUTIONAL_DISSERTATION_LINK_CANDIDATES_LOCATED_NONDISCOVERY'
 EMPTY='BLOCKED_0105A6Q4FS_NO_INSTITUTIONAL_DISSERTATION_LINK_CANDIDATES'
 TRANSPORT='BLOCKED_0105A6Q4FS_SOURCE_TRANSPORT_FAILURE'
@@ -29,8 +29,7 @@ class Links(HTMLParser):
 def candidate(url,anchor):
  s=(url+' '+anchor).casefold()
  if any(x in s for x in ['dissertation','thesis','scholarworks','.pdf','download','benjamin suh','benjamin d. suh']): return True
- title='towards an improved measurement of the cevns process with the cen...'
- if title in s: return True
+ if TITLE in s: return True
  u=urllib.parse.urlparse(url.casefold()); toks=[t for t in re.split(r'[^a-z0-9]+',(u.netloc+u.path)) if t]
  return 'irem' in toks or 'ir' in toks
 
