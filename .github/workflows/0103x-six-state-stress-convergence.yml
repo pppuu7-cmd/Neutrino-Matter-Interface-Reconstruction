@@ -1,0 +1,38 @@
+name: 0103X six-state stress convergence
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103x-six-state-stress-convergence.yml'
+      - 'research/prereg/0103x_six_state_stress_convergence.md'
+      - 'scripts/audit_0103x_six_state_stress_convergence.py'
+      - 'tests/test_audit_0103x_six_state_stress_convergence.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stress-convergence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Focused stress/convergence test
+        run: pytest -q tests/test_audit_0103x_six_state_stress_convergence.py
+      - name: Emit convergence evidence
+        run: python scripts/audit_0103x_six_state_stress_convergence.py | tee 0103x_metrics.json
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103x-six-state-stress-convergence
+          path: |
+            0103x_metrics.json
+            0103x_convergence_matrix.csv
+          if-no-files-found: warn

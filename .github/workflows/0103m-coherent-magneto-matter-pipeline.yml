@@ -1,0 +1,38 @@
+name: 0103M coherent magneto-matter pipeline
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103m-coherent-magneto-matter-pipeline.yml'
+      - 'research/prereg/0103m_coherent_magneto_matter_pipeline.md'
+      - 'scripts/audit_0103m_coherent_magneto_matter_pipeline.py'
+      - 'tests/test_audit_0103m_coherent_magneto_matter_pipeline.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  coherent-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Focused coherent pipeline test
+        run: pytest -q tests/test_audit_0103m_coherent_magneto_matter_pipeline.py
+      - name: Emit coherent pipeline evidence
+        run: python scripts/audit_0103m_coherent_magneto_matter_pipeline.py | tee 0103m_metrics.json
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103m-coherent-magneto-matter-pipeline
+          path: |
+            0103m_metrics.json
+            0103m_ray_samples.csv
+          if-no-files-found: warn
