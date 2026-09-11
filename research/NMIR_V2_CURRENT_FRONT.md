@@ -23,20 +23,18 @@ R1i established 18 immutable official `icecube/pisa` tag→commit states. R1i1 s
 
 R1j2 record `e36bfee7b41719e759681a64fb4a6c93fb7b30f9`; execution `fb5fe9d4f38890ce57babf6385972d96859d13c1`; run/job/artifact `34581861617/103207049284/10191929179`; provider + independent ZIP SHA256 `13a0df570857bf595e616583b879566a7c04b53b437f700304396f29235c6dcc`; inner JSON SHA256 `4c6687907b93ad0bea2767cdf49d78bb9ce282d21543d41e5348059afc0ee270`.
 
-## Predecessor DeepCore authority route
+## Predecessor DeepCore authority route — exhausted
 
-R1k prospectively byte-locked exact predecessor IceCube DeepCore source `arXiv:1902.07771` and validated `PASS_0105A5B_R1K_PREDECESSOR_DEEPCORE_SOURCE_BYTES_ACQUIRED_NONDISCOVERY`. Record `2856e9762cfe1cbdf2a84ff38de06ae69c2d31ec`; execution `54593ce718da42ab723661b865360100def79b40`; run/job/artifact `34590722803/103235159542/10195508300`; provider + independent artifact ZIP SHA256 `eed6de908ba752c492cf115314f7c377f7ece2c3c24189b111f1aecd7ad77a24`; inner JSON SHA256 `169de4c58fdc6a8bc2b2993883d06d430a46c7dec3f04da8900643dab5d112fc`; exact source SHA256 `d095d23daf4dc08848b7f3ff5977daaf554db966034ca9d3460e4b88d7c3790a`.
+R1k prospectively byte-locked exact predecessor IceCube DeepCore source `arXiv:1902.07771` and validated `PASS_0105A5B_R1K_PREDECESSOR_DEEPCORE_SOURCE_BYTES_ACQUIRED_NONDISCOVERY`. Record `2856e9762cfe1cbdf2a84ff38de06ae69c2d31ec`; execution `54593ce718da42ab723661b865360100def79b40`; run/job/artifact `34590722803/103235159542/10195508300`; exact source SHA256 `d095d23daf4dc08848b7f3ff5977daaf554db966034ca9d3460e4b88d7c3790a`.
 
-R1k1 subsequently validated `PASS_0105A5B_R1K1_PREDECESSOR_ARCHIVE_STRUCTURE_LOCATED_NONDISCOVERY`. Record `80180a07835196d7404f36da65cfba78e4cc2d62`; execution `f44c1b734109c843eb1774a96e1a4a48b1cc47f0`; run/job/artifact `34590841820/103235529693/10195551783`; provider + independent artifact ZIP SHA256 `75f0b652c0b62163be5ffbd8bb2fd11a8a75d92c4df3df75ee0e4dcb7e401608`; inner JSON SHA256 `f1202ca83848a677559927da8c4304570e15e9c4c5903f9a56253ba3495a9acd`. Exact source identity matched before parsing. It enumerated 44 members and mechanically froze the complete 14-member `.tex/.txt/.bib/.sty/.cls` candidate set without reading member payloads.
+R1k1 validated `PASS_0105A5B_R1K1_PREDECESSOR_ARCHIVE_STRUCTURE_LOCATED_NONDISCOVERY`, froze all 14 mechanically selected source-text candidates without reading member payloads, and recorded run/job/artifact `34590841820/103235529693/10195551783` under record commit `80180a07835196d7404f36da65cfba78e4cc2d62`.
 
-## Active gate — R1k2
+R1k2 is now validated and immutable as `BLOCKED_0105A5B_R1K2_PREDECESSOR_PISA_STATE_NOT_IMMUTABLY_IDENTIFIED`. Record commit `6ed31bdd58cfdfe9977d742983cb3b0dc5849b17`; execution `0a75c324aa5a4daa1c0a92c7c569f8d43eed77c2`; run/job/artifact `34590994355/103236012811/10195613079`; provider + independent ZIP SHA256 `eb7912425e9a6004abcd30f0d0d95622566b4ff440c7e07633069c76f23fc8ba`; inner JSON SHA256 `32a8e98666b229942fe49fdbda73a3e41507621af87b61e382d5156f4eadd8b3`. Across the complete 14-member frozen candidate set it found zero PISA contexts, repository literals, nearby 40-hex identifiers, or predefined version/release/tag/commit forms.
 
-Only after validated R1k1 PASS, R1k2 was prospectively frozen over all 14 returned candidates with no ranking/pruning. It may record only bounded PISA contexts, repository literals, nearby 40-hex tokens, and predefined version/release/tag/commit forms. It may not fetch PISA repository content, use numerical/output matching, run 3nu, run systematic MC, or inspect observed BSM residuals.
+Consequently the predecessor PISA semantic route is exhausted. No cross-analysis PISA transfer is authorized, and no state may be chosen by date, numerical agreement, output matching, or post-hoc implementation comparison.
 
-- prereg `0587ab76bb187af55292534534cf0a363456a553`
-- implementation `45a9faa54c0573eace37ce043ed21104a0239bc6`
-- guards `fccc277bb1fd4718dbab0eea1ea7cb1fbcf3036e`
-- execution head `0a75c324aa5a4daa1c0a92c7c569f8d43eed77c2`
-- dedicated run `34590994355` is in progress.
+## Exact next scientific boundary
 
-A R1k2 PASS would identify only an explicit predecessor-analysis implementation state; it would still require a separately preregistered cross-analysis compatibility/provenance gate before any use for the 2023 analysis. A BLOCKED result exhausts this predecessor semantic route without relaxing R1d.
+R1d and DeepCore standard-3nu remain BLOCKED. A new DeepCore continuation is allowed only if an independently provenance-qualified authority route can be frozen before target-content inspection. Candidate directions must come from already-cited experimental/provider authority (for example atmospheric-flux nuisance or DIS-cross-section authority) and must not reuse exhausted MCEq/PISA selection logic.
+
+COHERENT F1/F7 remain independently BLOCKED; exhausted q5g2/q4fs/q4fs2 routes must not be repeated or broadened post hoc.
