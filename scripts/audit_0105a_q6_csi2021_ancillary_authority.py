@@ -7,6 +7,7 @@ or any BSM scan. It consumes only the prospectively frozen q6 authority chain.
 from __future__ import annotations
 import hashlib, json, pathlib, re, subprocess, tempfile, urllib.request
 
+PREREG_COMMIT = "a98dfd80a4db5d4b291e0d049fd1f00da9794a48"
 BASE = "https://arxiv.org/src/2110.07730v2/anc/"
 FILES = [
     "Paper_CEvNSCsI_FullDataset_SupMaterials.pdf",
@@ -35,15 +36,13 @@ def normalize(s: str) -> str:
 def classify(pdf_text: str, text_payloads: dict[str, str]) -> dict:
     n = normalize(pdf_text)
     f1_hits = {p: (normalize(p) in n) for p in F1_REQUIRED}
-    # A line wrap can split the phrase at "cross section"; require both sentence fragments.
     cross_rule = ("Events with energy 60 ≤ PE < 250 or trec ≥ 6 µs are not used for measuring the CEvNS cross" in n
                   and "section but used for a search for light dark matter" in n)
     f1_complete = all(v for p, v in f1_hits.items() if not p.startswith("Events with energy")) and cross_rule
     corpus = n + "\n" + "\n".join(text_payloads.values())
     has3152 = bool(re.search(r"(?<!\d)3152(?!\d)", corpus))
     has3154 = bool(re.search(r"(?<!\d)3154(?!\d)", corpus))
-    # Frozen F7 requires semantics/precedence of BOTH values, not arithmetic reconstruction.
-    f7_complete = False
+    f7_complete = False  # literals/row counts cannot satisfy the frozen semantic-precedence contract
     return {
         "f1": {
             "status": "PASS_0105A_Q6_F1_PRIMARY_COUNT_LAW_LOCATED_NONDISCOVERY" if f1_complete else "BLOCKED_0105A_Q6_F1_PRIMARY_SEMANTICS_INCOMPLETE",
@@ -75,13 +74,13 @@ def main(outdir: str = "results/0105a_q6") -> None:
         subprocess.run(["pdftotext", "-layout", str(pdf), str(txt)], check=True)
         pdf_text = txt.read_text(encoding="utf-8", errors="replace")
     text_payloads = {n: payloads[n].decode("utf-8", errors="replace") for n in FILES if n.endswith(".txt")}
-    adjudication = classify(pdf_text, text_payloads)
     result = {
         "gate": "0105a_q6_csi2021_ancillary_authority",
+        "preregistration_commit": PREREG_COMMIT,
         "scope": "NONDISCOVERY authority audit only",
         "source": "arXiv:2110.07730v2 collaboration ancillary material",
         "files": meta,
-        "adjudication": adjudication,
+        "adjudication": classify(pdf_text, text_payloads),
         "hard_prohibitions": {"observed_bsm_residual": True, "systematic_mc": True, "posthoc_numeric_selection": True},
     }
     (od / "supplement_pdftotext.txt").write_text(pdf_text, encoding="utf-8")
