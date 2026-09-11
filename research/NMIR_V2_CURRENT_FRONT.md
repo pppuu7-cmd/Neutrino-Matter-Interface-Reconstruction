@@ -15,7 +15,7 @@ q5f2 resolved F4 as explicit separate alternative fits and F6 as explicit separa
 
 q5g1 validated `PASS_0105A6Q5G1_MAIN_ANALYSIS_SOURCE_ARCHIVE_STRUCTURE_LOCATED_NONDISCOVERY`, record `56b4d2a58b5e79b8321d2c12ea09bcd776d648a6`, run/job/artifact `34552032248/103116764761/10181159188`.
 
-q5g2 was frozen before reading the six q5g1 candidates and is now validated `BLOCKED_0105A6Q5G2_MAIN_ANALYSIS_SOURCE_F1_F7_CONTRACT_INCOMPLETE`, record `3fec486632c49826202ba43126363f0a8deb9db9`.
+q5g2 was frozen before reading the six q5g1 candidates and is validated `BLOCKED_0105A6Q5G2_MAIN_ANALYSIS_SOURCE_F1_F7_CONTRACT_INCOMPLETE`, record `3fec486632c49826202ba43126363f0a8deb9db9`.
 
 - prereg `6da043ddbfc8dd3ef40fbe02892d9315e1a944ca`
 - execution `dfb7da6d0a61995f81b8e5314feff7ba77089f45`
@@ -28,39 +28,53 @@ F1 remains `BLOCKED_INCOMPLETE_OR_AMBIGUOUS`: pseudo-data/likelihood language ex
 
 ## Independent institutional authority route
 
-q4fr is validated `PASS_0105A6Q4FR_INSTITUTIONAL_MANIFEST_TRANSPORT_REPAIRED_NONDISCOVERY`, immutable record `5cdf1c32b249bbc155813c331774213b58c9d378`.
+q4fr is validated `PASS_0105A6Q4FR_INSTITUTIONAL_MANIFEST_TRANSPORT_REPAIRED_NONDISCOVERY`, immutable record `5cdf1c32b249bbc155813c331774213b58c9d378`. q4fs then exhausted the exact two-page IU hyperlink route as `BLOCKED_0105A6Q4FS_NO_INSTITUTIONAL_DISSERTATION_LINK_CANDIDATES`, record `adfc2ea985c2a3cc16e8ce08ff5d1b9d154008e0`; no returned link or dissertation content was followed.
 
-- prereg `f47dda9bd5fda788c4497d58e4a2f58f2e042cb3`
-- execution `f7d3171d98b68074a802c58ff8dc0ade961cde7f`
-- run/job/artifact `34545436341/103096914611/10178825152`
-- provider + independent ZIP SHA256 `700e03367aa2f7760c3bfe8272ed2efe29236790d6fcc78746c905e3de5eef89`
-- independent inner `result.json` SHA256 `af1af99fec76f8e3a1c20056af7be3cf6e688314b7703e58eaf871c5c985681a`
-- both frozen official-IU endpoints returned HTTP 200 and independently matched author/year/title identity.
+### q4fs1 — official IUScholarWorks API contract
 
-q4fr is secondary institutional authority, not a substitute for collaboration/Tier-A authority. It followed no links and downloaded/read no dissertation PDF.
+q4fs1 was prospectively frozen as a generic sentinel-only endpoint-contract probe and is validated:
 
-q4fs was prospectively frozen after q4fr PASS and before following any IU-page hyperlink. It is now validated `BLOCKED_0105A6Q4FS_NO_INSTITUTIONAL_DISSERTATION_LINK_CANDIDATES`, immutable record `adfc2ea985c2a3cc16e8ce08ff5d1b9d154008e0`.
+`PASS_0105A6Q4FS1_IUSCHOLARWORKS_METADATA_ENDPOINT_CONTRACT_VALIDATED_NONDISCOVERY`.
 
-- prereg `a55e26040be8fdd059563781d5a3a8c5ba1ed259`
-- implementation correction `9e00c79de21052cdf1b8ec48d63449795987e962` (pre-execution correction to the already-frozen full-title literal only)
-- guards `2f8202249ca3775dd7df29ad08b68c514eef49a1`
-- execution `8452e95442daec6dc373c8b996ecc196f27fcde5`
-- run/job/artifact `34556420234/103129941232/10182715788`
-- provider + independent ZIP SHA256 `5e17100ff1970cc4dc0513210b53dda321d2151a2e4f1670d7c5402739c5f795`
-- independent inner `result.json` SHA256 `e3ce1d1640e0c90a8982491d4fd26a4260955c5875d695f65dd20f3152295ab9`
-- complete local inventory: 143 `<a href>` links, canonical inventory SHA256 `f9a2d8dc29a7c74987372ae61b9b60ea8abc815a9c7f68013772b961e82497b9`
-- frozen-rule candidate count: `0`
+- prereg `31bb1aaf7e889fa8e36550c7635f331568f5c0aa`
+- execution `45275e44fc7096a78944657786cb1892d75ee5ce`
+- immutable result record `394de950d8ef0bc8c33c9869d4b8a70ec354a885`
+- run/job/artifact `34559527681/103139213700/10183803724`
+- provider + independent ZIP SHA256 `f53e3702174917aee32e5673e6edce6a8e47af1c5546f59eeb4f738a75f52bf5`
+- independent inner `result.json` SHA256 `9fc4fe96633d280660f9316b32256a7a617d645d2c4b12e0ad7e22a1dcd33018`
+- frozen sentinel response: HTTP 200 JSON, 3043 bytes, SHA256 `297e2bd912a56da273687301b748d7fa1486b5810e9839abab5f27fd200cf87c`
 
-q4fs followed no returned links and downloaded/read no dissertation content. This exact two-page hyperlink route is exhausted; its candidate rule must not be widened post hoc.
+q4fs1 established only that the official `/iuswrrest/api/discover/search/objects` machine-readable discovery contract exists. No target-specific query, link following, file download or scientific-text inspection occurred.
+
+### q4fs2 — exact target metadata locator — exhausted BLOCKED
+
+Only after q4fs1 was artifact-validated and immutably recorded, q4fs2 prospectively froze one exact target request using the already-authorized `query` and `size` keys. q4fs2 is validated:
+
+`BLOCKED_0105A6Q4FS2_IUSCHOLARWORKS_TARGET_METADATA_NOT_UNIQUELY_RESOLVED`.
+
+- prereg `2fcf830d1de3ff6c50036a073bf0e2e6b7e5d411`
+- implementation `a234f774fc97c45392718f402dc36971b488c5df`
+- guards `590c75063414cd3998c1ce43ab8cb4a033ba9618`
+- execution `80ec99764ebe68308f4501c7be4f0a826290bad5`
+- immutable result record `993d293de8df6d5d95a8451239a54d890027ed6e`
+- run/job/artifact `34566997393/103161060079/10186364854`
+- provider + independent ZIP SHA256 `4f251197bae1ed0f31b3f7ab1a62ec013bb7da38d9808a1669f42d4572713f8e`
+- independent inner `result.json` SHA256 `77b5f583177c424b6635dfa4724e9b76b77afed941387cb3d5ed08a40615f145`
+- frozen response: HTTP 200 JSON, 3997 bytes, SHA256 `b2f65478acb91fbf386bf0c49604c680eada13f5400e4d5eba4cfa871320eef4`
+- returned discovery results `0`; exact-title matches `0`
+
+No item link was followed, no UUID/identifier was guessed or constructed, no bitstream/file was downloaded and no dissertation scientific text was inspected. This exact q4fs2 request contract is exhausted. Do not broaden its title tokens, author variants, query grammar, filters or pagination after observing the zero-result response.
 
 ## Current authorization boundary
 
-F1/F7 remain unresolved. q5g2 and q4fs are authority/implementation BLOCKED results, not scientific FAILs. Full Ar systematic pseudo-data reproduction remains unauthorized. DeepCore standalone 3nu remains blocked by the R1d external computational-authority gap. Tier-A exact collaboration likelihood remains blocked.
+F1/F7 remain unresolved. q5g2, q4fs and q4fs2 are authority/implementation BLOCKED results, not scientific FAILs. q4fs1 is only an API-contract NONDISCOVERY PASS. Full Ar systematic pseudo-data reproduction remains unauthorized. Tier-A exact collaboration likelihood remains blocked.
 
-A genuinely new route may be prospectively registered only if it is independently provenance-qualified, e.g. an official IUScholarWorks institutional-repository metadata search whose endpoint/query semantics are frozen before searching for the target dissertation. It must be metadata-only first: no bitstream/file following or scientific text inspection until a later separately frozen gate. Do not infer a Suh dissertation URL from another ScholarWorks item's REST/bitstream pattern.
+DeepCore standalone 3nu remains blocked by the frozen R1d external computational-authority gap. Stage-A B4RITM remains the authority source; QKL28Z remains a separate sterile-control authority and is not a substitute.
+
+New continuation is permitted only via a genuinely independent provenance-qualified authority route frozen before target-content inspection. Do not mutate the exhausted q4fs2 request after seeing its zero-result response, and do not infer a Suh dissertation URL/UUID/bitstream path from another item.
 
 `NMIR_V2_DISCOVERY_READINESS: 48%`
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
 
-Exact next allowed gate: first freeze an official institutional-repository metadata-discovery endpoint/query contract (author Benjamin Suh, year 2025, exact dissertation title) without target-content inspection; then execute only that metadata locator. If no stable official search contract can be established prospectively, preserve F1/F7 as BLOCKED rather than guessing or widening exhausted routes.
+Exact next allowed work: (1) independently audit whether the existing frozen DeepCore R1d record names a still-unconsumed provenance-qualified external computational-authority route; if none exists, keep DeepCore 3nu BLOCKED; and/or (2) prospectively register a genuinely independent official institutional/collaboration authority route for COHERENT F1/F7, but only if its provenance is established without inspecting target scientific content. No exhausted exact route may be widened post hoc.
