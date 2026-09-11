@@ -1,0 +1,35 @@
+name: NMIR v2 0105a6q5f arXiv source byte acquisition
+on:
+  push:
+    branches: [research/0105-bsm-residual-reconstruction]
+    paths: ['.github/workflows/nmir_v2_0105a6q5f_arxiv_source_byte_acquisition.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-byte-acquisition:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install --disable-pip-version-check pytest
+      - run: python -m pytest -q tests/test_0105a6q5f_arxiv_source_byte_acquisition.py
+      - run: |
+          mkdir -p artifacts/0105a6q5f
+          python scripts/audit_0105a6q5f_arxiv_source_byte_acquisition.py --output artifacts/0105a6q5f/result.json --git-sha "$GITHUB_SHA"
+      - name: Verify hard guards
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('artifacts/0105a6q5f/result.json'))
+          for k in ['source_text_inspected','archive_members_extracted','keywords_searched','likelihood_evaluated','observed_bsm_residual_inspected']: assert d[k] is False
+          assert d['systematic_monte_carlo_execution_permission_percent']==0
+          assert d['observed_bsm_residual_permission_percent']==0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a6q5f-arxiv-source-byte-acquisition
+          path: artifacts/0105a6q5f/result.json
+          if-no-files-found: error
+          retention-days: 90
