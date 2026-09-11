@@ -3,52 +3,53 @@
 Last reconciled: 2026-09-11
 Authoritative branch: `research/0105-bsm-residual-reconstruction`
 
-NMIR v1 remains frozen at `NMIR_READINESS: 100%`. Preserve v2 order, all prospective gates, negative results, and the prohibition on observed BSM residuals until explicit authority/null unlock. 0105b/0105c/0105d/0105e remain NONDISCOVERY pre-data results.
+NMIR v1 remains frozen at `NMIR_READINESS: 100%`. Preserve v2 order, all prospective gates, negative results, and the prohibition on observed BSM residuals until explicit authority/null unlock. 0105b/0105c/0105d/0105e remain NONDISCOVERY pre-data results. Repository plus validated hosted artifacts are source of truth; green CI or a hosted self-label alone is never scientific PASS.
 
-## Recovery authority anchors
+## COHERENT recovery boundary
 
-0105a3 full official Zenodo byte lock remains PASS: `34418207408/3/102834981270`, artifact `10147580844`, manifest SHA256 `5ccaea9ae1b59cb60d0db0a28b98a334d8fb32fb39a436301126a32fcd523091`. Historical 0105a6i exact public-likelihood authority remains BLOCKED.
+0105a3 full official Zenodo byte lock remains PASS. q5f2/q5g2 resolve F4/F6 semantics but leave F1 elementary count law and F7 `3152`/`3154` role/precedence unresolved. q5g2, q4fs and q4fs2 are exhausted authority BLOCKED routes. Full Ar systematic pseudo-data reproduction and Tier-A exact collaboration likelihood remain unauthorized. A new COHERENT route is allowed only if genuinely independent and provenance-qualified before target scientific-content inspection.
 
-Official-release semantics route remains anchored by q5c1 4/4 exact byte-lock PASS `908038bcff4f6f1c6554dbb03c1ce339546d9173`, q5d bounded inventory PASS `a1644c1613f7810281aca8eb8b2590856db4cfaf`, and q5e overall BLOCKED record `04d63cf5a8a34b97a47668bcaf4d6eff3d090f07`.
+## DeepCore recovery boundary
 
-q5f2 and q5g2 together resolve F4/F6 authority semantics but leave F1/F7 unresolved. q5g2 is the terminal main Analysis-A source result `BLOCKED_0105A6Q5G2_MAIN_ANALYSIS_SOURCE_F1_F7_CONTRACT_INCOMPLETE`, record `3fec486632c49826202ba43126363f0a8deb9db9`, run/job/artifact `34556057803/103128886070/10182590532`. Do not widen the exhausted six-member source route post hoc.
+Stage-A remains frozen B4RITM. QKL28Z remains a separate sterile-control authority and is not a replacement. R1d remains:
 
-## Institutional authority route
+`BLOCKED_0105A5B_R1D_EXTERNAL_COMPUTATIONAL_AUTHORITY_INCOMPLETE`
 
-q4fr is validated PASS/NONDISCOVERY, record `5cdf1c32b249bbc155813c331774213b58c9d378`. q4fs exhausted the exact two-page IU hyperlink route as BLOCKED, record `adfc2ea985c2a3cc16e8ce08ff5d1b9d154008e0`.
+Standalone standard-3nu reproduction therefore remains unauthorized.
 
-q4fs1 prospectively validated the official IUScholarWorks machine-readable discovery API contract:
+MCEq/PISA exact routes are exhausted in their recorded BLOCKED scopes. Barr R1l2 is `BLOCKED_0105A5B_R1L2_BARR2006_PRIMARY_NUISANCE_SEMANTICS_INCOMPLETE`, so no Barr→B4RITM dependent mapping is allowed.
 
-- classification `PASS_0105A6Q4FS1_IUSCHOLARWORKS_METADATA_ENDPOINT_CONTRACT_VALIDATED_NONDISCOVERY`
-- record `394de950d8ef0bc8c33c9869d4b8a70ec354a885`
-- run/job/artifact `34559527681/103139213700/10183803724`
-- provider + independent ZIP SHA256 `f53e3702174917aee32e5673e6edce6a8e47af1c5546f59eeb4f738a75f52bf5`
-- inner result SHA256 `9fc4fe96633d280660f9316b32256a7a617d645d2c4b12e0ad7e22a1dcd33018`
+CSMS R1m2 is validated `PASS_0105A5B_R1M2_CSMS2011_PRIMARY_DIS_UNCERTAINTY_SEMANTICS_LOCATED_NONDISCOVERY`; record `f3df5fb2ec1a3e20b7b6c63880a0dd1857c2c569`, run/job/artifact `34602933911/103274385063/10265136958`. It establishes primary-theory uncertainty semantics only.
 
-Only after artifact validation and immutable recording of q4fs1, q4fs2 froze one exact target metadata query. q4fs2 is now terminal and validated:
+## R1m3 terminal classification
 
-- classification `BLOCKED_0105A6Q4FS2_IUSCHOLARWORKS_TARGET_METADATA_NOT_UNIQUELY_RESOLVED`
-- prereg `2fcf830d1de3ff6c50036a073bf0e2e6b7e5d411`
-- execution `80ec99764ebe68308f4501c7be4f0a826290bad5`
-- record `993d293de8df6d5d95a8451239a54d890027ed6e`
-- run/job/artifact `34566997393/103161060079/10186364854`
-- provider + independent ZIP SHA256 `4f251197bae1ed0f31b3f7ab1a62ec013bb7da38d9808a1669f42d4572713f8e`
-- inner result SHA256 `77b5f583177c424b6635dfa4724e9b76b77afed941387cb3d5ed08a40615f145`
-- exact frozen response HTTP 200 JSON, 3997 bytes, SHA256 `b2f65478acb91fbf386bf0c49604c680eada13f5400e4d5eba4cfa871320eef4`
-- returned search results `0`; exact-title matches `0`
+Frozen preregistration commit: `1b0293766466ca178648ce1ed60407915788f8bf`.
+Execution head: `10c128f016b127d1ea8b3c2c9feaf13ff510f8dd`.
+Run/job/artifact: `34617899333/103324284516/10270512595`.
+Provider digest and independent ZIP SHA256: `94f9f77949fce9c13108bffdc46a3c4c2e7e807219a4d6c8dddfd1ee8f73cf43`.
+Inner `result.json` SHA256: `9d7d0c6f8a93da92bf2b2b983faa96701a23f00ed9925117246556e452531921`.
+Immutable scientific record commit: `92ae15b6c380e07c719659cbc353a3768dff426a`.
 
-No links were followed, no identifier was guessed, no bitstream/PDF was downloaded and no dissertation scientific text was inspected. The exact q4fs2 query contract is exhausted. Do not broaden its title/author/query grammar/filter/pagination after observing the result.
+Authoritative scientific classification:
 
-## DeepCore
+`BLOCKED_0105A5B_R1M3_CSMS_B4RITM_EXPERIMENTAL_MAPPING_INCOMPLETE`
 
-Stage-A authority remains frozen to B4RITM. QKL28Z remains a separate sterile-control authority and is not a replacement. R1d remains `BLOCKED_0105A5B_R1D_EXTERNAL_COMPUTATIONAL_AUTHORITY_INCOMPLETE`; therefore standalone standard-3nu reproduction is not yet authorized. Any new DeepCore continuation must come from a still-unconsumed provenance-qualified external computational-authority route already prospectively allowed, or a genuinely independent route frozen before target-content inspection.
+Reason: the hosted lexical self-label PASS is rejected by artifact-level evaluation against the prospectively frozen five-element semantic contract. The artifact demonstrates that keyword buckets can be populated by explicit absence statements. The frozen authority still lacks a provider-backed complete executable DIS-CSMS event-level transformation and a complete covariance/correlation/normalization instantiation without analyst fill-in. No R1m4 computational realization is authorized.
 
-## Current boundary
+Fail-closed implementation amendment commit: `406eed0911eeb57ea8a8cfb017d4e7a8f6caebee`. Corrected hosted code cannot self-promote lexical evidence to a scientific PASS; any future execution is evidence/reproducibility only.
 
-F1 elementary count law and F7 `3152`/`3154` role/precedence remain unresolved. Full Ar systematic pseudo-data reproduction and Tier-A exact collaboration likelihood remain unauthorized. q5g2, q4fs and q4fs2 are authority/implementation BLOCKED results, not scientific FAILs and not BSM evidence.
+## Repository-integrity state
+
+Baseline CI `34617954192/103324480083` failed two precision-fragile assertions comparing `mpmath.mpf` values constructed under different global precisions. Frozen Ar threshold literals were unchanged. Test-only integrity repair commit `f210bed00e217479cc7817c82fdc16e989338406` now verifies the exact source literals instead of precision-dependent object equality; no scientific constant or gate was changed.
+
+## Permissions
 
 `NMIR_V2_DISCOVERY_READINESS: 48%`
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
 
-Exact recovery continuation: audit the frozen DeepCore R1d record for any still-unconsumed provenance-qualified external computational-authority route, without starting 3nu reproduction. In parallel, a new COHERENT F1/F7 route is allowed only if it is genuinely independent and provenance-qualified before target scientific-content inspection. Do not widen q5g2/q4fs/q4fs2 post hoc.
+## Exact recovery continuation
+
+Do not launch DeepCore standard-3nu, systematic MC, observed residual, or a dependent computational-contract realization from R1m3. Further DeepCore science requires genuinely new independently provenance-qualified external computational authority prospectively frozen before first target-content inspection; do not widen exhausted MCEq/PISA/Barr/CSMS routes post hoc.
+
+In parallel, COHERENT may continue only through a genuinely independent provenance-qualified F1/F7 authority route; do not repeat or broaden q5g2/q4fs/q4fs2. If neither such route exists, the scientific front is objectively BLOCKED rather than idle by choice.
