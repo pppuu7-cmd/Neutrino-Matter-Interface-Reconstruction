@@ -1,0 +1,60 @@
+{
+  "manifest_id": "NMIR-0103-BOREXINO-MAJORANA-TRANSITION-MANIFEST-v1",
+  "date": "2026-09-12",
+  "status": "BYTE_PINNED_AUTHORITY_NOT_TERMINAL_PHYSICS_LOCK",
+  "benchmark": "NMIR-BENCHMARK-0103",
+  "publication": {
+    "title": "Limiting neutrino magnetic moments with Borexino Phase-II solar neutrino data",
+    "collaboration": "Borexino Collaboration",
+    "journal": "Phys. Rev. D 96, 091103(R) (2017)",
+    "doi": "10.1103/PhysRevD.96.091103",
+    "arxiv": "1707.09355",
+    "arxiv_version": "v3"
+  },
+  "probe_provenance": {
+    "workflow": ".github/workflows/0103-authority-pin-probe.yml",
+    "workflow_run_id": 34648625242,
+    "workflow_job_id": 103425304459,
+    "workflow_head_sha": "a39f6444fd87d522f1d298d117859c1d95f077e5",
+    "artifact_id": 10282473288,
+    "artifact_name": "nmir-0103-authority-pin-probe",
+    "artifact_zip_sha256": "8a862ab55dc505c471aa7acd5976459d6a94779b75ced3dd664fe2be67d361ee"
+  },
+  "pinned_payloads": [
+    {
+      "role": "Borexino arXiv v3 PDF",
+      "url": "https://arxiv.org/pdf/1707.09355v3",
+      "bytes": 536898,
+      "sha256": "e7d5279fc62892832756ea12a3c1e704092774d915d1d9ecf04c7ec8039c259c"
+    },
+    {
+      "role": "Borexino arXiv v3 source bundle",
+      "url": "https://export.arxiv.org/e-print/1707.09355v3",
+      "bytes": 92917,
+      "sha256": "cb0bbadd01bbbc62399b6bd039f2947509b00499faf0ad85e2194b10332459bb"
+    }
+  ],
+  "published_authority": {
+    "confidence_level": 0.90,
+    "basis": "mass_eigenstate",
+    "particle_convention": "Majorana transition moments",
+    "units": "mu_B",
+    "effective_limit": 2.8e-11,
+    "individual_transition_upper_bounds": {
+      "abs_mu_12": 2.8e-11,
+      "abs_mu_13": 3.4e-11,
+      "abs_mu_23": 5.0e-11
+    }
+  },
+  "prospective_benchmark_branch": {
+    "component": "mu_12",
+    "selection_rationale": "Use a single mass-basis transition component to avoid treating the scalar effective limit as a flavor-basis matrix element and to avoid an unnecessary flavor-to-mass magnetic-moment mapping. mu_12 has the tightest published individual bound and equals the published effective-limit scale.",
+    "magnitude_semantics": "UPPER_LIMIT_AUTHORITY_ONLY",
+    "allowed_terminal_use": "A boundary/envelope benchmark may set |mu_12| to or below the published 90% CL upper limit if that boundary-use semantics is preregistered before propagation results are seen.",
+    "prohibited_inference": "The upper bound is not a measured central value and does not imply a nonzero neutrino magnetic moment. Choosing a Majorana benchmark is a conditional model branch, not evidence that neutrinos are Majorana."
+  },
+  "basis_guard": {
+    "existing_preflight_representation": "synthetic e-mu transition matrix in flavor basis",
+    "terminal_rule": "Do not insert the mass-basis Borexino number directly into the existing flavor-basis magnetic block. Either implement the single mu_12 interaction in a common mass-basis representation with all other Hamiltonian terms transformed consistently, or freeze an exact unitary transformation and demonstrate probability-level basis invariance before use."
+  }
+}
