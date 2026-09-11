@@ -1,0 +1,50 @@
+{
+  "manifest_id": "NMIR-0103-NUFIT61-THREE-FLAVOR-v1",
+  "date": "2026-09-12",
+  "benchmark": "NMIR-BENCHMARK-0103",
+  "status": "OFFICIAL_NUMERIC_AUTHORITY_VERIFIED_TLS_BYTE_PIN_PENDING",
+  "source": {
+    "publisher": "NuFIT",
+    "version": "6.1",
+    "fit_data_through": "2025-11",
+    "official_results_url": "https://www.nu-fit.org/?q=node/12",
+    "official_parameter_pdf_url": "https://www.nu-fit.org/sites/default/files/v61.tbl-parameters.pdf",
+    "section_rule": "Use the lower IC24 with SK atmospheric data section, i.e. the most inclusive global fit shown in the official v6.1 parameter table.",
+    "ordering_rule": "Carry both Normal Ordering and Inverted Ordering as separate prospective branches. Do not select an ordering after viewing 0103 propagation results."
+  },
+  "tls_probe": {
+    "workflow": ".github/workflows/0103-nufit61-authority-pin.yml",
+    "run_id": 34649480505,
+    "job_id": 103428024024,
+    "result": "INFRASTRUCTURE_ONLY_FETCH_FAILURE",
+    "failure": "GitHub-hosted runner curl rejected the nu-fit.org certificate chain: unable to get local issuer certificate. The workflow itself concluded success only because fetch failures were intentionally logged rather than fatal.",
+    "artifact_id": 10282428076,
+    "artifact_zip_sha256": "59dc66859fc244fed5acd697b771f185922a5a5d0d86dac8aed54a15145fd30e",
+    "authority_effect": "No NuFIT PDF bytes were pinned by this run. Do not cite the green workflow status as an authority PASS."
+  },
+  "fit": "IC24_WITH_SK_ATMOSPHERIC",
+  "normal_ordering": {
+    "sin2_theta12": 0.3088,
+    "sin2_theta23": 0.470,
+    "sin2_theta13": 0.02248,
+    "delta_cp_deg": 212.0,
+    "dm2_21_eV2": 7.537e-5,
+    "dm2_3l_eV2": 2.511e-3,
+    "dm2_3l_convention": "dm2_31"
+  },
+  "inverted_ordering": {
+    "sin2_theta12": 0.3088,
+    "sin2_theta23": 0.550,
+    "sin2_theta13": 0.02262,
+    "delta_cp_deg": 274.0,
+    "dm2_21_eV2": 7.537e-5,
+    "dm2_3l_eV2": -2.483e-3,
+    "dm2_3l_convention": "dm2_32"
+  },
+  "use_guard": {
+    "central_values_only": true,
+    "claim_scope": "Conditional benchmark inputs, not parameter measurements by NMIR.",
+    "byte_pin_required_for_terminal_authority_record": true,
+    "ordering_postselection_prohibited": true
+  }
+}
