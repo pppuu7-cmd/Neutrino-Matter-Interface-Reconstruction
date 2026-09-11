@@ -34,3 +34,5 @@ jobs:
           name: nmir-0103z-rephasing-covariance
           path: 0103z_metrics.json
           if-no-files-found: warn
+
+# trigger: 2026-09-12T02:43+03:00
