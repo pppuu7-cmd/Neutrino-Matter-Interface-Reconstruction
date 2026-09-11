@@ -7,7 +7,7 @@ Parent preregistration: `research/prereg/0103_known_model_benchmark_magnetic_spi
 
 ## Current result
 
-The 0103 authority problem has now been narrowed substantially. The magnetic-moment scale, its mass-basis Majorana transition convention, the mass/flavor representation map, and the full three-flavor oscillation-parameter integration have all been made explicit and machine-tested. The remaining dominant Betelgeuse-specific terminal blocker is the absence of a recoverable path-dependent vector magnetic field from which `B_perp(r)` can be derived without an invented profile.
+The 0103 authority problem has now been narrowed substantially. The magnetic-moment scale, its mass-basis Majorana transition convention, the mass/flavor representation map, the full three-flavor oscillation-parameter integration, and the generic native-Pencil 3-D magnetic-vector ingestion interface have all been made explicit and machine-tested. The remaining dominant Betelgeuse-specific terminal blocker is the absence of a recoverable path-dependent vector magnetic field from which `B_perp(r)` can be derived without an invented profile.
 
 This is not a physics FAIL.
 
@@ -119,6 +119,8 @@ A historical predecessor gives an exact hydrodynamic sequence identifier `dst33g
 
 The archive search has also recovered indexed Stockholm Observatory FTP traces of Dorch-era material, including papers and PostScript field figures. Figure files are useful provenance evidence but cannot be rasterized into terminal `B_perp(r)` because they do not preserve the required vector field and would introduce reconstruction choices.
 
+A precise external acquisition contract is now frozen in `research/authority/0103_dorch_archive_acquisition_contract.md`. The preferred recovery target is a native Pencil full-state snapshot or full `A(x,y,z)`/`B(x,y,z)` state from the nonlinear run, ideally around the published `t=695 yr` or `t=732 yr` states, together with grid, units and run metadata. The original author/institutional route remains actionable, so the branch is not yet classified as permanently data-limited.
+
 ## Why surface/figure information is insufficient
 
 The spin-flavor Hamiltonian requires the magnetic-field component transverse to the neutrino trajectory at each propagation point. A surface-averaged longitudinal measurement, a quoted simulated surface amplitude, or a plotted surface map does not provide:
@@ -136,11 +138,52 @@ Therefore the following remain prohibited for a Betelgeuse-specific terminal cla
 - promoting a simulated hundreds-of-gauss surface amplitude to Betelgeuse's true internal field;
 - silently replacing the missing Dorch state with a different star-in-a-box calculation.
 
-## 5. Reproducible model-conditional fallback exists, but is a different claim
+## 5. Native Pencil 3-D vector ingestion — PASS on a separate surrogate
 
-The current public Pencil Code retains a reproducible `samples/mdwarf` star-in-a-box MHD configuration for convection plus magnetic-field generation in a fully convecting star. This provides a legitimate route for a **separate model-conditional stress test** of the 0103 propagation interface if the historical Betelgeuse vector state cannot be recovered.
+The model-conditional benchmark `NMIR-BENCHMARK-0103S` was preregistered specifically to answer whether the NMIR workflow can consume an authentic native Pencil MHD state without inventing a radial field law.
 
-Such a branch must be labelled as a generic/fully-convective star-in-a-box surrogate and must never be described as a Betelgeuse prediction or as recovery of the Dorch 2004 run. It should be preregistered under a distinct benchmark identity before any propagation result is computed.
+External source: pinned `pencil-code/pencil-code` commit `1a672b5cb2983b3e286503a789dd36bf7d6d1141`, sample `samples/mdwarf`.
+
+The first execution successfully built and ran the MHD sample but failed only because the Python postprocessor lacked `matplotlib`. The rerun changed only reader dependencies; no physical sample setting or gate changed.
+
+Authoritative run `34650666488`, job `103431814298`, artifact `10283931487`, ZIP SHA256 `3711dc174eb4d9eb8e8dd4ff09f0e9a65f8be6aee7c84bd7ae7f896ef4403482` passed all preregistered gates.
+
+Status: `PASS_0103S_PENCIL_MDWARF_VECTOR_INTERFACE_NONTERMINAL`.
+
+The official pinned Pencil reader derived `bb=curl(aa)` from the native final snapshot:
+
+- `bb_shape=[3,32,32,32]`;
+- coordinate extents `[-1.5,1.5]` on all axes;
+- all components finite;
+- nonzero field present;
+- `|B|_max=4.687900321192166e-05` code units;
+- RMS `|B|=4.490911276462364e-06` code units.
+
+Canonical result: `research/authority/0103s_pencil_mdwarf_vector_interface_result.md`.
+
+This proves that the remaining 0103 obstacle is **not** a generic inability to read a native Pencil 3-D magnetic state. The unresolved issue is the physical/data authority of the Betelgeuse-specific vector state.
+
+Strict scope: 0103S is a fully-convective-star regression fixture, not Betelgeuse and not the Dorch 2004 nonlinear run.
+
+## 6. Prospectively frozen next interface tests
+
+Two additional model-conditional audits have been preregistered without changing Betelgeuse authority:
+
+### 0103G — giant-star native vector interface
+
+`research/prereg/0103g_pencil_giant_vector_interface.md` freezes the public Pencil `samples/star-in-a-box-giant-Kprof` model at the same external commit. It is a `64^3` MHD giant-star sphere-in-a-box sample using the `RGB-1Msun-11.7` gravity potential. The first execution was infrastructure-only blocked because the hosted runner lacked OpenMPI (`mpirun` and `mpif.h`); physical sample-file hashes were recorded before the failure. A rerun installs OpenMPI only and leaves all four frozen sample files unchanged.
+
+0103G remains model-conditional and cannot become Betelgeuse authority.
+
+### 0103P — deterministic vector-to-pathwise-`B_perp` geometry
+
+`research/prereg/0103p_pencil_pathwise_bperp_interface.md` freezes a central x-directed ray through the already reproducible mdwarf sphere, exact target `y=z=0`, a fixed bilinear transverse interpolation rule, and
+
+`B_perp=sqrt(By^2+Bz^2)`
+
+with an independent invariant check `B_perp^2=|B|^2-(B dot n)^2`.
+
+This test is intended to remove ray/interpolation postselection from the technical interface before any Betelgeuse vector state is obtained.
 
 ## Current authority classification
 
@@ -151,11 +194,14 @@ Such a branch must be labelled as a generic/fully-convective star-in-a-box surro
 - `MAJORANA_MU12_BASIS_INVARIANCE`: **PASS**.
 - `FULL_3FLAVOR_NUFIT61_NUMERIC_INTEGRATION`: **PASS FOR BOTH NO AND IO**.
 - `NUFIT61_OFFICIAL_PDF_BYTE_PIN`: **PENDING — TLS INFRASTRUCTURE BLOCK ONLY**.
+- `GENERIC_NATIVE_PENCIL_3D_VECTOR_INGESTION`: **PASS_0103S**.
+- `GIANT_STAR_PENCIL_VECTOR_INTERFACE`: **PREREGISTERED; INITIAL RUN INFRASTRUCTURE-BLOCKED BY MISSING MPI; INFRASTRUCTURE-ONLY RERUN ACTIVE**.
+- `PATHWISE_BPERP_EXTRACTION_INTERFACE`: **PREREGISTERED / ACTIVE**.
 - `BETELGEUSE_3D_MHD_PUBLICATION_AUTHORITY`: **BYTE-PINNED**.
 - `BETELGEUSE_SURFACE_FIELD_AUTHORITY`: **AVAILABLE AS BOUNDARY EVIDENCE**.
 - `BETELGEUSE_MACHINE_READABLE_3D_VECTOR_SNAPSHOT`: **NOT RECOVERED**.
 - `BETELGEUSE_INTERNAL B_perp(r) AUTHORITY`: **BLOCKED**.
-- `GENERIC_PENCIL_STAR_IN_BOX_MODEL_CONDITIONAL_PATH`: **AVAILABLE IN PRINCIPLE, NOT YET PROMOTED TO BETELGEUSE AUTHORITY**.
+- `DORCH_ORIGINAL_AUTHOR_ARCHIVE_ACQUISITION_ROUTE`: **ACTIONABLE**.
 
 Current narrow terminal status:
 
@@ -165,8 +211,8 @@ No physics FAIL is inferred.
 
 ## Next deterministic tasks
 
-1. Continue the targeted archive search for the Dorch/Pencil-Code nonlinear Betelgeuse vector state, including surviving institutional/FTP material and historical code/data identifiers.
-2. Inspect the surviving Pencil Code star-in-a-box sample sufficiently to define an exact, prospective vector-field extraction interface without yet running a result-selected propagation calculation.
-3. If a historical Betelgeuse vector snapshot is recovered, byte-pin it and preregister snapshot, ray orientation, coordinate mapping, interpolation and matter-profile co-registration before any probability calculation.
-4. If the dedicated archive search remains negative, close the **Betelgeuse-specific** 0103 terminal branch as externally data-limited rather than fabricate `B_perp(r)`.
-5. Only after that classification, optionally open a separately named model-conditional star-in-a-box stress-test branch to test the spin-flavor machinery on a reproducible MHD field without making an empirical Betelgeuse claim.
+1. Complete the preregistered 0103G giant-vector and 0103P pathwise-geometry audits without altering their frozen scientific configurations.
+2. Continue the targeted acquisition route for the Dorch/Pencil-Code nonlinear Betelgeuse vector state, prioritizing native snapshots/full vector arrays over figures or scalar summaries.
+3. If a historical Betelgeuse vector snapshot is recovered, byte-pin it and apply a separately frozen Betelgeuse ray/orientation/regridding/co-registration contract before computing any spin-flavor probability.
+4. If the actionable author/institution archive route is exhausted without recovery, classify the **Betelgeuse-specific** terminal branch as externally data-limited rather than fabricate `B_perp(r)`.
+5. Keep all surrogate results explicitly model-conditional; they validate machinery but cannot be promoted to empirical Betelgeuse predictions.
