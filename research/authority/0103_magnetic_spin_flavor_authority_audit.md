@@ -1,6 +1,6 @@
 # 0103 magnetic spin-flavor authority audit
 
-Date: 2026-09-10
+Date: 2026-09-12
 Status: RESEARCH NOTE — TERMINAL LOCK NOT CREATED
 Benchmark: `NMIR-BENCHMARK-0103`
 Parent preregistration: `research/prereg/0103_known_model_benchmark_magnetic_spin_flavor_preflight.md`
@@ -25,6 +25,7 @@ A robust experimental reference is the Borexino Phase-II solar-neutrino analysis
 
 - M. Agostini et al. (Borexino Collaboration), *Limiting neutrino magnetic moments with Borexino Phase-II solar neutrino data*, Phys. Rev. D 96, 091103(R) (2017).
 - DOI: `10.1103/PhysRevD.96.091103`.
+- arXiv: `1707.09355v3`.
 - Reported effective solar-neutrino limit: `mu_nu^eff < 2.8e-11 mu_B` at 90% CL.
 
 The publication explicitly distinguishes Dirac and Majorana moment matrices. For Majorana neutrinos the magnetic-moment matrix is antisymmetric and only transition moments are allowed; for Dirac neutrinos the matrix is general.
@@ -39,11 +40,34 @@ The same Borexino paper writes the effective solar-neutrino moment in the mass-e
 
 These are materially stronger authority candidates for NMIR 0103 than treating the scalar `mu_nu^eff` as if it were a transition-matrix element.
 
+### Byte-level authority pin completed
+
+The dedicated authority probe `.github/workflows/0103-authority-pin-probe.yml` completed successfully at run `34648625242`, job `103425304459`, head `a39f6444fd87d522f1d298d117859c1d95f077e5`, artifact `10282473288`.
+
+Pinned Borexino payloads:
+
+- arXiv v3 PDF: 536898 bytes, SHA256 `e7d5279fc62892832756ea12a3c1e704092774d915d1d9ecf04c7ec8039c259c`;
+- arXiv v3 source bundle: 92917 bytes, SHA256 `cb0bbadd01bbbc62399b6bd039f2947509b00499faf0ad85e2194b10332459bb`;
+- uploaded probe artifact ZIP SHA256 `8a862ab55dc505c471aa7acd5976459d6a94779b75ced3dd664fe2be67d361ee`.
+
+Canonical machine-readable record: `research/authority/0103_borexino_majorana_transition_manifest.json`.
+
+### Prospective benchmark component
+
+For the present six-state Majorana conditional branch, NMIR now selects a **single mass-basis `mu_12` transition component** for the next terminally eligible benchmark design. This avoids pretending that the scalar effective limit is a flavor-basis matrix element and avoids an unnecessary magnetic-moment flavor-to-mass inference.
+
+The published `|mu_12| <= 2.8e-11 mu_B` value is an **upper-limit authority**, not a measured central value. A future propagation calculation may use the boundary value only if it is preregistered explicitly as an upper-envelope/boundary benchmark. Such use cannot be worded as evidence for a nonzero moment.
+
 ### Interpretation guard
 
-The Borexino transition bounds above are given in the **mass basis**. The frozen synthetic 0103 transition matrix is described as an `e-mu` transition-flavor matrix. Therefore even these specific experimental bounds cannot be inserted directly into the current matrix without prospectively declaring and validating the basis transformation.
+The Borexino transition bounds are given in the **mass basis**. The frozen synthetic 0103 preflight transition matrix is described as an `e-mu` transition-flavor matrix. The published value therefore still may not be inserted directly into that old magnetic block.
 
-The preflight value `mu_nu = 1e-11 mu_B` remains only a mathematical fixture. Its numerical location below the published transition-element upper bounds does not turn the synthetic flavor-basis matrix into an experimentally authorized terminal point.
+For terminal work, either:
+
+1. formulate the magnetic interaction as the single `mu_12` transition in a common mass-basis representation while transforming all other Hamiltonian terms consistently; or
+2. freeze an exact unitary transformation and demonstrate probability-level basis invariance before translating the interaction into a flavor-basis implementation.
+
+The preflight value `mu_nu = 1e-11 mu_B` remains only a mathematical fixture and is not promoted to terminal physical authority.
 
 ## Basis/convention issue exposed by the audit
 
@@ -51,62 +75,62 @@ The 0103 preflight uses
 
 `Psi = (nu_e, nu_mu, nu_tau, anti-nu_e, anti-nu_mu, anti-nu_tau)`
 
-and an antisymmetric synthetic transition-flavor matrix. This is deliberately acceptable for a code-path preflight, but a terminal physical claim needs more specificity.
+and an antisymmetric synthetic transition-flavor matrix. This remains acceptable for code-path preflight, but a terminal physical claim needs an explicit conditional particle convention.
 
 For a **Majorana transition-moment** interpretation, an antisymmetric magnetic-moment matrix is structurally natural and spin-flavor conversion may connect neutrino and antineutrino sectors. For a **Dirac** interpretation, a helicity flip generally produces a right-handed sterile state rather than an active antineutrino state, so the present six-active-sector interpretation cannot simply be relabelled Dirac without an amended state-space contract.
 
-**Recommended terminal branch:** if 0103 is kept on the present six-state `nu/anti-nu` architecture, preregister it explicitly as a Majorana transition-moment benchmark. Prefer a mass-basis single-transition fixture tied directly to one of the Borexino bounds, or freeze an exact unitary basis transformation and demonstrate probability-level basis invariance before translating that bound into a flavor-basis magnetic block.
+**Prospective 0103 branch decision:** preserve the current six-state `nu/anti-nu` architecture only as a **conditional Majorana transition-moment benchmark** and use the single mass-basis `mu_12` authority above. This is a benchmark convention, not evidence that neutrinos are Majorana particles.
 
-This is a convention clarification, not evidence that neutrinos are Majorana particles.
+A dedicated basis-invariance implementation test is still required before terminal propagation.
 
 ## Betelgeuse magnetic-field authority
 
 Direct spectropolarimetry provides genuine evidence for a weak magnetic field at Betelgeuse's surface/atmosphere:
 
 - Auriere et al. (2010) reported the first direct detection, with a surface-averaged longitudinal field of order `1 G`.
-- Subsequent monitoring over 2009-2017 continued to find fields of order `1 G` and variable polarization signatures, consistent with a complex convective/local-dynamo origin.
-- A 2023 review summarizes Betelgeuse atmospheric magnetic fields as approximately `1 G` from circular-polarization/Zeeman measurements.
+- Subsequent monitoring continued to find fields of order `1 G` with complex variable signatures.
 
 This is useful boundary information, but it is **not** a terminal `B_perp(r)` profile.
 
-### Why the surface measurement does not close FIELD_PROFILE_AUTHORITY
+### Pinned 3-D MHD publication authority
 
-The frozen spin-flavor Hamiltonian depends on the magnetic-field component transverse to the neutrino path at each propagation point. A surface-averaged longitudinal line-of-sight measurement supplies neither:
+The 0103 authority probe also byte-pinned the Dorch 2004 Betelgeuse-like full 3-D MHD publication:
 
-- the internal radial dependence of field magnitude;
+- SDU PDF: 682550 bytes, SHA256 `a5ea2282ef2fbac21dd45ca61a7d5887ac890663d5f67eb194c088552ce9a97b`;
+- arXiv `astro-ph/0403321v1` PDF: 582957 bytes, SHA256 `43fd08f61cd981fb64ffe2a2b4f126954562273361fc3843b2e31fb5817c6543`.
+
+The paper establishes a relevant `star-in-a-box` 3-D MHD model and reports nonlinear dynamo fields, but the authority recovered so far does **not** include a released machine-readable numerical vector snapshot from which NMIR can reconstruct `B(x,y,z)` along a neutrino ray.
+
+Canonical audit: `research/authority/0103_betelgeuse_vector_field_artifact_audit.md`.
+
+### Why the surface measurement or publication figures do not close FIELD_PROFILE_AUTHORITY
+
+The spin-flavor Hamiltonian depends on the magnetic-field component transverse to the neutrino path at each propagation point. A surface-averaged longitudinal measurement, a quoted simulated surface amplitude, or a plotted surface map supplies neither:
+
+- a machine-readable internal vector field;
 - the vector orientation relative to the neutrino trajectory;
-- the sign/domain structure;
-- a unique continuation from interior to photosphere;
-- an immutable stellar-model snapshot co-registered with the `rho(r), Ye(r)` source profile.
+- the sign/domain structure along the path;
+- an immutable numerical snapshot co-registered with the `rho(r), Ye(r)` source profile.
 
-Therefore substituting `B=1 G` everywhere, extrapolating it inward by an arbitrary power law, or identifying a longitudinal photospheric field with `B_perp` would violate the NMIR authority discipline.
-
-## Model-based magnetic profiles
-
-Published MHD/wind and local-dynamo models for Betelgeuse do exist. Some take an observed surface field of order `1 G` as an input and predict circumstellar/wind magnetic structure, while convection-driven dynamo calculations generate nontrivial internal/surface fields.
-
-These are candidate *model authorities*, not direct measurements of a unique radial field. A future terminal branch may use such a profile only if all of the following are frozen prospectively:
-
-1. exact publication/model identity;
-2. exact numerical profile or reproducible simulation artifact;
-3. stellar parameters/snapshot;
-4. coordinate/basis definition of the magnetic vector;
-5. mapping to the neutrino path and `B_perp(r)`;
-6. compatibility or explicit regridding against the pinned NMIR `rho(r), Ye(r)` source snapshot;
-7. uncertainty/stress-test semantics.
+Therefore substituting `B=1 G` everywhere, extrapolating it inward by an arbitrary power law, rasterizing a published figure, or promoting the Dorch saturated surface amplitude to the true Betelgeuse interior field would violate the NMIR authority discipline.
 
 ## Current authority classification
 
 - `MAGNETIC_MOMENT_SCALE_AUTHORITY`: **AVAILABLE**.
-- `MASS_BASIS_MAJORANA_TRANSITION_ELEMENT_AUTHORITY`: **AVAILABLE AS PUBLISHED NUMERIC AUTHORITY; BYTE-LEVEL PIN STILL REQUIRED**.
-- `FLAVOR_TO_MASS_BASIS_MAPPING_FOR_0103`: **NOT YET FROZEN/VALIDATED**.
-- `DIRAC_MAJORANA_TERMINAL_CONVENTION`: **NOT YET FROZEN**.
+- `MASS_BASIS_MAJORANA_TRANSITION_ELEMENT_AUTHORITY`: **BYTE-PINNED**.
+- `PROSPECTIVE_0103_TRANSITION_COMPONENT`: **FROZEN TO SINGLE MASS-BASIS mu_12 FOR CONDITIONAL MAJORANA BENCHMARK DESIGN**.
+- `DIRAC_MAJORANA_TERMINAL_CONVENTION`: **CONDITIONAL MAJORANA BRANCH SELECTED; NOT AN EMPIRICAL CLAIM**.
+- `BASIS_INVARIANCE_IMPLEMENTATION_TEST`: **STILL REQUIRED BEFORE TERMINAL PROPAGATION**.
+- `BETELGEUSE_3D_MHD_PUBLICATION_AUTHORITY`: **BYTE-PINNED**.
 - `BETELGEUSE_SURFACE_FIELD_AUTHORITY`: **AVAILABLE AS BOUNDARY EVIDENCE**.
-- `BETELGEUSE_INTERNAL B_perp(r) AUTHORITY`: **NOT YET PINNED**.
+- `BETELGEUSE_MACHINE_READABLE_3D_VECTOR_SNAPSHOT`: **NOT RECOVERED**.
+- `BETELGEUSE_INTERNAL B_perp(r) AUTHORITY`: **BLOCKED**.
 
-Overall terminal status therefore remains
+The old broad status `BLOCKED_0103_MAGNETIC_AND_FIELD_AUTHORITY_UNPINNED` is superseded.
 
-`BLOCKED_0103_MAGNETIC_AND_FIELD_AUTHORITY_UNPINNED`.
+Current narrow status:
+
+`BLOCKED_0103_BETELGEUSE_PATHWISE_VECTOR_FIELD_AUTHORITY`
 
 No physics FAIL is inferred.
 
@@ -116,10 +140,12 @@ The 0103 funnel should reject a common but invalid shortcut:
 
 > `mu_nu` has an experimental upper limit and Betelgeuse has an observed ~1 G surface field, therefore a terminal spin-flavor prediction can be run.
 
-That conclusion does not follow. The experiment constrains an effective or basis-resolved moment, while the stellar measurement constrains a surface-projected field. The propagation observable requires a correctly mapped transition moment and a path-resolved transverse magnetic field.
+That conclusion does not follow. The moment authority is now reproducibly pinned, but the propagation observable still requires a path-resolved transverse magnetic field. Publication-level evidence that a 3-D MHD model exists is not equivalent to release of its numerical vector state.
 
 ## Next deterministic tasks
 
-1. Byte-pin the Borexino authority and prospectively choose one mass-basis Majorana transition component (or freeze/test the exact basis transform to the existing flavor-basis representation).
-2. Identify a reproducible Betelgeuse stellar/dynamo/MHD artifact that contains vector magnetic-field information across the relevant propagation region, rather than only a photospheric scalar measurement.
-3. Only after both are pinned, preregister the Majorana/basis transformation and terminal `B_perp(r)` extraction rule and create `research/locks/0103_magnetic_field_terminal_lock.json` (or a successor lock schema that separately hashes moment and field authority).
+1. Add a small basis-invariance test for the chosen conditional Majorana `mu_12` implementation, without running any Betelgeuse terminal prediction.
+2. Conduct a dedicated archive/source search for a released Dorch/Pencil-Code or successor Betelgeuse-like numerical vector snapshot exposing `B(x,y,z)` and coordinates.
+3. If a suitable snapshot is recovered, byte-pin it and preregister the ray/orientation/regridding rule before computing probabilities.
+4. If no suitable numerical vector authority can be recovered, close the present Betelgeuse-specific branch as externally data-limited; do **not** fabricate `B_perp(r)`.
+5. Keep any future synthetic magnetic-profile stress test as a separately labeled model-conditional benchmark, not as a Betelgeuse prediction.
