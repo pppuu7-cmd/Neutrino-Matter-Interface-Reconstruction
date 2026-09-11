@@ -51,3 +51,5 @@ jobs:
           path: artifacts/0105a5b_r1e/
           if-no-files-found: error
           retention-days: 90
+
+# Hosted trigger commit: criteria unchanged.
