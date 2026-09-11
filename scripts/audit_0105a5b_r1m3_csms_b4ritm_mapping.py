@@ -36,7 +36,7 @@ def contexts(text, radius=500):
         if EXPERIMENT_RE.search(chunk): out.append(chunk)
     return out
 
-def classify_texts(texts):
+def lexical_diagnostics(texts):
     evidence={k:[] for k in BUCKETS}
     anchored_context_count=0
     for path,text in texts:
@@ -45,12 +45,11 @@ def classify_texts(texts):
             for key,rx in BUCKETS.items():
                 if rx.search(chunk):
                     evidence[key].append({'path':path,'context_sha256':sha256_bytes(chunk.encode()),'excerpt':chunk[:1200]})
-    complete=anchored_context_count>0 and all(evidence[k] for k in BUCKETS)
-    return complete, anchored_context_count, evidence
+    return anchored_context_count,evidence
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--output',required=True); ap.add_argument('--git-sha',required=True); a=ap.parse_args()
-    result={'gate':'0105a5b-R1m3','git_sha':a.git_sha,'classification':None,'corpus_rule':'tracked path under research/data/scripts/theory containing b4ritm/deepcore/icecube/0105a5b; R1m3 self-files excluded','corpus':[],'anchored_context_count':0,'evidence':{},'standard_3nu_executed':False,'systematic_monte_carlo_executed':False,'observed_bsm_residual_inspected':False,'observed_bsm_residual_permission_percent':0,'systematic_monte_carlo_execution_permission_percent':0,'network_requests_executed':False}
+    result={'gate':'0105a5b-R1m3','git_sha':a.git_sha,'classification':None,'corpus_rule':'tracked path under research/data/scripts/theory containing b4ritm/deepcore/icecube/0105a5b; R1m3 self-files excluded','corpus':[],'anchored_context_count':0,'evidence':{},'lexical_bucket_hits':{},'scientific_mapping_complete_machine_claim':False,'standard_3nu_executed':False,'systematic_monte_carlo_executed':False,'observed_bsm_residual_inspected':False,'observed_bsm_residual_permission_percent':0,'systematic_monte_carlo_execution_permission_percent':0,'network_requests_executed':False}
     try:
         texts=[]
         paths=tracked_files()
@@ -62,11 +61,14 @@ def main():
             except UnicodeDecodeError:
                 pass
             result['corpus'].append(entry)
-        complete,nctx,evidence=classify_texts(texts)
+        nctx,evidence=lexical_diagnostics(texts)
         result['anchored_context_count']=nctx; result['evidence']=evidence
-        result['mandatory_elements_present']={k:bool(v) for k,v in evidence.items()}
-        result['mapping_complete']=complete
-        result['classification']='PASS_0105A5B_R1M3_CSMS_B4RITM_EXPERIMENTAL_MAPPING_COMPLETE_NONDISCOVERY' if complete else 'BLOCKED_0105A5B_R1M3_CSMS_B4RITM_EXPERIMENTAL_MAPPING_INCOMPLETE'
+        result['lexical_bucket_hits']={k:len(v) for k,v in evidence.items()}
+        # Amendment 01: lexical presence is diagnostic only. Negative/absence statements
+        # can contain the same words, so hosted code must not self-promote to a
+        # scientific PASS. Classification is performed only after artifact review
+        # against the original five-element preregistered semantic contract.
+        result['classification']='EVIDENCE_BUNDLE_ONLY_0105A5B_R1M3_UNCLASSIFIED'
     except (OSError,subprocess.SubprocessError,RuntimeError) as e:
         result['classification']='INFRASTRUCTURE_FAIL_0105A5B_R1M3'; result['error']=f'{type(e).__name__}: {e}'
     p=Path(a.output); p.parent.mkdir(parents=True,exist_ok=True); p.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
