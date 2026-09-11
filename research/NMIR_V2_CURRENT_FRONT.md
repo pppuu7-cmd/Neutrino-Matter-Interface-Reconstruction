@@ -7,13 +7,17 @@ NMIR v1 remains frozen at `NMIR_READINESS: 100%`. Repository plus validated host
 
 ## Stable authorization boundary
 
-COHERENT: official 0105a3 Zenodo byte lock remains PASS. q5f2 closed F4/F6 semantics. F1 elementary count law and F7 `3152`/`3154` role/precedence remain unresolved. q5g2, q4fs and q4fs2 are exhausted authority BLOCKED routes. Full Ar systematic pseudo-data reproduction and Tier-A exact collaboration likelihood remain unauthorized.
+COHERENT: official 0105a3 Zenodo byte lock remains PASS. q5f2 closed F4/F6 semantics. **F7 is now closed PASS** by prospectively frozen q7 primary version-history authority: arXiv:2003.10630v3 Table I contains Analysis-A `SS = 3154 +/- 25`; v4 changes the same field to `3152 +/- 25`; the collaboration arXiv history explicitly labels v4 `fix typo in table 1`; `3152 +/- 25` persists in the final paper and official LAr data release. Authoritative classification: `PASS_0105A_Q7_F7_PRIMARY_VERSIONED_PRECEDENCE_LOCATED_NONDISCOVERY`. Therefore `3154` is the obsolete pre-correction Table-I value and `3152` is the corrected authoritative Analysis-A SS input for the frozen reproduction target. q7 prereg/result commits: `ca909d318365dfb05b7b52c8abeacfbdd1f8bb7d` / `4516909ca2d58f7e7cb541dd2e40f844f8f18f4f`.
+
+F1 elementary count law remains unresolved. q5g2, q4fs and q4fs2 remain exhausted authority-BLOCKED routes. q6 prospectively audited the official 2021 CsI ancillary release but is scope-BLOCKED for the LAr target (`BLOCKED_0105A_Q6_F1_PRIMARY_SEMANTICS_SCOPE_MISMATCH`, `BLOCKED_0105A_Q6_F7_PRIMARY_3152_3154_SEMANTICS_SCOPE_MISMATCH`); prereg/result commits `a98dfd80a4db5d4b291e0d049fd1f00da9794a48` / `3930b0814cd33bf7a9436085e01021f43b723f09`. Full Ar systematic pseudo-data reproduction and Tier-A exact collaboration likelihood remain unauthorized.
 
 DeepCore: Stage-A remains frozen B4RITM; QKL28Z remains a separate sterile-control authority. R1d remains `BLOCKED_0105A5B_R1D_EXTERNAL_COMPUTATIONAL_AUTHORITY_INCOMPLETE`; standalone standard-3nu reproduction remains unauthorized.
 
 `NMIR_V2_DISCOVERY_READINESS: 48%`
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
+
+The 48% readiness marker is retained pending an explicit readiness-accounting reconciliation; q7 closes a scientific authority field but this document does not infer an arbitrary percentage uplift from one field closure.
 
 ## Exhausted DeepCore implementation-authority routes
 
@@ -46,6 +50,6 @@ Baseline CI run `34617954192`, job `103324480083`, failed only two precision-fra
 
 ## Exact next scientific boundary
 
-No dependent R1m4 computational-contract gate is authorized because R1m3 is BLOCKED. DeepCore standard-3nu, systematic MC and observed residual remain closed. A new DeepCore step requires genuinely new, independently provenance-qualified external computational authority prospectively frozen before target-content inspection; exhausted MCEq/PISA/Barr/CSMS exact routes must not be widened post hoc.
+COHERENT F7 is resolved. The exact remaining COHERENT semantic boundary is **F1 elementary count law**. Continuation is permitted only through a genuinely independent provenance-qualified LAr authority route prospectively frozen before target scientific-content inspection. Do not repeat or broaden q5g2/q4fs/q4fs2 and do not transfer CsI q6 counting conventions into the LAr target.
 
-COHERENT F1/F7 remain independently BLOCKED; a continuation is permitted only through a genuinely independent provenance-qualified authority route frozen before target scientific-content inspection. Do not repeat or broaden q5g2/q4fs/q4fs2.
+No dependent R1m4 computational-contract gate is authorized because R1m3 is BLOCKED. DeepCore standard-3nu, systematic MC and observed residual remain closed. A new DeepCore step requires genuinely new, independently provenance-qualified external computational authority prospectively frozen before target-content inspection; exhausted MCEq/PISA/Barr/CSMS exact routes must not be widened post hoc.
