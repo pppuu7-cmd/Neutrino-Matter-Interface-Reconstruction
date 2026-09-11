@@ -1,0 +1,156 @@
+name: 0103P Pencil pathwise Bperp interface
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103p-pencil-pathwise-bperp-interface.yml'
+      - 'research/prereg/0103p_pencil_pathwise_bperp_interface.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout NMIR
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reader dependencies
+        run: python -m pip install --disable-pip-version-check numpy scipy h5py f90nml matplotlib lazy_loader
+      - name: Clone pinned Pencil Code
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/pencil-code/pencil-code.git pencil-code
+          cd pencil-code
+          git checkout --detach 1a672b5cb2983b3e286503a789dd36bf7d6d1141
+          test "$(git rev-parse HEAD)" = "1a672b5cb2983b3e286503a789dd36bf7d6d1141"
+          git rev-parse HEAD | tee ../pencil_commit.txt
+      - name: Build and run frozen mdwarf sample
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PENCIL_HOME="$GITHUB_WORKSPACE/pencil-code"
+          export PATH="$PENCIL_HOME/bin:$PATH"
+          cd "$PENCIL_HOME/samples/mdwarf"
+          mkdir -p data
+          sha256sum start.in run.in src/Makefile.local src/cparam.local | tee "$GITHUB_WORKSPACE/frozen_sample_sha256.txt"
+          pc_setupsrc 2>&1 | tee "$GITHUB_WORKSPACE/pc_setupsrc.log"
+          pc_build 2>&1 | tee "$GITHUB_WORKSPACE/pc_build.log"
+          pc_start 2>&1 | tee "$GITHUB_WORKSPACE/pc_start.log"
+          pc_run 2>&1 | tee "$GITHUB_WORKSPACE/pc_run.log"
+      - name: Extract frozen central-ray Bperp
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PENCIL_HOME="$GITHUB_WORKSPACE/pencil-code"
+          export PYTHONPATH="$PENCIL_HOME/python:${PYTHONPATH:-}"
+          cd "$PENCIL_HOME/samples/mdwarf"
+          python - <<'PY' | tee "$GITHUB_WORKSPACE/0103p_pathwise_bperp.json"
+          import json
+          import numpy as np
+          import pencil as pc
+
+          var = pc.read.var(datadir='data', trimall=True, magic=['bb'], quiet=True)
+          bb = np.asarray(var.bb, dtype=float)
+          x = np.asarray(var.x, dtype=float)
+          y = np.asarray(var.y, dtype=float)
+          z = np.asarray(var.z, dtype=float)
+
+          def bracket_zero(coords):
+              lo = np.where(coords <= 0.0)[0]
+              hi = np.where(coords >= 0.0)[0]
+              if lo.size == 0 or hi.size == 0:
+                  raise RuntimeError('zero not bracketed')
+              i0 = int(lo[-1]); i1 = int(hi[0])
+              if i0 == i1:
+                  w1 = 0.0
+              else:
+                  w1 = float((0.0 - coords[i0]) / (coords[i1] - coords[i0]))
+              return i0, i1, 1.0-w1, w1
+
+          j0,j1,wy0,wy1 = bracket_zero(y)
+          k0,k1,wz0,wz1 = bracket_zero(z)
+          mask = (x >= -1.0) & (x <= 1.0)
+          xi = x[mask]
+          ii = np.where(mask)[0]
+
+          line = np.empty((3, ii.size), dtype=float)
+          for q, i in enumerate(ii):
+              for c in range(3):
+                  f00 = bb[c, k0, j0, i]
+                  f01 = bb[c, k0, j1, i]
+                  f10 = bb[c, k1, j0, i]
+                  f11 = bb[c, k1, j1, i]
+                  line[c,q] = (
+                      wz0*(wy0*f00 + wy1*f01) +
+                      wz1*(wy0*f10 + wy1*f11)
+                  )
+
+          bpar = line[0]
+          bperp = np.sqrt(line[1]**2 + line[2]**2)
+          bmag2 = np.sum(line*line, axis=0)
+          bperp_invariant = np.sqrt(np.maximum(0.0, bmag2 - bpar*bpar))
+          residual = float(np.max(np.abs(bperp - bperp_invariant)))
+
+          weights_ok = all(-1e-15 <= w <= 1.0+1e-15 for w in (wy0,wy1,wz0,wz1)) and abs((wy0+wy1)-1.0) <= 1e-15 and abs((wz0+wz1)-1.0) <= 1e-15
+          result = {
+              'audit': 'NMIR-0103P-PENCIL-PATHWISE-BPERP-INTERFACE',
+              'status': None,
+              'external_commit': '1a672b5cb2983b3e286503a789dd36bf7d6d1141',
+              'scope': 'MODEL_CONDITIONAL_PATH_NOT_BETELGEUSE',
+              'snapshot_time': float(var.t),
+              'ray_direction': [1.0,0.0,0.0],
+              'target_yz': [0.0,0.0],
+              'y_bracket': [float(y[j0]), float(y[j1])],
+              'z_bracket': [float(z[k0]), float(z[k1])],
+              'y_weights': [wy0,wy1],
+              'z_weights': [wz0,wz1],
+              'x_nodes': xi.tolist(),
+              'n_path_nodes': int(ii.size),
+              'bperp_min': float(bperp.min()),
+              'bperp_max': float(bperp.max()),
+              'bperp_rms': float(np.sqrt(np.mean(bperp*bperp))),
+              'bparallel_min': float(bpar.min()),
+              'bparallel_max': float(bpar.max()),
+              'bparallel_rms': float(np.sqrt(np.mean(bpar*bpar))),
+              'bperp_definition_residual': residual,
+              'betelgeuse_authority_closed': False,
+          }
+          result['gates'] = {
+              'pinned_commit': True,
+              'finite_3d_field': bool(np.isfinite(bb).all()),
+              'zero_bracketed_yz': bool(y[j0] <= 0 <= y[j1] and z[k0] <= 0 <= z[k1]),
+              'at_least_two_stellar_x_nodes': bool(ii.size >= 2),
+              'finite_interpolated_components': bool(np.isfinite(line).all()),
+              'finite_nonnegative_bperp': bool(np.isfinite(bperp).all() and np.all(bperp >= 0.0)),
+              'nonzero_bperp': bool(np.any(bperp > 0.0)),
+              'basis_free_identity': residual <= 1.0e-12,
+              'valid_interpolation_weights': bool(weights_ok),
+              'scope_guard': result['scope'] == 'MODEL_CONDITIONAL_PATH_NOT_BETELGEUSE' and result['betelgeuse_authority_closed'] is False,
+          }
+          result['status'] = 'PASS_0103P_PATHWISE_BPERP_INTERFACE_NONTERMINAL' if all(result['gates'].values()) else 'FAIL_0103P_PATHWISE_BPERP_INTERFACE'
+          print(json.dumps(result, indent=2, sort_keys=True))
+          if not all(result['gates'].values()):
+              raise SystemExit(1)
+          PY
+      - name: Upload pathwise evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103p-pencil-pathwise-bperp-interface
+          path: |
+            pencil_commit.txt
+            frozen_sample_sha256.txt
+            pc_setupsrc.log
+            pc_build.log
+            pc_start.log
+            pc_run.log
+            0103p_pathwise_bperp.json
+          if-no-files-found: warn
