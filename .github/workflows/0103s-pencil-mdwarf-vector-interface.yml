@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install postprocessing dependencies
-        run: python -m pip install --disable-pip-version-check numpy scipy h5py f90nml
+        run: python -m pip install --disable-pip-version-check numpy scipy h5py f90nml matplotlib lazy_loader
       - name: Clone pinned Pencil Code
         shell: bash
         run: |
