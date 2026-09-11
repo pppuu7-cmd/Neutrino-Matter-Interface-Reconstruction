@@ -4,22 +4,27 @@ from pathlib import Path
 P=Path('scripts/audit_0105a5b_r1m3_csms_b4ritm_mapping.py')
 spec=importlib.util.spec_from_file_location('r1m3',P); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
-def test_complete_requires_all_five_buckets_and_experimental_anchor():
+def test_lexical_diagnostics_are_not_scientific_classification():
     text='''IceCube DeepCore B4RITM uses the CSMS DIS cross-section nuisance parameter xsec_DIS. The event-weight reweight ratio is explicitly defined. Up/down gives the sign convention and orientation. A prior width of 5% defines the amplitude. The covariance correlation matrix and normalization convention are fixed.'''
-    complete,nctx,e=m.classify_texts([('frozen.txt',text)])
-    assert complete and nctx>0
+    nctx,e=m.lexical_diagnostics([('frozen.txt',text)])
+    assert nctx>0
     assert all(e[k] for k in m.BUCKETS)
+    src=P.read_text()
+    assert 'EVIDENCE_BUNDLE_ONLY_0105A5B_R1M3_UNCLASSIFIED' in src
+    assert 'PASS_0105A5B_R1M3_CSMS_B4RITM_EXPERIMENTAL_MAPPING_COMPLETE_NONDISCOVERY' not in src
 
-def test_missing_covariance_blocks():
-    text='''IceCube DeepCore uses CSMS DIS cross-section nuisance parameter xsec_DIS with event-weight reweight ratio, up/down sign convention, and prior width 5%.'''
-    complete,nctx,e=m.classify_texts([('frozen.txt',text)])
-    assert nctx>0 and not complete
-    assert not e['covariance']
+def test_negative_absence_statements_can_hit_keywords_but_cannot_self_pass():
+    text='''IceCube DeepCore DIS-CSMS authority does not recover a complete provider-backed event-level transformation contract. The prior/range, sign/orientation and covariance/correlation normalization convention are not defined.'''
+    nctx,e=m.lexical_diagnostics([('blocked.txt',text)])
+    assert nctx>0
+    assert e['transform'] and e['prior_range'] and e['covariance']
+    assert 'scientific_mapping_complete_machine_claim\':False' in P.read_text().replace(' ', '')
 
-def test_no_experiment_anchor_blocks_generic_csms_theory():
+def test_no_experiment_anchor_has_no_bounded_context():
     text='''CSMS DIS cross-section nuisance parameter uses event-weight reweight ratio, up/down sign convention, prior 5%, and covariance correlation matrix.'''
-    complete,nctx,e=m.classify_texts([('theory.txt',text)])
-    assert nctx==0 and not complete
+    nctx,e=m.lexical_diagnostics([('theory.txt',text)])
+    assert nctx==0
+    assert all(not e[k] for k in m.BUCKETS)
 
 def test_hard_prohibition_literals_present():
     src=P.read_text()
