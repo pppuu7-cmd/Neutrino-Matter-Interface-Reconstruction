@@ -7,7 +7,17 @@ NMIR v1 remains frozen at `NMIR_READINESS: 100%`. Preserve v2 order, all prospec
 
 ## COHERENT recovery boundary
 
-0105a3 full official Zenodo byte lock remains PASS. q5f2/q5g2 resolve F4/F6 semantics but leave F1 elementary count law and F7 `3152`/`3154` role/precedence unresolved. q5g2, q4fs and q4fs2 are exhausted authority BLOCKED routes. Full Ar systematic pseudo-data reproduction and Tier-A exact collaboration likelihood remain unauthorized. A new COHERENT route is allowed only if genuinely independent and provenance-qualified before target scientific-content inspection.
+0105a3 full official Zenodo byte lock remains PASS. q5f2 closes F4/F6. q5g2, q4fs and q4fs2 remain exhausted authority-BLOCKED routes for the unresolved counting semantics. q6 audited the official 2021 CsI ancillary release but is scope-BLOCKED for the LAr target and must not be used to transfer CsI counting conventions.
+
+**F7 is now closed with hosted artifact validation.** q7 was scientifically preregistered at `ca909d318365dfb05b7b52c8abeacfbdd1f8bb7d`. The collaboration primary version chain shows Analysis-A `3154 +/- 25` in arXiv:2003.10630v3, `3152 +/- 25` in v4, a primary version-history note `fix typo in table 1`, and persistence of `3152 +/- 25` in final/current authority. Hosted validation amendment `e97d5157dd586160b0e9feb476eb4975d88fe513`; execution head `f52c282f472736c3b5fffccd25e07c543699d4d4`; run/job/artifact `34629320828/103362008779/10274904595`; provider and independently downloaded ZIP SHA256 `ab5ce95e807fad976364077cb1f72f5f924ef784cc0e37fce992c0584a00c1d0`; inner `result.json` SHA256 `fdebc7e7c565e1f39e1bd5c1a0bea61c77bd8f451cca42e27b49d66176bf6cc7`; immutable hosted-validation record `83a4e568ec1b1df832fd2f506fb6fedcab6985ec`.
+
+Authoritative q7 classification:
+
+`PASS_0105A_Q7_F7_PRIMARY_VERSIONED_PRECEDENCE_LOCATED_NONDISCOVERY`
+
+Thus `3154` is the obsolete pre-correction Table-I value and `3152` is the corrected authoritative Analysis-A SS value for the frozen reproduction target.
+
+**F1 elementary count law remains unresolved.** Full Ar systematic pseudo-data reproduction and Tier-A exact collaboration likelihood remain unauthorized. A new COHERENT F1 route is allowed only if genuinely independent and provenance-qualified before first target scientific-content inspection. Do not repeat/broaden q5g2/q4fs/q4fs2 or re-use q6 CsI semantics.
 
 ## DeepCore recovery boundary
 
@@ -50,6 +60,6 @@ Baseline CI `34617954192/103324480083` failed two precision-fragile assertions c
 
 ## Exact recovery continuation
 
-Do not launch DeepCore standard-3nu, systematic MC, observed residual, or a dependent computational-contract realization from R1m3. Further DeepCore science requires genuinely new independently provenance-qualified external computational authority prospectively frozen before first target-content inspection; do not widen exhausted MCEq/PISA/Barr/CSMS routes post hoc.
+COHERENT: F7 is closed; the exact remaining semantic boundary is F1 elementary count law. Continue only through a genuinely independent provenance-qualified LAr authority route prospectively frozen before first target-content inspection. If no such independent route is already provenance-qualified, F1 remains objectively BLOCKED.
 
-In parallel, COHERENT may continue only through a genuinely independent provenance-qualified F1/F7 authority route; do not repeat or broaden q5g2/q4fs/q4fs2. If neither such route exists, the scientific front is objectively BLOCKED rather than idle by choice.
+DeepCore: do not launch standard-3nu, systematic MC, observed residual, or a dependent computational-contract realization from R1m3. Further DeepCore science requires genuinely new independently provenance-qualified external computational authority prospectively frozen before first target-content inspection; do not widen exhausted MCEq/PISA/Barr/CSMS routes post hoc.
