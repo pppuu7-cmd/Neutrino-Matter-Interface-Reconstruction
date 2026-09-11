@@ -1,0 +1,72 @@
+name: 0103 authority pin probe
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103-authority-pin-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Pin Borexino and Betelgeuse paper authority payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe
+          UA='Mozilla/5.0 NMIR-0103-authority-probe/1.0'
+
+          fetch() {
+            local url="$1"
+            local out="$2"
+            echo "URL: $url" | tee -a probe/summary.txt
+            if curl -A "$UA" -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 180 "$url" -o "$out"; then
+              local bytes sha
+              bytes=$(wc -c < "$out" | tr -d ' ')
+              sha=$(sha256sum "$out" | awk '{print $1}')
+              echo "FETCH=PASS file=$(basename "$out") bytes=$bytes sha256=$sha" | tee -a probe/summary.txt
+            else
+              rm -f "$out"
+              echo "FETCH=FAIL file=$(basename "$out")" | tee -a probe/summary.txt
+            fi
+          }
+
+          echo '=== Borexino Phase-II magnetic-moment authority ===' | tee probe/summary.txt
+          fetch 'https://arxiv.org/pdf/1707.09355v3' 'probe/borexino_1707.09355v3.pdf'
+          fetch 'https://export.arxiv.org/e-print/1707.09355v3' 'probe/borexino_1707.09355v3_source'
+
+          echo '=== Dorch Betelgeuse MHD publication authority ===' | tee -a probe/summary.txt
+          fetch 'https://findresearcher.sdu.dk/ws/files/118738191/Dorch_0403321v1.pdf' 'probe/dorch_0403321v1.pdf'
+          fetch 'https://arxiv.org/pdf/astro-ph/0403321v1' 'probe/dorch_astro-ph_0403321v1.pdf'
+
+          echo '=== Content sanity ===' | tee -a probe/summary.txt
+          if command -v pdftotext >/dev/null 2>&1 && [ -f probe/borexino_1707.09355v3.pdf ]; then
+            pdftotext -layout probe/borexino_1707.09355v3.pdf probe/borexino.txt
+            grep -Ei -n '2\.8|3\.4|5\.0|Majorana|mass eigenstate|transition' probe/borexino.txt | head -n 80 > probe/borexino_authority_excerpt.txt || true
+            echo "BOREXINO_TEXT_LINES=$(wc -l < probe/borexino.txt | tr -d ' ')" | tee -a probe/summary.txt
+          fi
+
+          if command -v pdftotext >/dev/null 2>&1 && [ -f probe/dorch_0403321v1.pdf ]; then
+            pdftotext -layout probe/dorch_0403321v1.pdf probe/dorch.txt
+            grep -Ei -n 'snapshot|surface|500 Gauss|Pencil Code|magnetic field|grid|radial|profile|data' probe/dorch.txt | head -n 120 > probe/dorch_authority_excerpt.txt || true
+            echo "DORCH_TEXT_LINES=$(wc -l < probe/dorch.txt | tr -d ' ')" | tee -a probe/summary.txt
+          fi
+
+          sha256sum probe/* > probe/all_sha256.txt
+          cat probe/summary.txt
+          echo '--- Borexino authority excerpt ---'
+          cat probe/borexino_authority_excerpt.txt 2>/dev/null || true
+          echo '--- Dorch authority excerpt ---'
+          cat probe/dorch_authority_excerpt.txt 2>/dev/null || true
+
+      - name: Upload authority evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103-authority-pin-probe
+          path: probe/
+          if-no-files-found: error
