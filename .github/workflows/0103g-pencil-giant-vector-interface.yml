@@ -1,0 +1,123 @@
+name: 0103G Pencil giant vector interface
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103g-pencil-giant-vector-interface.yml'
+      - 'research/prereg/0103g_pencil_giant_vector_interface.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout NMIR
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reader dependencies
+        run: python -m pip install --disable-pip-version-check numpy scipy h5py f90nml matplotlib lazy_loader
+      - name: Clone pinned Pencil Code
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none https://github.com/pencil-code/pencil-code.git pencil-code
+          cd pencil-code
+          git checkout --detach 1a672b5cb2983b3e286503a789dd36bf7d6d1141
+          test "$(git rev-parse HEAD)" = "1a672b5cb2983b3e286503a789dd36bf7d6d1141"
+          git rev-parse HEAD | tee ../pencil_commit.txt
+      - name: Build and run frozen giant sample
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PENCIL_HOME="$GITHUB_WORKSPACE/pencil-code"
+          export PATH="$PENCIL_HOME/bin:$PATH"
+          cd "$PENCIL_HOME/samples/star-in-a-box-giant-Kprof"
+          mkdir -p data
+          gfortran --version | head -n 1 | tee "$GITHUB_WORKSPACE/compiler.txt"
+          mpirun --version | head -n 1 | tee "$GITHUB_WORKSPACE/mpi.txt" || true
+          sha256sum start.in run.in src/Makefile.local src/cparam.local | tee "$GITHUB_WORKSPACE/frozen_sample_sha256.txt"
+          pc_setupsrc 2>&1 | tee "$GITHUB_WORKSPACE/pc_setupsrc.log"
+          pc_build 2>&1 | tee "$GITHUB_WORKSPACE/pc_build.log"
+          pc_start 2>&1 | tee "$GITHUB_WORKSPACE/pc_start.log"
+          pc_run 2>&1 | tee "$GITHUB_WORKSPACE/pc_run.log"
+          find data -maxdepth 3 -type f -printf '%p %s bytes\n' | sort | tee "$GITHUB_WORKSPACE/data_files.txt"
+      - name: Extract giant 3-D B field with pinned Pencil reader
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PENCIL_HOME="$GITHUB_WORKSPACE/pencil-code"
+          export PYTHONPATH="$PENCIL_HOME/python:${PYTHONPATH:-}"
+          cd "$PENCIL_HOME/samples/star-in-a-box-giant-Kprof"
+          python - <<'PY' | tee "$GITHUB_WORKSPACE/0103g_vector_interface.json"
+          import json
+          import numpy as np
+          import pencil as pc
+
+          var = pc.read.var(datadir='data', trimall=True, magic=['bb'], quiet=True)
+          bb = np.asarray(var.bb, dtype=float)
+          x = np.asarray(var.x, dtype=float)
+          y = np.asarray(var.y, dtype=float)
+          z = np.asarray(var.z, dtype=float)
+          bmag = np.sqrt(np.sum(bb * bb, axis=0))
+
+          result = {
+              'audit': 'NMIR-0103G-PENCIL-GIANT-VECTOR-INTERFACE',
+              'external_commit': '1a672b5cb2983b3e286503a789dd36bf7d6d1141',
+              'scope': 'MODEL_CONDITIONAL_GIANT_NOT_BETELGEUSE',
+              'snapshot_time': float(var.t),
+              'bb_shape': list(bb.shape),
+              'x_extent': [float(x.min()), float(x.max()), int(x.size)],
+              'y_extent': [float(y.min()), float(y.max()), int(y.size)],
+              'z_extent': [float(z.min()), float(z.max()), int(z.size)],
+              'b_abs_min': float(bmag.min()),
+              'b_abs_max': float(bmag.max()),
+              'b_abs_rms': float(np.sqrt(np.mean(bmag*bmag))),
+              'all_finite': bool(np.isfinite(bb).all()),
+              'coords_finite': bool(np.isfinite(x).all() and np.isfinite(y).all() and np.isfinite(z).all()),
+              'any_nonzero': bool(np.any(np.abs(bb) > 0.0)),
+              'three_components': bool(bb.ndim == 4 and bb.shape[0] == 3),
+              'spatial_dims_nonzero': bool(bb.ndim == 4 and all(n > 0 for n in bb.shape[1:])),
+              'betelgeuse_authority_closed': False,
+          }
+          result['gates'] = {
+              'pinned_commit': result['external_commit'] == '1a672b5cb2983b3e286503a789dd36bf7d6d1141',
+              'finite_vector_field': result['all_finite'],
+              'finite_coordinates': result['coords_finite'],
+              'three_components': result['three_components'],
+              'nonzero_spatial_shape': result['spatial_dims_nonzero'],
+              'nonzero_field': result['any_nonzero'],
+              'scope_guard': result['scope'] == 'MODEL_CONDITIONAL_GIANT_NOT_BETELGEUSE' and result['betelgeuse_authority_closed'] is False,
+          }
+          result['status'] = (
+              'PASS_0103G_PENCIL_GIANT_VECTOR_INTERFACE_NONTERMINAL'
+              if all(result['gates'].values())
+              else 'FAIL_0103G_PENCIL_GIANT_VECTOR_INTERFACE'
+          )
+          print(json.dumps(result, indent=2, sort_keys=True))
+          if not all(result['gates'].values()):
+              raise SystemExit(1)
+          PY
+      - name: Upload giant interface evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103g-pencil-giant-vector-interface
+          path: |
+            pencil_commit.txt
+            compiler.txt
+            mpi.txt
+            frozen_sample_sha256.txt
+            pc_setupsrc.log
+            pc_build.log
+            pc_start.log
+            pc_run.log
+            data_files.txt
+            0103g_vector_interface.json
+          if-no-files-found: warn
