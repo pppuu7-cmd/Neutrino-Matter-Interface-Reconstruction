@@ -1,0 +1,49 @@
+name: 0103 NuFIT 6.1 authority pin
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103-nufit61-authority-pin.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch official NuFIT 6.1 authority payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe
+          UA='Mozilla/5.0 NMIR-0103-NuFIT61-authority-probe/1.0'
+          fetch() {
+            local url="$1" out="$2"
+            echo "URL: $url" | tee -a probe/summary.txt
+            if curl -A "$UA" -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 180 "$url" -o "$out"; then
+              echo "FETCH=PASS file=$(basename "$out") bytes=$(wc -c < "$out" | tr -d ' ') sha256=$(sha256sum "$out" | awk '{print $1}')" | tee -a probe/summary.txt
+            else
+              rm -f "$out"
+              echo "FETCH=FAIL file=$(basename "$out")" | tee -a probe/summary.txt
+            fi
+          }
+          : > probe/summary.txt
+          fetch 'https://www.nu-fit.org/sites/default/files/v61.tbl-parameters.pdf' 'probe/v61.tbl-parameters.pdf'
+          fetch 'https://www.nu-fit.org/sites/default/files/v61.release-notes.pdf' 'probe/v61.release-notes.pdf'
+          fetch 'https://www.nu-fit.org/sites/default/files/v61.tbl-mixing.pdf' 'probe/v61.tbl-mixing.pdf'
+          if command -v pdftotext >/dev/null 2>&1 && [ -f probe/v61.tbl-parameters.pdf ]; then
+            pdftotext -layout probe/v61.tbl-parameters.pdf probe/v61.tbl-parameters.txt
+            grep -Ei -n 'Normal Ordering|Inverted Ordering|sin.*theta|CP|m.*21|m.*3' probe/v61.tbl-parameters.txt > probe/v61_parameter_excerpt.txt || true
+          fi
+          sha256sum probe/* > probe/all_sha256.txt
+          cat probe/summary.txt
+          cat probe/v61_parameter_excerpt.txt 2>/dev/null || true
+      - name: Upload authority evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103-nufit61-authority-pin
+          path: probe/
+          if-no-files-found: error
