@@ -1,107 +1,90 @@
 # NMIR v2 Recovery — 0105 residual-reconstruction front
 
-Last reconciled: 2026-09-10
+Last reconciled: 2026-09-11
 Repository: `pppuu7-cmd/Neutrino-Matter-Interface-Reconstruction`
 Authoritative branch: `research/0105-bsm-residual-reconstruction`
 
-## Immutable parent
+## Immutable parent and method
 
-NMIR v1 remains closed at `NMIR_READINESS: 100%` under `research/RECOVERY.md` and `research/iterations/0095_nmir_v1_readiness_100_closure.md`. Do not relabel, reopen, or edit v1 scientific classifications from v2.
+NMIR v1 remains frozen at `NMIR_READINESS: 100%`; do not reopen or relabel v1. v2 order remains `authority/provenance lock -> standalone SM/3nu/null reproduction -> nuisance-orthogonal residual -> model-agnostic reconstruction -> frozen family mapping -> microscopic operator consistency -> held-out prediction`. Observed BSM residual execution is forbidden until an explicit prospective unlock.
 
-## v2 mandatory order
+0105b/0105c/0105d/0105e remain PASS/NONDISCOVERY pre-data results only.
 
-`authority/provenance lock -> standalone SM/3nu/null reproduction -> nuisance-orthogonal residual construction -> model-agnostic low-complexity reconstruction -> mapping to frozen control families -> common microscopic operator consistency -> held-out prospective prediction`.
+## COHERENT immutable authority baseline
 
-Observed BSM residual execution is forbidden until a prospective unlock gate explicitly permits it.
+0105a3 complete 37-file direct Zenodo byte lock remains PASS NONTERMINAL: run/attempt/job `34418207408/3/102834981270`, artifact `10147580844`, normalized manifest SHA256 `5ccaea9ae1b59cb60d0db0a28b98a334d8fb32fb39a436301126a32fcd523091`, split CsI `13/13`, Ar `24/24`. Provider MD5 and computed SHA256 were recorded for all files. Do not substitute calibration dataset `10.13139/OLCF/1969085`.
 
-## Pre-data NONDISCOVERY results retained
+0105a6i remains historical `BLOCKED_0105A6I_ARGON_LIKELIHOOD_IMPLEMENTATION_AUTHORITY_INCOMPLETE`; public authority did not close a unique elementary likelihood/morphing/correlation/precedence contract. This result is immutable and is not a Standard-Model FAIL.
 
-0105b/0105c/0105d/0105e remain their recorded PASS/NONDISCOVERY theoretical results. They are not evidence for BSM.
+## Latest provenance chain
 
-## COHERENT authority state
+### q5a — historical BLOCKED
 
-- 0105a2 collaboration/ORNL -> Zenodo provenance: PASS.
-- 0105a3 complete 37-file official Zenodo direct byte lock: PASS NONTERMINAL after authority-preserving retry; run/attempt/job `34418207408/3/102834981270`, artifact `10147580844`, normalized manifest SHA256 `5ccaea9ae1b59cb60d0db0a28b98a334d8fb32fb39a436301126a32fcd523091`.
-- Frozen split: CsI `13/13`, Ar `24/24`; provider MD5 plus computed SHA256 recorded for every file.
-- Do not substitute calibration dataset `10.13139/OLCF/1969085` for the CEvNS event releases.
+Validated result `BLOCKED_0105A6Q5A_ORNL_RELEASE_ROUTE_FAILURE` because the frozen visible-text ORNL anchor predicate returned zero matches despite HTTP 200. Local 0105a3, Zenodo 3903810 metadata and arXiv 2006.12659 identity all passed.
 
-### Post-byte-lock likelihood/null semantics
+- execution head `26cdd7354ac14b0482c68bce5f19489dd10c08a5`
+- run/job/artifact `34547357396/103102765542/10179501141`
+- provider + independent artifact ZIP SHA256 `14c2536a47feb3e8fae281dfb7e919c734c30f3c36703f790104894343408b6f`
+- inner result SHA256 `b08125a2c0f09075f62afd1c850484b22f410edf7276568fa2613f0aebbce8eb`
+- ORNL page payload SHA256 `7ed4bcc3f99d494b134418d060a122c8c7531c7c3b738350bcb09ea715b804f9`
+- immutable record commit `d7c888741d0c7c807c5cdfa8c6083593ac8a1b47`
 
-0105a6c established that the presently recovered official publication/release material does not yet provide an analyst-free complete likelihood implementation contract. Numerical SM/null reproduction therefore remains unauthorized.
+q5a remains BLOCKED under its own preregistration and is never rewritten.
 
-Ar semantic transport subchain:
-- 0105a6f/0105a6g: official-provider transport BLOCKED in their recorded executions.
-- 0105a6h: prospectively frozen content-addressed transport recovery using `Newtrinos-org/Newtrinos.jl` commit `fa87689ddedae1929e33d66ad1f0efa1b7cce206` only as an untrusted byte carrier. Acceptance required exact equality to 0105a3 size+MD5+SHA256 identities.
+### q5a1 — structural diagnostic PASS NONDISCOVERY
 
-0105a6h authoritative execution:
-- head `1ab1f0acc91c13d4e3075661c55af513fac4a0d7`;
-- run/job `34489395472/102911871576`;
-- artifact `10157049923`;
-- guards `5 passed`;
-- provider and independent ZIP SHA256 `670099bbc11e28ccb3a083d73bb8affcd5cec2c1a98f53614b2f9b3ca765a5da`;
-- inner result SHA256 `68c3bd83e9a26de0bc3dac14b1c4fde396d23c7bf4e780fa5046c8219413c340`.
+Prospectively frozen q5a1 showed that the same first-party ORNL Data Releases page contains exactly one structural href to exact Zenodo record 3903810; no link was followed.
 
-Outcome: `2/4` exact byte identities recovered.
-- `LArParametersAnlA.yaml`: PASS byte equivalence, SHA256 `a206a77220436d0173c4783ae8fddeab97adf5e144f3d65005eff0870257693e`.
-- `CENNS10AnlAEfficiency.txt`: PASS byte equivalence, SHA256 `21ce25451c1ed552752ff4a22496deab3ff5dba178bf360813eaff1d25be89e2`.
-- `readYAMLParameters.py`: HTTP 404 at frozen carrier path.
-- `PlotExtractedData.C`: HTTP 404 at frozen carrier path.
+- prereg `f0c211182f71d7b27f3093e15ce29646072f5582`
+- execution head `e195e6c460e850d748b6abfc2cb81be0cb6dbbe7`
+- run/job/artifact `34547901624/103104375353/10179689972`
+- guards `5 passed`
+- provider + independent ZIP SHA256 `0ee3a407c1ee732ed3ed4cb5e552ab10a3adf90d0629d7ccbd88771e31c09172`
+- inner result SHA256 `406dea5479695c68ee82caf358d3aef43e54412538ebf00d1f5fb9d193237640`
+- class `PASS_0105A6Q5A1_ORNL_ZENODO_3903810_LINK_STRUCTURALLY_PRESENT_NONDISCOVERY`
+- record commit `ae59a47532ca0411e315a00a33494a69a5336e70`
 
-Classification: `BLOCKED_0105A6H_SEMANTIC_FILE_BYTE_EQUIVALENCE_INCOMPLETE`. This is transport/authority BLOCKED, not scientific FAIL and not BSM evidence.
+### q5a2 — repaired full provenance PASS NONDISCOVERY
 
-Immutable record: `research/iterations/0105a6h_argon_content_addressed_semantic_file_recovery.md`, record commit `2767e5e24b54a009012a15fd8262445d345f0da2`.
+A new prospective gate used the q5a1 structural-href identity while preserving the exact q5a local/Zenodo/arXiv predicates. All four authority predicates passed.
 
-The exact missing Ar byte identities remain:
-- `readYAMLParameters.py`: size `1814`, MD5 `708becd2d56cec1c2e672038581b8c7c`, SHA256 `3f1660c54987b9d87f47eda2d19306c2fd061ada72cfb7d3857d996164dd3cd6`.
-- `PlotExtractedData.C`: size `14020`, MD5 `1161762465460efdda35d4494a0d8547`, SHA256 `c669946d425148fab271d97f99d079b83dbd8f060fea3dd57ac7e00ebecf7d5f`.
+- prereg `2897bd6c6d55f312dd4ab07cd528d4f3a3fa33fa`
+- implementation `7304a8cf1b819ee3671ad838f771d4650439033a`
+- guards `c7d85b87428cc3d853f3d71d1d38d5e02061ce85`
+- execution head `e1d8548cff358de86e2b0f00590fead3bf27c0db`
+- run/job/artifact `34548098074/103104972721/10179757861`
+- guards `6 passed`
+- provider + independent ZIP SHA256 `0fd133a8664e2e4dffacb93f76bc9b6456da776ba12917fcb1f1886dd72611a5`
+- inner result SHA256 `46a2cc9b0fe6f8416dcde20203cc9535599cb43d9cf215cb2b07c9e7b1f9f339`
+- class `PASS_0105A6Q5A2_ARGON_OFFICIAL_RELEASE_STRUCTURAL_PROVENANCE_BOUND_NONDISCOVERY`
+- record commit `c7290228641ba8a8b6363481e98f49aa2a6081e1`
 
-No semantic reconstruction, analogous code substitution, newline normalization or hand-written replacement is permitted.
+No q5a-series gate generated pseudo-data, evaluated likelihood, inspected new scientific file content, or inspected observed residuals.
 
-## DeepCore authority state
+## Active q5b
 
-Frozen Stage-A authority is Harvard Dataverse `10.7910/DVN/B4RITM`, release 1.0. `10.7910/DVN/QKL28Z` is a separate sterile-control authority and is not a substitute.
+q5b is prospectively frozen as a Zenodo metadata-only semantic/implementation file locator. Candidate rules are fixed before candidate file content inspection: suffixes `.py/.c/.cc/.cpp/.h/.yaml/.yml/.json` or filename tokens `parameter/efficien/likelihood/fit/roo/plot/extract/systematic`. All matches must be retained; no post-hoc ranking/subset selection.
 
-- 0105a4 inventory: PASS.
-- 0105a4d Saved Original byte lock: PASS; record commit `5c7f788097e3371c4414db9cca39e02fc2ec41d4`.
-- 0105a5 exact-byte method/extract authority: PASS, NONDISCOVERY.
-- 0105a5a metadata/runinfo/Table-III authority: PASS, NONDISCOVERY.
-- R1b machine-schema audit: historical BLOCKED at `BLOCKED_0105A5B_R1B_MC_COORDINATES_OUTSIDE_OBSERVED_GRID`; record commit `fb673580636a795e9fda22af54edc8498b758b1c`.
-- R1c coordinate semantics: PASS NONDISCOVERY; record commit `ca6dff2338196b655be6ae8d3b575fa8179998c4`; validated mapping run/job/artifact `34451303840/102787437641/10141644643`.
+- prereg `8fb5121c97918b726a95f3440a1f15b5457c751d`
+- implementation `7ac95d444a01a84c8ee95efc8ea3c52e648c8e9a`
+- guards `d41921e2699b798cabd88bdccb28ab07813e2d11`
+- hosted head `476e8b74ba19cba098a6c604188f92a98b98062e`
+- dedicated run `34548230167`: queued at last reconciliation; do not duplicate.
 
-## R1d external computational authority — terminal BLOCKED
+q5b is metadata-only: file URLs may not be followed; release file bytes/scientific content, pseudo-data, likelihood and observed residual remain closed. q5b PASS permits only a separately preregistered gate over the complete returned candidate set.
 
-Frozen preregistration commit: `19f4db34117256529e475a7f5e514614899a9f04`.
+## DeepCore state
 
-Classification: `BLOCKED_0105A5B_R1D_EXTERNAL_COMPUTATIONAL_AUTHORITY_INCOMPLETE`.
+Stage-A authority stays frozen to Harvard Dataverse `10.7910/DVN/B4RITM` release 1.0; QKL28Z remains separate sterile-control authority. R1d stays terminal `BLOCKED_0105A5B_R1D_EXTERNAL_COMPUTATIONAL_AUTHORITY_INCOMPLETE`: no literal provider-backed complete contract for `BarrWP/WM/YP/YM/ZP/ZM` plus `DIS-CSMS`; do not infer or invent nuisance mappings/interpolation. Standalone DeepCore 3nu reproduction therefore remains blocked.
 
-Authoritative Stage-2 evidence:
-- head `66e90f5cc14d24a41eea10d44d13fed206b35884`;
-- run/job `34456783644/102804927331`;
-- artifact `10143804090`;
-- dedicated tests `3 passed`;
-- artifact ZIP SHA256 `456592cb8a88092d44e9300e7e4bebc725f73b8de04d8a9024ff4eb327b35c41` (provider and independent download agree);
-- inner result JSON SHA256 `8ecf5f6e6c2e2b9dff647cd52ec6c304ec23fb276e43204e6892317c80e67db8`;
-- Barr 2006 source SHA256 `f128800ae1eb18fb58c27ce91941b726f1bbf42a7f7ac17a273664f3a81da0f7`;
-- CSMS 2011 source SHA256 `274b459c38d54c7b874a3353c622f9c807a1e55dcd2fc27214541e2d9f6015ce`;
-- Sibyll/MCEq 2019 source SHA256 `f31660851e50c140ea03f932141a1a61b6a2634e103a037305f7748d7f03eedb`.
+## Stable guards and readiness
 
-The allowed source chain establishes upstream physical meaning but not the complete literal provider-backed implementation contract for `BarrWP/WM/YP/YM/ZP/ZM` and `DIS-CSMS`. Do not infer mnemonic mappings, invent interpolation, or drop nuisances.
-
-Immutable record: `research/iterations/0105a5b_r1d_stage2_external_authority_blocked.md`, record commit `e7e8b3df98bdb584844430398bda1fd281c2eff0`.
-
-## Exact next actions
-
-1. Consume any new terminal/running COHERENT semantic-transport workflow before starting a duplicate.
-2. Recover the two missing exact Ar semantic byte identities through a prospectively frozen transport-only route. Prefer restored official Zenodo direct delivery; any alternate carrier must be frozen before execution and contributes transport only, never authority.
-3. Validate raw artifact and independent hashes before classification; green CI is insufficient.
-4. Only after exact byte recovery may the likelihood-semantic completeness audit continue. Missing elementary likelihood/nuisance wiring remains BLOCKED rather than being reconstructed from convention.
-5. Only after authority-complete standalone COHERENT SM/null reproduction may any residual layer become eligible for a separate prospective unlock.
-6. DeepCore 3nu remains blocked until genuinely additional provider/implementation authority closes the seven-direction nuisance contract.
-7. Do not inspect or fit any observed BSM/model-agnostic residual.
-
-## Stable guards
-
-Green CI is not scientific PASS. Missing covariance/nuisance authority is BLOCKED, not permission to invent or delete a nuisance. Do not choose bins, nuisance conventions, normalizations, operator family, parameter range, or thresholds after residual inspection. Do not use generic Wilks thresholds absent demonstrated regularity. Preserve negative/BLOCKED results.
+Green CI is never scientific PASS without raw artifact validation. Missing covariance/nuisance/implementation authority is BLOCKED. Do not choose bins, nuisance conventions, normalization, operator family/range, or thresholds after residual inspection. Do not use generic Wilks thresholds without regularity. Preserve negative results.
 
 `NMIR_V2_DISCOVERY_READINESS: 48%`
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
+`SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
+
+## Exact recovery continuation
+
+First consume dedicated q5b run `34548230167`. Verify raw job, provider artifact digest and independent ZIP/inner SHA256, then classify strictly against q5b preregistration. Only q5b PASS may authorize a new prospectively frozen byte-identity/semantic-inspection gate over every returned candidate; q5b itself cannot open systematic MC or observed BSM residual analysis.
