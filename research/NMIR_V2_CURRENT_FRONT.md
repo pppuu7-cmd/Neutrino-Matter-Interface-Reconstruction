@@ -13,32 +13,35 @@ q5a remains historical ORNL-visible-text BLOCKED (`d7c888741d0c7c807c5cdfa8c6083
 
 q5b official metadata-only semantic-file locator PASS (`dcafed65cf9cbce3d8d87329425bf75e1c68b209`, `34548230167/103105373901/10179807293`) returned exactly four files: `CENNS10AnlAEfficiency.txt`, `readYAMLParameters.py`, `PlotExtractedData.C`, `LArParametersAnlA.yaml`.
 
-q5c remains historical transport BLOCKED from uniform HTTP 406 under explicit octet-stream Accept (`2858c33ebf1d75cfbe82d949d8a838b0815a2cb4`). q5c1 transport repair PASS (`908038bcff4f6f1c6554dbb03c1ce339546d9173`, `34548561838/103106394242/10179925214`) established 4/4 exact size+MD5+0105a3-SHA256 byte equality.
+q5c remains historical transport BLOCKED from uniform HTTP 406 (`2858c33ebf1d75cfbe82d949d8a838b0815a2cb4`). q5c1 transport repair PASS (`908038bcff4f6f1c6554dbb03c1ce339546d9173`, `34548561838/103106394242/10179925214`) established 4/4 exact size+MD5+0105a3-SHA256 equality.
 
-q5d bounded four-file semantic inventory PASS (`a1644c1613f7810281aca8eb8b2590856db4cfaf`, `34548694721/103106794490/10179973686`). q5e criteria were frozen before q5d artifact inspection; q5e is validated `BLOCKED_0105A6Q5E_ARGON_RELEASE_SEMANTIC_CONTRACT_INCOMPLETE` (`04d63cf5a8a34b97a47668bcaf4d6eff3d090f07`, run/job/artifact `34548952200/103107570419/10180061275`, ZIP SHA256 `b9872885614ceb0a0b449125422ccc7b31193377335b9f7974fd2fc6674524d1`). F1 count law, F4 shape application, F6 simultaneous/correlation treatment and F7 3152/3154 precedence all remain incomplete/ambiguous. This is authority BLOCKED, not SM FAIL or BSM evidence.
+q5d bounded four-file semantic inventory PASS (`a1644c1613f7810281aca8eb8b2590856db4cfaf`, `34548694721/103106794490/10179973686`). q5e is validated `BLOCKED_0105A6Q5E_ARGON_RELEASE_SEMANTIC_CONTRACT_INCOMPLETE` (`04d63cf5a8a34b97a47668bcaf4d6eff3d090f07`, `34548952200/103107570419/10180061275`): F1 count law, F4 shape application, F6 simultaneous/correlation treatment and F7 3152/3154 precedence remain incomplete/ambiguous.
 
-## Newly validated q5f
+q5f exact arXiv source-byte acquisition is PASS/NONDISCOVERY (`bb9910e91b833e26c6560f3ac878855acfe380e0`, `34549094920/103107997103/10180111003`), source SHA256 `5d000befd41e44deece46f31e1bf3ee7305bc2e8c0357b524311962ddc9d3dde`, 23805 bytes.
 
-q5f exact arXiv source-byte acquisition is `PASS_0105A6Q5F_ARXIV_2006_12659_SOURCE_BYTES_ACQUIRED_NONDISCOVERY`, immutable record `bb9910e91b833e26c6560f3ac878855acfe380e0`.
+## Newly validated q5f1
 
-- prereg `cc4a01a55bb8232325a82df48b0ac220a7a0bef5`
-- execution head `57a04d9d71f3373a202acde98af5477d7a724372`
-- run/job/artifact `34549094920/103107997103/10180111003`
-- provider + independent artifact ZIP SHA256 `37561e8555d663baf8be161462ca2ee247a3fba0a7abb1fbabcea93fcaecde23`
-- inner result SHA256 `5701d951003c06c5356ba79e8f9e10f96f86342aec26b3a4ec1c0c2699c537cb`
-- exact arXiv source: HTTP 200, `23805` bytes, MD5 `517a5ba7cd5dc2b144c909e5b6543800`, SHA256 `5d000befd41e44deece46f31e1bf3ee7305bc2e8c0357b524311962ddc9d3dde`, content type `application/gzip`.
+q5f1 archive-structure locator is `PASS_0105A6Q5F1_ARXIV_SOURCE_ARCHIVE_STRUCTURE_LOCATED_NONDISCOVERY`, immutable record `e0e632c06ad026308faf58738262dcb8a2a31bde`.
 
-q5f read no archive members/source text and performed no scientific computation.
+- execution head `44bb09ad7b6e33897d75957f61770fc9b12b20eb`
+- run/job/artifact `34549346624/103108772174/10180197873`
+- provider + independent artifact ZIP SHA256 `2382db3992b1f7df1d7886512b40a619d8f1ae363d1d5cb86639a7a77ba5c048`
+- inner result SHA256 `23f1ceb8fd56839e205786b0d05122e81b35907107e907249b86013661ae24e2`
+- source identity revalidated at 23805 bytes and SHA256 `5d000befd41e44deece46f31e1bf3ee7305bc2e8c0357b524311962ddc9d3dde`.
+
+The complete frozen source-text candidate set is exactly four files: `authors_els.tex` (4985), `CENNS10DataReleaseCompanion.bbl` (1308), `CENNS10DataReleaseCompanion.bib` (1274), `CENNS10DataReleaseCompanion.tex` (27656). q5f1 records `member_content_read=false` and `source_text_inspected=false`.
 
 ## Active gate
 
-q5f1 is prospectively frozen to the q5f source SHA and may inspect only archive member names/types/sizes, never member payloads. Complete candidate suffix rule is frozen before member-name inspection.
+q5f2 was prospectively frozen before any candidate payload inspection and is limited to literal evidence for the already-unresolved q5e F1/F4/F6/F7 questions across all four candidates without ranking/pruning.
 
-- prereg `37847bf0d915208910b3eced72d8a40e541c6326`
-- implementation `f0fd6b7c31b6554dc700ac5530a597ee3ecee4fa`
-- guards `8813cbc10993f674997a062bbf07b34429b2adc1`
-- hosted execution head `44bb09ad7b6e33897d75957f61770fc9b12b20eb`
-- dedicated run `34549346624`, queued at last reconciliation; do not duplicate.
+- prereg `58e32cedffb6c173079f8098513dbc1e81fbb4b6`
+- implementation `d55d97c7350cb4fa1d73e07539fca52d8a3e87cb`
+- guards `5468fa0a62faa952a52a85113b2e311d8bf1e994`
+- hosted execution head `9abb961030db17ada79983cf30d6569cc64766b6`
+- dedicated run `34551690439`, in progress at last reconciliation; do not duplicate.
+
+No pseudo-data, likelihood, optimizer, systematic Monte Carlo or observed residual is permitted in q5f2.
 
 ## DeepCore and stable readiness
 
@@ -48,4 +51,4 @@ DeepCore Stage-A remains B4RITM; QKL28Z is separate sterile-control authority. R
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
 
-Exact next gate: consume terminal q5f1 raw job + artifact and independently validate hashes. Only q5f1 PASS may authorize a separately preregistered source-text semantic-evidence gate over the complete returned candidate set.
+Exact next gate: consume terminal q5f2 raw job + artifact and independently validate provider/downloaded ZIP and inner result hashes against the frozen source identity and semantic criteria. Preserve any incomplete/ambiguous F1/F4/F6/F7 as BLOCKED; do not expand lexical/semantic criteria post hoc.
