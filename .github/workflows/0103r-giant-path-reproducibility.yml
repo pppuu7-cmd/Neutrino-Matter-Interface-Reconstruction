@@ -1,0 +1,36 @@
+name: 0103R giant path reproducibility
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103r-giant-path-reproducibility.yml'
+      - 'research/prereg/0103r_giant_path_reproducibility.md'
+      - 'scripts/audit_0103r_giant_path_reproducibility.py'
+      - 'tests/test_audit_0103r_giant_path_reproducibility.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Focused reproducibility test
+        run: pytest -q tests/test_audit_0103r_giant_path_reproducibility.py
+      - name: Emit reproducibility evidence
+        run: python scripts/audit_0103r_giant_path_reproducibility.py | tee 0103r_reproducibility.json
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103r-giant-path-reproducibility
+          path: 0103r_reproducibility.json
+          if-no-files-found: warn
