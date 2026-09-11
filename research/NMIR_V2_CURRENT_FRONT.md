@@ -28,7 +28,7 @@ F1 remains `BLOCKED_INCOMPLETE_OR_AMBIGUOUS`: pseudo-data/likelihood language ex
 
 ## Independent institutional authority route
 
-Previously preregistered q4fr has now been consumed and validated `PASS_0105A6Q4FR_INSTITUTIONAL_MANIFEST_TRANSPORT_REPAIRED_NONDISCOVERY`, immutable record `5cdf1c32b249bbc155813c331774213b58c9d378`.
+q4fr is validated `PASS_0105A6Q4FR_INSTITUTIONAL_MANIFEST_TRANSPORT_REPAIRED_NONDISCOVERY`, immutable record `5cdf1c32b249bbc155813c331774213b58c9d378`.
 
 - prereg `f47dda9bd5fda788c4497d58e4a2f58f2e042cb3`
 - execution `f7d3171d98b68074a802c58ff8dc0ade961cde7f`
@@ -39,19 +39,28 @@ Previously preregistered q4fr has now been consumed and validated `PASS_0105A6Q4
 
 q4fr is secondary institutional authority, not a substitute for collaboration/Tier-A authority. It followed no links and downloaded/read no dissertation PDF.
 
-## Active next gate — q4fs
-
-q4fs was prospectively frozen after q4fr PASS and before following any IU-page hyperlink. It may only revalidate the exact two q4fr page bytes, inventory local `<a href>` metadata, and return all links matching a frozen dissertation/thesis/scholarworks/PDF/download/author/title rule. It must not follow returned links or download/read dissertation content.
+q4fs was prospectively frozen after q4fr PASS and before following any IU-page hyperlink. It is now validated `BLOCKED_0105A6Q4FS_NO_INSTITUTIONAL_DISSERTATION_LINK_CANDIDATES`, immutable record `adfc2ea985c2a3cc16e8ce08ff5d1b9d154008e0`.
 
 - prereg `a55e26040be8fdd059563781d5a3a8c5ba1ed259`
-- implementation correction head `9e00c79de21052cdf1b8ec48d63449795987e962`
+- implementation correction `9e00c79de21052cdf1b8ec48d63449795987e962` (pre-execution correction to the already-frozen full-title literal only)
 - guards `2f8202249ca3775dd7df29ad08b68c514eef49a1`
-- hosted workflow head `8452e95442daec6dc373c8b996ecc196f27fcde5`
+- execution `8452e95442daec6dc373c8b996ecc196f27fcde5`
+- run/job/artifact `34556420234/103129941232/10182715788`
+- provider + independent ZIP SHA256 `5e17100ff1970cc4dc0513210b53dda321d2151a2e4f1670d7c5402739c5f795`
+- independent inner `result.json` SHA256 `e3ce1d1640e0c90a8982491d4fd26a4260955c5875d695f65dd20f3152295ab9`
+- complete local inventory: 143 `<a href>` links, canonical inventory SHA256 `f9a2d8dc29a7c74987372ae61b9b60ea8abc815a9c7f68013772b961e82497b9`
+- frozen-rule candidate count: `0`
 
-At last reconciliation the q4fs push had not yet appeared in Actions; do not duplicate it. Once present/terminal, consume raw job/artifact before any PASS classification.
+q4fs followed no returned links and downloaded/read no dissertation content. This exact two-page hyperlink route is exhausted; its candidate rule must not be widened post hoc.
+
+## Current authorization boundary
+
+F1/F7 remain unresolved. q5g2 and q4fs are authority/implementation BLOCKED results, not scientific FAILs. Full Ar systematic pseudo-data reproduction remains unauthorized. DeepCore standalone 3nu remains blocked by the R1d external computational-authority gap. Tier-A exact collaboration likelihood remains blocked.
+
+A genuinely new route may be prospectively registered only if it is independently provenance-qualified, e.g. an official IUScholarWorks institutional-repository metadata search whose endpoint/query semantics are frozen before searching for the target dissertation. It must be metadata-only first: no bitstream/file following or scientific text inspection until a later separately frozen gate. Do not infer a Suh dissertation URL from another ScholarWorks item's REST/bitstream pattern.
 
 `NMIR_V2_DISCOVERY_READINESS: 48%`
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
 
-Exact next gate: consume q4fs when created/terminal. A q4fs PASS permits only a separately prospectively preregistered acquisition/byte-lock gate for the complete returned institutional dissertation-link candidate set or a prospectively selected candidate. Dissertation semantic reading, systematic MC and observed BSM residual remain forbidden.
+Exact next allowed gate: first freeze an official institutional-repository metadata-discovery endpoint/query contract (author Benjamin Suh, year 2025, exact dissertation title) without target-content inspection; then execute only that metadata locator. If no stable official search contract can be established prospectively, preserve F1/F7 as BLOCKED rather than guessing or widening exhausted routes.
