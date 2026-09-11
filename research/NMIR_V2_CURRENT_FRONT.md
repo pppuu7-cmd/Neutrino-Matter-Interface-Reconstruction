@@ -32,9 +32,7 @@ q4fr is validated `PASS_0105A6Q4FR_INSTITUTIONAL_MANIFEST_TRANSPORT_REPAIRED_NON
 
 ### q4fs1 — official IUScholarWorks API contract
 
-q4fs1 was prospectively frozen as a generic sentinel-only endpoint-contract probe and is validated:
-
-`PASS_0105A6Q4FS1_IUSCHOLARWORKS_METADATA_ENDPOINT_CONTRACT_VALIDATED_NONDISCOVERY`.
+q4fs1 was prospectively frozen as a generic sentinel-only endpoint-contract probe and is validated `PASS_0105A6Q4FS1_IUSCHOLARWORKS_METADATA_ENDPOINT_CONTRACT_VALIDATED_NONDISCOVERY`.
 
 - prereg `31bb1aaf7e889fa8e36550c7635f331568f5c0aa`
 - execution `45275e44fc7096a78944657786cb1892d75ee5ce`
@@ -42,39 +40,56 @@ q4fs1 was prospectively frozen as a generic sentinel-only endpoint-contract prob
 - run/job/artifact `34559527681/103139213700/10183803724`
 - provider + independent ZIP SHA256 `f53e3702174917aee32e5673e6edce6a8e47af1c5546f59eeb4f738a75f52bf5`
 - independent inner `result.json` SHA256 `9fc4fe96633d280660f9316b32256a7a617d645d2c4b12e0ad7e22a1dcd33018`
-- frozen sentinel response: HTTP 200 JSON, 3043 bytes, SHA256 `297e2bd912a56da273687301b748d7fa1486b5810e9839abab5f27fd200cf87c`
-
-q4fs1 established only that the official `/iuswrrest/api/discover/search/objects` machine-readable discovery contract exists. No target-specific query, link following, file download or scientific-text inspection occurred.
 
 ### q4fs2 — exact target metadata locator — exhausted BLOCKED
 
-Only after q4fs1 was artifact-validated and immutably recorded, q4fs2 prospectively froze one exact target request using the already-authorized `query` and `size` keys. q4fs2 is validated:
-
-`BLOCKED_0105A6Q4FS2_IUSCHOLARWORKS_TARGET_METADATA_NOT_UNIQUELY_RESOLVED`.
+q4fs2 is validated `BLOCKED_0105A6Q4FS2_IUSCHOLARWORKS_TARGET_METADATA_NOT_UNIQUELY_RESOLVED`.
 
 - prereg `2fcf830d1de3ff6c50036a073bf0e2e6b7e5d411`
-- implementation `a234f774fc97c45392718f402dc36971b488c5df`
-- guards `590c75063414cd3998c1ce43ab8cb4a033ba9618`
 - execution `80ec99764ebe68308f4501c7be4f0a826290bad5`
 - immutable result record `993d293de8df6d5d95a8451239a54d890027ed6e`
 - run/job/artifact `34566997393/103161060079/10186364854`
 - provider + independent ZIP SHA256 `4f251197bae1ed0f31b3f7ab1a62ec013bb7da38d9808a1669f42d4572713f8e`
 - independent inner `result.json` SHA256 `77b5f583177c424b6635dfa4724e9b76b77afed941387cb3d5ed08a40615f145`
-- frozen response: HTTP 200 JSON, 3997 bytes, SHA256 `b2f65478acb91fbf386bf0c49604c680eada13f5400e4d5eba4cfa871320eef4`
 - returned discovery results `0`; exact-title matches `0`
 
-No item link was followed, no UUID/identifier was guessed or constructed, no bitstream/file was downloaded and no dissertation scientific text was inspected. This exact q4fs2 request contract is exhausted. Do not broaden its title tokens, author variants, query grammar, filters or pagination after observing the zero-result response.
+No item link was followed, no UUID/identifier was guessed or constructed, no bitstream/file was downloaded and no dissertation scientific text was inspected. This exact q4fs2 request contract is exhausted.
+
+## DeepCore R1e repository authority-route inventory
+
+R1e is validated `PASS_0105A5B_R1E_REPOSITORY_AUTHORITY_ROUTE_INVENTORY_EMITTED_NONDISCOVERY` and immutably recorded in `research/iterations/0105a5b_r1e_repository_authority_route_inventory_pass_20260911.md`, record commit `5a14b2a4fb74d057f66655e9ba41a3caee585056`.
+
+- execution `8797627c6b8bbe8e8cafd6e9a01b9a12f5b43eae`
+- run/job/artifact `34567801421/103163384679/10186641078`
+- provider + independent ZIP SHA256 `7d7f802f975c89e5832dd9e38f82f1e895c158064d9ec977a7b90e65a6806c0e`
+- independent inner `result.json` SHA256 `31f3d53a76d615e3c0eb0ba59353c52b45572267c67e5a5fbda4629558beed78`
+- canonical inventory SHA256 `658cfc1053ca9d028e89b17f2b8bb656fefda76844d7db3ed39c887fbd24564b`
+- 32 related files, 114 hits, 14 literal URL occurrences
+
+Consume/classify found no previously committed still-unconsumed external route. All scientific URLs reduce to already consumed B4RITM, IceCube `2304.12236`, Barr 2006, MCEq/Sibyll 2019 and CSMS 2011 sources. Therefore R1d and standalone standard-3nu remain BLOCKED.
+
+## DeepCore R1f new prospective metadata-only route
+
+After R1e classification, a genuinely new route was prospectively frozen before any software source inspection: official MCEq GitHub repository metadata only.
+
+- prereg `e03be43919e6b4d0883b4b41042aa4dfa9ab968d`
+- implementation `e85b91943174349122669b87e02913f521c977af`
+- guards `1d230b1b147381a57b60583f320cb08575f5b978`
+- hosted workflow head `b4d08f8721a62a284efccd471f613fa77b3b9338`
+- dedicated run `34571151184` queued at latest reconciliation
+
+R1f may request only exact GitHub REST repository/releases/tags metadata for `mceq-project/MCEq`; it may not fetch README, source code, archive, blob/tree contents, documentation or scientific outputs. Even PASS can establish only pin-able immutable software states, not a scientifically correct version or any nuisance transformation.
 
 ## Current authorization boundary
 
-F1/F7 remain unresolved. q5g2, q4fs and q4fs2 are authority/implementation BLOCKED results, not scientific FAILs. q4fs1 is only an API-contract NONDISCOVERY PASS. Full Ar systematic pseudo-data reproduction remains unauthorized. Tier-A exact collaboration likelihood remains blocked.
+F1/F7 remain unresolved. q5g2, q4fs and q4fs2 are authority/implementation BLOCKED results, not scientific FAILs. Full Ar systematic pseudo-data reproduction remains unauthorized. Tier-A exact collaboration likelihood remains blocked.
 
-DeepCore standalone 3nu remains blocked by the frozen R1d external computational-authority gap. Stage-A B4RITM remains the authority source; QKL28Z remains a separate sterile-control authority and is not a substitute.
+DeepCore standalone 3nu remains blocked by the frozen R1d external computational-authority gap. Stage-A B4RITM remains the authority source; QKL28Z remains a separate sterile-control authority and is not a substitute. R1f is metadata-only and cannot itself unlock 3nu.
 
-New continuation is permitted only via a genuinely independent provenance-qualified authority route frozen before target-content inspection. Do not mutate the exhausted q4fs2 request after seeing its zero-result response, and do not infer a Suh dissertation URL/UUID/bitstream path from another item.
+New continuation is permitted only through prospectively frozen independent authority routes. Do not mutate exhausted q4fs2/q5g2 contracts after results, infer dissertation identifiers, guess nuisance conventions, or inspect observed residuals.
 
 `NMIR_V2_DISCOVERY_READINESS: 48%`
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
 
-Exact next allowed work: (1) independently audit whether the existing frozen DeepCore R1d record names a still-unconsumed provenance-qualified external computational-authority route; if none exists, keep DeepCore 3nu BLOCKED; and/or (2) prospectively register a genuinely independent official institutional/collaboration authority route for COHERENT F1/F7, but only if its provenance is established without inspecting target scientific content. No exhausted exact route may be widened post hoc.
+Exact next allowed work: consume/classify terminal R1f by raw job + artifact + independent hashes. If R1f PASS establishes pin-able official MCEq software states, prospectively define a separate version-lineage/authority-compatibility gate before inspecting implementation code. If R1f BLOCKED/FAIL, R1d remains blocked unless a genuinely different provenance-qualified authority route is preregistered. COHERENT F1/F7 likewise remain blocked absent a genuinely independent official route.
