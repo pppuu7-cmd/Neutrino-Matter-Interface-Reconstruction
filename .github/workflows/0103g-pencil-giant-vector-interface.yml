@@ -42,6 +42,7 @@ jobs:
           set -euo pipefail
           export PENCIL_HOME="$GITHUB_WORKSPACE/pencil-code"
           export PATH="$PENCIL_HOME/bin:$PATH"
+          export OMPI_MCA_rmaps_base_oversubscribe=1
           cd "$PENCIL_HOME/samples/star-in-a-box-giant-Kprof"
           mkdir -p data
           gfortran --version | head -n 1 | tee "$GITHUB_WORKSPACE/compiler.txt"
