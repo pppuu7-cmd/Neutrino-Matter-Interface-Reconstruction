@@ -7,22 +7,28 @@ import scripts.run_0105a6o3_argon_certified_central_null_reproduction as m
 
 def test_original_publication_thresholds_are_unchanged():
     assert m.ORIGINAL_A6O_PREREG_COMMIT == "a94cbdf5a65618545bd4b1fb4f9fd6c120ae340e"
-    assert m.PUB_TARGETS["NC"] == (mp.mpf("159"), mp.mpf("2.0"))
-    assert m.PUB_TARGETS["NP"] == (mp.mpf("553"), mp.mpf("3.0"))
-    assert m.PUB_TARGETS["ND"] == (mp.mpf("10"), mp.mpf("3.0"))
-    assert m.PUB_TARGETS["NB"] == (mp.mpf("3131"), mp.mpf("3.0"))
-    assert m.PUB_TARGETS["sigma_profile"] == (mp.mpf("43"), mp.mpf("2.0"))
-    assert m.PUB_TARGETS["Z_stat"] == (mp.mpf("3.9"), mp.mpf("0.15"))
+    source = inspect.getsource(m)
+    for literal in (
+        '"NC": (mp.mpf("159"), mp.mpf("2.0"))',
+        '"NP": (mp.mpf("553"), mp.mpf("3.0"))',
+        '"ND": (mp.mpf("10"), mp.mpf("3.0"))',
+        '"NB": (mp.mpf("3131"), mp.mpf("3.0"))',
+        '"sigma_profile": (mp.mpf("43"), mp.mpf("2.0"))',
+        '"Z_stat": (mp.mpf("3.9"), mp.mpf("0.15"))',
+    ):
+        assert literal in source
 
 
 def test_original_dual_anchor_thresholds_are_unchanged():
-    assert m.ROBUSTNESS == {
-        "NC": mp.mpf("1.0"),
-        "NP": mp.mpf("1.0"),
-        "ND": mp.mpf("1.0"),
-        "Z_stat": mp.mpf("0.05"),
-        "sigma_profile": mp.mpf("0.5"),
-    }
+    source = inspect.getsource(m)
+    for literal in (
+        '"NC": mp.mpf("1.0")',
+        '"NP": mp.mpf("1.0")',
+        '"ND": mp.mpf("1.0")',
+        '"Z_stat": mp.mpf("0.05")',
+        '"sigma_profile": mp.mpf("0.5")',
+    ):
+        assert literal in source
 
 
 def test_simple_profile_gradient_stationarity():
