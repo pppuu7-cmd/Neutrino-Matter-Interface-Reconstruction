@@ -1,0 +1,44 @@
+name: NMIR v2 0105a5b R1i IceCube PISA metadata authority
+on:
+  push:
+    branches: [research/0105-bsm-residual-reconstruction]
+    paths:
+      - '.github/workflows/nmir_v2_0105a5b_r1i_icecube_pisa_repository_metadata.yml'
+      - 'scripts/audit_0105a5b_r1i_icecube_pisa_repository_metadata.py'
+      - 'tests/test_0105a5b_r1i_icecube_pisa_repository_metadata.py'
+      - 'research/prereg/0105a5b_r1i_icecube_pisa_repository_metadata_preregistration.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pisa-metadata-authority:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install --disable-pip-version-check pytest
+      - name: Run R1i guards
+        run: python -m pytest -q tests/test_0105a5b_r1i_icecube_pisa_repository_metadata.py
+      - name: Execute metadata-only authority gate
+        run: |
+          mkdir -p artifacts/0105a5b_r1i
+          python scripts/audit_0105a5b_r1i_icecube_pisa_repository_metadata.py --output artifacts/0105a5b_r1i/result.json --git-sha "$GITHUB_SHA"
+          sha256sum artifacts/0105a5b_r1i/result.json > artifacts/0105a5b_r1i/result_sha256.txt
+      - name: Verify hard prohibitions
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('artifacts/0105a5b_r1i/result.json'))
+          for k in ['readme_inspected','implementation_inspected','archive_inspected','standard_3nu_executed','systematic_monte_carlo_executed','observed_bsm_residual_inspected']:
+              assert d[k] is False
+          assert d['observed_bsm_residual_permission_percent']==0
+          assert d['systematic_monte_carlo_execution_permission_percent']==0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a5b-r1i-icecube-pisa-metadata-authority
+          path: artifacts/0105a5b_r1i/
+          if-no-files-found: error
+          retention-days: 90
