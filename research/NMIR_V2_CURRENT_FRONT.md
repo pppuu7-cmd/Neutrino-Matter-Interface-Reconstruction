@@ -15,26 +15,33 @@ DeepCore: Stage-A remains frozen B4RITM; QKL28Z remains a separate sterile-contr
 `OBSERVED_BSM_RESIDUAL_PERMISSION: 0%`
 `SYSTEMATIC_MONTE_CARLO_EXECUTION_PERMISSION: 0%`
 
-## Exhausted MCEq/current-PISA routes
+## Exhausted MCEq/PISA routes
 
 R1h returned `BLOCKED_0105A5B_R1H_ICECUBE_MCEQ_VERSION_NOT_UNIQUELY_DISCRIMINATED`; no MCEq state may be selected by numerical agreement.
 
-R1i established 18 immutable official `icecube/pisa` tag→commit states. R1i1 showed the exact current IceCube source names PISA but not one of those states. R1j/R1j1 byte-locked and structurally froze the cited PISA methodology source. R1j2 then validated `BLOCKED_0105A5B_R1J2_PISA_METHODOLOGY_IMPLEMENTATION_STATE_NOT_IMMUTABLY_IDENTIFIED`: across all 21 prospectively frozen source-text candidates it found PISA contexts but no repository literal, explicit frozen tag, nearby 40-hex token, or version word.
+R1i established 18 immutable official `icecube/pisa` tag→commit states. R1i1 showed the exact current IceCube source names PISA but not one of those states. R1j/R1j1 byte-locked and structurally froze the cited PISA methodology source. R1j2 validated `BLOCKED_0105A5B_R1J2_PISA_METHODOLOGY_IMPLEMENTATION_STATE_NOT_IMMUTABLY_IDENTIFIED`; record `e36bfee7b41719e759681a64fb4a6c93fb7b30f9`, execution `fb5fe9d4f38890ce57babf6385972d96859d13c1`, run/job/artifact `34581861617/103207049284/10191929179`.
 
-R1j2 record `e36bfee7b41719e759681a64fb4a6c93fb7b30f9`; execution `fb5fe9d4f38890ce57babf6385972d96859d13c1`; run/job/artifact `34581861617/103207049284/10191929179`; provider + independent ZIP SHA256 `13a0df570857bf595e616583b879566a7c04b53b437f700304396f29235c6dcc`; inner JSON SHA256 `4c6687907b93ad0bea2767cdf49d78bb9ce282d21543d41e5348059afc0ee270`.
+R1k/R1k1 prospectively byte-locked and structurally froze predecessor DeepCore source `arXiv:1902.07771`. R1k2 validated `BLOCKED_0105A5B_R1K2_PREDECESSOR_PISA_STATE_NOT_IMMUTABLY_IDENTIFIED`; record `6ed31bdd58cfdfe9977d742983cb3b0dc5849b17`, execution `0a75c324aa5a4daa1c0a92c7c569f8d43eed77c2`, run/job/artifact `34590994355/103236012811/10195613079`. The predecessor PISA semantic route is exhausted.
 
-## Predecessor DeepCore authority route — exhausted
+## Barr / CSMS theory-authority fronts
 
-R1k prospectively byte-locked exact predecessor IceCube DeepCore source `arXiv:1902.07771` and validated `PASS_0105A5B_R1K_PREDECESSOR_DEEPCORE_SOURCE_BYTES_ACQUIRED_NONDISCOVERY`. Record `2856e9762cfe1cbdf2a84ff38de06ae69c2d31ec`; execution `54593ce718da42ab723661b865360100def79b40`; run/job/artifact `34590722803/103235159542/10195508300`; exact source SHA256 `d095d23daf4dc08848b7f3ff5977daaf554db966034ca9d3460e4b88d7c3790a`.
+Barr R1l2 is validated `BLOCKED_0105A5B_R1L2_BARR2006_PRIMARY_NUISANCE_SEMANTICS_INCOMPLETE`. Its exact primary source contains atmospheric-flux uncertainty/variation semantics, but the prospectively required full nuisance-family/sign contract is incomplete. Therefore no Barr→B4RITM mapping gate is authorized.
 
-R1k1 validated `PASS_0105A5B_R1K1_PREDECESSOR_ARCHIVE_STRUCTURE_LOCATED_NONDISCOVERY`, froze all 14 mechanically selected source-text candidates without reading member payloads, and recorded run/job/artifact `34590841820/103235529693/10195551783` under record commit `80180a07835196d7404f36da65cfba78e4cc2d62`.
+CSMS R1m2 is validated `PASS_0105A5B_R1M2_CSMS2011_PRIMARY_DIS_UNCERTAINTY_SEMANTICS_LOCATED_NONDISCOVERY`. Record commit `f3df5fb2ec1a3e20b7b6c63880a0dd1857c2c569`; execution `04217a686a20a533f54533021ab20c18b7e40946`; run/job/artifact `34602933911/103274385063/10265136958`; provider + independent ZIP SHA256 `3defdd29df97be3f941312e3917a2d1efaf4ee8e07a6bc4c9f4d00110ac6fcf7`; inner JSON SHA256 `5615df07b77b6ff445779866408e2f268d90287c20024ae57aa03d04c036e113`. This establishes primary quantitative DIS uncertainty semantics only, not a DeepCore nuisance implementation.
 
-R1k2 is now validated and immutable as `BLOCKED_0105A5B_R1K2_PREDECESSOR_PISA_STATE_NOT_IMMUTABLY_IDENTIFIED`. Record commit `6ed31bdd58cfdfe9977d742983cb3b0dc5849b17`; execution `0a75c324aa5a4daa1c0a92c7c569f8d43eed77c2`; run/job/artifact `34590994355/103236012811/10195613079`; provider + independent ZIP SHA256 `eb7912425e9a6004abcd30f0d0d95622566b4ff440c7e07633069c76f23fc8ba`; inner JSON SHA256 `32a8e98666b229942fe49fdbda73a3e41507621af87b61e382d5156f4eadd8b3`. Across the complete 14-member frozen candidate set it found zero PISA contexts, repository literals, nearby 40-hex identifiers, or predefined version/release/tag/commit forms.
+## Active frontier — R1m3
 
-Consequently the predecessor PISA semantic route is exhausted. No cross-analysis PISA transfer is authorized, and no state may be chosen by date, numerical agreement, output matching, or post-hoc implementation comparison.
+R1m3 prospectively freezes a repository-only CSMS→B4RITM/IceCube experimental-authority mapping check. PASS requires all five experimentally authorized elements with no analyst fill-in: exact nuisance identifier/direction, computable event/reweight transformation, sign/orientation, prior/range/amplitude, and covariance/correlation/normalization convention. Missing or ambiguous mandatory evidence is BLOCKED.
+
+R1m3 chain:
+- preregistration commit `1b0293766466ca178648ce1ed60407915788f8bf`
+- implementation commit `36524388457f614460cc077780decc696a089173`
+- deterministic guards commit `be6649cbabc31424bb10bf00e8ab5ca023f2444c`
+- hosted execution head `10c128f016b127d1ea8b3c2c9feaf13ff510f8dd`
+- dedicated Actions run `34617899333` (running at reconciliation)
+
+The gate is repository-only, executes no network request, no standard-3nu, no systematic Monte Carlo, and no observed-residual inspection. Even a validated PASS would authorize only a separately preregistered computational-contract realization/audit, not residual or systematics execution.
 
 ## Exact next scientific boundary
 
-R1d and DeepCore standard-3nu remain BLOCKED. A new DeepCore continuation is allowed only if an independently provenance-qualified authority route can be frozen before target-content inspection. Candidate directions must come from already-cited experimental/provider authority (for example atmospheric-flux nuisance or DIS-cross-section authority) and must not reuse exhausted MCEq/PISA selection logic.
-
-COHERENT F1/F7 remain independently BLOCKED; exhausted q5g2/q4fs/q4fs2 routes must not be repeated or broadened post hoc.
+Consume/classify R1m3 only after terminal raw job + artifact validation. If R1m3 PASS, prospectively preregister a computational-contract realization/audit using only the frozen mapped contract. If R1m3 BLOCKED, R1d and standalone standard-3nu remain BLOCKED and this exact CSMS→B4RITM repository route is exhausted. COHERENT F1/F7 remain independently BLOCKED and exhausted exact routes must not be repeated or broadened post hoc.
