@@ -1,0 +1,41 @@
+name: research-0105a-q6-csi2021-ancillary-authority
+
+on:
+  push:
+    branches: [research/0105-bsm-residual-reconstruction]
+    paths:
+      - 'scripts/audit_0105a_q6_csi2021_ancillary_authority.py'
+      - 'tests/test_0105a_q6_csi2021_ancillary_authority.py'
+      - '.github/workflows/research-0105a-q6-csi2021-ancillary-authority.yml'
+      - 'research/prereg_0105a_q6_2021_csi_ancillary_authority.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  q6-authority:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF text extractor
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Run deterministic guards
+        run: python -m pytest -q tests/test_0105a_q6_csi2021_ancillary_authority.py
+      - name: Verify hard prohibitions
+        run: |
+          ! grep -Eri 'observed.*residual.*(run|scan)|systematic.*monte|bsm.*scan' scripts/audit_0105a_q6_csi2021_ancillary_authority.py
+      - name: Run q6 authority audit
+        run: python scripts/audit_0105a_q6_csi2021_ancillary_authority.py
+      - name: Hash result
+        run: sha256sum results/0105a_q6/result.json results/0105a_q6/supplement_pdftotext.txt | tee results/0105a_q6/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0105a-q6-csi2021-ancillary-authority
+          path: results/0105a_q6/
+          if-no-files-found: error
+          retention-days: 90
