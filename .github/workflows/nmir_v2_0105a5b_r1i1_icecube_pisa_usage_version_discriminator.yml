@@ -1,0 +1,44 @@
+name: NMIR v2 0105a5b R1i1 IceCube PISA discriminator
+on:
+  push:
+    branches: [research/0105-bsm-residual-reconstruction]
+    paths:
+      - '.github/workflows/nmir_v2_0105a5b_r1i1_icecube_pisa_usage_version_discriminator.yml'
+      - 'scripts/audit_0105a5b_r1i1_icecube_pisa_usage_version_discriminator.py'
+      - 'tests/test_0105a5b_r1i1_icecube_pisa_usage_version_discriminator.py'
+      - 'research/prereg/0105a5b_r1i1_icecube_pisa_usage_version_discriminator_preregistration.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pisa-source-discriminator:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install --disable-pip-version-check pytest
+      - name: Run R1i1 guards
+        run: python -m pytest -q tests/test_0105a5b_r1i1_icecube_pisa_usage_version_discriminator.py
+      - name: Execute frozen IceCube-source PISA discriminator
+        run: |
+          mkdir -p artifacts/0105a5b_r1i1
+          python scripts/audit_0105a5b_r1i1_icecube_pisa_usage_version_discriminator.py --output artifacts/0105a5b_r1i1/result.json --git-sha "$GITHUB_SHA"
+          sha256sum artifacts/0105a5b_r1i1/result.json > artifacts/0105a5b_r1i1/result_sha256.txt
+      - name: Verify hard prohibitions
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('artifacts/0105a5b_r1i1/result.json'))
+          for k in ['pisa_repository_content_inspected','standard_3nu_executed','systematic_monte_carlo_executed','observed_bsm_residual_inspected']:
+              assert d[k] is False
+          assert d['observed_bsm_residual_permission_percent']==0
+          assert d['systematic_monte_carlo_execution_permission_percent']==0
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nmir-v2-0105a5b-r1i1-icecube-pisa-discriminator
+          path: artifacts/0105a5b_r1i1/
+          if-no-files-found: error
+          retention-days: 90
