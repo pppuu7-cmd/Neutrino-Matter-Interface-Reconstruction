@@ -1,0 +1,36 @@
+name: 0103C field-matter coregistration
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103c-field-matter-coregistration.yml'
+      - 'research/prereg/0103c_field_matter_coregistration.md'
+      - 'scripts/audit_0103c_field_matter_coregistration.py'
+      - 'tests/test_audit_0103c_field_matter_coregistration.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Focused classifier test
+        run: pytest -q tests/test_audit_0103c_field_matter_coregistration.py
+      - name: Emit authority classification
+        run: python scripts/audit_0103c_field_matter_coregistration.py | tee 0103c_coregistration.json
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103c-field-matter-coregistration
+          path: 0103c_coregistration.json
+          if-no-files-found: warn
