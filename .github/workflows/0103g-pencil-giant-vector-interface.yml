@@ -21,6 +21,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install MPI infrastructure
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openmpi-bin libopenmpi-dev
       - name: Install reader dependencies
         run: python -m pip install --disable-pip-version-check numpy scipy h5py f90nml matplotlib lazy_loader
       - name: Clone pinned Pencil Code
@@ -41,7 +45,7 @@ jobs:
           cd "$PENCIL_HOME/samples/star-in-a-box-giant-Kprof"
           mkdir -p data
           gfortran --version | head -n 1 | tee "$GITHUB_WORKSPACE/compiler.txt"
-          mpirun --version | head -n 1 | tee "$GITHUB_WORKSPACE/mpi.txt" || true
+          mpirun --version | head -n 1 | tee "$GITHUB_WORKSPACE/mpi.txt"
           sha256sum start.in run.in src/Makefile.local src/cparam.local | tee "$GITHUB_WORKSPACE/frozen_sample_sha256.txt"
           pc_setupsrc 2>&1 | tee "$GITHUB_WORKSPACE/pc_setupsrc.log"
           pc_build 2>&1 | tee "$GITHUB_WORKSPACE/pc_build.log"
