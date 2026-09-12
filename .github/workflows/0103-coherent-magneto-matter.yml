@@ -1,0 +1,35 @@
+name: 0103M coherent magneto-matter audit
+
+on:
+  push:
+    paths:
+      - '.github/workflows/0103-coherent-magneto-matter.yml'
+      - 'scripts/audit_0103_coherent_magneto_matter.py'
+      - 'tests/test_audit_0103_coherent_magneto_matter.py'
+      - 'research/prereg/0103_coherent_magneto_matter_pipeline.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pytest
+      - name: Run 0103M audit
+        run: python scripts/audit_0103_coherent_magneto_matter.py | tee 0103M_coherent_magneto_matter.json
+      - name: Run focused pytest
+        run: python -m pytest -q tests/test_audit_0103_coherent_magneto_matter.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: nmir-0103M-coherent-magneto-matter
+          path: 0103M_coherent_magneto_matter.json
+          if-no-files-found: error
